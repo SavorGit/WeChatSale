@@ -260,7 +260,9 @@ Page({
     })
   },
   boxShow:function(e){
-    console.log(e.currentTarget);
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    
+    box_mac = user_info.box_mac;
     var goods_id = e.currentTarget.dataset.goods_id;
     
     var resource_type = e.currentTarget.dataset.resource_type;
@@ -279,7 +281,7 @@ Page({
       },
       method: "POST",
       data:{
-        box_mac:box_mac,
+        box_mac: box_mac,
         msg: '{"goods_id":' + goods_id +',"action":40,"timestamp":'+timestamp+'}',
       },
       success:function(res){

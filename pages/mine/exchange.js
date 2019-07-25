@@ -1,7 +1,6 @@
 // pages/mine/exchange.js
 const app = getApp()
 var api_url = app.globalData.api_url;
-var box_mac;
 var openid;
 var cache_key = app.globalData.cache_key;
 var page = 1;
@@ -18,6 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    openid = user_info.openid;
+    var h5_url = api_url + '/h5/activitygoods?openid='+openid;
+    that.setData({
+      h5_url: h5_url
+    })
     
   },
   loadMore: function (res) {
