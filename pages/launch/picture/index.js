@@ -14,6 +14,7 @@ var tmp_percent = [];
 var pic_show_cur = [];
 var api_url  = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
 Page({
 
   /**
@@ -146,7 +147,7 @@ Page({
     if(app.globalData.is_zhilian==1){
       var public_text = '';
       wx.request({
-        url: 'https://mobile.littlehotspot.com/smallapp21/User/isForscreenIng',
+        url: api_url+'/smallapp21/User/isForscreenIng',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -163,7 +164,7 @@ Page({
                 if (res.confirm) {
 
                   wx.request({
-                    url: 'https://mobile.littlehotspot.com/Smallapp/Index/getOssParams',
+                    url: api_url+'/Smallapp/Index/getOssParams',
                     headers: {
                       'Content-Type': 'application/json'
                     },
@@ -185,7 +186,7 @@ Page({
           } else {
 
             wx.request({
-              url: 'https://mobile.littlehotspot.com/Smallapp/Index/getOssParams',
+              url: api_url+'/Smallapp/Index/getOssParams',
               headers: {
                 'Content-Type': 'application/json'
               },
@@ -214,7 +215,7 @@ Page({
         var postf_w = filename.substring(index1 + 1, index2);//后缀名
 
         var upload_task = wx.uploadFile({
-          url: "https://image.littlehotspot.com",
+          url: oss_upload_url,
           filePath: img_url,
           name: 'file',
           header: {
@@ -253,7 +254,7 @@ Page({
           if (res.progress == 100) {
             var res_eup_time = (new Date()).valueOf();
             wx.request({
-              url: 'https://mobile.littlehotspot.com/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },
@@ -277,7 +278,7 @@ Page({
               },
               success: function (ret) {
                 wx.request({
-                  url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+                  url: api_url+'/Netty/Index/index',
                   headers: {
                     'Content-Type': 'application/json'
                   },
@@ -409,7 +410,7 @@ Page({
     if(app.globalData.is_zhilian==1){
       
       wx.request({
-        url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+        url: api_url+'/Netty/Index/index',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -422,7 +423,7 @@ Page({
         success: function (result) {
           if(result.data.code==10000){
             wx.request({
-              url: 'https://mobile.littlehotspot.com/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },
@@ -524,7 +525,7 @@ Page({
     if(app.globalData.is_zhilian==1){
       
       wx.request({
-        url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+        url: api_url+'/Netty/Index/index',
         headers: {
           'Content-Type': 'application/json'
         },

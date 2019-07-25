@@ -149,7 +149,7 @@ Page({
       });
     } else {
       wx.request({
-        url: 'https://mobile.littlehotspot.com/Smallsale/user/checkuser',
+        url: api_url+'/Smallsale/user/checkuser',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -191,7 +191,7 @@ Page({
       });
     } else {
       wx.request({
-        url: 'https://mobile.littlehotspot.com/Smallsale/user/checkuser',
+        url: api_url+'/Smallsale/user/checkuser',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -225,7 +225,7 @@ Page({
     var box_mac = e.currentTarget.dataset.box_mac;
     var timestamp = (new Date()).valueOf();
     wx.request({
-      url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+      url: api_url+'/Netty/Index/index',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -255,7 +255,7 @@ Page({
     var change_type = e.target.dataset.change_type;
     var timestamp = (new Date()).valueOf();
     wx.request({
-      url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+      url: api_url+'/Netty/Index/index',
       headers: {
         'Content-Type': 'application/json'
       },

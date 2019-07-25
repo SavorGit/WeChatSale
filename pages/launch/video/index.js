@@ -9,6 +9,7 @@ var forscreen_char='' ;
 var intranet_ip;
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
 Page({
 
   /**
@@ -103,7 +104,7 @@ Page({
     var res_sup_time = (new Date()).valueOf();
     if(app.globalData.is_zhilian==1){
       wx.request({
-        url: 'https://mobile.littlehotspot.com/smallapp21/User/isForscreenIng',
+        url: api_url+'/smallapp21/User/isForscreenIng',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -136,7 +137,7 @@ Page({
       function uploadVedio(video_url, box_mac, openid, res_sup_time, is_pub_hotelinfo, is_share, duration, avatarUrl, nickName, play_times) {
 
         wx.request({
-          url: 'https://mobile.littlehotspot.com/Smallapp/Index/getOssParams',
+          url: api_url+'/Smallapp/Index/getOssParams',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -161,7 +162,7 @@ Page({
         var timestamp = (new Date()).valueOf();
 
         var upload_task = wx.uploadFile({
-          url: "https://image.littlehotspot.com",
+          url: oss_upload_url,
           filePath: filename,
           name: 'file',
 
@@ -190,13 +191,13 @@ Page({
             //console.log(res_eup_time);
             that.setData({
               showVedio: false,
-              oss_video_url: "http://oss.littlehotspot.com/forscreen/resource/" + timestamp + postf_t,
+              oss_video_url: app.globalData.oss_url+"/forscreen/resource/" + timestamp + postf_t,
               upload_vedio_temp: '',
               is_view_control: true,
               hiddens: true,
             })
             wx.request({
-              url: 'https://mobile.littlehotspot.com/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },
@@ -222,7 +223,7 @@ Page({
               },
               success: function (ret) {
                 wx.request({
-                  url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+                  url: api_url+'/Netty/Index/index',
                   headers: {
                     'Content-Type': 'application/json'
                   },
@@ -366,7 +367,7 @@ Page({
     box_mac = res.currentTarget.dataset.box_mac;
     if(app.globalData.is_zhilian==1){
       wx.request({
-        url: 'https://mobile.littlehotspot.com/Netty/Index/index',
+        url: api_url+'/Netty/Index/index',
         headers: {
           'Content-Type': 'application/json'
         },
