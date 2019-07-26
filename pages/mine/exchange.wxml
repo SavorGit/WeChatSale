@@ -1,2 +1,2 @@
 <!--pages/mine/exchange.wxml-->
-<web-view>{{h5_url}}</web-view>
+<web-view src='{{h5_url}}'></web-view>
