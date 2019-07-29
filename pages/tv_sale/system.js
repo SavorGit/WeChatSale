@@ -889,8 +889,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('dddd');
+
     var that = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    openid = user_info.openid;
+    hotel_id = user_info.hotel_id;
     var showPageType = this.data.showPageType;
     if (showPageType==1){
       wx.showLoading({
@@ -898,32 +901,41 @@ Page({
       })
       page = page + 1;
       wx.request({
-        url: api_url + '/aaa/bbb/ccc',
+        url: api_url + '/Smallsale/goods/getGoodslist',
         header: {
           'content-type': 'application/json'
         },
         data: {
-          box_mac: box_mac,
+          hotel_id: hotel_id,
+          openid: openid,
           page: page,
+          type: 10
         },
         success: function (res) {
           if (res.data.code == 10000) {
             wx.hideLoading()
             that.setData({
-              sale_list: res.data.result
+              sale_list: res.data.result.datalist,
             })
 
+          }else {
+            wx.hideLoading()
+            wx.showToast({
+              title: '加载失败，请重试',
+              icon: 'none',
+              duration: 2000,
+            })
           }
+        },fail:function(e){
+          wx.hideLoading()
+          wx.showToast({
+            title: '加载失败，请重试',
+            icon: 'none',
+            duration: 2000,
+          })
         }
       })
-      setTimeout(function () {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载失败，请重试',
-          icon: 'none',
-          duration: 2000,
-        })
-      }, 5000)
+      
     }
     
   },

@@ -330,7 +330,7 @@ Page({
             sign_box_list:sign_box_list,
           })
           wx.showToast({
-            title: '签到成功，请重试',
+            title: '签到成功',
             icon: 'none',
             duration: 2000
           })
