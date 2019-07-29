@@ -30,9 +30,9 @@ Page({
                { 'id': 1, 'name': '包间', 'checked': false,'desc':'本餐厅包间电视'}, 
                { 'id': 2, 'name': '非包间', 'checked': false,'desc':'本餐厅非包间电视' }
               ],
-    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'http://oss.littlehotspot.com/media/resource/z8YQnmsySD.png' }, 
-                       { 'status': 2, 'name': '审核通过', 'img': 'http://oss.littlehotspot.com/media/resource/RiifNKCWeT.png' }, 
-                       { 'status': 3, 'name': '未审核通过', 'img':'http://oss.littlehotspot.com/media/resource/8Xyk3NtmzS.png'}
+    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'http://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png' }, 
+      { 'status': 2, 'name': '审核通过', 'img': 'http://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png' }, 
+      { 'status': 3, 'name': '未审核通过', 'img':'http://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'}
                       ],
     start_date:'', //活动开始时间
     end_date:'',   //活动结束时间
