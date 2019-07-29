@@ -103,6 +103,11 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   width: 30rpx;
 }
 
+.playing-sale-panel > .row > .ads > button::before,
+.playing-sale-panel > .row > .ads > button::after {
+  border: unset;
+}
+
 .playing-sale-panel > .row > .ads > button {
   width: 90rpx;
   height: 40rpx;
@@ -212,9 +217,19 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 10rpx;
 }
 
+.sale-panel > .row > .operate > .btn-menu::before,
+.sale-panel > .row > .operate > .btn-menu::after {
+  border: unset;
+}
+
 .sale-panel > .row > .operate > .btn-menu {
   color: #1cbeb6;
   border: 1rpx solid #1cbeb6;
+}
+
+.sale-panel > .row > .operate > .btn-tv::before,
+.sale-panel > .row > .operate > .btn-tv::after {
+  border: unset;
 }
 
 .sale-panel > .row > .operate > .btn-tv {
@@ -379,14 +394,14 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel > .ads-list > .pic > .photo {
-  margin-top: -45rpx;
+  margin-top: -60rpx;
   z-index: 0;
 }
 
 .sale-panel > .ads-list > .pic > .status {
   width: 120rpx;
-  height: 90rpx;
-  margin-top: -45rpx;
+  height: 120rpx;
+  margin-top: -60rpx;
   margin-left: 480rpx;
   z-index: 1;
 }
