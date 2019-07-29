@@ -5,8 +5,8 @@
 
   <!-- 正在播放的活动面板 -->
   <view class='playing-sale-panel full_width'>
-    <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key">
-      <view class='title theme-font3'>循环播放活动</view>
+    <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
+      <view class='title theme-font3'>{{index==0?'循环播放活动':''}}</view>
       <view class='dividing-line'></view>
       <view class='ads'>
         <image src='{{bean.img_url}}'></image>
@@ -69,7 +69,8 @@
             </block>
             <block wx:if="{{my_activity_info.media_type == 1}}">
               <view class='clear theme-font' bindtap="clearGoodsImg" data-resource_type="1">重选</view>
-              <video class="choosed-video" src="{{filename}}"></video>
+              <image class="choosed-pic" src='{{filename_vedio_img}}'></image>
+              <!-- <video class="choosed-video" src="{{filename}}"></video> -->
             </block>
           </view>
 
@@ -105,6 +106,7 @@
           <input class='display_hide' name="goods_id" value="{{my_activity_info.goods_id}}"></input>
           <input class='display_hide' name="file_size" value="{{my_activity_info.file_size}}"></input>
           <input class="display_hide" name="duration" value="{{my_activity_info.duration}}"></input>
+          <input class="display_hide" name="tmp_video" value="{{filename_vedio_img}}"></input>
           <button class='btn-submit theme-button' form-type="submit">添加活动</button>
         </form>
       </view>
@@ -116,7 +118,7 @@
         <view class='pic full_width'>
           <image class='status' src='{{my_activity_info.check_status_img}}'></image>
           <image wx:if="{{my_activity_info.media_type==2}}" class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
-          <video wx:else class="choosed-video" src="{{my_activity_info.vedio_url}}"></video>
+          <image wx:else class='photo full_height full_width' src="{{my_activity_info.vedio_url}}"></image>
         </view>
         <view class='row full_width'>
           <label class='theme-font3'>价格</label>

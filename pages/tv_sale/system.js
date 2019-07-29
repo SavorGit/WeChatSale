@@ -37,7 +37,7 @@ Page({
     start_date:'', //活动开始时间
     end_date:'',   //活动结束时间
     is_my_activity :0,  //是否有我的活动
-    my_activity_info: { 'goods_id': 0, 'start_date': '', 'end_date': '', 'room_type': 0, 'price': '', 'goods_img': '', 'media_type': 0,'file_size':'' },
+    my_activity_info: { 'goods_id': 0, 'start_date': '', 'end_date': '', 'room_type': 0, 'price': '', 'goods_img': '', 'media_type': 0,'file_size':'','duration':'' },
     showHotelErr:false
   },
 
@@ -376,7 +376,7 @@ Page({
               my_activity_info = res.data.result.datalist[0]
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
-              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
+              my_activity_info.vedio_url =  res.data.result.datalist[0].img_url;
               console.log(my_activity_info);
               that.setData({
                 is_my_activity: 1,
@@ -473,7 +473,9 @@ Page({
       success: function (res) {
         console.log(res);
         var filename = res.tempFilePath;
+        var filename_vedio_img = res.thumbTempFilePath;
         var file_size = res.size;
+        var duration = res.duration;
         var index1 = filename.lastIndexOf(".");
         var index2 = filename.length;
         var postf = filename.substring(index1, index2);//后缀名
@@ -512,9 +514,11 @@ Page({
                 my_activity_info.media_type = 1;
                 my_activity_info.goods_img = oss_img;
                 my_activity_info.file_size = file_size;
+                my_activity_info.duration = duration;
                 that.setData({
                   my_activity_info:my_activity_info,
                   filename: filename,
+                  filename_vedio_img: filename_vedio_img
                 })
               },
               complete: function (es) {
@@ -614,6 +618,8 @@ Page({
     var check_status_arr = this.data.check_status_arr;
     var goods_id = res.detail.value.goods_id;
     var file_size = res.detail.value.file_size;
+    var duration = res.detail.value.duration;
+    var tmp_video = res.detail.value.tmp_video;
     if(goods_id>0){
       var tost_success_desc = '活动编辑成功';
       var tost_err_desc     = '活动编辑失败';
@@ -680,6 +686,7 @@ Page({
         scope:room_type,
         goods_id: goods_id,
         oss_filesize:file_size,
+        duration: duration
       },
       success:function(res){
         if(res.data.code==10000){
@@ -699,14 +706,15 @@ Page({
           }
 
           my_activity_info.file_size =  file_size;
+          my_activity_info.duration  = duration;
           my_activity_info.price = price;
           my_activity_info.start_time = start_time
           my_activity_info.resource_type = res.data.result.resource_type;
           my_activity_info.check_status_img = check_status_img;
           my_activity_info.room_type_desc = room_desc;
           if(resource_type==1){
-            my_activity_info.vedio_url = app.globalData.oss_url + '/' + goods_img;
-            
+            //my_activity_info.vedio_url = app.globalData.oss_url + '/' + goods_img;
+            my_activity_info.vedio_url = tmp_video;
           }else {
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
           }
@@ -797,7 +805,8 @@ Page({
             my_activity_info.room_type = res.data.result.datalist[0].scope;
             if (resource_type==1){
               var filename = app.globalData.oss_url+'/'+res.data.result.datalist[0].oss_addr;
-              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
+              var filename_vedio_img = res.data.result.datalist[0].img_url
+              my_activity_info.vedio_url =  res.data.result.datalist[0].img_url;
             }else {
               var filename = res.data.result.datalist[0].img_url
             }
@@ -810,6 +819,7 @@ Page({
               is_my_activity: 0,
               price :price,
               filename: filename,
+              filename_vedio_img: filename_vedio_img,
               goods_img: goods_img,
               my_activity_info: my_activity_info,
             })
