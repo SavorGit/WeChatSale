@@ -260,18 +260,23 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel > .ads-add .btn-add > .clear {
-  width: 60rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  margin: auto auto auto calc(100% - 60rpx);
-  text-align: right;
-  text-decoration: underline;
+  width: 90rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin: 5rpx 10rpx auto calc(100% - 100rpx);
+  display: block;
+  text-align: center;
+  /* text-decoration: underline; */
   z-index: 1;
+  background-color: #fff;
+  border: 1rpx solid #1cbeb6;
+  border-radius: 10rpx;
+  font-size: 20rpx;
 }
 
 .sale-panel > .ads-add .btn-add > .choosed-pic,
 .sale-panel > .ads-add .btn-add > .choosed-video {
-  margin-top: -50rpx;
+  margin-top: -48rpx;
   width: calc(100% - 2rpx);
   height: calc(100% - 2rpx);
   z-index: 0;

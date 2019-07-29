@@ -21,7 +21,7 @@
         <button bindtap="delProgramPlay" data-goods_id="{{bean.goods_id}}" data-key="{{key}}" data-play_list="{{play_list}}">移除</button>
       </view>
     </view>
-    
+
   </view>
 
   <!-- 活动促销面板 -->
@@ -44,11 +44,11 @@
           </view>
         </view>
         <view class='operate'>
-          <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}" >节目单播放</button>
+          <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">节目单播放</button>
           <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}">电视播放</button>
         </view>
       </view>
-      
+
     </block>
 
     <!-- 我的活动[添加] -->
@@ -135,7 +135,7 @@
           <view class='theme-font2'>{{my_activity_info.room_type_desc}}</view>
         </view>
         <view class='row full_width'>
-          <button class='btn-edit theme-button6' bindtap="editGoods" >修改</button>
+          <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
           <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
           <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-resource_type="{{my_activity_info.resource_type}}" data-img_addr="{{my_activity_info.img_addr}}" data-video_addr="{{my_activity_info.video_addr}}">电视播放</button>
         </view>
@@ -145,7 +145,7 @@
     <!-- 默认 -->
     <block wx:else>
     </block>
-  
+
   </view>
-  
+
 </view>
