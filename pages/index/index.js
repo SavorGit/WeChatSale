@@ -345,6 +345,14 @@ Page({
     })
 
   },
+  repeatSign:function(e){
+    var nickname = e.currentTarget.dataset.nickname;
+    wx.showToast({
+      title: '该电视已由' + nickname+'签到',
+      icon:'none',
+      duration:2000
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

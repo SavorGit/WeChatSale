@@ -53,7 +53,7 @@
       <view class='weui-grids box-list full_width'>
         <block wx:for="{{sign_box_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
         <view class='weui-grid box' wx:if="{{bean.status==2}}">
-          <view class='light green-light' >
+          <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
             <image src='{{bean.user.avatarUrl}}'></image>
           </view>
           <view class='name'>{{bean.name}}</view>
