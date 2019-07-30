@@ -30,9 +30,9 @@ Page({
                { 'id': 1, 'name': '包间', 'checked': false,'desc':'本餐厅包间电视'}, 
                { 'id': 2, 'name': '非包间', 'checked': false,'desc':'本餐厅非包间电视' }
               ],
-    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'http://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png' }, 
-      { 'status': 2, 'name': '审核通过', 'img': 'http://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png' }, 
-      { 'status': 3, 'name': '未审核通过', 'img':'http://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'}
+    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'http://oss.littlehotspot.com/media/resource/z8YQnmsySD.png' }, 
+                       { 'status': 2, 'name': '审核通过', 'img': 'http://oss.littlehotspot.com/media/resource/RiifNKCWeT.png' }, 
+                       { 'status': 3, 'name': '未审核通过', 'img':'http://oss.littlehotspot.com/media/resource/8Xyk3NtmzS.png'}
                       ],
     start_date:'', //活动开始时间
     end_date:'',   //活动结束时间
@@ -376,7 +376,7 @@ Page({
               my_activity_info = res.data.result.datalist[0]
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
-              my_activity_info.vedio_url =  res.data.result.datalist[0].img_url;
+              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
               console.log(my_activity_info);
               that.setData({
                 is_my_activity: 1,
@@ -473,7 +473,6 @@ Page({
       success: function (res) {
         console.log(res);
         var filename = res.tempFilePath;
-        var filename_vedio_img = res.thumbTempFilePath;
         var file_size = res.size;
         var duration = res.duration;
         var index1 = filename.lastIndexOf(".");
@@ -518,7 +517,6 @@ Page({
                 that.setData({
                   my_activity_info:my_activity_info,
                   filename: filename,
-                  filename_vedio_img: filename_vedio_img
                 })
               },
               complete: function (es) {
@@ -619,7 +617,6 @@ Page({
     var goods_id = res.detail.value.goods_id;
     var file_size = res.detail.value.file_size;
     var duration = res.detail.value.duration;
-    var tmp_video = res.detail.value.tmp_video;
     if(goods_id>0){
       var tost_success_desc = '活动编辑成功';
       var tost_err_desc     = '活动编辑失败';
@@ -713,8 +710,8 @@ Page({
           my_activity_info.check_status_img = check_status_img;
           my_activity_info.room_type_desc = room_desc;
           if(resource_type==1){
-            //my_activity_info.vedio_url = app.globalData.oss_url + '/' + goods_img;
-            my_activity_info.vedio_url = tmp_video;
+            my_activity_info.vedio_url = app.globalData.oss_url + '/' + goods_img;
+            my_activity_info.img_url   = res.data.result.img_url;
           }else {
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
           }
@@ -805,8 +802,7 @@ Page({
             my_activity_info.room_type = res.data.result.datalist[0].scope;
             if (resource_type==1){
               var filename = app.globalData.oss_url+'/'+res.data.result.datalist[0].oss_addr;
-              var filename_vedio_img = res.data.result.datalist[0].img_url
-              my_activity_info.vedio_url =  res.data.result.datalist[0].img_url;
+              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
             }else {
               var filename = res.data.result.datalist[0].img_url
             }
@@ -819,7 +815,6 @@ Page({
               is_my_activity: 0,
               price :price,
               filename: filename,
-              filename_vedio_img: filename_vedio_img,
               goods_img: goods_img,
               my_activity_info: my_activity_info,
             })
