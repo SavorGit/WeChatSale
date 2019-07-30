@@ -650,6 +650,7 @@ Page({
         icon: 'none',
         duration: 2000
       });
+      return false;
     }
     if (end_time == '') {
       wx.showToast({
@@ -657,6 +658,7 @@ Page({
         icon: 'none',
         duration: 2000
       });
+      return false;
     }
     var diff_date = tab(start_time,end_time);
     if(diff_date==0){
