@@ -89,32 +89,37 @@ Page({
         }
       }
     })
-    /*wx.request({//我的活动
-      url: api_url +'/Smallsale/goods/getGoodslist',
+    wx.request({//我的活动
+      url: api_url + '/Smallsale/goods/getGoodslist',
       header: {
         'content-type': 'application/json'
       },
-      data:{
-        hotel_id:hotel_id,
-        openid:openid,
-        type:20,
-        page:1
+      data: {
+        hotel_id: hotel_id,
+        openid: openid,
+        type: 20,
+        page: 1
       },
-      success:function(res){
-        if(res.data.code==10000){
-          if (res.data.result.datalist.length>0){
+      success: function (res) {
+        if (res.data.code == 10000) {
+          if (res.data.result.datalist.length > 0) {
             var goods_status = res.data.result.datalist[0].status;
-            var room_type    = res.data.result.datalist[0].scope;
+            if (goods_status == 2) {
+              var box_btn = false
+            } else {
+              var box_btn = true
+            }
+            var room_type = res.data.result.datalist[0].scope;
             var check_status_arr = that.data.check_status_arr;
             var room_arr = that.data.room_arr;
-            for(var i=0;i<check_status_arr.length;i++){
-              if (check_status_arr[i].status==goods_status){
+            for (var i = 0; i < check_status_arr.length; i++) {
+              if (check_status_arr[i].status == goods_status) {
                 var check_status_img = check_status_arr[i].img;
                 break;
               }
             }
-            for(var j=0;j<room_arr.length;j++){
-              if (room_type ==room_arr[j].id ){
+            for (var j = 0; j < room_arr.length; j++) {
+              if (room_type == room_arr[j].id) {
                 var room_type_desc = room_arr[j].desc;
                 break;
               }
@@ -123,22 +128,23 @@ Page({
             my_activity_info = res.data.result.datalist[0]
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
-            my_activity_info.vedio_url  = app.globalData.oss_url+'/'+ res.data.result.datalist[0].oss_addr;
+            my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
             console.log(my_activity_info);
             that.setData({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
+              box_btn: box_btn,
             })
-          }else{
+          } else {
             that.setData({
               is_my_activity: 0,
-              
+
             })
           }
-          
+
         }
       }
-    })*/
+    })
     //获取酒楼包间签到详情
     wx.request({
       url: api_url +'/Smallsale/user/getSigninBoxList',
