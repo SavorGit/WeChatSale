@@ -30,9 +30,10 @@ Page({
                { 'id': 1, 'name': '包间', 'checked': false,'desc':'本餐厅包间电视'}, 
                { 'id': 2, 'name': '非包间', 'checked': false,'desc':'本餐厅非包间电视' }
               ],
-    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'http://oss.littlehotspot.com/media/resource/z8YQnmsySD.png' }, 
-                       { 'status': 2, 'name': '审核通过', 'img': 'http://oss.littlehotspot.com/media/resource/RiifNKCWeT.png' }, 
-                       { 'status': 3, 'name': '未审核通过', 'img':'http://oss.littlehotspot.com/media/resource/8Xyk3NtmzS.png'}
+    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png' }, 
+      { 'status': 2, 'name': '审核通过', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png' }, 
+      { 'status': 3, 'name': '未审核通过', 'img':'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'},
+      { 'status': 5, 'name': '已过期', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png' }
                       ],
     start_date:'', //活动开始时间
     end_date:'',   //活动结束时间
@@ -605,7 +606,6 @@ Page({
     })
   },
   pubAct:function(res){
-    console.log(res);
     var that = this;
     var goods_img = res.detail.value.goods_img;
     var start_time = res.detail.value.start_time;
@@ -617,6 +617,7 @@ Page({
     var goods_id = res.detail.value.goods_id;
     var file_size = res.detail.value.file_size;
     var duration = res.detail.value.duration;
+    
     if(goods_id>0){
       var tost_success_desc = '活动编辑成功';
       var tost_err_desc     = '活动编辑失败';
@@ -668,6 +669,9 @@ Page({
     }
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
+    wx.showLoading({
+      title: '活动商品处理中，请稍后',
+    })
     wx.request({
       url: api_url +'/Smallsale/goods/addActivityGoods',
       header: {
@@ -686,6 +690,7 @@ Page({
         duration: duration
       },
       success:function(res){
+        wx.hideLoading();
         if(res.data.code==10000){
           for (var i = 0; i < room_arr.length; i++) {
             if (room_arr[i].id == room_type) {
@@ -740,6 +745,7 @@ Page({
 
         
       },fail:function(res){
+        wx.hideLoading();
         wx.showToast({
           title: tost_err_desc,
           icon: 'none',
