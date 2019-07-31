@@ -319,21 +319,41 @@ Page({
       },
       success:function(res){
         if(res.data.code==10000){
-          for(var i=0;i<sign_box_list.length;i++){
-            if(keys==i){
-              sign_box_list[i].status = 2;
-              sign_box_list[i].user = {"avatarUrl": user_info.avatarUrl ,"nickName": user_info.nickName ,"openid": user_info.openid ,"user_id":user_info.user_id};
+          if(res.data.result.status==2){
+            for (var i = 0; i < sign_box_list.length; i++) {
+              if (keys == i) {
+                sign_box_list[i].status = 2;
+                sign_box_list[i].user = { "avatarUrl": user_info.avatarUrl, "nickName": user_info.nickName, "openid": user_info.openid, "user_id": user_info.user_id };
+              }
             }
+            console.log(sign_box_list);
+            that.setData({
+              sign_box_list: sign_box_list,
+            })
+            wx.showToast({
+              title: '签到成功',
+              icon: 'none',
+              duration: 2000
+            })
+          }else {
+            for (var i = 0; i < sign_box_list.length; i++) {
+              if (keys == i) {
+                sign_box_list[i].status = 2;
+                sign_box_list[i].user = { "avatarUrl": res.data.result.user.avatarUrl, "nickName": res.data.result.user.nickName, "openid": user_info.openid, "user_id": user_info.user_id };
+              }
+            }
+            var err_desc = '该包间已由'+res.data.result.user.nickName+'签到';
+            that.setData({
+              sign_box_list: sign_box_list,
+            })
+            wx.showToast({
+              title: err_desc,
+              icon: 'none',
+              duration: 2000
+            })
           }
-          console.log(sign_box_list);
-          that.setData({
-            sign_box_list:sign_box_list,
-          })
-          wx.showToast({
-            title: '签到成功',
-            icon: 'none',
-            duration: 2000
-          })
+
+          
         }else {
           wx.showToast({
             title: '签到失败，请重试',
