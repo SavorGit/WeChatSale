@@ -33,7 +33,7 @@ Page({
     check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png' }, 
       { 'status': 2, 'name': '审核通过', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png' }, 
       { 'status': 3, 'name': '未审核通过', 'img':'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'},
-      { 'status': 5, 'name': '已过期', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png' }
+      { 'status': 5, 'name': '已过期', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-expire.png' }
                       ],
     start_date:'', //活动开始时间
     end_date:'',   //活动结束时间
@@ -136,13 +136,38 @@ Page({
               box_btn: box_btn,
             })
           } else {
+            my_activity_info = {};
+            my_activity_info.media_type = 0;
+            my_activity_info.room_type = 0
             that.setData({
+              price: '',
+              my_activity_info: my_activity_info,
               is_my_activity: 0,
 
             })
           }
 
+        }else {
+          my_activity_info = {};
+          my_activity_info.media_type = 0;
+          my_activity_info.room_type = 0
+          that.setData({
+            price: '',
+            my_activity_info: my_activity_info,
+            is_my_activity: 0,
+
+          })
         }
+      },fail:function(res){
+        my_activity_info = {};
+        my_activity_info.media_type = 0;
+        my_activity_info.room_type = 0
+        that.setData({
+          price: '',
+          my_activity_info: my_activity_info,
+          is_my_activity: 0,
+
+        })
       }
     })
     //获取酒楼包间签到详情
@@ -356,6 +381,7 @@ Page({
           page: 1
         },
         success: function (res) {
+          
           if (res.data.code == 10000) {
             if (res.data.result.datalist.length > 0) {
               var goods_status = res.data.result.datalist[0].status;
@@ -391,13 +417,36 @@ Page({
                 box_btn:box_btn,
               })
             } else {
+              my_activity_info = {};
+              my_activity_info.media_type = 0;
+              my_activity_info.room_type = 0
+              console.log(my_activity_info);
               that.setData({
+                price: '',
                 is_my_activity: 0,
-
+                my_activity_info: my_activity_info
               })
             }
 
+          }else {
+            my_activity_info = {};
+            my_activity_info.media_type = 0;
+            my_activity_info.room_type = 0
+            that.setData({
+              price: '',
+              is_my_activity: 0,
+              my_activity_info: my_activity_info
+            })
           }
+        },fail:function(res){
+          my_activity_info = {};
+          my_activity_info.media_type = 0;
+          my_activity_info.room_type = 0
+          that.setData({
+            price:'',
+            is_my_activity: 0,
+            my_activity_info: my_activity_info
+          })
         }
       })
     }
@@ -626,10 +675,8 @@ Page({
     
     if(goods_id>0){
       var tost_success_desc = '活动编辑成功';
-      var tost_err_desc     = '活动编辑失败';
     }else {
       var tost_success_desc = '活动添加成功';
-      var tost_err_desc     = '活动添加失败';
     }
     if(goods_img==''){
       wx.showToast({
@@ -678,7 +725,7 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
     wx.showLoading({
-      title: '活动商品处理中，请稍后',
+      title: '活动商品处理中',
     })
     wx.request({
       url: api_url +'/Smallsale/goods/addActivityGoods',
@@ -699,6 +746,7 @@ Page({
       },
       success:function(res){
         wx.hideLoading();
+        var tost_err_desc = res.data.msg;
         if(res.data.code==10000){
           for (var i = 0; i < room_arr.length; i++) {
             if (room_arr[i].id == room_type) {
