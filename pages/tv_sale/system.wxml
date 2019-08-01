@@ -45,7 +45,7 @@
         </view>
         <view class='operate'>
           <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">节目单播放</button>
-          <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}">电视播放</button>
+          <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">电视播放</button>
         </view>
       </view>
 
@@ -137,7 +137,7 @@
         <view class='row full_width'>
           <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
           <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
-          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-resource_type="{{my_activity_info.resource_type}}" data-img_addr="{{my_activity_info.img_addr}}" data-video_addr="{{my_activity_info.video_addr}}">电视播放</button>
+          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}"  data-oss_addr="{{my_activity_info.oss_addr}}" >电视播放</button>
         </view>
       </view>
     </block>

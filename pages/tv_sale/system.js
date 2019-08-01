@@ -292,19 +292,14 @@ Page({
     })
   },
   boxShow:function(e){
+    console.log(e);
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     
     box_mac = user_info.box_mac;
     var goods_id = e.currentTarget.dataset.goods_id;
     
-    var resource_type = e.currentTarget.dataset.resource_type;
-    var img_addr = e.currentTarget.dataset.img_addr;
-    var video_addr = e.currentTarget.dataset.video_addr;
-    if(resource_type==1){
-      var imgs = video_addr;
-    }else{
-      var imgs = img_addr;
-    }
+    var imgs = e.currentTarget.dataset.oss_addr;
+    
     var timestamp = (new Date()).valueOf();
     wx.request({
       url: api_url +'/Netty/Index/index',
@@ -405,7 +400,6 @@ Page({
                   break;
                 }
               }
-              console.log(room_type_desc);
               my_activity_info = res.data.result.datalist[0]
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
