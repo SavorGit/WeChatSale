@@ -81,7 +81,6 @@ Page({
         type:10
       },
       success: function (res) {
-        console.log(res);
         if (res.data.code == 10000) {
           that.setData({
             sale_list: res.data.result.datalist,
@@ -124,12 +123,11 @@ Page({
                 break;
               }
             }
-            console.log(room_type_desc);
             my_activity_info = res.data.result.datalist[0]
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-            console.log(my_activity_info);
+            
             that.setData({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
@@ -239,11 +237,9 @@ Page({
   },
   programPlay:function(e){//节目单播放
     var that = this;
-    console.log(e);
     var goods_id = e.currentTarget.dataset.goods_id;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     box_mac = user_info.box_mac;
-    console.log(box_mac);
     wx.request({
       url: api_url +'/Smallsale/goods/programPlay',
       header: {
@@ -292,7 +288,6 @@ Page({
     })
   },
   boxShow:function(e){
-    console.log(e);
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     
     box_mac = user_info.box_mac;
@@ -404,7 +399,7 @@ Page({
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-              console.log(my_activity_info);
+              
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
@@ -414,7 +409,6 @@ Page({
               my_activity_info = {};
               my_activity_info.media_type = 0;
               my_activity_info.room_type = 0
-              console.log(my_activity_info);
               that.setData({
                 price: '',
                 is_my_activity: 0,
@@ -454,7 +448,6 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        console.log(res);
         var filename = res.tempFiles[0].path;
         var file_size = res.tempFiles[0].size;
         var index1 = filename.lastIndexOf(".");
@@ -462,7 +455,6 @@ Page({
         var postf = filename.substring(index1, index2);//后缀名
         var timestamp = (new Date()).valueOf();
         var oss_img = "forscreen/resource/" + timestamp + postf;
-        console.log(oss_img);
         var postf_w = filename.substring(index1 + 1, index2);//后缀名
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
@@ -521,7 +513,6 @@ Page({
       maxDuration: 60,
       camera: 'back',
       success: function (res) {
-        console.log(res);
         var filename = res.tempFilePath;
         var file_size = res.size;
         var duration = res.duration;
@@ -530,7 +521,6 @@ Page({
         var postf = filename.substring(index1, index2);//后缀名
         var timestamp = (new Date()).valueOf();
         var oss_img = "forscreen/resource/" + timestamp + postf;
-        console.log(oss_img);
         var postf_w = filename.substring(index1 + 1, index2);//后缀名
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
@@ -621,7 +611,6 @@ Page({
   },
   //切换活动范围单选按钮
   changeRoomType:function(res){
-    console.log(res);
     var that = this;
     var room_arr = this.data.room_arr;
     var room_type = res.currentTarget.dataset.room_type;
@@ -641,7 +630,6 @@ Page({
     }
   },
   bindDateChange:function(res){
-    console.log(res);
     var that = this;
     var date_type =  res.currentTarget.dataset.date_type;
     if(date_type==1){
@@ -748,15 +736,22 @@ Page({
               break;
             }
           }
-          var check_status_img = check_status_arr[0].img
+          //var check_status_arr = that.data.check_status_arr;
+          
+          //var check_status_img = check_status_arr[0].img
           var resource_type = res.data.result.media_type;
           var goods_status  = res.data.result.status;
+          for (var j = 0; j < check_status_arr.length; j++) {
+            if (check_status_arr[j].status == goods_status) {
+              var check_status_img = check_status_arr[j].img;
+              break;
+            }
+          }
           if(goods_status==2){
             var box_btn = false;
           }else {
             var box_btn = true;
           }
-          console.log(box_btn);
           my_activity_info.goods_id  = res.data.result.goods_id;
           my_activity_info.oss_addr = res.data.result.oss_addr;
           my_activity_info.file_size =  file_size;
