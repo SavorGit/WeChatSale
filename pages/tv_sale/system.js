@@ -756,7 +756,9 @@ Page({
           }else {
             var box_btn = true;
           }
-
+          console.log(box_btn);
+          my_activity_info.goods_id  = res.data.result.goods_id;
+          my_activity_info.oss_addr = res.data.result.oss_addr;
           my_activity_info.file_size =  file_size;
           my_activity_info.duration  = duration;
           my_activity_info.price = price;
