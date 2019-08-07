@@ -5,7 +5,7 @@
   <view class='full_width page_main'>
     <view class='brand'>
       <image src='http://oss.littlehotspot.com/media/resource/kGBjZmhEWE.jpg'></image>
-      <label>热点投屏 - 餐厅版</label>
+      <label>小热点 - 销售端</label>
     </view>
     <form class='login_form' bindsubmit="doLogin">
       <view class='account'>
