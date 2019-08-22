@@ -1,0 +1,61 @@
+/* pages/mine/team_members.wxss */
+
+.container {
+  justify-content: start;
+  font-size: 24rpx;
+}
+
+.row {
+  height: 90rpx;
+  padding: 20rpx 0 10rpx 0;
+  margin: 0 25rpx;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.row > .header-img {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+}
+
+.row > .nickname {
+  width: calc(100% - 250rpx);
+  height: 90rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.row > .nickname label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row > .option {
+  width: 120rpx;
+  height: 90rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.row > .option > .btn-remove {
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #1cbeb6;
+  border: 1rpx solid #1cbeb6;
+}
+
+.row.bottom-line {
+  border-bottom: 1rpx solid #fff;
+}

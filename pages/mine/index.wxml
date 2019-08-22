@@ -9,6 +9,36 @@
       <view class='nickname theme-font2'>{{nickName}}</view>
     </view>
 
+    <!-- 我的员工面板 -->
+    <view class="team-members-panel full_width theme7">
+      <view class='title theme-font3'>
+        <label>我的员工</label>
+        <label>
+          <navigator url="/pages/mine/team_members">更多...</navigator>
+        </label>
+      </view>
+      <view class="list">
+        <view class="cell add">
+          <label class="fa fa-plus"></label>
+        </view>
+        <view class="cell">
+          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+        <view class="cell">
+          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+        <view class="cell">
+          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+        <view class="cell">
+          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+        <view class="cell">
+          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+      </view>
+    </view>
+
     <!-- 收益概况面板 -->
     <view class='profit-profile-panel full_width theme7'>
       <view class='title theme-font3'>积分收益（分）</view>
@@ -21,8 +51,7 @@
     <!-- 收益详情面板 -->
     <view class='profit-details-panel full_width theme7'>
       <view class='title theme-font3'>收益明细</view>
-
-      <view class='row' wx:for="{{integral_list}}" wx:key="keys" wx:index="index"wx:for-item="bean">
+      <view class='row' wx:for="{{integral_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
         <view class='record'>
           <view class='cause full_width'>
             <view class='where'>{{bean.room_name}}</view>
@@ -32,97 +61,20 @@
         </view>
         <view class='profit theme-font5'>{{bean.integral}}</view>
       </view>
-      <!-- <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>电视互动6人</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+60</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+1000</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+10000</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+10000000</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>开机2小时</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+20</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>电视互动6人</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+60</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+1000</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+10000</view>
-      </view>
-      <view class='row'>
-        <view class='record'>
-          <view class='cause full_width'>
-            <view class='where'>VIP1包间</view>
-            <view class='clause'>销售XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
-          </view>
-          <view class='date-time full_width theme-font3'>2019.07.20</view>
-        </view>
-        <view class='profit theme-font5'>+10000000</view>
-      </view> -->
-
     </view>
   </scroll-view>
 </view>
+
+<!-- 添加员工页面 -->
+<modal show="{{showAddTeamMemberPage}}" width="700rpx" height='700rpx' border-radius="20rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
+  <view style="height: 40rpx; padding: 20rpx; font-size: 40rpx; display: flex; flex-direction: row;align-items: center;justify-content: end;">
+    <label class="fa fa-close" style="margin: 0 0 0 auto;"></label>
+  </view>
+  <view style="width: 100%; height: calc(100% - 200rpx);display: flex; flex-direction: column;align-items: center;justify-content: space-around;font-size: 24rpx;">
+    <view>餐厅人员微信扫码或点击“邀请”按钮进行分享授权</view>
+    <image style="width: 400rpx; height: 400rpx;" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+  </view>
+  <view style="width: 100%; height: 120rpx;display: flex; flex-direction: column;align-items: center;justify-content: center;">
+    <button style="width: 120rpx; height: 50rpx; line-height: 50rpx; font-size: 24rpx; border-radius: 10rpx;color: #1cbeb6;border: 1rpx solid #1cbeb6;">邀请</button>
+  </view>
+</modal>

@@ -27,6 +27,49 @@
   white-space: nowrap;
 }
 
+.team-members-panel {
+  margin-top: 10rpx;
+  height: 170rpx;
+}
+
+.team-members-panel > .title {
+  padding: 20rpx 30rpx 0 30rpx;
+  height: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-members-panel > .list {
+  height: calc(100% - 70rpx);
+  padding: 0 30rpx 20rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: start;
+}
+
+.team-members-panel > .list > .cell {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+}
+
+.team-members-panel > .list > .cell > image {
+  border-radius: 50%;
+}
+
+.team-members-panel > .list > .add {
+  border: 1rpx dashed #999;
+  border-radius: 50%;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .profit-profile-panel {
   margin-top: 10rpx;
   height: 171rpx;

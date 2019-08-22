@@ -1,0 +1,60 @@
+<!--pages/mine/team_members.wxml-->
+<import src="/pages/template/commons" />
+<view class="container theme-main">
+  <scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true">
+    <view class="row bottom-line">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">张三三</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+    <view class="row bottom-line">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">李四四</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+    <view class="row bottom-line">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">赵五五</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+    <view class="row bottom-line">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三张三三</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+    <view class="row bottom-line">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">李四四</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+    <view class="row">
+      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="nickname">
+        <label class="full_width">赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五赵五五</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove">移除</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>

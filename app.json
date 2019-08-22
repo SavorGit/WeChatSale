@@ -13,6 +13,7 @@
     "pages/message/list",
     "pages/mine/index",
     "pages/mine/exchange",
+    "pages/mine/team_members",
     "pages/user/invite"
   ],
   "window": {
