@@ -42,14 +42,111 @@ Page({
   
   onLoad: function(res) {
     var that = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    if (app.globalData.openid && app.globalData.openid != '') {
+      that.setData({
+        openid: app.globalData.openid
+      })
+      openid = app.globalData.openid;
+      //注册用户
+      is_login(openid);
+    } else {
+      app.openidCallback = openid => {
+        if (openid != '') {
+          that.setData({
+            openid: openid
+          })
+          openid = openid;
+          //注册用户
+          is_login(openid);
+        }
+      }
+    }
+    function is_login(openid){
+
+      wx.request({
+        url: api_url + '/Smallsale/User/isRegister',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          openid: openid,
+        },
+        success:function(res){
+          if(res.data.code==10000 && res.data.result.userinfo.hotel_id !=0){
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: res.data.result.userinfo,
+            })
+            var user_info = res.data.result.userinfo;
+            var link_box_info = wx.getStorageSync(cache_key+'link_box_info');
+            if(link_box_info !=''){//已链接盒子
+              var box_name = link_box_info.box_name;
+              that.setData({
+                openid: openid,
+                box_mac: link_box_info.box_mac,
+                is_link: 1,
+                room_name: box_name
+              })
+            }else {//未链接盒子
+
+            }
+            var hotel_id = user_info.hotel_id;
+            //获取酒楼包间列表
+            wx.request({
+              url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                hotel_id: hotel_id,
+              },
+              success: function (res) {
+                if (res.data.code == 10000) {
+                  that.setData({
+                    objectBoxArray: res.data.result.box_name_list,
+                    box_list: res.data.result.box_list
+                  })
+                }
+              }
+            })
+            //获取当前酒楼包间签到信息
+            wx.request({
+              url: api_url + '/Smallsale/user/getSigninBoxList',
+              header: {
+                'content-type': 'application/json'
+              },
+              data: {
+                hotel_id: hotel_id,
+                openid: openid,
+              }, success: function (res) {
+                console.log(res);
+                if (res.data.code == 10000) {
+                  sign_box_list = res.data.result;
+                  that.setData({
+                    sign_box_list: sign_box_list
+                  })
+                }
+              }
+            })
+
+
+          }else {//未授权登陆 跳转到登陆页面
+            wx.reLaunch({
+              url: '/pages/user/login',
+            })
+          }
+        }
+      })  
+    }
+
+    /*var user_info = wx.getStorageSync(cache_key + "userinfo");
     var hotel_id = user_info.hotel_id;
     var openid = user_info.openid;
     that.setData({
       common_appid: common_appid,
     })
     
-    //box_mac = '00226D655202';  //***************************上线去掉 */
+    //box_mac = '00226D655202';  
     //box_mac = '00226D583D92';    //兜率宫
     //box_mac = '00226D5845CE';   //4G监测
     if (user_info.is_login!=1 || user_info.is_wx_auth !=3){
@@ -112,30 +209,28 @@ Page({
           }
         }
       })
+    }*/
+  },
+  //选择包间开始
+  bindPickerChange: function (e) {
+    var keys = e.detail.value;
+    var box_list = this.data.box_list;
+    var link_box_info = { 'box_mac': '', 'box_name': '' };
+    if (keys > 0) {
+      box_mac = box_list[keys].box_mac;
+      link_box_info.box_mac = box_mac;
+      link_box_info.box_name = box_list[keys].name;
+      wx.setStorageSync(cache_key + "link_box_info", link_box_info);
+      this.setData({
+        is_link: 1,
+        room_name: box_list[keys].name,
+        box_mac: box_mac
+      })
     }
-  },
+
+  },//选择包间结束
   
-  //选择包间
-  boxPickerChange(res) {
-
-    var that = this;
-    var boxIndex = res.detail.value;
-    var box_list = that.data.objectBoxArray;
-
-    var box_mac = box_list[boxIndex].box_mac;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    user_info.box_mac = box_mac;
-    user_info.box_index = boxIndex;
-    wx.setStorage({
-      key: cache_key + "userinfo",
-      data: user_info,
-    })
-
-    that.setData({
-      boxIndex: boxIndex,
-      box_mac: box_mac,
-    })
-  },
+  
   chooseImage: function (res) {
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var mobile = user_info.mobile;
@@ -280,27 +375,7 @@ Page({
       }
     })
   },
-  bindPickerChange: function (e) {
-    console.log(e);
-    var keys = e.detail.value;
-    var box_list = this.data.box_list;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if(keys>0){
-      box_mac = box_list[keys].box_mac;
-      user_info.box_mac = box_mac;
-      user_info.box_name = box_list[keys].name;
-      wx.setStorageSync(cache_key + "userinfo", user_info);
-      this.setData({
-        is_link :1,
-        room_name: box_list[keys].name,
-        box_mac:box_mac
-      })
-    }
-    // this.setData({
-    //   is_link: 1,
-    //   index: e.detail.value
-    // })
-  },
+  
   signIn:function(e){
     var that = this;
     var box_mac = e.currentTarget.dataset.box_mac;

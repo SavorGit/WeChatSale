@@ -71,9 +71,9 @@ Page({
                   data: res.data.result.userinfo,
                 })
               } else {
-                if (res.data.result.userinfo.mobile != '') {
+                if (res.data.result.userinfo.mobile != '' && res.data.result.userinfo.hotel_id !=0) {
 
-                  res.data.result.userinfo.is_login = 1;
+                  //res.data.result.userinfo.is_login = 1;
                   wx.setStorage({
                     key: cache_key + 'userinfo',
                     data: res.data.result.userinfo,
@@ -330,7 +330,7 @@ Page({
             url: '/pages/index/index',
           })
           var user_info = wx.getStorageSync(cache_key + "userinfo");
-          user_info.is_login = 1;
+          //user_info.is_login = 1;
           user_info.hotel_id = rt.data.result.hotel_id;
           wx.setStorage({
             key: cache_key+'userinfo',

@@ -48,9 +48,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     var user_info  = wx.getStorageSync(cache_key + "userinfo");
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
-    box_mac  = user_info.box_mac;
+    box_mac = link_box_info.box_mac;
     
     wx.request({//节目单播放列表
       url: api_url + '/Smallsale/goods/getPlayList',
@@ -902,9 +903,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
 
-    if (typeof (user_info.box_mac) == 'undefined') {
+    if (typeof (link_user_info.box_mac) == 'undefined') {
       wx.showModal({
         title: '提示',
         content: '请您先连接包间电视',

@@ -12,7 +12,8 @@
     "pages/tv_sale/mine",
     "pages/message/list",
     "pages/mine/index",
-    "pages/mine/exchange"
+    "pages/mine/exchange",
+    "pages/user/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",
