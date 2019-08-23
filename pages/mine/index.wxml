@@ -12,20 +12,20 @@
     <!-- 我的员工面板 -->
     <view class="team-members-panel full_width theme7">
       <block wx:if="{{role_type==2}}">
-      <view class='title theme-font3'>
-        <label>我的员工</label>
-        <label wx:if="{{staff_list.length>0}}">
-          <navigator url="/pages/mine/team_members">更多...</navigator>
-        </label>
-      </view>
-      <view class="list">
-        <view class="cell add" bindtap="addStaff">
-          <label class="fa fa-plus"></label>
+        <view class='title theme-font3'>
+          <label>我的员工</label>
+          <label wx:if="{{staff_list.length>0}}">
+            <navigator url="/pages/mine/team_members">更多...</navigator>
+          </label>
         </view>
-        <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-          <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+        <view class="list">
+          <view class="cell add" bindtap="addStaff">
+            <label class="fa fa-plus"></label>
+          </view>
+          <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+            <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+          </view>
         </view>
-      </view>
       </block>
     </view>
 
@@ -66,7 +66,7 @@
     </view>
   </view>
   <view style="width: 100%; height: calc(100% - 200rpx);display: flex; flex-direction: column;align-items: center;justify-content: space-around;font-size: 24rpx;">
-    <view>餐厅人员微信扫码或点击“邀请”按钮进行分享授权</view>
+    <view style="height: 60rpx;">餐厅人员微信扫码或点击“邀请”按钮进行分享授权</view>
     <image style="width: 400rpx; height: 400rpx;" src="{{qrcode_url}}"></image>
     <view style="width: 120rpx;height: 50rpx;display: flex; flex-direction: column;align-items: center;justify-content: center;" bindtap="freshQrcode">
       <label style="text-decoration: underline;color: #1cbeb6;">刷新</label>

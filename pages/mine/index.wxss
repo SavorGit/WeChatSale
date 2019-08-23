@@ -61,7 +61,8 @@
 }
 
 .team-members-panel > .list > .add {
-  border: 1rpx dashed #999;
+  border: 1rpx dashed #bfbfbf;
+  color: #999;
   border-radius: 50%;
   font-size: 40rpx;
   display: flex;
