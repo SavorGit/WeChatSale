@@ -31,7 +31,7 @@ Page({
       })
       openid = app.globalData.openid;
       //注册用户
-      register(openid);
+      register(openid, invite_code);
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -41,18 +41,19 @@ Page({
           openid = openid;
           
           //注册用户
-          register(openid);
+          register(openid, invite_code);
         }
       }
     }
     function register(openid){
       wx.request({
-        url: api_url+'/aa/bb/cc',
+        url: api_url +'/Smallsale/login/scancodeLogin',
         header: {
           'content-type': 'application/json'
         },
         data: {
           openid: openid,
+          qrcode: invite_code
         },
         success:function(res){
           if(res.data.code==10000){

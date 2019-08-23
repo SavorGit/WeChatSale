@@ -22,7 +22,10 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync('savor:dinners:userinfo');
     openid = user_info.openid;
-    
+    var role_type = user_info.role_type;
+    that.setData({
+      role_type:role_type
+    })
     wx.request({
       url: api_url +'/Smallsale/user/center',
       header: {
