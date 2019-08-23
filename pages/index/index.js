@@ -119,7 +119,6 @@ Page({
                 hotel_id: hotel_id,
                 openid: openid,
               }, success: function (res) {
-                console.log(res);
                 if (res.data.code == 10000) {
                   sign_box_list = res.data.result;
                   that.setData({
@@ -401,7 +400,6 @@ Page({
                 sign_box_list[i].user = { "avatarUrl": user_info.avatarUrl, "nickName": user_info.nickName, "openid": user_info.openid, "user_id": user_info.user_id };
               }
             }
-            console.log(sign_box_list);
             that.setData({
               sign_box_list: sign_box_list,
             })

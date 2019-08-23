@@ -245,7 +245,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    console.log(e);
     var qrcode = e.target.dataset.qrcode;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     var title = "邀请您使用小热点销售端";

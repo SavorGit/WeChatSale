@@ -95,7 +95,6 @@ Page({
 
       wx.getUserInfo({
         success(rets) {
-          console.log(rets);
           wx.request({
             url: api_url + '/Smallsale/User/registerCom',
             data: {
