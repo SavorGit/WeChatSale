@@ -220,9 +220,10 @@
 }
 
 .box-panel > .scroll  .box-list > .box {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 15rpx;
+  width: 110rpx;
+  height: 110rpx;
+  margin: 10rpx;
+  padding: 5rpx;
   background-color: #f3f2f2;
   border-radius: 5rpx;
   display: flex;
@@ -233,36 +234,22 @@
 }
 
 .box-panel > .scroll  .box-list > .box > .light {
-  position: relative;
   width: 70rpx;
   height: 70rpx;
   border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.box-panel > .scroll  .box-list > .box > .light > image {
-  position: absolute;
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 50%;
-  z-index: 5;
-  margin: auto; /*以下五个属性为水平垂直居中的方法*/
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
+.box-panel > .scroll  .box-list > .box > .light > image,
 .box-panel > .scroll  .box-list > .box > .light > view {
-  position: absolute;
   width: 64rpx;
   height: 64rpx;
   border-radius: 50%;
   z-index: 5;
-  margin: auto; /*以下五个属性为水平垂直居中的方法*/
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
