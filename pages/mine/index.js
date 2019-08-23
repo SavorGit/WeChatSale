@@ -122,19 +122,75 @@ Page({
   addStaff:function(e){
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid='+user_info.openid;
-    that.setData({
-      showAddTeamMemberPage: true,
-      qrcode_url: qrcode_url,
+    //var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid='+user_info.openid;
+    wx.request({
+      url: api_url +'/Smallsale/user/invite',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: user_info.openid,
+        
+      },
+      success:function(res){
+        if(res.data.code==10000){
+          that.setData({
+            showAddTeamMemberPage: true,
+            qrcode_url: res.data.result.qrcode_url,
+            qrcode: res.data.result.qrcode,
+          })
+        }else {
+          wx.showToast({
+            title: '参数异常，请重试!',
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+      },
+      fail:function(res){
+        wx.showToast({
+          title: '网络异常，请重试!',
+          icon:'none',
+          duration:2000,
+        })
+      }
     })
+    
   },
   freshQrcode:function(e){
     var that  = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    var timestamp = (new Date()).valueOf();
-    var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid=' + user_info.openid + '&time=' + timestamp;
-    that.setData({
-      qrcode_url: qrcode_url,
+    wx.request({
+      url: api_url + '/Smallsale/user/invite',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: user_info.openid,
+
+      },
+      success: function (res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            
+            qrcode_url: res.data.result.qrcode_url,
+            qrcode: res.data.result.qrcode,
+          })
+        } else {
+          wx.showToast({
+            title: '参数异常，请重试!',
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '网络异常，请重试!',
+          icon: 'none',
+          duration: 2000,
+        })
+      }
     })
   },  
   closeAddStaff:function(e){
@@ -189,17 +245,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    var invite_code = e.target.dataset.invite_code;
+    console.log(e);
+    var qrcode = e.target.dataset.qrcode;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
-    var title = "邀请";
-    var img_url = 'https://';
-    if (res.from === 'button') {
+    var title = "邀请您使用小热点销售端";
+    var img_url = 'http://oss.littlehotspot.com/media/resource/fsAFzGwRQA.jpg';
+    if (e.from === 'button') {
       
       // 转发成功
       // 来自页面内转发按钮
       return {
         title: title,
-        path: '/pages/user/invite?q='+invite_code+'_'+userinfo.openid,
+        path: '/pages/user/invite?q='+qrcode,
         imageUrl: img_url,
         success: function (res) {
 
