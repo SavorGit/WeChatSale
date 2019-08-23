@@ -248,7 +248,7 @@ Page({
     var qrcode = e.target.dataset.qrcode;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     var title = "邀请您使用小热点销售端";
-    var img_url = 'http://oss.littlehotspot.com/media/resource/fsAFzGwRQA.jpg';
+    var img_url = 'http://oss.littlehotspot.com/media/resource/GyXmE3jRNh.jpg';
     if (e.from === 'button') {
       
       // 转发成功

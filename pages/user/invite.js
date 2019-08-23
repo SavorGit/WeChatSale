@@ -2,6 +2,7 @@
 const app = getApp()
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
+var openid;
 Page({
 
   /**
@@ -45,7 +46,7 @@ Page({
         }
       }
     }
-    function register(openid){
+    function register(openid, invite_code){
       wx.request({
         url: api_url +'/Smallsale/login/scancodeLogin',
         header: {
