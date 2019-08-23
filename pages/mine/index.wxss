@@ -175,3 +175,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.profit-details-panel > .row > .nodata-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #cecece;
+}

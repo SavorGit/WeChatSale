@@ -56,6 +56,15 @@
   border: 1rpx solid #1cbeb6;
 }
 
+.row > .nodata-msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #cecece;
+}
+
 .row.bottom-line {
   border-bottom: 1rpx solid #fff;
 }
