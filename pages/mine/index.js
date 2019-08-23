@@ -126,6 +126,12 @@ Page({
     })
     
   },
+  closeAddStaff:function(e){
+    var that = this;
+    that.setData({
+      showAddTeamMemberPage: false,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
