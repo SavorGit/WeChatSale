@@ -1,17 +1,28 @@
 <!--pages/mine/team_members.wxml-->
 <import src="/pages/template/commons" />
 <view class="container theme-main">
-  <scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true">
-    <view class="row bottom-line">
-      <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+  <scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+    <block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+    <view class="row bottom-line" wx:if="{{index +1 !=staff_list.length }}">
+      <image class="header-img" src="{{bean.avatarUrl}}"></image>
       <view class="nickname">
-        <label class="full_width">张三三</label>
+        <label class="full_width">{{bean.nickName}}</label>
       </view>
       <view class="option">
-        <button class="btn-remove">移除</button>
+        <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-staff_openid="{{bean.openid}}" data-staff_list="{{staff_list}}">移除</button>
       </view>
     </view>
-    <view class="row bottom-line">
+    <view class="row" wx:el>
+      <image class="header-img" src="{{bean.avatarUrl}}"></image>
+      <view class="nickname">
+        <label class="full_width">{{bean.nickName}}</label>
+      </view>
+      <view class="option">
+        <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-staff_openid="{{bean.openid}}" data-staff_list="{{staff_list}}">移除</button>
+      </view>
+    </view>
+    </block>
+    <!-- <view class="row bottom-line">
       <image class="header-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
       <view class="nickname">
         <label class="full_width">李四四</label>
@@ -55,6 +66,6 @@
       <view class="option">
         <button class="btn-remove">移除</button>
       </view>
-    </view>
+    </view> -->
   </scroll-view>
 </view>

@@ -18,10 +18,13 @@
         </label>
       </view>
       <view class="list">
-        <view class="cell add">
+        <view class="cell add" bindtap="addStaff">
           <label class="fa fa-plus"></label>
         </view>
-        <view class="cell">
+        <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+          <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+        </view>
+        <!-- <view class="cell">
           <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
         </view>
         <view class="cell">
@@ -32,10 +35,7 @@
         </view>
         <view class="cell">
           <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-        </view>
-        <view class="cell">
-          <image class="full_width full_height" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-        </view>
+        </view> -->
       </view>
     </view>
 
@@ -72,9 +72,9 @@
   </view>
   <view style="width: 100%; height: calc(100% - 200rpx);display: flex; flex-direction: column;align-items: center;justify-content: space-around;font-size: 24rpx;">
     <view>餐厅人员微信扫码或点击“邀请”按钮进行分享授权</view>
-    <image style="width: 400rpx; height: 400rpx;" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+    <image style="width: 400rpx; height: 400rpx;" src="{{qrcode_url}}"></image>
   </view>
   <view style="width: 100%; height: 120rpx;display: flex; flex-direction: column;align-items: center;justify-content: center;">
-    <button style="width: 120rpx; height: 50rpx; line-height: 50rpx; font-size: 24rpx; border-radius: 10rpx;color: #1cbeb6;border: 1rpx solid #1cbeb6;">邀请</button>
+    <button open-type='share' style="width: 120rpx; height: 50rpx; line-height: 50rpx; font-size: 24rpx; border-radius: 10rpx;color: #1cbeb6;border: 1rpx solid #1cbeb6;">邀请</button>
   </view>
 </modal>

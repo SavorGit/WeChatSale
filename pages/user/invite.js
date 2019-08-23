@@ -10,14 +10,21 @@ Page({
   data: {
 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     var that = this;
     wx.hideShareMenu();
-    var invite_code = decodeURIComponent(options.q);
+    var q = decodeURIComponent(options.q);
+    if (q.indexOf("?")){
+      var selemite = q.indexOf("?");
+      var invite_code = q.substring(selemite + 3, q.length);
+    }else {
+      var invite_code = q; 
+    }
+
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
         openid: app.globalData.openid
@@ -71,7 +78,9 @@ Page({
             })
           }
         },fail:function(res){
-
+          wx.redirectTo({
+            url: '/pages/user/login',
+          })
         }
       })
     }

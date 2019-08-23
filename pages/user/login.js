@@ -128,7 +128,7 @@ Page({
                 })
                 var mobile = res.data.result.mobile;
                 if (mobile != '') {
-                  res.data.result.is_login = 1;
+                  //res.data.result.is_login = 1;
                   
                   wx.setStorage({
                     key: cache_key + 'userinfo',

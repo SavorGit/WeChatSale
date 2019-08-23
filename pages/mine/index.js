@@ -1,6 +1,7 @@
 // pages/mine/index.js
 const app = getApp()
 var api_url = app.globalData.api_url;
+var cache_key = app.globalData.cache_key;
 var box_mac;
 var openid;
 var page = 1;
@@ -57,6 +58,25 @@ Page({
         }
       }
     })
+    //我的员工
+    wx.request({
+      url: api_url+'/aa/bb/cc',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: openid,
+        page: 1,
+        pageSize:5
+      },
+      success:function(res){
+        if(res.data.code==10000){
+          that.setData({
+            staff_list:res.data.result
+          })
+        }
+      }
+    })
   },
   loadMore:function(res){
     var that = this;
@@ -65,7 +85,7 @@ Page({
       title: '加载中，请稍后',
     })
     wx.request({
-      url: api_url + '/aaa/bbb/ccc',
+      url: api_url + '/Smallsale/user/integralrecord',
       header: {
         'content-type': 'application/json'
       },
@@ -75,6 +95,9 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 10000) {
+          that.setData({
+            integral_list: res.data.result.datalist
+          })
           wx.hideLoading()
         }
       }
@@ -92,6 +115,41 @@ Page({
     wx.navigateTo({
       url: '/pages/mine/exchange',
     })
+  },
+  addStaff:function(e){
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    wx.request({
+      url: api_url+'/aa/bb/cc',
+      header:{
+        'content-type': 'application/json'
+      },
+      success:function(res){
+        if(res.data.code==10000){
+          var qrcode_url = res.data.result.qrcode_url;
+          that.setData({
+            showAddTeamMemberPage:true,
+            qrcode_url:qrcode_url,
+          })
+
+        }else {
+          wx.showToast({
+            title: '网络异常，请重试',
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+      },
+      fail:function(res){
+        wx.showToast({
+          title: '网络异常，请重试',
+          icon: 'none',
+          duration: 2000,
+        })
+      }
+    })
+    
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -138,7 +196,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
+    var invite_code = e.target.dataset.invite_code;
+    var userinfo = wx.getStorageSync(cache_key+'userinfo');
+    var title = "邀请";
+    var img_url = 'https://';
+    if (res.from === 'button') {
+      
+      // 转发成功
+      // 来自页面内转发按钮
+      return {
+        title: title,
+        path: '/pages/user/invite?q='+invite_code+'_'+userinfo.openid,
+        imageUrl: img_url,
+        success: function (res) {
 
+        }
+      }
+    } 
   }
 })
