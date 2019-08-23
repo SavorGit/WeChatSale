@@ -9,7 +9,7 @@
           <label class="full_width">{{bean.nickName}}</label>
         </view>
         <view class="option">
-          <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-staff_openid="{{bean.openid}}" data-staff_list="{{staff_list}}">移除</button>
+          <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}">移除</button>
         </view>
       </view>
       <view wx:else class="row">
@@ -18,7 +18,7 @@
           <label class="full_width">{{bean.nickName}}</label>
         </view>
         <view class="option">
-          <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-staff_openid="{{bean.openid}}" data-staff_list="{{staff_list}}">移除</button>
+          <button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
         </view>
       </view>
     </block>

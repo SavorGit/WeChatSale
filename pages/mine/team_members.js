@@ -71,8 +71,10 @@ Page({
     }, 5000)
   },
   removeStaff:function(e){
-    var userinfo = wx.getStorageSync(cache_key+'userinfo');
-    var staff_openid = e.target.dataset.staff_openid;
+    var that  =  this;
+    //var userinfo = wx.getStorageSync(cache_key+'userinfo');
+    var openid = e.target.dataset.openid;
+    var invite_id = e.target.dataset.invite_id;
     var staff_list = e.target.dataset.staff_list;
     var keys  = e.target.dataset.keys;
     var new_staff_list = [];
@@ -83,12 +85,12 @@ Page({
         'content-type': 'application/json'
       },
       data:{
-        openid:userinfo.openid,
-        staff_openid:staff_openid,
+        openid: openid,
+        invite_id: invite_id,
       },
       success:function(res){
         if(res.data.code==10000){
-          for(i=0;i<staff_list.length;i++){
+          for(var i=0;i<staff_list.length;i++){
             if(i!=keys){
               new_staff_list[flag] = staff_list[i];
             }
