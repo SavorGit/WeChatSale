@@ -124,8 +124,16 @@ Page({
       showAddTeamMemberPage: true,
       qrcode_url: qrcode_url,
     })
-    
   },
+  freshQrcode:function(e){
+    var that  = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var timestamp = (new Date()).valueOf();
+    var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid=' + user_info.openid + '&time=' + timestamp;
+    that.setData({
+      qrcode_url: qrcode_url,
+    })
+  },  
   closeAddStaff:function(e){
     var that = this;
     that.setData({
