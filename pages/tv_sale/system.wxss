@@ -240,8 +240,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 /********************* 我的活动[添加] *********************/
 
 .sale-panel > .ads-add {
-  height: 660rpx;
-  padding-top: 85rpx;
+  height: 750rpx;
+  padding-top: 45rpx;
   padding-left: calc((100% - 480rpx) / 2);
   padding-right: calc((100% - 480rpx) / 2);
   font-size: 24rpx;
@@ -378,8 +378,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 /********************* 我的活动[列表] *********************/
 
 .sale-panel > .ads-list {
-  height: 660rpx;
-  padding-top: 85rpx;
+  height: 750rpx;
+  padding-top: 45rpx;
   padding-left: calc((100% - 480rpx) / 2);
   padding-right: calc((100% - 480rpx) / 2);
   font-size: 24rpx;

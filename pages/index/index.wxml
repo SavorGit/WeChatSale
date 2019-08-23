@@ -51,19 +51,19 @@
     <view class='title full_width theme-font3'>包间信息</view>
     <scroll-view class='scroll full_width' scroll-y="true" scroll-with-animation="true">
       <view class='weui-grids box-list full_width'>
-        <block wx:for="{{sign_box_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view class='weui-grid box' wx:if="{{bean.status==2}}">
-          <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
-            <image src='{{bean.user.avatarUrl}}'></image>
+        <block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class='weui-grid box' wx:if="{{bean.status==2}}">
+            <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
+              <image src='{{bean.user.avatarUrl}}'></image>
+            </view>
+            <view class='name'>{{bean.name}}</view>
           </view>
-          <view class='name'>{{bean.name}}</view>
-        </view>
-        <view class='weui-grid box' wx:if="{{bean.status==1}}" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
-          <view class='light green-light theme-font3'>
-            <view>签到</view>
+          <view class='weui-grid box' wx:if="{{bean.status==1}}" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
+            <view class='light green-light theme-font3'>
+              <view>签到</view>
+            </view>
+            <view class='name'>{{bean.name}}</view>
           </view>
-          <view class='name'>{{bean.name}}</view>
-        </view>
         </block>
         <!-- <view class='weui-grid box'>
           <view class='light green-light'>
@@ -291,8 +291,6 @@
   <view style='display: flex;flex-direction: column;align-items: center; font-size: 30rpx;'>
     <label style='height: 50rpx;'>您绑定的酒楼信息有误，请删除小程序后重新进入</label>
     <label style='height: 50rpx;'>或者联系小热点管理员</label>
-
-
   </view>
 </modal>
 <!-- 邀请码对应的酒楼和链接电视对应的酒楼不一致 - 弹窗 -->

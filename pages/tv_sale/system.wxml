@@ -72,7 +72,10 @@
               <video class="choosed-video" src="{{filename}}"></video>
             </block>
           </view>
-
+          <view class='row full_width'>
+            <label>商品名称</label>
+            <input name='price' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
+          </view>
           <view class='row full_width'>
             <label>输入价格</label>
             <input name='price' type="digit" placeholder='最高9999元  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
@@ -95,7 +98,6 @@
             <label>活动范围</label>
             <radio-group bindchange="radioChange">
               <radio bindtap="changeRoomType" wx:for="{{room_arr}}" wx:for-item="bean" wx:key="bean.id" value="{{bean.id}}" checked="{{bean.checked}}" data-room_type="{{bean.id}}">{{bean.name}}</radio>
-
             </radio-group>
           </view>
           <input class='display_hide' name="goods_img" value="{{my_activity_info.goods_img}}"> </input>
@@ -115,8 +117,12 @@
       <view class='ads-list theme7'>
         <view class='pic full_width'>
           <image class='status' src='{{my_activity_info.check_status_img}}'></image>
-          <image  class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
+          <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
           <!-- <video wx:else class="choosed-video" src="{{my_activity_info.vedio_url}}"></video> -->
+        </view>
+        <view class='row full_width'>
+          <label class='theme-font3'>商品名称</label>
+          <view class='theme-font2'>{{my_activity_info.price}}元</view>
         </view>
         <view class='row full_width'>
           <label class='theme-font3'>价格</label>
@@ -137,7 +143,7 @@
         <view class='row full_width'>
           <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
           <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
-          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}"  data-oss_addr="{{my_activity_info.oss_addr}}" >电视播放</button>
+          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}">电视播放</button>
         </view>
       </view>
     </block>
