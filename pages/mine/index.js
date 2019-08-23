@@ -60,7 +60,7 @@ Page({
     })
     //我的员工
     wx.request({
-      url: api_url+'/aa/bb/cc',
+      url: api_url +'/Smallsale/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
@@ -72,7 +72,7 @@ Page({
       success:function(res){
         if(res.data.code==10000){
           that.setData({
-            staff_list:res.data.result
+            staff_list: res.data.result.datalist
           })
         }
       }
@@ -119,37 +119,12 @@ Page({
   addStaff:function(e){
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    wx.request({
-      url: api_url+'/aa/bb/cc',
-      header:{
-        'content-type': 'application/json'
-      },
-      success:function(res){
-        if(res.data.code==10000){
-          var qrcode_url = res.data.result.qrcode_url;
-          that.setData({
-            showAddTeamMemberPage:true,
-            qrcode_url:qrcode_url,
-          })
-
-        }else {
-          wx.showToast({
-            title: '网络异常，请重试',
-            icon: 'none',
-            duration: 2000,
-          })
-        }
-      },
-      fail:function(res){
-        wx.showToast({
-          title: '网络异常，请重试',
-          icon: 'none',
-          duration: 2000,
-        })
-      }
+    var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid='+user_info.openid;
+    that.setData({
+      showAddTeamMemberPage: true,
+      qrcode_url: qrcode_url,
     })
     
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

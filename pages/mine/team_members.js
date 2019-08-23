@@ -19,17 +19,18 @@ Page({
     var that = this;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     wx.request({
-      url: api_url+'/aa/bb/cc',
+      url: api_url +'/Smallsale/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
       data: {
         openid: userinfo.openid,
-        page:1
+        page:1,
+        pagesize:20,
       },
       success:function(res){
         that.setData({
-          staff_list:res.data.result
+          staff_list: res.data.result.datalist
         })
       }
     })
@@ -42,19 +43,19 @@ Page({
       title: '加载中，请稍后',
     })
     wx.request({
-      url: api_url + '/aa/bb/cc',
+      url: api_url + '/Smallsale/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
       data: {
         openid: userinfo.openid,
         page: 1,
-        pageSize: 15
+        pagesize: 20,
       },
       success: function (res) {
         if (res.data.code == 10000) {
           that.setData({
-            staff_list: res.data.result
+            staff_list: res.data.result.datalist
           })
           wx.hideLoading()
         }
@@ -77,7 +78,7 @@ Page({
     var new_staff_list = [];
     var flag = 0;
     wx.request({
-      url: api_url + '/aa/bb/cc',
+      url: api_url + '/Smallsale/user/removeEmployee',
       header: {
         'content-type': 'application/json'
       },
