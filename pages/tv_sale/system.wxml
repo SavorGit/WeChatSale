@@ -80,7 +80,7 @@
             <label>输入价格</label>
             <input name='price' type="digit" placeholder='最高9999元  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
           </view>
-          <view class='row full_width'>
+          <view class='row full_width' style="width: 550rpx;">
             <label>活动时间</label>
             <view>
               <picker mode='date' bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">
@@ -128,12 +128,12 @@
           <label class='theme-font3'>价格</label>
           <view class='theme-font2'>{{my_activity_info.price}}元</view>
         </view>
-        <view class='row full_width'>
+        <view class='row full_width' style="width: 550rpx;">
           <label class='theme-font3'>活动时间</label>
-          <view class='theme-font2'>
-            <view>{{my_activity_info.start_time}}</view>
+          <view class='theme-font2' style="width: 435rpx;height: 42rpx;padding-top: 8rpx;">
+            <view style="width: 190rpx;">{{my_activity_info.start_time}}</view>
             <label>~</label>
-            <view>{{my_activity_info.end_time}}</view>
+            <view style="width: 190rpx;">{{my_activity_info.end_time}}</view>
           </view>
         </view>
         <view class='row full_width'>
