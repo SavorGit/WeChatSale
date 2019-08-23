@@ -74,7 +74,7 @@
           </view>
           <view class='row full_width'>
             <label>商品名称</label>
-            <input name='price' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
+            <input name='goods_name' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{price_focus}}" maxlength="30" value="{{goods_name}}"></input>
           </view>
           <view class='row full_width'>
             <label>输入价格</label>
@@ -122,7 +122,7 @@
         </view>
         <view class='row full_width'>
           <label class='theme-font3'>商品名称</label>
-          <view class='theme-font2'>{{my_activity_info.price}}元</view>
+          <view class='theme-font2'>{{my_activity_info.goods_name}}</view>
         </view>
         <view class='row full_width'>
           <label class='theme-font3'>价格</label>

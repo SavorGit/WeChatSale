@@ -648,6 +648,7 @@ Page({
     var goods_img = res.detail.value.goods_img;
     var start_time = res.detail.value.start_time;
     var end_time   = res.detail.value.end_time;
+    var goods_name = res.detail.value.goods_name;
     var price      = res.detail.value.price;
     var room_type  = res.detail.value.room_type;
     var room_arr = this.data.room_arr;
@@ -719,6 +720,7 @@ Page({
         openid:openid,
         hotel_id:hotel_id,
         oss_addr:goods_img,
+        goods_name: goods_name,
         price:price,
         start_time:start_time,
         end_time:end_time,
@@ -757,6 +759,7 @@ Page({
           my_activity_info.oss_addr = res.data.result.oss_addr;
           my_activity_info.file_size =  file_size;
           my_activity_info.duration  = duration;
+          my_activity_info.goods_name = goods_name,
           my_activity_info.price = price;
           my_activity_info.start_time = start_time
           my_activity_info.resource_type = res.data.result.resource_type;
