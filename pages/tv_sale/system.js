@@ -670,6 +670,17 @@ Page({
       })
       return false;
     }
+    if(goods_name==''){
+      that.setData({
+        goods_name_focus: true
+      })
+      wx.showToast({
+        title: '请输入商品名称',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }
     if (price==''){
       that.setData({
         price_focus:true

@@ -74,7 +74,7 @@
           </view>
           <view class='row full_width'>
             <label>商品名称</label>
-            <input name='goods_name' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{price_focus}}" maxlength="30" value="{{goods_name}}"></input>
+            <input name='goods_name' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{goods_name_focus}}" maxlength="30" value="{{goods_name}}"></input>
           </view>
           <view class='row full_width'>
             <label>输入价格</label>
