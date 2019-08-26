@@ -216,7 +216,8 @@
 }
 
 .box-panel > .scroll  .box-list {
-  padding-left: calc((100% - 650rpx) / 2);
+  padding-left: calc((100% - 650rpx) / 2 + 10rpx);
+  padding-right: calc((100% - 650rpx) / 2 + 8rpx);
 }
 
 .box-panel > .scroll  .box-list > .box {
