@@ -19,8 +19,7 @@ Page({
     var that = this;
     wx.hideShareMenu();
     var q = decodeURIComponent(options.q);
-    
-    if (q.substr(0,1)=='?'){
+    if (q.indexOf("?") != -1){
       var selemite = q.indexOf("?");
       var invite_code = q.substring(selemite + 3, q.length);
     }else {
