@@ -10,8 +10,8 @@
     </view>
 
     <!-- 我的员工面板 -->
-    <view class="team-members-panel full_width theme7">
-      <block wx:if="{{role_type==2}}">
+    <view class="team-members-panel full_width theme7" wx:if="{{role_type==2}}">
+      
         <view class='title theme-font3'>
           <label>我的员工</label>
           <label wx:if="{{staff_list.length>0}}">
@@ -26,7 +26,7 @@
             <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
           </view>
         </view>
-      </block>
+      
     </view>
 
     <!-- 收益概况面板 -->

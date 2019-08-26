@@ -857,6 +857,7 @@ Page({
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.room_type = res.data.result.datalist[0].scope;
+            var goods_name = res.data.result.datalist[0].goods_name;
             if (resource_type==1){
               var filename = app.globalData.oss_url+'/'+res.data.result.datalist[0].oss_addr;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
@@ -874,6 +875,7 @@ Page({
               filename: filename,
               goods_img: goods_img,
               my_activity_info: my_activity_info,
+              goods_name: goods_name
             })
           } else {
             that.setData({

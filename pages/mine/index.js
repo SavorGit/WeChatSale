@@ -258,7 +258,7 @@ Page({
         path: '/pages/user/invite?q='+qrcode,
         imageUrl: img_url,
         success: function (res) {
-
+          
         }
       }
     } 
