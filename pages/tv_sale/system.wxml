@@ -130,10 +130,15 @@
         </view>
         <view class='row full_width' style="width: 550rpx;">
           <label class='theme-font3'>活动时间</label>
-          <view class='theme-font2' style="width: 435rpx;height: 42rpx;padding-top: 8rpx;">
+          <!-- <view class='theme-font2' style="width: 435rpx;height: 42rpx;padding-top: 8rpx;">
             <view style="width: 190rpx;">{{my_activity_info.start_time}}</view>
             <label>~</label>
             <view style="width: 190rpx;">{{my_activity_info.end_time}}</view>
+          </view> -->
+          <view class='theme-font2' style="width: 435rpx;height: 42rpx;">
+            <view style="width: 135rpx;">{{my_activity_info.start_time}}</view>
+            <label>~</label>
+            <view style="width: 135rpx;">{{my_activity_info.end_time}}</view>
           </view>
         </view>
         <view class='row full_width'>
