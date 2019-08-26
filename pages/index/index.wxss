@@ -215,15 +215,21 @@
   height: calc(100% - 60rpx);
 }
 
-.box-panel > .scroll  .box-list {
-  padding-left: calc((100% - 650rpx) / 2 + 10rpx);
-  padding-right: calc((100% - 650rpx) / 2 + 8rpx);
+.box-panel > .scroll  .weui-grids {
+  width: 650rpx;
+  padding: 0 calc((100% - 650rpx) / 2);
 }
 
-.box-panel > .scroll  .box-list > .box {
-  width: 110rpx;
-  height: 110rpx;
-  margin: 10rpx;
+.box-panel > .scroll  .weui-grids > .weui-grid {
+  width: 130rpx;
+  height: 130rpx;
+  padding: 10rpx;
+  font-size: 24rpx;
+}
+
+.box-panel > .scroll  .weui-grids > .weui-grid > .box {
+  width: 100rpx;
+  height: 100rpx;
   padding: 5rpx;
   background-color: #f3f2f2;
   border-radius: 5rpx;
@@ -231,10 +237,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 24rpx;
 }
 
-.box-panel > .scroll  .box-list > .box > .light {
+.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light {
   width: 70rpx;
   height: 70rpx;
   border-radius: 50%;
@@ -244,21 +249,21 @@
   justify-content: center;
 }
 
-.box-panel > .scroll  .box-list > .box > .light > image,
-.box-panel > .scroll  .box-list > .box > .light > view {
+.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > image,
+.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > view {
   width: 64rpx;
   height: 64rpx;
   border-radius: 50%;
   z-index: 5;
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.box-panel > .scroll  .box-list > .box > .name {
+.box-panel > .scroll  .weui-grids > .weui-grid > .box > .name {
   width: 90rpx;
+  height: 30rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
