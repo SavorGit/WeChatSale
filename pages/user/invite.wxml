@@ -1,5 +1,4 @@
 <!--pages/user/invite.wxml-->
 <import src="/pages/template/commons" />
-
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />

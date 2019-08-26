@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var user_info = wx.getStorageSync('savor:dinners:userinfo');
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
     openid = user_info.openid;
     var role_type = user_info.role_type;
     that.setData({

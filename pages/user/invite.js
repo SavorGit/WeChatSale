@@ -1,7 +1,7 @@
 // pages/user/invite.js
 const app = getApp()
 var api_url = app.globalData.api_url;
-var cache_key = app.globalData.cache_key;
+var cache_key = app.globalData.cache_key; 
 var openid;
 Page({
 
@@ -19,7 +19,8 @@ Page({
     var that = this;
     wx.hideShareMenu();
     var q = decodeURIComponent(options.q);
-    if (q.indexOf("?")){
+    
+    if (q.substr(0,1)=='?'){
       var selemite = q.indexOf("?");
       var invite_code = q.substring(selemite + 3, q.length);
     }else {
@@ -58,14 +59,12 @@ Page({
         },
         success:function(res){
           if(res.data.code==10000){
-            var user_info = res.data.reseult;
+            var user_info = res.data.result;
             
             
             if(res.data.result.hotel_id !=0){
-              wx.switchTab({
-                url: '/pages/index/index',
-              })   
-            }else {
+              
+              
               wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: user_info,
@@ -73,8 +72,14 @@ Page({
               that.setData({
                 showWXAuthLogin: true
               })
+            }else {
+              
+              wx.redirectTo({
+               url: '/pages/user/login',
+              })
             }
           }else {
+            
             wx.redirectTo({
               url: '/pages/user/login',
             })
@@ -90,8 +95,14 @@ Page({
   //微信用户授权登陆
   onGetUserInfo: function (res) {
     var that = this;
+    console.log(cache_key + "userinfo");
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    openid = user_info.openid;
+    console.log(user_info);
+    var openid = user_info.openid;
+    
+
+    console.log('大坏蛋');
+    console.log(res);
     if (res.detail.errMsg == 'getUserInfo:ok') {
 
       wx.getUserInfo({

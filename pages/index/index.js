@@ -379,7 +379,7 @@ Page({
     var that = this;
     var box_mac = e.currentTarget.dataset.box_mac;
     var keys = e.currentTarget.dataset.keys;
-    var user_info = wx.getStorageSync('savor:dinners:userinfo');
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
     openid = user_info.openid;
     //sign_box_list
     wx.request({
