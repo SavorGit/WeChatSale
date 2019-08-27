@@ -240,7 +240,8 @@ Page({
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    box_mac = user_info.box_mac;
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+    box_mac = link_box_info.box_mac;
     wx.request({
       url: api_url +'/Smallsale/goods/programPlay',
       header: {
@@ -290,8 +291,8 @@ Page({
   },
   boxShow:function(e){
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    
-    box_mac = user_info.box_mac;
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+    box_mac = link_box_info.box_mac;
     var goods_id = e.currentTarget.dataset.goods_id;
     
     var imgs = e.currentTarget.dataset.oss_addr;

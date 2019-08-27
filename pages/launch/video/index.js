@@ -29,9 +29,9 @@ Page({
     var that = this;
     wx.hideShareMenu();
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     openid = user_info.openid;
-    box_mac = user_info.box_mac;
+    box_mac = link_box_info.box_mac;
     that.setData({
       box_mac: box_mac,
       openid: openid,

@@ -232,8 +232,9 @@ Page({
   
   chooseImage: function (res) {
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var link_box_info = wx.getStorageSync(cache_key+"link_box_info");
     var mobile = user_info.mobile;
-    var box_mac = user_info.box_mac;
+    var box_mac = link_box_info.box_mac;
     if (box_mac == '' || box_mac == undefined) {
 
       wx.showToast({
@@ -275,8 +276,9 @@ Page({
   },
   chooseVideo: function (res) {
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var mobile = user_info.mobile;
-    var box_mac = user_info.box_mac;
+    var box_mac = link_box_info.box_mac;
     if (box_mac == '' || box_mac == undefined) {
       wx.showToast({
         title: '请选择包间电视',
