@@ -34,7 +34,7 @@
       <view class='title theme-font3'>积分收益（分）</view>
       <view class='info'>
         <label class='theme-font5'>{{integral}}</label>
-        <button class='theme-font5' bindtap="exchange">兑换</button>
+        <button class='theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button>
       </view>
     </view>
 

@@ -13,6 +13,7 @@ Page({
   data: {
     nickName:'匿名用户',
     integral:0,
+    is_open_integral:0,
   },
 
   /**
@@ -39,7 +40,8 @@ Page({
           that.setData({
             avatarUrl: res.data.result.avatarUrl,
             nickName:  res.data.result.nickName,
-            integral: res.data.result.integral
+            integral: res.data.result.integral,
+            is_open_integral: res.data.result.is_open_integral,
           })
         }
       }
