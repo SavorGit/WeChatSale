@@ -17,7 +17,6 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     var that = this;
-    wx.hideShareMenu();
     var q = decodeURIComponent(options.q);
     if (q.indexOf("?") != -1){
       var selemite = q.indexOf("?");
