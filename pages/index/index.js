@@ -250,7 +250,8 @@ Page({
         },
         method: "POST",
         data: {
-          mobile: mobile
+          mobile: mobile,
+          openid:user_info.openid
         },
         success: function (res) {
           if (res.data.code == 10000) {
@@ -293,7 +294,8 @@ Page({
         },
         method: "POST",
         data: {
-          mobile: mobile
+          mobile: mobile,
+          openid:user_info.openid,
         },
         success: function (res) {
           if (res.data.code == 10000) {

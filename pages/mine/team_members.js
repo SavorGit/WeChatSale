@@ -72,7 +72,7 @@ Page({
   },
   removeStaff:function(e){
     var that  =  this;
-    //var userinfo = wx.getStorageSync(cache_key+'userinfo');
+    var userinfo = wx.getStorageSync(cache_key+'userinfo');
     var openid = e.target.dataset.openid;
     var invite_id = e.target.dataset.invite_id;
     var staff_list = e.target.dataset.staff_list;
@@ -90,7 +90,7 @@ Page({
       },
       success:function(res){
         if(res.data.code==10000){
-          for(var i=0;i<staff_list.length;i++){
+          /*for(var i=0;i<staff_list.length;i++){
             if(i!=keys){
               new_staff_list[flag] = staff_list[i];
             }
@@ -98,7 +98,14 @@ Page({
           }
           that.setData({
             staff_list:new_staff_list,
+          })*/
+          wx.showToast({
+            title: '移除成功',
+            icon: 'none',
+            duration: 2000,
           })
+          this.onLoad();
+          
         }else {
           wx.showToast({
             title: '移除失败，请重试',
