@@ -60,34 +60,23 @@ Page({
             openid: openid,
           },
           success: function (res) {
-            console.log(res);
             if(res.data.code==10000){
-              if (res.data.result.userinfo.is_wx_auth != 3) {
-                that.setData({
-                  showWXAuthLogin: true
-                })
+              
+              if (res.data.result.userinfo.mobile != '' && res.data.result.userinfo.hotel_id != 0) {
+
+                //res.data.result.userinfo.is_login = 1;
                 wx.setStorage({
                   key: cache_key + 'userinfo',
                   data: res.data.result.userinfo,
                 })
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
               } else {
-                if (res.data.result.userinfo.mobile != '' && res.data.result.userinfo.hotel_id !=0) {
-
-                  //res.data.result.userinfo.is_login = 1;
-                  wx.setStorage({
-                    key: cache_key + 'userinfo',
-                    data: res.data.result.userinfo,
-                  })
-                  wx.reLaunch({
-                    url: '/pages/index/index',
-                  })
-                } else {
-                  wx.setStorage({
-                    key: cache_key + 'userinfo',
-                    data: res.data.result.userinfo,
-                  })
-                }
-
+                wx.setStorage({
+                  key: cache_key + 'userinfo',
+                  data: res.data.result.userinfo,
+                })
               }
             }
           }

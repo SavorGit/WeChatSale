@@ -41,7 +41,10 @@
   color: #fff;
   background-color: #1cbeb6;
 }
-
+.theme-button-dark {
+  color: #fff;
+  background-color: #333;
+}
 .theme-button2 {
   color: #fff;
   background-color: #25635f;

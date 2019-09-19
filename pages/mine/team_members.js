@@ -49,7 +49,7 @@ Page({
       },
       data: {
         openid: userinfo.openid,
-        page: 1,
+        page: page,
         pagesize: 20,
       },
       success: function (res) {

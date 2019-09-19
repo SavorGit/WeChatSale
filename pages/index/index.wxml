@@ -15,7 +15,7 @@
       <image src='/images/icon/FFFFFF_unlink.png'></image>
       <view class='full_width'>
         <label class='info'>您还未链接电视</label>
-        <label class='btn-choose theme-font'>连接</label>
+        <label class='btn-choose theme-font'>链接</label>
       </view>
     </view>
   </picker>
@@ -69,240 +69,19 @@
             </view>
           </view>
         </block>
-        <!-- <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light red-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light red-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light red-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light green-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light theme-font3'>
-            <view>签到</view>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view>
-        <view class='weui-grid box'>
-          <view class='light grey-light'>
-            <image src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-          </view>
-          <view class='name'>1999</view>
-        </view> -->
+        
       </view>
     </scroll-view>
   </view>
 
 </view>
 
-<!--
-<view class="container">
-  <view class='full_width flex_column_center page-top'>
-    <!--<picker bindchange="boxPickerChange " class='box_picker' value="{{boxIndex}} " range="{{boxArray}} ">
-      <label>{{boxArray[boxIndex]}}</label>
-    </picker>--
-  </view>
-  <view class='page-main'>
-    <view wx:if="{{is_link==1}} " class='tip'>
-      <label>您已成功链接“{{hotel_name}}”的{{room_name}}电视</label>
-    </view>
-    <button class='btn theme-button' bindtap="chooseImage " disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
-      <image src='/images/icon/f6f3ee_pic.png'></image>
-      <label>照片上电视</label>
-    </button>
-    <button class='btn theme-button' bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
-      <image src='/images/icon/f6f3ee_video.png'></image>
-      <label>视频上电视</label>
-    </button>
-    <button bindtap='gotodownload' disabled='{{download_disable}}' class='btn theme-button'>
-      <image src='/images/icon/f6f3ee_pic_down.png'></image>
-      <label>下载图片模板</label>
-    </button>
-  </view>
-  <view wx:if="{{is_link> 0}}" class='full_width page-bottom'>
-    <view class='operation'>
-      <button bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' class='savor-btn'>退出投屏</button>
-      <button bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='4' class='savor-btn'>音量 + </button>
-      <button bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='3' class='savor-btn'>音量 - </button>
-    </view>
-  </view>
-  <view wx:else class='full_width page-bottom'>
-  </view>
-
-  <view class="body-view">
-    <loading hidden="{{hiddens}}" bindchange="loadingChange">正在连接包间wifi,请稍后...</loading>
-  </view>
-</view>
--->
+<!-- 微信授权 -->
+<template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
 
 
 
-<!-- 连接WIFI重试 - 弹窗 -->
-<modal show='{{showRetryModal}}' width="80vw" height="300rpx" title-text="" confirmText="" cancelText="">
-  <view style='display: flex;flex-direction: column;align-items: center; font-size: 30rpx;padding-top:60rpx;padding-bottom:50rpx;'>
-    <label style='height: 50rpx;'>当前无线局域网"{{wifi_name}}"</label>
-    <label style='height: 50rpx;'>暂时无法连接</label>
-  </view>
-  <view style='display: flex;flex-direction: row;align-items: center;'>
-    <button style='width: 260rpx; height: 60rpx; line-height: 60rpx; color: #FFF; font-size: 28rpx; margin: auto; padding: 0; border: 0; background-color: rgb(28, 190, 182); border-radius: 30rpx;text-align:center;' bindtap='netRetry'>重试</button>
-    <navigator style='width: 260rpx; height: 60rpx; line-height: 60rpx; color: #FFF; font-size: 28rpx; margin: auto; padding: 0; border: 0; background-color: rgb(28, 190, 182); border-radius: 30rpx;text-align:center;' target="miniProgram" app-id="{{common_appid}}"
-      path="pages/index/index">进入普通版</navigator>
-  </view>
-</modal>
 
-<!-- 非正常渠道进入 - 弹窗 -->
-<modal show='{{showModal}}' width="90vw" height="420rpx" title-text="温馨提示" confirmText="" cancelText="">
-  <view style='display: flex;flex-direction: column;align-items: center; font-size: 30rpx;'>
-    <label style='height: 50rpx;'>使用前需前往[热点投屏]小程序进行链接电视，</label>
-    <label style='height: 50rpx;'>否则无法使用本小程序的功能。</label>
-    <label style='height: 50rpx;'>为您带来的不便，敬请谅解。</label>
-    <navigator target="miniProgram" app-id="{{common_appid}}" path="pages/index/index">
-      <button style='width: 260rpx; height: 60rpx; line-height: 60rpx; color: #FFF; font-size: 28rpx; margin: 30rpx 0 0 0; padding: 0; border: 0; background-color: rgb(28, 190, 182); border-radius: 30rpx;'>前往[热点投屏]</button>
-    </navigator>
-  </view>
-</modal>
-<modal show='{{showHotelErr}}' width="90vw" height="250rpx" title-text="温馨提示" confirmText="" cancelText="">
-  <view style='display: flex;flex-direction: column;align-items: center; font-size: 30rpx;'>
-    <label style='height: 50rpx;'>您绑定的酒楼信息有误，请删除小程序后重新进入</label>
-    <label style='height: 50rpx;'>或者联系小热点管理员</label>
-  </view>
-</modal>
-<!-- 邀请码对应的酒楼和链接电视对应的酒楼不一致 - 弹窗 -->
-<modal show='{{bdShowModal}}' width="90vw" height="300rpx" title-text="温馨提示" confirmText="" cancelText="">
-  <view style='display: flex;flex-direction: column;align-items: center; font-size: 30rpx;'>
-    <label style='height: 50rpx;'>连接失败，您已绑定{{bd_hotel_name}}酒楼</label>
-    <navigator target="miniProgram" app-id="{{common_appid}}" path="pages/index/index">
-      <button style='width: 260rpx; height: 60rpx; line-height: 60rpx; color: #FFF; font-size: 28rpx; margin: 30rpx 0 0 0; padding: 0; border: 0; background-color: rgb(28, 190, 182); border-radius: 30rpx;'>前往[热点投屏]</button>
-    </navigator>
-  </view>
-</modal>
+
+
+
