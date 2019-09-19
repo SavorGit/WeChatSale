@@ -9,51 +9,99 @@ var signature;
 var accessid;
 var page = 1;
 var common_appid = app.globalData.common_appid;
-var cache_key = app.globalData.cache_key; 
+var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
 var play_list = [];
 var mobile_brand = app.globalData.mobile_brand;
 var mobile_model = app.globalData.mobile_model;
-var my_activity_info = { 'start_date': '', 'end_date': '', 'room_type': 0, 'price': '', 'goods_img': '','media_type':0};
+var my_activity_info = {
+  'start_date': '',
+  'end_date': '',
+  'room_type': 0,
+  'price': '',
+  'goods_img': '',
+  'media_type': 0
+};
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    myChoosed:0,
-    showPageType:1,
-    play_list:[],  //节目单播放列表
-    sale_list:[],  //促销活动列表
-    room_type:1,   //活动范围1：全部 2：包间 3：非包间
-    room_arr: [{ 'id': 0, 'name': '全部', 'checked': true,'desc':'本餐厅全部电视'}, 
-               { 'id': 1, 'name': '包间', 'checked': false,'desc':'本餐厅包间电视'}, 
-               { 'id': 2, 'name': '非包间', 'checked': false,'desc':'本餐厅非包间电视' }
-              ],
-    check_status_arr: [{ 'status': 1, 'name': '审核中', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png' }, 
-      { 'status': 2, 'name': '审核通过', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png' }, 
-      { 'status': 3, 'name': '未审核通过', 'img':'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'},
-      { 'status': 5, 'name': '已过期', 'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-expire.png' }
-                      ],
-    start_date:'', //活动开始时间
-    end_date:'',   //活动结束时间
-    is_my_activity :0,  //是否有我的活动
-    my_activity_info: { 'goods_id': 0, 'start_date': '', 'end_date': '', 'room_type': 0, 'price': '', 'goods_img': '', 'media_type': 0,'file_size':'','duration':'' },
-    showHotelErr:false
+    myChoosed: 0,
+    showPageType: 1,
+    play_list: [], //节目单播放列表
+    sale_list: [], //促销活动列表
+    room_type: 1, //活动范围1：全部 2：包间 3：非包间
+    room_arr: [{
+        'id': 0,
+        'name': '全部',
+        'checked': true,
+        'desc': '本餐厅全部电视'
+      },
+      {
+        'id': 1,
+        'name': '包间',
+        'checked': false,
+        'desc': '本餐厅包间电视'
+      },
+      {
+        'id': 2,
+        'name': '非包间',
+        'checked': false,
+        'desc': '本餐厅非包间电视'
+      }
+    ],
+    check_status_arr: [{
+        'status': 1,
+        'name': '审核中',
+        'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png'
+      },
+      {
+        'status': 2,
+        'name': '审核通过',
+        'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-examined.png'
+      },
+      {
+        'status': 3,
+        'name': '未审核通过',
+        'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'
+      },
+      {
+        'status': 5,
+        'name': '已过期',
+        'img': 'https://oss.littlehotspot.com/Html5/images/sale/EB6877-expire.png'
+      }
+    ],
+    start_date: '', //活动开始时间
+    end_date: '', //活动结束时间
+    is_my_activity: 0, //是否有我的活动
+    my_activity_info: {
+      'goods_id': 0,
+      'start_date': '',
+      'end_date': '',
+      'room_type': 0,
+      'price': '',
+      'goods_img': '',
+      'media_type': 0,
+      'file_size': '',
+      'duration': ''
+    },
+    showHotelErr: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
-    var user_info  = wx.getStorageSync(cache_key + "userinfo");
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     box_mac = link_box_info.box_mac;
-    
-    wx.request({//节目单播放列表
+
+    wx.request({ //节目单播放列表
       url: api_url + '/Smallsale/goods/getPlayList',
       header: {
         'content-type': 'application/json'
@@ -61,7 +109,7 @@ Page({
       data: {
         hotel_id: hotel_id,
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 10000) {
           play_list = res.data.result.datalist;
           that.setData({
@@ -77,11 +125,11 @@ Page({
       },
       data: {
         hotel_id: hotel_id,
-        openid:openid,
+        openid: openid,
         page: 1,
-        type:10
+        type: 10
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 10000) {
           that.setData({
             sale_list: res.data.result.datalist,
@@ -89,7 +137,7 @@ Page({
         }
       }
     })
-    wx.request({//我的活动
+    wx.request({ //我的活动
       url: api_url + '/Smallsale/goods/getGoodslist',
       header: {
         'content-type': 'application/json'
@@ -100,7 +148,7 @@ Page({
         type: 20,
         page: 1
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 10000) {
           if (res.data.result.datalist.length > 0) {
             var goods_status = res.data.result.datalist[0].status;
@@ -128,7 +176,7 @@ Page({
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-            
+
             that.setData({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
@@ -146,7 +194,7 @@ Page({
             })
           }
 
-        }else {
+        } else {
           my_activity_info = {};
           my_activity_info.media_type = 0;
           my_activity_info.room_type = 0
@@ -157,7 +205,8 @@ Page({
 
           })
         }
-      },fail:function(res){
+      },
+      fail: function(res) {
         my_activity_info = {};
         my_activity_info.media_type = 0;
         my_activity_info.room_type = 0
@@ -171,33 +220,34 @@ Page({
     })
     //获取酒楼包间签到详情
     wx.request({
-      url: api_url +'/Smallsale/user/getSigninBoxList',
+      url: api_url + '/Smallsale/user/getSigninBoxList',
       header: {
         'content-type': 'application/json'
       },
-      data:{
-        hotel_id:hotel_id,
-        openid:openid
-      },success:function(res){
+      data: {
+        hotel_id: hotel_id,
+        openid: openid
+      },
+      success: function(res) {
         console.log(res);
       }
     })
   },
-  delProgramPlay:function(e){
+  delProgramPlay: function(e) {
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.request({
-      url: api_url +'/Smallsale/goods/removePlaygoods',
-      header:{
-        'content-type':'application/json'
+      url: api_url + '/Smallsale/goods/removePlaygoods',
+      header: {
+        'content-type': 'application/json'
       },
-      data:{
-        hotel_id:hotel_id,
-        openid:openid,
+      data: {
+        hotel_id: hotel_id,
+        openid: openid,
         goods_id: goods_id,
       },
-      success:function(res){
-        if(res.data.code==10000){
+      success: function(res) {
+        if (res.data.code == 10000) {
           wx.showToast({
             title: '移除成功',
             icon: 'none',
@@ -211,7 +261,7 @@ Page({
             data: {
               hotel_id: hotel_id,
             },
-            success:function(res){
+            success: function(res) {
               if (res.data.code == 10000) {
                 play_list = res.data.result.datalist;
                 that.setData({
@@ -220,14 +270,15 @@ Page({
               }
             }
           })
-        }else {
+        } else {
           wx.showToast({
             title: '移除失败，请重试',
             icon: 'none',
             duration: 2000,
           })
         }
-      },fail:function(res){
+      },
+      fail: function(res) {
         wx.showToast({
           title: '移除失败，请重试',
           icon: 'none',
@@ -236,23 +287,23 @@ Page({
       }
     })
   },
-  programPlay:function(e){//节目单播放
+  programPlay: function(e) { //节目单播放
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     box_mac = link_box_info.box_mac;
     wx.request({
-      url: api_url +'/Smallsale/goods/programPlay',
+      url: api_url + '/Smallsale/goods/programPlay',
       header: {
         'content-type': 'application/json'
       },
-      data:{
-        box_mac:box_mac,
-        openid:openid,
-        goods_id:goods_id
+      data: {
+        box_mac: box_mac,
+        openid: openid,
+        goods_id: goods_id
       },
-      success:function(res){
+      success: function(res) {
         wx.request({
           url: api_url + '/Smallsale/goods/getPlayList',
           header: {
@@ -261,7 +312,7 @@ Page({
           data: {
             hotel_id: hotel_id,
           },
-          success: function (res) {
+          success: function(res) {
             if (res.data.code == 10000) {
               play_list = res.data.result.datalist;
               that.setData({
@@ -270,7 +321,7 @@ Page({
             }
           }
         })
-        if(res.data.code==10000){
+        if (res.data.code == 10000) {
           var tip_desc = '添加节目单播放成功';
         } else {
           var tip_desc = res.data.msg;
@@ -280,36 +331,37 @@ Page({
           icon: 'none',
           duration: 2000,
         })
-      },fail:function(res){
+      },
+      fail: function(res) {
         wx.showToast({
           title: '添加节目单失败，请重试',
           icon: 'none',
-          duration:2000,
+          duration: 2000,
         })
       }
     })
   },
-  boxShow:function(e){
+  boxShow: function(e) {
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     box_mac = link_box_info.box_mac;
     var goods_id = e.currentTarget.dataset.goods_id;
-    
+
     var imgs = e.currentTarget.dataset.oss_addr;
-    
+
     var timestamp = (new Date()).valueOf();
     wx.request({
-      url: api_url +'/Netty/Index/index',
+      url: api_url + '/Netty/Index/index',
       headers: {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      data:{
+      data: {
         box_mac: box_mac,
-        msg: '{"goods_id":' + goods_id +',"action":40,"forscreen_id":'+timestamp+'}',
+        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + '}',
       },
-      success:function(res){
-        if(res.data.code==10000){
+      success: function(res) {
+        if (res.data.code == 10000) {
           wx.request({
             url: api_url + '/Smallapp/index/recordForScreenPics',
             header: {
@@ -324,7 +376,7 @@ Page({
               forscreen_char: '',
               forscreen_id: timestamp,
               resource_id: timestamp,
-              imgs: '["' + imgs+'"]'
+              imgs: '["' + imgs + '"]'
             },
           });
           wx.showToast({
@@ -332,7 +384,7 @@ Page({
             icon: 'none',
             duration: 2000,
           })
-        }else {
+        } else {
           wx.showToast({
             title: '电视播放失败,请重试',
             icon: 'none',
@@ -340,7 +392,7 @@ Page({
           })
         }
       },
-      fail:function(res){
+      fail: function(res) {
         wx.showToast({
           title: '电视播放失败,请重试',
           icon: 'none',
@@ -350,18 +402,18 @@ Page({
     })
   },
   //切换选项卡  活动促销  我的活动
-  selectXxk:function(res){
+  selectXxk: function(res) {
     var that = this;
     var status = res.currentTarget.dataset.status;
-    if(status==1){
+    if (status == 1) {
       that.setData({
         showPageType: 1
       })
-    }else {
+    } else {
       that.setData({
         showPageType: 2
       })
-      wx.request({//我的活动
+      wx.request({ //我的活动
         url: api_url + '/Smallsale/goods/getGoodslist',
         header: {
           'content-type': 'application/json'
@@ -372,14 +424,14 @@ Page({
           type: 20,
           page: 1
         },
-        success: function (res) {
-          
+        success: function(res) {
+
           if (res.data.code == 10000) {
             if (res.data.result.datalist.length > 0) {
               var goods_status = res.data.result.datalist[0].status;
-              if (goods_status==2){
+              if (goods_status == 2) {
                 var box_btn = false
-              }else {
+              } else {
                 var box_btn = true
               }
               var room_type = res.data.result.datalist[0].scope;
@@ -401,11 +453,11 @@ Page({
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-              
+
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
-                box_btn:box_btn,
+                box_btn: box_btn,
               })
             } else {
               my_activity_info = {};
@@ -418,7 +470,7 @@ Page({
               })
             }
 
-          }else {
+          } else {
             my_activity_info = {};
             my_activity_info.media_type = 0;
             my_activity_info.room_type = 0
@@ -428,23 +480,24 @@ Page({
               my_activity_info: my_activity_info
             })
           }
-        },fail:function(res){
+        },
+        fail: function(res) {
           my_activity_info = {};
           my_activity_info.media_type = 0;
           my_activity_info.room_type = 0
           that.setData({
-            price:'',
+            price: '',
             is_my_activity: 0,
             my_activity_info: my_activity_info
           })
         }
       })
     }
-    
+
   },
   //上传图片
-  chooseImg:function(res){
-    var that =this;
+  chooseImg: function(res) {
+    var that = this;
     wx.chooseImage({
       count: 1, // 默认6
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -454,82 +507,16 @@ Page({
         var file_size = res.tempFiles[0].size;
         var index1 = filename.lastIndexOf(".");
         var index2 = filename.length;
-        var postf = filename.substring(index1, index2);//后缀名
+        var postf = filename.substring(index1, index2); //后缀名
         var timestamp = (new Date()).valueOf();
         var oss_img = "forscreen/resource/" + timestamp + postf;
-        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+        var postf_w = filename.substring(index1 + 1, index2); //后缀名
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
           headers: {
             'Content-Type': 'application/json'
           },
-          success: function (rest) {
-            signature = rest.data.signature;
-            policy    = rest.data.policy;
-            accessid = rest.data.accessid;
-            wx.uploadFile({
-              url: oss_upload_url,
-              filePath: filename,
-              name: 'file',
-              header: {
-                'Content-Type': 'image/' + postf_w
-              },
-              formData: {
-                Bucket: "redian-produce",
-                name: filename,
-                key: "forscreen/resource/" + timestamp + postf,
-                policy: policy,
-                OSSAccessKeyId: accessid,
-                sucess_action_status: "200",
-                signature: signature
-
-              },
-
-              success: function (res) {
-                my_activity_info.goods_img = oss_img;
-                my_activity_info.media_type = 2;
-                my_activity_info.file_size = file_size;
-                that.setData({
-                  filename:filename,
-                  my_activity_info: my_activity_info
-                })
-              },
-              complete: function (es) {
-                
-              },
-              fail: function ({ errMsg }) {
-                
-              },
-            });
-            
-          }
-        });
-      },
-    })
-  },
-  //上传视频
-  chooseVideo:function(){
-    var that = this;
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success: function (res) {
-        var filename = res.tempFilePath;
-        var file_size = res.size;
-        var duration = res.duration;
-        var index1 = filename.lastIndexOf(".");
-        var index2 = filename.length;
-        var postf = filename.substring(index1, index2);//后缀名
-        var timestamp = (new Date()).valueOf();
-        var oss_img = "forscreen/resource/" + timestamp + postf;
-        var postf_w = filename.substring(index1 + 1, index2);//后缀名
-        wx.request({
-          url: api_url + '/Smallapp/Index/getOssParams',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          success: function (rest) {
+          success: function(rest) {
             signature = rest.data.signature;
             policy = rest.data.policy;
             accessid = rest.data.accessid;
@@ -551,20 +538,90 @@ Page({
 
               },
 
-              success: function (res) {
+              success: function(res) {
+                my_activity_info.goods_img = oss_img;
+                my_activity_info.media_type = 2;
+                my_activity_info.file_size = file_size;
+                that.setData({
+                  filename: filename,
+                  my_activity_info: my_activity_info
+                })
+              },
+              complete: function(es) {
+
+              },
+              fail: function({
+                errMsg
+              }) {
+
+              },
+            });
+
+          }
+        });
+      },
+    })
+  },
+  //上传视频
+  chooseVideo: function() {
+    var that = this;
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function(res) {
+        var filename = res.tempFilePath;
+        var file_size = res.size;
+        var duration = res.duration;
+        var index1 = filename.lastIndexOf(".");
+        var index2 = filename.length;
+        var postf = filename.substring(index1, index2); //后缀名
+        var timestamp = (new Date()).valueOf();
+        var oss_img = "forscreen/resource/" + timestamp + postf;
+        var postf_w = filename.substring(index1 + 1, index2); //后缀名
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          success: function(rest) {
+            signature = rest.data.signature;
+            policy = rest.data.policy;
+            accessid = rest.data.accessid;
+            wx.uploadFile({
+              url: oss_upload_url,
+              filePath: filename,
+              name: 'file',
+              header: {
+                'Content-Type': 'image/' + postf_w
+              },
+              formData: {
+                Bucket: "redian-produce",
+                name: filename,
+                key: "forscreen/resource/" + timestamp + postf,
+                policy: policy,
+                OSSAccessKeyId: accessid,
+                sucess_action_status: "200",
+                signature: signature
+
+              },
+
+              success: function(res) {
                 my_activity_info.media_type = 1;
                 my_activity_info.goods_img = oss_img;
                 my_activity_info.file_size = file_size;
                 my_activity_info.duration = duration;
                 that.setData({
-                  my_activity_info:my_activity_info,
+                  my_activity_info: my_activity_info,
                   filename: filename,
                 })
               },
-              complete: function (es) {
+              complete: function(es) {
 
               },
-              fail: function ({ errMsg }) {
+              fail: function({
+                errMsg
+              }) {
 
               },
             });
@@ -575,7 +632,7 @@ Page({
     })
   },
   //切换最大值
-  setMaxPrice: function (res) {
+  setMaxPrice: function(res) {
     var that = this;
     var regu = "^([0-9]*[.0-9])$"; // 小数测试
     var re = new RegExp(regu);
@@ -612,58 +669,58 @@ Page({
     }*/
   },
   //切换活动范围单选按钮
-  changeRoomType:function(res){
+  changeRoomType: function(res) {
     var that = this;
     var room_arr = this.data.room_arr;
     var room_type = res.currentTarget.dataset.room_type;
-    
+
     my_activity_info.room_type = room_type;
     that.setData({
       my_activity_info: my_activity_info
     })
-    
-    for (var i = 0; i < room_arr.length; i++){
-      if(room_arr[i].id==room_type){
+
+    for (var i = 0; i < room_arr.length; i++) {
+      if (room_arr[i].id == room_type) {
         room_arr[i].checked = true;
-        
-      }else {
+
+      } else {
         room_arr[i].checked = false;
       }
     }
   },
-  bindDateChange:function(res){
+  bindDateChange: function(res) {
     var that = this;
-    var date_type =  res.currentTarget.dataset.date_type;
-    if(date_type==1){
+    var date_type = res.currentTarget.dataset.date_type;
+    if (date_type == 1) {
       my_activity_info.start_time = res.detail.value;
-      
-    }else if(date_type==2){
+
+    } else if (date_type == 2) {
       my_activity_info.end_time = res.detail.value;
     }
     that.setData({
-      my_activity_info:my_activity_info,
+      my_activity_info: my_activity_info,
     })
   },
-  pubAct:function(res){
+  pubAct: function(res) {
     var that = this;
     var goods_img = res.detail.value.goods_img;
     var start_time = res.detail.value.start_time;
-    var end_time   = res.detail.value.end_time;
+    var end_time = res.detail.value.end_time;
     var goods_name = res.detail.value.goods_name;
-    var price      = res.detail.value.price;
-    var room_type  = res.detail.value.room_type;
+    var price = res.detail.value.price;
+    var room_type = res.detail.value.room_type;
     var room_arr = this.data.room_arr;
     var check_status_arr = this.data.check_status_arr;
     var goods_id = res.detail.value.goods_id;
     var file_size = res.detail.value.file_size;
     var duration = res.detail.value.duration;
-    
-    if(goods_id>0){
+
+    if (goods_id > 0) {
       var tost_success_desc = '活动编辑成功';
-    }else {
+    } else {
       var tost_success_desc = '活动添加成功';
     }
-    if(goods_img==''){
+    if (goods_img == '') {
       wx.showToast({
         title: '请上传图片/视频',
         icon: 'none',
@@ -671,7 +728,7 @@ Page({
       })
       return false;
     }
-    if(goods_name==''){
+    if (goods_name == '') {
       that.setData({
         goods_name_focus: true
       })
@@ -682,9 +739,9 @@ Page({
       });
       return false;
     }
-    if (price==''){
+    if (price == '') {
       that.setData({
-        price_focus:true
+        price_focus: true
       })
       wx.showToast({
         title: '请输入价格',
@@ -693,7 +750,7 @@ Page({
       });
       return false;
     }
-    if (start_time==''){
+    if (start_time == '') {
       wx.showToast({
         title: '请输入活动开始时间',
         icon: 'none',
@@ -709,8 +766,8 @@ Page({
       });
       return false;
     }
-    var diff_date = tab(start_time,end_time);
-    if(diff_date==0){
+    var diff_date = tab(start_time, end_time);
+    if (diff_date == 0) {
       wx.showToast({
         title: '结束时间不能小于开始时间',
         icon: 'none',
@@ -724,27 +781,27 @@ Page({
       title: '活动商品处理中',
     })
     wx.request({
-      url: api_url +'/Smallsale/goods/addActivityGoods',
+      url: api_url + '/Smallsale/goods/addActivityGoods',
       header: {
         'content-type': 'application/json'
       },
-      data:{
-        openid:openid,
-        hotel_id:hotel_id,
-        oss_addr:goods_img,
+      data: {
+        openid: openid,
+        hotel_id: hotel_id,
+        oss_addr: goods_img,
         goods_name: goods_name,
-        price:price,
-        start_time:start_time,
-        end_time:end_time,
-        scope:room_type,
+        price: price,
+        start_time: start_time,
+        end_time: end_time,
+        scope: room_type,
         goods_id: goods_id,
-        oss_filesize:file_size,
+        oss_filesize: file_size,
         duration: duration
       },
-      success:function(res){
+      success: function(res) {
         wx.hideLoading();
         var tost_err_desc = res.data.msg;
-        if(res.data.code==10000){
+        if (res.data.code == 10000) {
           for (var i = 0; i < room_arr.length; i++) {
             if (room_arr[i].id == room_type) {
               var room_desc = room_arr[i].desc;
@@ -752,38 +809,38 @@ Page({
             }
           }
           //var check_status_arr = that.data.check_status_arr;
-          
+
           //var check_status_img = check_status_arr[0].img
           var resource_type = res.data.result.media_type;
-          var goods_status  = res.data.result.status;
+          var goods_status = res.data.result.status;
           for (var j = 0; j < check_status_arr.length; j++) {
             if (check_status_arr[j].status == goods_status) {
               var check_status_img = check_status_arr[j].img;
               break;
             }
           }
-          if(goods_status==2){
+          if (goods_status == 2) {
             var box_btn = false;
-          }else {
+          } else {
             var box_btn = true;
           }
-          my_activity_info.goods_id  = res.data.result.goods_id;
+          my_activity_info.goods_id = res.data.result.goods_id;
           my_activity_info.oss_addr = res.data.result.oss_addr;
-          my_activity_info.file_size =  file_size;
-          my_activity_info.duration  = duration;
+          my_activity_info.file_size = file_size;
+          my_activity_info.duration = duration;
           my_activity_info.goods_name = goods_name,
-          my_activity_info.price = price;
+            my_activity_info.price = price;
           my_activity_info.start_time = start_time
           my_activity_info.resource_type = res.data.result.resource_type;
           my_activity_info.check_status_img = check_status_img;
           my_activity_info.room_type_desc = room_desc;
-          if(resource_type==1){
+          if (resource_type == 1) {
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + goods_img;
-            my_activity_info.img_url   = res.data.result.img_url;
-          }else {
+            my_activity_info.img_url = res.data.result.img_url;
+          } else {
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
           }
-          
+
 
           that.setData({
             box_btn: box_btn,
@@ -796,18 +853,19 @@ Page({
             icon: 'none',
             duration: 2000
           })
-        }else {
+        } else {
           wx.showToast({
             title: tost_err_desc,
-            icon:'none',
-            duration:2000
+            icon: 'none',
+            duration: 2000
           })
         }
-        
-        
 
-        
-      },fail:function(res){
+
+
+
+      },
+      fail: function(res) {
         wx.hideLoading();
         wx.showToast({
           title: tost_err_desc,
@@ -828,9 +886,9 @@ Page({
       }
     }
   },
-  editGoods:function(e){
-    var that = this ;
-    wx.request({//我的活动
+  editGoods: function(e) {
+    var that = this;
+    wx.request({ //我的活动
       url: api_url + '/Smallsale/goods/getGoodslist',
       header: {
         'content-type': 'application/json'
@@ -841,7 +899,7 @@ Page({
         type: 20,
         page: 1
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 10000) {
           if (res.data.result.datalist.length > 0) {
             var goods_status = res.data.result.datalist[0].status;
@@ -858,32 +916,32 @@ Page({
               if (room_type == room_arr[j].id) {
                 var room_type_desc = room_arr[j].desc;
                 room_arr[j].checked = true;
-                
-              }else {
+
+              } else {
                 room_arr[j].checked = false;
               }
             }
-            
+
             var resource_type = res.data.result.datalist[0].media_type;
             my_activity_info = res.data.result.datalist[0]
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.room_type = res.data.result.datalist[0].scope;
             var goods_name = res.data.result.datalist[0].goods_name;
-            if (resource_type==1){
-              var filename = app.globalData.oss_url+'/'+res.data.result.datalist[0].oss_addr;
+            if (resource_type == 1) {
+              var filename = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-            }else {
+            } else {
               var filename = res.data.result.datalist[0].img_url
             }
             var goods_img = res.data.result.datalist[0].oss_addr
             my_activity_info.goods_img = goods_img;
             var price = res.data.result.datalist[0].price;
-            
+
             that.setData({
               room_arr: room_arr,
               is_my_activity: 0,
-              price :price,
+              price: price,
               filename: filename,
               goods_img: goods_img,
               my_activity_info: my_activity_info,
@@ -900,29 +958,34 @@ Page({
       }
     })
   },
-  clearGoodsImg:function(res){
+  clearGoodsImg: function(res) {
     var that = this;
     var resource_type = res.currentTarget.dataset.resource_type;
     my_activity_info.media_type = 0;
     my_activity_info.goods_img = '';
     that.setData({
-      my_activity_info:my_activity_info
+      my_activity_info: my_activity_info
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1,
+      })
+    }
     var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
 
-    if (typeof (link_user_info.box_mac) == 'undefined') {
+    if (typeof(link_user_info.box_mac) == 'undefined') {
       wx.showModal({
         title: '提示',
         content: '请您先连接包间电视',
@@ -943,21 +1006,21 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.onLoad();
     //wx.showNavigationBarLoading();
     // 隐藏导航栏加载框
@@ -966,22 +1029,22 @@ Page({
     wx.stopPullDownRefresh();
     wx.showToast({
       title: '刷新成功',
-      icon:'none',
-      duration:2000,
+      icon: 'none',
+      duration: 2000,
     })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     var showPageType = this.data.showPageType;
-    if (showPageType==1){
+    if (showPageType == 1) {
       wx.showLoading({
         title: '加载中，请稍后',
       })
@@ -997,14 +1060,14 @@ Page({
           page: page,
           type: 10
         },
-        success: function (res) {
+        success: function(res) {
           if (res.data.code == 10000) {
             wx.hideLoading()
             that.setData({
               sale_list: res.data.result.datalist,
             })
 
-          }else {
+          } else {
             wx.hideLoading()
             wx.showToast({
               title: '加载失败，请重试',
@@ -1012,7 +1075,8 @@ Page({
               duration: 2000,
             })
           }
-        },fail:function(e){
+        },
+        fail: function(e) {
           wx.hideLoading()
           wx.showToast({
             title: '加载失败，请重试',
@@ -1021,15 +1085,15 @@ Page({
           })
         }
       })
-      
+
     }
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
