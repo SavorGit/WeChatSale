@@ -2,7 +2,7 @@
 //获取应用实例
 const app = getApp()
 var api_url = app.globalData.api_url;
-var cache_key = app.globalData.cache_key; 
+var cache_key = app.globalData.cache_key;
 var openid;
 var box_mac;
 var is_view_wifi = 0;
@@ -17,7 +17,7 @@ var sign_box_list; //签到包间
 Page({
   data: {
     objectBoxArray: [],
-    box_list :[], 
+    box_list: [],
     index: 0,
     motto: 'Hello World',
     userInfo: {},
@@ -34,13 +34,13 @@ Page({
     hiddens: true,
 
     showRetryModal: true, //连接WIFI重试弹窗
-    bdShowModal:true,    //邀请码酒楼和绑定酒楼不一致
+    bdShowModal: true,    //邀请码酒楼和绑定酒楼不一致
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    showHotelErr:false,
-    sign_box_list:[] //签到包间
+    showHotelErr: false,
+    sign_box_list: [] //签到包间
   },
-  
-  onLoad: function(res) {
+
+  onLoad: function (res) {
     var that = this;
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
@@ -61,7 +61,7 @@ Page({
         }
       }
     }
-    function is_login(openid){
+    function is_login(openid) {
 
       wx.request({
         url: api_url + '/Smallsale/User/isRegister',
@@ -71,15 +71,15 @@ Page({
         data: {
           openid: openid,
         },
-        success:function(res){
-          if(res.data.code==10000 && res.data.result.userinfo.hotel_id !=0){
+        success: function (res) {
+          if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
             wx.setStorage({
               key: cache_key + 'userinfo',
               data: res.data.result.userinfo,
             })
             var user_info = res.data.result.userinfo;
-            var link_box_info = wx.getStorageSync(cache_key+'link_box_info');
-            if(link_box_info !=''){//已链接盒子
+            var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+            if (link_box_info != '') {//已链接盒子
               var box_name = link_box_info.box_name;
               that.setData({
                 openid: openid,
@@ -87,7 +87,7 @@ Page({
                 is_link: 1,
                 room_name: box_name
               })
-            }else {//未链接盒子
+            } else {//未链接盒子
 
             }
             var hotel_id = user_info.hotel_id;
@@ -129,16 +129,16 @@ Page({
             })
 
 
-          }else {//未授权登陆 跳转到登陆页面
+          } else {//未授权登陆 跳转到登陆页面
             wx.reLaunch({
               url: '/pages/user/login',
             })
           }
         }
-      })  
+      })
     }
 
-    
+
   },
   //选择包间开始
   bindPickerChange: function (e) {
@@ -158,17 +158,17 @@ Page({
     }
 
   },//选择包间结束
-  
-  
+
+
   chooseImage: function (res) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if(user_info.is_wx_auth!=3){
+    if (user_info.is_wx_auth != 3) {
       that.setData({
         showWXAuthLogin: true,
 
       })
-    }else {
+    } else {
       var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
       var mobile = user_info.mobile;
       var box_mac = link_box_info.box_mac;
@@ -214,11 +214,11 @@ Page({
   chooseVideo: function (res) {
     var that = this
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if(user_info.is_wx_auth!=3){
+    if (user_info.is_wx_auth != 3) {
       that.setData({
-        showWXAuthLogin:true
+        showWXAuthLogin: true
       })
-    }else {
+    } else {
       var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
       var mobile = user_info.mobile;
       var box_mac = link_box_info.box_mac;
@@ -259,21 +259,21 @@ Page({
         })
       }
     }
-    
+
   },
   exitForscreen(e) {
     var that = this;
     var openid = e.currentTarget.dataset.openid;
     var box_mac = e.currentTarget.dataset.box_mac;
-    if(box_mac=='' || typeof(box_mac)=='undefined'){
+    if (box_mac == '' || typeof (box_mac) == 'undefined') {
       wx.showToast({
         title: '请您先链接包间电视',
         icon: 'none',
-        
+
         duration: 2000,
-        
+
       })
-    }else {
+    } else {
       var timestamp = (new Date()).valueOf();
       wx.request({
         url: api_url + '/Netty/Index/index',
@@ -301,7 +301,7 @@ Page({
         }
       })
     }
-    
+
   },//退出投屏结束
   changeVolume: function (e) {//更改音量
     var box_mac = e.target.dataset.box_mac;
@@ -328,42 +328,42 @@ Page({
         },
       })
     }
-    
+
   },
-  gotodownload:function(res){
+  gotodownload: function (res) {
     var that = this;
     that.setData({
-      download_disable:true,
+      download_disable: true,
     })
     wx.navigateTo({
       url: '/pages/download/index',
-      success:function(){
+      success: function () {
         that.setData({
           download_disable: false,
         })
       }
     })
   },
-  
-  signIn:function(e){
+
+  signIn: function (e) {
     var that = this;
     var box_mac = e.currentTarget.dataset.box_mac;
     var keys = e.currentTarget.dataset.keys;
-    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     //sign_box_list
     wx.request({
-      url: api_url +'/Smallsale/user/signin',
+      url: api_url + '/Smallsale/user/signin',
       headers: {
         'Content-Type': 'application/json'
       },
-      data:{
-        box_mac:box_mac,
-        openid:openid,
+      data: {
+        box_mac: box_mac,
+        openid: openid,
       },
-      success:function(res){
-        if(res.data.code==10000){
-          if(res.data.result.status==2){
+      success: function (res) {
+        if (res.data.code == 10000) {
+          if (res.data.result.status == 2) {
             for (var i = 0; i < sign_box_list.length; i++) {
               if (keys == i) {
                 sign_box_list[i].status = 2;
@@ -378,14 +378,14 @@ Page({
               icon: 'none',
               duration: 2000
             })
-          }else {
+          } else {
             for (var i = 0; i < sign_box_list.length; i++) {
               if (keys == i) {
                 sign_box_list[i].status = 2;
                 sign_box_list[i].user = { "avatarUrl": res.data.result.user.avatarUrl, "nickName": res.data.result.user.nickName, "openid": user_info.openid, "user_id": user_info.user_id };
               }
             }
-            var err_desc = '该包间已由'+res.data.result.user.nickName+'签到';
+            var err_desc = '该包间已由' + res.data.result.user.nickName + '签到';
             that.setData({
               sign_box_list: sign_box_list,
             })
@@ -396,24 +396,24 @@ Page({
             })
           }
 
-          
-        }else {
+
+        } else {
           wx.showToast({
             title: '签到失败，请重试',
-            icon:'none',
-            duration:2000
+            icon: 'none',
+            duration: 2000
           })
         }
       }
     })
 
   },
-  repeatSign:function(e){
+  repeatSign: function (e) {
     var nickname = e.currentTarget.dataset.nickname;
     wx.showToast({
-      title: '该电视已由' + nickname+'签到',
-      icon:'none',
-      duration:2000
+      title: '该电视已由' + nickname + '签到',
+      icon: 'none',
+      duration: 2000
     })
   },
   /**
@@ -422,10 +422,10 @@ Page({
   onShow: function () {
     this.onLoad()
   },
-  closeAuth:function(){
+  closeAuth: function () {
     var that = this;
     that.setData({
-      showWXAuthLogin:false,
+      showWXAuthLogin: false,
     })
   },
   //微信用户授权登陆
