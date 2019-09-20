@@ -9,38 +9,59 @@
       <view class='nickname theme-font2'>{{nickName}}</view>
     </view>
 
-    <!-- 我的员工面板 -->
-    <view class="team-members-panel full_width theme7" wx:if="{{role_type==2}}">
-      
-        <view class='title theme-font3'>
-          <label>我的员工</label>
-          <label wx:if="{{staff_list.length>0}}">
-            <navigator url="/pages/mine/team_members">更多...</navigator>
-          </label>
-        </view>
-        <view class="list">
-          <view class="cell add" bindtap="addStaff">
-            <label class="fa fa-plus"></label>
-          </view>
-          <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-            <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
-          </view>
-        </view>
-      
-    </view>
-
     <!-- 收益概况面板 -->
     <view class='profit-profile-panel full_width theme7'>
-      <view class='title theme-font3'>积分收益（分）</view>
+      <view class='top theme-font2'>
+        <view class='title'>积分收益（分）</view>
+        <navigator class='more'>收益明细...</navigator>
+      </view>
       <view class='info'>
         <label class='theme-font5'>{{integral}}</label>
         <button class='theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button>
+        <button class='theme-font'>转赠</button>
+      </view>
+      <view class="month">
+        <view class="block theme-font4">
+          <view class="title">本月预估积分收益</view>
+          <view class="integral">34567</view>
+        </view>
+        <view class="block theme-font4">
+          <view class="title">下月预估积分收益</view>
+          <view class="integral">34560</view>
+        </view>
+      </view>
+      <view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换或者转赠</view>
+    </view>
+
+    <!-- 活动商品管理面板 -->
+    <view class="promotion-goods-manage-panel theme7 theme-font2">
+      <navigator class="full_width full_height">
+        <view>活动商品管理</view>
+        <view class="fa fa-angle-right" aria-hidden="true"></view>
+      </navigator>
+    </view>
+
+    <!-- 我的员工面板 -->
+    <view class="team-members-panel full_width theme7" wx:if="{{role_type==2}}">
+      <view class='title theme-font2'>
+        <label>我的员工</label>
+        <label wx:if="{{staff_list.length>0}}">
+          <navigator url="/pages/mine/team_members">更多...</navigator>
+        </label>
+      </view>
+      <view class="list">
+        <view class="cell add" bindtap="addStaff">
+          <label class="fa fa-plus"></label>
+        </view>
+        <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+          <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+        </view>
       </view>
     </view>
 
-    <!-- 收益详情面板 -->
+    <!-- 收益详情面板 
     <view class='profit-details-panel full_width theme7'>
-      <view class='title theme-font3'>收益明细</view>
+      <view class='title theme-font2'>收益明细</view>
       <view class='row' wx:for="{{integral_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
         <view class='record'>
           <view class='cause full_width'>
@@ -54,7 +75,7 @@
       <view wx:if="{{integral_list.length < 1}}" class='row'>
         <view class="nodata-msg full_width full_height">暂无收益明细~</view>
       </view>
-    </view>
+    </view>-->
   </scroll-view>
 </view>
 
