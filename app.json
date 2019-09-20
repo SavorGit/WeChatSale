@@ -15,7 +15,8 @@
     "pages/mine/exchange",
     "pages/mine/team_members",
     "pages/user/invite",
-    "pages/mine/pop_list"
+    "pages/mine/pop_list",
+    "pages/mine/pop_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

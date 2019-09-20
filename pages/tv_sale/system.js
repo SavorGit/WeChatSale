@@ -119,7 +119,7 @@ Page({
       }
     })
     wx.request({ //促销活动列表
-      url: api_url + '/Smallsale/goods/getGoodslist',
+      url: api_url + '/Smallsale/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -138,7 +138,7 @@ Page({
       }
     })
     wx.request({ //我的活动
-      url: api_url + '/Smallsale/goods/getGoodslist',
+      url: api_url + '/Smallsale/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -414,7 +414,7 @@ Page({
         showPageType: 2
       })
       wx.request({ //我的活动
-        url: api_url + '/Smallsale/goods/getGoodslist',
+        url: api_url + '/Smallsale/goods/myGoodslist',
         header: {
           'content-type': 'application/json'
         },
@@ -889,7 +889,7 @@ Page({
   editGoods: function(e) {
     var that = this;
     wx.request({ //我的活动
-      url: api_url + '/Smallsale/goods/getGoodslist',
+      url: api_url + '/Smallsale/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -971,7 +971,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**
@@ -1050,7 +1050,7 @@ Page({
       })
       page = page + 1;
       wx.request({
-        url: api_url + '/Smallsale/goods/getGoodslist',
+        url: api_url + '/Smallsale/goods/myGoodslist',
         header: {
           'content-type': 'application/json'
         },
@@ -1089,11 +1089,207 @@ Page({
     }
 
   },
+  /**
+   * 推荐到好物圈
+   */
+  recwsad:function(e){
+    var res_id = e.currentTarget.dataset.res_id;
+    var res_title = e.currentTarget.dataset.res_title;
+    var res_img_list = e.currentTarget.dataset.res_img_list;
+    if (wx.openBusinessView){
+      wx.openBusinessView({
+        businessType: 'friendGoodsRecommend',
+        extraData: {
+          product: {
+            item_code: res_id,
+            title: res_title,
+            image_list: res_img_list
+          }
+        },
+        success: function (res) {
+          wx.showToast({
+            title: '推荐成功',
+            icon: 'success',
+            duration: 2000,
+          })
+        },
+        fail: function (res) {
+          wx.showToast({
+            title: '推荐失败',
+            icon: 'none',
+            duration: 2000,
+          })
+        }
+      })
+    }else {
+      wx.showToast({
+        title: '微信版本过低，不支持此功能',
+        icon: 'none',
+        duration: 2000,
+      })
+    }
+    
+  },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+    var that = this;
+    var res_id = res.target.dataset.res_id;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    openid = user_info.openid;
+    var share_url = '/pages/mine/pop_detail?goods_id='+res_id;
+    var img_url = e.target.dataset.img_url;
+    if (res.from === 'button') {
+      // 转发成功
+      wx.request({
+        url: api_url + '/Smallapp/share/recLogs',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          'openid': openid,
+          'res_id': res_id,
+          'type': 4,
+          'status': 1,
+        },
+        success: function (e) {
+          
 
-  }
+        },
+        fail: function (){
+          wx.showToast({
+            title: '网络异常，请稍后重试',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+      // 来自页面内转发按钮
+      return {
+        title: '我发现了一个特别好的东西，来看看吧',
+        path: share_url,
+        imageUrl: img_url,
+        success: function (res) {
+
+        },
+      }
+    }
+  },
+  //商品码
+  viewGoodsCode: function (e) {
+    var that = this;
+    var goods_id = e.currentTarget.dataset.goods_id;
+
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var is_box = user_info.is_box;
+    that.setData({
+      is_box:is_box,
+    })
+    wx.request({
+      url: api_url+'/aa/bb/cc',
+      header: {
+        'content-type': 'application/json'
+      },
+      data:{
+        goods_id:goods_id,
+      },
+      success:function(res){
+        if(res.data.code==10000){
+          that.setData({
+            goods_info:res.data.goods_info,
+          })
+        }
+      },
+    })
+
+
+    
+  },
+  //包间切换 
+  bindBoxPickerChange: function (e) {
+    var that = this;
+    var box_list = that.data.objectCityArray;
+    var picBoxIndex = e.detail.value //切换之后城市key
+    var boxIndex = that.data.boxIndex; //切换之前城市key
+
+    if (picBoxIndex != boxIndex) {
+      that.setData({
+        box_index: picBoxIndex,
+      })
+    }
+  },
+  //显示包间列表弹窗
+  viewRoomWin: function (e) {
+    var that = this;
+    that.setData({
+      view_room: true,
+    })
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var is_box = user_info.is_box;
+    if (is_box) {
+
+      var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+      var box_mac = link_box_info.box_mac;
+      //包间列表
+      wx.request({
+        url: api_url + '/smallsale/room/getRoomList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+          box_mac: box_mac,
+        },
+        success: function (res) {
+          console.log(res);
+          if (res.data.code == 10000) {
+            that.setData({
+              box_list: res.data.result.box_list,
+              box_name_list: res.data.result.box_name_list,
+              box_index: res.data.result.box_index,
+            })
+          }
+        }
+      })
+    }
+  },
+  //大屏展示
+  boxShow: function (e) {
+    var that = this;
+    wx.request({
+      url: api_url + '/aa/bb/cc',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        goods_id:goods_id,
+      }, success: function (res) {
+        if (res.data.code == 10000) {
+          wx.showToast({
+            title: '大屏即将展示，请稍后',
+            icon: 'success',
+            duration: 2000,
+          })
+        } else {
+          wx.showToast({
+            title: '大屏展示失败',
+            icon: 'success',
+            duration: 2000,
+          })
+        }
+        that.setData({
+          view_room: false,
+        })
+      }, fail: function (res) {
+        wx.showToast({
+          title: '大屏展示失败',
+          icon: 'success',
+          duration: 2000,
+        })
+      }
+    })
+  },
+  
 })
