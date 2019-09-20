@@ -1,5 +1,5 @@
 <!--components/modal/bottomModal.wxml-->
-<view class='mask' wx:if="{{show}}" bindtap='clickMask'>
+<view class='mask' style="padding-bottom: {{paddingBottom}};" wx:if="{{show}}" bindtap='clickMask'>
   <view class='modal-content' style="{{width != '' ? 'width: ' + width + ';' : ''}}{{height != '' ? 'height: ' + height + ';' : ''}}{{borderRadius != '' ? 'border-radius: ' + borderRadius + ';' : ''}}{{backgroundColor != '' ? 'background-color: ' + backgroundColor + ';' : ''}}">
     <view wx:if="{{titleText != ''}}" class='title' style='color: {{titleColor}};'>
       <label>{{titleText}}</label>

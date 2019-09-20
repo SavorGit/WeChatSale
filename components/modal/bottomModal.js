@@ -46,6 +46,11 @@ Component({
       type: Boolean,
       value: false
     },
+    //底部内边距
+    paddingBottom: {
+      type: String,
+      value: '10rpx'
+    },
     //modal的背景色
     backgroundColor: {
       type: String,
@@ -102,7 +107,7 @@ Component({
   /**
    * 组件生命周期函数，在组件实例进入页面节点树时执行
    */
-  attached: function () {
+  attached: function() {
     this.setData({
       show: false
     })
@@ -111,7 +116,7 @@ Component({
   /**
    * 组件生命周期函数，在组件布局完成后执行，此时可以获取节点信息
    */
-  ready: function () {
+  ready: function() {
     // this.setData({
     //   show: false
     // })

@@ -173,7 +173,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel > .row > .goods {
-  width: calc(100% - 330rpx);
+  width: calc(100% - 236rpx);
   height: 138rpx;
   font-size: 20rpx;
   display: flex;
@@ -183,58 +183,66 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel > .row > .goods > .title {
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden; */
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.sale-panel > .row > .goods >  .infomation {
+.sale-panel > .row > .goods > .infomation {
   height: 60rpx;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.sale-panel > .row > .operate {
-  width: 110rpx;
-  height: 138rpx;
+.sale-panel > .row > .goods > .operate {
+  width: 100%;
+  height: 50rpx;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.sale-panel > .row > .operate > button {
+.sale-panel > .row > .goods > .operate > button {
   width: 108rpx;
   height: 40rpx;
   line-height: 40rpx;
   background-color: #fff;
   font-size: 20rpx;
-  margin: auto;
+  margin: 0 0 0 20rpx;
   padding: 0;
   border-radius: 10rpx;
 }
 
-.sale-panel > .row > .operate > .btn-menu::before,
-.sale-panel > .row > .operate > .btn-menu::after {
+.sale-panel > .row > .goods > .operate > .btn-menu::before,
+.sale-panel > .row > .goods > .operate > .btn-menu::after {
   border: unset;
 }
 
-.sale-panel > .row > .operate > .btn-menu {
+.sale-panel > .row > .goods > .operate > .btn-menu {
   color: #1cbeb6;
   border: 1rpx solid #1cbeb6;
 }
 
-.sale-panel > .row > .operate > .btn-tv::before,
-.sale-panel > .row > .operate > .btn-tv::after {
+.sale-panel > .row > .goods > .operate > .btn-tv::before,
+.sale-panel > .row > .goods > .operate > .btn-tv::after {
   border: unset;
 }
 
-.sale-panel > .row > .operate > .btn-tv {
+.sale-panel > .row > .goods > .operate > .btn-tv {
   color: #eb6877;
   border: 1rpx solid #eb6877;
+}
+
+.sale-panel > .row > .goods > .operate > .share {
+  color: rgb(196, 144, 191);
+  border: 1rpx solid rgb(196, 144, 191);
 }
 
 /********************* 我的活动[添加] *********************/
@@ -454,4 +462,67 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .sale-panel > .ads-list > .row > .btn-edit {
   width: 120rpx;
+}
+
+/* ================================================== 底部分享弹窗 ================================================== */
+
+.share-bottom-pop-window {
+  width: 100%;
+  height: 260rpx;
+  background-color: #fff;
+  color: rgb(51, 51, 51);
+}
+
+.share-bottom-pop-window > .title {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.share-bottom-pop-window > .btn-group {
+  width: 100%;
+  height: calc(100% - 70rpx);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.share-bottom-pop-window > .btn-group > button::after,
+.share-bottom-pop-window > .btn-group > button::before {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: unset;
+}
+
+.share-bottom-pop-window > .btn-group > button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: unset;
+  color: rgb(51, 51, 51);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 24rpx;
+}
+
+.share-bottom-pop-window > .btn-group > button > image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.share-bottom-pop-window-cancel-btn {
+  width: 100%;
+  height: 100rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
+  color: rgb(94, 140, 217);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
 }
