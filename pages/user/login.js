@@ -315,9 +315,16 @@ Page({
       },
       success:function(rt){
         if(rt.data.code==10000){
-          wx.reLaunch({
-            url: '/pages/index/index',
-          })
+          if (rt.data.result.hotel_has_room==1){
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }else {
+            wx.reLaunch({
+              url: '/pages/tv_sale/system',
+            })
+          }
+          
           var user_info = wx.getStorageSync(cache_key + "userinfo");
           //user_info.is_login = 1;
           user_info.hotel_id = rt.data.result.hotel_id;

@@ -90,45 +90,49 @@ Page({
             } else {//未链接盒子
 
             }
-            var hotel_id = user_info.hotel_id;
-            //获取酒楼包间列表
-            wx.request({
-              url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
-              header: {
-                'content-type': 'application/json'
-              },
-              data: {
-                hotel_id: hotel_id,
-              },
-              success: function (res) {
-                if (res.data.code == 10000) {
-                  that.setData({
-                    objectBoxArray: res.data.result.box_name_list,
-                    box_list: res.data.result.box_list
-                  })
+            if(user_info.hotel_has_room==1){
+              var hotel_id = user_info.hotel_id;
+              //获取酒楼包间列表
+              wx.request({
+                url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+                header: {
+                  'content-type': 'application/json'
+                },
+                data: {
+                  hotel_id: hotel_id,
+                },
+                success: function (res) {
+                  if (res.data.code == 10000) {
+                    that.setData({
+                      objectBoxArray: res.data.result.box_name_list,
+                      box_list: res.data.result.box_list
+                    })
+                  }
                 }
-              }
-            })
-            //获取当前酒楼包间签到信息
-            wx.request({
-              url: api_url + '/Smallsale/user/getSigninBoxList',
-              header: {
-                'content-type': 'application/json'
-              },
-              data: {
-                hotel_id: hotel_id,
-                openid: openid,
-              }, success: function (res) {
-                if (res.data.code == 10000) {
-                  sign_box_list = res.data.result;
-                  that.setData({
-                    sign_box_list: sign_box_list
-                  })
+              })
+              //获取当前酒楼包间签到信息
+              wx.request({
+                url: api_url + '/Smallsale/user/getSigninBoxList',
+                header: {
+                  'content-type': 'application/json'
+                },
+                data: {
+                  hotel_id: hotel_id,
+                  openid: openid,
+                }, success: function (res) {
+                  if (res.data.code == 10000) {
+                    sign_box_list = res.data.result;
+                    that.setData({
+                      sign_box_list: sign_box_list
+                    })
+                  }
                 }
-              }
-            })
-
-
+              })
+            }else {
+              wx.switchTab({
+                url: '/pages/tv_sale/system',
+              })
+            }
           } else {//未授权登陆 跳转到登陆页面
             wx.reLaunch({
               url: '/pages/user/login',
@@ -421,6 +425,7 @@ Page({
    */
   onShow: function () {
     this.onLoad()
+    
   },
   closeAuth: function () {
     var that = this;

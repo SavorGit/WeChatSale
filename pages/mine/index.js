@@ -212,10 +212,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2,
-      })
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    if (user_info.hotel_has_room == 0) {
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1,
+          list: [
+
+            {
+              "pagePath": "/pages/tv_sale/system",
+              "text": "活动促销",
+              "iconPath": "/images/icon/999999_sale.png",
+              "selectedIconPath": "/images/icon/333333_sale.png"
+            },
+            {
+              "pagePath": "/pages/mine/index",
+              "text": "个人信息",
+              "iconPath": "/images/icon/999999_mine.png",
+              "selectedIconPath": "/images/icon/333333_mine.png"
+            }
+          ]
+        })
+      }
     }
     this.onLoad()
   },
