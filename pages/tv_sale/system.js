@@ -219,7 +219,7 @@ Page({
       }
     })
     //获取酒楼包间签到详情
-    wx.request({
+    /*wx.request({
       url: api_url + '/Smallsale/user/getSigninBoxList',
       header: {
         'content-type': 'application/json'
@@ -231,7 +231,7 @@ Page({
       success: function(res) {
         console.log(res);
       }
-    })
+    })*/
   },
   delProgramPlay: function(e) {
     var that = this;
@@ -1000,6 +1000,13 @@ Page({
           ]
         })
       }
+    }else{
+      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1,
+
+        })
+      }
     }
 
     
@@ -1276,7 +1283,7 @@ Page({
     }
   },
   //大屏展示
-  boxShow: function (e) {
+  /*boxShow: function (e) {
     var that = this;
     wx.request({
       url: api_url + '/aa/bb/cc',
@@ -1310,6 +1317,6 @@ Page({
         })
       }
     })
-  },
+  },*/
   
 })

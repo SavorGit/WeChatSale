@@ -234,6 +234,11 @@ Page({
           ]
         })
       }
+    }else{
+      this.getTabBar().setData({
+        selected: 2,
+
+      })
     }
     this.onLoad()
   },

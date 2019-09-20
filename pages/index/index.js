@@ -425,7 +425,12 @@ Page({
    */
   onShow: function () {
     this.onLoad()
-    
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0,
+        
+      })
+    }
   },
   closeAuth: function () {
     var that = this;
