@@ -11,7 +11,7 @@
       <view class='ads'>
         <image src='{{bean.img_url}}'></image>
         <view class='goods'>
-          <view class='title'>{{bean.name}}</view>
+          <view class='title'>{{bean.goods_name}}</view>
           <view class='infomation theme-font2'>
             <view class='price'>￥ {{bean.price}}元</view>
             <view class='block'></view>
