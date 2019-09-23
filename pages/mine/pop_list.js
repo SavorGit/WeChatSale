@@ -81,6 +81,7 @@ Page({
     }, 5000)
   },
   addPop:function(e){
+    console.log(e);
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var goods_id = e.currentTarget.dataset.goods_id;
@@ -120,6 +121,7 @@ Page({
     
   },
   removePop:function(e){
+    console.log(e);
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var goods_id = e.currentTarget.dataset.goods_id;

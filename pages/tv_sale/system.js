@@ -982,6 +982,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     if(user_info.hotel_has_room==0){
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -1011,27 +1012,50 @@ Page({
 
         })
       }
+      var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
+
+      if (typeof (link_user_info.box_mac) == 'undefined') {
+        wx.showModal({
+          title: '提示',
+          content: '请您先连接包间电视',
+          showCancel: false,
+          success(res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/index/index',
+              })
+            }
+          }
+        })
+
+
+      }else{
+        wx.request({ //促销活动列表
+          url: api_url + '/Smallsale/goods/myGoodslist',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            hotel_id: user_info.hotel_id,
+            openid: user_info.openid,
+            page: 1,
+            type: 10
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              that.setData({
+                sale_list: res.data.result.datalist,
+              })
+            }
+          }
+        })
+      }
+
     }
 
     
-    var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
-
-    if (typeof(link_user_info.box_mac) == 'undefined') {
-      wx.showModal({
-        title: '提示',
-        content: '请您先连接包间电视',
-        showCancel: false,
-        success(res) {
-          if (res.confirm) {
-            wx.switchTab({
-              url: '/pages/index/index',
-            })
-          }
-        }
-      })
-
-
-    }
+    
+    
   },
 
   /**
