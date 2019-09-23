@@ -22,15 +22,12 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
     var h5_url = api_url + '/h5/activitygoods/index?openid='+openid;
-    console.log(h5_url);
     that.setData({
       h5_url: h5_url
     })
     
   },
-  loadMore: function (res) {
-    
-  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -13,7 +13,7 @@
     <view class='profit-profile-panel full_width theme7'>
       <view class='top theme-font2'>
         <view class='title'>积分收益（分）</view>
-        <navigator class='more'>收益明细...</navigator>
+        <navigator class='more' url="/pages/mine/integral_list">收益明细...</navigator>
       </view>
       <view class='info'>
         <label class='theme-font5'>{{integral}}</label>

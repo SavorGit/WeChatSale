@@ -48,23 +48,7 @@ Page({
         }
       }
     })
-    wx.request({
-      url: api_url + '/Smallsale/user/integralrecord',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-        page: 1,
-      },
-      success: function(res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            integral_list: res.data.result.datalist
-          })
-        }
-      }
-    })
+    
     //我的员工
     wx.request({
       url: api_url + '/Smallsale/user/employeelist',
