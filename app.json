@@ -16,8 +16,8 @@
     "pages/mine/pop_list",
     "pages/mine/pop_detail",
     "pages/mine/team_members",
-    "pages/user/invite",
-    "pages/mine/integral_list"
+    "pages/mine/integral_list",
+    "pages/user/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",
