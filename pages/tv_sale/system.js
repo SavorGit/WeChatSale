@@ -975,7 +975,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    
+    this.drowGoodsCode({
+      picture: "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg",
+      name: "HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色",
+      price: "￥3420",
+      qrCode: "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"
+    });
   },
 
   /**
@@ -984,12 +989,12 @@ Page({
   onShow: function() {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if(user_info.hotel_has_room==0){
+    if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
           selected: 0,
           list: [
-            
+
             {
               "pagePath": "/pages/tv_sale/system",
               "text": "活动促销",
@@ -1005,7 +1010,7 @@ Page({
           ]
         })
       }
-    }else{
+    } else {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
           selected: 1,
@@ -1014,7 +1019,7 @@ Page({
       }
       var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
 
-      if (typeof (link_user_info.box_mac) == 'undefined') {
+      if (typeof(link_user_info.box_mac) == 'undefined') {
         wx.showModal({
           title: '提示',
           content: '请您先连接包间电视',
@@ -1029,7 +1034,7 @@ Page({
         })
 
 
-      }else{
+      } else {
         wx.request({ //促销活动列表
           url: api_url + '/Smallsale/goods/myGoodslist',
           header: {
@@ -1041,7 +1046,7 @@ Page({
             page: 1,
             type: 10
           },
-          success: function (res) {
+          success: function(res) {
             if (res.data.code == 10000) {
               that.setData({
                 sale_list: res.data.result.datalist,
@@ -1053,9 +1058,9 @@ Page({
 
     }
 
-    
-    
-    
+
+
+
   },
 
   /**
@@ -1147,7 +1152,7 @@ Page({
   /**
    * 推荐到好物圈
    */
-  recwsad:function(e){
+  recwsad: function(e) {
 
     var goods_info = e.currentTarget.dataset.goods_info;
 
@@ -1156,7 +1161,7 @@ Page({
     var res_img_list = [];
     res_img_list[0] = goods_info.img_url
     console.log(res_img_list);
-    if (wx.openBusinessView){
+    if (wx.openBusinessView) {
       wx.openBusinessView({
         businessType: 'friendGoodsRecommend',
         extraData: {
@@ -1166,7 +1171,7 @@ Page({
             image_list: res_img_list
           }
         },
-        success: function (res) {
+        success: function(res) {
           /*console.log(res)
           wx.showToast({
             title: '推荐成功',
@@ -1174,7 +1179,7 @@ Page({
             duration: 2000,
           })*/
         },
-        fail: function (res) {
+        fail: function(res) {
           wx.showToast({
             title: '推荐失败',
             icon: 'none',
@@ -1182,14 +1187,14 @@ Page({
           })
         }
       })
-    }else {
+    } else {
       wx.showToast({
         title: '微信版本过低，不支持此功能',
         icon: 'none',
         duration: 2000,
       })
     }
-    
+
   },
 
   /**
@@ -1216,11 +1221,11 @@ Page({
           'type': 4,
           'status': 1,
         },
-        success: function (e) {
-          
+        success: function(e) {
+
 
         },
-        fail: function (){
+        fail: function() {
           wx.showToast({
             title: '网络异常，请稍后重试',
             icon: 'none',
@@ -1233,44 +1238,44 @@ Page({
         title: '我发现了一个特别好的东西，来看看吧',
         path: share_url,
         imageUrl: img_url,
-        success: function (res) {
+        success: function(res) {
 
         },
       }
     }
   },
   //商品码
-  viewGoodsCode: function (e) {
+  viewGoodsCode: function(e) {
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
 
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var is_box = user_info.is_box;
     that.setData({
-      is_box:is_box,
+      is_box: is_box,
     })
     wx.request({
-      url: api_url+'/aa/bb/cc',
+      url: api_url + '/aa/bb/cc',
       header: {
         'content-type': 'application/json'
       },
-      data:{
-        goods_id:goods_id,
+      data: {
+        goods_id: goods_id,
       },
-      success:function(res){
-        if(res.data.code==10000){
+      success: function(res) {
+        if (res.data.code == 10000) {
           that.setData({
-            goods_info:res.data.goods_info,
+            goods_info: res.data.goods_info,
           })
         }
       },
     })
 
 
-    
+
   },
   //包间切换 
-  bindBoxPickerChange: function (e) {
+  bindBoxPickerChange: function(e) {
     var that = this;
     //var box_list = that.data.objectCityArray;
     var picBoxIndex = e.detail.value //切换之后城市key
@@ -1283,7 +1288,7 @@ Page({
     }
   },
   //显示包间列表弹窗
-  viewRoomWin: function (e) {
+  viewRoomWin: function(e) {
     var that = this;
     that.setData({
       view_room: true,
@@ -1304,7 +1309,7 @@ Page({
           hotel_id: hotel_id,
           box_mac: box_mac,
         },
-        success: function (res) {
+        success: function(res) {
           console.log(res);
           if (res.data.code == 10000) {
             that.setData({
@@ -1317,20 +1322,20 @@ Page({
       })
     }
   },
-  pop_share:function(e){
+  pop_share: function(e) {
     var that = this;
     var goods_info = e.currentTarget.dataset.goods_info;
     that.setData({
-      showShareBottomPopWindow:true,
+      showShareBottomPopWindow: true,
       goods_info: goods_info
     })
   },
-  close_share:function(e){
+  close_share: function(e) {
     var that = this;
     that.setData({
       showShareBottomPopWindow: false
     })
-  }
+  },
   //大屏展示
   /*boxShow: function (e) {
     var that = this;
@@ -1367,5 +1372,134 @@ Page({
       }
     })
   },*/
-  
+
+  /**
+   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * @param context      画布上下文
+   * @param str          字符串
+   * @param fontSize     文字大小
+   * @param leftWidth    左边距
+   * @param initHeight   上边距
+   * @param canvasWidth  文本最大宽度
+   * @return y 上边距 
+   */
+  drawMultilineText: function(context, str, fontSize, leftWidth, initHeight, canvasWidth) {
+    let lineWordCount = parseInt(canvasWidth / fontSize);
+    context.setFontSize(fontSize);
+    if (lineWordCount >= str.length) {
+      context.fillText(str, leftWidth + 115 - context.measureText(str).width / 2, initHeight);
+      return initHeight;
+    }
+    let lineString = str.substring(0, lineWordCount);
+    if (canvasWidth - context.measureText(lineString).width <= fontSize) {
+      context.fillText(lineString, leftWidth + 115 - context.measureText(lineString).width / 2, initHeight);
+      initHeight += fontSize;
+      return this.drawMultilineText(context, str.substring(lineWordCount), fontSize, leftWidth, initHeight, canvasWidth);
+    }
+    for (let index = lineWordCount; index < str.length; index++) {
+      lineString = str.substring(0, index);
+      if (canvasWidth - context.measureText(lineString).width <= fontSize) {
+        context.fillText(lineString, leftWidth + 115 - context.measureText(lineString).width / 2, initHeight);
+        initHeight += fontSize + 2;
+        break;
+      }
+    }
+    return this.drawMultilineText(context, str.substring(lineString.length), fontSize, leftWidth, initHeight, canvasWidth);
+  },
+  drowGoodsCode: function(bean) {
+    let goodsPicture = bean.picture; // "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
+    let goodsName = bean.name; //"HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色";
+    let goodsPrice = bean.price; //"￥3420";
+    let qrCode = bean.qrCode; //"https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
+    let qrCodeTip = "扫码或长按识别，即可前往购买";
+    let adMsg = "更多优质商品，尽在 [热点投屏] 小程序";
+
+    let fullWidth = 230;
+    let fullHeight = 380;
+    let x = 0;
+    let y = 0;
+    const context = wx.createCanvasContext('goodsCode');
+    context.setFillStyle('#FFFFFF')
+    context.fillRect(0, 0, fullWidth, fullHeight)
+
+    let goodsPictureHeight = 168;
+    context.drawImage(goodsPicture, x, y, fullWidth, goodsPictureHeight);
+
+    // context.setFontSize(10);
+    // context.setFillStyle("#666666");
+    // x = 10;
+    // y = goodsPictureHeight + 10;
+    // context.fillText(goodsName, x, y, fullWidth - 20);
+    context.setFillStyle("#666666");
+    x = 0;
+    y = goodsPictureHeight + 12;
+    y = this.drawMultilineText(context, goodsName, 10, x, y, 220);
+
+    context.setFontSize(14);
+    context.setFillStyle("#E75A5A");
+    let goodsPriceMetrics = context.measureText(goodsPrice);
+    x = fullWidth / 2 - goodsPriceMetrics.width / 2;
+    y += 16;
+    context.fillText(goodsPrice, x, y);
+
+    let qrCodeWidth = 130;
+    let qrCodeHeight = 130;
+    x = fullWidth / 2 - qrCodeWidth / 2;
+    y += 5;
+    context.drawImage(goodsPicture, x, y, qrCodeWidth, qrCodeHeight);
+
+    context.setFontSize(10);
+    context.setFillStyle("#E75A5A");
+    let qrCodeTipMetrics = context.measureText(qrCodeTip);
+    x = fullWidth / 2 - qrCodeTipMetrics.width / 2;
+    y += 12 + qrCodeHeight;
+    context.fillText(qrCodeTip, x, y);
+
+    let grd = context.createLinearGradient(0, 0, fullWidth, 0);
+    grd.addColorStop(0, '#F19154');
+    grd.addColorStop(1, '#F15D61');
+    context.setFillStyle(grd)
+    x = 0;
+    y = fullHeight - 20;
+    context.fillRect(x, y, fullWidth, 20);
+
+    context.setFontSize(10);
+    context.setFillStyle("#FFFFFF");
+    let adMsgMetrics = context.measureText(adMsg);
+    x = fullWidth / 2 - adMsgMetrics.width / 2;
+    y = fullHeight - 7;
+    context.fillText(adMsg, x, y);
+
+    context.draw(false, this.getTempFilePath);
+  },
+  //获取临时路径
+  getTempFilePath: function() {
+    wx.canvasToTempFilePath({
+      canvasId: 'goodsCode',
+      success: (res) => {
+        this.setData({
+          shareTempFilePath: res.tempFilePath
+        });
+      }
+    });
+  },
+  //保存至相册
+  saveImageToPhotosAlbum: function() {
+    if (!this.data.shareTempFilePath) {
+      wx.showModal({
+        title: '提示',
+        content: '图片绘制中，请稍后重试',
+        showCancel: false
+      })
+    }
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.shareTempFilePath,
+      success: (res) => {
+        console.log(res)
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+  }
 })

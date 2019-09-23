@@ -208,7 +208,7 @@
 </bottom-modal>
 
 <!-- 底部商品码弹窗 -->
-<bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='1000rpx' background-color='unset' padding-bottom="48px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
+<bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='500px' background-color='unset' padding-bottom="48px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
   <view class="bottom-pop-goods-code-window theme-font2 theme7">
     <view class="top-bar theme-font1">
       <view class="title">商品码</view>
@@ -219,7 +219,7 @@
     </view>
     <view class="btn-group">
       <button class="launch theme-button-add">大屏展示</button>
-      <button class="save theme-button">保存到相册</button>
+      <button class="save theme-button" bindtap='saveImageToPhotosAlbum'>保存到相册</button>
     </view>
     <view class="tip">保存图片到手机相册，将图片分享给您的好友~</view>
   </view>
