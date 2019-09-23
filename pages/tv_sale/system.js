@@ -1272,7 +1272,7 @@ Page({
   //包间切换 
   bindBoxPickerChange: function (e) {
     var that = this;
-    var box_list = that.data.objectCityArray;
+    //var box_list = that.data.objectCityArray;
     var picBoxIndex = e.detail.value //切换之后城市key
     var boxIndex = that.data.boxIndex; //切换之前城市key
 
