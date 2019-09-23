@@ -975,12 +975,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.drowGoodsCode({
+    /*this.drowGoodsCode({
       picture: "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg",
       name: "HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色",
       price: "￥3420",
       qrCode: "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"
-    });
+    });*/
   },
 
   /**
@@ -1247,32 +1247,30 @@ Page({
   //商品码
   viewGoodsCode: function(e) {
     var that = this;
-    var goods_id = e.currentTarget.dataset.goods_id;
+    var goods_info = e.currentTarget.dataset.goods_info;
 
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    var is_box = user_info.is_box;
+    var hotel_has_room = user_info.hotel_has_room;
+
     that.setData({
-      is_box: is_box,
+      hotel_has_room: hotel_has_room,
+      showBottomPopGoodsCodeWindow:true
     })
-    wx.request({
-      url: api_url + '/aa/bb/cc',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        goods_id: goods_id,
-      },
-      success: function(res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            goods_info: res.data.goods_info,
-          })
-        }
-      },
+    
+    this.drowGoodsCode({
+      picture: goods_info.img_url,
+      name: goods_info.goods_name,
+      price: "￥" + goods_info.price,
+      qrCode: goods_info.qrcode_url
+    });
+
+
+  },
+  closeViewGoodsCode:function(e){
+    var that = this;
+    that.setData({
+      showBottomPopGoodsCodeWindow: false
     })
-
-
-
   },
   //包间切换 
   bindBoxPickerChange: function(e) {
@@ -1446,7 +1444,7 @@ Page({
     let qrCodeHeight = 130;
     x = fullWidth / 2 - qrCodeWidth / 2;
     y += 5;
-    context.drawImage(goodsPicture, x, y, qrCodeWidth, qrCodeHeight);
+    context.drawImage(qrCode, x, y, qrCodeWidth, qrCodeHeight);
 
     context.setFontSize(10);
     context.setFillStyle("#E75A5A");

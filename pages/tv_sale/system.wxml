@@ -38,7 +38,7 @@
       <view class='row full_width theme7' wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key">
         <image src='{{bean.img_url}}'></image>
         <view class='goods'>
-          <view class='title theme-font2'>{{bean.goods_name}}</view>
+          <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
           <view class='infomation full_width'>
             <view class='price theme-font2'>￥ {{bean.price}}元</view>
             <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
@@ -169,7 +169,7 @@
       <view class='row full_width theme7' wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key">
         <image src='{{bean.img_url}}'></image>
         <view class='goods'>
-          <view class='title theme-font2'>{{bean.goods_name}}</view>
+          <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
           <view class='infomation full_width'>
             <view class='price theme-font2'>￥ {{bean.price}}元</view>
             <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
@@ -212,7 +212,7 @@
   <view class="bottom-pop-goods-code-window theme-font2 theme7">
     <view class="top-bar theme-font1">
       <view class="title">商品码</view>
-      <view class="fa fa-close"></view>
+      <view class="fa fa-close" bindtap="closeViewGoodsCode"></view>
     </view>
     <view class="detail">
       <canvas canvas-id="goodsCode" class="goods-code"></canvas>
