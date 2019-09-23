@@ -23,10 +23,10 @@ Page({
     var goods_id = options.goods_id;
     
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    var is_box = user_info.is_box;
+    var hotel_has_room = user_info.hotel_has_room;
     var hotel_id = user_info.hotel_id;
     that.setData({
-      is_box:is_box,
+      hotel_has_room: hotel_has_room,
       goods_id:goods_id,
       user_info:user_info,
     })

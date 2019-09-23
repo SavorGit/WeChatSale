@@ -20,7 +20,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
-    hotel_id = user_info.hotel_id;
+    var hotel_id = user_info.hotel_id;
     wx.request({
       url: api_url +'/Smallsale/goods/getGoodslist',
       header: {

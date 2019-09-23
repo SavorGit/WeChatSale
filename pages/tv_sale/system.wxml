@@ -2,7 +2,7 @@
 <import src="/pages/template/commons" />
 
 <!-- 有机顶盒 -->
-<view wx:if="{{hasBoxPage}}" class="container theme-main">
+<view wx:if="{{hotel_has_room}}" class="container theme-main">
 
   <!-- 正在播放的活动面板 -->
   <view class='playing-sale-panel full_width'>
@@ -46,7 +46,7 @@
           <view class='operate'>
             <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
             <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
-            <button class='share'>分享</button>
+            <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
           </view>
         </view>
       </view>
@@ -177,7 +177,7 @@
           <view class='operate'>
             <!-- <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
             <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button> -->
-            <button class='share'>分享</button>
+            <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
           </view>
         </view>
       </view>
@@ -188,21 +188,21 @@
 <!-- 底部分享弹窗 -->
 <bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="53px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
   <view class="share-bottom-pop-window">
-    <view class="title">分享</view>
+    <view class="title" >分享</view>
     <view class="btn-group">
-      <button>
+      <button bindtap="recwsad" data-goods_info="{{goods_info}}">
         <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
         <view>推荐到好物圈</view>
       </button>
-      <button>
+      <button open-type='share' data-goods_info="{{goods_info}}">
         <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
         <view>分享好友</view>
       </button>
-      <button>
+      <button bindtap="viewGoodsCode" data-goods_info="{{goods_info}}">
         <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
         <view>生成商品码</view>
       </button>
     </view>
   </view>
-  <view class="share-bottom-pop-window-cancel-btn">取消</view>
+  <view class="share-bottom-pop-window-cancel-btn" bindtap="close_share" >取消</view>
 </bottom-modal>

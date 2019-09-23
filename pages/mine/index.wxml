@@ -18,7 +18,7 @@
       <view class='info'>
         <label class='theme-font5'>{{integral}}</label>
         <button class='theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button>
-        <button class='theme-font'>转赠</button>
+        <!-- <button class='theme-font'>转赠</button> -->
       </view>
       <view class="month">
         <view class="block theme-font4">
@@ -35,9 +35,9 @@
 
     <!-- 活动商品管理面板 -->
     <view class="promotion-goods-manage-panel theme7 theme-font2">
-      <navigator class="full_width full_height">
+      <navigator class="full_width full_height" url="/pages/mine/pop_list">
         <view>活动商品管理</view>
-        <view class="fa fa-angle-right" aria-hidden="true"></view>
+        <view class="fa fa-angle-right" aria-hidden="true" ></view>
       </navigator>
     </view>
 

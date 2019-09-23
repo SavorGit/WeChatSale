@@ -97,6 +97,10 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+    var hotel_has_room = user_info.hotel_has_room;
+    that.setData({
+      hotel_has_room: hotel_has_room
+    })
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     box_mac = link_box_info.box_mac;
@@ -1120,9 +1124,14 @@ Page({
    * 推荐到好物圈
    */
   recwsad:function(e){
-    var res_id = e.currentTarget.dataset.res_id;
-    var res_title = e.currentTarget.dataset.res_title;
-    var res_img_list = e.currentTarget.dataset.res_img_list;
+
+    var goods_info = e.currentTarget.dataset.goods_info;
+
+    var res_id = goods_info.goods_id;
+    var res_title = goods_info.goods_name;
+    var res_img_list = [];
+    res_img_list[0] = goods_info.img_url
+    console.log(res_img_list);
     if (wx.openBusinessView){
       wx.openBusinessView({
         businessType: 'friendGoodsRecommend',
@@ -1134,11 +1143,12 @@ Page({
           }
         },
         success: function (res) {
+          /*console.log(res)
           wx.showToast({
             title: '推荐成功',
             icon: 'success',
             duration: 2000,
-          })
+          })*/
         },
         fail: function (res) {
           wx.showToast({
@@ -1161,14 +1171,15 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(e) {
     var that = this;
-    var res_id = res.target.dataset.res_id;
+    var goods_info = e.target.dataset.goods_info;
+    var goods_id = goods_info.goods_id;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
-    var share_url = '/pages/mine/pop_detail?goods_id='+res_id;
-    var img_url = e.target.dataset.img_url;
-    if (res.from === 'button') {
+    var share_url = '/pages/mine/pop_detail?goods_id=' + goods_id;
+    var img_url = goods_info.img_url;
+    if (e.from === 'button') {
       // 转发成功
       wx.request({
         url: api_url + '/Smallapp/share/recLogs',
@@ -1177,7 +1188,7 @@ Page({
         },
         data: {
           'openid': openid,
-          'res_id': res_id,
+          'res_id': goods_id,
           'type': 4,
           'status': 1,
         },
@@ -1282,6 +1293,20 @@ Page({
       })
     }
   },
+  pop_share:function(e){
+    var that = this;
+    var goods_info = e.currentTarget.dataset.goods_info;
+    that.setData({
+      showShareBottomPopWindow:true,
+      goods_info: goods_info
+    })
+  },
+  close_share:function(e){
+    var that = this;
+    that.setData({
+      showShareBottomPopWindow: false
+    })
+  }
   //大屏展示
   /*boxShow: function (e) {
     var that = this;
