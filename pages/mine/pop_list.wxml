@@ -8,7 +8,7 @@
           <view class='title theme-font2'>{{bean.goods_name}}</view>
           <view class='infomation full_width'>
             <view class='price theme-font2'>￥{{bean.price}}</view>
-            <view class='discount theme-font5'>{{bean.goods_id}}返利{{bean.rebate_integral}}积分</view>
+            <view class='discount theme-font5'>返利{{bean.rebate_integral}}积分</view>
           </view>
         </view>
         <view class='operate'>
