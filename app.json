@@ -13,10 +13,10 @@
     "pages/message/list",
     "pages/mine/index",
     "pages/mine/exchange",
-    "pages/mine/team_members",
-    "pages/user/invite",
     "pages/mine/pop_list",
-    "pages/mine/pop_detail"
+    "pages/mine/pop_detail",
+    "pages/mine/team_members",
+    "pages/user/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",

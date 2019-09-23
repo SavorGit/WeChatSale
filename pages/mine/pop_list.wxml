@@ -1,2 +1,46 @@
 <!--pages/mine/pop_list.wxml-->
-<text>pages/mine/pop_list.wxml</text>
+<view class="container theme-main">
+  <view class='list full_width'>
+
+    <view class='row line theme7'>
+      <image class="goods-pic" src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
+      <view class='goods'>
+        <view class='title theme-font2'>皇家礼炮（ROYAL SALUTE）38年苏格兰 威士忌 700ML</view>
+        <view class='infomation full_width'>
+          <view class='price theme-font2'>￥ 6999元</view>
+          <view class='discount theme-font5'>返利10000积分</view>
+        </view>
+      </view>
+      <view class='operate'>
+        <button class='btn-add theme-button-add'>添加</button>
+      </view>
+    </view>
+    <view class='row line theme7'>
+      <image class="goods-pic" src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
+      <view class='goods'>
+        <view class='title theme-font2'>皇家礼炮（ROYAL SALUTE）38年苏格兰 威士忌 700ML</view>
+        <view class='infomation full_width'>
+          <view class='price theme-font2'>￥ 6999元</view>
+          <view class='discount theme-font5'>返利10000积分</view>
+        </view>
+      </view>
+      <view class='operate'>
+        <view class="btn-added theme-button">已添加</view>
+      </view>
+    </view>
+    <view class='row theme7'>
+      <image class="goods-pic" src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
+      <view class='goods'>
+        <view class='title theme-font2'>皇家礼炮（ROYAL SALUTE）38年苏格兰 威士忌 700ML</view>
+        <view class='infomation full_width'>
+          <view class='price theme-font2'>￥ 6999元</view>
+          <view class='discount theme-font5'>返利10000积分</view>
+        </view>
+      </view>
+      <view class='operate'>
+        <button class='btn-add theme-button-add'>添加</button>
+      </view>
+    </view>
+
+  </view>
+</view>

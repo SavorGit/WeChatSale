@@ -1,1 +1,75 @@
 /* pages/mine/pop_list.wxss */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list > .row {
+  width: calc(100% - 60rpx);
+  height: 180rpx;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list > .row.line {
+  border-bottom: 1rpx solid #ededed;
+}
+
+.list > .row > .goods-pic {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #ebebeb;
+}
+
+.list > .row > .goods {
+  width: calc(100% - 320rpx);
+  height: 140rpx;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.list > .row > .goods > .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 24rpx;
+}
+
+.list > .row > .goods > .infomation {
+  font-size: 20rpx;
+  height: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.list > .row > .operate {
+  width: 120rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list > .row > .operate > .btn-add, .list > .row > .operate > .btn-added {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  text-align: center;
+}
