@@ -42,6 +42,8 @@ Page({
             nickName: res.data.result.nickName,
             integral: res.data.result.integral,
             is_open_integral: res.data.result.is_open_integral,
+            month_integral: res.data.result.month_integral,
+            next_month_integral: res.data.result.next_month_integral,
           })
         }
       }

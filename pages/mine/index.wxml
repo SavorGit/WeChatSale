@@ -23,11 +23,11 @@
       <view class="month">
         <view class="block theme-font4">
           <view class="title">本月预估积分收益</view>
-          <view class="integral">34567</view>
+          <view class="integral">{{month_integral}}</view>
         </view>
         <view class="block theme-font4">
           <view class="title">下月预估积分收益</view>
-          <view class="integral">34560</view>
+          <view class="integral">{{next_month_integral}}</view>
         </view>
       </view>
       <view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换或者转赠</view>
