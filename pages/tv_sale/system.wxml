@@ -161,8 +161,8 @@
   </view>
 
 </view>
-<!-- 有机顶盒 -->
-<view ws:else class="container theme-main">
+<!-- 无机顶盒 -->
+<view wx:else class="container theme-main">
   <view class='sale-panel full_width'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
@@ -188,21 +188,39 @@
 <!-- 底部分享弹窗 -->
 <bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="53px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
   <view class="share-bottom-pop-window">
-    <view class="title" >分享</view>
+    <view class="title">分享</view>
     <view class="btn-group">
       <button bindtap="recwsad" data-goods_info="{{goods_info}}">
-        <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        <image src="/images/icon/goods.png"></image>
         <view>推荐到好物圈</view>
       </button>
       <button open-type='share' data-goods_info="{{goods_info}}">
-        <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        <image src="/images/icon/wechart.png"></image>
         <view>分享好友</view>
       </button>
       <button bindtap="viewGoodsCode" data-goods_info="{{goods_info}}">
-        <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        <image src="/images/icon/friends_circle.png"></image>
         <view>生成商品码</view>
       </button>
     </view>
   </view>
-  <view class="share-bottom-pop-window-cancel-btn" bindtap="close_share" >取消</view>
+  <view class="share-bottom-pop-window-cancel-btn" bindtap="close_share">取消</view>
+</bottom-modal>
+
+<!-- 底部商品码弹窗 -->
+<bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='1000rpx' background-color='unset' padding-bottom="48px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
+  <view class="bottom-pop-goods-code-window theme-font2 theme7">
+    <view class="top-bar theme-font1">
+      <view class="title">商品码</view>
+      <view class="fa fa-close"></view>
+    </view>
+    <view class="detail">
+      <canvas canvas-id="goodsCode" class="goods-code"></canvas>
+    </view>
+    <view class="btn-group">
+      <button class="launch theme-button-add">大屏展示</button>
+      <button class="save theme-button">保存到相册</button>
+    </view>
+    <view class="tip">保存图片到手机相册，将图片分享给您的好友~</view>
+  </view>
 </bottom-modal>

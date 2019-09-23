@@ -526,3 +526,74 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   justify-content: center;
   font-size: 30rpx;
 }
+
+/* ================================================== 底部商品码弹窗 ================================================== */
+
+.bottom-pop-goods-code-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.bottom-pop-goods-code-window > .top-bar {
+  width: calc(100% - 40rpx);
+  height: 60rpx;
+  padding: 0 20rpx;
+  background-color: #bebebe;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+
+.bottom-pop-goods-code-window > .detail {
+  width: 100%;
+  height: calc(100% - 220rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-pop-goods-code-window > .detail > .goods-code {
+  width: 460rpx;
+  height: 760rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #ededed;
+  box-shadow: 4rpx 4rpx 10rpx #e6e6e6;
+}
+
+.bottom-pop-goods-code-window > .btn-group {
+  width: calc(100% - 80rpx);
+  height: 80rpx;
+  padding: 0 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bottom-pop-goods-code-window > .btn-group > .launch,
+.bottom-pop-goods-code-window > .btn-group > .save {
+  width: 250rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+.bottom-pop-goods-code-window > .tip {
+  height: 80rpx;
+  font-size: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
