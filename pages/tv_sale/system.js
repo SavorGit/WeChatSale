@@ -1405,70 +1405,86 @@ Page({
     return this.drawMultilineText(context, str.substring(lineString.length), fontSize, leftWidth, initHeight, canvasWidth);
   },
   drowGoodsCode: function(bean) {
-    let goodsPicture = bean.picture; // "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
-    let goodsName = bean.name; //"HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色";
-    let goodsPrice = bean.price; //"￥3420";
-    let qrCode = bean.qrCode; //"https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
-    let qrCodeTip = "扫码或长按识别，即可前往购买";
-    let adMsg = "更多优质商品，尽在 [热点投屏] 小程序";
+    var that = this;
+    var qrcode_tmp;
+    var goods_img_tmp;
+    wx.getImageInfo({
+      src: bean.qrCode,
+      success:function(res){
+        qrcode_tmp =res.path
+        wx.getImageInfo({
+          src: bean.picture,
+          success:function(rt){
+            goods_img_tmp = rt.path;
+            let goodsPicture = goods_img_tmp; // "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
+            let goodsName = bean.name; //"HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色";
+            let goodsPrice = bean.price; //"￥3420";
+            let qrCode = qrcode_tmp; //"https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
+            let qrCodeTip = "扫码或长按识别，即可前往购买";
+            let adMsg = "更多优质商品，尽在 [热点投屏] 小程序";
 
-    let fullWidth = 230;
-    let fullHeight = 380;
-    let x = 0;
-    let y = 0;
-    const context = wx.createCanvasContext('goodsCode');
-    context.setFillStyle('#FFFFFF')
-    context.fillRect(0, 0, fullWidth, fullHeight)
+            let fullWidth = 230;
+            let fullHeight = 380;
+            let x = 0;
+            let y = 0;
+            const context = wx.createCanvasContext('goodsCode');
+            context.setFillStyle('#FFFFFF')
+            context.fillRect(0, 0, fullWidth, fullHeight)
 
-    let goodsPictureHeight = 168;
-    context.drawImage(goodsPicture, x, y, fullWidth, goodsPictureHeight);
+            let goodsPictureHeight = 168;
+            context.drawImage(goodsPicture, x, y, fullWidth, goodsPictureHeight);
 
-    // context.setFontSize(10);
-    // context.setFillStyle("#666666");
-    // x = 10;
-    // y = goodsPictureHeight + 10;
-    // context.fillText(goodsName, x, y, fullWidth - 20);
-    context.setFillStyle("#666666");
-    x = 0;
-    y = goodsPictureHeight + 12;
-    y = this.drawMultilineText(context, goodsName, 10, x, y, 220);
+            // context.setFontSize(10);
+            // context.setFillStyle("#666666");
+            // x = 10;
+            // y = goodsPictureHeight + 10;
+            // context.fillText(goodsName, x, y, fullWidth - 20);
+            context.setFillStyle("#666666");
+            x = 0;
+            y = goodsPictureHeight + 12;
+            y = that.drawMultilineText(context, goodsName, 10, x, y, 220);
 
-    context.setFontSize(14);
-    context.setFillStyle("#E75A5A");
-    let goodsPriceMetrics = context.measureText(goodsPrice);
-    x = fullWidth / 2 - goodsPriceMetrics.width / 2;
-    y += 16;
-    context.fillText(goodsPrice, x, y);
+            context.setFontSize(14);
+            context.setFillStyle("#E75A5A");
+            let goodsPriceMetrics = context.measureText(goodsPrice);
+            x = fullWidth / 2 - goodsPriceMetrics.width / 2;
+            y += 16;
+            context.fillText(goodsPrice, x, y);
 
-    let qrCodeWidth = 130;
-    let qrCodeHeight = 130;
-    x = fullWidth / 2 - qrCodeWidth / 2;
-    y += 5;
-    context.drawImage(qrCode, x, y, qrCodeWidth, qrCodeHeight);
+            let qrCodeWidth = 130;
+            let qrCodeHeight = 130;
+            x = fullWidth / 2 - qrCodeWidth / 2;
+            y += 5;
+            context.drawImage(qrCode, x, y, qrCodeWidth, qrCodeHeight);
 
-    context.setFontSize(10);
-    context.setFillStyle("#E75A5A");
-    let qrCodeTipMetrics = context.measureText(qrCodeTip);
-    x = fullWidth / 2 - qrCodeTipMetrics.width / 2;
-    y += 12 + qrCodeHeight;
-    context.fillText(qrCodeTip, x, y);
+            context.setFontSize(10);
+            context.setFillStyle("#E75A5A");
+            let qrCodeTipMetrics = context.measureText(qrCodeTip);
+            x = fullWidth / 2 - qrCodeTipMetrics.width / 2;
+            y += 12 + qrCodeHeight;
+            context.fillText(qrCodeTip, x, y);
 
-    let grd = context.createLinearGradient(0, 0, fullWidth, 0);
-    grd.addColorStop(0, '#F19154');
-    grd.addColorStop(1, '#F15D61');
-    context.setFillStyle(grd)
-    x = 0;
-    y = fullHeight - 20;
-    context.fillRect(x, y, fullWidth, 20);
+            let grd = context.createLinearGradient(0, 0, fullWidth, 0);
+            grd.addColorStop(0, '#F19154');
+            grd.addColorStop(1, '#F15D61');
+            context.setFillStyle(grd)
+            x = 0;
+            y = fullHeight - 20;
+            context.fillRect(x, y, fullWidth, 20);
 
-    context.setFontSize(10);
-    context.setFillStyle("#FFFFFF");
-    let adMsgMetrics = context.measureText(adMsg);
-    x = fullWidth / 2 - adMsgMetrics.width / 2;
-    y = fullHeight - 7;
-    context.fillText(adMsg, x, y);
+            context.setFontSize(10);
+            context.setFillStyle("#FFFFFF");
+            let adMsgMetrics = context.measureText(adMsg);
+            x = fullWidth / 2 - adMsgMetrics.width / 2;
+            y = fullHeight - 7;
+            context.fillText(adMsg, x, y);
 
-    context.draw(false, this.getTempFilePath);
+            context.draw(false, that.getTempFilePath);
+          }
+        })
+      }
+    })
+    
   },
   //获取临时路径
   getTempFilePath: function() {
