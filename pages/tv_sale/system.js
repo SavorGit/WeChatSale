@@ -1549,16 +1549,54 @@ Page({
 
   //删除事件
   del: function(e) {
+    var that = this;
+    console.log(this.data.sale_list)
+    var sale_list = this.data.sale_list;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var openid = user_info.openid;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    
+    
+    var hotel_id = user_info.hotel_id;
     wx.showModal({
       title: '提示',
       content: '确认要删除此条信息么？',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-          that.data.items.splice(e.currentTarget.dataset.index, 1)
-          that.setData({
-            items: that.data.items
+          
+          
+          wx.request({
+            url: api_url + '/Smallsale/goods/addSalegoods',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              goods_id: goods_id,
+              hotel_id: hotel_id,
+              openid: openid
+            },
+            success: function (res) {
+              if (res.data.code == 10000) {
+                sale_list.splice(e.currentTarget.dataset.index, 1)
+                that.setData({
+                  sale_list: sale_list
+                })
+                wx.showToast({
+                  title: '删除成功',
+                  icon: 'none',
+                  duration: 2000
+                })
+              } else {
+                wx.showToast({
+                  title: '删除失败',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
+            }
           })
+
+          
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

@@ -51,7 +51,7 @@
             </view>
           </view>
         </view>
-        <view class="del theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
+        <view class="del theme-button-add" catchtap="del" data-index="{{index}}" data-goods_id="{{bean.goods_id}}">删除</view>
       </view>
     </block>
 
