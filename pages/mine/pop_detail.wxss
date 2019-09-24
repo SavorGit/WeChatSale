@@ -1,1 +1,19 @@
 /* pages/mine/pop_detail.wxss */
+
+.video-wapper {
+  height: 450rpx;
+}
+
+.btn-group {
+  height: 800rpx;
+  margin-top: 200rpx;
+}
+
+.btn-group > .btn-buy {
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
