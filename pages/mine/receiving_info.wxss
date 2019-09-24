@@ -1,1 +1,77 @@
 /* pages/mine/receiving_info.wxss */
+
+.page {
+  width: calc(100% - 100rpx);
+  height: 100%;
+  padding: 60rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.page .row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 50rpx;
+}
+
+.page .row > .lable {
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.page .row > .item {
+  width: 500rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page .row > .goods-name {
+  height: 60rpx;
+  line-height: 30rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.page .row > .item > input, .page .row > .item > textarea {
+  width: 100%;
+  border: 1rpx solid #dcdcdc;
+  background-color: #eee;
+}
+
+.page .row > .item > input {
+  height: 55rpx;
+}
+
+.page .row > .item > textarea {
+  height: 300rpx;
+}
+
+.page .row > .item > .quantity {
+  width: 80rpx;
+  text-align: center;
+}
+
+.page .submit-row {
+  width: 100%;
+  height: 60rpx;
+  margin-top: 140rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page .submit-row > button {
+  width: 250rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 24rpx;
+}

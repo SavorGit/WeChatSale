@@ -1,3 +1,32 @@
 <!--pages/mine/receiving_info.wxml-->
-<view class="container theme-main">
+<view class="container theme-font3 theme7">
+  <form class="page">
+    <view class="row">
+      <view class="lable">兑换商品</view>
+      <view class="item theme-font1 goods-name">XXX XX XX XX XX XX XX XXX XXX XXX XXX XXX XX XXX XX XX X</view>
+    </view>
+    <view class="row">
+      <view class="lable">兑换数量</view>
+      <view class="item theme-font1">
+        <view class="fa fa-minus-square" aria-hidden="true"></view>
+        <view class="quantity">1</view>
+        <view class="fa fa-plus-square" aria-hidden="true"></view>
+      </view>
+    </view>
+    <view class="row">
+      <view class="lable">联 系 人</view>
+      <view class="item theme-font1">
+        <input></input>
+      </view>
+    </view>
+    <view class="row">
+      <view class="lable">收货地址</view>
+      <view class="item theme-font1">
+        <textarea></textarea>
+      </view>
+    </view>
+    <view class="submit-row">
+      <button class="theme-button">兑换</button>
+    </view>
+  </form>
 </view>
