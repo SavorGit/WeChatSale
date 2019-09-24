@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/tv_sale/system",
     "pages/index/index",
     "pages/logs/logs",
     "pages/template/commons",
@@ -10,6 +9,7 @@
     "pages/user/login",
     "pages/download/index",
     "pages/tv_sale/mine",
+    "pages/tv_sale/system",
     "pages/message/list",
     "pages/mine/index",
     "pages/mine/exchange",
