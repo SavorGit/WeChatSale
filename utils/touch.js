@@ -5,12 +5,13 @@ class touch {
   _touchstart(e, items) {
     //开始触摸时 重置所有删除
     items.forEach(function(v, i) {
-      if (v.isTouchMove) //只操作为true的
+      if (v.isTouchMove) { //只操作为true的
         v.isTouchMove = false;
-    })
-    startX = e.changedTouches[0].clientX
-    startY = e.changedTouches[0].clientY
-    return items
+      }
+    });
+    startX = e.changedTouches[0].clientX;
+    startY = e.changedTouches[0].clientY;
+    return items;
   }
   _touchmove(e, items) {
     var index = e.currentTarget.dataset.index, //当前索引
@@ -29,13 +30,14 @@ class touch {
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
       if (i == index) {
-        if (touchMoveX > startX) //右滑
+        if (touchMoveX > startX) { //右滑
           v.isTouchMove = false
-        else //左滑
+        } else { //左滑
           v.isTouchMove = true
+        }
       }
-    })
-    return items
+    });
+    return items;
   }
   _angle(start, end) {
     var _X = end.X - start.X,
