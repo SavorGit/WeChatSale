@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/tv_sale/system",
     "pages/index/index",
     "pages/logs/logs",
     "pages/template/commons",
@@ -8,7 +9,6 @@
     "pages/launch/video/index",
     "pages/user/login",
     "pages/download/index",
-    "pages/tv_sale/system",
     "pages/tv_sale/mine",
     "pages/message/list",
     "pages/mine/index",
@@ -17,6 +17,7 @@
     "pages/mine/pop_detail",
     "pages/mine/team_members",
     "pages/mine/integral_list",
+    "pages/mine/receiving_info",
     "pages/user/invite"
   ],
   "window": {

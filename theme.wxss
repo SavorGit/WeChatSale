@@ -28,6 +28,10 @@
   background-color: #fff;
 }
 
+.theme8 {
+  background-color: #999;
+}
+
 .theme-navigation {
   color: #fff;
   background-color: #05101a;

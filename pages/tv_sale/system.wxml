@@ -224,3 +224,20 @@
     <view class="tip">保存图片到手机相册，将图片分享给您的好友~</view>
   </view>
 </bottom-modal>
+
+<!-- 选择投屏包间 -->
+<modal show="{{showMiddlePopChoseBoxWindow}}" width="600rpx" height='400rpx' border-radius="0rpx" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+  <view class="middle-pop-chose-box-window theme-font2 theme7">
+    <view class="title theme-font1">请选择投屏包间</view>
+    <view class="main">
+      <picker class="room-picker">
+        <label>VIP 8888</label>
+        <label class="fa fa-caret-down" aria-hidden="true"></label>
+      </picker>
+    </view>
+    <view class="btn-group">
+      <button class="theme-button">确定</button>
+      <button class="theme-font4 theme8">取消</button>
+    </view>
+  </view>
+</modal>
