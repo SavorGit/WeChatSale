@@ -41,6 +41,7 @@ Page({
       },
       success:function(res){
         if(res.data.code==10000){
+          console.log(res);
           that.setData({
             goods_info:res.data.result
           })
