@@ -8,6 +8,10 @@
       <image class='head-img' src='{{avatarUrl}}'></image>
       <view class='nickname theme-font2'>{{nickName}}</view>
     </view>
+    <view class='user-info-panel full_width theme7'>
+      <image class='head-img' src='{{avatarUrl}}'></image>
+      <view class='nickname theme-font5 btn'>登录</view>
+    </view>
 
     <!-- 收益概况面板 -->
     <view class='profit-profile-panel full_width theme7'>
@@ -37,7 +41,7 @@
     <view class="promotion-goods-manage-panel theme7 theme-font2">
       <navigator class="full_width full_height" url="/pages/mine/pop_list">
         <view>活动商品管理</view>
-        <view class="fa fa-angle-right" aria-hidden="true" ></view>
+        <view class="fa fa-angle-right" aria-hidden="true"></view>
       </navigator>
     </view>
 
