@@ -24,8 +24,10 @@ Page({
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     var role_type = user_info.role_type;
+    var is_wx_auth = user_info.is_wx_auth;
     that.setData({
-      role_type: role_type
+      role_type: role_type,
+      is_wx_auth: is_wx_auth
     })
     wx.request({
       url: api_url + '/Smallsale/user/center',
@@ -186,6 +188,102 @@ Page({
     that.setData({
       showAddTeamMemberPage: false,
     })
+  },
+  userLogin:function(res){
+    var that = this;
+    that.setData({
+      showWXAuthLogin: true,
+    })
+  },
+  onGetUserInfo: function (res) {
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    openid = user_info.openid;
+    if (res.detail.errMsg == 'getUserInfo:ok') {
+
+      wx.getUserInfo({
+        success(rets) {
+          console.log(rets);
+          wx.request({
+            url: api_url + '/Smallsale/User/registerCom',
+            data: {
+              'openid': openid,
+              'avatarUrl': rets.userInfo.avatarUrl,
+              'nickName': rets.userInfo.nickName,
+              'gender': rets.userInfo.gender,
+              'session_key': app.globalData.session_key,
+              'iv': rets.iv,
+              'encryptedData': rets.encryptedData
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+              if (res.data.code == 10000) {
+                that.setData({
+                  showWXAuthLogin: false,
+
+                })
+                var mobile = res.data.result.mobile;
+                if (mobile != '') {
+                  //res.data.result.is_login = 1;
+
+                  wx.setStorage({
+                    key: cache_key + 'userinfo',
+                    data: res.data.result,
+                  });
+                  /*wx.reLaunch({
+                    url: '/pages/index/index',
+                  })*/
+                } else {
+                  wx.setStorage({
+                    key: cache_key + 'userinfo',
+                    data: res.data.result,
+                  });
+                }
+
+
+
+              } else {
+                wx.showToast({
+                  title: '微信授权登陆失败，请重试',
+                  icon: 'none',
+                  duration: 2000
+                });
+                /*wx.reLaunch({
+                  url: '/pages/index/index',
+                })*/
+              }
+
+            },
+            fail: function (res) {
+              wx.showToast({
+                title: '微信登陆失败，请重试',
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          })
+        }
+      })
+    } else {
+      wx.request({
+        url: api_url + '/Smallsale/User/refuseRegister',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          openid: openid
+        },
+        success: function () {
+          user_info.is_wx_auth = 1;
+          wx.setStorage({
+            key: cache_key + 'userinfo',
+            data: user_info,
+          });
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

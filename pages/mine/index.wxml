@@ -4,13 +4,13 @@
   <scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 
     <!-- 用户信息面板 -->
-    <view class='user-info-panel full_width theme7'>
+    <view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width theme7'>
       <image class='head-img' src='{{avatarUrl}}'></image>
       <view class='nickname theme-font2'>{{nickName}}</view>
     </view>
-    <view class='user-info-panel full_width theme7'>
-      <image class='head-img' src='{{avatarUrl}}'></image>
-      <view class='nickname theme-font5 btn'>登录</view>
+    <view wx:else class='user-info-panel full_width theme7'>
+      <image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
+      <view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
     </view>
 
     <!-- 收益概况面板 -->
@@ -101,3 +101,6 @@
     <button open-type='share' style="width: 120rpx; height: 50rpx; line-height: 50rpx; font-size: 24rpx; border-radius: 10rpx;color: #1cbeb6;border: 1rpx solid #1cbeb6;" data-qrcode="{{qrcode}}">邀请</button>
   </view>
 </modal>
+
+<!-- 微信授权 -->
+<template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
