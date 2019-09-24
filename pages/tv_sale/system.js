@@ -28,6 +28,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     myChoosed: 0,
     showPageType: 1,
     play_list: [], //节目单播放列表
@@ -347,18 +348,18 @@ Page({
   },
   boxShow: function(e) {
     var that = this;
-    if (typeof (e.currentTarget.dataset.box_index)!='undefined'){
+    if (typeof(e.currentTarget.dataset.box_index) != 'undefined') {
       var box_index = e.currentTarget.dataset.box_index;
       var box_list = that.data.box_list;
       box_mac = box_list[box_index].box_mac;
-      
-    }else {
+
+    } else {
       var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
       box_mac = link_box_info.box_mac;
     }
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    
-    
+
+
     var goods_id = e.currentTarget.dataset.goods_id;
 
     var imgs = e.currentTarget.dataset.oss_addr;
@@ -1295,7 +1296,7 @@ Page({
       })
     }
   },
-  closeViewRoom:function(e){
+  closeViewRoom: function(e) {
     var that = this;
     that.setData({
       showMiddlePopChoseBoxWindow: false,
@@ -1308,7 +1309,7 @@ Page({
       showMiddlePopChoseBoxWindow: true,
     })
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    
+
 
     var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
     var box_mac = link_box_info.box_mac;
@@ -1333,7 +1334,7 @@ Page({
         }
       }
     })
-    
+
   },
   pop_share: function(e) {
     var that = this;
@@ -1555,16 +1556,16 @@ Page({
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var openid = user_info.openid;
     var goods_id = e.currentTarget.dataset.goods_id;
-    
-    
+
+
     var hotel_id = user_info.hotel_id;
     wx.showModal({
       title: '提示',
       content: '确认要删除此条信息么？',
       success: function(res) {
         if (res.confirm) {
-          
-          
+
+
           wx.request({
             url: api_url + '/Smallsale/goods/addSalegoods',
             header: {
@@ -1575,7 +1576,7 @@ Page({
               hotel_id: hotel_id,
               openid: openid
             },
-            success: function (res) {
+            success: function(res) {
               if (res.data.code == 10000) {
                 sale_list.splice(e.currentTarget.dataset.index, 1)
                 that.setData({
@@ -1596,7 +1597,7 @@ Page({
             }
           })
 
-          
+
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

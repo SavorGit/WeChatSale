@@ -211,7 +211,7 @@
 </view>
 
 <!-- 底部分享弹窗 -->
-<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="53px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
+<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(48px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
   <view class="share-bottom-pop-window">
     <view class="title">分享</view>
     <view class="btn-group">

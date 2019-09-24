@@ -285,7 +285,36 @@ App({
       success: function(res) {
         that.globalData.mobile_brand = res.brand;
         that.globalData.mobile_model = res.model;
-        that.globalData.pixelRatio = res.pixelRatio;
+        that.SystemInfo = {
+          SDKVersion: res.SDKVersion,
+          batteryLevel: res.batteryLevel,
+          brand: res.brand,
+          errMsg: res.errMsg,
+          fontSizeSetting: res.fontSizeSetting,
+          language: res.language,
+          model: res.model,
+          pixelRatio: res.pixelRatio,
+          platform: res.platform,
+          statusBarHeight: res.statusBarHeight,
+          system: res.system,
+          version: res.version,
+          safeArea: res.safeArea,
+          windowWidth: res.windowWidth,
+          windowHeight: res.windowHeight,
+          window: {
+            width: res.windowWidth,
+            height: res.windowHeight
+          },
+          screenWidth: res.screenWidth,
+          screenHeight: res.screenHeight,
+          screen: {
+            width: res.screenWidth,
+            height: res.screenHeight
+          },
+          screenBottomSpace: (res.screenHeight - res.safeArea.bottom),
+          documentWidth: res.safeArea.width,
+          documentHeight: res.safeArea.bottom - res.statusBarHeight
+        };
       }
     })
   },
@@ -301,8 +330,7 @@ App({
     cache_key: 'savor:sale:',
     common_appid: 'wxfdf0346934bb672f',
     box_type: 0,
-    is_zhilian: 1,
-    pixelRatio: 2
+    is_zhilian: 1
   },
   touch: new touch()
 })

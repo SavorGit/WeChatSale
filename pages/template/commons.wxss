@@ -63,7 +63,17 @@
   text-decoration: underline;
 }
 
+.wxAuthLogin-container > .wxAuthLogin-bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .wxAuthLogin-container > .wxAuthLogin-bottom > button {
-  width: 50%;
+  width: 40%;
   border-radius: 40rpx;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
