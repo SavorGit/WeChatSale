@@ -1531,9 +1531,19 @@ Page({
       filePath: this.data.shareTempFilePath,
       success: (res) => {
         console.log(res)
+        wx.showModal({
+          title: '提示',
+          content: '图片保存成功',
+          showCancel: false
+        })
       },
       fail: (err) => {
         console.log(err)
+        wx.showModal({
+          title: '提示',
+          content: '图片保存失败',
+          showCancel: false
+        })
       }
     })
   },
