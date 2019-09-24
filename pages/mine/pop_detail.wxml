@@ -4,6 +4,6 @@
     <video class="full_width" src="http://oss.littlehotspot.com//media/resource/GdxeRaKasX.mp4"></video>
   </view>
   <view class="btn-group">
-    <navigator class="btn-buy theme-button-add" target="miniProgram">了解更多或京东购买</navigator>
+    <navigator class="btn-buy theme-button-add" target="miniProgram" app-id="{{goods_info.appid}}">了解更多或京东购买</navigator>
   </view>
 </view>

@@ -1313,7 +1313,7 @@ Page({
             that.setData({
               box_list: res.data.result.box_list,
               box_name_list: res.data.result.box_name_list,
-              box_index: res.data.result.box_index,
+              box_index: res.data.result.box_index, 
             })
           }
         }

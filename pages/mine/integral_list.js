@@ -19,6 +19,8 @@ Page({
     integralDateObjectArr: [],
     integralDateNameArr: [],
     integralDateIndex: 0,
+
+    totalCount:0,
   },
 
   /**
@@ -42,7 +44,9 @@ Page({
       success: function (res) {
         if (res.data.code == 10000) {
           that.setData({
-            integral_list: res.data.result.datalist
+            integral_list: res.data.result.datalist,
+            integralDateIndex: res.data.result.integralDateIndex,
+            totalCount   : res.data.result.totalCount,
           })
         }
       }
