@@ -346,9 +346,19 @@ Page({
     })
   },
   boxShow: function(e) {
+    var that = this;
+    if (typeof (e.currentTarget.dataset.box_index)!='undefined'){
+      var box_index = e.currentTarget.dataset.box_index;
+      var box_list = that.data.box_list;
+      box_mac = box_list[box_index].box_mac;
+      
+    }else {
+      var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+      box_mac = link_box_info.box_mac;
+    }
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
-    box_mac = link_box_info.box_mac;
+    
+    
     var goods_id = e.currentTarget.dataset.goods_id;
 
     var imgs = e.currentTarget.dataset.oss_addr;
@@ -1285,40 +1295,45 @@ Page({
       })
     }
   },
+  closeViewRoom:function(e){
+    var that = this;
+    that.setData({
+      showMiddlePopChoseBoxWindow: false,
+    })
+  },
   //显示包间列表弹窗
   viewRoomWin: function(e) {
     var that = this;
     that.setData({
-      view_room: true,
+      showMiddlePopChoseBoxWindow: true,
     })
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    var is_box = user_info.is_box;
-    if (is_box) {
+    
 
-      var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
-      var box_mac = link_box_info.box_mac;
-      //包间列表
-      wx.request({
-        url: api_url + '/smallsale/room/getRoomList',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          hotel_id: hotel_id,
-          box_mac: box_mac,
-        },
-        success: function(res) {
-          console.log(res);
-          if (res.data.code == 10000) {
-            that.setData({
-              box_list: res.data.result.box_list,
-              box_name_list: res.data.result.box_name_list,
-              box_index: res.data.result.box_index,
-            })
-          }
+    var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+    var box_mac = link_box_info.box_mac;
+    //包间列表
+    wx.request({
+      url: api_url + '/smallsale/room/getRoomList',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        hotel_id: hotel_id,
+        box_mac: box_mac,
+      },
+      success: function(res) {
+        console.log(res);
+        if (res.data.code == 10000) {
+          that.setData({
+            box_list: res.data.result.box_list,
+            box_name_list: res.data.result.box_name_list,
+            box_index: res.data.result.box_index,
+          })
         }
-      })
-    }
+      }
+    })
+    
   },
   pop_share: function(e) {
     var that = this;

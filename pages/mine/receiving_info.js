@@ -13,7 +13,8 @@ Page({
    */
   onLoad: function(options) {
     var data = JSON.parse(options.data);
-    console.log("pages/mine/receiving_info", "onLoad", data);
+    var goods_id = data.goods_id;
+    var openid   = data.openid;
   },
 
   /**

@@ -30,6 +30,27 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
+    
+    wx.request({
+      url: api_url +'/Smallsale/user/integraltypes',
+      header: {
+        'content-type': 'application/json'
+      },
+      success:function(res){
+        if(res.data.code==10000){
+          that.setData({
+            integralTypeObjectArr:res.data.result.type_list,
+            integralTypeNameArr:res.data.result.type_name_list,
+
+            integralDateObjectArr:res.data.result.date_list,
+            integralDateNameArr:res.data.result.date_name_list,
+            integralDateIndex: res.data.result.date_key,
+
+            
+          })
+        }
+      }
+    })
     wx.request({
       url: api_url + '/Smallsale/user/integralrecord',
       header: {
@@ -37,16 +58,15 @@ Page({
       },
       data: {
         openid: openid,
-        integralType:0,
-        integralDate:0,
+        type:0,
+        idate:0,
         page: 1,
       },
       success: function (res) {
         if (res.data.code == 10000) {
           that.setData({
             integral_list: res.data.result.datalist,
-            integralDateIndex: res.data.result.integralDateIndex,
-            totalCount   : res.data.result.totalCount,
+            
           })
         }
       }
@@ -65,8 +85,8 @@ Page({
       },
       data: {
         openid: openid,
-        integralType: integral_type,
-        integralDate: integral_date,
+        type: integral_type,
+        idate: integral_date,
         page: page,
       },
       success: function (res) {
@@ -89,6 +109,7 @@ Page({
   },
   bindTypePickerChange:function(e){
     var that = this;
+    page =1
     //var box_list = that.data.objectCityArray;
     var picTypeIndex = e.detail.value //切换之后城市key
     var integralTypeIndex = that.data.integralTypeIndex; //切换之前城市key
@@ -108,8 +129,8 @@ Page({
         },
         data: {
           openid: openid,
-          integralType: integral_type,
-          integralDate: integral_date,
+          type: integral_type,
+          idate: integral_date,
           page: page,
         },
         success: function (res) {
@@ -119,21 +140,17 @@ Page({
             })
             wx.hideLoading()
           }
+        },fail:function(){
+          wx.hideLoading()
         }
       })
-      setTimeout(function () {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载失败，请重试',
-          icon: 'none',
-          duration: 2000,
-        })
-      }, 5000)
+      
     }
     
   },
   bindDatePickerChange:function(e){
     var that = this;
+    page =1
     //var box_list = that.data.objectCityArray;
     var picDateIndex = e.detail.value //切换之后城市key
     var integralDateIndex = that.data.integralDateIndex; //切换之前城市key
@@ -152,8 +169,8 @@ Page({
         },
         data: {
           openid: openid,
-          integralType: integral_type,
-          integralDate: integral_date,
+          type: integral_type,
+          idate: integral_date,
           page: page,
         },
         success: function (res) {
@@ -163,16 +180,11 @@ Page({
             })
             wx.hideLoading()
           }
+        }, fail: function () {
+          wx.hideLoading()
         }
       })
-      setTimeout(function () {
-        wx.hideLoading()
-        wx.showToast({
-          title: '加载失败，请重试',
-          icon: 'none',
-          duration: 2000,
-        })
-      }, 5000)
+      
     }
   },
   /**

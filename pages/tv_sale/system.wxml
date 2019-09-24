@@ -221,7 +221,7 @@
       <canvas canvas-id="goodsCode" class="goods-code"></canvas>
     </view>
     <view class="btn-group">
-      <button class="launch theme-button-add">大屏展示</button>
+      <button wx:if="{{hotel_has_room==1}}" class="launch theme-button-add" bindtap="viewRoomWin">大屏展示</button>
       <button class="save theme-button" bindtap='saveImageToPhotosAlbum'>保存到相册</button>
     </view>
     <view class="tip">保存图片到手机相册，将图片分享给您的好友~</view>
@@ -230,17 +230,18 @@
 
 <!-- 选择投屏包间 -->
 <modal show="{{showMiddlePopChoseBoxWindow}}" width="600rpx" height='400rpx' border-radius="0rpx" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+  
   <view class="middle-pop-chose-box-window theme-font2 theme7">
     <view class="title theme-font1">请选择投屏包间</view>
     <view class="main">
-      <picker class="room-picker">
-        <label>VIP 8888</label>
+      <picker class="room-picker" bindchange="bindBoxPickerChange" value="{{box_index}}" range="{{box_name_list}}">
+        <label>{{box_name_list[box_index]}}</label>
         <label class="fa fa-caret-down" aria-hidden="true"></label>
       </picker>
     </view>
     <view class="btn-group">
-      <button class="theme-button">确定</button>
-      <button class="theme-font4 theme8">取消</button>
+      <button bindtap="boxShow" class="theme-button" data-goods_id="{{goods_info.goods_id}}" data-oss_addr="{{goods_info.oss_addr}}" data-box_index="{{box_index}}">确定</button>
+      <button class="theme-font4 theme8" bindtap="closeViewRoom">取消</button>
     </view>
   </view>
 </modal>

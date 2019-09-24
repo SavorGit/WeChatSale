@@ -1,206 +1,41 @@
 <!--pages/mine/integral_list.wxml-->
 <view class="container theme-main">
   <view class="top-bar theme-font1 theme7">
-    <picker class="type">
-      <label>全部类型</label>
+    <picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
+      <label>{{integralTypeNameArr[integralTypeIndex]}}</label>
       <label class="fa fa-caret-down" aria-hidden="true"></label>
     </picker>
-    <picker class="date">
-      <label>2019年9月</label>
+    <picker class="date" bindchange="bindDatePickerChange" value="{{integralDateIndex}}" range="{{integralDateNameArr}}">
+      <label>{{integralDateNameArr[integralDateIndex]}}</label>
       <label class="fa fa-caret-down" aria-hidden="true"></label>
     </picker>
-    <view class="integral theme-font5">获得1234积分</view>
+    <!-- <view class="integral theme-font5">获得1234积分</view> -->
   </view>
   <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true">
-    <view class="row line theme7">
+    <block wx:for="{{integral_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+    <view wx:if="{{index+1==integral_list.length}}" class="row line theme7">
       <view class="detail">
         <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
+          <view class="room">{{bean.room_name}}</view>
+          <view class="cause">{{bean.content}}</view>
         </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
+        <view class="dateTime theme-font3">{{bean.add_time}}</view>
       </view>
-      <view class="integral theme-font5">+20</view>
+      <view class="integral theme-font5">+{{bean.integral}}</view>
     </view>
-    <view class="row line theme7">
+    <view wx:else class="row theme7">
       <view class="detail">
         <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
+          <view class="room">{{bean.room_name}}</view>
+          <view class="cause">{{bean.content}}</view>
         </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
+        <view class="dateTime theme-font3">{{bean.add_time}}</view>
       </view>
-      <view class="integral theme-font5">+20</view>
+      <view class="integral theme-font5">+{{bean.integral}}</view>
     </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row line theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
-    <view class="row theme7">
-      <view class="detail">
-        <view class="info theme-font1">
-          <view class="room">VIP1包间</view>
-          <view class="cause">开机2小时</view>
-        </view>
-        <view class="dateTime theme-font3">2019.7.22</view>
-      </view>
-      <view class="integral theme-font5">+20</view>
-    </view>
+    </block>
+    
+
+    
   </scroll-view>
 </view>
