@@ -22,7 +22,7 @@
     <view class="row">
       <view class="lable">联系电话</view>
       <view class="item theme-font1">
-        <input  name="mobile"></input>
+        <input type="number"  name="mobile"></input>
       </view>
     </view>
     <view class="row">
