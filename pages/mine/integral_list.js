@@ -95,17 +95,14 @@ Page({
             integral_list: res.data.result.datalist
           })
           wx.hideLoading()
+        }else {
+          wx.hideLoading()
         }
+      },fail:function(res){
+        wx.hideLoading()
       }
     })
-    setTimeout(function () {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加载失败，请重试',
-        icon: 'none',
-        duration: 2000,
-      })
-    }, 5000)
+    
   },
   bindTypePickerChange:function(e){
     var that = this;
