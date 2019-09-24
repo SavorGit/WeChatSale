@@ -1254,9 +1254,9 @@ Page({
 
     that.setData({
       hotel_has_room: hotel_has_room,
-      showBottomPopGoodsCodeWindow:true
+      showBottomPopGoodsCodeWindow: true
     })
-    
+
     this.drowGoodsCode({
       picture: goods_info.img_url,
       name: goods_info.goods_name,
@@ -1266,7 +1266,7 @@ Page({
 
 
   },
-  closeViewGoodsCode:function(e){
+  closeViewGoodsCode: function(e) {
     var that = this;
     that.setData({
       showBottomPopGoodsCodeWindow: false
@@ -1313,7 +1313,7 @@ Page({
             that.setData({
               box_list: res.data.result.box_list,
               box_name_list: res.data.result.box_name_list,
-              box_index: res.data.result.box_index, 
+              box_index: res.data.result.box_index,
             })
           }
         }
@@ -1410,11 +1410,11 @@ Page({
     var goods_img_tmp;
     wx.getImageInfo({
       src: bean.qrCode,
-      success:function(res){
-        qrcode_tmp =res.path
+      success: function(res) {
+        qrcode_tmp = res.path
         wx.getImageInfo({
           src: bean.picture,
-          success:function(rt){
+          success: function(rt) {
             goods_img_tmp = rt.path;
             let goodsPicture = goods_img_tmp; // "https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg";
             let goodsName = bean.name; //"HYPERICE HYPERVOLT2019款 筋膜枪按摩肌肉放松器按摩器筋膜枪 浅灰色";
@@ -1484,7 +1484,7 @@ Page({
         })
       }
     })
-    
+
   },
   //获取临时路径
   getTempFilePath: function() {
@@ -1513,6 +1513,40 @@ Page({
       },
       fail: (err) => {
         console.log(err)
+      }
+    })
+  },
+  touchstart: function(e) {
+    //开始触摸时 重置所有删除
+    let data = app.touch._touchstart(e, this.data.sale_list)
+    this.setData({
+      sale_list: data
+    })
+  },
+
+  //滑动事件处理
+  touchmove: function(e) {
+    let data = app.touch._touchmove(e, this.data.sale_list)
+    this.setData({
+      sale_list: data
+    })
+  },
+
+  //删除事件
+  del: function(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确认要删除此条信息么？',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          that.data.items.splice(e.currentTarget.dataset.index, 1)
+          that.setData({
+            items: that.data.items
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   }

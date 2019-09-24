@@ -35,20 +35,23 @@
 
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
-      <view class='row full_width theme7' wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key">
-        <image src='{{bean.img_url}}'></image>
-        <view class='goods'>
-          <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
-          <view class='infomation full_width'>
-            <view class='price theme-font2'>￥ {{bean.price}}元</view>
-            <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-          </view>
-          <view class='operate'>
-            <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-            <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
-            <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+      <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+        <view class='content' bindtap='showDetail' data-index="{{index}}">
+          <image src='{{bean.img_url}}'></image>
+          <view class='goods'>
+            <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
+            <view class='infomation full_width'>
+              <view class='price theme-font2'>￥ {{bean.price}}元</view>
+              <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+            </view>
+            <view class='operate'>
+              <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+              <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
+              <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+            </view>
           </view>
         </view>
+        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
       </view>
     </block>
 

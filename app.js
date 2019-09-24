@@ -1,4 +1,5 @@
 //app.js
+import touch from './utils/touch.js'
 App({
   connectHotelwifi: function(box_mac, openid, wifi_mac, wifi_name, use_wifi_password, intranet_ip, that, jump_url = '', forscreen_type = 0) {
     if (wifi_mac == '') { //如果后台未填写wifi_mac  获取wifi列表自动链接
@@ -302,5 +303,6 @@ App({
     box_type: 0,
     is_zhilian: 1,
     pixelRatio: 2
-  }
+  },
+  touch: new touch()
 })
