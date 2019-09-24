@@ -1,32 +1,42 @@
 <!--pages/mine/receiving_info.wxml-->
 <view class="container theme-font3 theme7">
-  <form class="page">
+  <form class="page" bindsubmit="exchangeGoods">
     <view class="row">
       <view class="lable">兑换商品</view>
-      <view class="item theme-font1 goods-name">XXX XX XX XX XX XX XX XXX XXX XXX XXX XXX XX XXX XX XX X</view>
+      <view class="item theme-font1 goods-name">{{goods_info.name}}</view>
     </view>
     <view class="row">
       <view class="lable">兑换数量</view>
       <view class="item theme-font1">
-        <view class="fa fa-minus-square" aria-hidden="true"></view>
-        <view class="quantity">1</view>
-        <view class="fa fa-plus-square" aria-hidden="true"></view>
+        <view class="fa fa-minus-square" aria-hidden="true" bindtap="changeActNums" data-type="2"></view>
+        <view class="quantity">{{goods_nums}}</view>
+        <view class="fa fa-plus-square" aria-hidden="true" bindtap="changeActNums" data-type="1"></view>
       </view>
     </view>
     <view class="row">
       <view class="lable">联 系 人</view>
       <view class="item theme-font1">
-        <input></input>
+        <input name="linkman"></input>
+      </view>
+    </view>
+    <view class="row">
+      <view class="lable">联系电话</view>
+      <view class="item theme-font1">
+        <input  name="mobile"></input>
       </view>
     </view>
     <view class="row">
       <view class="lable">收货地址</view>
       <view class="item theme-font1">
-        <textarea></textarea>
+        <textarea name="address" maxlength='100'></textarea>
       </view>
     </view>
+    <input class='display_hide' name="goods_id" value="{{goods_info.goods_id}}"></input>
+    <input class='display_hide' name="goods_nums" value="{{goods_nums}}"></input>
+    <input class='display_hide' name="openid" value="{{openid}}"></input>
+    
     <view class="submit-row">
-      <button class="theme-button">兑换</button>
+      <button class="theme-button" form-type="submit">兑换</button>
     </view>
   </form>
 </view>
