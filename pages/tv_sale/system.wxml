@@ -35,24 +35,35 @@
 
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
-      <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-        <view class='content' data-index="{{index}}">
-          <image src='{{bean.img_url}}'></image>
-          <view class='goods'>
-            <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
-            <view class='infomation full_width'>
-              <view class='price theme-font2'>￥ {{bean.price}}元</view>
-              <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-            </view>
-            <view class='operate'>
-              <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-              <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
-              <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+      <block wx:if="{{sale_list.length > 0}}">
+        <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+          <view class='content' data-index="{{index}}">
+            <image src='{{bean.img_url}}'></image>
+            <view class='goods'>
+              <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
+              <view class='infomation full_width'>
+                <view class='price theme-font2'>￥ {{bean.price}}元</view>
+                <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+              </view>
+              <view class='operate'>
+                <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+                <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
+                <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+              </view>
             </view>
           </view>
+          <view class="del theme-button-add" catchtap="del" data-index="{{index}}" data-goods_id="{{bean.goods_id}}">删除</view>
         </view>
-        <view class="del theme-button-add" catchtap="del" data-index="{{index}}" data-goods_id="{{bean.goods_id}}">删除</view>
-      </view>
+      </block>
+      <block wx:else>
+        <view class="no-data full_width theme7">
+          <view>您还没有选择要推广的活动</view>
+          <view>请前往【我的——活动促销商品管理】选择</view>
+          <view>
+            <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
+          </view>
+        </view>
+      </block>
     </block>
 
     <!-- 我的活动[添加] -->
@@ -166,27 +177,35 @@
 </view>
 <!-- 无机顶盒 -->
 <view wx:else class="container theme-main">
-  <view class='sale-panel full_width'>
+  <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
-      <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-        <view class='content' data-index="{{index}}">
-          <image src='{{bean.img_url}}'></image>
-          <view class='goods'>
-            <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
-            <view class='infomation full_width'>
-              <view class='price theme-font2'>￥ {{bean.price}}元</view>
-              <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-            </view>
-            <view class='operate'>
-              <!-- <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-            <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button> -->
-              <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+      <block wx:if="{{sale_list.length > 0}}">
+        <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+          <view class='content' data-index="{{index}}">
+            <image src='{{bean.img_url}}'></image>
+            <view class='goods'>
+              <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
+              <view class='infomation full_width'>
+                <view class='price theme-font2'>￥ {{bean.price}}元</view>
+              </view>
+              <view class='operate'>
+                <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+              </view>
             </view>
           </view>
+          <view class="del theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
         </view>
-        <view class="del theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
-      </view>
+      </block>
+      <block wx:else>
+        <view class="no-data full_width theme7">
+          <view>您还没有选择要推广的活动</view>
+          <view>请前往【我的——活动促销商品管理】选择</view>
+          <view>
+            <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
+          </view>
+        </view>
+      </block>
     </block>
   </view>
 </view>
