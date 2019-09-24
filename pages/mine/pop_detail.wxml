@@ -1,7 +1,8 @@
 <!--pages/mine/pop_detail.wxml-->
 <view class="container theme-main">
   <view class="video-wapper full_width">
-    <video class="full_width" src="{{goods_info.video_url}}"></video>
+    <video class="full_width full_height" src="{{goods_info.video_url}}"></video>
+    <image class="full_width full_height"></image>
   </view>
   <view class="btn-group">
     <navigator class="btn-buy theme-button-add" target="miniProgram" app-id="{{goods_info.appid}}" url="{{goods_info.jd_url}}">了解更多或京东购买</navigator>
