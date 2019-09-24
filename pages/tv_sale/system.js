@@ -1268,6 +1268,11 @@ Page({
       showBottomPopGoodsCodeWindow: true
     })
 
+    const context = wx.createCanvasContext('goodsCode');
+    context.setFillStyle('#FFFFFF');
+    context.fillRect(0, 0, 230, 380);
+    context.draw();
+
     this.drowGoodsCode({
       picture: goods_info.img_url,
       name: goods_info.goods_name,
