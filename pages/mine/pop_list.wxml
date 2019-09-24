@@ -1,5 +1,5 @@
 <!--pages/mine/pop_list.wxml-->
-<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view wx:if="{{pop_list.length > 0}}" class="container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
   <view class='list full_width'>
     <block wx:for="{{pop_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view wx:if="{{index+1 !=pop_list.length}}" class='row line theme7'>
@@ -31,33 +31,8 @@
         </view>
       </view>
     </block>
-
-    <!-- <view class='row line theme7'>
-      <image class="goods-pic" src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-      <view class='goods'>
-        <view class='title theme-font2'>皇家礼炮（ROYAL SALUTE）38年苏格兰 威士忌 700ML</view>
-        <view class='infomation full_width'>
-          <view class='price theme-font2'>￥ 6999元</view>
-          <view class='discount theme-font5'>返利10000积分</view>
-        </view>
-      </view>
-      <view class='operate'>
-        
-      </view>
-    </view>
-    <view class='row theme7'>
-      <image class="goods-pic" src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-      <view class='goods'>
-        <view class='title theme-font2'>皇家礼炮（ROYAL SALUTE）38年苏格兰 威士忌 700ML</view>
-        <view class='infomation full_width'>
-          <view class='price theme-font2'>￥ 6999元</view>
-          <view class='discount theme-font5'>返利10000积分</view>
-        </view>
-      </view>
-      <view class='operate'>
-        <button class='btn-add theme-button-add'>添加</button>
-      </view>
-    </view> -->
-
   </view>
 </scroll-view>
+<view wx:else class="container theme-main" style="justify-content:center;">
+  <view class="theme-font3">暂无促销商品</view>
+</view>
