@@ -497,7 +497,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel > .ads-list > .row > view > label {
-  width: 35rpx;
+  /* width: 35rpx; */
   display: block;
   text-align: center;
   /* font-size: 20rpx; */
