@@ -132,7 +132,8 @@ Page({
         hotel_id: hotel_id,
         openid: openid,
         page: 1,
-        type: 10
+        type: 10,
+        box_mac: box_mac
       },
       success: function(res) {
         if (res.data.code == 10000) {
@@ -151,7 +152,8 @@ Page({
         hotel_id: hotel_id,
         openid: openid,
         type: 20,
-        page: 1
+        page: 1,
+        
       },
       success: function(res) {
         if (res.data.code == 10000) {
@@ -1055,7 +1057,8 @@ Page({
             hotel_id: user_info.hotel_id,
             openid: user_info.openid,
             page: 1,
-            type: 10
+            type: 10,
+            box_mac: link_user_info.box_mac,
           },
           success: function(res) {
             if (res.data.code == 10000) {

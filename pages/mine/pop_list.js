@@ -46,7 +46,7 @@ Page({
     var that = this;
     var userinfo = wx.getStorageSync(cache_key + 'userinfo');
     openid = userinfo.openid;
-    hotel_id = user_info.hotel_id;
+    var hotel_id = userinfo.hotel_id;
     page = page + 1;
     wx.showLoading({
       title: '数据加载中，请稍后',
@@ -71,14 +71,7 @@ Page({
         }
       }
     })
-    setTimeout(function () {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加载失败，请重试',
-        icon: 'none',
-        duration: 2000,
-      })
-    }, 5000)
+    
   },
   addPop:function(e){
     console.log(e);
