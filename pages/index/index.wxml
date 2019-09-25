@@ -42,8 +42,8 @@
   <!-- 机顶盒操作面板 -->
   <view class='box-operate-panel full_width theme7'>
     <button class='theme-button5' bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</button>
-    <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='4'>音量 + </button>
-    <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='3'>音量 - </button>
+    <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 + </button>
+    <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 - </button>
   </view>
 
   <!-- 机顶盒面板 -->
