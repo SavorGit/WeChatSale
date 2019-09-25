@@ -153,6 +153,7 @@ Page({
         openid: openid,
         type: 20,
         page: 1,
+        box_mac:box_mac,
         
       },
       success: function(res) {
@@ -422,6 +423,7 @@ Page({
   selectXxk: function(res) {
     var that = this;
     var status = res.currentTarget.dataset.status;
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     if (status == 1) {
       that.setData({
         showPageType: 1
@@ -439,7 +441,8 @@ Page({
           hotel_id: hotel_id,
           openid: openid,
           type: 20,
-          page: 1
+          page: 1,
+          box_mac: link_box_info.box_mac
         },
         success: function(res) {
 
@@ -1115,6 +1118,7 @@ Page({
 
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     var showPageType = this.data.showPageType;
@@ -1132,7 +1136,8 @@ Page({
           hotel_id: hotel_id,
           openid: openid,
           page: page,
-          type: 10
+          type: 10,
+          box_mac: link_box_info.box_mac
         },
         success: function(res) {
           if (res.data.code == 10000) {
