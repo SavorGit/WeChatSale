@@ -2,7 +2,7 @@
 <import src="/pages/template/commons" />
 
 <!-- 有机顶盒 -->
-<view wx:if="{{hotel_has_room}}" class="container theme-main">
+<scroll-view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 
   <!-- 正在播放的活动面板 -->
   <view class='playing-sale-panel full_width'>
@@ -174,9 +174,9 @@
 
   </view>
 
-</view>
+</scroll-view>
 <!-- 无机顶盒 -->
-<view wx:else class="container theme-main">
+<view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
   <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
@@ -211,7 +211,7 @@
 </view>
 
 <!-- 底部分享弹窗 -->
-<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(48px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
+<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(48px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='close_share'>
   <view class="share-bottom-pop-window">
     <view class="title">分享</view>
     <view class="btn-group">

@@ -153,8 +153,8 @@ Page({
         openid: openid,
         type: 20,
         page: 1,
-        box_mac:box_mac,
-        
+        box_mac: box_mac,
+
       },
       success: function(res) {
         if (res.data.code == 10000) {
@@ -367,7 +367,7 @@ Page({
 
     var imgs = e.currentTarget.dataset.oss_addr;
     var qrcode_url = e.currentTarget.dataset.qrcode_url;
-    
+
 
     var timestamp = (new Date()).valueOf();
     wx.request({
@@ -378,7 +378,7 @@ Page({
       method: "POST",
       data: {
         box_mac: box_mac,
-        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + ',"qrcode_url":"' + qrcode_url+'"}',
+        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + ',"qrcode_url":"' + qrcode_url + '"}',
       },
       success: function(res) {
         if (res.data.code == 10000) {
@@ -1482,17 +1482,17 @@ Page({
             y += 16;
             context.fillText(goodsPrice, x, y);
 
-            let qrCodeWidth = 130;
-            let qrCodeHeight = 130;
+            let qrCodeWidth = 100;
+            let qrCodeHeight = 100;
             x = fullWidth / 2 - qrCodeWidth / 2;
-            y += 5;
+            y += 15;
             context.drawImage(qrCode, x, y, qrCodeWidth, qrCodeHeight);
 
             context.setFontSize(10);
             context.setFillStyle("#E75A5A");
             let qrCodeTipMetrics = context.measureText(qrCodeTip);
             x = fullWidth / 2 - qrCodeTipMetrics.width / 2;
-            y += 12 + qrCodeHeight;
+            y += 22 + qrCodeHeight;
             context.fillText(qrCodeTip, x, y);
 
             let grd = context.createLinearGradient(0, 0, fullWidth, 0);

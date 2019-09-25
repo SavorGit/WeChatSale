@@ -127,6 +127,7 @@ Component({
    */
   methods: {
     clickMask(e) {
+      this.triggerEvent('clickMask', e);
       // this.setData({show: false})
     },
 

@@ -13,7 +13,7 @@
 /* ================================ 用户信息面板 ================================ */
 
 .user-info-panel {
-  height: 190rpx;
+  height: 250rpx;
   display: flex;
   flex-direction: column;
   align-items: center;

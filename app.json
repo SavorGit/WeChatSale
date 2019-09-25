@@ -22,9 +22,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#06111A",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "小热点-销售版",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "custom": true,
