@@ -36,7 +36,7 @@
       <image class='icon' src='/images/icon/F19ABB_template.png'></image>
       <view class='title'>下载图片模板</view>
       <image class='fold' src='/images/icon/999999_right.png'></image>
-    </button>
+    </button> 
   </view>
 
   <!-- 机顶盒操作面板 -->

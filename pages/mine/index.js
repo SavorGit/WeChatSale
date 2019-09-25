@@ -203,6 +203,8 @@ Page({
 
       wx.getUserInfo({
         success(rets) {
+          var avatarUrl = rets.userInfo.avatarUrl;
+          var nickName = rets.userInfo.nickName;
           console.log(rets);
           wx.request({
             url: api_url + '/Smallsale/User/registerCom',
@@ -223,6 +225,11 @@ Page({
                 that.setData({
                   showWXAuthLogin: false,
 
+                })
+                that.setData({
+                  nickName: nickName,
+                  avatarUrl: avatarUrl,
+                  is_wx_auth: res.data.result.is_wx_auth
                 })
                 var mobile = res.data.result.mobile;
                 if (mobile != '') {
@@ -325,6 +332,12 @@ Page({
       })
     }
     this.onLoad()
+  },
+  closeAuth: function () {
+    var that = this;
+    that.setData({
+      showWXAuthLogin: false,
+    })
   },
   
   /**

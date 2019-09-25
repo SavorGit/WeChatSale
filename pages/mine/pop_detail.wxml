@@ -5,6 +5,6 @@
     <image wx:else class="full_width full_height" src="{{goods_info.img_url}}"></image>
   </view>
   <view class="btn-group">
-    <navigator class="btn-buy theme-button-add" target="miniProgram" app-id="{{goods_info.appid}}" url="{{goods_info.jd_url}}">了解更多或京东购买</navigator>
+    <navigator class="btn-buy theme-button-add" target="miniProgram" app-id="{{goods_info.appid}}" path="{{goods_info.jd_url}}">了解更多或京东购买</navigator>
   </view>
 </view>

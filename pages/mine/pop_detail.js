@@ -37,7 +37,8 @@ Page({
         'content-type': 'application/json'
       },
       data:{
-        goods_id:goods_id
+        goods_id:goods_id,
+        uid:'BpNY'
       },
       success:function(res){
         if(res.data.code==10000){
