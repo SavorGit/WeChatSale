@@ -366,6 +366,8 @@ Page({
     var goods_id = e.currentTarget.dataset.goods_id;
 
     var imgs = e.currentTarget.dataset.oss_addr;
+    var qrcode_url = e.currentTarget.dataset.qrcode_url;
+    
 
     var timestamp = (new Date()).valueOf();
     wx.request({
@@ -376,7 +378,7 @@ Page({
       method: "POST",
       data: {
         box_mac: box_mac,
-        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + '}',
+        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + ',"qrcode_url":"' + qrcode_url+'"}',
       },
       success: function(res) {
         if (res.data.code == 10000) {

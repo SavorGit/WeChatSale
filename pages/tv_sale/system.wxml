@@ -47,7 +47,7 @@
               </view>
               <view class='operate'>
                 <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-                <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}">大屏展示</button>
+                <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">大屏展示</button>
                 <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
               </view>
             </view>
