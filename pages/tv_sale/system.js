@@ -919,7 +919,8 @@ Page({
         hotel_id: hotel_id,
         openid: openid,
         type: 20,
-        page: 1
+        page: 1,
+        is_edit:1,
       },
       success: function(res) {
         if (res.data.code == 10000) {
