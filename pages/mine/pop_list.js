@@ -49,7 +49,7 @@ Page({
     var hotel_id = userinfo.hotel_id;
     page = page + 1;
     wx.showLoading({
-      title: '数据加载中，请稍后',
+      title: '加载中',
     })
     wx.request({
       url: api_url + '/Smallsale/goods/getGoodslist',
