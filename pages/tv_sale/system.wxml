@@ -211,7 +211,7 @@
 </view>
 
 <!-- 底部分享弹窗 -->
-<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(48px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='close_share'>
+<bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(28px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='close_share'>
   <view class="share-bottom-pop-window">
     <view class="title">分享</view>
     <view class="btn-group">
@@ -233,7 +233,7 @@
 </bottom-modal>
 
 <!-- 底部商品码弹窗 -->
-<bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='500px' background-color='unset' padding-bottom="48px" border-radius="0rpx" title-text='' confirm-text='' cancel-text=''>
+<bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='500px' background-color='unset' padding-bottom="calc(28px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='closeViewGoodsCode'>
   <view class="bottom-pop-goods-code-window theme-font2 theme7">
     <view class="top-bar theme-font1">
       <view class="title">商品码</view>

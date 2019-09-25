@@ -112,7 +112,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   width: 90rpx;
   height: 40rpx;
   line-height: 40rpx;
-  border: 1rpx solid #1cbeb6;
+  border: 2rpx solid #1cbeb6;
   margin: auto;
   padding: 0;
   color: #1cbeb6;
@@ -219,17 +219,17 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel  .row > .content > .goods > .title {
-  /* display: -webkit-box;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  overflow: hidden; */
   overflow: hidden;
+  /* overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap; */
 }
 
 .sale-panel  .row > .content > .goods > .infomation {
-  height: 60rpx;
+  height: 40rpx;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -263,7 +263,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .sale-panel  .row > .content > .goods > .operate > .btn-menu {
   color: #1cbeb6;
-  border: 1rpx solid #1cbeb6;
+  border: 2rpx solid #1cbeb6;
 }
 
 .sale-panel  .row > .content > .goods > .operate > .btn-tv::before,
@@ -273,12 +273,17 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .sale-panel  .row > .content > .goods > .operate > .btn-tv {
   color: #eb6877;
-  border: 1rpx solid #eb6877;
+  border: 2rpx solid #eb6877;
+}
+
+.sale-panel  .row > .content > .goods > .operate > .share::before,
+.sale-panel  .row > .content > .goods > .operate > .share::after {
+  border: unset;
 }
 
 .sale-panel  .row > .content > .goods > .operate > .share {
   color: rgb(196, 144, 191);
-  border: 1rpx solid rgb(196, 144, 191);
+  border: 2rpx solid rgb(196, 144, 191);
 }
 
 .sale-panel > .no-data {

@@ -920,7 +920,7 @@ Page({
         openid: openid,
         type: 20,
         page: 1,
-        is_edit:1,
+        is_edit: 1,
       },
       success: function(res) {
         if (res.data.code == 10000) {
@@ -1473,20 +1473,20 @@ Page({
             // context.fillText(goodsName, x, y, fullWidth - 20);
             context.setFillStyle("#666666");
             x = 0;
-            y = goodsPictureHeight + 12;
+            y = goodsPictureHeight + 17;
             y = that.drawMultilineText(context, goodsName, 10, x, y, 220);
 
             context.setFontSize(14);
             context.setFillStyle("#E75A5A");
             let goodsPriceMetrics = context.measureText(goodsPrice);
             x = fullWidth / 2 - goodsPriceMetrics.width / 2;
-            y += 16;
+            y += 19;
             context.fillText(goodsPrice, x, y);
 
             let qrCodeWidth = 100;
             let qrCodeHeight = 100;
             x = fullWidth / 2 - qrCodeWidth / 2;
-            y += 15;
+            y += 10;
             context.drawImage(qrCode, x, y, qrCodeWidth, qrCodeHeight);
 
             context.setFontSize(10);
