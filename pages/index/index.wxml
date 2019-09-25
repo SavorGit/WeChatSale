@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <import src="/pages/template/commons" />
-<view class="container theme-main">
+<view class="container theme-main" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
   <!-- 机顶盒连接信息 -->
   <picker class='full_width' range="{{objectBoxArray}}" bindchange="bindPickerChange">
@@ -36,7 +36,7 @@
       <image class='icon' src='/images/icon/F19ABB_template.png'></image>
       <view class='title'>下载图片模板</view>
       <image class='fold' src='/images/icon/999999_right.png'></image>
-    </button> 
+    </button>
   </view>
 
   <!-- 机顶盒操作面板 -->
@@ -69,7 +69,7 @@
             </view>
           </view>
         </block>
-        
+
       </view>
     </scroll-view>
   </view>
@@ -78,10 +78,3 @@
 
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
-
-
-
-
-
-
-
