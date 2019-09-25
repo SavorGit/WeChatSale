@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     nickName: '匿名用户',
     integral: 0,
     is_open_integral: 0,
@@ -50,7 +51,7 @@ Page({
         }
       }
     })
-    
+
     //我的员工
     wx.request({
       url: api_url + '/Smallsale/user/employeelist',
@@ -189,13 +190,13 @@ Page({
       showAddTeamMemberPage: false,
     })
   },
-  userLogin:function(res){
+  userLogin: function(res) {
     var that = this;
     that.setData({
       showWXAuthLogin: true,
     })
   },
-  onGetUserInfo: function (res) {
+  onGetUserInfo: function(res) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
@@ -220,7 +221,7 @@ Page({
             header: {
               'content-type': 'application/json'
             },
-            success: function (res) {
+            success: function(res) {
               if (res.data.code == 10000) {
                 that.setData({
                   showWXAuthLogin: false,
@@ -263,7 +264,7 @@ Page({
               }
 
             },
-            fail: function (res) {
+            fail: function(res) {
               wx.showToast({
                 title: '微信登陆失败，请重试',
                 icon: 'none',
@@ -282,7 +283,7 @@ Page({
         data: {
           openid: openid
         },
-        success: function () {
+        success: function() {
           user_info.is_wx_auth = 1;
           wx.setStorage({
             key: cache_key + 'userinfo',
@@ -325,7 +326,7 @@ Page({
           ]
         })
       }
-    }else{
+    } else {
       this.getTabBar().setData({
         selected: 2,
 
@@ -333,13 +334,13 @@ Page({
     }
     this.onLoad()
   },
-  closeAuth: function () {
+  closeAuth: function() {
     var that = this;
     that.setData({
       showWXAuthLogin: false,
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面隐藏
    */
