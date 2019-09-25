@@ -163,7 +163,7 @@
         <view class='row full_width'>
           <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
           <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
-          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}">电视播放</button>
+          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
         </view>
       </view>
     </block>

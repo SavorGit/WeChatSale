@@ -184,7 +184,7 @@ Page({
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-
+            my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
             that.setData({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
@@ -475,7 +475,7 @@ Page({
               my_activity_info.room_type_desc = room_type_desc;
               my_activity_info.check_status_img = check_status_img;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-
+              my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
