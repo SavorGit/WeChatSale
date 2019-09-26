@@ -10,7 +10,7 @@
 }
 
 .btn-group > .btn-buy {
-  width: 250rpx;
+  width: 300rpx;
   height: 80rpx;
   line-height: 80rpx;
   border-radius: 10rpx;
