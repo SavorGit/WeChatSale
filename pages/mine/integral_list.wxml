@@ -1,5 +1,5 @@
 <!--pages/mine/integral_list.wxml-->
-<view wx:if="{{integral_list.length > 0}}" class="container theme-main">
+<view  class="container theme-main">
   <view class="top-bar theme-font1 theme7">
     <picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
       <label>{{integralTypeNameArr[integralTypeIndex]}}</label>
@@ -11,7 +11,7 @@
     </picker>
     <!-- <view class="integral theme-font5">获得1234积分</view> -->
   </view>
-  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true">
+  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}">
     <block wx:for="{{integral_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view wx:if="{{index+1==integral_list.length}}" class="row line theme7">
         <view class="detail">
@@ -36,6 +36,6 @@
     </block>
   </scroll-view>
 </view>
-<view wx:else class="container theme-main" style="justify-content:center;">
+<view wx:if="{{integral_list.length == 0}}" class="container theme-main" style="justify-content:center;">
   <view class="theme-font3">暂无积分收益</view>
 </view>
