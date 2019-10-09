@@ -33,6 +33,10 @@ Page({
     wifi_name: '',
     wifi_password: '',
     hiddens: true,
+    hotel: {
+      id: null,
+      name: "请选择酒楼"
+    },
 
     showRetryModal: true, //连接WIFI重试弹窗
     bdShowModal: true, //邀请码酒楼和绑定酒楼不一致
@@ -545,4 +549,217 @@ Page({
       })
     }
   },
+  // 处理数据格式
+  convertDataFormat: function(data) {
+    // let someTtitle = null;
+    // let someArrary = [];
+    // for (let index = 0; index < mailListData.length; index++) {
+    //   let newBrands = {
+    //     brandId: mailListData[index].brandId,
+    //     name: mailListData[index].brandName
+    //   };
+    //   if (mailListData[index].initial != someTtitle) {
+    //     someTtitle = mailListData[index].initial
+    //     let newObj = {
+    //       id: index,
+    //       region: someTtitle,
+    //       brands: []
+    //     };
+    //     newObj.brands.push(newBrands);
+    //     someArrary.push(newObj)
+    //   }
+    // };
+  },
+  showMailListPage: function(e) {
+    let that = this;
+    // wx.request({
+    //   url: '获取数据地址',
+    //   success(res) {
+    //     if (res.data.status == 0) {
+    //       that.setData({
+    //         mailListPageShow: true,
+    //         mailListData: that.convertDataFormat(res.data.data)
+    //       });
+    //     }
+    //   }
+    // });
+    that.setData({
+      mailListPageShow: true,
+      mailListData: [{
+          id: "1",
+          region: "A",
+          items: [{
+              id: "A-Ming",
+              name: "阿明"
+            },
+            {
+              id: "Ao-Te-Man",
+              name: "奥特曼"
+            },
+            {
+              id: "..",
+              name: "安庆"
+            },
+            {
+              id: "..",
+              name: "阿曼"
+            }
+          ]
+        },
+        {
+          id: "2",
+          region: "B",
+          items: [{
+              id: "..",
+              name: "爸爸"
+            },
+            {
+              id: "..",
+              name: "北京"
+            }
+          ]
+        },
+        {
+          id: "3",
+          region: "C",
+          items: [{
+              id: "..",
+              name: "长城"
+            },
+            {
+              id: "..",
+              name: "长春"
+            }
+          ]
+        },
+        {
+          id: "4",
+          region: "D",
+          items: [{
+              id: "..",
+              name: "大同"
+            },
+            {
+              id: "..",
+              name: "代县"
+            },
+            {
+              id: "..",
+              name: "岱岳"
+            }
+          ]
+        },
+        {
+          id: "5",
+          region: "E",
+          items: [{
+              id: "..",
+              name: "鄂尔多斯"
+            },
+            {
+              id: "..",
+              name: "饿了吗"
+            }
+          ]
+        },
+        {
+          id: "6",
+          region: "F",
+          items: [{
+              id: "..",
+              name: "房子"
+            },
+            {
+              id: "..",
+              name: "房山"
+            }
+          ]
+        },
+        {
+          id: "7",
+          region: "G",
+          items: [{
+              id: "..",
+              name: "龚丽娜"
+            },
+            {
+              id: "..",
+              name: "拱桥"
+            }
+          ]
+        },
+        {
+          id: "8",
+          region: "H",
+          items: [{
+              id: "..",
+              name: "好利来"
+            },
+            {
+              id: "..",
+              name: "好莱坞"
+            }
+          ]
+        },
+        {
+          id: "9",
+          region: "J",
+          items: [{
+              id: "..",
+              name: "鸡蛋"
+            },
+            {
+              id: "..",
+              name: "积极"
+            }
+          ]
+        },
+        {
+          id: "10",
+          region: "K",
+          items: [{
+              id: "..",
+              name: "昆明"
+            },
+            {
+              id: "..",
+              name: "康乐"
+            }
+          ]
+        },
+        {
+          id: "11",
+          region: "L",
+          items: [{
+              id: "..",
+              name: "乐山"
+            },
+            {
+              id: "..",
+              name: "龙宫"
+            }
+          ]
+        },
+        {
+          id: "12",
+          region: "M",
+          items: [{
+              id: "..",
+              name: "馒头"
+            },
+            {
+              id: "..",
+              name: "蒙古"
+            }
+          ]
+        },
+      ]
+    });
+  },
+  chooseHotel: function(e) {
+    let that = this;
+    that.setData({
+      hotel: e.detail
+    });
+  }
 })
