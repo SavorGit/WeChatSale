@@ -1,5 +1,6 @@
 //app.js
 import touch from './utils/touch.js'
+var mta = require('./utils/mta_analysis.js')
 App({
   connectHotelwifi: function(box_mac, openid, wifi_mac, wifi_name, use_wifi_password, intranet_ip, that, jump_url = '', forscreen_type = 0) {
     if (wifi_mac == '') { //如果后台未填写wifi_mac  获取wifi列表自动链接
@@ -221,6 +222,16 @@ App({
     return true;
   },
   onLaunch: function() {
+    mta.App.init({
+      "appID": "500699143",
+      "eventID": "500699145",
+      "autoReport": true,
+      "statParam": true,
+      "ignoreParams": [],
+      "statPullDownFresh": true,
+      "statShareApp": true,
+      "statReachBottom": true
+    });
     // 获取小程序更新机制兼容
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -259,6 +270,7 @@ App({
 
 
     var that = this
+    
     wx.login({
       success: res => {
         var code = res.code; //返回code

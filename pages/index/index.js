@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -47,6 +48,7 @@ Page({
 
   onLoad: function(res) {
     var that = this;
+    mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
         openid: app.globalData.openid
