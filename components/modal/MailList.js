@@ -38,10 +38,13 @@ Component({
     isActive: null,
     listMain: [],
     listTitles: [],
+    listSearch: [],
     fixedTitle: null,
     toView: 'inToView0',
     oHeight: [],
-    scroolHeight: 0
+    scroolHeight: 0,
+    isSearch: false,
+    inToViewSpaceHeight: 0
   },
 
   /**
@@ -77,6 +80,56 @@ Component({
         }
       }
     },
+    // 搜索框输入内容时触发
+    searchItems: function(e) {
+      let that = this;
+      let listSearch = [];
+      let searchKey = e.detail.value;
+      if (typeof(searchKey) == 'string' && searchKey != '') {
+        if (!(that.data.listMain instanceof Array) || that.data.listMain.length < 1) {
+          return;
+        }
+        for (let index = 0; index < that.data.listMain.length; index++) {
+          let items = that.data.listMain[index].items;
+          if (!(items instanceof Array) || items.length < 1) {
+            continue;
+          }
+          for (let bIndex = 0; bIndex < items.length; bIndex++) {
+            let item = items[bIndex];
+            if (typeof(item) != 'object' || typeof(item.name) != 'string' || item.name.indexOf(searchKey) < 0) {
+              continue;
+            }
+            listSearch.push(item);
+          }
+        }
+        that.setData({
+          isSearch: true,
+          listSearch: listSearch
+        });
+      } else {
+        that.setData({
+          isSearch: false
+        });
+      }
+    },
+    // 点击条目时触发
+    clickItem: function(e) {
+      let that = this;
+      that.setData({
+        show: false,
+        isSearch: false
+      });
+      let hotel = e.target.dataset;
+      that.triggerEvent('onClickItem', hotel);
+    },
+    // 点击返回按钮进触发
+    closeModal: function(e) {
+      let that = this;
+      that.setData({
+        show: false,
+        isSearch: false
+      });
+    },
     /**
      * 装载通讯录格式的数据
      * @para pageContext  页面对象上下文
@@ -94,9 +147,11 @@ Component({
       });
       //计算分组高度,wx.createSelectotQuery()获取节点信息
       let number = 0;
+      let lastHeight = 0;
       for (let index = 0; index < pageContext.data.listMain.length; ++index) {
         wx.createSelectorQuery().in(pageContext).select('#inToView' + pageContext.data.listMain[index].id).boundingClientRect(function(rect) {
-          number = rect.height + number;
+          lastHeight = rect.height;
+          number = lastHeight + number;
           let newArry = [{
             'height': number,
             'key': rect.dataset.id,
@@ -107,14 +162,11 @@ Component({
           })
         }).exec();
       };
-    },
-    clickItem: function(e) {
-      let that = this;
-      that.setData({
-        show: false
-      });
-      let hotel = e.target.dataset;
-      that.triggerEvent('onClickItem', hotel);
+      wx.createSelectorQuery().in(pageContext).select('#mail_list_group').boundingClientRect(function(rect) {
+        pageContext.setData({
+          inToViewSpaceHeight: rect.height - lastHeight
+        })
+      }).exec();
     }
   },
   observers: {
@@ -126,7 +178,9 @@ Component({
     // },
     'mailListData': function(mailListData) {
       let that = this;
-      that.loadingMailListData(that, mailListData);
+      if (typeof(mailListData) == 'object' && mailListData != null) {
+        that.loadingMailListData(that, mailListData);
+      }
     }
   }
 })
