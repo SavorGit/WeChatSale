@@ -102,10 +102,12 @@ Page({
   onLoad: function(options) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    //console.log(user_info);
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var hotel_has_room = user_info.hotel_has_room;
     that.setData({
-      hotel_has_room: hotel_has_room
+      hotel_has_room: hotel_has_room,
+      user_info: user_info
     })
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
@@ -1712,44 +1714,10 @@ Page({
     });
 
   },
-  chooseHotel: function(e) {
-    //console.log(e);
-    let that = this;
-    that.setData({
-      hotel: e.detail,
-      is_link: 0,
-    });
-    var hotel_id = e.detail.id;
-    var hotel_has_room = e.detail.hotel_has_room;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    user_info.hotel_id = hotel_id;
-    user_info.hotel_has_room = hotel_has_room;
-    wx.setStorageSync(cache_key + "userinfo", user_info);
-    wx.removeStorageSync(cache_key + 'link_box_info');
-
-    if (hotel_has_room == 0) {
-      wx.switchTab({
-        url: '/pages/tv_sale/system',
-      })
-    } else {
-      //获取酒楼包间列表
-      wx.request({
-        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          hotel_id: hotel_id,
-        },
-        success: function(res) {
-          if (res.data.code == 10000) {
-            that.setData({
-              objectBoxArray: res.data.result.box_name_list,
-              box_list: res.data.result.box_list
-            })
-          }
-        }
-      })
-    }
+  
+  reChooseHotel:function(e){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
   }
 })

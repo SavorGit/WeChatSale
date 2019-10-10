@@ -605,6 +605,7 @@ Page({
     var hotel_has_room = e.detail.hotel_has_room;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     user_info.hotel_id = hotel_id;
+    user_info.is_common = 1;
     user_info.hotel_has_room = hotel_has_room;
     wx.setStorageSync(cache_key + "userinfo", user_info);
     wx.removeStorageSync(cache_key +'link_box_info');

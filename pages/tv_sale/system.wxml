@@ -227,8 +227,8 @@
 <view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
   <!-- 酒楼 -->
-  <view class="hotel-choose-panel theme7">
-    <view class="choosed-hotel theme-font" data-id="{{hotel.id}}" bindtap="showMailListPage">{{hotel.name}}</view>
+  <view class="hotel-choose-panel theme7" wx:if="{{user_info.is_common==1}}">
+    <view class="choosed-hotel theme-font"  bindtap="reChooseHotel">重选酒楼</view>
   </view>
 
   <view class='sale-panel full_width full_height'>
