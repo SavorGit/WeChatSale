@@ -6,7 +6,7 @@
  *
 属性说明：
   show：            控制modal显示与隐藏
-  mailListData:     展示数据。数据格式：[{id: "1", region: "A", items: [{id: "A-MING", name: "阿明"}]}]
+  mailListData:     展示数据。数据格式：[{id: "1", region: "A", items: [{id: "A-MING", name: "阿明", ...}]}]
 
 事件说明：
   bindonClickItem:  点击条目触发的回调函数
