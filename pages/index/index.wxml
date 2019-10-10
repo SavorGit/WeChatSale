@@ -3,7 +3,7 @@
 <view class="container theme-main" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
   <!-- 酒楼 -->
-  <view class="hotel-choose-panel theme7">
+  <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" data-id="{{hotel.id}}" bindtap="showMailListPage">{{hotel.name}}</view>
   </view>
 

@@ -86,6 +86,9 @@ Page({
               data: res.data.result.userinfo,
             })
             var user_info = res.data.result.userinfo;
+            that.setData({
+              user_info:user_info
+            })
             var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
             if (link_box_info != '') { //已链接盒子
               var box_name = link_box_info.box_name;
@@ -574,194 +577,61 @@ Page({
   },
   showMailListPage: function(e) {
     let that = this;
-    // wx.request({
-    //   url: '获取数据地址',
-    //   success(res) {
-    //     if (res.data.status == 0) {
-    //       that.setData({
-    //         mailListPageShow: true,
-    //         mailListData: that.convertDataFormat(res.data.data)
-    //       });
-    //     }
-    //   }
-    // });
-    that.setData({
-      mailListPageShow: true,
-      mailListData: [{
-          id: "1",
-          region: "A",
-          items: [{
-              id: "A-Ming",
-              name: "阿明"
-            },
-            {
-              id: "Ao-Te-Man",
-              name: "奥特曼"
-            },
-            {
-              id: "..",
-              name: "安庆"
-            },
-            {
-              id: "..",
-              name: "阿曼"
-            }
-          ]
-        },
-        {
-          id: "2",
-          region: "B",
-          items: [{
-              id: "..",
-              name: "爸爸"
-            },
-            {
-              id: "..",
-              name: "北京"
-            }
-          ]
-        },
-        {
-          id: "3",
-          region: "C",
-          items: [{
-              id: "..",
-              name: "长城"
-            },
-            {
-              id: "..",
-              name: "长春"
-            }
-          ]
-        },
-        {
-          id: "4",
-          region: "D",
-          items: [{
-              id: "..",
-              name: "大同"
-            },
-            {
-              id: "..",
-              name: "代县"
-            },
-            {
-              id: "..",
-              name: "岱岳"
-            }
-          ]
-        },
-        {
-          id: "5",
-          region: "E",
-          items: [{
-              id: "..",
-              name: "鄂尔多斯"
-            },
-            {
-              id: "..",
-              name: "饿了吗"
-            }
-          ]
-        },
-        {
-          id: "6",
-          region: "F",
-          items: [{
-              id: "..",
-              name: "房子"
-            },
-            {
-              id: "..",
-              name: "房山"
-            }
-          ]
-        },
-        {
-          id: "7",
-          region: "G",
-          items: [{
-              id: "..",
-              name: "龚丽娜"
-            },
-            {
-              id: "..",
-              name: "拱桥"
-            }
-          ]
-        },
-        {
-          id: "8",
-          region: "H",
-          items: [{
-              id: "..",
-              name: "好利来"
-            },
-            {
-              id: "..",
-              name: "好莱坞"
-            }
-          ]
-        },
-        {
-          id: "9",
-          region: "J",
-          items: [{
-              id: "..",
-              name: "鸡蛋"
-            },
-            {
-              id: "..",
-              name: "积极"
-            }
-          ]
-        },
-        {
-          id: "10",
-          region: "K",
-          items: [{
-              id: "..",
-              name: "昆明"
-            },
-            {
-              id: "..",
-              name: "康乐"
-            }
-          ]
-        },
-        {
-          id: "11",
-          region: "L",
-          items: [{
-              id: "..",
-              name: "乐山"
-            },
-            {
-              id: "..",
-              name: "龙宫"
-            }
-          ]
-        },
-        {
-          id: "12",
-          region: "M",
-          items: [{
-              id: "..",
-              name: "馒头"
-            },
-            {
-              id: "..",
-              name: "蒙古"
-            }
-          ]
-        },
-      ]
+    wx.request({
+      url: api_url+'/Smallsale/hotel/getHotelList',
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            mailListPageShow: true,
+            //mailListData: that.convertDataFormat(res.data.result)
+            mailListData: res.data.result
+          });
+        }
+      }
     });
+    
   },
   chooseHotel: function(e) {
+    //console.log(e);
     let that = this;
     that.setData({
-      hotel: e.detail
+      hotel: e.detail,
+      is_link:0,
     });
+    var hotel_id = e.detail.id;
+    var hotel_has_room = e.detail.hotel_has_room;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    user_info.hotel_id = hotel_id;
+    user_info.hotel_has_room = hotel_has_room;
+    wx.setStorageSync(cache_key + "userinfo", user_info);
+    wx.removeStorageSync(cache_key +'link_box_info');
+    
+    if(hotel_has_room==0){
+      wx.switchTab({
+        url: '/pages/tv_sale/system',
+      })
+    }else {
+      //获取酒楼包间列表
+      wx.request({
+        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            that.setData({
+              objectBoxArray: res.data.result.box_name_list,
+              box_list: res.data.result.box_list
+            })
+          }
+        }
+      })
+    }
   }
 })
