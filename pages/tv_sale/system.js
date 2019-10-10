@@ -432,7 +432,7 @@ Page({
       })
     } else {
       that.setData({
-        showPageType: 2
+        showPageType: 3
       })
       wx.request({ //我的活动
         url: api_url + '/Smallsale/goods/myGoodslist',
@@ -866,7 +866,7 @@ Page({
 
           that.setData({
             box_btn: box_btn,
-            showPageType: 2,
+            showPageType: 3,
             is_my_activity: 1,
             my_activity_info: my_activity_info
           })
@@ -1628,6 +1628,12 @@ Page({
           console.log('用户点击取消')
         }
       }
+    })
+  },
+  addMyActivity:function(res){
+    var that = this;
+    that.setData({
+      showPageType:2
     })
   }
 })

@@ -130,17 +130,21 @@
     </block>
 
     <!-- 我的活动[列表] -->
-    <block wx:if="{{showPageType == 2}}">
+    <block wx:if="{{showPageType == 3}}">
       <block wx:if="{{is_my_activity == 0}}">
-        <view class="row full_width theme7 touch-move-unactive">
+        <view class="row full_width theme7 touch-move-unactive" bindtap="addMyActivity">
           <view class="ads-mine full_width full_height flex_column_center">
             <view class="btn-ads-mine theme-button">添加我的活动</view>
           </view>
         </view>
       </block>
-      <block wx:if="{{is_my_activity == 1}}">
+      <!-- <block wx:if="{{is_my_activity == 1}}">
         <view class="row full_width theme7 touch-move-unactive">
-          <view class='content'>
+         
+        </view>
+      </block> -->
+      <view class="row full_width theme7 touch-move-unactive" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
+       <view class='content' wx:if="{{index==0 && is_my_activity==1}}">
             <view class="pic">
               <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
               <view class="flag theme-font4 theme-background-9">我的</view>
@@ -157,10 +161,7 @@
               </view>
             </view>
           </view>
-        </view>
-      </block>
-      <view class="row full_width theme7 touch-move-unactive" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
-        <view class='content'>
+        <view class='content' wx:else>
           <view class="pic">
             <image src='{{bean.img_url}}'></image>
           </view>
