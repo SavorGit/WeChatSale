@@ -211,6 +211,15 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   left: 43rpx;
 }
 
+.sale-panel .row > .content > .pic > .status {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 75rpx;
+  left: 91rpx;
+  border: unset;
+}
+
 .sale-panel .row > .content > .goods {
   width: calc(100% - 246rpx);
   height: 138rpx;

@@ -144,23 +144,24 @@
         </view>
       </block> -->
       <view class="row full_width theme7 touch-move-unactive" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
-       <view class='content' wx:if="{{index==0 && is_my_activity==1}}">
-            <view class="pic">
-              <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
-              <view class="flag theme-font4 theme-background-9">我的</view>
+        <view class='content' wx:if="{{index==0 && is_my_activity==1}}">
+          <view class="pic">
+            <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
+            <view class="flag theme-font4 theme-background-9">我的</view>
+            <image class='status' src='{{my_activity_info.check_status_img}}'></image>
+          </view>
+          <view class='goods'>
+            <view class='title full_width theme-font2'>{{my_activity_info.goods_name}}</view>
+            <view class='infomation full_width'>
+              <view class='price theme-font2'>￥ {{my_activity_info.price}}元<!-- {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}--></view>
             </view>
-            <view class='goods'>
-              <view class='title full_width theme-font2'>{{my_activity_info.goods_name}}</view>
-              <view class='infomation full_width'>
-                <view class='price theme-font2'>￥ {{my_activity_info.price}}元 {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}</view>
-              </view>
-              <view class='operate'>
-                <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
-                <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
-                <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
-              </view>
+            <view class='operate'>
+              <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
+              <button disabled="{{box_btn}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
+              <button disabled="{{box_btn}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
             </view>
           </view>
+        </view>
         <view class='content' wx:else>
           <view class="pic">
             <image src='{{bean.img_url}}'></image>
@@ -172,7 +173,7 @@
               <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
             </view>
             <view class='operate'>
-              <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
+              <button disabled="{{box_btn}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
             </view>
           </view>
         </view>
