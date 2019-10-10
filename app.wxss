@@ -3,6 +3,13 @@
 
 /* ================================== 页面 ================================== */
 
+button::after, button::before {
+  margin: unset;
+  padding: unset;
+  border: unset;
+  background-color: unset;
+}
+
 .container {
   width: 100vw;
   height: 100vh;

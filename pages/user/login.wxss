@@ -40,7 +40,7 @@
 }
 
 .page_main .login_form input {
-  border-bottom: 1rpx solid #333;
+  border-bottom: 1rpx solid #999;
 }
 
 .page_main .login_form .account, .page_main .login_form .invitation,
