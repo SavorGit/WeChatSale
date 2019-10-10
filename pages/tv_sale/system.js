@@ -491,6 +491,7 @@ Page({
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
+                hotel_activity_list: hotel_activity_list,
                 box_btn: box_btn,
               })
             } else {
