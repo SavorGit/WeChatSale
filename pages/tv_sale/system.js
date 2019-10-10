@@ -88,7 +88,8 @@ Page({
       'file_size': '',
       'duration': ''
     },
-    showHotelErr: false
+    showHotelErr: false,
+    hotel_activity_list:[]
   },
 
   /**
@@ -185,10 +186,13 @@ Page({
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
             my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+            
+            var hotel_activity_list = res.data.result.datalist;
             that.setData({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
               box_btn: box_btn,
+              hotel_activity_list: hotel_activity_list
             })
           } else {
             my_activity_info = {};
@@ -476,6 +480,8 @@ Page({
               my_activity_info.check_status_img = check_status_img;
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
               my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+              var hotel_activity_list = res.data.result.datalist;
+              
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
@@ -736,7 +742,7 @@ Page({
     var goods_id = res.detail.value.goods_id;
     var file_size = res.detail.value.file_size;
     var duration = res.detail.value.duration;
-
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     if (goods_id > 0) {
       var tost_success_desc = '活动编辑成功';
     } else {
@@ -862,7 +868,27 @@ Page({
           } else {
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
           }
+          wx.request({
+            url: api_url + '/Smallsale/goods/myGoodslist',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              hotel_id: hotel_id,
+              openid: openid,
+              type: 20,
+              page: 1,
+              box_mac: link_box_info.box_mac,
 
+            },
+            success:function(res){
+              if(res.data.code==10000){
+                that.setData({
+                  hotel_activity_list:res.data.result.datalist
+                })
+              }
+            }
+          })
 
           that.setData({
             box_btn: box_btn,
@@ -968,7 +994,9 @@ Page({
               filename: filename,
               goods_img: goods_img,
               my_activity_info: my_activity_info,
-              goods_name: goods_name
+              goods_name: goods_name,
+              showPageType:2,
+              is_my_activity:0
             })
           } else {
             that.setData({
@@ -1630,10 +1658,14 @@ Page({
       }
     })
   },
-  addMyActivity:function(res){
+  addMyActivity:function(e){
     var that = this;
+    console.log(e);
+    //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
-      showPageType:2
+      showPageType:2,
+      is_my_activity: 0
+      
     })
   }
 })
