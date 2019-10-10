@@ -32,6 +32,10 @@
   background-color: #999;
 }
 
+.theme-background-9 {
+  background-color: #eb6877;
+}
+
 .theme-navigation {
   color: #fff;
   background-color: #05101a;

@@ -30,7 +30,7 @@
     <view class='tab-bar theme7'>
       <view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
       <view class='dividing-line'></view>
-      <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>我的活动</view>
+      <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
     </view>
 
     <!-- 活动促销 -->
@@ -38,7 +38,9 @@
       <block wx:if="{{sale_list.length > 0}}">
         <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content' data-index="{{index}}">
-            <image src='{{bean.img_url}}'></image>
+            <view class="pic">
+              <image src='{{bean.img_url}}'></image>
+            </view>
             <view class='goods'>
               <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
               <view class='infomation full_width'>
@@ -128,12 +130,58 @@
     </block>
 
     <!-- 我的活动[列表] -->
-    <block wx:if="{{showPageType == 2 && is_my_activity==1 }}">
+    <block wx:if="{{showPageType == 2}}">
+      <block wx:if="{{is_my_activity == 0}}">
+        <view class="row full_width theme7 touch-move-unactive">
+          <view class="ads-mine full_width full_height flex_column_center">
+            <view class="btn-ads-mine theme-button">添加我的活动</view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{is_my_activity == 1}}">
+        <view class="row full_width theme7 touch-move-unactive">
+          <view class='content'>
+            <view class="pic">
+              <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
+              <view class="flag theme-font4 theme-background-9">我的</view>
+            </view>
+            <view class='goods'>
+              <view class='title full_width theme-font2'>{{my_activity_info.goods_name}}</view>
+              <view class='infomation full_width'>
+                <view class='price theme-font2'>￥ {{my_activity_info.price}}元 {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}</view>
+              </view>
+              <view class='operate'>
+                <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
+                <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
+                <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="row full_width theme7 touch-move-unactive" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
+        <view class='content'>
+          <view class="pic">
+            <image src='{{bean.img_url}}'></image>
+          </view>
+          <view class='goods'>
+            <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
+            <view class='infomation full_width'>
+              <view class='price theme-font2'>￥ {{bean.price}}元</view>
+              <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+            </view>
+            <view class='operate'>
+              <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- <block wx:if="{{showPageType == 2 && is_my_activity==1 }}">
       <view class='ads-list theme7'>
         <view class='pic full_width'>
           <image class='status' src='{{my_activity_info.check_status_img}}'></image>
           <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
-          <!-- <video wx:else class="choosed-video" src="{{my_activity_info.vedio_url}}"></video> -->
         </view>
         <view class='row full_width'>
           <label class='theme-font3'>商品名称</label>
@@ -145,11 +193,6 @@
         </view>
         <view class='row full_width' style="width: 550rpx;">
           <label class='theme-font3'>活动时间</label>
-          <!-- <view class='theme-font2' style="width: 435rpx;height: 42rpx;padding-top: 8rpx;">
-            <view style="width: 190rpx;">{{my_activity_info.start_time}}</view>
-            <label>~</label>
-            <view style="width: 190rpx;">{{my_activity_info.end_time}}</view>
-          </view> -->
           <view class='theme-font2' style="width: 435rpx;height: 42rpx;">
             <label>{{my_activity_info.start_time}}</label>
             <label style="margin:0 10rpx;">~</label>
@@ -166,7 +209,7 @@
           <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
         </view>
       </view>
-    </block>
+    </block> -->
 
     <!-- 默认 -->
     <block wx:else>
