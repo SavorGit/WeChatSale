@@ -228,8 +228,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   width: 120rpx;
   height: 120rpx;
   position: absolute;
-  top: 75rpx;
-  left: 91rpx;
+  top: 30rpx;
+  left: 141rpx;
   border: unset;
 }
 
