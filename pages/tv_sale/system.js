@@ -89,7 +89,11 @@ Page({
       'duration': ''
     },
     showHotelErr: false,
-    hotel_activity_list:[]
+    hotel: {
+      id: null,
+      name: "请选择酒楼"
+    },
+    hotel_activity_list: []
   },
 
   /**
@@ -186,7 +190,7 @@ Page({
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
             my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
-            
+
             var hotel_activity_list = res.data.result.datalist;
             that.setData({
               is_my_activity: 1,
@@ -481,7 +485,7 @@ Page({
               my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
               my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
               var hotel_activity_list = res.data.result.datalist;
-              
+
               that.setData({
                 is_my_activity: 1,
                 my_activity_info: my_activity_info,
@@ -881,10 +885,10 @@ Page({
               box_mac: link_box_info.box_mac,
 
             },
-            success:function(res){
-              if(res.data.code==10000){
+            success: function(res) {
+              if (res.data.code == 10000) {
                 that.setData({
-                  hotel_activity_list:res.data.result.datalist
+                  hotel_activity_list: res.data.result.datalist
                 })
               }
             }
@@ -995,8 +999,8 @@ Page({
               goods_img: goods_img,
               my_activity_info: my_activity_info,
               goods_name: goods_name,
-              showPageType:2,
-              is_my_activity:0
+              showPageType: 2,
+              is_my_activity: 0
             })
           } else {
             that.setData({
@@ -1658,14 +1662,94 @@ Page({
       }
     })
   },
-  addMyActivity:function(e){
+  addMyActivity: function(e) {
     var that = this;
     console.log(e);
     //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
-      showPageType:2,
+      showPageType: 2,
       is_my_activity: 0
-      
+
     })
+  },
+  // 处理数据格式
+  convertDataFormat: function(data) {
+    // let someTtitle = null;
+    // let someArrary = [];
+    // for (let index = 0; index < mailListData.length; index++) {
+    //   let newBrands = {
+    //     brandId: mailListData[index].brandId,
+    //     name: mailListData[index].brandName
+    //   };
+    //   if (mailListData[index].initial != someTtitle) {
+    //     someTtitle = mailListData[index].initial
+    //     let newObj = {
+    //       id: index,
+    //       region: someTtitle,
+    //       brands: []
+    //     };
+    //     newObj.brands.push(newBrands);
+    //     someArrary.push(newObj)
+    //   }
+    // };
+  },
+  showMailListPage: function(e) {
+    let that = this;
+    wx.request({
+      url: api_url + '/Smallsale/hotel/getHotelList',
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            mailListPageShow: true,
+            //mailListData: that.convertDataFormat(res.data.result)
+            mailListData: res.data.result
+          });
+        }
+      }
+    });
+
+  },
+  chooseHotel: function(e) {
+    //console.log(e);
+    let that = this;
+    that.setData({
+      hotel: e.detail,
+      is_link: 0,
+    });
+    var hotel_id = e.detail.id;
+    var hotel_has_room = e.detail.hotel_has_room;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    user_info.hotel_id = hotel_id;
+    user_info.hotel_has_room = hotel_has_room;
+    wx.setStorageSync(cache_key + "userinfo", user_info);
+    wx.removeStorageSync(cache_key + 'link_box_info');
+
+    if (hotel_has_room == 0) {
+      wx.switchTab({
+        url: '/pages/tv_sale/system',
+      })
+    } else {
+      //获取酒楼包间列表
+      wx.request({
+        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+        },
+        success: function(res) {
+          if (res.data.code == 10000) {
+            that.setData({
+              objectBoxArray: res.data.result.box_name_list,
+              box_list: res.data.result.box_list
+            })
+          }
+        }
+      })
+    }
   }
 })

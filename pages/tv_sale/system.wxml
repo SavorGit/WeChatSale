@@ -154,12 +154,14 @@
           <view class='goods'>
             <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
             <view class='infomation full_width'>
-              <view class='price theme-font2'>￥ {{bean.price}}元<!-- {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}--></view>
+              <view class='price theme-font2'>￥ {{bean.price}}元
+                <!-- {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}-->
+              </view>
             </view>
             <view class='operate'>
               <button wx:if="{{bean.status==2 || bean.status==3}}" class='btn-edit theme-button6' bindtap="editGoods">修改</button>
-              <button wx:if="{{bean.status==2}}"  class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">节目单播放</button>
-              <button wx:if="{{bean.status==2}}"  class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
+              <button wx:if="{{bean.status==2}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">节目单播放</button>
+              <button wx:if="{{bean.status==2}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
           </view>
         </view>
@@ -223,6 +225,12 @@
 </scroll-view>
 <!-- 无机顶盒 -->
 <view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
+
+  <!-- 酒楼 -->
+  <view class="hotel-choose-panel theme7">
+    <view class="choosed-hotel theme-font" data-id="{{hotel.id}}" bindtap="showMailListPage">{{hotel.name}}</view>
+  </view>
+
   <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
@@ -312,3 +320,6 @@
     </view>
   </view>
 </modal>
+
+<!-- 酒楼列表弹窗 -->
+<MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
