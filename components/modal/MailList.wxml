@@ -13,7 +13,7 @@
 
     <block wx:if="{{isSearch}}">
       <scroll-view class="content" scroll-y="true" scroll-with-animation="true">
-        <view wx:for="{{listSearch}}" wx:for-item="item" wx:key="{{item.id}}" class="address_bottom" data-id='{{item.id}}' data-name="{{item.name}}" bindtap="clickItem">{{item.name}}</view>
+        <view wx:for="{{listSearch}}" wx:for-item="item" wx:key="{{item.id}}" class="address_bottom" data-id='{{item.id}}' bindtap="clickItem">{{item.name}}</view>
       </scroll-view>
     </block>
     <block wx:else>
@@ -24,7 +24,7 @@
           <!-- <view wx:for="{{group.items}}" wx:for-item="item" wx:key="{{item.id}}">
         <view class="address_bottom" data-id='{{item.id}}'>{{item.name}}</view>
       </view> -->
-          <view wx:for="{{group.items}}" wx:for-item="item" wx:key="{{item.id}}" class="address_bottom" data-id='{{item.id}}' data-name="{{item.name}}" bindtap="clickItem">{{item.name}}</view>
+          <view wx:for="{{group.items}}" wx:for-item="item" wx:key="{{item.id}}" class="address_bottom" data-id='{{item.id}}' bindtap="clickItem">{{item.name}}</view>
         </view>
         <view style="height: {{inToViewSpaceHeight}}px;background-color:#FFFFFF"></view>
       </scroll-view>
