@@ -120,7 +120,22 @@ Component({
         isSearch: false
       });
       let hotel = e.target.dataset;
-      that.triggerEvent('onClickItem', hotel);
+      let bean = null;
+      for (let index = 0; index < that.data.listMain.length; index++) {
+        let items = that.data.listMain[index].items;
+        if (!(items instanceof Array) || items.length < 1) {
+          continue;
+        }
+        for (let bIndex = 0; bIndex < items.length; bIndex++) {
+          let item = items[bIndex];
+          if (typeof(item) != 'object' || typeof(item.id) != 'string' || item.id != hotel.id) {
+            continue;
+          }
+          bean = item;
+        }
+      }
+      // hotel.bean = bean;
+      that.triggerEvent('onClickItem', bean);
     },
     // 点击返回按钮进触发
     closeModal: function(e) {
