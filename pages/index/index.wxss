@@ -145,7 +145,7 @@
 }
 
 .main-function-panel {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 
 .main-function-panel > button::after {
@@ -197,22 +197,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .box-operate-panel > button {
   width: 150rpx;
   height: 46rpx;
   line-height: 46rpx;
-  margin: auto;
-  padding: 0;
+  margin: unset;
+  padding: unset;
   border: unset;
   font-size: 24rpx;
 }
 
 .box-panel {
-  height: calc(100% - 618rpx);
-  margin-top: 20rpx;
+  height: calc(100% - 638rpx);
+  margin-top: 10rpx;
 }
 
 .box-panel > .title {

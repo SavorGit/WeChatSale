@@ -98,6 +98,12 @@ image.pic_show_cur {
   margin-left: 30rpx;
 }
 
+.launch_pic_page_b > .page_top > view > .link_relief {
+  position: relative;
+  float: right;
+  margin-right: 30rpx;
+}
+
 .launch_pic_page_b .page_main {
   width: 100%;
   height: calc(100% - 200rpx);
@@ -117,7 +123,6 @@ image.pic_show_cur {
   height: 100rpx;
   color: #fff;
   font-size: 28rpx;
-  background-color: #0e1c29;
   text-align: left;
 }
 
@@ -230,6 +235,12 @@ image.pic_show_cur {
   position: relative;
   float: left;
   margin-left: 30rpx;
+}
+
+.launch_pic_page_a > .page_top > view > .link_relief {
+  position: relative;
+  float: right;
+  margin-right: 30rpx;
 }
 
 .launch_pic_page_a .page_main {

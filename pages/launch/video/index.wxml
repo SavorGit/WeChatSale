@@ -1,15 +1,17 @@
 <!--pages/launch/video/index.wxml-->
 
-<view class="container">
+<view class="container theme-main">
 
 
   <!-- ================================== 上传视频前 ================================== -->
   <view class="full_width launch_video_page_b display_{{(updateStatus == 0) ? 'show' : 'hide'}}">
-    <view class='page_top theme2 flex_row_center font_666666_26'>
-      <label>视频加载完成后，电视开始加载并自动播放</label>
-      <label class='link_relief'>
-        <navigator url="/pages/commons/relief">免责声明</navigator>
-      </label>
+    <view class='page_top theme-panel-2'>
+      <view class='full_width font_666666_26'>
+        <label class="tip_top_lable">视频加载完成后，电视开始加载并自动播放</label>
+        <label class='link_relief'>
+          <navigator url="/pages/commons/relief">免责声明</navigator>
+        </label>
+      </view>
     </view>
     <form bindsubmit="forscreen_video">
       <view class='page_main'>
@@ -35,10 +37,10 @@
       <input class='display_hide' name="is_pub_hotelinfo" value="0"></input>
       <input class='display_hide' name="duration" value="{{duration}}"></input>
       <input class='display_hide' name="is_share" value="0"></input>
-      
+
       <input class="display_hide" name="play_times" value="{{play_times}}"></input>
       <input class='display_hide' name="video_size" value="{{video_size}}"> </input>
-      
+
       <view class='page_bottom'>
         <button class="savor-btn savor-btn-size" form-type="submit" hover-class="none" disabled='{{is_btn_disabel}}'>投屏</button>
       </view>
@@ -67,11 +69,13 @@
 
   <!-- ================================== 视频上传中 ================================== -->
   <view class="full_width launch_video_page_b display_{{(updateStatus == 1) ? 'show' : 'hide'}}">
-    <view class='page_top theme2 flex_row_center font_666666_26'>
-      <label>视频加载完成后，电视开始加载并自动播放</label>
-      <label class='link_relief'>
-        <navigator url="/pages/commons/relief">免责声明</navigator>
-      </label>
+    <view class='page_top theme-panel-2'>
+      <view class='full_width font_666666_26'>
+        <label>视频加载完成后，电视开始加载并自动播放</label>
+        <label class='link_relief'>
+          <navigator url="/pages/commons/relief">免责声明</navigator>
+        </label>
+      </view>
     </view>
     <view class='page_main'>
       <view class='cover full_width'>
@@ -91,11 +95,13 @@
 
   <!-- ================================== 视频上传失败 ================================== -->
   <view class="full_width launch_video_page_b display_{{(updateStatus == 2) ? 'show' : 'hide'}}">
-    <view class='page_top theme2 flex_row_center font_666666_26'>
-      <label>视频加载完成后，电视开始加载并自动播放</label>
-      <label class='link_relief'>
-        <navigator url="/pages/commons/relief">免责声明</navigator>
-      </label>
+    <view class='page_top theme-panel-2'>
+      <view class='full_width font_666666_26'>
+        <label>视频加载完成后，电视开始加载并自动播放</label>
+        <label class='link_relief'>
+          <navigator url="/pages/commons/relief">免责声明</navigator>
+        </label>
+      </view>
     </view>
     <view class='page_main'>
       <view class='cover full_width'>
@@ -115,11 +121,13 @@
 
   <!-- ================================== 上传视频后 ================================== -->
   <view class="full_width launch_video_page_a display_{{(updateStatus == 4) ? 'show' : 'hide'}}">
-    <view class='page_top theme2 flex_row_center font_666666_26'>
-      <label>视频加载完成后，电视开始加载并自动播放</label>
-      <label class='link_relief'>
-        <navigator url="/pages/commons/relief">免责声明</navigator>
-      </label>
+    <view class='page_top theme-panel-2'>
+      <view class='full_width font_666666_26'>
+        <label class='tip_top_lable'>视频加载完成后，电视开始加载并自动播放</label>
+        <label class='link_relief'>
+          <navigator url="/pages/commons/relief">免责声明</navigator>
+        </label>
+      </view>
     </view>
     <view class='page_main'>
       <view class='cover'>
@@ -140,8 +148,8 @@
     <!-- 重选 -->
     <view class="page_bottom">
       <view class='button_group flex_row_center'>
-        <button class='savor-btn button_space_left' bindtap='chooseVedio'  data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选视频</button>
-        <button class='savor-btn button_space_right' bindtap="exitForscreend"  data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
+        <button class='savor-btn button_space_left' bindtap='chooseVedio' data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选视频</button>
+        <button class='savor-btn button_space_right' bindtap="exitForscreend" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
       </view>
     </view>
 
