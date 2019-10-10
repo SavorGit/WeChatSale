@@ -212,14 +212,16 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel .row > .content > .pic > .flag {
-  width: 60rpx;
-  height: 40rpx;
-  line-height: 40rpx;
+  width: 50rpx;
+  height: 30rpx;
+  line-height: 30rpx;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 20rpx;
   position: absolute;
   top: 23rpx;
   left: 43rpx;
+  opacity: 0.9;
+  border-radius: 6rpx;
 }
 
 .sale-panel .row > .content > .pic > .status {
