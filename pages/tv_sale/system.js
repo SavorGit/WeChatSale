@@ -1,5 +1,6 @@
 // pages/tv_sale/system.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var box_mac;
 var hotel_id;
@@ -101,6 +102,7 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     //console.log(user_info);
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
