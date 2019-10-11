@@ -160,7 +160,7 @@
             </view>
             <view class='operate'>
               <button wx:if="{{bean.status==2 || bean.status==3}}" class='btn-edit theme-button6' bindtap="editGoods">修改</button>
-              <button wx:if="{{bean.status==2}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">节目单播放</button>
+              <button wx:if="{{bean.status==2}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
               <button wx:if="{{bean.status==2}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
           </view>
@@ -182,39 +182,7 @@
         </view>
       </view>
     </block>
-    <!-- <block wx:if="{{showPageType == 2 && is_my_activity==1 }}">
-      <view class='ads-list theme7'>
-        <view class='pic full_width'>
-          <image class='status' src='{{my_activity_info.check_status_img}}'></image>
-          <image class='photo full_height full_width' src='{{my_activity_info.img_url}}'></image>
-        </view>
-        <view class='row full_width'>
-          <label class='theme-font3'>商品名称</label>
-          <view class='theme-font2'>{{my_activity_info.goods_name}}</view>
-        </view>
-        <view class='row full_width'>
-          <label class='theme-font3'>价格</label>
-          <view class='theme-font2'>{{my_activity_info.price}}元</view>
-        </view>
-        <view class='row full_width' style="width: 550rpx;">
-          <label class='theme-font3'>活动时间</label>
-          <view class='theme-font2' style="width: 435rpx;height: 42rpx;">
-            <label>{{my_activity_info.start_time}}</label>
-            <label style="margin:0 10rpx;">~</label>
-            <label>{{my_activity_info.end_time}}</label>
-          </view>
-        </view>
-        <view class='row full_width'>
-          <label class='theme-font3'>活动范围</label>
-          <view class='theme-font2'>{{my_activity_info.room_type_desc}}</view>
-        </view>
-        <view class='row full_width'>
-          <button class='btn-edit theme-button6' bindtap="editGoods">修改</button>
-          <button disabled="{{box_btn}}" class='btn-menu theme-button' bindtap="programPlay" data-goods_id="{{my_activity_info.goods_id}}">节目单播放</button>
-          <button disabled="{{box_btn}}" class='btn-tv theme-button' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
-        </view>
-      </view>
-    </block> -->
+    
 
     <!-- 默认 -->
     <block wx:else>
