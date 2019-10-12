@@ -171,7 +171,7 @@ Page({
             name: filename,
             key: "forscreen/resource/" + timestamp + postf_t,
             policy: policy,
-            OSSAccessKeyId: "LTAITjXOpRHKflOX",
+            OSSAccessKeyId: app.globalData.oss_access_key_id,
             sucess_action_status: "200",
             signature: signature
 
