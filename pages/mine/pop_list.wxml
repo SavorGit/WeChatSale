@@ -13,7 +13,7 @@
         </view>
         <view class='operate'>
           <button wx:if="{{bean.is_add==0}}" class='btn-add theme-button-add' bindtap="addPop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">添加</button>
-          <button wx:else class="btn-added theme-button" bindtap="removePop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">已添加</button>
+          <button wx:else class="btn-added theme-button" bindtap="removePop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">删除</button>
         </view>
       </view>
       <view wx:else class='row theme7'>
@@ -27,7 +27,7 @@
         </view>
         <view class='operate'>
           <button wx:if="{{bean.is_add==0}}" class='btn-add theme-button-add' bindtap="addPop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">添加</button>
-          <button wx:else class="btn-added theme-button" bindtap="removePop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">已添加</button>
+          <button wx:else class="btn-added theme-button" bindtap="removePop" data-goods_id="{{bean.goods_id}}" data-keys="{{index}}">删除</button>
         </view>
       </view>
     </block>
