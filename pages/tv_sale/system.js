@@ -1069,6 +1069,7 @@ Page({
     }else {
       hotel_id = user_info.hotel_id
     }
+    console.log(user_info);
     if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
@@ -1090,6 +1091,26 @@ Page({
           ]
         })
       }
+      wx.request({ //促销活动列表
+        url: api_url + '/Smallsale/goods/myGoodslist',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+          openid: user_info.openid,
+          page: 1,
+          type: 10,
+          //box_mac: link_user_info.box_mac,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            that.setData({
+              sale_list: res.data.result.datalist,
+            })
+          }
+        }
+      })
     } else {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({

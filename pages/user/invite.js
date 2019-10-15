@@ -99,8 +99,6 @@ Page({
     var openid = user_info.openid;
     
 
-    console.log('大坏蛋');
-    console.log(res);
     if (res.detail.errMsg == 'getUserInfo:ok') {
 
       wx.getUserInfo({
@@ -129,9 +127,16 @@ Page({
                   key: cache_key + 'userinfo',
                   data: res.data.result,
                 });
-                wx.reLaunch({
-                  url: '/pages/index/index',
-                })
+                if (res.data.result.hotel_has_room==1){
+                  wx.reLaunch({
+                    url: '/pages/index/index',
+                  })
+                }else{
+                  wx.reLaunch({
+                    url: '/pages/tv_sale/system',
+                  })
+                }
+                
               } else {
                 wx.showToast({
                   title: '微信授权登陆失败，请重试',

@@ -148,7 +148,7 @@ Page({
                 }
               })
             } else {
-              wx.switchTab({
+              wx.reLaunch({
                 url: '/pages/tv_sale/system',
               })
             }
