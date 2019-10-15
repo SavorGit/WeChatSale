@@ -182,7 +182,7 @@
         </view>
       </view>
     </block>
-    
+
 
     <!-- 默认 -->
     <block wx:else>
@@ -196,7 +196,7 @@
 
   <!-- 酒楼 -->
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.is_common==1}}">
-    <view class="choosed-hotel theme-font"  bindtap="reChooseHotel">重选酒楼</view>
+    <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
   </view>
 
   <view class='sale-panel full_width full_height'>
@@ -205,7 +205,9 @@
       <block wx:if="{{sale_list.length > 0}}">
         <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content' data-index="{{index}}">
-            <image src='{{bean.img_url}}'></image>
+            <view class="pic">
+              <image src='{{bean.img_url}}'></image>
+            </view>
             <view class='goods'>
               <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
               <view class='infomation full_width'>
