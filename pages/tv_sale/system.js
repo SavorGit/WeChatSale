@@ -489,6 +489,8 @@ Page({
                 my_activity_info.check_status_img = check_status_img;
                 my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
                 my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+              }else {
+                my_activity_info = {};
               }
               
 
@@ -508,18 +510,21 @@ Page({
               that.setData({
                 price: '',
                 is_my_activity: 0,
-                my_activity_info: my_activity_info
+                my_activity_info: my_activity_info,
+                hotel_activity_list: []
               })
             }
 
           } else {
+            
             my_activity_info = {};
             my_activity_info.media_type = 0;
             my_activity_info.room_type = 0
             that.setData({
               price: '',
               is_my_activity: 0,
-              my_activity_info: my_activity_info
+              my_activity_info: my_activity_info,
+              hotel_activity_list:[]
             })
           }
         },
@@ -530,7 +535,8 @@ Page({
           that.setData({
             price: '',
             is_my_activity: 0,
-            my_activity_info: my_activity_info
+            my_activity_info: my_activity_info,
+            hotel_activity_list: []
           })
         }
       })
@@ -1675,10 +1681,14 @@ Page({
   addMyActivity: function(e) {
     var that = this;
     console.log(e);
+    var my_activity_info = {};
+    my_activity_info.media_type= 0;
     //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
       showPageType: 2,
-      is_my_activity: 0
+      is_my_activity: 0,
+      my_activity_info: my_activity_info,
+      price:''
 
     })
   },
