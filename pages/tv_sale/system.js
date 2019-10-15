@@ -757,6 +757,9 @@ Page({
     var goods_name = res.detail.value.goods_name;
     var price = res.detail.value.price;
     var room_type = res.detail.value.room_type;
+    if(room_type=='' ){
+      room_type = 0
+    }
     var room_arr = this.data.room_arr;
     var check_status_arr = this.data.check_status_arr;
     var goods_id = res.detail.value.goods_id;
@@ -1683,6 +1686,7 @@ Page({
     console.log(e);
     var my_activity_info = {};
     my_activity_info.media_type= 0;
+    my_activity_info.room_type = 0;
     //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
       showPageType: 2,
