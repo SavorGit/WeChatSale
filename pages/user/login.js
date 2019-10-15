@@ -332,6 +332,7 @@ Page({
             key: cache_key+'userinfo',
             data: user_info,
           })
+          wx.removeStorageSync(cache_key + 'link_box_info');
         }else {
           wx.showToast({
             title: rt.data.msg,

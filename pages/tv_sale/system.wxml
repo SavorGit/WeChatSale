@@ -176,7 +176,7 @@
               <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
             </view>
             <view class='operate'>
-              <button disabled="{{box_btn}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{my_activity_info.goods_id}}" data-oss_addr="{{my_activity_info.oss_addr}}" data-qrcode_url="{{my_activity_info.qrcode_url}}">电视播放</button>
+              <button disabled="{{box_btn}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
           </view>
         </view>
