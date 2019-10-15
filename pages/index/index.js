@@ -81,11 +81,18 @@ Page({
         },
         success: function(res) {
           if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
-            wx.setStorage({
-              key: cache_key + 'userinfo',
-              data: res.data.result.userinfo,
-            })
-            var user_info = res.data.result.userinfo;
+            var user_info = wx.getStorageSync(cache_key+'userinfo');
+            if(user_info.select_hotel_id>0){
+              var hotel_id = user_info.select_hotel_id;
+            }else{
+              wx.setStorage({
+                key: cache_key + 'userinfo',
+                data: res.data.result.userinfo,
+              })
+              var user_info = res.data.result.userinfo;
+              var hotel_id = user_info.hotel_id;
+            }
+            
             that.setData({
               user_info:user_info
             })
@@ -102,7 +109,7 @@ Page({
 
             }
             if (user_info.hotel_has_room == 1) {
-              var hotel_id = user_info.hotel_id;
+              
               //获取酒楼包间列表
               wx.request({
                 url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
@@ -604,14 +611,15 @@ Page({
     var hotel_id = e.detail.id;
     var hotel_has_room = e.detail.hotel_has_room;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    user_info.hotel_id = hotel_id;
+    user_info.select_hotel_id = hotel_id;
     user_info.is_common = 1;
     user_info.hotel_has_room = hotel_has_room;
     wx.setStorageSync(cache_key + "userinfo", user_info);
     wx.removeStorageSync(cache_key +'link_box_info');
     
     if(hotel_has_room==0){
-      wx.switchTab({
+      
+      wx.reLaunch({
         url: '/pages/tv_sale/system',
       })
     }else {
@@ -629,6 +637,25 @@ Page({
             that.setData({
               objectBoxArray: res.data.result.box_name_list,
               box_list: res.data.result.box_list
+            })
+          }
+        }
+      })
+      //获取当前酒楼包间签到信息
+      wx.request({
+        url: api_url + '/Smallsale/user/getSigninBoxList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+          openid: user_info.openid,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            sign_box_list = res.data.result;
+            that.setData({
+              sign_box_list: sign_box_list
             })
           }
         }

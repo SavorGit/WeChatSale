@@ -112,7 +112,12 @@ Page({
       user_info: user_info
     })
     openid = user_info.openid;
-    hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      hotel_id = user_info.select_hotel_id;
+      
+    }else{
+      hotel_id = user_info.hotel_id;
+    }
     box_mac = link_box_info.box_mac;
 
     wx.request({ //节目单播放列表
@@ -1059,6 +1064,11 @@ Page({
   onShow: function() {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    if(user_info.hotel_id==-1){
+      hotel_id= user_info.select_hotel_id
+    }else {
+      hotel_id = user_info.hotel_id
+    }
     if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
@@ -1111,7 +1121,7 @@ Page({
             'content-type': 'application/json'
           },
           data: {
-            hotel_id: user_info.hotel_id,
+            hotel_id: hotel_id,
             openid: user_info.openid,
             page: 1,
             type: 10,
@@ -1174,7 +1184,13 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     openid = user_info.openid;
-    hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      hotel_id = user_info.select_hotel_id;
+      
+    }else{
+      hotel_id = user_info.hotel_id;
+    }
+    
     var showPageType = this.data.showPageType;
     if (showPageType == 1) {
       wx.showLoading({
@@ -1634,8 +1650,12 @@ Page({
     var openid = user_info.openid;
     var goods_id = e.currentTarget.dataset.goods_id;
 
-
-    var hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      var hotel_id = user_info.select_hotel_id;
+    }else {
+      var hotel_id = user_info.hotel_id;
+    }
+    
     wx.showModal({
       title: '提示',
       content: '确认要删除此条信息么？',
@@ -1738,6 +1758,9 @@ Page({
   },
   
   reChooseHotel:function(e){
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    user_info.select_hotel_id = 0;
+    wx.setStorageSync(cache_key + 'userinfo', user_info);
     wx.reLaunch({
       url: '/pages/index/index',
     })

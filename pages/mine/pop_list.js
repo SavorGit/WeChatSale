@@ -21,6 +21,11 @@ Page({
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     var hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      var hotel_id = user_info.select_hotel_id;
+    }else{
+      var hotel_id = user_info.hotel_id;
+    }
     wx.request({
       url: api_url +'/Smallsale/goods/getGoodslist',
       header: {
@@ -46,7 +51,12 @@ Page({
     var that = this;
     var userinfo = wx.getStorageSync(cache_key + 'userinfo');
     openid = userinfo.openid;
-    var hotel_id = userinfo.hotel_id;
+    if(userinfo.hotel_id==-1){
+      var hotel_id = userinfo.select_hotel_id;
+    }else{
+      var hotel_id = userinfo.hotel_id;
+    }
+    
     page = page + 1;
     wx.showLoading({
       title: '加载中',
@@ -80,7 +90,12 @@ Page({
     var goods_id = e.currentTarget.dataset.goods_id;
     var keys = e.currentTarget.dataset.keys;
     var pop_list = that.data.pop_list;
-    var hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      var hotel_id = user_info.select_hotel_id;
+    }else{
+      var hotel_id = user_info.hotel_id;
+    }
+    
     wx.request({
       url: api_url +'/Smallsale/goods/addSalegoods',
       header: {
@@ -120,7 +135,12 @@ Page({
     var goods_id = e.currentTarget.dataset.goods_id;
     var keys = e.currentTarget.dataset.keys;
     var pop_list = that.data.pop_list;
-    var hotel_id = user_info.hotel_id;
+    if(user_info.hotel_id==-1){
+      var hotel_id = user_info.select_hotel_id;
+    }else{
+      var hotel_id = user_info.hotel_id;
+    }
+    
     wx.request({
       url: api_url + '/Smallsale/goods/addSalegoods',
       header: {
