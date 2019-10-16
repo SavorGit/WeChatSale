@@ -1091,6 +1091,23 @@ Page({
           ]
         })
       }
+      wx.request({ //节目单播放列表
+        url: api_url + '/Smallsale/goods/getPlayList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            play_list = res.data.result.datalist;
+            that.setData({
+              play_list: res.data.result.datalist,
+            })
+          }
+        }
+      })
       wx.request({ //促销活动列表
         url: api_url + '/Smallsale/goods/myGoodslist',
         header: {
@@ -1136,6 +1153,23 @@ Page({
 
 
       } else {
+        wx.request({ //节目单播放列表
+          url: api_url + '/Smallsale/goods/getPlayList',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            hotel_id: hotel_id,
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              play_list = res.data.result.datalist;
+              that.setData({
+                play_list: res.data.result.datalist,
+              })
+            }
+          }
+        })
         wx.request({ //促销活动列表
           url: api_url + '/Smallsale/goods/myGoodslist',
           header: {
