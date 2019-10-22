@@ -84,8 +84,7 @@
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
 
-<!-- 用户注册 -->
-<template is="register" data='{{show: showRegister, CountDown: countDown}}' />
+
 
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />

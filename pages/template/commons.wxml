@@ -31,24 +31,27 @@
 <!-- 用户注册 -->
 <template name="register">
   <modal show="{{show}}" height='420rpx' width="90%" background-color='#FFFFFF' border-radius="10rpx" title-text="" confirm-text="" cancel-text="">
-    <view class='register-container'>
+    <form class='register-container'  bindsubmit="bindMobile">
       <view class="page-top">
         <view class="title">请绑定手机号</view>
-        <view class="fa fa-close" bindtap="closeRegisterWindow"></view>
+        <!-- <view class="fa fa-close" bindtap="closeBindMobile"></view> -->
       </view>
-      <view class="page-main">
+      
+      <view class="page-main" >
         <view class="phone">
-          <input placeholder="请输入手机号"></input>
+          <input name="mobile" placeholder="请输入手机号" bindinput="mobileOnInput"></input>
         </view>
         <view class="code">
-          <input placeholder="请输入验证码"></input>
-          <button class="btn-code {{typeof(CountDown) == 'string' && CountDown != '' ? 'theme-button-disable' : 'theme-button'}}" bindtap="sendCode">{{typeof(CountDown) == 'string' && CountDown != '' ? CountDown : '获取验证码'}}</button>
+          <input name="verify_code" placeholder="请输入手机验证码" type='number'></input>
+          <button wx:if="{{is_get_sms_code==0}}" class="btn-code theme-button"  bindtap="sendSmsCode" data-mobile='{{mobile}}'>获取验证码</button>
+          <button wx:else class="btn-code theme-button-disable"  data-mobile='{{mobile}}'>{{sms_time_djs}}</button>
         </view>
       </view>
       <view class="page-bottom">
         <!-- <button class="btn-code {{typeof(CountDown) == 'string' && CountDown != '' ? 'theme-button' : 'theme-button-disable'}}" bindtap="registInfo">确定</button> -->
-        <button class="btn-submit theme-button" bindtap="registInfo">确定</button>
+        <button class="btn-submit theme-button" form-type="submit">确定</button>
       </view>
-    </view>
+      
+    </form>
   </modal>
 </template>

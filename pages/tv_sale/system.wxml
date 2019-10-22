@@ -294,3 +294,5 @@
 
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
+<!-- 用户注册 -->
+<template is="register" data='{{show: showRegister, sms_time_djs: sms_time_djs,mobile:mobile,is_get_sms_code:is_get_sms_code}}' />

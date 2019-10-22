@@ -126,16 +126,21 @@ Page({
                   key: cache_key + 'userinfo',
                   data: res.data.result,
                 });
-                if (res.data.result.hotel_has_room==1){
-                  wx.reLaunch({
-                    url: '/pages/index/index',
+                if (res.data.result.mobile==''){
+                  that.setData({
+                    showRegister:true
                   })
-                }else{
-                  wx.reLaunch({
-                    url: '/pages/tv_sale/system',
-                  })
+                }else {
+                  if (res.data.result.hotel_has_room == 1) {
+                    wx.reLaunch({
+                      url: '/pages/index/index',
+                    })
+                  } else {
+                    wx.reLaunch({
+                      url: '/pages/tv_sale/system',
+                    })
+                  }
                 }
-                
               } else {
                 wx.showToast({
                   title: '微信授权登陆失败，请重试',
