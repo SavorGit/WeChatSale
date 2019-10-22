@@ -1,5 +1,6 @@
 // pages/launch/picture/index.js
 const app = getApp();
+var mta = require('../../../utils/mta_analysis.js')
 var img_lenth = 0;
 var openid;
 var box_mac;
@@ -95,7 +96,8 @@ Page({
     that.setData({
       play_times:play_times
     })
-
+    //数据埋点-切换播放时间
+    
   },
   up_forscreen(e) {//多张图片投屏开始(不分享到发现)
 
@@ -383,7 +385,8 @@ Page({
         updateStatus: 4,
       })
     }
-
+    //数据埋点-图片投屏
+    mta.Event.stat('forImgClickForscreen', { 'openid': user_info.openid, 'boxmac': box_mac })
     
   }, //多张图片投屏结束(不分享到发现)
   up_single_pic(res) {//指定单张图片投屏开始
@@ -478,7 +481,8 @@ Page({
         },
       });
     }
-    
+    //数据埋点-单张图片投屏
+    mta.Event.stat('forImgSingle', { 'openid': openid, 'boxmac': box_mac })
     
   },//指定单张图片投屏结束
   chooseImage(res) {//重新选择照片开始
@@ -517,7 +521,8 @@ Page({
         })
       }
     })
-    
+    //数据埋点-重选图片
+    mta.Event.stat('forImgRechooseImg', { 'openid': openid,'boxmac':box_mac })
   },//重新选择照片结束
   exitForscreen(res) {
     var that = this;
@@ -576,8 +581,13 @@ Page({
         },
       })
     }
-    
+    //数据埋点-退出投屏
+    mta.Event.stat('forImgExitForscreen', { 'openid': openid,'boxmac':box_mac })
   },//退出投屏结束
+  goRelief:function(res){
+    //数据埋点-跳转到免责声明
+    mta.Event.stat('forImgClickRelief', { 'openid': openid })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

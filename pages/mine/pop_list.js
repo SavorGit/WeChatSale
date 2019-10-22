@@ -1,5 +1,6 @@
 // pages/mine/pop_list.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -183,7 +184,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

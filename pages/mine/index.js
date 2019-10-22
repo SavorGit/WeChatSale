@@ -146,6 +146,9 @@ Page({
           icon: 'none',
           duration: 2000,
         })
+      },complete:function(res){
+        //数据埋点-点击添加员工
+        mta.Event.stat('clickAddStaff', { 'openid': user_info.openid })
       }
     })
 
@@ -183,6 +186,9 @@ Page({
           icon: 'none',
           duration: 2000,
         })
+      },complete:function(res){
+        //数据埋点-点击刷新邀请码
+        mta.Event.stat('clickFreshQrcode', { 'openid': user_info.openid })
       }
     })
   },
@@ -191,12 +197,16 @@ Page({
     that.setData({
       showAddTeamMemberPage: false,
     })
+    //数据埋点-关闭员工添加员工弹窗
+    mta.Event.stat("clickcloseaddstaff", {})
   },
   userLogin: function(res) {
     var that = this;
     that.setData({
       showWXAuthLogin: true,
     })
+    //数据埋点-个人信息页面点击登录
+    mta.Event.stat('clickUserLogin', { 'openid': openid })
   },
   onGetUserInfo: function(res) {
     var that = this;
@@ -276,6 +286,8 @@ Page({
           })
         }
       })
+      //数据埋点-用户确认授权
+      mta.Event.stat('userConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
         url: api_url + '/Smallsale/User/refuseRegister',
@@ -293,6 +305,8 @@ Page({
           });
         }
       })
+      //数据埋点-用户拒绝授权
+      mta.Event.stat('userRefuseAuth', { 'openid': openid })
     }
   },
   /**
@@ -334,6 +348,8 @@ Page({
 
       })
     }
+    //数据埋点-进入个人信息页面
+    mta.Event.stat('showUserIndex', { 'openid': user_info.openid })
     this.onLoad()
   },
   closeAuth: function() {
@@ -341,8 +357,25 @@ Page({
     that.setData({
       showWXAuthLogin: false,
     })
+    //数据埋点-个人信息页面关闭取消授权登陆
+    mta.Event.stat('userCloseAuth', { 'openid': openid })
   },
-
+  integralList:function(e){
+    //数据埋点-点击收益明细
+    mta.Event.stat('clickIntegralList', { 'openid': openid })
+  },
+  popActivityList:function(e){
+    //数据埋点-点击活动商品管理
+    mta.Event.stat('clickActivityGoodsList', { 'openid': openid })
+  },
+  staffList:function(e){
+    //数据埋点-点击移除员工
+    mta.Event.stat('clickRemoveStaff', { 'openid': openid, 'inviteid': invite_id })
+  },
+  goRelief:function(res){
+    //数据埋点-点击免责声明
+    mta.Event.stat('userClickRelief', { 'openid': openid })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -380,7 +413,8 @@ Page({
     var title = "邀请您使用小热点销售端";
     var img_url = 'http://oss.littlehotspot.com/media/resource/GyXmE3jRNh.jpg';
     if (e.from === 'button') {
-
+      //数据埋点-点击邀请员工
+      mta.Event.stat('clickInviteStaff', { 'openid': userinfo.openid })
       // 转发成功
       // 来自页面内转发按钮
       return {

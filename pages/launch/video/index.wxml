@@ -9,7 +9,7 @@
       <view class='full_width font_666666_26'>
         <label class="tip_top_lable">视频加载完成后，电视开始加载并自动播放</label>
         <label class='link_relief'>
-          <navigator url="/pages/commons/relief">免责声明</navigator>
+          <navigator bindtap="goRelief" url="/pages/commons/relief">免责声明</navigator>
         </label>
       </view>
     </view>

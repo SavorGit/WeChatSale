@@ -1,5 +1,6 @@
 // pages/launch/video/index.js
 const app = getApp();
+var mta = require('../../../utils/mta_analysis.js')
 var openid;
 var box_mac;
 var res_sup_time ;
@@ -312,7 +313,9 @@ Page({
           });
         },
       })
-    }  
+    }
+    //数据埋点-点击投屏
+    mta.Event.stat('forVideoClickForscreen', { 'openid': openid,'boxmac':box_mac })  
   },
   playTimesChange: function (res) {
     var that = this;
@@ -320,7 +323,8 @@ Page({
     that.setData({
       play_times: play_times
     })
-
+    //数据埋点-切换播放时间
+    mta.Event.stat('forVideoChangeForTime', { 'openid': openid })
   },
   //重新选择视频
   chooseVedio(e) {
@@ -357,8 +361,8 @@ Page({
       }
     })
     
-    
-    
+    //数据埋点-重选视频
+    mta.Event.stat('forVideoRechooseVideo', { 'openid': openid,'boxmac':box_mac })
   },
   //退出投屏
   exitForscreend(res) {
@@ -417,7 +421,13 @@ Page({
         },
       })
     }
-    
+    //数据埋点-退出投屏
+    mta.Event.stat('forVideoExitForscreen', { 'openid': openid,'boxmac':box_mac })
+  },
+  goRelief:function(res){
+    //数据埋点-视频投屏点击免责声明
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    mta.Event.stat('forVideoClickRelief', { 'openid': user_info.openid })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

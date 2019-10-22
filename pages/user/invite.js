@@ -1,5 +1,6 @@
 // pages/user/invite.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key; 
 var openid;
@@ -93,9 +94,7 @@ Page({
   //微信用户授权登陆
   onGetUserInfo: function (res) {
     var that = this;
-    console.log(cache_key + "userinfo");
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    console.log(user_info);
     var openid = user_info.openid;
     
 
@@ -158,6 +157,8 @@ Page({
           })
         }
       })
+      //数据埋点-邀请页面确认授权
+      mta.Event.stat('inviteConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
         url: api_url + '/Smallsale/User/refuseRegister',
@@ -175,7 +176,25 @@ Page({
           });
         }
       })
+      //数据埋点-邀请页面拒绝授权
+      mta.Event.stat('inviteRefuseAuth', { 'openid': openid })
     }
+  },
+  closeAuth: function () {
+    var that = this;
+    that.setData({
+      showWXAuthLogin: false,
+    })
+    //数据埋点-邀请页面关闭授权
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var openid = user_info.openid;
+    mta.Event.stat('inviteCloseAuth', { 'openid': openid })
+  },
+  goRelief:function(res){
+    //数据埋点-点击免责声明
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var openid = user_info.openid;
+    mta.Event.stat('inviteClickRelief', { 'openid': openid })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

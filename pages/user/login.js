@@ -1,10 +1,12 @@
 // pages/user/login.js
+var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 var openid;
 var sms_time_djs;
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var common_appid =  app.globalData.common_appid;
+
 Page({
 
   /**
@@ -81,6 +83,8 @@ Page({
             }
           }
         })
+        //数据埋点-进入登录页面
+        mta.Event.stat('showLogin', { 'openid': openid })
       }
       
     }
@@ -264,6 +268,9 @@ Page({
             duration: 2000
           });
         }
+      },complete:function(res){
+        //数据埋点-获取手机验证码
+        mta.Event.stat('sendSmsCode', { 'mobile': mobile,'openid':app.globalData.openid,'code':invite_code })
       }
     })
   },
@@ -340,6 +347,9 @@ Page({
             duration: 2000
           });
         }
+      },complete:function(res){
+        //数据埋点-用户登录
+        mta.Event.stat('doLogin', { 'openid': openid,'mobile':mobile,'code': invite_code})
       }
     })
   },
@@ -354,7 +364,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

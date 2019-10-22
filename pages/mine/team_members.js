@@ -1,8 +1,10 @@
 // pages/mine/team_members.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var page = 1;
+var openid ;
 Page({
 
   /**
@@ -18,6 +20,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
+    openid = userinfo.openid;
     wx.request({
       url: api_url +'/Smallsale/user/employeelist',
       header: {
@@ -90,21 +93,28 @@ Page({
       },
       success:function(res){
         if(res.data.code==10000){
-          /*for(var i=0;i<staff_list.length;i++){
-            if(i!=keys){
-              new_staff_list[flag] = staff_list[i];
-            }
-            flag++;
-          }
-          that.setData({
-            staff_list:new_staff_list,
-          })*/
+          
           wx.showToast({
             title: '移除成功',
             icon: 'none',
             duration: 2000,
           })
-          this.onLoad();
+          wx.request({
+            url: api_url + '/Smallsale/user/employeelist',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              openid: openid,
+              page: 1,
+              pagesize: 20,
+            },
+            success: function (res) {
+              that.setData({
+                staff_list: res.data.result.datalist
+              })
+            }
+          })
           
         }else {
           wx.showToast({
@@ -120,6 +130,8 @@ Page({
           icon:'none',
           duration:2000,
         })
+      },complete:function(res){
+        
       }
     })
   },
@@ -134,7 +146,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    mta.Event.stat('clickStaffList', { 'openid': openid })
   },
 
   /**

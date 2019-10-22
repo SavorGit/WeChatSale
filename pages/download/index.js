@@ -1,7 +1,9 @@
 // pages/download/index.js
 const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
 var page = 1; //当前节目单页数
 var api_url = app.globalData.api_url;
+var cache_key = app.globalData.cache_key;
 Page({
 
   /**
@@ -110,6 +112,9 @@ Page({
           icon: 'none',
           duration: 2000
         });
+      }, complete: function (res) {
+        var user_info = wx.getStorageSync(cache_key + 'userinfo');
+        mta.Event.stat('downloadImgTemplate', { 'openid': user_info.openid })
       }
     })
     

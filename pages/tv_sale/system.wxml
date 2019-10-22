@@ -61,7 +61,7 @@
         <view class="no-data full_width theme7" style="height:800rpx;">
           <view>您还没有选择要推广的活动</view>
           <view>请前往【我的——活动促销商品管理】选择</view>
-          <view>
+          <view bindtap="addPopGoods">
             <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
           </view>
         </view>
@@ -160,7 +160,7 @@
               </view>
             </view>
             <view class='operate'>
-              <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button6' bindtap="editGoods">修改</button>
+              <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button6' bindtap="editGoods" data-goods_id="{{bean.goods_id}}">修改</button>
               <button wx:if="{{bean.status==2}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
               <button wx:if="{{bean.status==2}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
@@ -269,7 +269,7 @@
     </view>
     <view class="btn-group">
       <!-- <button wx:if="{{hotel_has_room==1}}" class="launch theme-button-add" bindtap="viewRoomWin">大屏展示</button> -->
-      <button class="save theme-button" bindtap='saveImageToPhotosAlbum'>保存到相册</button>
+      <button class="save theme-button" bindtap='saveImageToPhotosAlbum' data-share_goods_info="{{share_goods_info}}">保存到相册</button>
     </view>
     <view class="tip">保存图片到手机相册，将图片分享给您的好友~</view>
   </view>

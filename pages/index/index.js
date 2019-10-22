@@ -182,7 +182,9 @@ Page({
         box_mac: box_mac
       })
     }
-
+    //数据埋点-点击选择包间
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    mta.Event.stat('changeRoom', { 'openid': user_info.openid })
   }, //选择包间结束
 
 
@@ -232,6 +234,9 @@ Page({
                 url: '/pages/user/login',
               })
             }
+          },complete:function(res){
+            //数据埋点-点击图片上电视
+            mta.Event.stat('clickForImg', { 'openid': user_info.openid })
           }
         })
       }
@@ -281,6 +286,9 @@ Page({
                 url: '/pages/user/login',
               })
             }
+          },complete:function(res){
+            //数据埋点-点击视频上电视
+            mta.Event.stat('clickForVideo', { 'openid': user_info.openid })
           }
         })
       }
@@ -324,6 +332,9 @@ Page({
             icon: 'none',
             duration: 2000
           })
+        },complete:function(res){
+          //数据埋点-首页点击退出投屏
+          mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
         }
       })
     }
@@ -351,7 +362,16 @@ Page({
         data: {
           box_mac: box_mac,
           msg: '{"action":31,"change_type":' + change_type + '}',
-        },
+        },complete:function(res){
+          var user_info = wx.getStorageSync(cache_key+'userinfo');
+          var openid = user_info.openid;
+          //数据埋点-点击音量增减
+          if(change_type==2){
+            mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac,'openid':openid })
+          }else if(change_type==1){
+            mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac,'openid':openid })
+          }
+        }
       })
     }
 
@@ -367,6 +387,10 @@ Page({
         that.setData({
           download_disable: false,
         })
+      },complete:function(res){
+        //数据埋点-点击下载图片模板
+        var user_info = wx.getStorageSync(cache_key+'userinfo');
+        mta.Event.stat('clickDownImg', { 'openid': user_info.openid })
       }
     })
   },
@@ -409,6 +433,8 @@ Page({
               icon: 'none',
               duration: 2000
             })
+            //数据埋点-点击包间签到
+            mta.Event.stat('indexRoomSign', { 'boxmac': box_mac,'openid':openid })
           } else {
             for (var i = 0; i < sign_box_list.length; i++) {
               if (keys == i) {
@@ -463,12 +489,18 @@ Page({
 
       })
     }
+    //数据埋点-进入电视互动页
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   closeAuth: function() {
     var that = this;
     that.setData({
       showWXAuthLogin: false,
     })
+    //数据埋点-首页关闭取消授权弹窗
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    mta.Event.stat('indexCloseAuth', { 'openid': user_info.openid })
   },
   //微信用户授权登陆
   onGetUserInfo: function(res) {
@@ -542,6 +574,8 @@ Page({
           })
         }
       })
+      //数据埋点-用户确认授权
+      mta.Event.stat('indexConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
         url: api_url + '/Smallsale/User/refuseRegister',
@@ -559,6 +593,8 @@ Page({
           });
         }
       })
+      //数据埋点-用户确认授权
+      mta.Event.stat('indexRefuseAuth', { 'openid': openid })
     }
   },
   // 处理数据格式
@@ -597,6 +633,10 @@ Page({
             mailListData: res.data.result
           });
         }
+      },complete:function(res){
+        //数据埋点-点击选择酒楼
+        var user_info = wx.getStorageSync(cache_key+'userinfo');
+        mta.Event.stat('changeHotel', { 'openid': user_info.openid })
       }
     });
     
@@ -661,5 +701,10 @@ Page({
         }
       })
     }
+  },
+  goRelief:function(res){
+    //数据埋点-首页用户点击免责声明
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    mta.Event.stat('indexClickRelief', { 'openid': user_info.openid })
   }
 })
