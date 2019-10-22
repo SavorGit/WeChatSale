@@ -77,3 +77,94 @@
   border: 0;
   padding: 0;
 }
+
+/* ================================= 用户注册 ================================= */
+
+.register-container {
+  width: calc(100% - 40rpx);
+  height: calc(100% - 40rpx);
+  padding: 20rpx;
+  font-size: 24rpx;
+}
+
+.register-container > .page-top {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.register-container > .page-top > .title {
+  width: calc(100% - 80rpx);
+  height: 40rpx;
+  line-height: 40rpx;
+  margin: 10rpx 40rpx;
+  font-size: 28rpx;
+  font-weight: 900;
+  text-align: center;
+}
+
+.register-container > .page-top > .fa-close {
+  font-size: 36rpx;
+  margin-left: -40rpx;
+}
+
+.register-container > .page-main {
+  width: 100%;
+  height: 240rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container > .page-main input {
+  width: 100%;
+  height: 50rpx;
+  border: 1rpx solid #bbb;
+}
+
+.register-container > .page-main > view {
+  width: 80%;
+  height: 60rpx;
+}
+
+.register-container > .page-main > .code {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.register-container > .page-main > .code > input {
+  width: calc(100% - 180rpx);
+}
+
+.register-container > .page-main > .code > button {
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  border: unset;
+  margin: unset;
+  padding: unset;
+}
+
+.register-container > .page-bottom {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-container > .page-bottom > button {
+  width: 80%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  border: unset;
+  margin: unset;
+  padding: unset;
+}
