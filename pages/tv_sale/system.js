@@ -1889,6 +1889,8 @@ Page({
     wx.reLaunch({
       url: '/pages/index/index',
     })
+    //数据埋点-活动促销页面重选酒楼
+    mta.Event.stat('popActivityRechooseHotel', { 'openid': user_info.openid })
   },
   addPopGoods:function(e){
     var user_info = wx.getStorageSync(cache_key+'userinfo');
