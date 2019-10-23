@@ -1939,6 +1939,11 @@ Page({
           that.setData({
             showRegister:false
           })
+          wx.showToast({
+            title: '手机号绑定成功',
+            icon:'none',
+            duration:2000
+          })
         }
       }
     })

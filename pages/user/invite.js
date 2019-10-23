@@ -4,6 +4,7 @@ var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key; 
 var openid;
+var sms_time_djs;
 Page({
 
   /**
@@ -128,7 +129,8 @@ Page({
                 });
                 if (res.data.result.mobile==''){
                   that.setData({
-                    showRegister:true
+                    showRegister:true,
+                    is_get_sms_code:0
                   })
                 }else {
                   if (res.data.result.hotel_has_room == 1) {
@@ -200,6 +202,138 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
     mta.Event.stat('inviteClickRelief', { 'openid': openid })
+  },
+  bindMobile: function (e) {
+    console.log(e)
+    var that = this;
+    var mobile = e.detail.value.mobile;
+    var verify_code = e.detail.value.verify_code;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if (mobile == '') {
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    var is_mobile = app.checkMobile(mobile);
+    if (!is_mobile) {
+      return;
+    }
+    if (verify_code == '') {
+
+      wx.showToast({
+        title: '请输入手机验证码',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    wx.request({
+      url: api_url + '/Smallsale/user/bindmobile',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        mobile: mobile,
+        verify_code: verify_code,
+        openid: user_info.openid,
+      }, success: function (res) {
+        if (res.data.code == 10000) {
+          user_info.mobile = mobile;
+          wx.setStorageSync(cache_key + 'userinfo', user_info);
+          that.setData({
+            showRegister: false
+          })
+          if(user_info.hotel_has_room==1){
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }else {
+            wx.reLaunch({
+              url: '/pages/tv_sale/system',
+            })
+          }
+          wx.showToast({
+            title: '手机号绑定成功',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+  //输入手机号失去焦点
+  mobileOnInput: function (res) {
+    var that = this;
+    var mobile = res.detail.value;
+    that.setData({
+      mobile: mobile
+    })
+  },
+  sendSmsCode: function (e) {
+    console.log(e);
+    var that = this;
+    var mobile = e.target.dataset.mobile;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    //var invite_code = e.target.dataset.invite_code;
+    if (mobile == '') {
+
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    var is_mobile = app.checkMobile(mobile);
+    if (!is_mobile) {
+      return;
+    }
+    wx.request({
+      url: api_url + '/Smallsale/sms/sendbindmobileverifyCode',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        mobile: mobile,
+        openid: openid,
+      },
+      success: function (res) {
+        if (res.data.code == 10000) { //上线前更换
+          sms_time_djs = 60
+          console.log(typeof (sms_time_djs));
+          that.setData({
+            is_get_sms_code: 1,
+            sms_time_djs: sms_time_djs
+          })
+          var timer8_0 = setInterval(function () {
+
+            sms_time_djs -= 1;
+            that.setData({
+              sms_time_djs: sms_time_djs
+            });
+            if (sms_time_djs == 0) {
+              that.setData({
+                is_get_sms_code: 0,
+              })
+              clearInterval(timer8_0);
+            }
+          }, 1000);
+
+        } else {
+          var error_msg = res.data.msg;
+          wx.showToast({
+            title: error_msg,
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }, complete: function (res) {
+
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
