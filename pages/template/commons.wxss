@@ -83,11 +83,12 @@
 .register-container {
   width: calc(100% - 40rpx);
   height: calc(100% - 40rpx);
+  display: block;
   padding: 20rpx;
   font-size: 24rpx;
 }
 
-.register-container > .page-top {
+.register-container .page-top {
   width: 100%;
   height: 60rpx;
   display: flex;
@@ -95,7 +96,7 @@
   align-items: center;
 }
 
-.register-container > .page-top > .title {
+.register-container .page-top > .title {
   width: calc(100% - 80rpx);
   height: 40rpx;
   line-height: 40rpx;
@@ -105,12 +106,12 @@
   text-align: center;
 }
 
-.register-container > .page-top > .fa-close {
+.register-container .page-top > .fa-close {
   font-size: 36rpx;
   margin-left: -40rpx;
 }
 
-.register-container > .page-main {
+.register-container .page-main {
   width: 100%;
   height: 240rpx;
   display: flex;
@@ -119,29 +120,29 @@
   justify-content: center;
 }
 
-.register-container > .page-main input {
+.register-container .page-main input {
   width: 100%;
   height: 50rpx;
   border: 1rpx solid #bbb;
 }
 
-.register-container > .page-main > view {
+.register-container .page-main > view {
   width: 80%;
   height: 60rpx;
 }
 
-.register-container > .page-main > .code {
+.register-container .page-main > .code {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
-.register-container > .page-main > .code > input {
+.register-container .page-main > .code > input {
   width: calc(100% - 180rpx);
 }
 
-.register-container > .page-main > .code > button {
+.register-container .page-main > .code > button {
   width: 160rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -151,7 +152,7 @@
   padding: unset;
 }
 
-.register-container > .page-bottom {
+.register-container .page-bottom {
   width: 100%;
   height: 80rpx;
   display: flex;
@@ -159,7 +160,7 @@
   align-items: center;
 }
 
-.register-container > .page-bottom > button {
+.register-container .page-bottom > button {
   width: 80%;
   height: 60rpx;
   line-height: 60rpx;
