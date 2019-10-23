@@ -261,6 +261,9 @@ Page({
             duration: 2000
           })
         }
+      },complete:function(res){
+        //数据埋点-邀请页面绑定手机号
+        mta.Event.stat('inviteBindMobile', { 'openid': openid,'mobile':mobile })
       }
     })
   },
@@ -331,7 +334,8 @@ Page({
           });
         }
       }, complete: function (res) {
-
+        //数据埋点-邀请页面发送手机验证码
+        mta.Event.stat('inviteSendVerifyCode', { 'openid': openid, 'mobile': mobile })
       }
     })
   },

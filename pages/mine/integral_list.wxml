@@ -21,7 +21,8 @@
           </view>
           <view class="dateTime theme-font3">{{bean.add_time}}</view>
         </view>
-        <view class="integral theme-font5">+{{bean.integral}}</view>
+        <view class="integral theme-font5" wx:if="{{bean.type==4}}">{{bean.integral}}</view>
+        <view class="integral theme-font5" wx:else>+{{bean.integral}}</view>
       </view>
       <view wx:else class="row theme7">
         <view class="detail">

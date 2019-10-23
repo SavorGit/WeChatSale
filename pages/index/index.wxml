@@ -4,7 +4,7 @@
 
   <!-- 酒楼 -->
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
-    <view class="choosed-hotel theme-font" data-id="{{hotel.id}}" bindtap="showMailListPage">{{hotel.name}}</view>
+    <view class="choosed-hotel theme-font" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">{{user_info.select_hotel_name?user_info.select_hotel_name:'请选择酒楼'}}</view>
   </view>
 
   <!-- 机顶盒连接信息 -->

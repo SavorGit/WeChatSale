@@ -642,18 +642,23 @@ Page({
     
   },
   chooseHotel: function(e) {
-    //console.log(e);
+    console.log(e);
     let that = this;
     that.setData({
       hotel: e.detail,
       is_link:0,
     });
     var hotel_id = e.detail.id;
+    var hotel_name = e.detail.name;
     var hotel_has_room = e.detail.hotel_has_room;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     user_info.select_hotel_id = hotel_id;
+    user_info.select_hotel_name = hotel_name;
     user_info.is_common = 1;
     user_info.hotel_has_room = hotel_has_room;
+    that.setData({
+      user_info:user_info
+    })
     wx.setStorageSync(cache_key + "userinfo", user_info);
     wx.removeStorageSync(cache_key +'link_box_info');
     

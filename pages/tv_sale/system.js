@@ -1897,7 +1897,7 @@ Page({
     mta.Event.stat('clickAddPopList', { 'openid': openid })
   },
   bindMobile:function(e){
-    console.log(e)
+    //console.log(e)
     var that = this;
     var mobile = e.detail.value.mobile;
     var verify_code = e.detail.value.verify_code;
@@ -1945,6 +1945,9 @@ Page({
             duration:2000
           })
         }
+      },complete:function(res){
+        //数据埋点-活动促销页面绑定手机号
+        mta.Event.stat('popActivityBindMobile', { 'openid': user_info.openid,'mobile':mobile })
       }
     })
   },
@@ -2015,7 +2018,8 @@ Page({
           });
         }
       }, complete: function (res) {
-        
+        //数据埋点-促销活动页面发送手机验证码
+        mta.Event.stat('popActivitySendVerifyCode', { 'openid': openid,'mobile':mobile})
       }
     })
   }
