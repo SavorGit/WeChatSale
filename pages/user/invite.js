@@ -260,6 +260,12 @@ Page({
             icon: 'none',
             duration: 2000
           })
+        }else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
         }
       },complete:function(res){
         //数据埋点-邀请页面绑定手机号

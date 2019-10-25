@@ -1946,6 +1946,12 @@ Page({
             icon:'none',
             duration:2000
           })
+        }else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
         }
       },complete:function(res){
         //数据埋点-活动促销页面绑定手机号
