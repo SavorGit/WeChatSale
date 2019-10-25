@@ -4,7 +4,7 @@ var mta = require('./utils/mta_analysis.js')
 App({
   checkMobile: function (mobile) {
 
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(18[0-9]{1})|(17[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
     if (mobile.length == 0) {
 
       wx.showToast({
