@@ -131,6 +131,13 @@
   height: 60rpx;
 }
 
+.register-container .page-main > .phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .register-container .page-main > .code {
   display: flex;
   flex-direction: row;
