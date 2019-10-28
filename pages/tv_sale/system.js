@@ -611,17 +611,14 @@ Page({
                 my_activity_info.file_size = file_size;
                 that.setData({
                   filename: filename,
-                  my_activity_info: my_activity_info
+                  my_activity_info: my_activity_info,
+                  //is_my_activity:0
                 })
               },
               complete: function(es) {
 
               },
-              fail: function({
-                errMsg
-              }) {
-
-              },
+              
             });
 
           }
@@ -681,16 +678,13 @@ Page({
                 that.setData({
                   my_activity_info: my_activity_info,
                   filename: filename,
+                  //is_my_activity: 0
                 })
               },
-              complete: function(es) {
+              complete: function(res) {
 
               },
-              fail: function({
-                errMsg
-              }) {
-
-              },
+              
             });
 
           }
@@ -1245,7 +1239,7 @@ Page({
     }
     
     
-    this.onLoad()
+    //this.onLoad()
   },
 
   /**
