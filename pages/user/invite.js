@@ -204,7 +204,7 @@ Page({
     mta.Event.stat('inviteClickRelief', { 'openid': openid })
   },
   bindMobile: function (e) {
-    console.log(e)
+    
     var that = this;
     var mobile = e.detail.value.mobile;
     var verify_code = e.detail.value.verify_code;
@@ -230,6 +230,9 @@ Page({
       });
       return;
     }
+    wx.showLoading({
+      title: '手机号绑定中',
+    })
     wx.request({
       url: api_url + '/Smallsale/user/bindmobile',
       header: {
@@ -268,6 +271,7 @@ Page({
           })
         }
       },complete:function(res){
+        wx.hideLoading()
         //数据埋点-邀请页面绑定手机号
         mta.Event.stat('inviteBindMobile', { 'openid': openid,'mobile':mobile })
       }

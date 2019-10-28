@@ -25,6 +25,7 @@
       <view class='login_btn'>
         <button form-type="submit" class='theme-button'>登录</button>
       </view>
+      <!-- <navigator url="/pages/user/invite?q=2471f398b68e0041cdb443a6f32dfb42ddd905e5520a4daf291fafc57b9199cc">测试邀请</navigator> -->
     </form>
   </view>
   <view class='full_width page_bottom'></view>

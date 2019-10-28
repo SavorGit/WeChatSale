@@ -99,21 +99,26 @@ Page({
             icon: 'none',
             duration: 2000,
           })
-          wx.request({
+          /*wx.request({
             url: api_url + '/Smallsale/user/employeelist',
             header: {
               'content-type': 'application/json'
             },
             data: {
-              openid: openid,
+              openid: userinfo.openid,
               page: 1,
               pagesize: 20,
             },
-            success: function (res) {
+            success: function (rts) {
+              console.log(rts);
               that.setData({
-                staff_list: res.data.result.datalist
+                staff_list: rts.data.result.datalist
               })
             }
+          })*/
+          staff_list.splice(keys,1)
+          that.setData({
+            staff_list: staff_list
           })
           
         }else {
