@@ -233,6 +233,7 @@ Page({
     }
     wx.showLoading({
       title: '手机号绑定中',
+      mask: 'true'
     })
     wx.request({
       url: api_url + '/Smallsale/user/bindmobile',
