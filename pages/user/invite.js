@@ -19,6 +19,7 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     var that = this;
+    wx.removeStorageSync(cache_key + 'link_box_info');
     var q = decodeURIComponent(options.q);
     if (q.indexOf("?") != -1){
       var selemite = q.indexOf("?");
