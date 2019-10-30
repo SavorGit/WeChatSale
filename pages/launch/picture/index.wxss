@@ -121,7 +121,6 @@ image.pic_show_cur {
 .launch_pic_page_b .page_main > .pic_text > textarea {
   width: 690rpx;
   height: 100rpx;
-  color: #fff;
   font-size: 28rpx;
   text-align: left;
 }
