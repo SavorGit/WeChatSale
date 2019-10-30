@@ -225,7 +225,7 @@
       <block wx:else>
         <view class="no-data full_width theme7">
           <view>您还没有选择要推广的活动</view>
-          <view>请前往【我的——活动促销商品管理】选择</view>
+          <view>请前往【个人信息——活动商品管理】选择</view>
           <view>
             <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
           </view>
