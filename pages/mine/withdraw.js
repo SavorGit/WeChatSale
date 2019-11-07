@@ -12,6 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageNo: 1, // 当前页码
     userIntegral: 12345, // 用户积分
     goodsList: [{
         isCheck: true,
@@ -53,21 +54,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let that = this;
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    let that = this;
+    this.loadingData({
+      page: 1,
+      pageSize: 20
+    }, true);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let that = this;
   },
 
   /**
@@ -88,7 +93,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    let that = this;
+    console.log('Page.onPullDownRefresh');
   },
 
   /**
@@ -103,6 +109,30 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  /**
+   * 刷新列表
+   */
+  flushGoodsList: function(e) {
+    let that = this;
+    console.log('flushTaskList', e);
+    this.loadingData({
+      pageNo: 1,
+      pageSize: 20
+    });
+  },
+
+  /**
+   * 加载下页面数据
+   */
+  loadingNextPageData: function(e) {
+    let that = this;
+    console.log('loadingNextPageData', e);
+    this.loadingData({
+      pageNo: that.data.pageNo++,
+      pageSize: 20
+    });
   },
 
   /**
@@ -155,5 +185,26 @@ Page({
     that.setData({
       confirmExchangeGoodsWindowShow: false
     });
+  },
+
+  /* **************************** 自定义方法 **************************** */
+  loadingData: function(requestData, navigateBackOnError) {
+    let that = this;
+    util.GetRequest(api_url + '/Smallsale/user/center', requestData, function(data, headers, cookies, errMsg, httpCode) {
+      console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      that.setData({
+        pageNo: requestData.page,
+        goodsList: data.data
+      });
+    }, function(res) {
+      if (navigateBackOnError == true) {
+        wx.navigateBack();
+      }
+    });
+    // util.PostRequest(api_url, {}, function(data, headers, cookies, errMsg, httpCode) {
+    //   console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+    // }, function(res) {
+    //   console.log('util.PostRequest', 'fail', res);
+    // });
   }
 })
