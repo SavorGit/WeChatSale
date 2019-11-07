@@ -86,11 +86,11 @@
   display: inline-block;
 }
 
-.profit-profile-panel > .info > button::after {
+.profit-profile-panel > .info > .btn-exchange::after {
   border: unset;
 }
 
-.profit-profile-panel > .info > button {
+.profit-profile-panel > .info > .btn-exchange {
   width: 120rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -100,6 +100,7 @@
   font-size: 24rpx;
   border: 2rpx solid #ededed;
   background-color: #fff;
+  text-align: center;
 }
 
 .profit-profile-panel > .month {

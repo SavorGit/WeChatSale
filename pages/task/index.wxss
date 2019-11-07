@@ -1,1 +1,115 @@
 /* pages/task/index.wxss */
+
+/* 任务列表 */
+
+.row {
+  padding-top: 25rpx;
+}
+
+.row.last-padding-bottom {
+  padding-bottom: 25rpx;
+}
+
+.task {
+  width: 700rpx;
+  height: 190rpx;
+  border-radius: 5rpx;
+}
+
+.icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-left: 15rpx;
+  margin-right: 25rpx;
+}
+
+.info {
+  width: calc(100% - 305rpx);
+  height: 100rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.info > .name, .info > .detail {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.profit-and-progress {
+  width: 150rpx;
+  margin-right: 15rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.profit-and-progress > .profit, .profit-and-progress > .progress {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.profit-and-progress > .profit {
+  text-align: center;
+}
+
+.info > .detail, .profit-and-progress > .progress {
+  font-size: 24rpx;
+}
+
+/* ======================= 任务详情弹窗 ======================= */
+
+.task-detail-window {
+  width: 550rpx;
+  height: 625rpx;
+}
+
+.task-detail-window > .icon {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.task-detail-window > .icon > image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.task-detail-window > .package {
+  width: 100%;
+  height: calc(100% - 150rpx);
+  margin-top: -75rpx;
+  padding-top: 75rpx;
+  border-radius: 10rpx;
+  z-index: 1;
+}
+
+.task-detail-window > .package > .name {
+  width: calc(100% - 40rpx);
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 5rpx 20rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.task-detail-window > .package > .detail {
+  width: calc(100% - 100rpx);
+  height: calc(100% - 190rpx);
+  padding: 20rpx 50rpx;
+  font-size: 28rpx;
+}
+
+.task-detail-window > .package > .btn-confirm {
+  width: 400rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
