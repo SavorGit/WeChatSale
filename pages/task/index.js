@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    taskDetailWindowShow: false, // 是否吊起任务详情弹窗
+    pageNo: 1, // 当前页码
     taskList: [{
         name: '电视开机',
         icon: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
@@ -36,7 +36,7 @@ Page({
         detail: '1.用餐时间打开餐厅内安装热点投屏设备的电视；2.在销售端首页-包间信息中对自己开机的；3.每天包含两个用餐时段，11:00-14:00,18:00-21:00；4.电视在单独用餐时段内开机大于1小时则奖励10积分。'
       }
     ], // 任务列表数据
-    pageNo: 1, // 当前页码
+    taskDetailWindowShow: false, // 是否吊起任务详情弹窗
     openTaskInWindow: {} // 在任务详情弹窗中打开任务
   },
 

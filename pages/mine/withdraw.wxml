@@ -14,8 +14,8 @@
     <view class="weui-grids">
 
       <view wx:for='{{goodsList}}' wx:for-item="bean" wx:key="key" wx:for-index="index" class="weui-grid flex_column_center_center" data-index='{{index}}' bindtap='exchangeGoods'>
-        <view wx:if='{{bean.isCheck}}' class="flag-bar flex_row_center_flexEnd">
-          <view class="flag theme-background-9 theme-font4">需审核</view>
+        <view class="flag-bar flex_row_center_flexEnd">
+          <view wx:if='{{bean.isCheck}}' class="flag theme-background-9 theme-font4">需审核</view>
         </view>
         <view class="goods flex_column_center_center">
           <view class="face-value theme-font6">{{bean.faceValue}}</view>
