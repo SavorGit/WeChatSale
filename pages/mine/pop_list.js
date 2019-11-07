@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var page = 1;
@@ -28,7 +29,7 @@ Page({
       var hotel_id = user_info.hotel_id;
     }
     wx.request({
-      url: api_url +'/Smallsale/goods/getGoodslist',
+      url: api_v_url +'/goods/getGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -63,7 +64,7 @@ Page({
       title: '加载中',
     })
     wx.request({
-      url: api_url + '/Smallsale/goods/getGoodslist',
+      url: api_v_url + '/goods/getGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -98,7 +99,7 @@ Page({
     }
     
     wx.request({
-      url: api_url +'/Smallsale/goods/addSalegoods',
+      url: api_v_url +'/goods/addSalegoods',
       header: {
         'content-type': 'application/json'
       },
@@ -143,7 +144,7 @@ Page({
     }
     
     wx.request({
-      url: api_url + '/Smallsale/goods/addSalegoods',
+      url: api_v_url + '/goods/addSalegoods',
       header: {
         'content-type': 'application/json'
       },

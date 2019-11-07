@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var box_mac;
 var hotel_id;
 var openid;
@@ -124,7 +125,7 @@ Page({
     box_mac = link_box_info.box_mac;
 
     wx.request({ //节目单播放列表
-      url: api_url + '/Smallsale/goods/getPlayList',
+      url: api_v_url + '/goods/getPlayList',
       header: {
         'content-type': 'application/json'
       },
@@ -141,7 +142,7 @@ Page({
       }
     })
     wx.request({ //促销活动列表
-      url: api_url + '/Smallsale/goods/myGoodslist',
+      url: api_v_url + '/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -161,7 +162,7 @@ Page({
       }
     })
     wx.request({ //我的活动
-      url: api_url + '/Smallsale/goods/myGoodslist',
+      url: api_v_url + '/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -246,26 +247,13 @@ Page({
         })
       }
     })
-    //获取酒楼包间签到详情
-    /*wx.request({
-      url: api_url + '/Smallsale/user/getSigninBoxList',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        hotel_id: hotel_id,
-        openid: openid
-      },
-      success: function(res) {
-        console.log(res);
-      }
-    })*/
+    
   },
   delProgramPlay: function(e) {
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.request({
-      url: api_url + '/Smallsale/goods/removePlaygoods',
+      url: api_v_url + '/goods/removePlaygoods',
       header: {
         'content-type': 'application/json'
       },
@@ -282,7 +270,7 @@ Page({
             duration: 2000,
           })
           wx.request({
-            url: api_url + '/Smallsale/goods/getPlayList',
+            url: api_v_url + '/goods/getPlayList',
             header: {
               'content-type': 'application/json'
             },
@@ -325,7 +313,7 @@ Page({
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     box_mac = link_box_info.box_mac;
     wx.request({
-      url: api_url + '/Smallsale/goods/programPlay',
+      url: api_v_url + '/goods/programPlay',
       header: {
         'content-type': 'application/json'
       },
@@ -336,7 +324,7 @@ Page({
       },
       success: function(res) {
         wx.request({
-          url: api_url + '/Smallsale/goods/getPlayList',
+          url: api_v_url + '/goods/getPlayList',
           header: {
             'content-type': 'application/json'
           },
@@ -464,7 +452,7 @@ Page({
         showPageType: 3
       })
       wx.request({ //我的活动
-        url: api_url + '/Smallsale/goods/myGoodslist',
+        url: api_v_url + '/goods/myGoodslist',
         header: {
           'content-type': 'application/json'
         },
@@ -857,7 +845,7 @@ Page({
       title: '活动商品处理中',
     })
     wx.request({
-      url: api_url + '/Smallsale/goods/addActivityGoods',
+      url: api_v_url + '/goods/addActivityGoods',
       header: {
         'content-type': 'application/json'
       },
@@ -917,7 +905,7 @@ Page({
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
           }
           wx.request({
-            url: api_url + '/Smallsale/goods/myGoodslist',
+            url: api_v_url + '/goods/myGoodslist',
             header: {
               'content-type': 'application/json'
             },
@@ -993,7 +981,7 @@ Page({
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.request({ //我的活动
-      url: api_url + '/Smallsale/goods/myGoodslist',
+      url: api_v_url + '/goods/myGoodslist',
       header: {
         'content-type': 'application/json'
       },
@@ -1122,7 +1110,7 @@ Page({
         })
       }
       wx.request({ //节目单播放列表
-        url: api_url + '/Smallsale/goods/getPlayList',
+        url: api_v_url + '/goods/getPlayList',
         header: {
           'content-type': 'application/json'
         },
@@ -1139,7 +1127,7 @@ Page({
         }
       })
       wx.request({ //促销活动列表
-        url: api_url + '/Smallsale/goods/myGoodslist',
+        url: api_v_url + '/goods/myGoodslist',
         header: {
           'content-type': 'application/json'
         },
@@ -1184,7 +1172,7 @@ Page({
 
       } else {
         wx.request({ //节目单播放列表
-          url: api_url + '/Smallsale/goods/getPlayList',
+          url: api_v_url + '/goods/getPlayList',
           header: {
             'content-type': 'application/json'
           },
@@ -1201,7 +1189,7 @@ Page({
           }
         })
         wx.request({ //促销活动列表
-          url: api_url + '/Smallsale/goods/myGoodslist',
+          url: api_v_url + '/goods/myGoodslist',
           header: {
             'content-type': 'application/json'
           },
@@ -1296,7 +1284,7 @@ Page({
       })
       page = page + 1;
       wx.request({
-        url: api_url + '/Smallsale/goods/myGoodslist',
+        url: api_v_url + '/goods/myGoodslist',
         header: {
           'content-type': 'application/json'
         },
@@ -1504,7 +1492,7 @@ Page({
     var box_mac = link_box_info.box_mac;
     //包间列表
     wx.request({
-      url: api_url + '/smallsale/room/getRoomList',
+      url: api_v_url + '/room/getRoomList',
       header: {
         'content-type': 'application/json'
       },
@@ -1778,7 +1766,7 @@ Page({
 
 
           wx.request({
-            url: api_url + '/Smallsale/goods/addSalegoods',
+            url: api_v_url + '/goods/addSalegoods',
             header: {
               'content-type': 'application/json'
             },
@@ -1859,7 +1847,7 @@ Page({
   showMailListPage: function(e) {
     let that = this;
     wx.request({
-      url: api_url + '/Smallsale/hotel/getHotelList',
+      url: api_v_url + '/hotel/getHotelList',
       header: {
         'content-type': 'application/json'
       },
@@ -1920,7 +1908,7 @@ Page({
       return;
     }
     wx.request({
-      url: api_url + '/Smallsale/user/bindmobile',
+      url: api_v_url + '/user/bindmobile',
       header: {
         'content-type': 'application/json'
       },
@@ -1981,7 +1969,7 @@ Page({
       return;
     }
     wx.request({
-      url: api_url + '/Smallsale/sms/sendbindmobileverifyCode',
+      url: api_v_url + '/sms/sendbindmobileverifyCode',
       header: {
         'content-type': 'application/json'
       },

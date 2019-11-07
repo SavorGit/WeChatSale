@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var box_mac;
 var openid;
@@ -33,7 +34,7 @@ Page({
       is_wx_auth: is_wx_auth
     })
     wx.request({
-      url: api_url + '/Smallsale/user/center',
+      url: api_v_url + '/user/center',
       header: {
         'content-type': 'application/json'
       },
@@ -56,7 +57,7 @@ Page({
 
     //我的员工
     wx.request({
-      url: api_url + '/Smallsale/user/employeelist',
+      url: api_v_url + '/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
@@ -81,7 +82,7 @@ Page({
       title: '加载中，请稍后',
     })
     wx.request({
-      url: api_url + '/Smallsale/user/integralrecord',
+      url: api_v_url + '/user/integralrecord',
       header: {
         'content-type': 'application/json'
       },
@@ -115,9 +116,9 @@ Page({
   addStaff: function(e) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    //var qrcode_url = api_url + '/Smallsale/qrcode/inviteQrcode?openid='+user_info.openid;
+    
     wx.request({
-      url: api_url + '/Smallsale/user/invite',
+      url: api_v_url + '/user/invite',
       header: {
         'content-type': 'application/json'
       },
@@ -157,7 +158,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     wx.request({
-      url: api_url + '/Smallsale/user/invite',
+      url: api_v_url + '/user/invite',
       header: {
         'content-type': 'application/json'
       },
@@ -220,7 +221,7 @@ Page({
           var nickName = rets.userInfo.nickName;
           console.log(rets);
           wx.request({
-            url: api_url + '/Smallsale/User/registerCom',
+            url: api_v_url + '/User/registerCom',
             data: {
               'openid': openid,
               'avatarUrl': rets.userInfo.avatarUrl,
@@ -290,7 +291,7 @@ Page({
       mta.Event.stat('userConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
-        url: api_url + '/Smallsale/User/refuseRegister',
+        url: api_v_url + '/User/refuseRegister',
         header: {
           'content-type': 'application/json'
         },

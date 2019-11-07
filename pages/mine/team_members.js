@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var page = 1;
 var openid ;
@@ -22,7 +23,7 @@ Page({
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     openid = userinfo.openid;
     wx.request({
-      url: api_url +'/Smallsale/user/employeelist',
+      url: api_v_url +'/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
@@ -46,7 +47,7 @@ Page({
       title: '加载中，请稍后',
     })
     wx.request({
-      url: api_url + '/Smallsale/user/employeelist',
+      url: api_v_url + '/user/employeelist',
       header: {
         'content-type': 'application/json'
       },
@@ -83,7 +84,7 @@ Page({
     var new_staff_list = [];
     var flag = 0;
     wx.request({
-      url: api_url + '/Smallsale/user/removeEmployee',
+      url: api_v_url + '/user/removeEmployee',
       header: {
         'content-type': 'application/json'
       },
@@ -99,23 +100,7 @@ Page({
             icon: 'none',
             duration: 2000,
           })
-          /*wx.request({
-            url: api_url + '/Smallsale/user/employeelist',
-            header: {
-              'content-type': 'application/json'
-            },
-            data: {
-              openid: userinfo.openid,
-              page: 1,
-              pagesize: 20,
-            },
-            success: function (rts) {
-              console.log(rts);
-              that.setData({
-                staff_list: rts.data.result.datalist
-              })
-            }
-          })*/
+          
           staff_list.splice(keys,1)
           that.setData({
             staff_list: staff_list

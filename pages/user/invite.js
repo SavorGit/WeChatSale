@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key; 
 var openid;
 var sms_time_djs;
@@ -50,7 +51,7 @@ Page({
     }
     function register(openid, invite_code){
       wx.request({
-        url: api_url +'/Smallsale/login/scancodeLogin',
+        url: api_v_url +'/login/scancodeLogin',
         header: {
           'content-type': 'application/json'
         },
@@ -105,7 +106,7 @@ Page({
       wx.getUserInfo({
         success(rets) {
           wx.request({
-            url: api_url + '/Smallsale/User/registerCom',
+            url: api_v_url + '/User/registerCom',
             data: {
               'openid': openid,
               'avatarUrl': rets.userInfo.avatarUrl,
@@ -169,7 +170,7 @@ Page({
       mta.Event.stat('inviteConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
-        url: api_url + '/Smallsale/User/refuseRegister',
+        url: api_v_url + '/User/refuseRegister',
         header: {
           'content-type': 'application/json'
         },
@@ -236,7 +237,7 @@ Page({
       mask: 'true'
     })
     wx.request({
-      url: api_url + '/Smallsale/user/bindmobile',
+      url: api_v_url + '/user/bindmobile',
       header: {
         'content-type': 'application/json'
       },
@@ -307,7 +308,7 @@ Page({
       return;
     }
     wx.request({
-      url: api_url + '/Smallsale/sms/sendbindmobileverifyCode',
+      url: api_v_url + '/sms/sendbindmobileverifyCode',
       header: {
         'content-type': 'application/json'
       },

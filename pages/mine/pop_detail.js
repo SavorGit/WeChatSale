@@ -1,6 +1,7 @@
 // pages/mine/pop_detail.js
 const app = getApp()
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 Page({
@@ -32,7 +33,7 @@ Page({
     })
     //商品详情
     wx.request({
-      url: api_url +'/Smallsale/goods/getdetail',
+      url: api_v_url +'/goods/getdetail',
       header: {
         'content-type': 'application/json'
       },

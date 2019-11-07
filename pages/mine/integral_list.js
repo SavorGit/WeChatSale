@@ -2,6 +2,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var page = 1;
@@ -33,7 +34,7 @@ Page({
     openid = user_info.openid;
     
     wx.request({
-      url: api_url +'/Smallsale/user/integraltypes',
+      url: api_v_url +'/user/integraltypes',
       header: {
         'content-type': 'application/json'
       },
@@ -53,7 +54,7 @@ Page({
       }
     })
     wx.request({
-      url: api_url + '/Smallsale/user/integralrecord',
+      url: api_v_url + '/user/integralrecord',
       header: {
         'content-type': 'application/json'
       },
@@ -80,7 +81,7 @@ Page({
       title: '加载中，请稍后',
     })
     wx.request({
-      url: api_url + '/Smallsale/user/integralrecord',
+      url: api_v_url + '/user/integralrecord',
       header: {
         'content-type': 'application/json'
       },
@@ -121,7 +122,7 @@ Page({
         title: '加载中，请稍后',
       })
       wx.request({
-        url: api_url + '/Smallsale/user/integralrecord',
+        url: api_v_url + '/user/integralrecord',
         header: {
           'content-type': 'application/json'
         },
@@ -161,7 +162,7 @@ Page({
         title: '加载中，请稍后',
       })
       wx.request({
-        url: api_url + '/Smallsale/user/integralrecord',
+        url: api_v_url + '/user/integralrecord',
         header: {
           'content-type': 'application/json'
         },
