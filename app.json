@@ -18,8 +18,9 @@
     "pages/mine/team_members",
     "pages/mine/integral_list",
     "pages/mine/receiving_info",
-    "pages/user/invite",
-    "pages/task/index"
+    "pages/mine/withdraw",
+    "pages/task/index",
+    "pages/user/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",
