@@ -9,6 +9,7 @@ var signature;
 var forscreen_char='' ;
 var intranet_ip;
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
 Page({
@@ -43,7 +44,7 @@ Page({
 
 
     wx.request({
-      url: api_url + '/Smallsale/playtime/getTimeList',
+      url: api_v_url + '/playtime/getTimeList',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -198,7 +199,7 @@ Page({
               hiddens: true,
             })
             wx.request({
-              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_v_url+'/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },

@@ -3,6 +3,7 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var box_mac;
@@ -72,7 +73,7 @@ Page({
     function is_login(openid) {
 
       wx.request({
-        url: api_url + '/Smallsale/User/isRegister',
+        url: api_v_url + '/User/isRegister',
         header: {
           'content-type': 'application/json'
         },
@@ -130,7 +131,7 @@ Page({
               })
               //获取当前酒楼包间签到信息
               wx.request({
-                url: api_url + '/Smallsale/user/getSigninBoxList',
+                url: api_v_url + '/user/getSigninBoxList',
                 header: {
                   'content-type': 'application/json'
                 },
@@ -209,7 +210,7 @@ Page({
         });
       } else {
         wx.request({
-          url: api_url + '/Smallsale/user/checkuser',
+          url: api_v_url + '/user/checkuser',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -261,7 +262,7 @@ Page({
         });
       } else {
         wx.request({
-          url: api_url + '/Smallsale/user/checkuser',
+          url: api_v_url + '/user/checkuser',
           headers: {
             'Content-Type': 'application/json'
           },
@@ -403,7 +404,7 @@ Page({
     openid = user_info.openid;
     //sign_box_list
     wx.request({
-      url: api_url + '/Smallsale/user/signin',
+      url: api_v_url + '/user/signin',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -513,7 +514,7 @@ Page({
         success(rets) {
           console.log(rets);
           wx.request({
-            url: api_url + '/Smallsale/User/registerCom',
+            url: api_v_url + '/User/registerCom',
             data: {
               'openid': openid,
               'avatarUrl': rets.userInfo.avatarUrl,
@@ -578,7 +579,7 @@ Page({
       mta.Event.stat('indexConfirmAuth', { 'openid': openid })
     } else {
       wx.request({
-        url: api_url + '/Smallsale/User/refuseRegister',
+        url: api_v_url + '/User/refuseRegister',
         header: {
           'content-type': 'application/json'
         },
@@ -621,7 +622,7 @@ Page({
   showMailListPage: function(e) {
     let that = this;
     wx.request({
-      url: api_url+'/Smallsale/hotel/getHotelList',
+      url: api_v_url+'/hotel/getHotelList',
       header: {
         'content-type': 'application/json'
       },
@@ -688,7 +689,7 @@ Page({
       })
       //获取当前酒楼包间签到信息
       wx.request({
-        url: api_url + '/Smallsale/user/getSigninBoxList',
+        url: api_v_url + '/user/getSigninBoxList',
         header: {
           'content-type': 'application/json'
         },

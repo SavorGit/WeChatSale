@@ -4,6 +4,7 @@ const app = getApp()
 var openid;
 var sms_time_djs;
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var common_appid =  app.globalData.common_appid;
 
@@ -54,7 +55,7 @@ Page({
     function userRegister(openid){
       if(openid !='' && openid !=undefined){
         wx.request({
-          url: api_url+'/Smallsale/User/isRegister',
+          url: api_v_url+'/User/isRegister',
           header: {
             'content-type': 'application/json'
           },
@@ -100,7 +101,7 @@ Page({
         success(rets) {
           console.log(rets);
           wx.request({
-            url: api_url + '/Smallsale/User/registerCom',
+            url: api_v_url + '/User/registerCom',
             data: {
               'openid': openid,
               'avatarUrl': rets.userInfo.avatarUrl,
@@ -163,7 +164,7 @@ Page({
       })
     } else {
       wx.request({
-        url: api_url +'/Smallsale/User/refuseRegister',
+        url: api_v_url +'/User/refuseRegister',
         header: {
           'content-type': 'application/json'
         },
@@ -226,7 +227,7 @@ Page({
       return;
     }
     wx.request({
-      url: api_url+'/Smalldinnerapp/sms/sendverifyCode',
+      url: api_v_url+'/sms/sendverifyCode',
       header: {
         'content-type': 'application/json'
       },
@@ -309,7 +310,7 @@ Page({
       return;
     }
     wx.request({
-      url: api_url+'/Smallsale/login/login',
+      url: api_v_url+'/login/login',
       header: {
         'content-type': 'application/json'
       },
@@ -331,10 +332,10 @@ Page({
               url: '/pages/tv_sale/system',
             })
           }
-          
-          var user_info = wx.getStorageSync(cache_key + "userinfo");
+          var user_info = rt.data.result;
+          //var user_info = wx.getStorageSync(cache_key + "userinfo");
           //user_info.is_login = 1;
-          user_info.hotel_id = rt.data.result.hotel_id;
+          
           wx.setStorage({
             key: cache_key+'userinfo',
             data: user_info,

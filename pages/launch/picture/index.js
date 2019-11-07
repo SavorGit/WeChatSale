@@ -14,6 +14,7 @@ var post_imgs = [];
 var tmp_percent = [];
 var pic_show_cur = [];
 var api_url  = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
 Page({
@@ -52,7 +53,7 @@ Page({
     })
 
     wx.request({
-      url: api_url + '/Smallsale/playtime/getTimeList',
+      url: api_v_url + '/playtime/getTimeList',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -257,7 +258,7 @@ Page({
           if (res.progress == 100) {
             var res_eup_time = (new Date()).valueOf();
             wx.request({
-              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_v_url+'/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },
@@ -427,7 +428,7 @@ Page({
         success: function (result) {
           if(result.data.code==10000){
             wx.request({
-              url: api_url+'/Smallsale/ForscreenLog/recordForScreenPics',
+              url: api_v_url+'/ForscreenLog/recordForScreenPics',
               header: {
                 'content-type': 'application/json'
               },
