@@ -5,6 +5,7 @@
 const util = require('../../utils/util.js');
 const app = getApp()
 const api_url = app.globalData.api_url;
+const cache_key = app.globalData.cache_key;
 
 Page({
 
@@ -13,41 +14,12 @@ Page({
    */
   data: {
     pageNo: 1, // 当前页码
-    userIntegral: 12345, // 用户积分
-    goodsList: [{
-        isCheck: true,
-        faceValue: "5元",
-        consume: '1000积分'
-      },
-      {
-        isCheck: false,
-        faceValue: "10元",
-        consume: '1900积分'
-      },
-      {
-        isCheck: false,
-        faceValue: "20元",
-        consume: '3700积分'
-      },
-      {
-        isCheck: false,
-        faceValue: "50元",
-        consume: '9100积分'
-      },
-      {
-        isCheck: true,
-        faceValue: "100元",
-        consume: '18000积分'
-      },
-      {
-        isCheck: true,
-        faceValue: "200元",
-        consume: '35000积分'
-      },
-    ], // 商品列表
+    userIntegral: 0, // 用户积分
+    goodsList: [], // 商品列表
     notEnoughIntegralWindowShow: false, // 是否弹出没有足够积分窗口
     confirmExchangeGoodsWindowShow: false, // 是否弹出确定兑换窗口
-    openGoodsInWindow: {} // 在确认弹窗中打开商品
+    openGoodsInWindow: {}, // 在确认弹窗中打开商品
+    exchangeGoodsSuccess: {} // 兑换成功后的提示
   },
 
   /**
@@ -62,9 +34,10 @@ Page({
    */
   onReady: function() {
     let that = this;
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     this.loadingData({
-      page: 1,
-      pageSize: 20
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
     }, true);
   },
 
@@ -112,37 +85,13 @@ Page({
   },
 
   /**
-   * 刷新列表
-   */
-  flushGoodsList: function(e) {
-    let that = this;
-    console.log('flushTaskList', e);
-    this.loadingData({
-      pageNo: 1,
-      pageSize: 20
-    });
-  },
-
-  /**
-   * 加载下页面数据
-   */
-  loadingNextPageData: function(e) {
-    let that = this;
-    console.log('loadingNextPageData', e);
-    this.loadingData({
-      pageNo: that.data.pageNo++,
-      pageSize: 20
-    });
-  },
-
-  /**
    * 兑换商品
    */
   exchangeGoods: function(e) {
     let that = this;
     let goodsListIndex = e.currentTarget.dataset.index;
     let goods = that.data.goodsList[goodsListIndex];
-    let goodsConsume = parseInt(goods.consume);
+    let goodsConsume = parseInt(goods.integral);
     if (that.data.userIntegral < goodsConsume) {
       that.setData({
         notEnoughIntegralWindowShow: true
@@ -180,31 +129,48 @@ Page({
    */
   confirmExchangeGoods: function(e) {
     let that = this;
-    //TODO 发送兑换指令
-    console.log('兑换');
-    that.setData({
-      confirmExchangeGoodsWindowShow: false
+    // console.log('兑换', e);
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    // let goodsId = e.currentTarget.dataset.goodsId;
+    let requestData = {
+      id: that.data.openGoodsInWindow.id,
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
+    };
+    util.PostRequest(api_url + '/Smallsale14/withdraw/wxchange', requestData, function(data, headers, cookies, errMsg, httpCode) {
+      // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode);
+      // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      if (that.data.openGoodsInWindow.is_audit == 1) { // 需审核
+        that.setData({
+          userIntegral: data.result.integral,
+          exchangeGoodsCheckWindowShow: true,
+          exchangeGoodsSuccess: data.result
+        });
+      } else { // 无审核
+        that.setData({
+          userIntegral: data.result.integral,
+          exchangeGoodsWindowShow: true,
+          exchangeGoodsSuccess: data.result
+        });
+      }
+    }, function(res) {
+      // wx.navigateBack();
     });
   },
 
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
-    util.GetRequest(api_url + '/Smallsale/user/center', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+    util.PostRequest(api_url + '/Smallsale14/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
+      // console.log('loadingData', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       that.setData({
-        pageNo: requestData.page,
-        goodsList: data.data
+        userIntegral: data.result.integral,
+        goodsList: data.result.datalist
       });
     }, function(res) {
       if (navigateBackOnError == true) {
         wx.navigateBack();
       }
     });
-    // util.PostRequest(api_url, {}, function(data, headers, cookies, errMsg, httpCode) {
-    //   console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
-    // }, function(res) {
-    //   console.log('util.PostRequest', 'fail', res);
-    // });
   }
 })
