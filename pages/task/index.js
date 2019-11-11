@@ -6,6 +6,7 @@
 const util = require('../../utils/util.js');
 const app = getApp()
 const api_url = app.globalData.api_url;
+const cache_key = app.globalData.cache_key;
 
 Page({
 
@@ -14,28 +15,7 @@ Page({
    */
   data: {
     pageNo: 1, // 当前页码
-    taskList: [{
-        name: '电视开机',
-        icon: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        profit: 120,
-        progress: '今日获得积分',
-        detail: '1.用餐时间打开餐厅内安装热点投屏设备的电视；2.在销售端首页-包间信息中对自己开机的；3.每天包含两个用餐时段，11:00-14:00,18:00-21:00；4.电视在单独用餐时段内开机大于1小时则奖励10积分。'
-      },
-      {
-        name: '食客电视互动',
-        icon: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        profit: 0,
-        progress: '今日获得积分',
-        detail: '1.用餐时间打开餐厅内安装热点投屏设备的电视；2.在销售端首页-包间信息中对自己开机的；3.每天包含两个用餐时段，11:00-14:00,18:00-21:00；4.电视在单独用餐时段内开机大于1小时则奖励10积分。'
-      },
-      {
-        name: '电视开机',
-        icon: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        profit: 120,
-        progress: '今日获得积分',
-        detail: '1.用餐时间打开餐厅内安装热点投屏设备的电视；2.在销售端首页-包间信息中对自己开机的；3.每天包含两个用餐时段，11:00-14:00,18:00-21:00；4.电视在单独用餐时段内开机大于1小时则奖励10积分。'
-      }
-    ], // 任务列表数据
+    taskList: [], // 任务列表数据
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
     openTaskInWindow: {} // 在任务详情弹窗中打开任务
   },
@@ -52,9 +32,11 @@ Page({
    */
   onReady: function() {
     let that = this;
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     this.loadingData({
       page: 1,
-      pageSize: 20
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
     }, true);
   },
 
@@ -106,10 +88,12 @@ Page({
    */
   flushTaskList: function(e) {
     let that = this;
-    console.log('flushTaskList', e);
+    // console.log('flushTaskList', e);
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     this.loadingData({
-      pageNo: 1,
-      pageSize: 20
+      page: 1,
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
     });
   },
 
@@ -118,10 +102,12 @@ Page({
    */
   loadingNextPageData: function(e) {
     let that = this;
-    console.log('loadingNextPageData', e);
+    // console.log('loadingNextPageData', e);
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     this.loadingData({
-      pageNo: that.data.pageNo++,
-      pageSize: 20
+      page: ++that.data.pageNo,
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
     });
   },
 
@@ -150,21 +136,17 @@ Page({
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
-    util.GetRequest(api_url + '/Smallsale/user/center', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+    util.PostRequest(api_url + '/smallsale14/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
+      // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode);
+      // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       that.setData({
         pageNo: requestData.page,
-        taskList: data.data
+        taskList: data.result
       });
     }, function(res) {
       if (navigateBackOnError == true) {
         wx.navigateBack();
       }
     });
-    // util.PostRequest(api_url, {}, function(data, headers, cookies, errMsg, httpCode) {
-    //   console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
-    // }, function(res) {
-    //   console.log('util.PostRequest', 'fail', res);
-    // });
   }
 })

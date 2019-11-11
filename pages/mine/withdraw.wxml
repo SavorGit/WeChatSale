@@ -3,26 +3,26 @@
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="integral-panel flex_column_center_center theme7">
-    <view class="title theme-font1">总积分</view>
-    <view class="integral theme-font6">123456</view>
+    <view class="title theme-font1">可使用积分</view>
+    <view class="integral theme-font6">{{userIntegral}}</view>
   </view>
   <view class="goods-panel theme7">
     <view class="title-bar flex_row_center">
-      <view class="icon fa fa-weixin" aria-hidden="true"></view>
+      <view class="icon fa fa-weixin fa-lg" aria-hidden="true"></view>
       <view class="title theme-font1">提现到微信零钱</view>
     </view>
     <view class="weui-grids">
-
-      <view wx:for='{{goodsList}}' wx:for-item="bean" wx:key="key" wx:for-index="index" class="weui-grid flex_column_center_center" data-index='{{index}}' bindtap='exchangeGoods'>
-        <view class="flag-bar flex_row_center_flexEnd">
-          <view wx:if='{{bean.isCheck}}' class="flag theme-background-9 theme-font4">需审核</view>
+      <block wx:for='{{goodsList}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="weui-grid flex_column_center_center" data-index="{{index}}" data-goodsId="{{bean.id}}" data-goods-name="{{bean.goods_name}}" bindtap='exchangeGoods'>
+          <view class="flag-bar flex_row_center_flexEnd">
+            <view wx:if='{{bean.is_audit == 1}}' class="flag theme-background-9 theme-font4">需审核</view>
+          </view>
+          <view class="goods flex_column_center_center">
+            <view class="face-value theme-font6">{{bean.goods_name}}</view>
+            <view class="consume theme-font3">{{bean.integral}}积分</view>
+          </view>
         </view>
-        <view class="goods flex_column_center_center">
-          <view class="face-value theme-font6">{{bean.faceValue}}</view>
-          <view class="consume theme-font3">{{bean.consume}}</view>
-        </view>
-      </view>
-
+      </block>
     </view>
   </view>
   <view class="desc-panel">
@@ -44,5 +44,19 @@
 <!-- 兑换确认弹窗 -->
 <modal show="{{confirmExchangeGoodsWindowShow}}" width="600rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='否' confirm-color="#666666"
   confirm-background-color="unset" confirm-border-radius="0rpx" cancel-text='是' cancel-color='#eb6877' cancel-background-color="unset" cancel-border-radius="0rpx" bindcancel="confirmExchangeGoods" bindconfirm='closeConfirmExchangeGoodsWindow'>
-  <view style="text-align:center;font-size:28rpx;padding:0 20rpx;">您是否要消耗{{openGoodsInWindow.consume}}，提现{{openGoodsInWindow.faceValue}}到微信零钱？</view>
+  <view style="text-align:center;font-size:28rpx;padding:0 20rpx;">您是否要消耗{{openGoodsInWindow.integral}}积分，提现{{openGoodsInWindow.goods_name}}到微信零钱？</view>
+</modal>
+
+<!-- 提现成功弹窗[无审核] -->
+<modal show="{{exchangeGoodsWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877"
+  cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
+  <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.message}}</view>
+  <view class="theme-font3" style="height:40rpx;line-height:40rpx;text-align:center;font-size:24rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.tips}}</view>
+</modal>
+
+<!-- 提现成功弹窗[需审核] -->
+<modal show="{{exchangeGoodsCheckWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877"
+  cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
+  <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.message}}</view>
+  <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.tips}}</view>
 </modal>
