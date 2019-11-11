@@ -44,7 +44,9 @@ Page({
     bdShowModal: true, //邀请码酒楼和绑定酒楼不一致
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     showHotelErr: false,
-    sign_box_list: [] //签到包间
+    sign_box_list: [], //签到包间
+    tv_forscreen:true,
+    signin:true,
   },
 
   onLoad: function(res) {
@@ -93,9 +95,14 @@ Page({
               var user_info = res.data.result.userinfo;
               var hotel_id = user_info.hotel_id;
             }
+            //判断权限
+            var tv_forscreen = app.in_array('tv_forscreen',user_info.service);
+            var room_signin = app.in_array('room_signin', user_info.service);
             
             that.setData({
-              user_info:user_info
+              user_info:user_info,
+              tv_forscreen: tv_forscreen,
+              room_signin: room_signin
             })
             var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
             if (link_box_info != '') { //已链接盒子
@@ -161,7 +168,7 @@ Page({
         }
       })
     }
-
+    
 
   },
   //选择包间开始

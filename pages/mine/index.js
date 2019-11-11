@@ -17,6 +17,12 @@ Page({
     nickName: '匿名用户',
     integral: 0,
     is_open_integral: 0,
+    goods_manage:false,
+    staff_manage:false,
+    integral_manage:false,
+    integral_shop:false,
+    task_manage:false,
+
   },
 
   /**
@@ -29,9 +35,20 @@ Page({
     openid = user_info.openid;
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
+    var goods_manage = app.in_array('goods_manage',user_info.service);
+    var staff_manage = app.in_array('staff_manage', user_info.service);
+    var integral_manage = app.in_array('integral_manage', user_info.service);
+    var integral_shop   = app.in_array('integral_shop',user_info.service);
+    var task_manage = app.in_array('task_manage',user_info.service);
+
     that.setData({
       role_type: role_type,
-      is_wx_auth: is_wx_auth
+      is_wx_auth: is_wx_auth,
+      goods_manage: goods_manage,
+      staff_manage: staff_manage,
+      integral_manage: integral_manage,
+      task_manage: task_manage,
+      integral_shop: integral_shop
     })
     wx.request({
       url: api_v_url + '/user/center',

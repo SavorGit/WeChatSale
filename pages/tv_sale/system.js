@@ -97,6 +97,9 @@ Page({
       name: "请选择酒楼"
     },
     hotel_activity_list: [],
+    pro_play:false,
+    activity_pop:true,
+    hotel_activity:true,
     
   },
 
@@ -111,10 +114,23 @@ Page({
     //console.log(user_info);
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var hotel_has_room = user_info.hotel_has_room;
+    var pro_play = app.in_array('pro_play',user_info.service);
+    var activity_pop = app.in_array('activity_pop',user_info.service);
+    var hotel_activity = app.in_array('hotel_activity', user_info.service);
+    if(activity_pop==false && hotel_activity==true) {
+      var showPageType = 3;
+    } else if (activity_pop ==true){
+      var showPageType = 1;
+    }
     that.setData({
       hotel_has_room: hotel_has_room,
-      user_info: user_info
+      user_info: user_info,
+      pro_play: pro_play,
+      activity_pop: activity_pop,
+      hotel_activity: hotel_activity,
+      showPageType: showPageType
     })
+
     openid = user_info.openid;
     if(user_info.hotel_id==-1){
       hotel_id = user_info.select_hotel_id;

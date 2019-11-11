@@ -26,7 +26,7 @@
   </picker>
 
   <!-- 主要功能面板 -->
-  <view class='main-function-panel full_width theme7'>
+  <view class='main-function-panel full_width theme7' wx:if="{{tv_forscreen==true}}">
     <button bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
       <image class='icon' src='/images/icon/DEA852_pic.png'></image>
       <view class='title'>照片上电视</view>
@@ -45,14 +45,14 @@
   </view>
 
   <!-- 机顶盒操作面板 -->
-  <view class='box-operate-panel full_width theme7'>
+  <view class='box-operate-panel full_width theme7' wx:if="{{tv_forscreen==true}}">
     <button class='theme-button5' bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</button>
     <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 + </button>
     <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 - </button>
   </view>
 
   <!-- 机顶盒面板 -->
-  <view class='box-panel full_width theme7'>
+  <view class='box-panel full_width theme7' wx:if="{{room_signin==true}}">
     <view class='title full_width theme-font3'>包间信息</view>
     <scroll-view class='scroll full_width' scroll-y="true" scroll-with-animation="true">
       <view class='weui-grids'>

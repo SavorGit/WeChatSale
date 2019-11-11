@@ -5,7 +5,7 @@
 <scroll-view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 
   <!-- 正在播放的活动面板 -->
-  <view class='playing-sale-panel full_width'>
+  <view class='playing-sale-panel full_width' wx:if="{{pro_play==true}}">
     <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
       <view class='title theme-font3'>{{index==0?'循环播放活动':''}}</view>
       <view class='dividing-line'></view>
@@ -28,9 +28,19 @@
   <!-- 活动促销面板 -->
   <view class='sale-panel full_width'>
     <view class='tab-bar theme7'>
+      <block wx:if="{{activity_pop==true && hotel_activity==true}}">
       <view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
       <view class='dividing-line'></view>
       <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
+      </block>
+      <block wx:if="{{activity_pop==true && hotel_activity==false}}">
+        <view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
+     
+      </block>
+      <block wx:if="{{activity_pop==false && hotel_activity==true}}">
+        <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
+     
+      </block>
     </view>
 
     <!-- 活动促销 -->

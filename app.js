@@ -147,6 +147,14 @@ App({
       }
     })
   },
+  in_array:function(search, array) {
+    for(var i in array) {
+      if (array[i] == search) {
+        return true;
+      }
+    }
+    return false;
+  },
   globalData: {
     openid: '',
     session_key: '',

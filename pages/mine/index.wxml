@@ -13,16 +13,16 @@
   </view>
 
   <!-- 收益概况面板 -->
-  <view class='profit-profile-panel full_width theme7' >
+  <view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
     <view class='top theme-font2'>
       <view class='title'>积分收益（分）</view>
       <navigator bindtap="integralList" class='more' url="/pages/mine/integral_list">收益明细...</navigator>
     </view>
     <view class='info'>
       <label class='theme-font5'>{{integral}}</label>
-      <button class='btn-exchange theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button>
+      <!-- <button class='btn-exchange theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button> -->
       <!-- <button class='theme-font'>转赠</button> -->
-      <navigator class='btn-exchange theme-font5' url="/pages/mine/withdraw">兑换</navigator>
+      <navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw">兑换</navigator>
     </view>
     <view class="month">
       <view class="block theme-font4">
@@ -38,7 +38,7 @@
   </view>
 
   <!-- 任务列表 套用【活动商品管理面板】样式-->
-  <view class="promotion-goods-manage-panel theme7 theme-font2">
+  <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
     <navigator class="full_width full_height" url="/pages/task/index">
       <view>任务列表</view>
       <view class="fa fa-angle-right" aria-hidden="true"></view>
@@ -46,7 +46,7 @@
   </view>
 
   <!-- 活动商品管理面板 -->
-  <view class="promotion-goods-manage-panel theme7 theme-font2">
+  <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{goods_manage==true}}">
     <navigator bindtap="popActivityList" class="full_width full_height" url="/pages/mine/pop_list">
       <view>活动商品管理</view>
       <view class="fa fa-angle-right" aria-hidden="true"></view>
@@ -54,7 +54,7 @@
   </view>
 
   <!-- 我的员工面板 -->
-  <view class="team-members-panel full_width theme7" wx:if="{{role_type==2}}">
+  <view class="team-members-panel full_width theme7" wx:if="{{role_type==2 && staff_manage==true}}">
     <view class='title theme-font2'>
       <label>我的员工</label>
       <label wx:if="{{staff_list.length>0}}">
