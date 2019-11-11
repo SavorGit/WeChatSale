@@ -44,7 +44,7 @@
     </view>
 
     <!-- 活动促销 -->
-    <block wx:if="{{showPageType == 1}}">
+    <block wx:if="{{showPageType == 1 && activity_pop==true}}">
       <block wx:if="{{sale_list.length > 0}}">
         <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content' data-index="{{index}}">
