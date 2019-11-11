@@ -27,6 +27,11 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading',
+      mask: true
+    });
   },
 
   /**
@@ -34,11 +39,15 @@ Page({
    */
   onReady: function() {
     let that = this;
-    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
-    this.loadingData({
-      hotel_id: userInfo.hotel_id,
-      openid: userInfo.openid
-    }, true);
+    wx.hideLoading({
+      success: function() {
+        let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+        that.loadingData({
+          hotel_id: userInfo.hotel_id,
+          openid: userInfo.openid
+        }, true);
+      }
+    });
   },
 
   /**

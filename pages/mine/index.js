@@ -444,5 +444,12 @@ Page({
         }
       }
     }
+  },
+  showLoadingOnClick: function (e) {
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading',
+      mask: true
+    });
   }
 })
