@@ -129,7 +129,7 @@ Page({
    */
   confirmExchangeGoods: function(e) {
     let that = this;
-    console.log('兑换', e);
+    // console.log('兑换', e);
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     // let goodsId = e.currentTarget.dataset.goodsId;
     let requestData = {
@@ -138,7 +138,7 @@ Page({
       openid: userInfo.openid
     };
     util.PostRequest(api_url + '/Smallsale14/withdraw/wxchange', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode);
+      // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode);
       // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       if (that.data.openGoodsInWindow.is_audit == 1) { // 需审核
         that.setData({
@@ -162,7 +162,7 @@ Page({
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
     util.PostRequest(api_url + '/Smallsale14/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      console.log('loadingData', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      // console.log('loadingData', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       that.setData({
         userIntegral: data.result.integral,
         goodsList: data.result.datalist
