@@ -112,6 +112,12 @@ const HttpRequest = (options) => {
 module.exports.HttpRequest = HttpRequest;
 
 const HttpRequestForLHS = (options) => {
+  wx.showToast({
+    title: "测试一下。HttpRequestForLHS",
+    icon: 'none',
+    mask: true,
+    duration: 5000
+  });
   HttpRequest({
     url: options.url,
     data: options.data,
@@ -193,6 +199,12 @@ const HttpRequestForLHS = (options) => {
 module.exports.HttpRequestForLHS = HttpRequestForLHS;
 
 const PostRequest = (url, data, successFn, failFn) => {
+  wx.showToast({
+    title: "测试一下。PostRequest",
+    icon: 'none',
+    mask: true,
+    duration: 5000
+  });
   HttpRequestForLHS({
     url: url,
     data: data,
