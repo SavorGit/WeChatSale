@@ -1130,6 +1130,23 @@ Page({
           ]
         })
       }
+      wx.request({
+        url: api_v_url + '/User/isRegister',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          openid: user_info.openid,
+        },
+        success:function(res){
+          if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
+          }else{
+            wx.reLaunch({
+              url: '/pages/user/login',
+            })
+          }
+        }
+      })
       wx.request({ //节目单播放列表
         url: api_v_url + '/goods/getPlayList',
         header: {
