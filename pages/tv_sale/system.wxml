@@ -68,7 +68,7 @@
         </view>
       </block>
       <block wx:else>
-        <view class="no-data full_width theme7" style="height:800rpx;">
+        <view class="no-data full_width theme7" style="height:800rpx;" wx:if="{{goods_manage==true}}">
           <view>您还没有选择要推广的活动</view>
           <view>请前往【个人信息——活动商品管理】选择</view>
           <view bindtap="addPopGoods">

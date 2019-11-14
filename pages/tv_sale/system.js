@@ -100,6 +100,7 @@ Page({
     pro_play:false,
     activity_pop:true,
     hotel_activity:true,
+    goods_manage: false,
     
   },
 
@@ -122,13 +123,17 @@ Page({
     } else if (activity_pop ==true){
       var showPageType = 1;
     }
+
+    var goods_manage = app.in_array('goods_manage', user_info.service);
+
     that.setData({
       hotel_has_room: hotel_has_room,
       user_info: user_info,
       pro_play: pro_play,
       activity_pop: activity_pop,
       hotel_activity: hotel_activity,
-      showPageType: showPageType
+      showPageType: showPageType,
+      goods_manage: goods_manage
     })
 
     openid = user_info.openid;
