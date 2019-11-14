@@ -187,7 +187,6 @@ Page({
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
     util.PostRequest(api_url + '/Smallsale14/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      // console.log('loadingData', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       if (typeof(data) != 'object' || typeof(data.result) != 'object') {
         wx.showToast({
           title: "服务器返回数据错误！请用联系管理员。",
@@ -247,6 +246,6 @@ Page({
       if (navigateBackOnError == true) {
         wx.navigateBack();
       }
-    });
+    }, that);
   }
 })

@@ -60,42 +60,31 @@ const HttpRequest = (options) => {
     responseType: options.responseType,
     success: function() {
       var successFnArgumentArray = [].slice.call(arguments);
-      // console.log('HttpRequest.success', options.method, successFnArgumentArray);
-      wx.hideLoading({
-        success: function() {
-          if (typeof(options.success) == "function") {
-            try {
-              options.success.apply(requestOptions, successFnArgumentArray);
-            } catch (err) {
-              requestOptions.error.call(requestOptions, err);
-            }
-          }
+      wx.hideLoading();
+      if (typeof(options.success) == "function") {
+        try {
+          options.success.apply(requestOptions, successFnArgumentArray);
+        } catch (err) {
+          requestOptions.error.call(requestOptions, err);
         }
-      });
+      }
     },
     fail: function() {
       var failFnArgumentArray = [].slice.call(arguments);
-      // console.log('HttpRequest.fail', options.method, failFnArgumentArray);
-      wx.hideLoading({
-        success: function() {
-          if (typeof(options.fail) == "function") {
-            try {
-              options.fail.apply(requestOptions, failFnArgumentArray);
-            } catch (err) {
-              requestOptions.error.call(requestOptions, err);
-            }
-          }
+      wx.hideLoading();
+      if (typeof(options.fail) == "function") {
+        try {
+          options.fail.apply(requestOptions, failFnArgumentArray);
+        } catch (err) {
+          requestOptions.error.call(requestOptions, err);
         }
-      });
+      }
     },
     error: function(err) {
       console.error(err);
     },
     complete: function() {
       var completeFnArgumentArray = [].slice.call(arguments);
-      // console.log('HttpRequest.complete', options.method, completeFnArgumentArray);
-      // wx.hideLoading({
-      //   success: function() {
       if (typeof(options.complete) == "function") {
         try {
           options.complete.apply(requestOptions, completeFnArgumentArray);
@@ -103,8 +92,6 @@ const HttpRequest = (options) => {
           requestOptions.error.call(requestOptions, err);
         }
       }
-      //   }
-      // });
     }
   };
   wx.request(requestOptions);
@@ -118,12 +105,8 @@ const HttpRequestForLHS = (options) => {
     method: options.method,
     success: function(res) {
       var httpRequst = this;
-      // console.log('HttpRequestForLHS.success', options.method, res);
       var statusCode = res.statusCode;
       if (parseInt(statusCode / 100) != 2) {
-        // wx.showLoading({
-        //   mask: true
-        // });
         httpRequst.fail.call(httpRequst, {
           'errMsg': 'statusCode:' + statusCode
         });
@@ -145,7 +128,7 @@ const HttpRequestForLHS = (options) => {
           icon: 'none',
           mask: true,
           duration: 5000,
-          success: function() {
+          complete: function() {
             setTimeout(function() {
               // wx.showLoading({
               //   mask: true
@@ -168,7 +151,6 @@ const HttpRequestForLHS = (options) => {
     },
     fail: function(res) {
       var failFnArgumentArray = [].slice.call(arguments);
-      // console.log('HttpRequestForLHS.fail', options.method, failFnArgumentArray);
       if (typeof(options.fail) == "function") {
         if (!res.code) {
           wx.showToast({
@@ -176,7 +158,7 @@ const HttpRequestForLHS = (options) => {
             icon: 'none',
             mask: true,
             duration: 2000,
-            success: function() {
+            complete: function() {
               setTimeout(function() {
                 options.fail.apply(this, failFnArgumentArray);
               }, 2000);

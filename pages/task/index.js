@@ -143,8 +143,6 @@ Page({
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
     util.PostRequest(api_url + '/smallsale14/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode);
-      // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       if (typeof(data) != 'object' || typeof(data.result) != 'object') {
         wx.showToast({
           title: "服务器返回数据错误！请用联系管理员。",
