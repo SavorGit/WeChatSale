@@ -232,15 +232,15 @@
 }
 
 .box-panel > .scroll  .weui-grids > .weui-grid {
-  width: 130rpx;
-  height: 130rpx;
+  width: 162rpx;
+  height: 170rpx;
   padding: 10rpx;
   font-size: 24rpx;
 }
 
 .box-panel > .scroll  .weui-grids > .weui-grid > .box {
-  width: 100rpx;
-  height: 100rpx;
+  width: 132rpx;
+  height: 140rpx;
   padding: 5rpx;
   background-color: #f3f2f2;
   border-radius: 5rpx;
@@ -251,8 +251,8 @@
 }
 
 .box-panel > .scroll  .weui-grids > .weui-grid > .box > .light {
-  width: 70rpx;
-  height: 70rpx;
+  width: 86rpx;
+  height: 86rpx;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -262,8 +262,8 @@
 
 .box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > image,
 .box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > view {
-  width: 64rpx;
-  height: 64rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   z-index: 5;
   display: flex;
@@ -273,12 +273,15 @@
 }
 
 .box-panel > .scroll  .weui-grids > .weui-grid > .box > .name {
-  width: 90rpx;
+  width: 122rpx;
   height: 30rpx;
+  text-align: center;
   overflow: hidden;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; */
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: center;
 }
 
 .green-light {
