@@ -366,6 +366,23 @@ Page({
 
       })
     }
+    wx.request({
+      url: api_v_url + '/User/isRegister',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: user_info.openid,
+      },
+      success: function (res) {
+        if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
+        } else {
+          wx.reLaunch({
+            url: '/pages/user/login',
+          })
+        }
+      }
+    })
     //数据埋点-进入个人信息页面
     mta.Event.stat('showUserIndex', { 'openid': user_info.openid })
     this.onLoad()
