@@ -4,7 +4,7 @@
 <wxs src="../../app.wxs" module="app" />
 <view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-main">
   <view class="flex_column_center_center">
-    <image mode="widthFix" style="widht:300rpx;" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/tasks_default.png"></image>
+    <image mode="widthFix" style="width:400rpx;margin-bottom:50rpx;" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/tasks_default.png"></image>
     <view>{{taskListShowStatus == 0 ? '加载中...' : '暂无任务，敬请期待'}}</view>
   </view>
 </view>
