@@ -338,6 +338,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -376,6 +377,27 @@ Page({
       },
       success: function (res) {
         if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
+          //var user_info = wx.getStorageSync(cache_key + 'userinfo');
+          if (user_info.select_hotel_id > 0) {
+            var hotel_id = user_info.select_hotel_id;
+          } else {
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: res.data.result.userinfo,
+            })
+            var goods_manage = app.in_array('goods_manage', user_info.service);
+            var staff_manage = app.in_array('staff_manage', user_info.service);
+            var integral_manage = app.in_array('integral_manage', user_info.service);
+            var integral_shop = app.in_array('integral_shop', user_info.service);
+            var task_manage = app.in_array('task_manage', user_info.service);
+            that.setData({
+              goods_manage: goods_manage,
+              staff_manage: staff_manage,
+              integral_manage: integral_manage,
+              task_manage: task_manage,
+              integral_shop: integral_shop
+            })
+          }
         } else {
           wx.reLaunch({
             url: '/pages/user/login',
