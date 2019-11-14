@@ -29,7 +29,7 @@
     <view class="title theme-font1">规则说明</view>
     <view class="content theme-font1">
       <view>1.提现将消耗对应数量的积分，当积分不足时无法进行提现；</view>
-      <view>2.每个用户每天有一次提现机会,如需多次提现请分天提取；</view>
+      <view>2.每个用户每天有一次提现机会，如需多次提现请分天提取；</view>
       <view>3.大额提现需经过人工审核，人工审核通过之后会及时发放；</view>
     </view>
   </view>
