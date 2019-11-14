@@ -37,16 +37,13 @@ Page({
    */
   onReady: function() {
     let that = this;
-    wx.hideLoading({
-      success: function() {
-        let userInfo = wx.getStorageSync(cache_key + 'userinfo');
-        that.loadingData({
-          page: 1,
-          hotel_id: userInfo.hotel_id,
-          openid: userInfo.openid
-        }, true);
-      }
-    });
+    wx.hideLoading();
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    that.loadingData({
+      page: 1,
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
+    }, true);
   },
 
   /**
@@ -145,12 +142,6 @@ Page({
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
-    wx.showToast({
-      title: "测试一下。",
-      icon: 'none',
-      mask: true,
-      duration: 5000
-    });
     util.PostRequest(api_url + '/smallsale14/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
       // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode);
       // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);

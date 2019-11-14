@@ -39,15 +39,12 @@ Page({
    */
   onReady: function() {
     let that = this;
-    wx.hideLoading({
-      success: function() {
-        let userInfo = wx.getStorageSync(cache_key + 'userinfo');
-        that.loadingData({
-          hotel_id: userInfo.hotel_id,
-          openid: userInfo.openid
-        }, true);
-      }
-    });
+    wx.hideLoading();
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    that.loadingData({
+      hotel_id: userInfo.hotel_id,
+      openid: userInfo.openid
+    }, true);
   },
 
   /**
