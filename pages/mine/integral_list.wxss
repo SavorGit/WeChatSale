@@ -40,7 +40,7 @@
 }
 
 .scroll .row > .detail {
-  width: calc(100% - 144rpx);
+  width: calc(100% - 168rpx);
   height: calc(100% - 30rpx);
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@
 }
 
 .scroll .row > .integral {
-  width: 144rpx;
+  width: 168rpx;
   font-size: 48rpx;
   text-align: right;
   overflow: hidden;
