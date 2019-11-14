@@ -217,7 +217,7 @@ Page({
         return;
       }
       let goodsListForReturn = data.result.datalist;
-      if (!goodsListForReturn instanceof Array) {
+      if (typeof(goodsListForReturn) != 'object' || !(goodsListForReturn instanceof Array)) {
         wx.showToast({
           title: "服务器返回兑换列表错误！请用联系管理员。",
           icon: 'none',

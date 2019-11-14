@@ -14,6 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    taskListShowStatus: 0, // 是否展示任务列表。0：加载中；1:无数据；2:有数据。
     pageNo: 1, // 当前页码
     taskList: [], // 任务列表数据
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
@@ -158,7 +159,8 @@ Page({
         return;
       }
       let taskListForReturn = data.result;
-      if (!taskListForReturn instanceof Array) {
+      let taskListShowStatus = 0;
+      if (typeof(taskListForReturn) != 'object') {
         wx.showToast({
           title: "服务器返回任务列表错误！请用联系管理员。",
           icon: 'none',
@@ -171,15 +173,19 @@ Page({
           }
         });
         return;
-      } else if (taskListForReturn.length < 1) {
+      } else if ((taskListForReturn instanceof Array) && taskListForReturn.length > 0) {
+        taskListShowStatus = 2;
+      } else {
         wx.showToast({
           title: "您当前没有任务！",
           icon: 'none',
           mask: true,
           duration: 5000
         });
+        taskListShowStatus = 1;
       }
       that.setData({
+        taskListShowStatus: taskListShowStatus,
         pageNo: requestData.page,
         taskList: taskListForReturn
       });
