@@ -148,9 +148,45 @@ Page({
     util.PostRequest(api_url + '/smallsale14/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
       // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode);
       // console.log('util.PostRequest', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      if (typeof(data) != 'object' || typeof(data.result) != 'object') {
+        wx.showToast({
+          title: "服务器返回数据错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000);
+          }
+        });
+        return;
+      }
+      let taskListForReturn = data.result;
+      if (!taskListForReturn instanceof Array) {
+        wx.showToast({
+          title: "服务器返回任务列表错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000);
+          }
+        });
+        return;
+      } else if (taskListForReturn.length < 1) {
+        wx.showToast({
+          title: "您当前没有任务！",
+          icon: 'none',
+          mask: true,
+          duration: 5000
+        });
+      }
       that.setData({
         pageNo: requestData.page,
-        taskList: data.result
+        taskList: taskListForReturn
       });
     }, function(res) {
       if (navigateBackOnError == true) {

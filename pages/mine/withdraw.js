@@ -149,9 +149,28 @@ Page({
     util.PostRequest(api_url + '/Smallsale14/withdraw/wxchange', requestData, function(data, headers, cookies, errMsg, httpCode) {
       // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode);
       // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      if (typeof(data) != 'object' || typeof(data.result) != 'object') {
+        wx.showToast({
+          title: "服务器返回数据错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000
+        });
+        return;
+      }
+      let userIntegral = data.result.integral;
+      if (typeof(userIntegral) != 'number' && typeof(userIntegral) != 'string') {
+        wx.showToast({
+          title: "服务器返回积分数据错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000
+        });
+        return;
+      }
       if (that.data.openGoodsInWindow.is_audit == 1) { // 需审核
         that.setData({
-          userIntegral: data.result.integral,
+          userIntegral: userIntegral,
           exchangeGoodsCheckWindowShow: true,
           exchangeGoodsSuccess: data.result
         });
@@ -172,9 +191,60 @@ Page({
     let that = this;
     util.PostRequest(api_url + '/Smallsale14/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
       // console.log('loadingData', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
+      if (typeof(data) != 'object' || typeof(data.result) != 'object') {
+        wx.showToast({
+          title: "服务器返回数据错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000);
+          }
+        });
+        return;
+      }
+      let userIntegral = data.result.integral;
+      if (typeof(userIntegral) != 'number' && typeof(userIntegral) != 'string') {
+        wx.showToast({
+          title: "服务器返回积分数据错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000);
+          }
+        });
+        return;
+      }
+      let goodsListForReturn = data.result.datalist;
+      if (!goodsListForReturn instanceof Array) {
+        wx.showToast({
+          title: "服务器返回兑换列表错误！请用联系管理员。",
+          icon: 'none',
+          mask: true,
+          duration: 5000,
+          success: function() {
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 2000);
+          }
+        });
+        return;
+      } else if (goodsListForReturn.length < 1) {
+        wx.showToast({
+          title: "该商家没有配置兑换列表！",
+          icon: 'none',
+          mask: true,
+          duration: 5000
+        });
+      }
       that.setData({
-        userIntegral: data.result.integral,
-        goodsList: data.result.datalist
+        userIntegral: userIntegral,
+        goodsList: goodsListForReturn
       });
     }, function(res) {
       if (navigateBackOnError == true) {
