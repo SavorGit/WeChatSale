@@ -32,6 +32,7 @@ Page({
     var that = this;
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    console.log(user_info);
     openid = user_info.openid;
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
@@ -380,6 +381,12 @@ Page({
           //var user_info = wx.getStorageSync(cache_key + 'userinfo');
           if (user_info.select_hotel_id > 0) {
             var hotel_id = user_info.select_hotel_id;
+            var rts = res.data.result.userinfo;
+            rts.select_hotel_id = user_info.select_hotel_id;
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: rts,
+            })
           } else {
             wx.setStorage({
               key: cache_key + 'userinfo',

@@ -40,9 +40,14 @@ Page({
     let that = this;
     wx.hideLoading();
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    if (userInfo.hotel_id == -1) {
+      var hotel_id = userInfo.select_hotel_id;
+    } else {
+      var hotel_id = userInfo.hotel_id;
+    }
     that.loadingData({
       page: 1,
-      hotel_id: userInfo.hotel_id,
+      hotel_id: hotel_id,
       openid: userInfo.openid
     }, true);
   },
