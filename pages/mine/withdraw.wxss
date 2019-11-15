@@ -68,7 +68,7 @@
 .goods-panel .goods {
   width: 220rpx;
   height: 120rpx;
-  border: 1rpx solid #eb6877;
+  border: 2rpx solid #eb6877;
   border-radius: 10rpx;
   z-index: 1;
 }
