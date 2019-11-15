@@ -58,7 +58,7 @@
                 <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
               </view>
               <view class='operate'>
-                <button class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+                <button wx:if="{{pro_play==true}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
                 <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">大屏展示</button>
                 <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
               </view>
@@ -140,7 +140,7 @@
     </block>
 
     <!-- 我的活动[列表] -->
-    <block wx:if="{{showPageType == 3}}">
+    <block wx:if="{{showPageType == 3 && hotel_activity==true}}">
       <block wx:if="{{is_my_activity == 0}}">
         <view class="row full_width theme7 touch-move-unactive" bindtap="addMyActivity">
           <view class="ads-mine full_width full_height flex_column_center">
@@ -171,7 +171,7 @@
             </view>
             <view class='operate'>
               <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button6' bindtap="editGoods" data-goods_id="{{bean.goods_id}}">修改</button>
-              <button wx:if="{{bean.status==2}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+              <button wx:if="{{bean.status==2 && pro_play==true}}" class='btn-menu' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
               <button wx:if="{{bean.status==2}}" class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
           </view>
@@ -213,7 +213,7 @@
   <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
-      <block wx:if="{{sale_list.length > 0}}">
+      <block wx:if="{{sale_list.length > 0 && goods_manage==true}}">
         <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content' data-index="{{index}}">
             <view class="pic">
