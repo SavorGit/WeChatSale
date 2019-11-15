@@ -38,8 +38,12 @@ Page({
       header: {
         'content-type': 'application/json'
       },
+      data:{
+        openid:openid,
+      },    
       success:function(res){
         if(res.data.code==10000){
+          console.log(res);
           that.setData({
             integralTypeObjectArr:res.data.result.type_list,
             integralTypeNameArr:res.data.result.type_name_list,
@@ -50,29 +54,30 @@ Page({
 
             
           })
-        }
-      }
-    })
-    wx.request({
-      url: api_v_url + '/user/integralrecord',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-        type:0,
-        idate:0,
-        page: 1,
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            integral_list: res.data.result.datalist,
-            
+          wx.request({
+            url: api_v_url + '/user/integralrecord',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              openid: openid,
+              type: 0,
+              idate: res.data.result.date_list[res.data.result.date_key].id,
+              page: 1,
+            },
+            success: function (res) {
+              if (res.data.code == 10000) {
+                that.setData({
+                  integral_list: res.data.result.datalist,
+
+                })
+              }
+            }
           })
         }
       }
     })
+    
   },
   loadMore: function (res) {
     var that = this;
