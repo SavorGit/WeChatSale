@@ -100,6 +100,7 @@ Page({
     pro_play:false,
     activity_pop:true,
     hotel_activity:true,
+    goods_manage : true,
     
   },
 
@@ -117,6 +118,7 @@ Page({
     var pro_play = app.in_array('pro_play',user_info.service);
     var activity_pop = app.in_array('activity_pop',user_info.service);
     var hotel_activity = app.in_array('hotel_activity', user_info.service);
+    var goods_manage = app.in_array('goods_manage', user_info.service);
     if(activity_pop==false && hotel_activity==true) {
       var showPageType = 3;
     } else if (activity_pop ==true){
@@ -128,6 +130,7 @@ Page({
       pro_play: pro_play,
       activity_pop: activity_pop,
       hotel_activity: hotel_activity,
+      goods_manage: goods_manage,
       showPageType: showPageType
     })
 
@@ -1237,6 +1240,50 @@ Page({
       }
 
     }
+    wx.request({
+      url: api_v_url + '/User/isRegister',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: user_info.openid,
+      },
+      success: function (res) {
+        if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
+          //var user_info = wx.getStorageSync(cache_key + 'userinfo');
+          if (user_info.select_hotel_id > 0) {
+            var hotel_id = user_info.select_hotel_id;
+            var rts = res.data.result.userinfo;
+            rts.select_hotel_id = user_info.select_hotel_id;
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: rts,
+            })
+          } else {
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: res.data.result.userinfo,
+            })
+            var goods_manage = app.in_array('goods_manage', user_info.service);
+            var staff_manage = app.in_array('staff_manage', user_info.service);
+            var integral_manage = app.in_array('integral_manage', user_info.service);
+            var integral_shop = app.in_array('integral_shop', user_info.service);
+            var task_manage = app.in_array('task_manage', user_info.service);
+            that.setData({
+              goods_manage: goods_manage,
+              staff_manage: staff_manage,
+              integral_manage: integral_manage,
+              task_manage: task_manage,
+              integral_shop: integral_shop
+            })
+          }
+        } else {
+          wx.reLaunch({
+            url: '/pages/user/login',
+          })
+        }
+      }
+    })
     console.log(openid)
     //数据埋点-进入活动促销页面
     if (this.data.showPageType==1){
