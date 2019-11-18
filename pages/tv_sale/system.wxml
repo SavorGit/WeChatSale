@@ -3,7 +3,10 @@
 
 <!-- 有机顶盒 -->
 <scroll-view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
-
+  <!-- 酒楼 -->
+  <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
+    <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
+  </view>
   <!-- 正在播放的活动面板 -->
   <view class='playing-sale-panel full_width' wx:if="{{pro_play==true}}">
     <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
@@ -206,14 +209,14 @@
 <view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
   <!-- 酒楼 -->
-  <view class="hotel-choose-panel theme7" wx:if="{{user_info.is_common==1}}">
+  <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
   </view>
 
   <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
-      <block wx:if="{{sale_list.length > 0 && goods_manage==true}}">
+      <block wx:if="{{(sale_list.length > 0 && goods_manage==true) || user_info.hotel_id==-1}}">
         <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content' data-index="{{index}}">
             <view class="pic">

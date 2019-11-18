@@ -1103,8 +1103,11 @@ Page({
     }else {
       hotel_id = user_info.hotel_id
     }
-    console.log(user_info);
     if (user_info.hotel_has_room == 0) {
+      that.setData({
+        showPageType:1,
+        user_info: user_info,
+      })
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
           selected: 0,
@@ -1171,7 +1174,7 @@ Page({
       }
       var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
 
-      if (typeof(link_user_info.box_mac) == 'undefined') {
+      if (typeof (link_user_info.box_mac) == 'undefined' && user_info.hotel_id!=-1) {
         wx.showModal({
           title: '提示',
           content: '请您先连接包间电视',
