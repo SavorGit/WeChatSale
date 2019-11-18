@@ -79,11 +79,21 @@ Page({
               wx.redirectTo({
                url: '/pages/user/login',
               })
+              wx.showToast({
+                title: '邀请链接已失效！',
+                icon: 'none',
+                duration: 3000,
+              })
             }
           }else {
             
             wx.redirectTo({
               url: '/pages/user/login',
+            })
+            wx.showToast({
+              title: '邀请链接已失效！',
+              icon: 'none',
+              duration: 3000,
             })
           }
         },fail:function(res){
