@@ -1,3 +1,5 @@
+const verbose = true; // true: 开；false: 关。
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -15,7 +17,8 @@ const formatNumber = n => {
 
 module.exports = {
   formatTime: formatTime,
-  formatNumber: formatNumber
+  formatNumber: formatNumber,
+  verbose: verbose
 };
 
 module.exports.throttle = function(fn, gapTime) {
@@ -33,12 +36,31 @@ module.exports.throttle = function(fn, gapTime) {
   }
 }
 
+/**
+ * 发起 HTTPS 网络请求。封装
+ * 
+ * @para: options Object。  请求能数对象。格式：
+ *                {
+ *                  url: string,                     // 必填。开发者服务器接口地址
+ *                  headers: Object,                 // 设置请求的 header，header 中不能设置 Referer。content-type 默认为 application/json
+ *                  data: string/object/ArrayBuffer, // 请求的参数
+ *                  method: string,                  // HTTP 请求方法。默认为 GET
+ *                  dataType: string,                // 返回的数据格式。默认为 Json
+ *                  isShowLoading: boolean,          // 是否展示 Loading
+ *                  responseType: string,            // 响应的数据类型。默认为 Text
+ *                  success: function,               // 接口调用成功的回调函数。function(res)
+ *                  fail: function,                  // 接口调用失败的回调函数。function(res)
+ *                  complete: function               // 接口调用结束的回调函数（调用成功、失败都会执行）。function(res)
+ *                }
+ */
 const HttpRequest = (options) => {
-  wx.showLoading({
-    title: '加载中',
-    icon: 'loading',
-    mask: true
-  });
+  if (options.isShowLoading != false) {
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading',
+      mask: true
+    });
+  }
   if (typeof(options) != 'object' || options == null) {
     throw "The request arguments is wrong";
   }
@@ -60,7 +82,12 @@ const HttpRequest = (options) => {
     responseType: options.responseType,
     success: function() {
       var successFnArgumentArray = [].slice.call(arguments);
-      wx.hideLoading();
+      if (verbose == true) {
+        console.log('util.HttpRequest.success', 'function', requestUrl, options.data, options.method, successFnArgumentArray);
+      }
+      if (options.isShowLoading != false) {
+        wx.hideLoading();
+      }
       if (typeof(options.success) == "function") {
         try {
           options.success.apply(requestOptions, successFnArgumentArray);
@@ -71,7 +98,12 @@ const HttpRequest = (options) => {
     },
     fail: function() {
       var failFnArgumentArray = [].slice.call(arguments);
-      wx.hideLoading();
+      if (verbose == true) {
+        console.log('util.HttpRequest.fail', 'function', requestUrl, options.data, options.method, failFnArgumentArray);
+      }
+      if (options.isShowLoading != false) {
+        wx.hideLoading();
+      }
       if (typeof(options.fail) == "function") {
         try {
           options.fail.apply(requestOptions, failFnArgumentArray);
@@ -85,6 +117,9 @@ const HttpRequest = (options) => {
     },
     complete: function() {
       var completeFnArgumentArray = [].slice.call(arguments);
+      if (verbose == true) {
+        console.log('util.HttpRequest.complete', 'function', requestUrl, options.data, options.method, completeFnArgumentArray);
+      }
       if (typeof(options.complete) == "function") {
         try {
           options.complete.apply(requestOptions, completeFnArgumentArray);
@@ -98,99 +133,165 @@ const HttpRequest = (options) => {
 };
 module.exports.HttpRequest = HttpRequest;
 
-const HttpRequestForLHS = (options) => {
-  HttpRequest({
-    url: options.url,
-    data: options.data,
-    method: options.method,
-    success: function(res) {
-      var httpRequst = this;
-      var statusCode = res.statusCode;
-      if (parseInt(statusCode / 100) != 2) {
-        httpRequst.fail.call(httpRequst, {
-          'errMsg': 'statusCode:' + statusCode
-        });
-        return;
-      }
-      var responseData = res.data;
-      if (typeof(responseData) != 'object' || responseData == null) {
-        // wx.showLoading({
-        //   mask: true
-        // });
-        httpRequst.fail.call(httpRequst, {
-          'errMsg': "Response 'data' is wrong"
-        });
-        return;
-      }
-      if (responseData.code != 10000) {
+/**
+ * 发起 HTTPS 网络请求。封装为热点使用
+ *
+ * @para: options Object。  请求能数对象。格式：
+ *                {
+ *                  url: string,                     // 必填。开发者服务器接口地址
+ *                  headers: Object,                 // 设置请求的 header，header 中不能设置 Referer。content-type 默认为 application/json
+ *                  data: string/object/ArrayBuffer, // 请求的参数
+ *                  method: string,                  // HTTP 请求方法。默认为 GET
+ *                  dataType: string,                // 返回的数据格式。默认为 Json
+ *                  responseType: string,            // 响应的数据类型。默认为 Text
+ *                  isShowLoading: boolean,          // 是否展示 Loading
+ *                  isShowToastForSuccess:boolean,   // 是否在 success 方法中弹出系统Toast
+ *                  success: function,               // 接口调用成功的回调函数。function(data, headers, cookies, errMsg, statusCode)
+ *                  isShowToastForFail:boolean,      // 是否在 fail 方法中弹出系统Toast
+ *                  fail: function,                  // 接口调用失败的回调函数。function(res)
+ *                  complete: function               // 接口调用结束的回调函数（调用成功、失败都会执行）。function(res)
+ *                }
+ * }
+ */
+const HttpRequestForLHS = (options) => HttpRequest({
+  url: options.url,
+  headers: options.headers,
+  data: options.data,
+  method: options.method,
+  dataType: options.dataType,
+  responseType: options.responseType,
+  isShowLoading: options.isShowLoading,
+  success: function(res) {
+    var httpRequst = this;
+    if (verbose == true) {
+      console.log('util.HttpRequestForLHS.success', 'function', options.url, options.data, options.method, res);
+    }
+    var statusCode = res.statusCode;
+    if (parseInt(statusCode / 100) != 2) {
+      httpRequst.fail.call(httpRequst, {
+        'errMsg': 'statusCode:' + statusCode
+      });
+      return;
+    }
+    var responseData = res.data;
+    if (typeof(responseData) != 'object' || responseData == null) {
+      // wx.showLoading({
+      //   mask: true
+      // });
+      httpRequst.fail.call(httpRequst, {
+        'errMsg': "Response 'data' is wrong"
+      });
+      return;
+    }
+    if (options.isShowToastForSuccess != false && responseData.code != 10000) {
+      wx.showToast({
+        title: responseData.msg,
+        icon: 'none',
+        mask: true,
+        duration: 5000,
+        complete: function() {
+          setTimeout(function() {
+            // wx.showLoading({
+            //   mask: true
+            // });
+            httpRequst.fail.call(httpRequst, {
+              'code': responseData.code,
+              'errMsg': responseData.msg
+            });
+          }, 5000);
+        }
+      });
+      return;
+    }
+    var responseHeaders = res.header;
+    var responseCookies = res.cookies;
+    var errMsg = res.errMsg;
+    if (typeof(options.success) == "function") {
+      options.success.call(this, responseData, responseHeaders, responseCookies, errMsg, statusCode);
+    }
+  },
+  fail: function(res) {
+    var failFnArgumentArray = [].slice.call(arguments);
+    if (verbose == true) {
+      console.log('util.HttpRequestForLHS.fail', 'function', options.url, options.data, options.method, res, failFnArgumentArray);
+    }
+    if (typeof(options.fail) == "function") {
+      if (options.isShowToastForFail != false && !res.code) {
         wx.showToast({
-          title: responseData.msg,
+          title: "网络异常！请稍后重试",
           icon: 'none',
           mask: true,
-          duration: 5000,
+          duration: 2000,
           complete: function() {
             setTimeout(function() {
-              // wx.showLoading({
-              //   mask: true
-              // });
-              httpRequst.fail.call(httpRequst, {
-                'code': responseData.code,
-                'errMsg': responseData.msg
-              });
-            }, 5000);
+              options.fail.apply(this, failFnArgumentArray);
+            }, 2000);
           }
         });
-        return;
+      } else {
+        options.fail.apply(this, failFnArgumentArray);
       }
-      var responseHeaders = res.header;
-      var responseCookies = res.cookies;
-      var errMsg = res.errMsg;
-      if (typeof(options.success) == "function") {
-        options.success.call(this, responseData, responseHeaders, responseCookies, errMsg, statusCode);
-      }
-    },
-    fail: function(res) {
-      var failFnArgumentArray = [].slice.call(arguments);
-      if (typeof(options.fail) == "function") {
-        if (!res.code) {
-          wx.showToast({
-            title: "出错了！请用联系管理员。",
-            icon: 'none',
-            mask: true,
-            duration: 2000,
-            complete: function() {
-              setTimeout(function() {
-                options.fail.apply(this, failFnArgumentArray);
-              }, 2000);
-            }
-          });
-        } else {
-          options.fail.apply(this, failFnArgumentArray);
-        }
-      }
-    },
-    complete: options.complete
-  });
-};
+    }
+  },
+  complete: options.complete
+});
 module.exports.HttpRequestForLHS = HttpRequestForLHS;
 
-const PostRequest = (url, data, successFn, failFn) => {
+/**
+ * 发起 HTTPS 网络 POST 请求。
+ *
+ * @para: url                   string。                    必填。开发者服务器接口地址
+ * @para: data                  string/object/ArrayBuffer。 请求的参数
+ * @para: successFn             function。                  接口调用成功的回调函数。function(data, headers, cookies, errMsg, statusCode)
+ * @para: failFn                function。                  接口调用失败的回调函数。function(res)
+ * @para: options               object,                     {
+ *                                                              isShowLoading:          boolean,    // 是否展示 Loading
+ *                                                              isShowToastForSuccess:  boolean,    // 是否在 success 方法中弹出系统Toast
+ *                                                              isShowToastForFail:     boolean,    // 是否在 fail 方法中弹出系统Toast
+ *                                                          }             
+ */
+const PostRequest = (url, data, successFn, failFn, options) => {
+  if (typeof(options) != 'object') {
+    options = {};
+  }
   HttpRequestForLHS({
     url: url,
     data: data,
     method: 'POST',
+    isShowLoading: options.isShowLoading,
+    isShowToastForSuccess: options.isShowToastForSuccess,
     success: successFn,
+    isShowToastForFail: options.isShowToastForFail,
     fail: failFn
   });
 };
 module.exports.PostRequest = PostRequest;
 
-const GetRequest = (url, data, successFn, failFn) => {
+/**
+ * 发起 HTTPS 网络 GET 请求。
+ *
+ * @para: url                   string。                    必填。开发者服务器接口地址
+ * @para: data                  string/object/ArrayBuffer。 请求的参数
+ * @para: successFn             function。                  接口调用成功的回调函数。function(data, headers, cookies, errMsg, statusCode)
+ * @para: failFn                function。                  接口调用失败的回调函数。function(res)
+ * @para: options               object,                     {
+ *                                                              isShowLoading:          boolean,    // 是否展示 Loading
+ *                                                              isShowToastForSuccess:  boolean,    // 是否在 success 方法中弹出系统Toast
+ *                                                              isShowToastForFail:     boolean,    // 是否在 fail 方法中弹出系统Toast
+ *                                                          }
+ */
+const GetRequest = (url, data, successFn, failFn, options) => {
+  if (typeof(options) != 'object') {
+    options = {};
+  }
   HttpRequestForLHS({
     url: url,
     data: data,
     method: 'GET',
+    isShowLoading: options.isShowLoading,
+    isShowToastForSuccess: options.isShowToastForSuccess,
     success: successFn,
+    isShowToastForFail: options.isShowToastForFail,
     fail: failFn
   });
 };
@@ -401,7 +502,9 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    *                                                      }
    */
   this.moveOnhorizontalHandel = function(page, top, left, x, startEvent, endEvent, callbackFunction) {
-    console.log("TouchMoveHandler.moveOnhorizontalHandel(page, top, left, x, startEvent, endEvent, callbackFunction)", page, startEvent, endEvent, top, left, x);
+    if (verbose == true) {
+      console.log("TouchMoveHandler.moveOnhorizontalHandel(page, top, left, x, startEvent, endEvent, callbackFunction)", page, startEvent, endEvent, top, left, x);
+    }
     let handler = this;
     let animation = wx.createAnimation({
       duration: 150,
@@ -458,7 +561,9 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
               animationData: {}
             });
           }
-          console.log("TouchMoveHandler.moveOnhorizontalHandel(page, top, left, x, startEvent, endEvent, callbackFunction)#setTimeout", page.data.cards_img, page.data.__cardsModelData);
+          if (verbose == true) {
+            console.log("TouchMoveHandler.moveOnhorizontalHandel(page, top, left, x, startEvent, endEvent, callbackFunction)#setTimeout", page.data.cards_img, page.data.__cardsModelData);
+          }
           if (page.data.__cardsModelData.length <= 3) {
             handler.callbackHandel(callbackFunction, handler.Event.InsufficientData, page, startEvent, endEvent, top, left, x);
           }
