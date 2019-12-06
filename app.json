@@ -20,19 +20,20 @@
     "pages/mine/receiving_info",
     "pages/mine/withdraw",
     "pages/task/index",
-    "pages/user/invite",
-    "pages/welcome/index"
+    "pages/welcome/index",
+    "pages/welcome/hotel_add",
+    "pages/user/invite"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarBackgroundColor": "#58525C",
     "navigationBarTitleText": "小热点-销售版",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "custom": true,
     "color": "#999999",
-    "selectedColor": "#333333",
+    "selectedColor": "#58525C",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [

@@ -3,6 +3,12 @@
 
 /* ================================== 页面 ================================== */
 
+.one-line-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 button::after, button::before {
   margin: unset;
   padding: unset;

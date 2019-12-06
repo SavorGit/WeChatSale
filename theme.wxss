@@ -32,6 +32,11 @@
   background-color: #999;
 }
 
+.theme-container {
+  color: #333;
+  background-color: #ededed;
+}
+
 .theme-background-9 {
   background-color: #eb6877;
 }
@@ -131,4 +136,8 @@
 .theme-textarea {
   color: #333;
   background-color: #edf0f2;
+}
+
+.link-type-panel {
+  background: #58525c;
 }

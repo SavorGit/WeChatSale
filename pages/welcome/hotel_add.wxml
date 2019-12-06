@@ -1,4 +1,4 @@
-<!--pages/welcome/index.wxml-->
+<!--pages/welcome/hotel_add.wxml-->
 <import src="/pages/template/commons" />
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
