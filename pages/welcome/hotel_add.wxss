@@ -1,1 +1,73 @@
 /* pages/welcome/hotel_add.wxss */
+
+.tab-head {
+  width: 100%;
+  height: 70rpx;
+  margin-top: 10rpx;
+}
+
+.tab-head .tab-group {
+  height: 100%;
+}
+
+.tab-head .tab-group > view {
+  margin-left: 70rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.tab-head .tab-group > view:first-child {
+  margin-left: 40rpx;
+}
+
+.tab-head .tab-group > view:last-child {
+  margin-left: 0;
+}
+
+.tab-head .tab-group > view > .end-space {
+  width: 40rpx;
+  height: 28rpx;
+}
+
+.tab-head .tab-group > view.selected {
+  height: 66rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-bottom: 4rpx solid #a18668;
+}
+
+.tab-body {
+  width: 100%;
+  height: calc(100% - 270rpx);
+  margin-top: 90rpx;
+}
+
+.tab-body > .add-panel {
+  width: 100%;
+  height: 420rpx;
+}
+
+.tab-body > .add-panel > image {
+  width: 80rpx;
+  height: 71rpx;
+}
+
+.tab-body > .add-panel > .btn-add {
+  font-size: 24rpx;
+}
+
+.tab-foot {
+  width: calc(100% - 200rpx);
+  height: 100rpx;
+  padding: 0 100rpx;
+}
+
+.tab-foot > .prev, .tab-foot > .next {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 5rpx;
+}
