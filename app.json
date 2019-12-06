@@ -20,7 +20,8 @@
     "pages/mine/receiving_info",
     "pages/mine/withdraw",
     "pages/task/index",
-    "pages/user/invite"
+    "pages/user/invite",
+    "pages/welcome/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
