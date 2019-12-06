@@ -1,97 +1,40 @@
 /**index.wxss**/
 
-/*
-.navigator-hover {
-  background-color: unset;
-  opacity: 0.7;
+page {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-
-.page-top {
-  height: 40px;
-  color: rgb(255, 255, 255);
-}
-
-.page-top .box_picker {
-  width: 80%;
-  height: 80rpx;
-  line-height: 80rpx;
-  text-align: center;
-  background-color: rgb(15, 37, 57);
-}
-
-.page-top .box_picker label {
-  height: 40rpx;
-  line-height: 40rpx;
-  font-size: 36rpx;
-}
-
-.page-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: -50rpx;
-}
-
-.page-main .tip {
-  height: 120rpx;
-  font-size: 30rpx;
-}
-
-.page-main .btn {
-  width: 565rpx;
-  height: 240rpx;
-  line-height: 240rpx;
-  margin: 25rpx 0rpx;
-  border-color: transparent;
-  border-radius: 10px;
-  font-size: 14px;
-  padding: 0px;
-  text-align: center;
-  font-weight: normal;
-  font-style: normal;
-}
-
-.btn image {
-  width: 48rpx;
-  height: 38rpx;
-  margin: 0rpx 20rpx;
-  vertical-align: middle;
-}
-
-.btn label {
-  font-size: 36rpx;
-}
-
-.page-bottom {
-  height: 100rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.page-bottom .operation {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.page-bottom .operation button {
-  width: 200rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  padding: unset;
-  border: unset;
-}
-*/
-
-/******************************/
 
 .container {
   justify-content: start;
 }
+
+.link-type-panel {
+  width: calc(100% - 49rpx);
+  height: 80rpx;
+  margin: 0;
+  border: 0;
+  padding: 0 25rpx;
+}
+
+.link-type-panel > .hotel, .link-type-panel > .box {
+  width: 50%;
+}
+
+.link-type-panel > .hotel > image, .link-type-panel > .box image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.link-type-panel > .hotel > .choosed-hotel, .link-type-panel > .box .choosed-box {
+  width: calc(100% - 60rpx);
+  font-size: 28rpx;
+}
+
+/* ============================================ 旧版本 1.4.0 ============================================ */
 
 .hotel-choose-panel {
   width: 100%;

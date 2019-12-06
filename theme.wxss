@@ -70,6 +70,16 @@
   background-color: #999;
 }
 
+.theme-button-welcome {
+  color: #fff;
+  background-color: #a18668;
+}
+
+.theme-button-welcome-dark {
+  color: #fff;
+  background-color: #58525c;
+}
+
 .theme-button2 {
   color: #fff;
   background-color: #25635f;
@@ -121,6 +131,10 @@
 
 .theme-font6 {
   color: #ed6035;
+}
+
+.theme-font7 {
+  color: #a18668;
 }
 
 .theme-main {
