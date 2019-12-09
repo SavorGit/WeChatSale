@@ -17,7 +17,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    base_info: { 'step': 0, 'type': 0, 'is_choose_img': 0,'choose_img_url':'' }, //操作步骤、选择背景类型（0自主上传 选择背景）、是否上传照片、上传照片oss地址
+    base_info: { 'step': 0, //操作步骤 
+                 'type': 0, //背景图类型
+                 'img_info': { 'is_choose_img': 0, 'choose_img_url': '', 'oss_img_url': '', 'forscreen_url': '','angle':0}, 
+                 
+                 'word_info':{'welcome_word':''},                     //欢迎词
+                 'word_size_info':{'word_size':'','word_size_id':''}, //欢迎词字号
+                 'word_color_info':{'color':'','color_id':''},        //欢迎词颜色
+                 'music_info':{'music_name':'','music_id':0}          //背景音乐
+                }, 
+    wordsize_list:[],  //字号列表
+    color_list:[],     //颜色列表
+    music_list:[],     //音乐列表
+    room_list :[],     //包间列表
   },
 
   /**
@@ -32,23 +44,52 @@ Page({
     } else {
       hotel_id = user_info.hotel_id;
     }
+    //背景图分类列表
+    utils.PostRequest(api_url + '/Smallsale14/welcome/categorylist', {
+     
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      console.log(data.result.category_list);
+      that.setData({
+        categoryList:data.category
+      })
+    });
+    /**
+     * 获取配置
+     */
+    utils.PostRequest(api_url +'/Smallsale14/welcome/config',{
+
+    }, (data, headers, cookies, errMsg, statusCode)=>{
+      console.log(data.result)
+      that.setData({
+        wordsize_list: data.result.wordsize,
+        color_list:data.result.color,
+        music_list:data.result.music,
+      })
+    })
+    //包间列表
+    utils.PostRequest(api_url + '/Smalldinnerapp11/Stb/getBoxList',{
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) =>{
+      console.log(data);
+      // that.setData({
+      //   objectBoxArray: res.data.result.box_name_list,
+      //   box_list: res.data.result.box_list
+      // })
+    })
+    
   },
   /**
    * 切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会
    */
   switchWelType:function(e){
-    var type = e.currentTarget.dataset.type;
+    var category_id = e.currentTarget.dataset.category_id;
     welType = type;
     if(type!=0){
-      utils.PostRequest(api_url + '/aa/bb/cc', {
-        openid: openid,
-        hotel_id: hotel_id,
-        type: type
+      utils.PostRequest(api_url + '/Smallsale14/welcome/imglist', {
+        category_id: category_id
       }, (data, headers, cookies, errMsg, statusCode) => {
-
-        list.splice(index, 1);
         that.setData({
-          list: list,
+          imglist: data,
         })
       });
     }
@@ -98,7 +139,7 @@ Page({
               },success: function (res) {
                 console.log(oss_img_url);
                 that.setData({
-                  base_info: { 'step': 0, 'type': 0, 'is_choose_img': 1, 'choose_img_url': oss_img_url}
+                  base_info: { 'step': 0, 'type': 0, 'is_choose_img': 1, 'choose_img_url': oss_img_url,'oss_img_url':oss_img_url}
                 })
               },fail: function ({ errMsg }) {
                 wx.showToast({
@@ -145,7 +186,64 @@ Page({
   },
   completeWel:function(e){
     var that = this;
-    wx.redirectTo('/pages/welcome/index');
+    //var welcome_option = wx.getStorageSync(cache_key+'welcome_option');
+    //var welcome_info = welcome_option.welcome_info;
+    var music_play_type = e.currentTarget.dataset.music_play_type;  //欢迎词播放类型
+    var start_time = '';
+    var end_time   = '';
+    if(music_play_type==2){
+      start_time = e.currentTarget.dataset.start_time;
+      end_time   = e.currentTarget.dataset.end_time;
+    }
+    var box_mac = e.currentTarget.dataset.box_mac;  //包间mac
+
+
+
+    var base_info = that.data.base_info;
+    var img_url      = base_info.img_info.forscreen_url;       //背景图片
+    var welcome_word = base_info.word_info.welcome_word;       //欢迎词
+    var word_size_id = base_info.word_size_info.word_size_id;  //欢迎词字号 
+    var word_color_id= base_info.word_color_info.color_id;     //字体颜色
+    var music_id     = base_info.music_info.music_id;          //背景音乐
+    
+    utils.PostRequest(api_url + '/aa/bb/cc', {
+      img_url :img_url,
+      welcome_word:welcome_word,
+      word_size_id: word_size_id,
+      word_color_id:word_color_id,
+      music_id : music_id,
+      music_play_type: music_play_type,
+      start_time:start_time,
+      end_time : end_time,
+      box_mac  : box_mac,  
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      wx.showToast({
+        title: '新建欢迎词成功',
+        icon:'none',
+        duration:2000,
+      })
+      wx.redirectTo({
+        url: '/pages/welcome/index',
+      })
+    });
+  },
+  /**
+   * 旋转图片
+   */
+  rotateImg:function(e){
+    var that = this;
+    var angle = e.currentTarget.dataset.angle;
+    var choose_img_url = e.currentTarget.dataset.choose_img_url;
+    var nextAngle = angle+90;
+    if (nextAngle==360){
+      nextAngle = 0;
+    }
+    var base_info = that.data.base_info;
+    base_info.choose_img_url = choose_img_url +'?x-oss-process=image/rotate,'+nextAngle;
+    that.setData({
+      base_info:base_info
+    })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
