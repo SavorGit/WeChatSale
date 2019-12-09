@@ -2,6 +2,8 @@
 <import src="/pages/template/commons" />
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
+
+  <!-- 酒楼、机顶盒、连接情况面板 -->
   <view class="link-type-panel flex_row_center">
     <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
       <image src='/images/icon/FFFFFF_linked.png' style="background-color:#1cbeb6;"></image>
@@ -14,16 +16,59 @@
       </view>
     </picker>
   </view>
+
+  <!-- 投屏操作面板 -->
+  <view class="launch-option-panel flex_row_center_spaceAround theme7">
+    <button bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
+      <image class='icon' src='/images/icon/E66B7a_pic.png'></image>
+      <view class='title theme-font7'>图片</view>
+    </button>
+    <button bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
+      <image class='icon' src='/images/icon/B36BE6_play.png'></image>
+      <view class='title theme-font7'>视频</view>
+    </button>
+    <button bindtap='gotodownload' disabled='{{download_disable}}'>
+      <image class='icon' src='/images/icon/FBA376_file.png'></image>
+      <view class='title theme-font7'>文件</view>
+    </button>
+    <button>
+      <image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
+      <view class='title theme-font7'>控制</view>
+    </button>
+  </view>
+
+  <!-- 广播模块面板 -->
+  <view class="broadcast-panel flex_row_center">
+    <image class="icon" src="/images/icon/FFFFFF_horn.png"></image>
+    <swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
+      <swiper-item class="one-line-overflow theme-font4">工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aa1</swiper-item>
+      <swiper-item class="one-line-overflow theme-font4">工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aa2</swiper-item>
+      <swiper-item class="one-line-overflow theme-font4">工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aaa工工工工工工工工工工工工工aa3</swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 突出功能面板 -->
+  <view class="prominent-function-panel flex_row_center theme7">
+    <view class="botton btn-welcome_speech flex_column_flexStart_center theme-font4">
+      <view class="title">欢迎词</view>
+      <view class="desc">助力感动式服务</view>
+    </view>
+    <view class="botton btn-birthday_song flex_column_flexStart_center theme-font4">
+      <view class="title">生日歌</view>
+      <view class="desc">提升食客满意度</view>
+    </view>
+  </view>
 </view>
 
+<!--
 <view class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
-  <!-- 酒楼 -->
+  <!-- 酒楼 --
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">{{user_info.select_hotel_name?user_info.select_hotel_name:'请选择酒楼'}}</view>
   </view>
 
-  <!-- 机顶盒连接信息 -->
+  <!-- 机顶盒连接信息 --
   <picker class='full_width' range="{{objectBoxArray}}" bindchange="bindPickerChange">
     <view wx:if="{{is_link == 1}}" class='box-link full_width theme7'>
       <image src='/images/icon/FFFFFF_linked.png' style="background-color: #1cbeb6;"></image>
@@ -41,7 +86,7 @@
     </view>
   </picker>
 
-  <!-- 主要功能面板 -->
+  <!-- 主要功能面板 --
   <view class='main-function-panel full_width theme7' wx:if="{{tv_forscreen==true}}">
     <button bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
       <image class='icon' src='/images/icon/DEA852_pic.png'></image>
@@ -58,19 +103,16 @@
       <view class='title'>下载图片模板</view>
       <image class='fold' src='/images/icon/999999_right.png'></image>
     </button>
-    <view>
-      <navigator url="/pages/welcome/index">欢迎词</navigator>
-    </view>
   </view>
 
-  <!-- 机顶盒操作面板 -->
+  <!-- 机顶盒操作面板 --
   <view class='box-operate-panel full_width theme7' wx:if="{{tv_forscreen==true}}">
     <button class='theme-button5' bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</button>
     <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 + </button>
     <button class='theme-button5' bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 - </button>
   </view>
 
-  <!-- 机顶盒面板 -->
+  <!-- 机顶盒面板 --
   <view class='box-panel full_width theme7' wx:if="{{room_signin==true}}">
     <view class='title full_width theme-font3'>包间信息</view>
     <scroll-view class='scroll full_width' scroll-y="true" scroll-with-animation="true">
@@ -99,6 +141,7 @@
   </view>
 
 </view>
+-->
 
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />

@@ -16,7 +16,7 @@
   </scroll-view>
   <view class="tab-body">
     <view class="add-panel flex_column_center_center theme7">
-      <image src="/images/icon/333333_mine.png"></image>
+      <image src="/images/icon/A18668_pic.png"></image>
       <view class="btn-add theme-font7">选择手机图片</view>
     </view>
   </view>

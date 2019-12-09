@@ -70,7 +70,7 @@
   background-color: #999;
 }
 
-.theme-button-welcome {
+.theme-button-welcome, .broadcast-panel {
   color: #fff;
   background-color: #a18668;
 }
