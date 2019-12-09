@@ -49,7 +49,7 @@
 
   <!-- 突出功能面板 -->
   <view class="prominent-function-panel flex_row_center theme7">
-    <view class="botton btn-welcome_speech flex_column_flexStart_center theme-font4">
+    <view bindtap="goToWelcome" class="botton btn-welcome_speech flex_column_flexStart_center theme-font4">
       <view class="title">欢迎词</view>
       <view class="desc">助力感动式服务</view>
     </view>

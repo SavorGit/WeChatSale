@@ -725,5 +725,10 @@ Page({
     //数据埋点-首页用户点击免责声明
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     mta.Event.stat('indexClickRelief', { 'openid': user_info.openid })
+  },
+  goToWelcome:function(e){
+    wx.navigateTo({
+      url: '/pages/welcome/index',
+    })
   }
 })

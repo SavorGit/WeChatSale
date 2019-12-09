@@ -165,6 +165,7 @@ App({
     api_v_url: 'https://dev-mobile.littlehotspot.com/smallsale14',
     oss_upload_url: 'https://dev-image.littlehotspot.com',
     oss_url: 'https://dev-oss.littlehotspot.com',
+    oss_bucket:'redian-produce',
     cache_key: 'savor:sale:',
     common_appid: 'wxfdf0346934bb672f',
     box_type: 0,
