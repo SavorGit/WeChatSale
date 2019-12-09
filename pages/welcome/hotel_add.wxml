@@ -2,10 +2,25 @@
 <import src="/pages/template/commons" />
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
-  <scroll-view>
-    <view>
-      <view></view>
+  <scroll-view class="tab-head" scroll-x="true" scroll-with-animation="true">
+    <view class="tab-group flex_row_center">
+      <view class="selected theme-font7">自主上传</view>
+      <view class="theme-font8">商务宴请</view>
+      <view class="theme-font8">生日宴</view>
+      <view class="theme-font8">家宴</view>
+      <view class="theme-font8">朋友聚餐</view>
+      <view>
+        <view class="end-space"></view>
+      </view>
     </view>
   </scroll-view>
-
+  <view class="tab-body">
+    <view class="add-panel flex_column_center_center theme7">
+      <image src="/images/icon/333333_mine.png"></image>
+      <view class="btn-add theme-font7">选择手机图片</view>
+    </view>
+  </view>
+  <view class="tab-foot flex_row_center_flexEnd theme7">
+    <view class="next theme-button-welcome">下一步</view>
+  </view>
 </view>

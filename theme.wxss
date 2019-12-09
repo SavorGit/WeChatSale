@@ -137,6 +137,10 @@
   color: #a18668;
 }
 
+.theme-font8 {
+  color: #58525c;
+}
+
 .theme-main {
   color: #333;
   background-color: #ededed;
