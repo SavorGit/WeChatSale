@@ -17,8 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_choose_img:0,     //自主上传照片  0：未上传  1：已上传
-    choose_img_url: '',  //自主上传照片 oss地址 
+    base_info: { 'step': 0, 'type': 0, 'is_choose_img': 0,'choose_img_url':'' }, //操作步骤、选择背景类型（0自主上传 选择背景）、是否上传照片、上传照片oss地址
   },
 
   /**
@@ -67,47 +66,52 @@ Page({
         var tmp_file = res.tempFilePaths[0];
         var index1 = tmp_file.lastIndexOf(".");
         var index2 = tmp_file.length;
-        var postf_t = filename.substring(index1, index2);//后缀名
-        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+        var postf_t = tmp_file.substring(index1, index2);//后缀名
+        var postf_w = tmp_file.substring(index1 + 1, index2);//后缀名
         var timestamp = (new Date()).valueOf();
         var oss_img_url = app.globalData.oss_url+ "/forscreen/resource/" + timestamp + postf_t;
         var oss_key = "forscreen/resource/" + timestamp + postf_t;
+        console.log('aaaa');
 
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          success:function(res){
+            var policy = res.data.policy;
+            var signature = res.data.signature;
 
-        utils.PostRequest(api_url + '/Smallapp/Index/getOssParams', {
-          openid: openid,
-          hotel_id: hotel_id,
-          type: type
-        }, (data, headers, cookies, errMsg, statusCode) => {
-          var policy = data.policy;
-          var signature = data.signature;
-          wx.uploadFile({
-            url: oss_upload_url,
-            filePath: tmp_file,
-            name: 'file',
-            header: {
-              'Content-Type': 'image/' + postf_w
-            },
-            formData: {
-              Bucket: app.globalData.oss_bucket,
-              name: img_url,
-              key: oss_key,
-              policy: policy,
-              OSSAccessKeyId: oss_access_key_id,
-              sucess_action_status: "200",
-              signature: signature
+            wx.uploadFile({
+              url: oss_upload_url,
+              filePath: tmp_file,
+              name: 'file',
+              header: {
+                'Content-Type': 'image/' + postf_w
+              },
+              formData: {
+                Bucket: app.globalData.oss_bucket,
+                name: tmp_file,
+                key: oss_key,
+                policy: policy,
+                OSSAccessKeyId: oss_access_key_id,
+                sucess_action_status: "200",
+                signature: signature
 
-            },success: function (res) {
-              that.setData({
-                is_choose_img:1,
-                choose_img_url: oss_img_url,
-                step :0
-              })
-            },fail: function ({ errMsg }) {
-
-            },
-          });
-        });
+              },success: function (res) {
+                console.log(oss_img_url);
+                that.setData({
+                  base_info: { 'step': 0, 'type': 0, 'is_choose_img': 1, 'choose_img_url': oss_img_url}
+                })
+              },fail: function ({ errMsg }) {
+                wx.showToast({
+                  title: '上传图片失败',
+                  icon:'none',
+                  duration:2000,
+                })
+              },
+            });
+          }
+        })
+      },fail(res){//取消选择照片
+        console.log(res);
       }
     })
   },
