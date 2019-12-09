@@ -324,7 +324,7 @@ Page({
           var index2 = filename.length;
           var timestamp = (new Date()).valueOf();
           postf = filename.substring(index1, index2);//后缀名
-          post_imgs[i] = "forscreen/resource/" + timestamp + postf;
+          post_imgs[i] = app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf ;
           filename_arr[i] = timestamp + postf;
           tmp_imgs[i] = { "oss_img": post_imgs[i] };
           that.setData({
@@ -332,11 +332,9 @@ Page({
           });
           uploadOssNew(policy, signature, filename, box_mac, openid, timestamp, i, img_len, forscreen_char, forscreen_id, res_sup_time, avatarUrl, nickName, public_text, play_times);
         }
-        // that.setData({
-        //   showThird: true,
-        //   showTpBt: false
-        // });
+        
         that.setData({
+          post_imgs: post_imgs,
           up_imgs: upimgs,
           filename_arr: filename_arr,
           is_upload: 1,
@@ -346,7 +344,7 @@ Page({
         })
       }
     }else {
-      var forscreen_id = (new Date()).valueOf();
+      /*var forscreen_id = (new Date()).valueOf();
       var filename_arr = [];
 
       for (var i = 0; i < img_lenth; i++) {
@@ -384,7 +382,7 @@ Page({
         forscreen_char: forscreen_char,
         hiddens: true,
         updateStatus: 4,
-      })
+      })*/
     }
     //数据埋点-图片投屏
     mta.Event.stat('forImgClickForscreen', { 'openid': user_info.openid, 'boxmac': box_mac })

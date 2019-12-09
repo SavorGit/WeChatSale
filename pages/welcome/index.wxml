@@ -2,7 +2,7 @@
 <import src="/pages/template/commons" />
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
-  <scroll-view class="page-main" scroll-y="true" scroll-with-animation="true">
+  <scroll-view class="page-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
     <view class="card">
       <view class="body theme7">
         <view class="box-status flex_row_center">
@@ -27,11 +27,11 @@
       </view>
       <view class="foot flex_row_center_flexEnd theme7">
         <view class="btn-stop theme-button-welcome-dark">删除</view>
-        <view class="btn-stop theme-button-welcome">停止播放</view>
+        <view class="btn-stop theme-button-welcome">立即播放</view>
       </view>
     </view>
   </scroll-view>
   <view class="page-bottom flex_row_center_center theme7">
-    <view class="btn-add theme-button-welcome">新建欢迎词</view>
+    <view bindtap="createWelcome" class="btn-add theme-button-welcome">新建欢迎词</view>
   </view>
 </view>

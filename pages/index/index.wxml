@@ -58,6 +58,9 @@
       <view class='title'>下载图片模板</view>
       <image class='fold' src='/images/icon/999999_right.png'></image>
     </button>
+    <view>
+      <navigator url="/pages/welcome/index">欢迎词</navigator>
+    </view>
   </view>
 
   <!-- 机顶盒操作面板 -->
