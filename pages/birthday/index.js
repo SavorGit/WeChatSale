@@ -1,4 +1,10 @@
 // pages/birthday/index.js
+const utils = require('../../utils/util.js')
+const app = getApp()
+var api_url = app.globalData.api_url;
+var cache_key = app.globalData.cache_key;
+var hotel_id;
+var openid;
 Page({
 
   /**
@@ -12,6 +18,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    utils.PostRequest(api_url + '/Smallapp21/index/happylist', {
+      
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      that.setData({
+        happylist: data.result,
+      })
+    });
+
+    
 
   },
 

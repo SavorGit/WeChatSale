@@ -53,7 +53,7 @@
       <view class="title">欢迎词</view>
       <view class="desc">助力感动式服务</view>
     </view>
-    <view class="botton btn-birthday_song flex_column_flexStart_center theme-font4">
+    <view bindtap="goToHappy" class="botton btn-birthday_song flex_column_flexStart_center theme-font4">
       <view class="title">生日歌</view>
       <view class="desc">提升食客满意度</view>
     </view>

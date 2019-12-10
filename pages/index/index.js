@@ -730,5 +730,10 @@ Page({
     wx.navigateTo({
       url: '/pages/welcome/index',
     })
+  },
+  goToHappy:function(e){
+    wx.navigateTo({
+      url: '/pages/birthday/index',
+    })
   }
 })
