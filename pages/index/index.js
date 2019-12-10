@@ -390,7 +390,7 @@ Page({
     }
 
   },
-  gotodownload: function(res) {
+  /*gotodownload: function(res) {
     var that = this;
     that.setData({
       download_disable: true,
@@ -406,6 +406,13 @@ Page({
         var user_info = wx.getStorageSync(cache_key+'userinfo');
         mta.Event.stat('clickDownImg', { 'openid': user_info.openid })
       }
+    })
+  },*/
+  gotoForFile:function(e){
+    wx.showToast({
+      title: '敬请期待',
+      icon:'none',
+      duration:2000,
     })
   },
 

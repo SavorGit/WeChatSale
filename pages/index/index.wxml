@@ -27,7 +27,7 @@
       <image class='icon' src='/images/icon/B36BE6_play.png'></image>
       <view class='title theme-font7'>视频</view>
     </button>
-    <button bindtap='gotodownload' disabled='{{download_disable}}'>
+    <button bindtap='gotoForFile' disabled='{{download_disable}}'>
       <image class='icon' src='/images/icon/FBA376_file.png'></image>
       <view class='title theme-font7'>文件</view>
     </button>
