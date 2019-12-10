@@ -1,26 +1,310 @@
 <!--pages/welcome/hotel_add.wxml-->
 <import src="/pages/template/commons" />
 
-<view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
-  <scroll-view class="tab-head" scroll-x="true" scroll-with-animation="true">
-    <view class="tab-group flex_row_center">
-      <view class="selected theme-font7">自主上传</view>
-      <view class="theme-font8">商务宴请</view>
-      <view class="theme-font8">生日宴</view>
-      <view class="theme-font8">家宴</view>
-      <view class="theme-font8">朋友聚餐</view>
-      <view>
-        <view class="end-space"></view>
+<!-- 设置背景【第一步】开始 wx:if="{{step == 0}}" -->
+<form>
+  <view class="step-one-page container flex_column_center_flexStart theme-container">
+
+    <!-- 选项卡头开始 -->
+    <scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true">
+      <view class="tab-group flex_row_center">
+        <view class="selected theme-font7">自主上传</view>
+        <view class="theme-font8">商务宴请</view>
+        <view class="theme-font8">生日宴</view>
+        <view class="theme-font8">家宴</view>
+        <view class="theme-font8">朋友聚餐</view>
+        <view>
+          <view class="end-space"></view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 选项卡头结束 -->
+
+    <!-- 新建自主上传选项卡开始 wx:if="{{selfUpNew}}" -->
+    <block>
+      <view class="tab-body">
+        <view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
+          <image class="icon" src="/images/icon/A18668_pic.png"></image>
+          <view class="btn-add theme-font7">选择手机图片</view>
+        </view>
+      </view>
+      <view class="tab-foot flex_row_center_flexEnd theme7">
+        <view class="next theme-button-welcome">下一步</view>
+      </view>
+    </block>
+    <!-- 新建自主上传选项卡结束 -->
+
+    <!-- 自主上传回显选项卡开始 -->
+    <block wx:if="{{selfUpdated}}">
+      <view class="tab-body">
+        <view class="img-panel flex_column_center_center theme7">
+          <image class="self-up-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+        </view>
+        <view class="btn-group flex_row_center_center">
+          <view class="rechoose theme-button-welcome-dark">重选</view>
+          <view class="rotate theme-button-add">旋转</view>
+        </view>
+      </view>
+      <view class="tab-foot flex_row_center_flexEnd theme7">
+        <view class="next theme-button-welcome">下一步</view>
+      </view>
+    </block>
+    <!-- 自主上传回显选项卡结束 -->
+
+    <!-- 模板选择选项卡开始 -->
+    <block wx:if="{{templateChoose}}">
+      <view class="tab-body">
+        <scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
+          <view class="weui-grids">
+            <view class="weui-grid">
+              <image class="selected" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+            <view class="weui-grid">
+              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="tab-foot flex_row_center_flexEnd theme7">
+        <view class="next theme-button-welcome">下一步</view>
+      </view>
+    </block>
+    <!-- 模板选择选项卡结束 -->
+
+  </view>
+</form>
+<!-- 设置背景【第一步】结束 -->
+
+<!-- 设置文字【第二步】开始 -->
+<form wx:if="{{step == 1}}">
+  <view class="set-words-page container flex_column_center_flexStart theme-container">
+    <view class="show-panel theme7">
+      <image class="box" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="cover flex_column_center_center">
+        <view class="show-text" style="font-size:34rpx;color:#999999;">自动生成文字</view>
       </view>
     </view>
-  </scroll-view>
-  <view class="tab-body">
-    <view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
-      <image src="/images/icon/A18668_pic.png"></image>
-      <view class="btn-add theme-font7">选择手机图片</view>
+    <view class="set-panel">
+      <view class="wapper theme7">
+        <view class="words flex_row_center">
+          <view class="label">欢迎词</view>
+          <input placeholder="请输入欢迎词" placeholder-class="theme-font3"></input>
+        </view>
+        <view class="size flex_row_center">
+          <view class="label">字体大小</view>
+          <view class="flex_row_center">
+            <view class="theme-font1">小</view>
+            <view class="theme-font1 selected">中</view>
+            <view class="theme-font1">大</view>
+            <view class="theme-font1">特大</view>
+          </view>
+        </view>
+        <view class="color flex_row_flexStart">
+          <view class="label">字体颜色</view>
+          <view class="weui-grids">
+            <view class="weui-grid" style="background-color:#FFFFFF;"></view>
+            <view class="weui-grid" style="background-color:#333333;"></view>
+            <view class="weui-grid" style="background-color:#E66B7A;"></view>
+            <view class="weui-grid" style="background-color:#F8B551;"></view>
+            <view class="weui-grid" style="background-color:#448ACA;"></view>
+            <view class="weui-grid selected" style="background-color:#CCE198;"></view>
+            <view class="weui-grid" style="background-color:#CFA972;"></view>
+            <view class="weui-grid" style="background-color:#AA89BD;"></view>
+            <view class="weui-grid" style="background-color:#638C0B;"></view>
+            <view class="weui-grid" style="background-color:#666666;"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-foot flex_row_center_flexEnd theme7">
+      <view class="prev theme-button-welcome-dark">上一步</view>
+      <view class="next theme-button-welcome">下一步</view>
     </view>
   </view>
-  <view class="tab-foot flex_row_center_flexEnd theme7">
-    <view class="next theme-button-welcome">下一步</view>
+</form>
+<!-- 设置文字【第二步】开始 -->
+
+<!-- 选择音乐【第三步】开始 -->
+<form wx:if="{{step == 2}}">
+  <view class="choose-music-page container flex_column_center_flexStart theme-container">
+    <view class="show-panel theme7">
+      <image class="box" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="cover flex_column_center_center">
+        <view class="show-text" style="font-size:34rpx;color:#FFFFFF;">自动生成文字</view>
+      </view>
+    </view>
+    <scroll-view class="set-panel " scroll-y="true" scroll-with-animation="true">
+      <view class="wapper theme7">
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">无音乐</view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd selected">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐1</view>
+            <image src="/images/icon/A18668_pause.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐2</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐3</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐4</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐5</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐2</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐3</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐4</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐5</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐2</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐3</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐4</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+        <view class="flex_column_flexStart_flexEnd">
+          <view class="flex_row_center_spaceBetween">
+            <view>音乐5</view>
+            <image src="/images/icon/58525C_play.png"></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="page-foot flex_row_center_flexEnd theme7">
+      <view class="prev theme-button-welcome-dark">上一步</view>
+      <view class="next theme-button-welcome">下一步</view>
+    </view>
   </view>
-</view>
+</form>
+<!-- 选择音乐【第三步】开始 -->
+
+<!-- 设置包间时间【第四步】开始 -->
+<form wx:if="{{step == 3}}">
+  <view class="box-time-page container flex_column_center_flexStart theme-container">
+    <view class="show-panel theme7">
+      <image class="box" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <view class="cover flex_column_center_center">
+        <view class="show-text" style="font-size:34rpx;color:#FFFFFF;">自动生成文字</view>
+      </view>
+    </view>
+    <view class="set-panel">
+      <view class="music flex_row_center_spaceBetween theme7">
+        <view>音乐</view>
+        <image src="/images/icon/58525C_play.png"></image>
+      </view>
+      <view class="datetime flex_column_flexStart_center theme7">
+        <radio-group class="flex_column_flexStart_center">
+          <view class="flex_row_center">
+            <radio checked="true">立即播放</radio>
+          </view>
+          <view class="flex_column_flexStart_center">
+            <radio>定时播放</radio>
+            <view class="flex_row_center">
+              <picker class="date theme-font3" mode="date" start="2015-09-01" end="2017-09-01">
+                <view>请选择日期</view>
+              </picker>
+              <picker class="time theme-font3" mode="time" start="09:01" end="21:01">
+                <view>请选择时间</view>
+              </picker>
+            </view>
+          </view>
+        </radio-group>
+      </view>
+      <view class="box flex_column_flexStart_center theme7">
+        <view>播放包间</view>
+        <picker class="theme-font3">
+          <view class="flex_row_center_spaceBetween">
+            <view>请选择包间</view>
+            <image src="/images/icon/A18668_down_horn.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="page-foot flex_row_center_flexEnd theme7">
+      <view class="prev theme-button-welcome-dark">上一步</view>
+      <view class="next theme-button-welcome">下一步</view>
+    </view>
+  </view>
+</form>
+<!-- 设置包间时间【第四步】开始 -->
