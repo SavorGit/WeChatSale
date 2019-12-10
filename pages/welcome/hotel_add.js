@@ -163,9 +163,17 @@ Page({
    */
   nextOption:function(e){
     var that = this;
-    var step = e.currentTarget.dataset.step;
-    if(step==0){//选择背景结束
-
+    //var step = e.currentTarget.dataset.step;
+    var base_info = that.data.base_info
+    if (base_info.step==0){//选择背景结束
+      if(base_info.forscreen_url==''){
+        wx.showToast({
+          title: '请上传或选择背景图片',
+          icon:'none',
+          duration:2000,
+        })
+        return false;
+      }
     }else if(step==1){//添加文字结束
 
     }else if(step==2){//添加音乐结束

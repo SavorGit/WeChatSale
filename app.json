@@ -22,7 +22,8 @@
     "pages/task/index",
     "pages/welcome/index",
     "pages/welcome/hotel_add",
-    "pages/user/invite"
+    "pages/user/invite",
+    "pages/birthday/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
