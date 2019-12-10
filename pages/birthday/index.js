@@ -4,6 +4,7 @@ const app = getApp()
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var hotel_id;
+var box_mac;
 var openid;
 Page({
 
@@ -18,17 +19,79 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    utils.PostRequest(api_url + '/Smallapp21/index/happylist', {
-      
-    }, (data, headers, cookies, errMsg, statusCode) => {
+    var that = this;
+    var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
+    if (typeof (link_user_info.box_mac) == 'undefined') {
+      wx.showModal({
+        title: '提示',
+        content: '请您先连接包间电视',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/index/index',
+            })
+          }
+        }
+      })
+    }else {
+      var user_info = wx.getStorageSync(cache_key + 'userinfo');
+      openid = user_info.openid;
 
-      that.setData({
-        happylist: data.result,
+      box_mac = link_user_info.box_mac;
+
+      utils.PostRequest(api_url + '/Smallapp21/index/happylist', {
+
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        console.log(data.result);
+        that.setData({
+          happylist: data.result,
+        })
+      });
+    }
+  },
+  /**
+   * 点播生日歌
+   */
+  showHappy:function(e){
+    var that = this;
+    var filename = e.currentTarget.dataset.file_name;
+    var vediourl = e.currentTarget.dataset.res_url;
+    var timestamp = (new Date()).valueOf();
+    var forscreen_char = 'Happy Birthday';
+
+    utils.PostRequest(api_url + '/Netty/Index/index', {
+      box_mac: box_mac,
+      msg: '{ "action": 6,"url":"' + vediourl + '","filename":"' + filename + '","forscreen_id":"' + timestamp + '","resource_type":2}',
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      wx.showToast({
+        title: '点播成功,电视即将开始播放',
+        icon: 'none',
+        duration: 5000
+      });
+      var mobile_brand = that.globalData.mobile_brand;
+      var mobile_model = that.globalData.mobile_model;
+
+      utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics',{
+        forscreen_id: timestamp,
+        openid: openid,
+        box_mac: box_mac,
+        action: 5,
+        mobile_brand: mobile_brand,
+        mobile_model: mobile_model,
+        forscreen_char: forscreen_char,
+        imgs: '["media/resource/' + filename + '"]'
+      }, (data, headers, cookies, errMsg, statusCode) =>{
+
+      })
+    },res=>{
+      wx.showToast({
+        title: '网络异常,点播失败',
+        icon: 'none',
+        duration: 2000
       })
     });
-
     
-
   },
 
   /**
@@ -42,7 +105,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

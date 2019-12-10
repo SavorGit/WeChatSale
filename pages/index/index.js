@@ -652,8 +652,7 @@ Page({
         var user_info = wx.getStorageSync(cache_key+'userinfo');
         mta.Event.stat('changeHotel', { 'openid': user_info.openid })
       }
-    });
-    
+    }); 
   },
   chooseHotel: function(e) {
     console.log(e);
@@ -675,7 +674,6 @@ Page({
     })
     wx.setStorageSync(cache_key + "userinfo", user_info);
     wx.removeStorageSync(cache_key +'link_box_info');
-    
     if(hotel_has_room==0){
       
       wx.reLaunch({
@@ -726,14 +724,24 @@ Page({
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     mta.Event.stat('indexClickRelief', { 'openid': user_info.openid })
   },
-  goToWelcome:function(e){
+  goToWelcome:function(e){ 
     wx.navigateTo({
       url: '/pages/welcome/index',
     })
   },
   goToHappy:function(e){
-    wx.navigateTo({
-      url: '/pages/birthday/index',
-    })
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+    var box_mac = link_box_info.box_mac;
+    if (box_mac == '' || typeof(box_mac) == 'undefined'){
+      wx.showToast({
+        title: '请选择包间电视',
+        icon: 'none',
+        duration: 2000
+      });
+    }else{
+      wx.navigateTo({
+        url: '/pages/birthday/index',
+      })
+    } 
   }
 })
