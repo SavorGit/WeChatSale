@@ -19,7 +19,7 @@ Page({
   data: {
     base_info: { 'step': 0, //操作步骤 
                  'type': 0, //背景图类型
-                 'img_info': { 'is_choose_img': 0, 'choose_img_url': '', 'oss_img_url': '', 'forscreen_url': '','angle':0}, 
+      'img_info': { 'is_choose_img': 0, 'choose_img_url': '', 'oss_img_url': '', 'forscreen_url': '', 'angle': 0, 'backgroundimg_id':''}, 
                  
                  'word_info':{'welcome_word':''},                     //欢迎词
                  'word_size_info':{'word_size':'','word_size_id':''}, //欢迎词字号
@@ -166,18 +166,109 @@ Page({
     //var step = e.currentTarget.dataset.step;
     var base_info = that.data.base_info
     if (base_info.step==0){//选择背景结束
-      if(base_info.forscreen_url==''){
-        wx.showToast({
-          title: '请上传或选择背景图片',
-          icon:'none',
-          duration:2000,
-        })
-        return false;
+      
+      if(base_info.type==0){//自主上传
+        var choose_img_url = e.detail.value.choose_img_url;
+        var oss_img_url = e.detail.value.oss_img_url;
+        var angle = e.detail.value.angle;
+        if (base_info.choose_img_url == ''){
+          app.showToast('请上传背景图片');
+          return false;
+        }else {
+          base_info.img_info.is_choose_img = 1;
+          base_info.img_info.choose_img_url = choose_img_url;
+          base_info.img_info.oss_img_url    = oss_img_url;
+          base_info.img_info.angle          = angle;
+          base_info.step = 1;
+          that.setData({
+            base_info:base_info,
+          })
+        }
+      }else {//选择背景图
+        var backgroundimg_id = e.detail.value.backgroundimg_id
+        if(backgroundimg_id==''){
+          app.showToast('请选择背景图片');
+          
+          return false;
+        }else {
+          base_info.img_info.backgroundimg_id = backgroundimg_id;
+          base_info.step = 1;
+          that.setData({
+            base_info:base_info,
+          })
+        }
       }
     }else if(step==1){//添加文字结束
+      var content = e.detail.value.content;
+      var wordsize_id = e.detail.value.wordsize_id;
+      var word_color_id = e.detail.value.color_id;
+      var word_color    = e.detail.value.word_color;
+      if(content==''){
+        app.showToast('请选择背景图片');
+        return false;
+      }
+      if(wordsize_id==''){
+        app.showToast('请选择字号');
+        return false;
+      }
+      if (color_id==''){
+        app.showToast('请选择字体颜色');
+        return false;
+      }
+      base_info.word_info.welcome_word = content;
+      base_info.word_info.word_size_id = wordsize_id;
+      base_info.word_color_info.color = word_color;
+      base_info.word_color_info.color_id = word_color_id;
+      base_info.step = 2;
+      that.setData({
+        base_info:base_info
+      })
 
     }else if(step==2){//添加音乐结束
-
+      var music_id = e.detail.value.music_id;
+      var music_name = e.detail.value.music_name;
+      base_info.music_info.music_id = music_id;
+      base_info.music_info.music_name = music_name;
+      base_info.step = 3;
+      that.setData({
+        base_info:base_info
+      })
+    }else if(step==3){//完成
+      var play_type = e.detail.value.play_type;
+      var start_date = e.detail.value.start_date;
+      var start_time = e.detail.value.start_time;
+      var paly_box_mac = e.detail.value.paly_box_mac;
+      if(play_type==2){//1、立即播放 2、定时播放
+        if(start_date==''){
+          app.showToast('请选择播放日期');
+        }
+        if(start_time==''){
+          app.showToast('请选择播放时间');
+        }
+      }
+      
+      utils.PostRequest(api_url + '/Smallsale14/welcome/addwelcome', {
+        backgroundimg_id: base_info.img_info.backgroundimg_id,
+        box_mac: paly_box_mac,
+        color_id: base_info.word_color_info.color_id,
+        content: base_info.word_info.welcome_word,
+        image:   base_info.img_info.choose_img_url,
+        music_id: base_info.music_info.music_id,
+        openid:openid,
+        play_date:start_date,
+        play_type:play_type,
+        rotate:base_info.img_info.angle,
+        timing: start_time,
+        wordsize_id: base_info.word_info.wordsize_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        
+        app.showToast('新建成功',2000,'success');
+        wx.redirectTo({
+          url: '/pages/welcome/index',
+        })
+      },res=>{
+        app.showToast('新建欢迎词失败');
+      })
     }
   },
   /**
@@ -194,49 +285,7 @@ Page({
 
     }
   },
-  completeWel:function(e){
-    var that = this;
-    //var welcome_option = wx.getStorageSync(cache_key+'welcome_option');
-    //var welcome_info = welcome_option.welcome_info;
-    var music_play_type = e.currentTarget.dataset.music_play_type;  //欢迎词播放类型
-    var start_time = '';
-    var end_time   = '';
-    if(music_play_type==2){
-      start_time = e.currentTarget.dataset.start_time;
-      end_time   = e.currentTarget.dataset.end_time;
-    }
-    var box_mac = e.currentTarget.dataset.box_mac;  //包间mac
-
-
-
-    var base_info = that.data.base_info;
-    var img_url      = base_info.img_info.forscreen_url;       //背景图片
-    var welcome_word = base_info.word_info.welcome_word;       //欢迎词
-    var word_size_id = base_info.word_size_info.word_size_id;  //欢迎词字号 
-    var word_color_id= base_info.word_color_info.color_id;     //字体颜色
-    var music_id     = base_info.music_info.music_id;          //背景音乐
-    
-    utils.PostRequest(api_url + '/aa/bb/cc', {
-      img_url :img_url,
-      welcome_word:welcome_word,
-      word_size_id: word_size_id,
-      word_color_id:word_color_id,
-      music_id : music_id,
-      music_play_type: music_play_type,
-      start_time:start_time,
-      end_time : end_time,
-      box_mac  : box_mac,  
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      wx.showToast({
-        title: '新建欢迎词成功',
-        icon:'none',
-        duration:2000,
-      })
-      wx.redirectTo({
-        url: '/pages/welcome/index',
-      })
-    });
-  },
+  
   /**
    * 旋转图片
    */

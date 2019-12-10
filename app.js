@@ -30,6 +30,14 @@ App({
     }
     return true;
   },
+  showToast: function (title, duration=20000, icon = 'none',mask='false'){
+    wx.showToast({
+      title: title,
+      icon: icon,
+      duration: duration,
+      mask:mask,
+    })
+  },
   onLaunch: function () {
     var oss_tmp_key = this.globalData.oss_access_key_id;
     var oss_access_key_id = '';
