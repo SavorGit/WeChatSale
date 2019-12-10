@@ -29,7 +29,7 @@ Page({
     wordsize_list:[],  //字号列表
     color_list:[],     //颜色列表
     music_list:[],     //音乐列表
-    room_list :[],     //包间列表
+    box_list :[],     //包间列表
   },
 
   /**
@@ -70,7 +70,9 @@ Page({
     utils.PostRequest(api_url + '/Smalldinnerapp11/Stb/getBoxList',{
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) =>{
-      console.log(data);
+      that.setData({
+        box_list:data.result.box_list
+      })
       // that.setData({
       //   objectBoxArray: res.data.result.box_name_list,
       //   box_list: res.data.result.box_list
