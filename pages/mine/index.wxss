@@ -147,8 +147,8 @@
 
 .promotion-goods-manage-panel {
   height: 100rpx;
-  margin-top: 10rpx;
   padding: 0 30rpx;
+  border-top: 2rpx solid #ededed;
 }
 
 .promotion-goods-manage-panel > navigator {

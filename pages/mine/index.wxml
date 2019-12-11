@@ -3,9 +3,9 @@
 <scroll-view class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 
   <!-- 用户信息面板 -->
-  <view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width theme7'>
+  <view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width theme-panel-welcome-dark'>
     <image class='head-img' src='{{avatarUrl}}'></image>
-    <view class='nickname theme-font2'>{{nickName}}</view>
+    <view class='nickname'>{{nickName}}</view>
   </view>
   <view wx:else class='user-info-panel full_width theme7'>
     <image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>

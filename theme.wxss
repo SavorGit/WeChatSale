@@ -75,7 +75,7 @@
   background-color: #a18668;
 }
 
-.theme-button-welcome-dark {
+.theme-button-welcome-dark, .theme-panel-welcome-dark {
   color: #fff;
   background-color: #58525c;
 }
