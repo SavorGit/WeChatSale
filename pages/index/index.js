@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const utils = require('../../utils/util.js')
 var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -47,6 +48,7 @@ Page({
     sign_box_list: [], //签到包间
     tv_forscreen:true,
     signin:true,
+    showControlWindow:false,
   },
 
   onLoad: function(res) {
@@ -323,34 +325,18 @@ Page({
       })
     } else {
       var timestamp = (new Date()).valueOf();
-      wx.request({
-        url: api_url + '/Netty/Index/index',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        data: {
-          box_mac: box_mac,
-          msg: '{ "action": 3,"openid":"' + openid + '"}',
-        },
-        success: function(res) {
-          wx.showToast({
-            title: '退出成功',
-            icon: 'none',
-            duration: 2000
-          });
-        },
-        fail: function(res) {
-          wx.showToast({
-            title: '网络异常，退出失败',
-            icon: 'none',
-            duration: 2000
-          })
-        },complete:function(res){
-          //数据埋点-首页点击退出投屏
-          mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
-        }
+
+      utils.PostRequest(api_url + '/Netty/Index/index', {
+        box_mac: box_mac,
+        msg: '{ "action": 3,"openid":"' + openid + '"}',
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        app.showToast('退出成功');
+        //数据埋点-首页点击退出投屏
+        mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
+      },res=>{
+        mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
       })
+      
     }
 
   }, //退出投屏结束
@@ -367,28 +353,31 @@ Page({
 
       })
     } else {
-      wx.request({
-        url: api_url + '/Netty/Index/index',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        data: {
-          box_mac: box_mac,
-          msg: '{"action":31,"change_type":' + change_type + '}',
-        },complete:function(res){
-          var user_info = wx.getStorageSync(cache_key+'userinfo');
-          var openid = user_info.openid;
-          //数据埋点-点击音量增减
-          if(change_type==2){
-            mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac,'openid':openid })
-          }else if(change_type==1){
-            mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac,'openid':openid })
-          }
+      utils.PostRequest(api_url + '/Netty/Index/index', {
+        box_mac: box_mac,
+        msg: '{"action":31,"change_type":' + change_type + '}'
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        
+        app.showToast('操作成功');
+        var user_info = wx.getStorageSync(cache_key + 'userinfo');
+        var openid = user_info.openid;
+        //数据埋点-点击音量增减
+        if (change_type == 2) {
+          mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
+        } else if (change_type == 1) {
+          mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
         }
-      })
+      },res=>{
+        var user_info = wx.getStorageSync(cache_key + 'userinfo');
+        var openid = user_info.openid;
+        //数据埋点-点击音量增减
+        if (change_type == 2) {
+          mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
+        } else if (change_type == 1) {
+          mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
+        }
+      });
     }
-
   },
   /*gotodownload: function(res) {
     var that = this;
@@ -750,5 +739,26 @@ Page({
         url: '/pages/birthday/index',
       })
     } 
+  },
+  /**
+   * 控制弹窗弹开/关闭
+   */
+  switchShowControl:function(e){
+    var that = this ;
+    var is_show = e.currentTarget.dataset.is_show;
+    if(is_show==1){
+      var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+      if(link_box_info==''){
+        app.showToast('请先选择包间电视');
+        return false;
+      }
+      
+      is_show = true;
+    }else {
+      is_show = false;
+    }
+    that.setData({
+      showControlWindow: is_show
+    })
   }
 })

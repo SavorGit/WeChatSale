@@ -3,20 +3,37 @@
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
   <scroll-view class="page-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-    <view class="card">
-      <view class="body theme7">
+    <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+    <view class="card" wx:if="{{bean.status==1}}">
+      <view class="body theme7" >
         <view class="box-status flex_row_center">
-          <view class="box theme-font7">VIP 1</view>
+          <view class="box theme-font7">{{bean.room_name}}</view>
           <view class="status one-line-overflow theme-font7">正在播放我了</view>
         </view>
-        <view class="context theme-font1">祝李总生日快乐~</view>
-        <view class="datetime theme-font2">开始时间: 2019-12-6 13:00</view>
+        <view class="context theme-font1">{{bean.content}}</view>
+        <view class="datetime theme-font2">开始时间: {{bean.start_time}}</view>
       </view>
       <view class="foot flex_row_center_flexEnd theme7">
-        <view class="btn-stop theme-button-welcome">停止播放</view>
+        <view class="btn-stop theme-button-welcome" bindtap="stopPlay" data-index="{{index}}" data-id="{{bean.id}}">停止播放</view>
       </view>
     </view>
-    <view class="card">
+    <view class="card" wx:elif="{{bean.status==2}}">
+      <view class="body theme7">
+        <view class="box-status flex_row_center">
+          <view class="box theme-font7">{{bean.room_name}}</view>
+          <view class="status one-line-overflow theme-font3">未开始</view>
+        </view>
+        <view class="context theme-font1">{{bean.content}}</view>
+        <view class="datetime theme-font2">开始时间: {{bean.start_time}}</view>
+      </view>
+      <view class="foot flex_row_center_flexEnd theme7">
+        <view class="btn-stop theme-button-welcome-dark" bindtap="delItem" data-index="{{index}}" data-id="{{bean.id}}">删除</view>
+        <view class="btn-stop theme-button-welcome" bindtap="startPlay" data-index="{{index}}" data-id="{{bean.id}}">立即播放</view>
+      </view>
+    </view>
+    
+    </block>
+    <!-- <view class="card">
       <view class="body theme7">
         <view class="box-status flex_row_center">
           <view class="box theme-font7">VIP 1</view>
@@ -29,7 +46,7 @@
         <view class="btn-stop theme-button-welcome-dark">删除</view>
         <view class="btn-stop theme-button-welcome">立即播放</view>
       </view>
-    </view>
+    </view> -->
   </scroll-view>
   <view class="page-bottom flex_row_center_center theme7">
     <view bindtap="createWelcome" class="btn-add theme-button-welcome">新建欢迎词</view>

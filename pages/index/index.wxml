@@ -31,7 +31,7 @@
       <image class='icon' src='/images/icon/FBA376_file.png'></image>
       <view class='title theme-font7'>文件</view>
     </view>
-    <view>
+    <view bindtap="switchShowControl" data-is_show="1">
       <image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
       <view class='title theme-font7'>控制</view>
     </view>
@@ -178,7 +178,7 @@
   <view class="control-window theme7">
     <view class="head flex_row_center_flexEnd">
       <view>控制</view>
-      <image src="/images/icon/58525C_close.png"></image>
+      <image src="/images/icon/58525C_close.png" bindtap="switchShowControl" data-is_show="0"></image>
     </view>
     <view class="body flex_column_center">
       <view class="volume-group flex_row_center_spaceBetween">

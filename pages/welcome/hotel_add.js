@@ -24,13 +24,16 @@ Page({
                  'word_info':{'welcome_word':''},                     //欢迎词
                  'word_size_info':{'word_size':'','word_size_id':0}, //欢迎词字号
                  'word_color_info':{'color':'','color_id':0},        //欢迎词颜色
-                 'music_info':{'music_name':'','music_id':0,'oss_addr':''}          //背景音乐
+                 'music_info':{'music_name':'','music_id':0,'oss_addr':''},                //背景音乐
+                 'play_info': { 'play_type': 1, 'play_date': '','timing':'','box_mac':''}  //播放设置
                 }, 
     wordsize_list:[],  //字号列表
     color_list:[],     //颜色列表
     music_list:[],     //音乐列表
     box_list :[],      //包间列表
     play_index: 0,     //播放音乐索引
+    play_music_url:'', //播放音乐url
+    boxIndex:0,
   },
 
   /**
@@ -81,13 +84,14 @@ Page({
     utils.PostRequest(api_url + '/Smalldinnerapp11/Stb/getBoxList',{
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) =>{
-      that.setData({
+      /*that.setData({
         box_list:data.result.box_list
+      })*/
+      console.log(data.result.box_name_list);
+      that.setData({
+        objectBoxArray: data.result.box_name_list,
+        box_list: data.result.box_list
       })
-      // that.setData({
-      //   objectBoxArray: res.data.result.box_name_list,
-      //   box_list: res.data.result.box_list
-      // })
     })
     
     // wx.createAudioContext('music').play();
@@ -285,50 +289,85 @@ Page({
       })
 
     } else if (base_info.step==2){//添加音乐结束
-      var music_id = e.detail.value.music_id;
-      var music_name = e.detail.value.music_name;
-      base_info.music_info.music_id = music_id;
-      base_info.music_info.music_name = music_name;
+      
       base_info.step = 3;
       that.setData({
         base_info:base_info
       })
     } else if (base_info.step==3){//完成
-      var play_type = e.detail.value.play_type;
-      var start_date = e.detail.value.start_date;
-      var start_time = e.detail.value.start_time;
-      var paly_box_mac = e.detail.value.paly_box_mac;
+      var play_type = base_info.play_info.play_type;
+      var play_date = base_info.play_info.play_date;
+      var timing    = base_info.play_info.timing;
+      var play_box_mac = base_info.play_info.box_mac;
       if(play_type==2){//1、立即播放 2、定时播放
-        if(start_date==''){
+        if (play_date==''){
           app.showToast('请选择播放日期');
+          return false;
         }
-        if(start_time==''){
+        if (timing==''){
           app.showToast('请选择播放时间');
+          return false;
         }
       }
+      if (play_box_mac==''){
+        app.showToast('请选择包间电视');
+        return false;
+      }
       
-      utils.PostRequest(api_url + '/Smallsale14/welcome/addwelcome', {
-        backgroundimg_id: base_info.img_info.backgroundimg_id,
-        box_mac: paly_box_mac,
-        color_id: base_info.word_color_info.color_id,
-        content: base_info.word_info.welcome_word,
-        image:   base_info.img_info.choose_img_url,
-        music_id: base_info.music_info.music_id,
-        openid:openid,
-        play_date:start_date,
-        play_type:play_type,
-        rotate:base_info.img_info.angle,
-        timing: start_time,
-        wordsize_id: base_info.word_info.wordsize_id
-      }, (data, headers, cookies, errMsg, statusCode) => {
-        
-        app.showToast('新建成功',2000,'success');
-        wx.redirectTo({
-          url: '/pages/welcome/index',
-        })
-      },res=>{
-        app.showToast('新建欢迎词失败');
+
+      if(base_info.img_info.is_choose_img==0){
+        base_info.img_info.forscreen_url = '';
+      }
+
+      console.log('完成');
+      //console.log(base_info);
+      //return false;
+      console.log(base_info);
+      wx.showModal({
+        title: '确定要完成吗？',
+        //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
+        success: function (res) {
+          if (res.confirm) {
+            that.setData({
+              completeBtn: true,
+            })
+            utils.PostRequest(api_url + '/Smallsale14/welcome/addwelcome', {
+              backgroundimg_id: base_info.img_info.backgroundimg_id,
+              box_mac: play_box_mac,
+              color_id: base_info.word_color_info.color_id,
+              content: base_info.word_info.welcome_word,
+              image: base_info.img_info.forscreen_url,
+              music_id: base_info.music_info.music_id,
+              openid: openid,
+              play_date: play_date,
+              play_type: play_type,
+              rotate: base_info.img_info.angle,
+              timing: timing,
+              wordsize_id: base_info.word_size_info.word_size_id
+            }, (data, headers, cookies, errMsg, statusCode) => {
+
+
+              wx.redirectTo({
+                url: '/pages/welcome/index',
+                success: function (e) {
+                  that.setData({
+                    completeBtn: false,
+                  })
+                }
+
+              })
+              app.showToast('新建欢迎词成功', 2000, 'success');
+
+            }, res => {
+              that.setData({
+                completeBtn: false,
+              })
+              app.showToast('新建欢迎词失败');
+            })
+          }
+        }
       })
+      
     }
   },
   /**
@@ -395,7 +434,7 @@ Page({
 
   },
   /**
-   * 第二步：选中音乐
+   * 第三步：选中音乐
    */
   selectMusic:function(e){
     //console.log(e);
@@ -404,11 +443,15 @@ Page({
     var id = e.currentTarget.dataset.id;
     if(id!=0){
       var oss_addr = e.currentTarget.dataset.oss_addr;
+      var name     = e.currentTarget.dataset.name;
+
     }else{
       var oss_addr = '';
+      var name ='无';
     }
     base_info.music_info.oss_addr = oss_addr;
     base_info.music_info.music_id = id;
+    base_info.music_info.music_name = name;
     that.setData({
       base_info:base_info
     })
@@ -422,14 +465,77 @@ Page({
     var status= e.currentTarget.dataset.status;
 
     if(status==1){//播放音乐
-      console.log(that.data.base_info);
+      var oss_addr = e.currentTarget.dataset.oss_addr;
+      
       that.setData({
+        play_music_url:oss_addr,
         play_index:index,
       })
       wx.createAudioContext('music').play();
     }else {//暂停音乐
-      wx.createAudioContext('music').stop();
+      that.setData({
+        play_index: 0,
+      })
+      wx.createAudioContext('music').pause();
     }
+  },
+  /**
+   * 第四部：设置播放类型
+   */
+  swichPlayType:function(e){
+    console.log(e);
+    var that = this;
+    var play_type = e.detail.value;
+    var base_info = that.data.base_info;
+    base_info.play_info.play_type = play_type;
+    that.setData({
+      base_info:base_info,
+    })
+  },
+  /**
+   * 第四部：选择日期
+   */
+  selectData:function(e){
+    console.log(e);
+    var that = this;
+    var that = this;
+    var base_info = that.data.base_info;
+    var play_date = e.detail.value;
+    base_info.play_info.play_date = play_date;
+    that.setData({
+      base_info: base_info
+    })
+  },
+  /**
+   * 第四部：选择时间
+   */
+  selectTiming:function(e){
+    console.log(e);
+    var that = this;
+    var base_info = that.data.base_info;
+    var timing = e.detail.value;
+    base_info.play_info.timing = timing;
+    that.setData({
+      base_info: base_info
+    })
+
+  },
+  /**
+   * 第四部：选择包间
+   */
+  selectRoom:function(e){
+    console.log(e);
+    var that = this;
+    var boxIndex = e.detail.value;
+    var base_info = that.data.base_info;
+    var box_list  = that.data.box_list;
+    
+    var play_box_mac = box_list[boxIndex].box_mac;
+    base_info.play_info.box_mac = play_box_mac;
+    that.setData({
+      boxIndex:boxIndex,
+      base_info:base_info,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
