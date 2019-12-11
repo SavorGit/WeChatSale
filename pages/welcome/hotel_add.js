@@ -22,8 +22,8 @@ Page({
       'img_info': { 'is_choose_img': 0, 'choose_img_url': '', 'oss_img_url': '', 'forscreen_url': '', 'angle': 0, 'backgroundimg_id':''}, 
                  
                  'word_info':{'welcome_word':''},                     //欢迎词
-                 'word_size_info':{'word_size':'','word_size_id':''}, //欢迎词字号
-                 'word_color_info':{'color':'','color_id':''},        //欢迎词颜色
+                 'word_size_info':{'word_size':'','word_size_id':0}, //欢迎词字号
+                 'word_color_info':{'color':'','color_id':0},        //欢迎词颜色
                  'music_info':{'music_name':'','music_id':0}          //背景音乐
                 }, 
     wordsize_list:[],  //字号列表
@@ -60,10 +60,20 @@ Page({
 
     }, (data, headers, cookies, errMsg, statusCode)=>{
       console.log(data.result)
+      var base_info = that.data.base_info;
+      var wordsize  = data.result.wordsize;
+      var color     = data.result.color;
+      var music = data.result.music
+      base_info.word_size_info.word_size = wordsize[0].wordsize;
+      base_info.word_size_info.word_size_id = wordsize[0].id;
+      base_info.word_color_info.color    = color[0].color;
+      base_info.word_color_info.color_id = color[0].id;
+      console.log(base_info);
       that.setData({
-        wordsize_list: data.result.wordsize,
-        color_list:data.result.color,
-        music_list:data.result.music,
+        base_info:base_info,
+        wordsize_list: wordsize,
+        color_list: color,
+        music_list: music,
       })
     })
     //包间列表
@@ -81,7 +91,7 @@ Page({
     
   },
   /**
-   * 切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会
+   * 第一步：切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会
    */
   switchWelType:function(e){
     var that = this;
@@ -107,7 +117,7 @@ Page({
     }
   },
   /**
-   * 相册选择照片
+   * 第一步：相册选择照片
    */
   chooseImage:function(e){
     var that = this;
@@ -173,7 +183,7 @@ Page({
     })
   },
   /**
-   * 旋转自主上传图片
+   * 第一步：旋转自主上传图片
    */
   turnImg:function(e){
     var that = this;
@@ -194,13 +204,15 @@ Page({
     })
   },
   /**
-   * 选择背景图片
+   *第一步： 选择背景图片
    */
   selectBackImg:function(e){
     var that = this;
     var id = e.currentTarget.dataset.id;
+    var oss_addr = e.currentTarget.dataset.oss_addr;
     var base_info = that.data.base_info;
     base_info.img_info.backgroundimg_id = id;
+    base_info.img_info.choose_img_url = oss_addr;
     base_info.img_info.is_choose_img = 0;
     that.setData({
       base_info:base_info,
@@ -248,13 +260,13 @@ Page({
           })
         }
       }
-    }else if(step==1){//添加文字结束
-      var content = e.detail.value.content;
-      var wordsize_id = e.detail.value.wordsize_id;
-      var word_color_id = e.detail.value.color_id;
-      var word_color    = e.detail.value.word_color;
+    } else if (base_info.step ==1){//添加文字结束
+      var content = base_info.word_info.welcome_word ;
+      var wordsize_id = base_info.word_info.word_size_id;
+      var color_id = base_info.word_color_info.color_id;
+      var word_color = base_info.word_color_info.color;
       if(content==''){
-        app.showToast('请选择背景图片');
+        app.showToast('请输入欢迎词');
         return false;
       }
       if(wordsize_id==''){
@@ -265,16 +277,12 @@ Page({
         app.showToast('请选择字体颜色');
         return false;
       }
-      base_info.word_info.welcome_word = content;
-      base_info.word_info.word_size_id = wordsize_id;
-      base_info.word_color_info.color = word_color;
-      base_info.word_color_info.color_id = word_color_id;
       base_info.step = 2;
       that.setData({
         base_info:base_info
       })
 
-    }else if(step==2){//添加音乐结束
+    } else if (base_info.step==2){//添加音乐结束
       var music_id = e.detail.value.music_id;
       var music_name = e.detail.value.music_name;
       base_info.music_info.music_id = music_id;
@@ -283,7 +291,7 @@ Page({
       that.setData({
         base_info:base_info
       })
-    }else if(step==3){//完成
+    } else if (base_info.step==3){//完成
       var play_type = e.detail.value.play_type;
       var start_date = e.detail.value.start_date;
       var start_time = e.detail.value.start_time;
@@ -326,6 +334,7 @@ Page({
    */
   lastOption:function(e){
     var that = this;
+    console.log(e);
     var step = e.currentTarget.dataset.step;
     if(step>0){
       step -= 1;
@@ -338,18 +347,46 @@ Page({
   },
   
   /**
-   * 旋转图片
+   * 第二步：输入欢迎词
    */
-  rotateImg:function(e){
+  inputWelcomeWord:function(e){
+    console.log(e);
     var that = this;
-    var angle = e.currentTarget.dataset.angle;
-    var choose_img_url = e.currentTarget.dataset.choose_img_url;
-    var nextAngle = angle+90;
-    if (nextAngle==360){
-      nextAngle = 0;
-    }
+    var welcome_word = e.detail.value;
     var base_info = that.data.base_info;
-    base_info.choose_img_url = choose_img_url +'?x-oss-process=image/rotate,'+nextAngle;
+    base_info.word_info.welcome_word = welcome_word;
+    that.setData({
+      base_info:base_info
+    })
+    
+  },
+  /**
+   * 第二步：选择字体大小
+   */
+  selectWordSize:function(e){
+    console.log(e);
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var wordsize = e.currentTarget.dataset.wordsize;
+    var base_info = that.data.base_info;
+    base_info.word_size_info.word_size_id = id;
+    base_info.word_size_info.word_size    = wordsize;
+    that.setData({
+      base_info:base_info
+    })
+  },
+  /**
+   * 第二步：选择字体颜色
+   */
+  selectWordColor:function(e){
+    console.log(e);
+    var that = this;
+    //'word_color_info':{'color':'','color_id':0}
+    var base_info = that.data.base_info;
+    var color = e.currentTarget.dataset.color;
+    var id    = e.currentTarget.dataset.id;
+    base_info.word_color_info.color = color;
+    base_info.word_color_info.color_id = id;
     that.setData({
       base_info:base_info
     })
