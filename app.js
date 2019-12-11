@@ -30,7 +30,7 @@ App({
     }
     return true;
   },
-  showToast: function (title, duration=20000, icon = 'none',mask='false'){
+  showToast: function (title, duration=2000, icon = 'none',mask='false'){
     wx.showToast({
       title: title,
       icon: icon,

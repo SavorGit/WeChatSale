@@ -50,7 +50,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       console.log(data.result.category_list);
       that.setData({
-        categoryList:data.category
+        categoryList: data.result.category_list
       })
     });
     /**
@@ -84,16 +84,26 @@ Page({
    * 切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会
    */
   switchWelType:function(e){
+    var that = this;
+    var base_info = that.data.base_info;
     var category_id = e.currentTarget.dataset.category_id;
-    welType = type;
-    if(type!=0){
+    //welType = type;
+    console.log(category_id);
+    if (category_id!=0){
       utils.PostRequest(api_url + '/Smallsale14/welcome/imglist', {
         category_id: category_id
       }, (data, headers, cookies, errMsg, statusCode) => {
+        base_info.type = category_id;
         that.setData({
-          imglist: data,
+          imglist: data.result,
+          base_info:base_info
         })
       });
+    }else {
+      base_info.type= 0 ;
+      that.setData({
+        base_info:base_info,
+      })
     }
   },
   /**
@@ -101,6 +111,7 @@ Page({
    */
   chooseImage:function(e){
     var that = this;
+    var base_info = that.data.base_info;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -114,7 +125,6 @@ Page({
         var timestamp = (new Date()).valueOf();
         var oss_img_url = app.globalData.oss_url+ "/forscreen/resource/" + timestamp + postf_t;
         var oss_key = "forscreen/resource/" + timestamp + postf_t;
-        console.log('aaaa');
 
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
@@ -139,9 +149,13 @@ Page({
                 signature: signature
 
               },success: function (res) {
-                console.log(oss_img_url);
+                base_info.img_info.is_choose_img  = 1;
+                base_info.img_info.choose_img_url = oss_img_url;
+                base_info.img_info.oss_img_url    = oss_img_url;
+                base_info.img_info.forscreen_url  = oss_key;
+                console.log(base_info);
                 that.setData({
-                  base_info: { 'step': 0, 'type': 0, 'is_choose_img': 1, 'choose_img_url': oss_img_url,'oss_img_url':oss_img_url}
+                  base_info:base_info
                 })
               },fail: function ({ errMsg }) {
                 wx.showToast({
@@ -159,10 +173,46 @@ Page({
     })
   },
   /**
+   * 旋转自主上传图片
+   */
+  turnImg:function(e){
+    var that = this;
+    var base_info = that.data.base_info;
+    var angle = e.currentTarget.dataset.angle;
+    angle +=90;
+    var pms = ''
+    console.log()
+    if(angle==360 || angle>360){
+      angle = 0;
+    }
+    
+    var choose_img_url = base_info.img_info.oss_img_url+'?x-oss-process=image/rotate,'+angle;
+    base_info.img_info.choose_img_url = choose_img_url;
+    base_info.img_info.angle = angle;
+    that.setData({
+      base_info:base_info
+    })
+  },
+  /**
+   * 选择背景图片
+   */
+  selectBackImg:function(e){
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    var base_info = that.data.base_info;
+    base_info.img_info.backgroundimg_id = id;
+    base_info.img_info.is_choose_img = 0;
+    that.setData({
+      base_info:base_info,
+    })
+  },
+  /**
    * 下一步
    */
   nextOption:function(e){
     var that = this;
+    console.log(e);
+    //return false;
     //var step = e.currentTarget.dataset.step;
     var base_info = that.data.base_info
     if (base_info.step==0){//选择背景结束
@@ -171,7 +221,7 @@ Page({
         var choose_img_url = e.detail.value.choose_img_url;
         var oss_img_url = e.detail.value.oss_img_url;
         var angle = e.detail.value.angle;
-        if (base_info.choose_img_url == ''){
+        if (base_info.img_info.choose_img_url == ''){
           app.showToast('请上传背景图片');
           return false;
         }else {
@@ -277,12 +327,13 @@ Page({
   lastOption:function(e){
     var that = this;
     var step = e.currentTarget.dataset.step;
-    if(step==0){//开始选择图片
-
-    }else if(step ==1){//开始添加文字
-
-    }else if(step==2){//开始添加音乐
-
+    if(step>0){
+      step -= 1;
+      var base_info = that.data.base_info;
+      base_info.step = step;
+      that.setData({
+        base_info:base_info
+      })
     }
   },
   

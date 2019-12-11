@@ -2,17 +2,21 @@
 <import src="/pages/template/commons" />
 
 <!-- 设置背景【第一步】开始 wx:if="{{step == 0}}" -->
-<form>
+<form bindsubmit="nextOption">
   <view class="step-one-page container flex_column_center_flexStart theme-container">
 
     <!-- 选项卡头开始 -->
-    <scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true">
+    <scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true" wx:if="{{base_info.step==0}}">
       <view class="tab-group flex_row_center">
-        <view class="selected theme-font7">自主上传</view>
-        <view class="theme-font8">商务宴请</view>
-        <view class="theme-font8">生日宴</view>
-        <view class="theme-font8">家宴</view>
-        <view class="theme-font8">朋友聚餐</view>
+        <view wx:if="{{base_info.type==0}}" class="selected theme-font7">自主上传</view>
+        <view wx:if="{{base_info.type!=0}}" bindtap="switchWelType" data-category_id="0" class="theme-font8">自主上传</view>
+        <block wx:for="{{categoryList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:if="{{bean.id==base_info.type}}" class="selected theme-font7">{{bean.name}}</view>
+          <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:else class="theme-font8">{{bean.name}}</view>
+          <!-- <view class="theme-font8">生日宴</view>
+          <view class="theme-font8">家宴</view>
+          <view class="theme-font8">朋友聚餐</view> -->
+        </block>
         <view>
           <view class="end-space"></view>
         </view>
@@ -21,7 +25,7 @@
     <!-- 选项卡头结束 -->
 
     <!-- 新建自主上传选项卡开始 wx:if="{{selfUpNew}}" -->
-    <block>
+    <block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==0}}">
       <view class="tab-body">
         <view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
           <image class="icon" src="/images/icon/A18668_pic.png"></image>
@@ -29,78 +33,62 @@
         </view>
       </view>
       <view class="tab-foot flex_row_center_flexEnd theme7">
-        <view class="next theme-button-welcome">下一步</view>
+        <button class="next theme-button-welcome" form-type="submit">下一步</button>
       </view>
     </block>
     <!-- 新建自主上传选项卡结束 -->
 
     <!-- 自主上传回显选项卡开始 -->
-    <block wx:if="{{selfUpdated}}">
+    <block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==1}}">
       <view class="tab-body">
         <view class="img-panel flex_column_center_center theme7">
-          <image class="self-up-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+          <image class="self-up-img" src="{{base_info.img_info.choose_img_url}}"></image>
         </view>
         <view class="btn-group flex_row_center_center">
-          <view class="rechoose theme-button-welcome-dark">重选</view>
-          <view class="rotate theme-button-add">旋转</view>
+          <view class="rechoose theme-button-welcome-dark" bindtap="chooseImage">重选</view>
+          <view class="rotate theme-button-add" bindtap="turnImg" data-angle="{{base_info.img_info.angle}}">旋转</view>
         </view>
       </view>
       <view class="tab-foot flex_row_center_flexEnd theme7">
-        <view class="next theme-button-welcome">下一步</view>
+        <!-- <view class="next theme-button-welcome">下一步</view> -->
+        <!-- <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input> -->
+        <input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
+        <input class='display_hide' name="oss_img_url" value="{{base_info.img_info.oss_img_url}}"> </input>
+        <input class='display_hide' name="angle" value="{{base_info.img_info.angle}}"> </input>
+        <button class="next theme-button-welcome" form-type="submit">下一步</button>
       </view>
     </block>
     <!-- 自主上传回显选项卡结束 -->
 
     <!-- 模板选择选项卡开始 -->
-    <block wx:if="{{templateChoose}}">
+    <block wx:if="{{base_info.step==0 && base_info.type!=0}}">
       <view class="tab-body">
         <scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
           <view class="weui-grids">
-            <view class="weui-grid">
-              <image class="selected" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
+            
+            <block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+              <view  class="weui-grid" >
+                <image wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="selected" src="{{bean.oss_addr}}"></image>
+                <image wx:else  src="{{bean.oss_addr}}" data-id="{{bean.id}}" bindtap="selectBackImg"></image>
+              </view>
+            </block>
+
+            <!--<view class="weui-grid">
               <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
-            <view class="weui-grid">
-              <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-            </view>
+            </view> -->
+            
           </view>
         </scroll-view>
       </view>
       <view class="tab-foot flex_row_center_flexEnd theme7">
-        <view class="next theme-button-welcome">下一步</view>
+        <!-- <view class="next theme-button-welcome">下一步</view> -->
+        <button class="next theme-button-welcome" form-type="submit">下一步</button>
       </view>
+      <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input>
+      <input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
+      <input class='display_hide' name="oss_img_url" value="{{base_info.img_info.oss_img_url}}"> </input>
+      <input class='display_hide' name="angle" value="{{base_info.img_info.angle}}"> </input>
+      
     </block>
     <!-- 模板选择选项卡结束 -->
 
@@ -109,12 +97,12 @@
 <!-- 设置背景【第一步】结束 -->
 
 <!-- 设置文字【第二步】开始 -->
-<form wx:if="{{step == 1}}">
+<form wx:if="{{base_info.step == 1}}">
   <view class="set-words-page container flex_column_center_flexStart theme-container">
     <view class="show-panel theme7">
       <image class="box" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
       <view class="cover flex_column_center_center">
-        <view class="show-text" style="font-size:34rpx;color:#999999;">自动生成文字</view>
+        <view class="show-text" style="font-size:34rpx;color:#999999;">自动生成文字1</view>
       </view>
     </view>
     <view class="set-panel">
