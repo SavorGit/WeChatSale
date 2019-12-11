@@ -1,1 +1,28 @@
 /* pages/birthday/index.wxss */
+
+.list {
+  width: 100%;
+  height: 100%;
+}
+
+.list audio {
+  display: inline;
+}
+
+.list > .row {
+  width: calc(100% - 120rpx);
+  height: 90rpx;
+  padding: 0 60rpx;
+  font-size: 24rpx;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.list > .row:last-child {
+  border-bottom: 0;
+}
+
+.list > .row > image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
