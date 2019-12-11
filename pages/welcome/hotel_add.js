@@ -24,12 +24,13 @@ Page({
                  'word_info':{'welcome_word':''},                     //欢迎词
                  'word_size_info':{'word_size':'','word_size_id':0}, //欢迎词字号
                  'word_color_info':{'color':'','color_id':0},        //欢迎词颜色
-                 'music_info':{'music_name':'','music_id':0}          //背景音乐
+                 'music_info':{'music_name':'','music_id':0,'oss_addr':''}          //背景音乐
                 }, 
     wordsize_list:[],  //字号列表
     color_list:[],     //颜色列表
     music_list:[],     //音乐列表
-    box_list :[],     //包间列表
+    box_list :[],      //包间列表
+    play_index: 0,     //播放音乐索引
   },
 
   /**
@@ -380,7 +381,7 @@ Page({
    * 第二步：选择字体颜色
    */
   selectWordColor:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     //'word_color_info':{'color':'','color_id':0}
     var base_info = that.data.base_info;
@@ -392,6 +393,43 @@ Page({
       base_info:base_info
     })
 
+  },
+  /**
+   * 第二步：选中音乐
+   */
+  selectMusic:function(e){
+    //console.log(e);
+    var that = this;
+    var base_info = that.data.base_info;
+    var id = e.currentTarget.dataset.id;
+    if(id!=0){
+      var oss_addr = e.currentTarget.dataset.oss_addr;
+    }else{
+      var oss_addr = '';
+    }
+    base_info.music_info.oss_addr = oss_addr;
+    base_info.music_info.music_id = id;
+    that.setData({
+      base_info:base_info
+    })
+  },
+  /**
+   * 第三步：播放/播放音乐
+   */
+  changePlayStatus:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var status= e.currentTarget.dataset.status;
+
+    if(status==1){//播放音乐
+      console.log(that.data.base_info);
+      that.setData({
+        play_index:index,
+      })
+      wx.createAudioContext('music').play();
+    }else {//暂停音乐
+      wx.createAudioContext('music').stop();
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

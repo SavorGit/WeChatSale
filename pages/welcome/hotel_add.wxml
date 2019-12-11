@@ -130,15 +130,7 @@
               <view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}" data-id="{{bean.id}}"></view>
 
             </block>
-            <!-- <view class="weui-grid" style="background-color:#333333;"></view>
-            <view class="weui-grid" style="background-color:#E66B7A;"></view>
-            <view class="weui-grid" style="background-color:#F8B551;"></view>
-            <view class="weui-grid" style="background-color:#448ACA;"></view>
-            <view class="weui-grid selected" style="background-color:#CCE198;"></view>
-            <view class="weui-grid" style="background-color:#CFA972;"></view>
-            <view class="weui-grid" style="background-color:#AA89BD;"></view>
-            <view class="weui-grid" style="background-color:#638C0B;"></view>
-            <view class="weui-grid" style="background-color:#666666;"></view> -->
+            
           </view>
         </view>
       </view>
@@ -154,7 +146,7 @@
 <!-- 选择音乐【第三步】开始 -->
 <form wx:if="{{base_info.step == 2}}">
   <view class="choose-music-page container flex_column_center_flexStart theme-container">
-    <audio id="music" src="http://dev-oss.littlehotspot.com/media/resource/x8wJhfZBWD.mp3"></audio>
+    <audio id="music" src="{{base_info.music_info.oss_addr}}"></audio>
     <view class="show-panel theme7">
       <image class="box" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
@@ -163,14 +155,28 @@
     </view>
     <scroll-view class="set-panel " scroll-y="true" scroll-with-animation="true">
       <view class="wapper theme7">
-        <view class="flex_column_flexStart_flexEnd selected">
-          <view class="flex_row_center_spaceBetween">无音乐</view>
-        </view>
+        
         <block wx:for="{{music_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <view class="flex_column_flexStart_flexEnd">
+          <!--选中音乐-->
+          <view wx:if="{{base_info.music_info.music_id==bean.id}}" class="flex_column_flexStart_flexEnd selected">
+            <view class="flex_row_center_spaceBetween" bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}">
+              <view>{{bean.name}}</view>
+              <block wx:if="{{bean.id !=0}}"> 
+                <image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
+                <image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+              </block>
+              <!-- <image src="/images/icon/58525C_play.png"></image> -->
+            </view>
+          </view>
+          <!--未选中音乐-->
+          <view wx:else class="flex_column_flexStart_flexEnd" bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}">
             <view class="flex_row_center_spaceBetween">
               <view>{{bean.name}}</view>
-              <image src="/images/icon/A18668_pause.png"></image>
+              <block wx:if="{{bean.id !=0}}"> 
+                 <image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
+                <image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+              </block>
+              
               <!-- <image src="/images/icon/58525C_play.png"></image> -->
             </view>
           </view>
