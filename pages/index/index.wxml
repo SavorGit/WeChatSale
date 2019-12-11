@@ -19,22 +19,22 @@
 
   <!-- 投屏操作面板 -->
   <view class="launch-option-panel flex_row_center_spaceAround theme7">
-    <button bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
-      <image class='icon' src='/images/icon/E66B7a_pic.png'></image>
+    <view bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
+      <image class='icon' src='/images/icon/E66B7A_pic.png'></image>
       <view class='title theme-font7'>图片</view>
-    </button>
-    <button bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
+    </view>
+    <view bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
       <image class='icon' src='/images/icon/B36BE6_play.png'></image>
       <view class='title theme-font7'>视频</view>
-    </button>
-    <button bindtap='gotoForFile' disabled='{{download_disable}}'>
+    </view>
+    <view bindtap='gotoForFile' disabled='{{download_disable}}'>
       <image class='icon' src='/images/icon/FBA376_file.png'></image>
       <view class='title theme-font7'>文件</view>
-    </button>
-    <button>
+    </view>
+    <view>
       <image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
       <view class='title theme-font7'>控制</view>
-    </button>
+    </view>
   </view>
 
   <!-- 广播模块面板 -->
@@ -57,6 +57,33 @@
       <view class="title">生日歌</view>
       <view class="desc">提升食客满意度</view>
     </view>
+  </view>
+
+  <!-- 机顶盒列表 -->
+  <view class="set_top_box-panel theme7">
+    <view class="title theme-font4">包间签到赚积分</view>
+    <scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+      <view class='weui-grids'>
+        <block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class='weui-grid' wx:if="{{bean.status==2}}">
+            <view class="box flex_column_center_center">
+              <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
+                <image src='{{bean.user.avatarUrl}}'></image>
+              </view>
+              <view class='name theme-font2'>{{bean.name}}</view>
+            </view>
+          </view>
+          <view class='weui-grid' wx:if="{{bean.status==1}}">
+            <view class="box flex_column_center_center" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
+              <view class='light green-light theme-font3'>
+                <view class="theme7">签到</view>
+              </view>
+              <view class='name theme-font2'>{{bean.name}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
   </view>
 </view>
 
@@ -146,7 +173,22 @@
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
 
-
+<!-- 控制弹窗 -->
+<modal show="{{showControlWindow}}" width="630rpx" height='400rpx' background-color='unset' title-text='' confirm-text='' ccancel-text='' cancel-text=''>
+  <view class="control-window theme7">
+    <view class="head flex_row_center_flexEnd">
+      <view>控制</view>
+      <image src="/images/icon/58525C_close.png"></image>
+    </view>
+    <view class="body flex_column_center">
+      <view class="volume-group flex_row_center_spaceBetween">
+        <view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 +</view>
+        <view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 -</view>
+      </view>
+      <view class="btn-exit theme-button-welcome-dark" bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</view>
+    </view>
+  </view>
+</modal>
 
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />

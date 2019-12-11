@@ -41,23 +41,24 @@ page {
   margin-top: 10rpx;
 }
 
-.launch-option-panel > button {
+.launch-option-panel > view {
   width: 90rpx;
-  height: 140rpx;
+  height: 130rpx;
   line-height: unset;
+  text-align: center;
   margin: 0;
   border: 0;
   padding: 0;
   background-color: unset;
 }
 
-.launch-option-panel > button .icon {
+.launch-option-panel > view > .icon {
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
 }
 
-.launch-option-panel > button .title {
+.launch-option-panel > view > .title {
   width: 90rpx;
   height: 90rpx;
   font-size: 24rpx;
@@ -208,6 +209,58 @@ page {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.control-window {
+  width: 630rpx;
+  height: 400rpx;
+  border-radius: 5rpx;
+}
+
+.control-window > .head {
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.control-window > .head > view {
+  width: calc(100% - 120rpx);
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.control-window > .head > image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.control-window > .body {
+  width: 100%;
+  height: 308rpx;
+}
+
+.control-window > .body > .volume-group, .control-window > .body > .btn-exit {
+  width: 370rpx;
+  height: 60rpx;
+  margin-top: 75rpx;
+}
+
+.control-window > .body > .volume-group > view {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 5rpx;
+}
+
+.control-window > .body > .btn-exit {
+  line-height: 60rpx;
+  margin-top: 63rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 5rpx;
 }
 
 /* ============================================ 旧版本 1.4.0 ============================================ 

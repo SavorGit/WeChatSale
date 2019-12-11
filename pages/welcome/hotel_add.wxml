@@ -13,7 +13,7 @@
         <block wx:for="{{categoryList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
           <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:if="{{bean.id==base_info.type}}" class="selected theme-font7">{{bean.name}}</view>
           <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:else class="theme-font8">{{bean.name}}</view>
-          
+
         </block>
         <view>
           <view class="end-space"></view>
@@ -83,7 +83,7 @@
         <button class="next theme-button-welcome" form-type="submit">下一步</button>
       </view>
       <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input>
-      
+
 
     </block>
     <!-- 模板选择选项卡结束 -->
@@ -112,9 +112,9 @@
           <view class="label">字体大小</view>
           <view class="flex_row_center">
             <block wx:for="{{wordsize_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view  wx:if="{{base_info.word_size_info.word_size_id==bean.id}}" class="theme-font1 selected">{{bean.name}}</view>
-             
-              <view  wx:else class="theme-font1" bindtap="selectWordSize" data-id="{{bean.id}}" data-wordsize="{{bean.wordsize}}">{{bean.name}}</view>
+              <view wx:if="{{base_info.word_size_info.word_size_id==bean.id}}" class="theme-font1 selected">{{bean.name}}</view>
+
+              <view wx:else class="theme-font1" bindtap="selectWordSize" data-id="{{bean.id}}" data-wordsize="{{bean.wordsize}}">{{bean.name}}</view>
             </block>
             <!-- <view class="theme-font1 selected">中</view>
             <view class="theme-font1">大</view>
@@ -125,9 +125,9 @@
           <view class="label">字体颜色</view>
           <view class="weui-grids">
             <block wx:for="{{color_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            
+
               <view wx:if="{{base_info.word_color_info.color_id == bean.id}}" class="weui-grid selected" style="background-color:{{bean.color}};"></view>
-              <view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}"  data-id="{{bean.id}}"></view>
+              <view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}" data-id="{{bean.id}}"></view>
 
             </block>
             <!-- <view class="weui-grid" style="background-color:#333333;"></view>
@@ -154,6 +154,7 @@
 <!-- 选择音乐【第三步】开始 -->
 <form wx:if="{{base_info.step == 2}}">
   <view class="choose-music-page container flex_column_center_flexStart theme-container">
+    <audio id="music" src="http://dev-oss.littlehotspot.com/media/resource/x8wJhfZBWD.mp3"></audio>
     <view class="show-panel theme7">
       <image class="box" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
@@ -166,14 +167,15 @@
           <view class="flex_row_center_spaceBetween">无音乐</view>
         </view>
         <block wx:for="{{music_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view class="flex_column_flexStart_flexEnd">
-          <view class="flex_row_center_spaceBetween">
-            <view>{{bean.name}}</view>
-            <image src="/images/icon/A18668_pause.png"></image>
+          <view class="flex_column_flexStart_flexEnd">
+            <view class="flex_row_center_spaceBetween">
+              <view>{{bean.name}}</view>
+              <image src="/images/icon/A18668_pause.png"></image>
+              <!-- <image src="/images/icon/58525C_play.png"></image> -->
+            </view>
           </view>
-        </view>
         </block>
-        
+
       </view>
     </scroll-view>
     <view class="page-foot flex_row_center_flexEnd theme7">
