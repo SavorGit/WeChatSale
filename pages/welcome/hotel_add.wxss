@@ -315,6 +315,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   padding: 0 45rpx;
 }
 
+.choose-music-page > .set-panel .wapper > view > view > view {
+  width: calc(100% - 40rpx);
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
 .choose-music-page > .set-panel .wapper > view > view > image,
 .box-time-page > .set-panel > .music > image {
   width: 40rpx;
