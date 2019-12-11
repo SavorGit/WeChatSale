@@ -1,2 +1,28 @@
 <!--pages/birthday/index.wxml-->
-<text>pages/birthday/index.wxml</text>
+<import src="/pages/template/commons" />
+
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
+  <view class="list">
+    <audio></audio>
+    <view class="row flex_row_center_spaceBetween  theme7">
+      <view>生日歌1</view>
+      <image src="/images/icon/A18668_pause.png"></image>
+    </view>
+    <view class="row flex_row_center_spaceBetween  theme7">
+      <view>生日歌2</view>
+      <image src="/images/icon/58525C_play.png"></image>
+    </view>
+    <view class="row flex_row_center_spaceBetween  theme7">
+      <view>生日歌3</view>
+      <image src="/images/icon/58525C_play.png"></image>
+    </view>
+    <view class="row flex_row_center_spaceBetween  theme7">
+      <view>生日歌4</view>
+      <image src="/images/icon/58525C_play.png"></image>
+    </view>
+    <view class="row flex_row_center_spaceBetween  theme7">
+      <view>生日歌5</view>
+      <image src="/images/icon/58525C_play.png"></image>
+    </view>
+  </view>
+</scroll-view>

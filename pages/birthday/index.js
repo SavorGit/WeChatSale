@@ -18,10 +18,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var that = this;
     var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
-    if (typeof (link_user_info.box_mac) == 'undefined') {
+    if (typeof(link_user_info.box_mac) == 'undefined') {
       wx.showModal({
         title: '提示',
         content: '请您先连接包间电视',
@@ -34,7 +34,7 @@ Page({
           }
         }
       })
-    }else {
+    } else {
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       openid = user_info.openid;
 
@@ -53,7 +53,7 @@ Page({
   /**
    * 点播生日歌
    */
-  showHappy:function(e){
+  showHappy: function(e) {
     var that = this;
     var filename = e.currentTarget.dataset.file_name;
     var vediourl = e.currentTarget.dataset.res_url;
@@ -72,7 +72,7 @@ Page({
       var mobile_brand = that.globalData.mobile_brand;
       var mobile_model = that.globalData.mobile_model;
 
-      utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics',{
+      utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics', {
         forscreen_id: timestamp,
         openid: openid,
         box_mac: box_mac,
@@ -81,65 +81,65 @@ Page({
         mobile_model: mobile_model,
         forscreen_char: forscreen_char,
         imgs: '["media/resource/' + filename + '"]'
-      }, (data, headers, cookies, errMsg, statusCode) =>{
+      }, (data, headers, cookies, errMsg, statusCode) => {
 
       })
-    },res=>{
+    }, res => {
       wx.showToast({
         title: '网络异常,点播失败',
         icon: 'none',
         duration: 2000
       })
     });
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
