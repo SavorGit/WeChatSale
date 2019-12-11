@@ -140,6 +140,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
   font-size: 24rpx;
   border-radius: 5rpx;
 }

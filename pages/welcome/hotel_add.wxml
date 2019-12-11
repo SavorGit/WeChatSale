@@ -1,8 +1,8 @@
 <!--pages/welcome/hotel_add.wxml-->
 <import src="/pages/template/commons" />
 
-<!-- 设置背景【第一步】开始 wx:if="{{step == 0}}" -->
-<form bindsubmit="nextOption">
+<!-- 设置背景【第一步】开始  -->
+<form wx:if="{{base_info.step == 0}}" bindsubmit="nextOption">
   <view class="step-one-page container flex_column_center_flexStart theme-container">
 
     <!-- 选项卡头开始 -->
@@ -65,18 +65,18 @@
       <view class="tab-body">
         <scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
           <view class="weui-grids">
-            
+
             <block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view  class="weui-grid" >
+              <view class="weui-grid">
                 <image wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="selected" src="{{bean.oss_addr}}"></image>
-                <image wx:else  src="{{bean.oss_addr}}" data-id="{{bean.id}}" bindtap="selectBackImg"></image>
+                <image wx:else src="{{bean.oss_addr}}" data-id="{{bean.id}}" bindtap="selectBackImg"></image>
               </view>
             </block>
 
             <!--<view class="weui-grid">
               <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
             </view> -->
-            
+
           </view>
         </scroll-view>
       </view>
@@ -88,7 +88,7 @@
       <input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
       <input class='display_hide' name="oss_img_url" value="{{base_info.img_info.oss_img_url}}"> </input>
       <input class='display_hide' name="angle" value="{{base_info.img_info.angle}}"> </input>
-      
+
     </block>
     <!-- 模板选择选项卡结束 -->
 
