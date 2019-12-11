@@ -331,10 +331,13 @@ Page({
         msg: '{ "action": 3,"openid":"' + openid + '"}',
       }, (data, headers, cookies, errMsg, statusCode) => {
         app.showToast('退出成功');
-        //数据埋点-首页点击退出投屏
-        mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
-      },res=>{
-        mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
+        
+      },{},
+      {
+          complete:function(res){
+            //数据埋点-首页点击退出投屏
+            mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
+          }
       })
       
     }
@@ -345,64 +348,31 @@ Page({
     var change_type = e.target.dataset.change_type;
     var timestamp = (new Date()).valueOf();
     if (box_mac == '' || typeof(box_mac) == 'undefined') {
-      wx.showToast({
-        title: '请您先链接包间电视',
-        icon: 'none',
-
-        duration: 2000,
-
-      })
+      app.showToast('请您先链接包间电视');
     } else {
       utils.PostRequest(api_url + '/Netty/Index/index', {
         box_mac: box_mac,
         msg: '{"action":31,"change_type":' + change_type + '}'
       }, (data, headers, cookies, errMsg, statusCode) => {
-        
         app.showToast('操作成功');
-        var user_info = wx.getStorageSync(cache_key + 'userinfo');
-        var openid = user_info.openid;
-        //数据埋点-点击音量增减
-        if (change_type == 2) {
-          mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
-        } else if (change_type == 1) {
-          mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
-        }
-      },res=>{
-        var user_info = wx.getStorageSync(cache_key + 'userinfo');
-        var openid = user_info.openid;
-        //数据埋点-点击音量增减
-        if (change_type == 2) {
-          mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
-        } else if (change_type == 1) {
-          mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
+      },{},
+      {
+        complete:function(res){
+          var user_info = wx.getStorageSync(cache_key + 'userinfo');
+          var openid = user_info.openid;
+          //数据埋点-点击音量增减
+          if (change_type == 2) {
+            mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
+          } else if (change_type == 1) {
+            mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
+          }
         }
       });
     }
   },
-  /*gotodownload: function(res) {
-    var that = this;
-    that.setData({
-      download_disable: true,
-    })
-    wx.navigateTo({
-      url: '/pages/download/index',
-      success: function() {
-        that.setData({
-          download_disable: false,
-        })
-      },complete:function(res){
-        //数据埋点-点击下载图片模板
-        var user_info = wx.getStorageSync(cache_key+'userinfo');
-        mta.Event.stat('clickDownImg', { 'openid': user_info.openid })
-      }
-    })
-  },*/
+  
   gotoForFile:function(e){
-    wx.showToast({
-      title: '敬请期待',
-      icon:'none',
-      duration:2000,
-    })
+    app.showToast('敬请期待');
   },
 
   signIn: function(e) {
@@ -607,27 +577,7 @@ Page({
       mta.Event.stat('indexRefuseAuth', { 'openid': openid })
     }
   },
-  // 处理数据格式
-  convertDataFormat: function(data) {
-    // let someTtitle = null;
-    // let someArrary = [];
-    // for (let index = 0; index < mailListData.length; index++) {
-    //   let newBrands = {
-    //     brandId: mailListData[index].brandId,
-    //     name: mailListData[index].brandName
-    //   };
-    //   if (mailListData[index].initial != someTtitle) {
-    //     someTtitle = mailListData[index].initial
-    //     let newObj = {
-    //       id: index,
-    //       region: someTtitle,
-    //       brands: []
-    //     };
-    //     newObj.brands.push(newBrands);
-    //     someArrary.push(newObj)
-    //   }
-    // };
-  },
+  
   showMailListPage: function(e) {
     let that = this;
     wx.request({
@@ -729,11 +679,7 @@ Page({
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var box_mac = link_box_info.box_mac;
     if (box_mac == '' || typeof(box_mac) == 'undefined'){
-      wx.showToast({
-        title: '请选择包间电视',
-        icon: 'none',
-        duration: 2000
-      });
+      app.showToast('请选择包间电视');
     }else{
       wx.navigateTo({
         url: '/pages/birthday/index',
