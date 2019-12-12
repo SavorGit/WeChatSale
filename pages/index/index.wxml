@@ -42,9 +42,9 @@
     <image class="icon" src="/images/icon/FFFFFF_horn.png"></image>
     <swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
       <block wx:for="{{exchangerecord}}" wx:for-item="baen" wx:key="key" wx:for-index="index">
-      <swiper-item class="one-line-overflow theme-font4">{{baen}}</swiper-item>
+        <swiper-item class="one-line-overflow theme-font4">{{baen}}</swiper-item>
       </block>
-      
+
     </swiper>
   </view>
 

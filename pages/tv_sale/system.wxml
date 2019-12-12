@@ -65,7 +65,7 @@
         <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content flex_row_center' data-index="{{index}}">
             <view class="pic">
-              <image src='{{bean.img_url}}'></image>
+              <image mode="aspectFill" src='{{bean.img_url}}'></image>
             </view>
             <view class='goods flex_column_flexStart_spaceBetween'>
               <view class='title one-line-overflow'>{{bean.goods_name}}</view>
@@ -189,18 +189,18 @@
             </view>
           </view>
         </view>
-        <view class='content' wx:else>
+        <view class='content flex_row_center' wx:else>
           <view class="pic">
-            <image src='{{bean.img_url}}'></image>
+            <image mode="aspectFill" src='{{bean.img_url}}'></image>
           </view>
-          <view class='goods'>
-            <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
-            <view class='infomation full_width'>
-              <view class='price theme-font2'>￥ {{bean.price}}元</view>
+          <view class='goods flex_column_flexStart_spaceBetween'>
+            <view class='title one-line-overflow'>{{bean.goods_name}}</view>
+            <view class='infomation flex_row_flexStart_spaceBetween'>
+              <view class='price theme-font7'>￥{{bean.price}}</view>
               <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
             </view>
-            <view class='operate'>
-              <button class='btn-tv' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
+            <view class='operate flex_row_center_flexEnd'>
+              <button class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>
           </view>
         </view>
@@ -218,31 +218,42 @@
 <!-- 无机顶盒 -->
 <view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
-  <!-- 酒楼 -->
+  <!-- 酒楼 
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
+  </view>-->
+  <view class="link-type-panel" style="height:80rpx;">
+    <view class="wapper flex_row_center">
+      <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="reChooseHotel">
+        <image src='/images/icon/FFFFFF_linked.png'></image>
+        <!-- <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view> -->
+        <view class="choosed-hotel one-line-overflow">当前在“{{user_info.select_hotel_name}}”酒楼，点击重选酒楼</view>
+      </view>
+    </view>
   </view>
 
   <view class='sale-panel full_width full_height'>
     <!-- 活动促销 -->
     <block wx:if="{{showPageType == 1}}">
       <block wx:if="{{(sale_list.length > 0 && goods_manage==true) || user_info.hotel_id==-1}}">
-        <view class="row full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-          <view class='content' data-index="{{index}}">
+        <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+          <view class='content flex_row_center' data-index="{{index}}">
             <view class="pic">
-              <image src='{{bean.img_url}}'></image>
+              <image mode="aspectFill" src='{{bean.img_url}}'></image>
             </view>
-            <view class='goods'>
-              <view class='title full_width theme-font2'>{{bean.goods_name}}</view>
-              <view class='infomation full_width'>
-                <view class='price theme-font2'>￥ {{bean.price}}元</view>
+            <view class='goods flex_column_flexStart_spaceBetween'>
+              <view class='title one-line-overflow'>{{bean.goods_name}}</view>
+              <view class='infomation flex_row_flexStart_spaceBetween'>
+                <view class='price theme-font7'>￥{{bean.price}}</view>
               </view>
-              <view class='operate'>
-                <button class='share' bindtap="pop_share" data-goods_info="{{bean}}">分享</button>
+              <view class='operate flex_row_center_flexEnd'>
+                <button class='share theme-button-welcome' bindtap="pop_share" data-goods_info="{{bean}}">
+                  <view class="fa fa-share-alt" aria-hidden="true"></view>
+                </button>
               </view>
             </view>
           </view>
-          <view class="del theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
+          <view class="del flex_column_center_center theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
         </view>
       </block>
       <block wx:else>
@@ -255,7 +266,6 @@
         </view>
         <view class="no-data full_width theme7" wx:else>
           <view>暂未开通活动商品管理，请联系小热点</view>
-
         </view>
       </block>
     </block>
