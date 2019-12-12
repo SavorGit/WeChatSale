@@ -1196,7 +1196,7 @@ Page({
       var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
       console.log('dddddd')
       console.log(link_user_info);
-      if (typeof (link_user_info.box_mac) == 'undefined' && user_info.hotel_id!=-1) {
+      if (link_user_info == '') {
         wx.showModal({
           title: '提示',
           content: '请您先连接包间电视',
