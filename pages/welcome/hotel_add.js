@@ -133,6 +133,7 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
+        console.log(res);
         var tmp_file = res.tempFilePaths[0];
         var index1 = tmp_file.lastIndexOf(".");
         var index2 = tmp_file.length;
@@ -201,13 +202,26 @@ Page({
     if(angle==360 || angle>360){
       angle = 0;
     }
-    
-    var choose_img_url = base_info.img_info.oss_img_url+'?x-oss-process=image/rotate,'+angle;
-    base_info.img_info.choose_img_url = choose_img_url;
-    base_info.img_info.angle = angle;
-    that.setData({
-      base_info:base_info
+    wx.getImageInfo({
+      src: base_info.img_info.oss_img_url,
+      success: function (res){
+        console.log(res);
+        var  width = res.width;
+        var height = res.height;
+        if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit){
+          app.showToast('图片宽高过大,不可旋转');
+        }else {
+          var choose_img_url = base_info.img_info.oss_img_url + '?x-oss-process=image/rotate,' + angle;
+          base_info.img_info.choose_img_url = choose_img_url;
+          base_info.img_info.angle = angle;
+          that.setData({
+            base_info: base_info
+          })
+        }
+      }
     })
+
+    
   },
   /**
    *第一步： 选择背景图片
