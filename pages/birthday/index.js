@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    play_key:'',
   },
 
   /**
@@ -37,9 +37,7 @@ Page({
     } else {
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       openid = user_info.openid;
-
       box_mac = link_user_info.box_mac;
-
       utils.PostRequest(api_url + '/Smallapp21/index/happylist', {
 
       }, (data, headers, cookies, errMsg, statusCode) => {
