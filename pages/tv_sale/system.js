@@ -101,6 +101,7 @@ Page({
     activity_pop:true,
     hotel_activity:true,
     goods_manage : true,
+    room_name:''
     
   },
 
