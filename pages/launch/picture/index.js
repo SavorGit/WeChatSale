@@ -437,12 +437,16 @@ Page({
       angle = 0;
     }
     if(angle>0){
-
+      wx.showLoading({
+        title: '图片旋转中...',
+        mask:true,
+      })
       wx.getImageInfo({
         src: oss_addr,
         success:function(res){
           var width = res.width;
           var height = res.height;
+          wx.hideLoading();
           if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit) {
             app.showToast('图片宽高过大,不可旋转');
             angle -=90;
@@ -465,6 +469,7 @@ Page({
 
           }
         },fail:function(res){
+          wx.hideLoading();
           app.showToast('旋转失败');
         }
       })

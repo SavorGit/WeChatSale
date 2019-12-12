@@ -202,10 +202,14 @@ Page({
     if(angle==360 || angle>360){
       angle = 0;
     }
+    wx.showLoading({
+      title: '图片旋转中...',
+      mask: true,
+    })
     wx.getImageInfo({
       src: base_info.img_info.oss_img_url,
       success: function (res){
-        console.log(res);
+        wx.hideLoading();
         var  width = res.width;
         var height = res.height;
         if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit){
@@ -218,6 +222,8 @@ Page({
             base_info: base_info
           })
         }
+      },fail:function(res){
+        wx.hideLoading();
       }
     })
 
