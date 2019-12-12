@@ -49,6 +49,7 @@ Page({
     tv_forscreen:true,
     signin:true,
     showControlWindow:false,
+    exchangerecord:[] //兑换记录
   },
 
   onLoad: function(res) {
@@ -112,6 +113,15 @@ Page({
               tv_forscreen: tv_forscreen,
               room_signin: room_signin
             })
+            utils.PostRequest(api_url +'/Smallsale14/withdraw/exchangerecord',{
+              hotel_id : hotel_id
+            }, (data, headers, cookies, errMsg, statusCode) => {
+              that.setData({
+                exchangerecord:data.result.datalist,
+              })
+            })
+
+
             var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
             if (link_box_info != '') { //已链接盒子
               var box_name = link_box_info.box_name;
