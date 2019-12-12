@@ -1217,6 +1217,24 @@ Page({
           box_mac: link_user_info.box_mac,
           room_name: link_user_info.box_name
         })
+        //获取酒楼包间列表
+        wx.request({
+          url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            hotel_id: hotel_id,
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              that.setData({
+                objectBoxArray: res.data.result.box_name_list,
+                box_list: res.data.result.box_list
+              })
+            }
+          }
+        })
         wx.request({ //节目单播放列表
           url: api_v_url + '/goods/getPlayList',
           header: {

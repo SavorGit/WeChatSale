@@ -527,15 +527,16 @@ Page({
           }
         })
       }
-      //获取链接的盒子
-      var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
-      //console.log(link_box_info);
-      if (typeof (link_box_info) !='undefined'){
-        that.setData({
-          box_mac:link_box_info.box_mac,
-          room_name:link_box_info.box_name
-        })
-      }
+      
+    }
+    //获取链接的盒子
+    var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+    //console.log(link_box_info);
+    if (typeof (link_box_info) != 'undefined') {
+      that.setData({
+        box_mac: link_box_info.box_mac,
+        room_name: link_box_info.box_name
+      })
     }
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
