@@ -1194,9 +1194,11 @@ Page({
 
         })
       }
+      that.setData({
+        
+        user_info: user_info,
+      })
       var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
-      console.log('dddddd')
-      console.log(link_user_info);
       if (link_user_info == '') {
         wx.showModal({
           title: '提示',
