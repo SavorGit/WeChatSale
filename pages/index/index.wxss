@@ -19,8 +19,12 @@ page {
   padding: 0 25rpx;
 }
 
-.link-type-panel > .hotel, .link-type-panel > .box {
+/* .link-type-panel > .hotel, .link-type-panel > .box {
   width: 50%;
+} */
+
+.link-type-panel > .hotel {
+  margin-right: 20rpx;
 }
 
 .link-type-panel > .hotel > image, .link-type-panel > .box image {
