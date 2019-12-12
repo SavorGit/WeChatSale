@@ -11,9 +11,9 @@
 
 .list > .row {
   width: calc(100% - 120rpx);
-  height: 90rpx;
+  height: 110rpx;
   padding: 0 60rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   border-bottom: 2rpx solid #ededed;
 }
 
@@ -21,8 +21,11 @@
   border-bottom: 0;
 }
 
-.list > .row > image {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 50%;
+.list > .row > .btn-launch-tv {
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 20rpx;
+  border-radius: 5rpx;
 }

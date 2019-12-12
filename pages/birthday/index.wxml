@@ -7,25 +7,8 @@
     <block wx:for="{{happylist}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
       <view class="row flex_row_center_spaceBetween  theme7">
         <view>{{bean.name}}</view>
-          <image wx:if="{{play_key==index}}" src="/images/icon/A18668_pause.png"></image>
-          <image wx:else src="/images/icon/58525C_play.png"></image>
+        <view class="btn-launch-tv theme-button-welcome">电视播放</view>
       </view>
     </block>
-    <!-- <view class="row flex_row_center_spaceBetween  theme7">
-      <view>生日歌2</view>
-      <image src="/images/icon/58525C_play.png"></image>
-    </view>
-    <view class="row flex_row_center_spaceBetween  theme7">
-      <view>生日歌3</view>
-      <image src="/images/icon/58525C_play.png"></image>
-    </view>
-    <view class="row flex_row_center_spaceBetween  theme7">
-      <view>生日歌4</view>
-      <image src="/images/icon/58525C_play.png"></image>
-    </view>
-    <view class="row flex_row_center_spaceBetween  theme7">
-      <view>生日歌5</view>
-      <image src="/images/icon/58525C_play.png"></image>
-    </view> -->
   </view>
 </scroll-view>
