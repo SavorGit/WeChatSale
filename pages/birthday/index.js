@@ -53,8 +53,11 @@ Page({
    */
   showHappy: function(e) {
     var that = this;
-    var filename = e.currentTarget.dataset.file_name;
-    var vediourl = e.currentTarget.dataset.res_url;
+    var happylist = that.data.happylist;
+    var index = e.currentTarget.dataset.index;
+
+    var filename = happylist[index].file_name;
+    var vediourl = happylist[index].res_url;
     var timestamp = (new Date()).valueOf();
     var forscreen_char = 'Happy Birthday';
 
@@ -67,9 +70,8 @@ Page({
         icon: 'none',
         duration: 5000
       });
-      var mobile_brand = that.globalData.mobile_brand;
-      var mobile_model = that.globalData.mobile_model;
-
+      var mobile_brand = app.globalData.mobile_brand;
+      var mobile_model = app.globalData.mobile_model;
       utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics', {
         forscreen_id: timestamp,
         openid: openid,
@@ -82,14 +84,7 @@ Page({
       }, (data, headers, cookies, errMsg, statusCode) => {
 
       })
-    }, res => {
-      wx.showToast({
-        title: '网络异常,点播失败',
-        icon: 'none',
-        duration: 2000
-      })
     });
-
   },
 
   /**

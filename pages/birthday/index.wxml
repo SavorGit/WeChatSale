@@ -7,7 +7,7 @@
     <block wx:for="{{happylist}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
       <view class="row flex_row_center_spaceBetween  theme7">
         <view>{{bean.name}}</view>
-        <view class="btn-launch-tv theme-button-welcome">电视播放</view>
+        <view class="btn-launch-tv theme-button-welcome" bindtap="showHappy" data-index="{{index}}">电视播放</view>
       </view>
     </block>
   </view>

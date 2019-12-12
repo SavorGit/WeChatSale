@@ -79,12 +79,12 @@
     </view>
     <view class='page_main'>
       <form bindsubmit="up_forscreen">
-        <view class="one-picture">
+        <view class="one-picture" wx:for="{{up_imgs}}" wx:key="key" wx:for-item="img" wx:for-index="index">
           <view class="pic_show">
             <image wx:if="{{choose_key==0}}" class='pic_show pic_show_cur' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}"
-              data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{post_imgs[0]}}"></image>
+              data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
             <image wx:else class='pic_show' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}"
-              data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{post_imgs[0]}}"></image>
+              data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
             <view class='upload_success_frame' wx:if="{{tmp_percent[0].percent >= 100}}">
               <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
             </view>
@@ -110,7 +110,7 @@
     <view class="page_bottom">
       <view class='button_group flex_row_center_spaceAround'>
         <button class='savor-btn' bindtap="chooseImage" data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选照片</button>
-        <button class='savor-btn'>旋转</button>
+        <button class='savor-btn' bindtap="rotateImg" data-post_imgs="{{post_imgs}}" data-play_times="{{play_times}}" data-forscreen_char="{{forscreen_char}}">旋转</button>
         <button class='theme-button3' bindtap="exitForscreen" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
       </view>
     </view>
@@ -136,9 +136,9 @@
           <view class="weui-grid" wx:for="{{up_imgs}}" wx:key="key" wx:for-item="img" wx:for-index="index">
             <view class="pic_show">
               <image wx:if="{{choose_key==index}}" class='pic_show pic_show_cur' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}"
-                data-imglen="{{img_lenth}}" data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{post_imgs[index]}}"></image>
+                data-imglen="{{img_lenth}}" data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
               <image wx:else class='pic_show' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}"
-                data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{post_imgs[index]}}"></image>
+                data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
               <view class='upload_success_frame' wx:if="{{tmp_percent[index].percent >= 100}}">
                 <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
               </view>
