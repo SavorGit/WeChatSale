@@ -271,8 +271,17 @@ image.pic_show_cur {
 }
 
 .launch_pic_page_a .page_main .one-picture > .pic_show > .upload_success_frame {
-  top: 440rpx;
+  top: 510rpx;
   left: 670rpx;
+}
+
+.launch_pic_page_a .page_main .one-picture > .pic_show > .upload_mask {
+  width: 700rpx;
+  height: 473rpx;
+  line-height: 470rpx;
+  top: 95rpx;
+  left: 25rpx;
+  border-radius: 5rpx;
 }
 
 .launch_pic_page_a .page_main > view.cover {
