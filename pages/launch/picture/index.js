@@ -429,27 +429,60 @@ Page({
     var up_imgs = that.data.up_imgs;
     var play_times = e.currentTarget.dataset.play_times;
     var forscreen_char = e.currentTarget.dataset.forscreen_char;
+
+
+
     angle +=90;
     if(angle==360 || angle>360){
       angle = 0;
     }
     if(angle>0){
-      up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
-      forscreen_url     += '?x-oss-process=image/rotate,' + angle;
+
+      wx.getImageInfo({
+        src: oss_addr,
+        success:function(res){
+          var width = res.width;
+          var height = res.height;
+          if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit) {
+            app.showToast('图片宽高过大,不可旋转');
+            angle -=90;
+          }else {
+
+            up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
+            forscreen_url += '?x-oss-process=image/rotate,' + angle;
+
+            that.setData({
+              up_imgs: up_imgs
+            })
+            //推送盒子
+            var params = {};
+            params.forscreen_img = forscreen_url;
+            params.filename = filename;
+            params.play_times = play_times;
+            params.forscreen_char = forscreen_char;
+
+            that.forOnePic(params);
+
+          }
+        },fail:function(res){
+          app.showToast('旋转失败');
+        }
+      })
     }else {
       up_imgs[0].img_url = oss_addr ;
+      that.setData({
+        up_imgs: up_imgs
+      })
+      //推送盒子
+      var params = {};
+      params.forscreen_img = forscreen_url;
+      params.filename = filename;
+      params.play_times = play_times;
+      params.forscreen_char = forscreen_char;
+
+      that.forOnePic(params);
     }
-    that.setData({
-      up_imgs: up_imgs
-    })
-    //推送盒子
-    var params = {};
-    params.forscreen_img = forscreen_url;
-    params.filename      = filename;
-    params.play_times    = play_times;
-    params.forscreen_char= forscreen_char;
     
-    that.forOnePic(params);
 
   },
   forOnePic:function(params){
