@@ -11,8 +11,8 @@
         <image src='/images/icon/FFFFFF_linked.png'></image>
         <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
       </view>
-      <picker class='box flex_row_center theme-font4' range="{{objectBoxArray}}" bindchange="bindPickerChange">
-        <view class='flex_row_center'>
+      <picker class='box flex_row_center theme-font4' style='{{user_info.hotel_id == -1 ? "" : "width:100%;"}}' range="{{objectBoxArray}}" bindchange="bindPickerChange">
+        <view class='flex_row_center' style='width:{{user_info.hotel_id == -1 ? "calc(50vw - 25rpx)" : "calc(100vw - 50rpx)"}};'>
           <image src="{{room_name != '' ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
           <view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
         </view>

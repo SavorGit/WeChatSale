@@ -12,19 +12,15 @@ page {
 }
 
 .link-type-panel {
-  width: calc(100% - 49rpx);
+  width: calc(100% - 50rpx);
   height: 80rpx;
   margin: 0;
   border: 0;
   padding: 0 25rpx;
 }
 
-/* .link-type-panel > .hotel, .link-type-panel > .box {
+.link-type-panel > .hotel, .link-type-panel > .box {
   width: 50%;
-} */
-
-.link-type-panel > .hotel {
-  margin-right: 20rpx;
 }
 
 .link-type-panel > .hotel > image, .link-type-panel > .box image {

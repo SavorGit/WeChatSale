@@ -40,19 +40,15 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .link-type-panel > .wapper {
-  width: calc(100% - 49rpx);
+  width: calc(100% - 50rpx);
   height: 80rpx;
   margin: 0;
   border: 0;
   padding: 0 25rpx;
 }
 
-/* .link-type-panel > .wapper > .hotel, .link-type-panel > .wapper > .box {
+.link-type-panel > .wapper > .hotel, .link-type-panel > .wapper > .box {
   width: 50%;
-} */
-
-.link-type-panel > .wapper > .hotel {
-  margin-right: 20rpx;
 }
 
 .link-type-panel > .wapper > .hotel > image,
