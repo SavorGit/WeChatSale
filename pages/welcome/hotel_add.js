@@ -376,7 +376,7 @@ Page({
                 }
 
               })
-              app.showToast('新建欢迎词成功', 2000, 'success');
+              app.showToast('新建欢迎词成功', 2000, 'success',true);
 
             }, res => {
               that.setData({
