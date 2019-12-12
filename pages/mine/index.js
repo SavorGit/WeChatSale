@@ -383,10 +383,10 @@ Page({
             var hotel_id = user_info.select_hotel_id;
             var rts = res.data.result.userinfo;
             rts.select_hotel_id = user_info.select_hotel_id;
-            wx.setStorage({
+            /*wx.setStorage({
               key: cache_key + 'userinfo',
               data: rts,
-            })
+            })*/
           } else {
             wx.setStorage({
               key: cache_key + 'userinfo',

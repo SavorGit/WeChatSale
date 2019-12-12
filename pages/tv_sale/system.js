@@ -137,10 +137,28 @@ Page({
     openid = user_info.openid;
     if(user_info.hotel_id==-1){
       hotel_id = user_info.select_hotel_id;
-      
+      //获取酒楼包间列表
+      wx.request({
+        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            that.setData({
+              objectBoxArray: res.data.result.box_name_list,
+              box_list: res.data.result.box_list
+            })
+          }
+        }
+      })
     }else{
       hotel_id = user_info.hotel_id;
     }
+    
     box_mac = link_box_info.box_mac;
 
     wx.request({ //节目单播放列表
@@ -1176,7 +1194,8 @@ Page({
         })
       }
       var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
-
+      console.log('dddddd')
+      console.log(link_user_info);
       if (typeof (link_user_info.box_mac) == 'undefined' && user_info.hotel_id!=-1) {
         wx.showModal({
           title: '提示',
@@ -1193,6 +1212,11 @@ Page({
 
 
       } else {
+        //获取链接的盒子
+        that.setData({
+          box_mac: link_user_info.box_mac,
+          room_name: link_user_info.box_name
+        })
         wx.request({ //节目单播放列表
           url: api_v_url + '/goods/getPlayList',
           header: {
@@ -1255,10 +1279,7 @@ Page({
             var hotel_id = user_info.select_hotel_id;
             var rts = res.data.result.userinfo;
             rts.select_hotel_id = user_info.select_hotel_id;
-            wx.setStorage({
-              key: cache_key + 'userinfo',
-              data: rts,
-            })
+            
           } else {
             wx.setStorage({
               key: cache_key + 'userinfo',
@@ -1889,27 +1910,7 @@ Page({
     mta.Event.stat('clickAddMyActivity', { 'openid': user_info.openid, 'boxmac': link_box_info.box_mac })
 
   },
-  // 处理数据格式
-  convertDataFormat: function(data) {
-    // let someTtitle = null;
-    // let someArrary = [];
-    // for (let index = 0; index < mailListData.length; index++) {
-    //   let newBrands = {
-    //     brandId: mailListData[index].brandId,
-    //     name: mailListData[index].brandName
-    //   };
-    //   if (mailListData[index].initial != someTtitle) {
-    //     someTtitle = mailListData[index].initial
-    //     let newObj = {
-    //       id: index,
-    //       region: someTtitle,
-    //       brands: []
-    //     };
-    //     newObj.brands.push(newBrands);
-    //     someArrary.push(newObj)
-    //   }
-    // };
-  },
+  
   showMailListPage: function(e) {
     let that = this;
     wx.request({
@@ -2078,5 +2079,109 @@ Page({
         mta.Event.stat('popActivitySendVerifyCode', { 'openid': openid,'mobile':mobile})
       }
     })
-  }
+  },
+  chooseHotel: function (e) {
+    console.log(e);
+    let that = this;
+    that.setData({
+      hotel: e.detail,
+      room_name: '',
+    });
+    var hotel_id = e.detail.id;
+    var hotel_name = e.detail.name;
+    var hotel_has_room = e.detail.hotel_has_room;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    user_info.select_hotel_id = hotel_id;
+    user_info.select_hotel_name = hotel_name;
+    user_info.is_common = 1;
+    user_info.hotel_has_room = hotel_has_room;
+    //wx.setStorageSync(cache_key + "userinfo", user_info);
+    that.setData({
+      user_info: user_info
+    })
+    wx.setStorageSync(cache_key + "userinfo", user_info);
+    wx.removeStorageSync(cache_key + 'link_box_info');
+    
+      //获取酒楼包间列表
+      wx.request({
+        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+        header: {
+          'content-type': 'application/json'
+        },
+        data: {
+          hotel_id: hotel_id,
+        },
+        success: function (res) {
+          if (res.data.code == 10000) {
+            that.setData({
+              objectBoxArray: res.data.result.box_name_list,
+              box_list: res.data.result.box_list
+            })
+          }
+        }
+      })
+
+
+    wx.request({ //节目单播放列表
+      url: api_v_url + '/goods/getPlayList',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        hotel_id: hotel_id,
+      },
+      success: function (res) {
+        if (res.data.code == 10000) {
+          play_list = res.data.result.datalist;
+          that.setData({
+            play_list: res.data.result.datalist,
+          })
+        }
+      }
+    })
+    wx.request({ //促销活动列表
+      url: api_v_url + '/goods/myGoodslist',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        hotel_id: hotel_id,
+        openid: user_info.openid,
+        page: 1,
+        type: 10,
+        //box_mac: link_user_info.box_mac,
+      },
+      success: function (res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            sale_list: res.data.result.datalist,
+          })
+        }
+      }
+    })  
+    
+  },
+  //选择包间开始
+  bindPickerChange: function (e) {
+    var keys = e.detail.value;
+    var box_list = this.data.box_list;
+    var link_box_info = {
+      'box_mac': '',
+      'box_name': ''
+    };
+    if (keys > 0) {
+      box_mac = box_list[keys].box_mac;
+      link_box_info.box_mac = box_mac;
+      link_box_info.box_name = box_list[keys].name;
+      wx.setStorageSync(cache_key + "link_box_info", link_box_info);
+      this.setData({
+        is_link: 1,
+        room_name: box_list[keys].name,
+        box_mac: box_mac
+      })
+    }
+    //数据埋点-点击选择包间
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    mta.Event.stat('changeRoom', { 'openid': user_info.openid })
+  }, //选择包间结束
 })

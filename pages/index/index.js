@@ -92,6 +92,7 @@ Page({
               var hotel_id = user_info.select_hotel_id;
               var rts = res.data.result.userinfo;
               rts.select_hotel_id = user_info.select_hotel_id;
+              rts.select_hotel_name = user_info.select_hotel_name;
               wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: rts,
@@ -472,7 +473,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.onLoad()
+    //this.onLoad()
+    var that =this;
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0,
@@ -481,6 +483,60 @@ Page({
     }
     //数据埋点-进入电视互动页
     var user_info = wx.getStorageSync(cache_key+'userinfo');
+    console.log(user_info);
+    that.setData({
+      user_info: user_info
+    })
+    if(user_info.hotel_id==-1){
+      if (typeof (user_info.select_hotel_id) !='undefined'){
+        //获取酒楼包间列表
+        wx.request({
+          url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            hotel_id: user_info.select_hotel_id,
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              that.setData({
+                objectBoxArray: res.data.result.box_name_list,
+                box_list: res.data.result.box_list
+              })
+            }
+          }
+        })
+        //获取当前酒楼包间签到信息
+        wx.request({
+          url: api_v_url + '/user/getSigninBoxList',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            hotel_id: user_info.select_hotel_id,
+            openid: user_info.openid,
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              sign_box_list = res.data.result;
+              that.setData({
+                sign_box_list: sign_box_list
+              })
+            }
+          }
+        })
+      }
+      //获取链接的盒子
+      var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
+      //console.log(link_box_info);
+      if (typeof (link_box_info) !='undefined'){
+        that.setData({
+          box_mac:link_box_info.box_mac,
+          room_name:link_box_info.box_name
+        })
+      }
+    }
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   closeAuth: function() {
@@ -625,6 +681,7 @@ Page({
     user_info.select_hotel_name = hotel_name;
     user_info.is_common = 1;
     user_info.hotel_has_room = hotel_has_room;
+    //wx.setStorageSync(cache_key + "userinfo", user_info);
     that.setData({
       user_info:user_info
     })
@@ -681,9 +738,20 @@ Page({
     mta.Event.stat('indexClickRelief', { 'openid': user_info.openid })
   },
   goToWelcome:function(e){ 
-    wx.navigateTo({
-      url: '/pages/welcome/index',
-    })
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if (typeof (hotel_id) =='undefined'){
+      app.showToast('请您先选择酒楼');
+    }else {
+      wx.navigateTo({
+        url: '/pages/welcome/index',
+      })
+    }
+    
   },
   goToHappy:function(e){
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
