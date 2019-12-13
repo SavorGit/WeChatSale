@@ -175,7 +175,7 @@ App({
     oss_url: 'https://dev-oss.littlehotspot.com',
     oss_bucket:'redian-produce',
     cache_key: 'savor:sale:',
-    common_appid: 'wxfdf0346934bb672f',
+    common_appid: 'wxfdf0346934bb672f', 
     //box_type: 0,
     //is_zhilian: 1,
     oss_access_key_id:'LTAITBjXOpORHKfXlOX',
