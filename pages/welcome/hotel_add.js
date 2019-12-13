@@ -314,8 +314,10 @@ Page({
       
       base_info.step = 3;
       that.setData({
-        base_info:base_info
+        base_info:base_info,
+        play_index: 0,
       })
+      innerAudioContext.pause();
     } else if (base_info.step==3){//完成
       var play_type = base_info.play_info.play_type;
       var play_date = base_info.play_info.play_date;
