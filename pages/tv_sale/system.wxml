@@ -104,8 +104,8 @@
             <block wx:if="{{my_activity_info.media_type == 0}}">
               <image src='/images/icon/999999_upload.png'></image>
               <view class="flex_row_center_spaceBetween">
-                <view class='theme-font' bindtap="chooseImg">上传图片</view>
-                <view class='theme-font' bindtap="chooseVideo">上传视频</view>
+                <view class='theme-font7' bindtap="chooseImg">上传图片</view>
+                <view class='theme-font7' bindtap="chooseVideo">上传视频</view>
               </view>
             </block>
             <block wx:if="{{my_activity_info.media_type == 2}}">
@@ -152,7 +152,7 @@
           <input class='display_hide' name="goods_id" value="{{my_activity_info.goods_id}}"></input>
           <input class='display_hide' name="file_size" value="{{my_activity_info.file_size}}"></input>
           <input class="display_hide" name="duration" value="{{my_activity_info.duration}}"></input>
-          <button class='btn-submit flex_row_center theme-button' form-type="submit">添加活动</button>
+          <button class='btn-submit flex_row_center theme-button-welcome' form-type="submit">添加活动</button>
         </form>
       </view>
     </block>
@@ -162,7 +162,7 @@
       <block wx:if="{{is_my_activity == 0}}">
         <view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
           <view class="ads-mine full_width full_height flex_column_center">
-            <view class="btn-ads-mine theme-button">添加我的活动</view>
+            <view class="btn-ads-mine theme-button-welcome">添加我的活动</view>
           </view>
         </view>
       </block>

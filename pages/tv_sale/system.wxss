@@ -1,8 +1,6 @@
 /* pages/tv_sale/system.wxss */
 
-/*radio未选中时样式 */
-
-radio .wx-radio-input {
+/* radio .wx-radio-input {
   height: 26rpx;
   width: 26rpx;
   margin-top: -4rpx;
@@ -11,24 +9,19 @@ radio .wx-radio-input {
   background: transparent;
 }
 
-/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
-
 radio .wx-radio-input.wx-radio-input-checked {
   background-color: #1cbeb6;
   border: 2rpx solid #1cbeb6;
 }
 
-/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
-
 radio .wx-radio-input.wx-radio-input-checked::before {
-  /* 去除对号 */
   content: '';
   width: 20rpx;
   height: 20rpx;
   border-radius: 50%;
   background-color: #1cbeb6;
   border: 6rpx solid #fff;
-}
+} */
 
 .container {
   justify-content: start;
