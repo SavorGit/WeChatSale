@@ -486,48 +486,7 @@ Page({
     that.setData({
       user_info: user_info
     })
-    if(user_info.hotel_id==-1){
-      if (typeof (user_info.select_hotel_id) !='undefined'){
-        //获取酒楼包间列表
-        wx.request({
-          url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            hotel_id: user_info.select_hotel_id,
-          },
-          success: function (res) {
-            if (res.data.code == 10000) {
-              that.setData({
-                objectBoxArray: res.data.result.box_name_list,
-                box_list: res.data.result.box_list
-              })
-            }
-          }
-        })
-        //获取当前酒楼包间签到信息
-        wx.request({
-          url: api_v_url + '/user/getSigninBoxList',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            hotel_id: user_info.select_hotel_id,
-            openid: user_info.openid,
-          },
-          success: function (res) {
-            if (res.data.code == 10000) {
-              sign_box_list = res.data.result;
-              that.setData({
-                sign_box_list: sign_box_list
-              })
-            }
-          }
-        })
-      }
-      
-    }
+    
     //获取链接的盒子
     var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
     if (link_box_info!='') {
