@@ -22,6 +22,26 @@ button::after, button::before {
   background-color: unset;
 }
 
+radio .wx-radio-input {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: none;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  background: none;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  content: '';
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -353,15 +373,12 @@ button::after, button::before {
 } */
 
 .link_relief {
-  color: #1cbeb6;
   text-decoration: underline;
 }
 
 /* ================================== 按钮 ================================== */
 
 .savor-btn {
-  background-color: #1cbeb6;
-  color: #fff;
   font-size: 34rpx;
 }
 

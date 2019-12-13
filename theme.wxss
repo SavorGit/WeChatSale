@@ -1,5 +1,27 @@
 /** theme.wxss **/
 
+radio .wx-radio-input {
+  border: 4rpx solid #58525c;
+}
+
+radio .wx-radio-input.wx-radio-input-checked {
+  border: 4rpx solid #58525c !important;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  background-color: #58525c;
+}
+
+.link_relief {
+  color: #a18668;
+  /* color: #1cbeb6; */
+}
+
+.savor-btn {
+  background-color: #1cbeb6;
+  color: #fff;
+}
+
 .theme {
   background-color: #05101a;
 }

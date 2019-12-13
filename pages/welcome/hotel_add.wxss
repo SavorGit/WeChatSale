@@ -1,28 +1,5 @@
 /* pages/welcome/hotel_add.wxss */
 
-radio .wx-radio-input {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  background: none;
-  border: 4rpx solid #58525c;
-}
-
-radio .wx-radio-input.wx-radio-input-checked {
-  border: 4rpx solid #58525c !important;
-  background: none;
-}
-
-radio .wx-radio-input.wx-radio-input-checked::before {
-  width: 60%;
-  height: 60%;
-  background-color: #58525c;
-  border-radius: 50%;
-  content: '';
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
-}
-
 .tab-head {
   width: 100%;
   height: 70rpx;
