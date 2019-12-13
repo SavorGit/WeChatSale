@@ -13,7 +13,7 @@ page {
 
 .link-type-panel {
   width: calc(100% - 50rpx);
-  height: 80rpx;
+  height: 100rpx;
   margin: 0;
   border: 0;
   padding: 0 25rpx;
@@ -124,7 +124,7 @@ page {
 
 .set_top_box-panel {
   width: 100%;
-  height: calc(100% - 626rpx);
+  height: calc(100% - 646rpx);
   margin-top: 10rpx;
 }
 

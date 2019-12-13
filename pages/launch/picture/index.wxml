@@ -42,7 +42,7 @@
 
         <!-- 投图片的标题 -->
         <view class='pic_text'>
-          <label class='font_333333_30 theme-font'>为所有照片增加文字（选填）</label>
+          <label class='font_333333_30 theme-font7'>为所有照片增加文字（选填）</label>
           <textarea class='text_input theme-textarea' name="forscreen_char" maxlength='30' placeholder='电视展示时增加文字...' value='{{forscreen_char}}'></textarea>
         </view>
         <view class='grant_auth'>
@@ -57,7 +57,7 @@
         </view>
       </view>
       <view class='page_bottom'>
-        <button class="full_width savor-btn" form-type="submit" hover-class="none" disabled='{{is_btn_disabel}}'>投屏</button>
+        <button class="full_width theme-button-welcome" form-type="submit" hover-class="none" disabled='{{is_btn_disabel}}'>投屏</button>
       </view>
     </form>
 
@@ -111,9 +111,9 @@
     <view class='launch_history'></view>
     <view class="page_bottom">
       <view class='button_group flex_row_center_spaceAround'>
-        <button class='savor-btn' bindtap="chooseImage" data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选照片</button>
-        <button class='savor-btn' bindtap="rotateImg" data-post_imgs="{{post_imgs}}" data-play_times="{{play_times}}" data-forscreen_char="{{forscreen_char}}">旋转</button>
-        <button class='theme-button3' bindtap="exitForscreen" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
+        <button class='theme-button-welcome' bindtap="chooseImage" data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选照片</button>
+        <button class='theme-button-welcome' bindtap="rotateImg" data-post_imgs="{{post_imgs}}" data-play_times="{{play_times}}" data-forscreen_char="{{forscreen_char}}">旋转</button>
+        <button class='theme-button-welcome-dark' bindtap="exitForscreen" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
       </view>
     </view>
   </view>
@@ -166,8 +166,8 @@
     <view class='launch_history'></view>
     <view class="page_bottom">
       <view class='button_group flex_row_center_spaceAround'>
-        <button class='savor-btn' bindtap="chooseImage" data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选照片</button>
-        <button class='theme-button3' bindtap="exitForscreen" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
+        <button class='theme-button-welcome' bindtap="chooseImage" data-box_mac="{{box_mac}}" data-openid="{{openid}}">重选照片</button>
+        <button class='theme-button-welcome-dark' bindtap="exitForscreen" data-box_mac="{{box_mac}}" data-openid="{{openid}}">退出投屏</button>
       </view>
     </view>
   </view>
@@ -186,8 +186,8 @@
       <label class='content font_666666_30'>当前电视正在进行投屏，继续投屏有可能打断当前投屏中的内容。</label>
     </view>
     <view class='bottom-pop-window-bottom'>
-      <button class='savor-btn' bindtap="">继续投屏</button>
-      <button class='savor-btn theme-menu' bindtap="">取消投屏</button>
+      <button class='theme-button-welcome' bindtap="">继续投屏</button>
+      <button class='theme-button-welcome-dark' bindtap="">取消投屏</button>
     </view>
   </view>
 </bottomModal>
