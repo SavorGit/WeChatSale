@@ -25,7 +25,7 @@
     <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
       <view class='flag theme-font4'>{{index + 1}}</view>
       <view class='ads flex_row_center'>
-        <image mode="aspectFit" src='{{bean.img_url}}'></image>
+        <image mode="aspectFill" src='{{bean.img_url}}'></image>
         <view class='goods flex_column_flexStart_spaceBetween'>
           <view class='title one-line-overflow'>{{bean.name}}</view>
           <view class='infomation flex_row_center'>
@@ -65,7 +65,7 @@
         <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content flex_row_center' data-index="{{index}}">
             <view class="pic">
-              <image mode="aspectFit" src='{{bean.img_url}}'></image>
+              <image mode="aspectFill" src='{{bean.img_url}}'></image>
             </view>
             <view class='goods flex_column_flexStart_spaceBetween'>
               <view class='title one-line-overflow'>{{bean.goods_name}}</view>
@@ -169,7 +169,7 @@
       <view class="row flex_row_center theme7 touch-move-unactive" wx:for="{{hotel_activity_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
         <view class='content flex_row_center' wx:if="{{index==0 && is_my_activity==1}}">
           <view class="pic">
-            <image class='photo full_height full_width' mode="aspectFit" src='{{bean.img_url}}'></image>
+            <image class='photo full_height full_width' mode="aspectFill" src='{{bean.img_url}}'></image>
             <view class="flag theme-font4 theme-background-9">我的</view>
             <image class='status' wx:if="{{bean.status==1}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png'></image>
             <image class='status' wx:if="{{bean.status==3}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'></image>
@@ -191,7 +191,7 @@
         </view>
         <view class='content flex_row_center' wx:else>
           <view class="pic">
-            <image mode="aspectFit" src='{{bean.img_url}}'></image>
+            <image mode="aspectFill" src='{{bean.img_url}}'></image>
           </view>
           <view class='goods flex_column_flexStart_spaceBetween'>
             <view class='title one-line-overflow'>{{bean.goods_name}}</view>
@@ -239,7 +239,7 @@
         <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
           <view class='content flex_row_center' data-index="{{index}}">
             <view class="pic">
-              <image mode="aspectFit" src='{{bean.img_url}}'></image>
+              <image mode="aspectFill" src='{{bean.img_url}}'></image>
             </view>
             <view class='goods flex_column_flexStart_spaceBetween'>
               <view class='title one-line-overflow'>{{bean.goods_name}}</view>
