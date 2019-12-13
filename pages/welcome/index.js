@@ -134,7 +134,7 @@ Page({
    * 新建欢迎词
    */
   createWelcome:function(e){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/welcome/hotel_add',
     })
   },
