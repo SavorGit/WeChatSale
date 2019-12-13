@@ -90,7 +90,7 @@
 <form wx:if="{{base_info.step == 1}}" bindsubmit="nextOption">
   <view class="set-words-page container flex_column_center_flexStart theme-container">
     <view class="show-panel theme7">
-      <image class="box" src="{{base_info.img_info.choose_img_url}}"></image>
+      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
         <!--自动生成欢迎词-->
         <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};">{{base_info.word_info.welcome_word}}</view>
@@ -107,7 +107,6 @@
           <view class="flex_row_center">
             <block wx:for="{{wordsize_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
               <view wx:if="{{base_info.word_size_info.word_size_id==bean.id}}" class="theme-font1 selected">{{bean.name}}</view>
-
               <view wx:else class="theme-font1" bindtap="selectWordSize" data-id="{{bean.id}}" data-wordsize="{{bean.wordsize}}">{{bean.name}}</view>
             </block>
             <!-- <view class="theme-font1 selected">中</view>
@@ -119,12 +118,9 @@
           <view class="label">字体颜色</view>
           <view class="weui-grids">
             <block wx:for="{{color_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-
               <view wx:if="{{base_info.word_color_info.color_id == bean.id}}" class="weui-grid selected" style="background-color:{{bean.color}};"></view>
               <view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}" data-id="{{bean.id}}"></view>
-
             </block>
-
           </view>
         </view>
       </view>
@@ -142,7 +138,7 @@
   <view class="choose-music-page container flex_column_center_flexStart theme-container">
     <audio id="music" src="{{play_music_url}}"></audio>
     <view class="show-panel theme7">
-      <image class="box" src="{{base_info.img_info.choose_img_url}}"></image>
+      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
         <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};">{{base_info.word_info.welcome_word}}</view>
       </view>
@@ -191,7 +187,7 @@
 <form wx:if="{{base_info.step == 3}}" bindsubmit="nextOption">
   <view class="box-time-page container flex_column_center_flexStart theme-container">
     <view class="show-panel theme7">
-      <image class="box" src="{{base_info.img_info.choose_img_url}}"></image>
+      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
         <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};">{{base_info.word_info.welcome_word}}</view>
       </view>
