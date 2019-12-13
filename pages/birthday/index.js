@@ -65,11 +65,8 @@ Page({
       box_mac: box_mac,
       msg: '{ "action": 6,"url":"' + vediourl + '","filename":"' + filename + '","forscreen_id":"' + timestamp + '","resource_type":2}',
     }, (data, headers, cookies, errMsg, statusCode) => {
-      wx.showToast({
-        title: '点播成功,电视即将开始播放',
-        icon: 'none',
-        duration: 5000
-      });
+      
+      app.showToast('点播成功,电视即将开始播放');
       var mobile_brand = app.globalData.mobile_brand;
       var mobile_model = app.globalData.mobile_model;
       utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics', {
@@ -83,7 +80,7 @@ Page({
         imgs: '["media/resource/' + filename + '"]'
       }, (data, headers, cookies, errMsg, statusCode) => {
 
-      })
+        }, res => { }, { isShowLoading: false })
     });
   },
 
