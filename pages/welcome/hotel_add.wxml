@@ -136,7 +136,7 @@
 <!-- 选择音乐【第三步】开始 -->
 <form wx:if="{{base_info.step == 2}}" bindsubmit="nextOption">
   <view class="choose-music-page container flex_column_center_flexStart theme-container">
-    <audio id="music" src="{{play_music_url}}"></audio>
+    <!-- <audio id="music" src="{{play_music_url}}"></audio> -->
     <view class="show-panel theme7">
       <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
