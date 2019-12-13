@@ -2,6 +2,7 @@
 const utils = require('../../utils/util.js')
 const app = getApp()
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var hotel_id;
 var openid;
@@ -333,15 +334,10 @@ Page({
         app.showToast('请选择包间电视');
         return false;
       }
-      
-
       if(base_info.img_info.is_choose_img==0){
         base_info.img_info.forscreen_url = '';
       }
-
       console.log('完成');
-      //console.log(base_info);
-      //return false;
       console.log(base_info);
       wx.showModal({
         title: '确定要完成吗？',
@@ -365,8 +361,28 @@ Page({
               timing: timing,
               wordsize_id: base_info.word_size_info.word_size_id
             }, (data, headers, cookies, errMsg, statusCode) => {
+              var forscreen_id = (new Date()).valueOf();
+              utils.PostRequest(api_v_url +'/ForscreenLog/recordForScreenPics',{
+                forscreen_id: forscreen_id,
+                openid: openid,
+                box_mac: play_box_mac,
+                action: 41,
+                mobile_brand: app.globalData.mobile_brand,
+                mobile_model: app.globalData.mobile_model,
+                forscreen_char: base_info.word_info.welcome_word,
+                public_text: '',
+                imgs: '["' + base_info.img_info.forscreen_url+'"]',
+                resource_id: forscreen_id,
+                res_sup_time: 0,
+                res_eup_time: 0,
+                resource_size: 0,
+                is_pub_hotelinfo: 0,
+                is_share: 0,
+                small_app_id: 5,
 
-
+              }, (data, headers, cookies, errMsg, statusCode) => {
+                
+              })
               wx.redirectTo({
                 url: '/pages/welcome/index',
                 success: function (e) {
