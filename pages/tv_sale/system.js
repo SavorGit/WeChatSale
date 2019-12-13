@@ -33,7 +33,7 @@ Page({
   data: {
     SystemInfo: app.SystemInfo,
     myChoosed: 0,
-    showPageType: 1,
+    showPageType: 3,
     play_list: [], //节目单播放列表
     sale_list: [], //促销活动列表
     room_type: 1, //活动范围1：全部 2：包间 3：非包间
@@ -119,11 +119,16 @@ Page({
     var activity_pop = app.in_array('activity_pop',user_info.service);
     var hotel_activity = app.in_array('hotel_activity', user_info.service);
     var goods_manage = app.in_array('goods_manage', user_info.service);
-    if(activity_pop==false && hotel_activity==true) {
+    
+    if (activity_pop==true && hotel_activity==true){
       var showPageType = 3;
-    } else if (activity_pop ==true){
+    } else if (activity_pop == false && hotel_activity == true){
+      var showPageType = 3;
+    } else if (activity_pop == true && hotel_activity==false){
       var showPageType = 1;
     }
+
+
     that.setData({
       hotel_has_room: hotel_has_room,
       user_info: user_info,
