@@ -341,15 +341,18 @@ Page({
     that.setData({
       choose_key: choose_key
     })
-    if (angle != 0) {
-      forscreen_img += '?x-oss-process=image/rotate,' + angle;
-    }
+    // if (angle != 0) {
+    //   forscreen_img += '?x-oss-process=image/rotate,' + angle;
+    // }
+
     var params = {};
     params.forscreen_img = forscreen_img;
     params.filename = filename;
     params.play_times = res.target.dataset.play_times;
     params.forscreen_char = res.currentTarget.dataset.forscreen_char;
-    
+    params.rotate = 0;
+    params.angle  = angle;
+
 
     that.forOnePic(params);
 
@@ -453,7 +456,7 @@ Page({
           }else {
 
             up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
-            forscreen_url += '?x-oss-process=image/rotate,' + angle;
+            //forscreen_url += '?x-oss-process=image/rotate,' + angle;
 
             that.setData({
               up_imgs: up_imgs
@@ -464,6 +467,8 @@ Page({
             params.filename = filename;
             params.play_times = play_times;
             params.forscreen_char = forscreen_char;
+            params.angle  = angle;
+            params.is_rotate = 1;
 
             that.forOnePic(params);
 
@@ -500,26 +505,51 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var avatarUrl = user_info.avatarUrl;
     var nickName  = user_info.nickName;
-
-    utils.PostRequest(api_url + '/Netty/Index/index', {
-      box_mac: box_mac,
-      msg: '{"action": 42,"resource_type":1, "url": "' + forscreen_img + '", "filename":"' + filename + '","openid":"' + openid + '","forscreen_id":"' + forscreen_id + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName + '","forscreen_char":"' + forscreen_char+'"}',
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      app.showToast('投屏成功');
-      utils.PostRequest(api_url + '/ForscreenLog/recordForScreenPics', {
-        forscreen_id: forscreen_id,
-        openid: openid,
+    var is_rotate = params.is_rotate;
+    var angle = params.angle;
+    if (is_rotate==1){
+      utils.PostRequest(api_url + '/Netty/Index/index', {
         box_mac: box_mac,
-        action: 2,
-        resource_type: 1,
-        mobile_brand: app.globalData.mobile_brand,
-        mobile_model: app.globalData.mobile_model,
-        imgs: '["' + forscreen_img + '"]',
-        small_app_id: 5,
+        msg: '{"action":8,"filename":"' + filename + '","rotation":"' + angle + '","url":"' + forscreen_img + '","openid":"' + user_info.openid+'"}',
       }, (data, headers, cookies, errMsg, statusCode) => {
-        
+        app.showToast('投屏成功');
+        utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+          forscreen_id: forscreen_id,
+          openid: openid,
+          box_mac: box_mac,
+          action: 2,
+          resource_type: 1,
+          mobile_brand: app.globalData.mobile_brand,
+          mobile_model: app.globalData.mobile_model,
+          imgs: '["' + forscreen_img + '"]',
+          small_app_id: 5,
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          
+        })
       })
-    })
+    }else {
+      utils.PostRequest(api_url + '/Netty/Index/index', {
+        box_mac: box_mac,
+        msg: '{"action": 42,"resource_type":1, "url": "' + forscreen_img + '", "filename":"' + filename + '","openid":"' + openid + '","forscreen_id":"' + forscreen_id + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName + '","forscreen_char":"' + forscreen_char + '","rotation":"' + angle+'"}',
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        app.showToast('投屏成功');
+        utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+          forscreen_id: forscreen_id,
+          openid: openid,
+          box_mac: box_mac,
+          action: 2,
+          resource_type: 1,
+          mobile_brand: app.globalData.mobile_brand,
+          mobile_model: app.globalData.mobile_model,
+          imgs: '["' + forscreen_img + '"]',
+          small_app_id: 5,
+        }, (data, headers, cookies, errMsg, statusCode) => {
+
+        })
+      })
+    }
+
+    
     
   },
   /**
