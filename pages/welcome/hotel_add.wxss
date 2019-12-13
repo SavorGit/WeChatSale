@@ -1,11 +1,5 @@
 /* pages/welcome/hotel_add.wxss */
 
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
-
 radio .wx-radio-input {
   width: 30rpx;
   height: 30rpx;

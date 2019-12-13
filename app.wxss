@@ -3,6 +3,12 @@
 
 /* ================================== 页面 ================================== */
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .one-line-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
