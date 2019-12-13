@@ -85,9 +85,11 @@
               data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
             <image wx:else class='pic_show' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}"
               data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
+            <!--
             <view class='upload_success_frame' wx:if="{{tmp_percent[0].percent >= 100}}">
               <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
             </view>
+            -->
             <view class='upload_mask' wx:if="{{tmp_percent[0].percent < 100}}">
               <label>{{tmp_percent[0].percent}}%</label>
             </view>

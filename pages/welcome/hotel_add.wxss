@@ -89,12 +89,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .tab-body > .btn-group > .rechoose, .tab-body > .btn-group > .rotate {
-  width: 100rpx;
-  height: 100rpx;
-  line-height: 100rpx;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
   border-radius: 50%;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 
 .tab-body > .btn-group > .rotate {
@@ -133,19 +133,19 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .tab-foot > .prev, .tab-foot > .next, .page-foot > .prev, .page-foot > .next {
-  width: 150rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 24rpx;
+  font-size: 28rpx;
   border-radius: 5rpx;
 }
 
 .tab-foot > .next, .page-foot > .next {
-  margin-left: 250rpx;
+  margin-left: 150rpx;
 }
 
 .show-panel {
