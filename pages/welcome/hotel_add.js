@@ -417,6 +417,12 @@ Page({
     console.log(e);
     var step = e.currentTarget.dataset.step;
     if(step>0){
+      if(step==2){
+        that.setData({
+          play_index: 0,
+        })
+        innerAudioContext.pause();
+      }
       step -= 1;
       var base_info = that.data.base_info;
       base_info.step = step;
