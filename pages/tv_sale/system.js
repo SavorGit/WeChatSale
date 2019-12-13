@@ -113,7 +113,6 @@ Page({
     
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    //console.log(user_info);
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var hotel_has_room = user_info.hotel_has_room;
     var pro_play = app.in_array('pro_play',user_info.service);
@@ -1326,7 +1325,6 @@ Page({
         }
       }
     })
-    console.log(openid)
     //数据埋点-进入活动促销页面
     if (this.data.showPageType==1){
       mta.Event.stat('showActivityPop', { 'openid': openid })
@@ -1443,7 +1441,6 @@ Page({
     var res_title = goods_info.goods_name;
     var res_img_list = [];
     res_img_list[0] = goods_info.img_url
-    console.log(res_img_list);
     if (wx.openBusinessView) {
       wx.openBusinessView({
         businessType: 'friendGoodsRecommend',
@@ -1609,7 +1606,6 @@ Page({
         box_mac: box_mac,
       },
       success: function(res) {
-        console.log(res);
         if (res.data.code == 10000) {
           that.setData({
             box_list: res.data.result.box_list,
@@ -1804,7 +1800,6 @@ Page({
   //保存至相册
   saveImageToPhotosAlbum: function(e) {
     var share_goods_info = e.currentTarget.dataset.share_goods_info;
-    console.log(share_goods_info);
     if (!this.data.shareTempFilePath) {
       wx.showModal({
         title: '提示',
@@ -1815,7 +1810,6 @@ Page({
     wx.saveImageToPhotosAlbum({
       filePath: this.data.shareTempFilePath,
       success: (res) => {
-        console.log(res)
         wx.showModal({
           title: '提示',
           content: '图片保存成功',
@@ -1823,7 +1817,6 @@ Page({
         })
       },
       fail: (err) => {
-        console.log(err)
         wx.showModal({
           title: '提示',
           content: '图片保存失败',
@@ -1854,7 +1847,6 @@ Page({
   //删除事件
   del: function(e) {
     var that = this;
-    console.log(this.data.sale_list)
     var sale_list = this.data.sale_list;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var openid = user_info.openid;
@@ -1913,7 +1905,6 @@ Page({
   },
   addMyActivity: function(e) {
     var that = this;
-    console.log(e);
     var my_activity_info = {};
     my_activity_info.media_type= 0;
     my_activity_info.room_type = 0;
@@ -2038,7 +2029,6 @@ Page({
     })
   },
   sendSmsCode:function(e){
-    console.log(e);
     var that = this;
     var mobile = e.target.dataset.mobile;
     var user_info = wx.getStorageSync(cache_key+'userinfo');
@@ -2068,7 +2058,6 @@ Page({
       success: function (res) {
         if (res.data.code == 10000) { //上线前更换
           sms_time_djs = 60
-          console.log(typeof (sms_time_djs));
           that.setData({
             is_get_sms_code: 1,
             sms_time_djs: sms_time_djs
@@ -2102,7 +2091,6 @@ Page({
     })
   },
   chooseHotel: function (e) {
-    console.log(e);
     let that = this;
     that.setData({
       hotel: e.detail,

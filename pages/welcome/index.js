@@ -33,7 +33,6 @@ Page({
       hotel_id:hotel_id,
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      console.log(data);
       that.setData({
         list:data.result.datalist,
       })

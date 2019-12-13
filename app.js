@@ -176,10 +176,10 @@ App({
     oss_bucket:'redian-produce',
     cache_key: 'savor:sale:',
     common_appid: 'wxfdf0346934bb672f',
-    box_type: 0,
-    is_zhilian: 1,
+    //box_type: 0,
+    //is_zhilian: 1,
     oss_access_key_id:'LTAITBjXOpORHKfXlOX',
-    oss_xz_limit:4096
+    oss_xz_limit:4096     //oss旋转照片最大宽高
   },
   touch: new touch()
 })

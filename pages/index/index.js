@@ -483,7 +483,6 @@ Page({
     }
     //数据埋点-进入电视互动页
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    console.log(user_info);
     that.setData({
       user_info: user_info
     })
@@ -531,7 +530,6 @@ Page({
     }
     //获取链接的盒子
     var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
-    //console.log(link_box_info);
     if (link_box_info!='') {
       that.setData({
         box_mac: link_box_info.box_mac,
@@ -558,7 +556,6 @@ Page({
 
       wx.getUserInfo({
         success(rets) {
-          console.log(rets);
           wx.request({
             url: api_v_url + '/User/registerCom',
             data: {
@@ -668,7 +665,6 @@ Page({
     }); 
   },
   chooseHotel: function(e) {
-    console.log(e);
     let that = this;
     that.setData({
       hotel: e.detail,

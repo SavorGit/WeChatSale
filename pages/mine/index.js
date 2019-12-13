@@ -32,7 +32,6 @@ Page({
     var that = this;
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    console.log(user_info);
     openid = user_info.openid;
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
@@ -237,7 +236,6 @@ Page({
         success(rets) {
           var avatarUrl = rets.userInfo.avatarUrl;
           var nickName = rets.userInfo.nickName;
-          console.log(rets);
           wx.request({
             url: api_v_url + '/User/registerCom',
             data: {
