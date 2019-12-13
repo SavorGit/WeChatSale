@@ -1,5 +1,4 @@
 {
-  "enablePullDownRefresh": true,
   "usingComponents": {
     "MailList": "/components/modal/MailList",
     "modal": "/components/modal/modal",
