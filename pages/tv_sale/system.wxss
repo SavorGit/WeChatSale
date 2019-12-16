@@ -186,7 +186,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   height: 190rpx;
   margin-bottom: 2rpx;
   overflow: hidden;
-  border-bottom: 2rpx solid #ededed;
+  /* border-bottom: 2rpx solid #ededed; */
 }
 
 .sale-panel .row > .content {
@@ -338,8 +338,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 /********************* 我的活动[添加] *********************/
 
 .sale-panel > .ads-add {
-  height: 750rpx;
-  padding-top: 45rpx;
+  height: 780rpx;
+  padding-top: 35rpx;
+  padding-bottom: 35rpx;
   padding-left: calc((100% - 480rpx) / 2);
   padding-right: calc((100% - 480rpx) / 2);
   font-size: 24rpx;
@@ -391,7 +392,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sale-panel > .ads-add .range, .sale-panel > .ads-add .row,
 .sale-panel > .ads-add .btn-submit {
   margin-top: 41rpx;
-  height: 50rpx;
+  height: 60rpx;
 }
 
 .sale-panel > .ads-add .row > label {
@@ -401,7 +402,9 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sale-panel > .ads-add .row > input {
   width: 365rpx;
   height: 50rpx;
-  border: 1rpx solid #ededed;
+  line-height: 50rpx;
+  padding-left: 5rpx;
+  border: 2rpx solid #ededed;
 }
 
 .sale-panel > .ads-add .row > view {
@@ -412,12 +415,18 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sale-panel > .ads-add .row > view > picker {
   width: 160rpx;
   height: 50rpx;
-  border: 1rpx solid #ededed;
+  line-height: 50rpx;
+  padding-left: 5rpx;
+  border: 2rpx solid #ededed;
+}
+
+.sale-panel > .ads-add .row > view > picker view {
+  width: 150rpx;
+  height: 50rpx;
 }
 
 .sale-panel > .ads-add .row > view > picker label {
   width: 120rpx;
-  height: 30rpx;
   display: inline-block;
   vertical-align: middle;
   font-size: 20rpx;
