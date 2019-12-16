@@ -17,11 +17,11 @@ Page({
     nickName: '匿名用户',
     integral: 0,
     is_open_integral: 0,
-    goods_manage:false,
-    staff_manage:false,
-    integral_manage:false,
-    integral_shop:false,
-    task_manage:false,
+    goods_manage: false,
+    staff_manage: false,
+    integral_manage: false,
+    integral_shop: false,
+    task_manage: false,
 
   },
 
@@ -35,11 +35,11 @@ Page({
     openid = user_info.openid;
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
-    var goods_manage = app.in_array('goods_manage',user_info.service);
+    var goods_manage = app.in_array('goods_manage', user_info.service);
     var staff_manage = app.in_array('staff_manage', user_info.service);
     var integral_manage = app.in_array('integral_manage', user_info.service);
-    var integral_shop   = app.in_array('integral_shop',user_info.service);
-    var task_manage = app.in_array('task_manage',user_info.service);
+    var integral_shop = app.in_array('integral_shop', user_info.service);
+    var task_manage = app.in_array('task_manage', user_info.service);
 
     that.setData({
       role_type: role_type,
@@ -133,7 +133,7 @@ Page({
   addStaff: function(e) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    
+
     wx.request({
       url: api_v_url + '/user/invite',
       header: {
@@ -164,9 +164,12 @@ Page({
           icon: 'none',
           duration: 2000,
         })
-      },complete:function(res){
+      },
+      complete: function(res) {
         //数据埋点-点击添加员工
-        mta.Event.stat('clickAddStaff', { 'openid': user_info.openid })
+        mta.Event.stat('clickAddStaff', {
+          'openid': user_info.openid
+        })
       }
     })
 
@@ -204,9 +207,12 @@ Page({
           icon: 'none',
           duration: 2000,
         })
-      },complete:function(res){
+      },
+      complete: function(res) {
         //数据埋点-点击刷新邀请码
-        mta.Event.stat('clickFreshQrcode', { 'openid': user_info.openid })
+        mta.Event.stat('clickFreshQrcode', {
+          'openid': user_info.openid
+        })
       }
     })
   },
@@ -224,7 +230,9 @@ Page({
       showWXAuthLogin: true,
     })
     //数据埋点-个人信息页面点击登录
-    mta.Event.stat('clickUserLogin', { 'openid': openid })
+    mta.Event.stat('clickUserLogin', {
+      'openid': openid
+    })
   },
   onGetUserInfo: function(res) {
     var that = this;
@@ -304,7 +312,9 @@ Page({
         }
       })
       //数据埋点-用户确认授权
-      mta.Event.stat('userConfirmAuth', { 'openid': openid })
+      mta.Event.stat('userConfirmAuth', {
+        'openid': openid
+      })
     } else {
       wx.request({
         url: api_v_url + '/User/refuseRegister',
@@ -323,7 +333,9 @@ Page({
         }
       })
       //数据埋点-用户拒绝授权
-      mta.Event.stat('userRefuseAuth', { 'openid': openid })
+      mta.Event.stat('userRefuseAuth', {
+        'openid': openid
+      })
     }
   },
   /**
@@ -374,7 +386,7 @@ Page({
       data: {
         openid: user_info.openid,
       },
-      success: function (res) {
+      success: function(res) {
         if (res.data.code == 10000 && res.data.result.userinfo.hotel_id != 0) {
           //var user_info = wx.getStorageSync(cache_key + 'userinfo');
           if (user_info.select_hotel_id > 0) {
@@ -411,7 +423,9 @@ Page({
       }
     })
     //数据埋点-进入个人信息页面
-    mta.Event.stat('showUserIndex', { 'openid': user_info.openid })
+    mta.Event.stat('showUserIndex', {
+      'openid': user_info.openid
+    })
     this.onLoad()
   },
   closeAuth: function() {
@@ -420,23 +434,34 @@ Page({
       showWXAuthLogin: false,
     })
     //数据埋点-个人信息页面关闭取消授权登陆
-    mta.Event.stat('userCloseAuth', { 'openid': openid })
+    mta.Event.stat('userCloseAuth', {
+      'openid': openid
+    })
   },
-  integralList:function(e){
+  integralList: function(e) {
     //数据埋点-点击收益明细
-    mta.Event.stat('clickIntegralList', { 'openid': openid })
+    mta.Event.stat('clickIntegralList', {
+      'openid': openid
+    })
   },
-  popActivityList:function(e){
+  popActivityList: function(e) {
     //数据埋点-点击活动商品管理
-    mta.Event.stat('clickActivityGoodsList', { 'openid': openid })
+    mta.Event.stat('clickActivityGoodsList', {
+      'openid': openid
+    })
   },
-  staffList:function(e){
+  staffList: function(e) {
     //数据埋点-点击移除员工
-    mta.Event.stat('clickRemoveStaff', { 'openid': openid, 'inviteid': invite_id })
+    mta.Event.stat('clickRemoveStaff', {
+      'openid': openid,
+      'inviteid': invite_id
+    })
   },
-  goRelief:function(res){
+  goRelief: function(res) {
     //数据埋点-点击免责声明
-    mta.Event.stat('userClickRelief', { 'openid': openid })
+    mta.Event.stat('userClickRelief', {
+      'openid': openid
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -476,7 +501,9 @@ Page({
     var img_url = 'http://oss.littlehotspot.com/media/resource/GyXmE3jRNh.jpg';
     if (e.from === 'button') {
       //数据埋点-点击邀请员工
-      mta.Event.stat('clickInviteStaff', { 'openid': userinfo.openid })
+      mta.Event.stat('clickInviteStaff', {
+        'openid': userinfo.openid
+      })
       // 转发成功
       // 来自页面内转发按钮
       return {
@@ -489,11 +516,21 @@ Page({
       }
     }
   },
-  showLoadingOnClick: function (e) {
+  showLoadingOnClick: function(e) {
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
       mask: true
+    });
+  },
+
+  // 打开用户归属信息窗口
+  openUserAscriptionInfomationWindow: function(e) {
+    let self = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    self.setData({
+      showUserAscriptionInfomationWindow: true,
+      userInfo: user_info
     });
   }
 })
