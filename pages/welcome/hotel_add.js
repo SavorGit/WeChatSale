@@ -54,7 +54,7 @@ Page({
     utils.PostRequest(api_v_url + '/welcome/categorylist', {
      
     }, (data, headers, cookies, errMsg, statusCode) => {
-      console.log(data.result.category_list);
+      //console.log(data.result.category_list);
       that.setData({
         categoryList: data.result.category_list
       })
@@ -65,7 +65,7 @@ Page({
     utils.PostRequest(api_v_url +'/welcome/config',{
 
     }, (data, headers, cookies, errMsg, statusCode)=>{
-      console.log(data.result)
+      //console.log(data.result)
       var base_info = that.data.base_info;
       var wordsize  = data.result.wordsize;
       var color     = data.result.color;
@@ -74,7 +74,7 @@ Page({
       base_info.word_size_info.word_size_id = wordsize[0].id;
       base_info.word_color_info.color    = color[0].color;
       base_info.word_color_info.color_id = color[0].id;
-      console.log(base_info);
+      //console.log(base_info);
       that.setData({
         base_info:base_info,
         wordsize_list: wordsize,
@@ -89,7 +89,7 @@ Page({
       /*that.setData({
         box_list:data.result.box_list
       })*/
-      console.log(data.result.box_name_list);
+      //console.log(data.result.box_name_list);
       that.setData({
         objectBoxArray: data.result.box_name_list,
         box_list: data.result.box_list
@@ -106,7 +106,7 @@ Page({
     var base_info = that.data.base_info;
     var category_id = e.currentTarget.dataset.category_id;
     //welType = type;
-    console.log(category_id);
+    //console.log(category_id);
     if (category_id!=0){
       utils.PostRequest(api_v_url + '/welcome/imglist', {
         category_id: category_id
@@ -135,7 +135,7 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        console.log(res);
+        //console.log(res);
         var tmp_file = res.tempFilePaths[0];
         var index1 = tmp_file.lastIndexOf(".");
         var index2 = tmp_file.length;
@@ -172,7 +172,7 @@ Page({
                 base_info.img_info.choose_img_url = oss_img_url;
                 base_info.img_info.oss_img_url    = oss_img_url;
                 base_info.img_info.forscreen_url  = oss_key;
-                console.log(base_info);
+                //console.log(base_info);
                 that.setData({
                   base_info:base_info
                 })
@@ -200,7 +200,7 @@ Page({
     var angle = e.currentTarget.dataset.angle;
     angle +=90;
     var pms = ''
-    console.log()
+    //console.log()
     if(angle==360 || angle>360){
       angle = 0;
     }
@@ -251,7 +251,7 @@ Page({
    */
   nextOption:function(e){
     var that = this;
-    console.log(e);
+    //console.log(e);
     //return false;
     //var step = e.currentTarget.dataset.step;
     var base_info = that.data.base_info
@@ -340,8 +340,7 @@ Page({
       if(base_info.img_info.is_choose_img==0){
         base_info.img_info.forscreen_url = '';
       }
-      console.log('完成');
-      console.log(base_info);
+      //console.log(base_info);
       wx.showModal({
         title: '确定要完成吗？',
         //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -414,7 +413,7 @@ Page({
    */
   lastOption:function(e){
     var that = this;
-    console.log(e);
+    //console.log(e);
     var step = e.currentTarget.dataset.step;
     if(step>0){
       if(step==2){
@@ -436,7 +435,7 @@ Page({
    * 第二步：输入欢迎词
    */
   inputWelcomeWord:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var welcome_word = e.detail.value;
     var base_info = that.data.base_info;
@@ -450,7 +449,7 @@ Page({
    * 第二步：选择字体大小
    */
   selectWordSize:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var id = e.currentTarget.dataset.id;
     var wordsize = e.currentTarget.dataset.wordsize;
@@ -529,7 +528,7 @@ Page({
    * 第四部：设置播放类型
    */
   swichPlayType:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var play_type = e.detail.value;
     var base_info = that.data.base_info;
@@ -542,7 +541,7 @@ Page({
    * 第四部：选择日期
    */
   selectData:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var that = this;
     var base_info = that.data.base_info;
@@ -556,7 +555,7 @@ Page({
    * 第四部：选择时间
    */
   selectTiming:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var base_info = that.data.base_info;
     var timing = e.detail.value;
@@ -570,7 +569,7 @@ Page({
    * 第四部：选择包间
    */
   selectRoom:function(e){
-    console.log(e);
+    //console.log(e);
     var that = this;
     var boxIndex = e.detail.value;
     var base_info = that.data.base_info;
