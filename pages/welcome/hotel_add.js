@@ -13,6 +13,7 @@ var oss_access_key_id = app.globalData.oss_access_key_id;
 var welcome_info = [];   //欢迎词数据
 var storInfo = {'step':0,'welcome_info':[]};       //用户操作数据
 const innerAudioContext = wx.createInnerAudioContext('music');
+var angle = 0;
 Page({
 
   /**
@@ -198,7 +199,7 @@ Page({
   turnImg:function(e){
     var that = this;
     var base_info = that.data.base_info;
-    var angle = e.currentTarget.dataset.angle;
+    //var angle = e.currentTarget.dataset.angle;
     angle +=90;
     var pms = ''
     //console.log()
