@@ -132,7 +132,8 @@
 }
 
 .launch_video_page_b .page_bottom > .uploading {
-  background-color: #106763;
+  background-color: #806547;
+  /* background-color: #106763; */
 }
 
 .launch_video_page_b .page_bottom > button {
