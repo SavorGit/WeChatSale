@@ -1,7 +1,7 @@
 // pages/welcome/index.js
 const utils = require('../../utils/util.js')
 const app = getApp()
-var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var hotel_id;
 var openid;
@@ -28,8 +28,8 @@ Page({
       hotel_id = user_info.hotel_id;
     }
 
-    utils.PostRequest(api_url + '/Smallsale14/welcome/getwelcomelist', {
-      page: page,
+    utils.PostRequest(api_v_url + '/welcome/getwelcomelist', {
+      page: 1,
       hotel_id:hotel_id,
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -50,7 +50,7 @@ Page({
       content: '停止播放后该欢迎词将不会再出现在列表中!',
       success: function (res) {
         if (res.confirm) {
-          utils.PostRequest(api_url + '/Smallsale14/welcome/stopplay', {
+          utils.PostRequest(api_v_url + '/welcome/stopplay', {
             openid: openid,
             hotel_id: hotel_id,
             welcome_id: id,
@@ -80,7 +80,7 @@ Page({
       title: '您确定要立即播放该欢迎词吗?',
       success:function(res){
         if(res.confirm){
-          utils.PostRequest(api_url + '/Smallsale14/welcome/startplay', {
+          utils.PostRequest(api_v_url + '/welcome/startplay', {
             openid: openid,
             hotel_id: hotel_id,
             welcome_id: id,
@@ -110,7 +110,7 @@ Page({
       content: '删除后该欢迎词将不会再出现在列表中!',
       success:function(res){
         if(res.confirm){
-          utils.PostRequest(api_url + '/Smallsale14/welcome/removeplay', {
+          utils.PostRequest(api_v_url + '/welcome/removeplay', {
             openid: openid,
             hotel_id: hotel_id,
             welcome_id: id
@@ -144,7 +144,7 @@ Page({
   loadMore:function(e){
     var that = this;
     page +=1;
-    utils.PostRequest(api_url +'/Smallsale14/welcome/getwelcomelist',{
+    utils.PostRequest(api_v_url +'/welcome/getwelcomelist',{
       openid:openid,
       hotel_id:hotel_id,
       page: page

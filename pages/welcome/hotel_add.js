@@ -51,7 +51,7 @@ Page({
       hotel_id = user_info.hotel_id;
     }
     //背景图分类列表
-    utils.PostRequest(api_url + '/Smallsale14/welcome/categorylist', {
+    utils.PostRequest(api_v_url + '/welcome/categorylist', {
      
     }, (data, headers, cookies, errMsg, statusCode) => {
       console.log(data.result.category_list);
@@ -62,7 +62,7 @@ Page({
     /**
      * 获取配置
      */
-    utils.PostRequest(api_url +'/Smallsale14/welcome/config',{
+    utils.PostRequest(api_v_url +'/welcome/config',{
 
     }, (data, headers, cookies, errMsg, statusCode)=>{
       console.log(data.result)
@@ -108,7 +108,7 @@ Page({
     //welType = type;
     console.log(category_id);
     if (category_id!=0){
-      utils.PostRequest(api_url + '/Smallsale14/welcome/imglist', {
+      utils.PostRequest(api_v_url + '/welcome/imglist', {
         category_id: category_id
       }, (data, headers, cookies, errMsg, statusCode) => {
         base_info.type = category_id;
@@ -350,7 +350,7 @@ Page({
             that.setData({
               completeBtn: true,
             })
-            utils.PostRequest(api_url + '/Smallsale14/welcome/addwelcome', {
+            utils.PostRequest(api_v_url + '/welcome/addwelcome', {
               backgroundimg_id: base_info.img_info.backgroundimg_id,
               box_mac: play_box_mac,
               color_id: base_info.word_color_info.color_id,
