@@ -343,10 +343,11 @@ Page({
         app.showToast('请选择包间电视');
         return false;
       }
+      var forscreen_url = base_info.img_info.forscreen_url
       //console.log(base_info);
-      /*if(base_info.img_info.is_choose_img==0){
+      if(base_info.img_info.is_choose_img==0){
         base_info.img_info.forscreen_url = '';
-      }*/
+      }
       wx.showModal({
         title: '确定要完成吗？',
         //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -379,7 +380,7 @@ Page({
                 mobile_model: app.globalData.mobile_model,
                 forscreen_char: base_info.word_info.welcome_word,
                 public_text: '',
-                imgs: '["' + base_info.img_info.forscreen_url+'"]',
+                imgs: '["' + forscreen_url+'"]',
                 resource_id: forscreen_id,
                 res_sup_time: 0,
                 res_eup_time: 0,
