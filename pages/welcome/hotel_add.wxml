@@ -207,7 +207,7 @@
             <radio wx:if="{{base_info.play_info.play_type==2}}" checked="true" value="2">定时播放</radio>
             <radio wx:else value="2">定时播放</radio>
             <view class="flex_row_center">
-              <picker class="date theme-font3" mode="date" start="2019-09-01" end="2099-09-01" bindchange="selectData">
+              <picker class="date theme-font3" mode="date" start="{{start_date}}" end="2099-09-01" bindchange="selectData">
                 <view wx:if="{{base_info.play_info.play_date==''}}">请选择日期</view>
                 <view wx:else>{{base_info.play_info.play_date}}</view>
               </picker>

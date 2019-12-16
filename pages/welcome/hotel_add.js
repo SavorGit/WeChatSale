@@ -36,6 +36,7 @@ Page({
     play_index: 0,     //播放音乐索引
     play_music_url:'', //播放音乐url
     boxIndex:0,
+    start_date:app.getNowFormatDate()
   },
 
   /**
