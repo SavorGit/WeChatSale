@@ -10,9 +10,15 @@
       <!-- <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
         <image src='/images/icon/FFFFFF_linked.png'></image>
         <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
-      </view> -->
+      </view>
       <picker class='box flex_row_center theme-font4' style='{{user_info.hotel_id == -1 ? "" : "width:100%;"}}' range="{{objectBoxArray}}" bindchange="bindPickerChange">
         <view class='flex_row_center' style='width:{{user_info.hotel_id == -1 ? "calc(50vw - 25rpx)" : "calc(100vw - 50rpx)"}};'>
+          <image src="{{room_name != '' ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
+          <view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
+        </view>
+      </picker> -->
+      <picker class='box flex_row_center theme-font4' style='width:100%;' range="{{objectBoxArray}}" bindchange="bindPickerChange">
+        <view class='flex_row_center' style='width:calc(100vw - 50rpx);'>
           <image src="{{room_name != '' ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
           <view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
         </view>
@@ -222,9 +228,9 @@
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
   </view>-->
-  <view class="link-type-panel" style="height:80rpx;">
+  <view class="link-type-panel" style="height:80rpx;margin-bottom:0;">
     <view class="wapper flex_row_center">
-      <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="reChooseHotel">
+      <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" style="width:100%;" data-id="{{user_info.select_hotel_id}}" bindtap="reChooseHotel">
         <image src='/images/icon/FFFFFF_linked.png'></image>
         <!-- <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view> -->
         <view class="choosed-hotel one-line-overflow">当前在“{{user_info.select_hotel_name}}”酒楼，点击重选酒楼</view>
