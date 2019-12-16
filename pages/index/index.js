@@ -352,7 +352,7 @@ Page({
         box_mac: box_mac,
         msg: '{"action":31,"change_type":' + change_type + '}'
       }, (data, headers, cookies, errMsg, statusCode) => {
-        app.showToast('操作成功');
+        //app.showToast('操作成功');
       },{},
       {
         complete:function(res){
