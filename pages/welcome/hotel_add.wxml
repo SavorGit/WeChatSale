@@ -61,7 +61,7 @@
             <block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
               <view class="weui-grid">
                 <image wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="selected" src="{{bean.oss_addr}}"></image>
-                <image wx:else src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg"></image>
+                <image wx:else src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
               </view>
             </block>
 
