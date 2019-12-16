@@ -8,12 +8,6 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var box_mac;
-var is_view_wifi = 0;
-var wifi_password;
-var intranet_ip;
-var wifi_name;
-var wifi_mac;
-var use_wifi_password;
 var forscreen_type;
 var common_appid = app.globalData.common_appid;
 var sign_box_list; //签到包间
@@ -23,12 +17,8 @@ Page({
     objectBoxArray: [],
     box_list: [],
     index: 0,
-    motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
     is_link: 0, //是否连接酒楼
-    is_link_wifi: 0, //是否连接wifi
-    is_view_link: 0,
     hotel_name: '',
     room_name: '',
     box_mac: '',
@@ -40,9 +30,6 @@ Page({
       id: null,
       name: "请选择酒楼"
     },
-
-    showRetryModal: true, //连接WIFI重试弹窗
-    bdShowModal: true, //邀请码酒楼和绑定酒楼不一致
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     showHotelErr: false,
     sign_box_list: [], //签到包间
