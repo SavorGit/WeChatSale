@@ -27,7 +27,7 @@
   </view>
 
   <!-- 正在播放的活动面板 -->
-  <scroll-view wx:if="{{pro_play==true}}" class='playing-sale-panel' scroll-x="true" scroll-with-animation="true">
+  <scroll-view wx:if="{{pro_play==true && play_list.length>0}}" class='playing-sale-panel' scroll-x="true" scroll-with-animation="true">
     <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
       <view class='flag theme-font4'>{{index + 1}}</view>
       <view class='ads flex_row_center'>
