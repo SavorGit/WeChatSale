@@ -6,7 +6,7 @@
   <!-- 酒楼、机顶盒、连接情况面板 -->
   <view class="link-type-panel flex_row_center">
     <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
-      <image src='/images/icon/FFFFFF_linked.png'></image>
+      <image src="{{is_link == 1 ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
       <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
     </view>
     <picker class='box flex_row_center theme-font4' style='{{user_info.hotel_id == -1 ? "" : "width:100%;"}}' range="{{objectBoxArray}}" bindchange="bindPickerChange">
