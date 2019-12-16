@@ -138,6 +138,7 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         //console.log(res);
+        
         var tmp_file = res.tempFilePaths[0];
         var index1 = tmp_file.lastIndexOf(".");
         var index2 = tmp_file.length;
@@ -170,6 +171,7 @@ Page({
                 signature: signature
 
               },success: function (res) {
+                angle = 0;
                 base_info.img_info.is_choose_img  = 1;
                 base_info.img_info.choose_img_url = oss_img_url;
                 base_info.img_info.oss_img_url    = oss_img_url;
