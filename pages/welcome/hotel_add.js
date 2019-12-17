@@ -12,7 +12,7 @@ var oss_access_key_id = app.globalData.oss_access_key_id;
 
 var welcome_info = [];   //欢迎词数据
 var storInfo = {'step':0,'welcome_info':[]};       //用户操作数据
-const innerAudioContext = wx.createInnerAudioContext('music');
+//const innerAudioContext = wx.createInnerAudioContext('music');
 var angle = 0;
 Page({
 
@@ -323,7 +323,8 @@ Page({
         base_info:base_info,
         play_index: 0,
       })
-      innerAudioContext.pause();
+      //innerAudioContext.pause();
+      wx.createAudioContext('music').pause();
     } else if (base_info.step==3){//完成
       var play_type = base_info.play_info.play_type;
       var play_date = base_info.play_info.play_date;
@@ -427,7 +428,8 @@ Page({
         that.setData({
           play_index: 0,
         })
-        innerAudioContext.pause();
+        //innerAudioContext.pause();
+        wx.createAudioContext('music').pause();
       }
       step -= 1;
       var base_info = that.data.base_info;
@@ -517,18 +519,19 @@ Page({
 
     if(status==1){//播放音乐
       var oss_addr = e.currentTarget.dataset.oss_addr;
-      innerAudioContext.src = oss_addr;
+      //innerAudioContext.src = oss_addr;
       that.setData({
-        //play_music_url:oss_addr,
+        play_music_url:oss_addr,
         play_index:index,
       })
-      innerAudioContext.play();
-      //wx.createAudioContext('music').play();
+      //innerAudioContext.play();
+      wx.createAudioContext('music').play();
     }else {//暂停音乐
       that.setData({
         play_index: 0,
       })
-      innerAudioContext.pause();
+      //innerAudioContext.pause();
+      wx.createAudioContext('music').pause();
     }
   },
   /**
