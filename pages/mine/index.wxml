@@ -113,17 +113,18 @@
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
 
 <!-- 所属信息 -->
-<modal show="{{showUserAscriptionInfomationWindow}}" width="700rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='归属信息' confirm-text='关闭' cancel-text=''>
+<modal show="{{showUserAscriptionInfomationWindow}}" width="690rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='归属信息' confirm-text='关闭' cancel-text=''>
   <view class="flex_column_center" style="font-size:24rpx;">
     <view class="flex_column_flexStart">
       <view class="flex_row_center">
         <label>所属酒楼 : </label>
-        <text selectable='true'>{{userInfo.select_hotel_id}} --- {{userInfo.select_hotel_name}}</text>
+        <!-- <text selectable='true'>{{userInfo.select_hotel_id}} --- {{userInfo.select_hotel_name}}</text> -->
+        <text selectable='true'>{{userInfo.select_hotel_name}}</text>
       </view>
-      <view>
+      <!-- <view>
         <label>微信标识 : </label>
         <text selectable='true'>{{userInfo.openid}}</text>
-      </view>
+      </view> -->
     </view>
   </view>
 </modal>
