@@ -185,17 +185,63 @@ Component({
     }
   },
   observers: {
-    // 'show': function(show) {
-    //   let that = this;
-    //   if (show == true) {
-    //     that.getBrands();
-    //   }
-    // },
     'mailListData': function(mailListData) {
-      let that = this;
+      let com = this;
+      // console.log('MailList.js', 'observers.mailListData', mailListData);
       if (typeof(mailListData) == 'object' && mailListData != null) {
-        that.loadingMailListData(that, mailListData);
+        com.loadingMailListData(com, mailListData);
       }
+    },
+    'show': function(show) {
+      let com = this;
+      // console.log('MailList.js', 'observers.show', show);
+      // console.log('MailList.js', com, com.getTabBar());
+      let customTabBar = com.getTabBar();
+      if (typeof(customTabBar) == 'object' && customTabBar != null && !(customTabBar instanceof Array)) {
+        customTabBar.setData({
+          showTabBar: !show
+        });
+      } else {
+        if (show == true) {
+          wx.hideTabBar();
+        } else {
+          wx.showTabBar();
+        }
+      }
+    }
+  },
+
+  lifetimes: {
+    attached: function() {
+      let com = this;
+      // console.log('MailList.js', 'lifetimes.attached');
+    },
+    detached: function() {
+      let com = this;
+      // console.log('MailList.js', 'lifetimes.detached');
+    },
+  },
+  // 以下是旧式的定义方式，可以保持对 <2.2.3 版本基础库的兼容
+  attached: function() {
+    let com = this;
+    // console.log('MailList.js', 'attached');
+  },
+  detached: function() {
+    let com = this;
+    // console.log('MailList.js', 'detached');
+  },
+  pageLifetimes: {
+    show: function() {
+      let com = this;
+      // console.log('MailList.js', 'pageLifetimes.show');
+    },
+    hide: function() {
+      let com = this;
+      // console.log('MailList.js', 'pageLifetimes.hide');
+    },
+    resize: function(size) {
+      let com = this;
+      // console.log('MailList.js', 'pageLifetimes.resize');
     }
   }
 })

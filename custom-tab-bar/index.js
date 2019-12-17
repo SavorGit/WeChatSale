@@ -20,6 +20,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    showTabBar: true,
     selected: 0,
     color: "#999999",
     selectedColor: "#333333",
@@ -45,7 +46,10 @@ Component({
       }
     ]
   },
-  attached() {},
+  attached() {
+    let tabBar = this;
+    // console.log(tabBar);
+  },
 
   /**
    * 组件的方法列表
