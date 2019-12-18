@@ -12,7 +12,7 @@ page {
 }
 
 .link-type-panel {
-  width: calc(100% - 50rpx);
+  width: calc(100% - 49rpx);
   height: 100rpx;
   margin: 0;
   border: 0;

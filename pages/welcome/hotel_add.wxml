@@ -34,7 +34,7 @@
     <block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==1}}">
       <view class="tab-body">
         <view class="img-panel flex_column_center_center theme7">
-          <image class="self-up-img" src="{{base_info.img_info.choose_img_url}}"></image>
+          <image class="self-up-img" mode='aspectFit' src="{{base_info.img_info.choose_img_url}}"></image>
         </view>
         <view class="btn-group flex_row_center_center">
           <view class="rechoose theme-button-welcome-dark" bindtap="chooseImage">重选</view>

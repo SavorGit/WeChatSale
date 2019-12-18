@@ -16,7 +16,7 @@ image.pic_show {
   width: 100%;
   height: 100%;
   border-radius: 10rpx;
-  background-color: #333;
+  background-color: #fff;
 }
 
 image.pic_show:active {

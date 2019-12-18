@@ -36,7 +36,7 @@
 
 .tab-body {
   width: 100%;
-  height: calc(100% - 180rpx);
+  height: calc(100% - 200rpx);
 }
 
 .tab-body > .add-panel, .tab-body > .img-panel {
@@ -106,7 +106,7 @@
 .tab-foot, .page-foot {
   width: calc(100% - 200rpx);
   height: 100rpx;
-  padding: 0 100rpx;
+  padding: 0 100rpx 20rpx 100rpx;
 }
 
 .tab-foot > .prev, .tab-foot > .next, .page-foot > .prev, .page-foot > .next {
@@ -166,7 +166,7 @@
 
 .set-panel {
   width: 100%;
-  height: calc(100% - 550rpx);
+  height: calc(100% - 570rpx);
   margin-top: 10rpx;
 }
 
