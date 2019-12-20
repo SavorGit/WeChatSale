@@ -1,5 +1,6 @@
 // pages/birthday/index.js
 const utils = require('../../utils/util.js')
+var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
@@ -82,6 +83,7 @@ Page({
 
         }, res => { }, { isShowLoading: false })
     });
+    mta.Event.stat("demanhappy", {})
   },
 
   /**

@@ -1,5 +1,6 @@
 // pages/welcome/hotel_add.js
 const utils = require('../../utils/util.js')
+var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -119,6 +120,7 @@ Page({
           base_info:base_info
         })
       });
+      mta.Event.stat('switchBackImg', { 'categoryid': category_id })
     }else {
       base_info.type= 0 ;
       that.setData({
@@ -190,8 +192,10 @@ Page({
             });
           }
         })
+        mta.Event.stat('chooseWelcomeImage', { 'choosestatus': 1 })
       },fail(res){//取消选择照片
         console.log(res);
+        mta.Event.stat('chooseWelcomeImage', { 'choosestatus': 0 })
       }
     })
   },
@@ -251,6 +255,7 @@ Page({
     that.setData({
       base_info:base_info,
     })
+    //mta.Event.stat('selectBackImg', { 'imgid': id })
   },
   /**
    * 下一步
@@ -261,6 +266,7 @@ Page({
     //return false;
     //var step = e.currentTarget.dataset.step;
     var base_info = that.data.base_info
+    var rec_step  = base_info.step;
     if (base_info.step==0){//选择背景结束
       
       if(base_info.type==0){//自主上传
@@ -294,6 +300,7 @@ Page({
           })
         }
       }
+      
     } else if (base_info.step ==1){//添加文字结束
       var content = base_info.word_info.welcome_word ;
       var wordsize_id = base_info.word_info.word_size_id;
@@ -403,18 +410,23 @@ Page({
 
               })
               app.showToast('新建欢迎词成功', 2000, 'success',true);
-
+              mta.Event.stat('welcomeComplete', { 'completestatus': 1, 'imgtype': base_info.img_info.is_choose_img, 'musicid': base_info.music_info.music_id, 'playtype': base_info.play_info.play_type, 'wordcolorid': base_info.word_color_info.color_id, 'wordsizeid': base_info.word_size_info.word_size_id })
             }, res => {
               that.setData({
                 completeBtn: false,
               })
               app.showToast('新建欢迎词失败');
+              mta.Event.stat('welcomeComplete', { 'completestatus': 0, 'imgtype': base_info.img_info.is_choose_img, 'musicid': base_info.music_info.music_id, 'playtype': base_info.play_info.play_type, 'wordcolorid': base_info.word_color_info.color_id, 'wordsizeid': base_info.word_size_info.word_size_id })
             })
           }
         }
       })
       
     }
+    if(rec_step<3){
+      mta.Event.stat('clickNextOption', { 'step': rec_step })
+    }
+    
   },
   /**
    * 上一步
@@ -423,6 +435,7 @@ Page({
     var that = this;
     //console.log(e);
     var step = e.currentTarget.dataset.step;
+    var rec_step =  step;
     if(step>0){
       if(step==2){
         that.setData({
@@ -438,6 +451,7 @@ Page({
         base_info:base_info
       })
     }
+    mta.Event.stat('clickLastOption', { 'step': rec_step })
   },
   
   /**
@@ -468,6 +482,7 @@ Page({
     that.setData({
       base_info:base_info
     })
+    //mta.Event.stat('selectWordSize', { 'wordsizeid': id })
   },
   /**
    * 第二步：选择字体颜色
@@ -484,7 +499,7 @@ Page({
     that.setData({
       base_info:base_info
     })
-
+    //mta.Event.stat('selectWordColor', { 'colorid': id })
   },
   /**
    * 第三步：选中音乐
@@ -508,6 +523,7 @@ Page({
     that.setData({
       base_info:base_info
     })
+    //mta.Event.stat('selectMusic', { 'musicid': id })
   },
   /**
    * 第三步：播放/暂停音乐
@@ -533,6 +549,7 @@ Page({
       //innerAudioContext.pause();
       wx.createAudioContext('music').pause();
     }
+    mta.Event.stat('changeMusicPlayStatus', { 'status': status })
   },
   /**
    * 第四部：设置播放类型

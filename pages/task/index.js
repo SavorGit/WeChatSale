@@ -4,6 +4,7 @@
  */
 
 const util = require('../../utils/util.js');
+var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 const api_url = app.globalData.api_url;
 const cache_key = app.globalData.cache_key;
@@ -133,6 +134,7 @@ Page({
       taskDetailWindowShow: true,
       openTaskInWindow: that.data.taskList[taskListIndex]
     });
+    mta.Event.stat("viewtaskdetail", {})
   },
 
   /**

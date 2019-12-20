@@ -70,12 +70,13 @@ Page({
           video_size: res.size,
           is_forscreen: 1
         })
-
+        mta.Event.stat('forVideoChooseVideo', { 'status': 1 })
       },
       fail: function (e) {
         wx.navigateBack({
           delta: 1,
         })
+        mta.Event.stat('forVideoChooseVideo', { 'status': 0 })
       }
     })
     
@@ -116,6 +117,7 @@ Page({
 
         var is_forscreen = res.data.result.is_forscreen;
         if (is_forscreen == 1) {
+          mta.Event.stat("popbreakwindow", {})
           wx.showModal({
             title: '确认要打断投屏',
             content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -123,10 +125,12 @@ Page({
               if (res.confirm) {
 
                 uploadVedio(video_url, box_mac, openid, res_sup_time, is_pub_hotelinfo, is_share, duration, avatarUrl, nickName, play_times);
+                mta.Event.stat("confirmpopbreakwindow", {})
               } else {
                 that.setData({
                   is_btn_disabel:false,
                 })
+                mta.Event.stat("canclepopbreakwindow", {})
               }
             }
           })
@@ -267,7 +271,7 @@ Page({
       play_times: play_times
     })
     //数据埋点-切换播放时间
-    mta.Event.stat('forVideoChangeForTime', { 'openid': openid })
+    mta.Event.stat('forVideoChangeForTime', { 'timetype': play_times })
   },
   //重新选择视频
   chooseVedio(e) {
@@ -300,12 +304,14 @@ Page({
           video_size: res.size,
           is_forscreen: 1
         })
-
+        mta.Event.stat('forVideoRechooseVideo', { 'openid': openid, 'boxmac': box_mac, 'status': 1 })
+      },fail:function(res){
+        mta.Event.stat('forVideoRechooseVideo', { 'openid': openid, 'boxmac': box_mac, 'status': 0 })
       }
     })
     
     //数据埋点-重选视频
-    mta.Event.stat('forVideoRechooseVideo', { 'openid': openid,'boxmac':box_mac })
+    
   },
   //退出投屏
   exitForscreend(res) {

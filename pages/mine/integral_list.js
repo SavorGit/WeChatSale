@@ -148,7 +148,7 @@ Page({
           wx.hideLoading()
         }
       })
-      
+      mta.Event.stat('changeIntegralType', { 'integraltype': integral_type })
     }
     
   },
@@ -188,7 +188,7 @@ Page({
           wx.hideLoading()
         }
       })
-      
+      mta.Event.stat("changeintegraldate", {})
     }
   },
   /**
@@ -202,7 +202,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**

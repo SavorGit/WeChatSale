@@ -127,7 +127,7 @@ Page({
         }
       }
     })
-
+    mta.Event.stat("addactivitygoods", {})
     
   },
   removePop:function(e){
@@ -172,6 +172,7 @@ Page({
         }
       }
     })
+    mta.Event.stat("delactivitygoods", {})
   },
   
   /**

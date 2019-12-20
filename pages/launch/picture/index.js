@@ -78,11 +78,13 @@ Page({
           is_btn_disabel: false,
 
         })
+        mta.Event.stat('forImgChooseImg', { 'status': 1 })
       },
       fail: function (e) {
         wx.navigateBack({
           delta: 1,
         })
+        mta.Event.stat('forImgChooseImg', { 'status': 0 })
       }
     })
      
@@ -94,7 +96,7 @@ Page({
       play_times:play_times
     })
     //数据埋点-切换播放时间
-    
+    mta.Event.stat('forImgChangeForTime', { 'timetype': play_times })
   },
   up_forscreen(e) {//多张图片投屏开始(不分享到发现)
     var that = this;
@@ -146,6 +148,7 @@ Page({
 
         var is_forscreen = res.data.result.is_forscreen;
         if (is_forscreen == 1) {
+          mta.Event.stat("popbreakwindow", {})
           wx.showModal({
             title: '确认要打断投屏',
             content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -165,10 +168,12 @@ Page({
                     
                   }
                 });
+                mta.Event.stat("confirmpopbreakwindow", {})
               } else {
                 that.setData({
                   is_btn_disabel:false,
                 })
+                mta.Event.stat("canclepopbreakwindow", {})
               }
             }
           })
@@ -327,7 +332,12 @@ Page({
       })
     }
     //数据埋点-图片投屏
-    mta.Event.stat('forImgClickForscreen', { 'openid': user_info.openid, 'boxmac': box_mac })
+    if (forscreen_char!=''){
+      var is_forscreen_char =1;
+    }else {
+      var is_forscreen_char = 0;
+    }
+    mta.Event.stat('forImgClickForscreen', { 'openid': user_info.openid, 'boxmac': box_mac, 'imglength': upimgs.length, 'forscreenchar': is_forscreen_char, 'play_times': play_times })
     
   }, //多张图片投屏结束(不分享到发现)
   up_single_pic(res) {//指定单张图片投屏开始
@@ -392,10 +402,13 @@ Page({
           is_btn_disabel: false,
           forscreen_char: ''
         })
+        mta.Event.stat('forImgRechooseImg', { 'openid': openid, 'boxmac': box_mac, 'status': 1 })
+      },fail:function(res){
+        mta.Event.stat('forImgRechooseImg', { 'openid': openid, 'boxmac': box_mac, 'status': 1})
       }
     })
     //数据埋点-重选图片
-    mta.Event.stat('forImgRechooseImg', { 'openid': openid,'boxmac':box_mac })
+    
   },//重新选择照片结束
   exitForscreen(res) {
     var that = this;
@@ -441,46 +454,46 @@ Page({
       angle = 0;
     }
 
-      wx.showLoading({
-        title: '图片旋转中...',
-        mask:true,
-      })
-      wx.getImageInfo({
-        src: oss_addr,
-        success:function(res){
-          var width = res.width;
-          var height = res.height;
-          wx.hideLoading();
-          if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit) {
-            app.showToast('图片宽高过大,不可旋转');
-            angle -=90;
-          }else {
+    wx.showLoading({
+      title: '图片旋转中...',
+      mask:true,
+    })
+    wx.getImageInfo({
+      src: oss_addr,
+      success:function(res){
+        var width = res.width;
+        var height = res.height;
+        wx.hideLoading();
+        if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit) {
+          app.showToast('图片宽高过大,不可旋转');
+          angle -=90;
+        }else {
 
-            up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
-            //forscreen_url += '?x-oss-process=image/rotate,' + angle;
+          up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
+          //forscreen_url += '?x-oss-process=image/rotate,' + angle;
 
-            that.setData({
-              up_imgs: up_imgs
-            })
-            //推送盒子
-            var params = {};
-            params.forscreen_img = forscreen_url;
-            params.filename = filename;
-            params.play_times = play_times;
-            params.forscreen_char = forscreen_char;
-            params.angle  = angle;
-            params.is_rotate = 1;
+          that.setData({
+            up_imgs: up_imgs
+          })
+          //推送盒子
+          var params = {};
+          params.forscreen_img = forscreen_url;
+          params.filename = filename;
+          params.play_times = play_times;
+          params.forscreen_char = forscreen_char;
+          params.angle  = angle;
+          params.is_rotate = 1;
 
-            that.forOnePic(params);
+          that.forOnePic(params);
 
-          }
-        },fail:function(res){
-          wx.hideLoading();
-          app.showToast('旋转失败');
         }
-      })
+      },fail:function(res){
+        wx.hideLoading();
+        app.showToast('旋转失败');
+      }
+    })
     
-    
+    mta.Event.stat("rotateimg", {})
 
   },
   forOnePic:function(params){

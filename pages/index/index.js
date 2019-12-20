@@ -371,6 +371,7 @@ Page({
   
   gotoForFile:function(e){
     app.showToast('敬请期待');
+    mta.Event.stat("clickforfile", {})
   },
 
   signIn: function(e) {
@@ -694,7 +695,7 @@ Page({
         url: '/pages/welcome/index',
       })
     }
-    
+    mta.Event.stat("clickwelcome", {})
   },
   goToHappy:function(e){
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
@@ -706,6 +707,7 @@ Page({
         url: '/pages/birthday/index',
       })
     } 
+    mta.Event.stat("clickhappybirthday", {})
   },
   /**
    * 控制弹窗弹开/关闭
@@ -719,13 +721,15 @@ Page({
         app.showToast('请先选择包间电视');
         return false;
       }
-      
+      mta.Event.stat('clickControl', { 'status': 1 })
       is_show = true;
     }else {
       is_show = false;
+      mta.Event.stat('clickControl', { 'status': 0 })
     }
     that.setData({
       showControlWindow: is_show
     })
+    
   }
 })

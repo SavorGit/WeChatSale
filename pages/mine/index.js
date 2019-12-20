@@ -517,11 +517,19 @@ Page({
     }
   },
   showLoadingOnClick: function(e) {
+    
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
       mask: true
     });
+    var id = e.currentTarget.dataset.id;
+    if(id==1){//兑换
+      mta.Event.stat("clickintegral", {})
+    }else if(id==2){//任务列表
+      mta.Event.stat("clicktask", {})
+    }
+    
   },
 
   // 打开用户归属信息窗口

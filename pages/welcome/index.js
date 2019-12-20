@@ -1,5 +1,6 @@
 // pages/welcome/index.js
 const utils = require('../../utils/util.js')
+var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -65,7 +66,7 @@ Page({
         }
       }
     })
-    
+    mta.Event.stat("clickstopwelcome", {})
   },
   
   /**
@@ -95,7 +96,7 @@ Page({
         }
       }
     })
-    
+    mta.Event.stat("clickplaywelcome", {})
   },
   /**
    * 删除
@@ -137,6 +138,7 @@ Page({
     wx.redirectTo({
       url: '/pages/welcome/hotel_add',
     })
+    mta.Event.stat("clickcreatewelcome", {})
   },
   /**
    * 分页加载列表
