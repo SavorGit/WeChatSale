@@ -306,10 +306,10 @@ Page({
       var wordsize_id = base_info.word_info.word_size_id;
       var color_id = base_info.word_color_info.color_id;
       var word_color = base_info.word_color_info.color;
-      if(content==''){
+      /*if(content==''){
         app.showToast('请输入欢迎词');
         return false;
-      }
+      }*/
       if(wordsize_id==''){
         app.showToast('请选择字号');
         return false;
@@ -337,6 +337,7 @@ Page({
       var play_date = base_info.play_info.play_date;
       var timing    = base_info.play_info.timing;
       var play_box_mac = base_info.play_info.box_mac;
+      console.log(play_box_mac);
       if(play_type==2){//1、立即播放 2、定时播放
         if (play_date==''){
           app.showToast('请选择播放日期');
@@ -347,7 +348,7 @@ Page({
           return false;
         }
       }
-      if (play_box_mac==''){
+      if (play_box_mac.toString() ==''){
         app.showToast('请选择包间电视');
         return false;
       }
@@ -376,7 +377,8 @@ Page({
               play_type: play_type,
               rotate: base_info.img_info.angle,
               timing: timing,
-              wordsize_id: base_info.word_size_info.word_size_id
+              wordsize_id: base_info.word_size_info.word_size_id,
+              hotel_id:hotel_id
             }, (data, headers, cookies, errMsg, statusCode) => {
               var forscreen_id = (new Date()).valueOf();
               utils.PostRequest(api_v_url +'/ForscreenLog/recordForScreenPics',{
