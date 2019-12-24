@@ -178,6 +178,7 @@ Page({
                 base_info.img_info.choose_img_url = oss_img_url;
                 base_info.img_info.oss_img_url    = oss_img_url;
                 base_info.img_info.forscreen_url  = oss_key;
+                base_info.img_info.backgroundimg_id='';
                 //console.log(base_info);
                 that.setData({
                   base_info:base_info
