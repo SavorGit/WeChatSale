@@ -170,6 +170,14 @@ App({
       }
     })
   },
+  onHide: function (e) {
+    let pages = getCurrentPages();
+    let currPage = null;
+    if (pages.length) {
+      currPage = pages[pages.length - 1];
+    }
+    mta.Event.stat('onAppHide', { 'url': currPage.__route__ })
+  },
   in_array:function(search, array) {
     for(var i in array) {
       if (array[i] == search) {

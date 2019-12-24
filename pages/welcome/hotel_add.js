@@ -86,7 +86,7 @@ Page({
       })
     })
     //包间列表
-    utils.PostRequest(api_url + '/Smalldinnerapp11/Stb/getBoxList',{
+    utils.PostRequest(api_v_url + '/room/getWelcomeBoxlist',{
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) =>{
       /*that.setData({

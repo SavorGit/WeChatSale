@@ -1299,64 +1299,80 @@ Page({
             }
           }
         })
-        wx.request({ //我的活动
-          url: api_v_url + '/goods/myGoodslist',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            hotel_id: hotel_id,
-            openid: user_info.openid,
-            type: 20,
-            page: 1,
-            box_mac: link_user_info.box_mac,
-          },
-          success: function (res) {
+        if (that.data.showPageType==2 && that.data.is_my_activity==0){
 
-            if (res.data.code == 10000) {
-              if (res.data.result.datalist.length > 0) {
-                if (res.data.result.is_my_activity == 1) {
-                  var goods_status = res.data.result.datalist[0].status;
-                  if (goods_status == 2) {
-                    var box_btn = false
+        }else {
+          wx.request({ //我的活动
+            url: api_v_url + '/goods/myGoodslist',
+            header: {
+              'content-type': 'application/json'
+            },
+            data: {
+              hotel_id: hotel_id,
+              openid: user_info.openid,
+              type: 20,
+              page: 1,
+              box_mac: link_user_info.box_mac,
+            },
+            success: function (res) {
+
+              if (res.data.code == 10000) {
+                if (res.data.result.datalist.length > 0) {
+                  if (res.data.result.is_my_activity == 1) {
+                    var goods_status = res.data.result.datalist[0].status;
+                    if (goods_status == 2) {
+                      var box_btn = false
+                    } else {
+                      var box_btn = true
+                    }
+                    var room_type = res.data.result.datalist[0].scope;
+                    var check_status_arr = that.data.check_status_arr;
+                    var room_arr = that.data.room_arr;
+                    for (var i = 0; i < check_status_arr.length; i++) {
+                      if (check_status_arr[i].status == goods_status) {
+                        var check_status_img = check_status_arr[i].img;
+                        break;
+                      }
+                    }
+                    for (var j = 0; j < room_arr.length; j++) {
+                      if (room_type == room_arr[j].id) {
+                        var room_type_desc = room_arr[j].desc;
+                        break;
+                      }
+                    }
+                    my_activity_info = res.data.result.datalist[0]
+                    my_activity_info.room_type_desc = room_type_desc;
+                    my_activity_info.check_status_img = check_status_img;
+                    my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
+                    my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
                   } else {
-                    var box_btn = true
+                    my_activity_info = {};
                   }
-                  var room_type = res.data.result.datalist[0].scope;
-                  var check_status_arr = that.data.check_status_arr;
-                  var room_arr = that.data.room_arr;
-                  for (var i = 0; i < check_status_arr.length; i++) {
-                    if (check_status_arr[i].status == goods_status) {
-                      var check_status_img = check_status_arr[i].img;
-                      break;
-                    }
-                  }
-                  for (var j = 0; j < room_arr.length; j++) {
-                    if (room_type == room_arr[j].id) {
-                      var room_type_desc = room_arr[j].desc;
-                      break;
-                    }
-                  }
-                  my_activity_info = res.data.result.datalist[0]
-                  my_activity_info.room_type_desc = room_type_desc;
-                  my_activity_info.check_status_img = check_status_img;
-                  my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-                  my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+
+
+
+                  var hotel_activity_list = res.data.result.datalist;
+                  var is_my_activity = res.data.result.is_my_activity
+                  that.setData({
+                    is_my_activity: is_my_activity,
+                    my_activity_info: my_activity_info,
+                    hotel_activity_list: hotel_activity_list,
+                    box_btn: box_btn,
+                  })
                 } else {
                   my_activity_info = {};
+                  my_activity_info.media_type = 0;
+                  my_activity_info.room_type = 0
+                  that.setData({
+                    price: '',
+                    is_my_activity: 0,
+                    my_activity_info: my_activity_info,
+                    hotel_activity_list: []
+                  })
                 }
 
-
-
-                var hotel_activity_list = res.data.result.datalist;
-                var is_my_activity = res.data.result.is_my_activity
-                that.setData({
-                  is_my_activity: is_my_activity,
-                  my_activity_info: my_activity_info,
-                  hotel_activity_list: hotel_activity_list,
-                  box_btn: box_btn,
-                })
               } else {
+
                 my_activity_info = {};
                 my_activity_info.media_type = 0;
                 my_activity_info.room_type = 0
@@ -1367,9 +1383,8 @@ Page({
                   hotel_activity_list: []
                 })
               }
-
-            } else {
-
+            },
+            fail: function (res) {
               my_activity_info = {};
               my_activity_info.media_type = 0;
               my_activity_info.room_type = 0
@@ -1380,19 +1395,9 @@ Page({
                 hotel_activity_list: []
               })
             }
-          },
-          fail: function (res) {
-            my_activity_info = {};
-            my_activity_info.media_type = 0;
-            my_activity_info.room_type = 0
-            that.setData({
-              price: '',
-              is_my_activity: 0,
-              my_activity_info: my_activity_info,
-              hotel_activity_list: []
-            })
-          }
-        })
+          })
+        }
+        
         
 
 
