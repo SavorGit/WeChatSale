@@ -90,6 +90,18 @@
   height: 210rpx;
 }
 
+.tab-body > .template-panel .weui-grid > view.selected {
+  width: 340rpx;
+  height: 190rpx;
+  position: absolute;
+  top: 0;
+  font-size: 46rpx;
+}
+
+.tab-body > .template-panel .weui-grid > view.selected > .fa-stack > .fa-check {
+  margin-top: 5rpx;
+}
+
 .tab-body > .template-panel .weui-grid > image {
   width: 340rpx;
   height: 190rpx;

@@ -59,10 +59,22 @@
           <view class="weui-grids">
 
             <block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view class="weui-grid">
+              <view wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="weui-grid">
+                <image class="selected" src="{{bean.oss_addr}}"></image>
+                <view class="selected flex_column_center_center">
+                  <view class="fa-stack">
+                    <view class="fa fa-circle fa-stack-2x theme-font7" aria-hidden="true"></view>
+                    <view class="fa fa-check fa-stack-1x fa-inverse" aria-hidden="true"></view>
+                  </view>
+                </view>
+              </view>
+              <view wx:else class="weui-grid">
+                <image src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
+              </view>
+              <!-- <view class="weui-grid">
                 <image wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="selected" src="{{bean.oss_addr}}"></image>
                 <image wx:else src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
-              </view>
+              </view> -->
             </block>
 
             <!--<view class="weui-grid">
