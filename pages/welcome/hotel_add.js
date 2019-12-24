@@ -102,7 +102,7 @@ Page({
     // wx.createAudioContext('music').play();
   },
   /**
-   * 第一步：切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会
+   * 第一步：切换欢迎词类型 0:自主上传  1：生日宴 2：寿宴 3：婚宴 4：朋友聚会 
    */
   switchWelType:function(e){
     var that = this;
