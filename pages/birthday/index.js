@@ -78,7 +78,8 @@ Page({
         mobile_brand: mobile_brand,
         mobile_model: mobile_model,
         forscreen_char: forscreen_char,
-        imgs: '["media/resource/' + filename + '"]'
+        imgs: '["media/resource/' + filename + '"]',
+        small_app_id: 5,
       }, (data, headers, cookies, errMsg, statusCode) => {
 
         }, res => { }, { isShowLoading: false })

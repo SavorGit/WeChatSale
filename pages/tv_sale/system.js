@@ -452,7 +452,8 @@ Page({
               forscreen_char: '',
               forscreen_id: timestamp,
               resource_id: timestamp,
-              imgs: '["' + imgs + '"]'
+              imgs: '["' + imgs + '"]',
+              small_app_id: 5,
             },
           });
           wx.showToast({
