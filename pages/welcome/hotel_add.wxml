@@ -115,7 +115,7 @@
 					<input placeholder="请输入欢迎词" value="{{base_info.word_info.welcome_word}}" placeholder-class="theme-font3" bindinput="inputWelcomeWord" maxlength="30"></input>
 				</view>
 				<view class="words flex_row_center">
-					<view class="label">字体</view>
+					<view class="label">字体样式</view>
 					<picker range="{{wordtype}}" value="{{wordtype_index}}" bindchange="selectWordType">
 						<view>{{base_info.word_type.name}}</view>
 					</picker>
