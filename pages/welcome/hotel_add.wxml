@@ -24,7 +24,7 @@
 					<view class="btn-add theme-font7">选择手机图片</view>
 				</view>
 			</view>
-			<view class="tab-foot flex_row_center_flexEnd theme7">
+			<view class="tab-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
 				<button class="next theme-button-welcome" form-type="submit">下一步</button>
 			</view>
 		</block>
@@ -41,7 +41,7 @@
 					<view class="rotate theme-button-add" bindtap="turnImg" data-angle="{{base_info.img_info.angle}}">旋转</view>
 				</view>
 			</view>
-			<view class="tab-foot flex_row_center_flexEnd theme7">
+			<view class="tab-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
 				<!-- <view class="next theme-button-welcome">下一步</view> -->
 				<!-- <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input> -->
 				<input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
@@ -84,7 +84,7 @@
 					</view>
 				</scroll-view>
 			</view>
-			<view class="tab-foot flex_row_center_flexEnd theme7">
+			<view class="tab-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
 				<!-- <view class="next theme-button-welcome">下一步</view> -->
 				<button class="next theme-button-welcome" form-type="submit">下一步</button>
 			</view>
