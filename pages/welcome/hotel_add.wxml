@@ -105,7 +105,7 @@
       <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
         <!--自动生成欢迎词-->
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.img_info.word_type.type}};">{{base_info.word_info.welcome_word}}</view>
+        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
       </view>
     </view>
     <view class="set-panel">
@@ -116,8 +116,8 @@
         </view>
         <view class="words flex_row_center">
           <view class="label">字体</view>
-          <picker>
-            <view>{{base_info.img_info.word_type.name}}</view>
+          <picker range="{{wordtype}}" value="{{wordtype_index}}" bindchange="selectWordType">
+            <view>{{base_info.word_type.name}}</view>
           </picker>
         </view>
         <view class="size flex_row_center">
@@ -158,7 +158,7 @@
     <view class="show-panel theme7">
       <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.img_info.word_type.type}};">{{base_info.word_info.welcome_word}}</view>
+        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
       </view>
     </view>
     <scroll-view class="set-panel " scroll-y="true" scroll-with-animation="true">
@@ -207,7 +207,7 @@
     <view class="show-panel theme7">
       <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
       <view class="cover flex_column_center_center">
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.img_info.word_type.type}};">{{base_info.word_info.welcome_word}}</view>
+        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
       </view>
     </view>
     <view class="set-panel">

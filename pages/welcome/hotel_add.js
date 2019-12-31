@@ -28,6 +28,7 @@ Page({
                  'word_info':{'welcome_word':''},                     //欢迎词
                  'word_size_info':{'word_size':'','word_size_id':0}, //欢迎词字号
                  'word_color_info':{'color':'','color_id':0},        //欢迎词颜色
+                'word_type': { 'type': 0,'name':'','type_str':''},
                  'music_info':{'music_name':'','music_id':0,'oss_addr':''},                //背景音乐
                  'play_info': { 'play_type': 1, 'play_date': '','timing':'','box_mac':''}  //播放设置
                 }, 
@@ -38,7 +39,8 @@ Page({
     play_index: 0,     //播放音乐索引
     play_music_url:'', //播放音乐url
     boxIndex:0,
-    start_date:app.getNowFormatDate()
+    start_date:app.getNowFormatDate(),
+    wordtype_index:0,
   },
 
   /**
@@ -73,16 +75,22 @@ Page({
       var wordsize  = data.result.wordsize;
       var color     = data.result.color;
       var music = data.result.music
+      var wordtype = data.result.font_namelist
+      var wordtype_list = data.result.font
       base_info.word_size_info.word_size = wordsize[0].wordsize;
       base_info.word_size_info.word_size_id = wordsize[0].id;
       base_info.word_color_info.color    = color[0].color;
       base_info.word_color_info.color_id = color[0].id;
-      //console.log(base_info);
+      base_info.word_type.type = wordtype_list[0].id
+      base_info.word_type.name = wordtype_list[0].name
+      console.log(base_info);
       that.setData({
         base_info:base_info,
         wordsize_list: wordsize,
         color_list: color,
         music_list: music,
+        wordtype: wordtype,
+        wordtype_list: wordtype_list
       })
     })
     //包间列表
@@ -379,7 +387,8 @@ Page({
               rotate: base_info.img_info.angle,
               timing: timing,
               wordsize_id: base_info.word_size_info.word_size_id,
-              hotel_id:hotel_id
+              hotel_id:hotel_id,
+              font_id:base_info.word_type.type
             }, (data, headers, cookies, errMsg, statusCode) => {
               var forscreen_id = (new Date()).valueOf();
               utils.PostRequest(api_v_url +'/ForscreenLog/recordForScreenPics',{
@@ -486,6 +495,29 @@ Page({
       base_info:base_info
     })
     //mta.Event.stat('selectWordSize', { 'wordsizeid': id })
+  },
+  /**
+   * 第二步
+   */
+  selectWordType:function(e){
+    var that = this ;
+    var wordtype_list = that.data.wordtype_list;
+    var index = e.detail.value;
+    var base_info = that.data.base_info;
+    if(index==0){
+      base_info.word_type.type = 0;
+      base_info.word_type.name = wordtype_list[index].name
+      base_info.word_type.type_str = '';
+    }else {
+      base_info.word_type.type = wordtype_list[index].id
+      base_info.word_type.name = wordtype_list[index].name
+      base_info.word_type.type_str = "font-family: '" + wordtype_list[index].name+"'";
+    }
+    console.log(base_info)
+    that.setData({
+      base_info: base_info,
+      wordtype_index: index
+    })
   },
   /**
    * 第二步：选择字体颜色
