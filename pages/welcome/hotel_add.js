@@ -21,6 +21,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     base_info: { 'step': 0, //操作步骤 
                  'type': 0, //背景图类型
       'img_info': { 'is_choose_img': 0, 'choose_img_url': '', 'oss_img_url': '', 'forscreen_url': '', 'angle': 0, 'backgroundimg_id':''}, 

@@ -3,255 +3,255 @@
 
 <!-- 设置背景【第一步】开始  -->
 <form wx:if="{{base_info.step == 0}}" bindsubmit="nextOption">
-  <view class="step-one-page container flex_column_center_flexStart theme-container">
+	<view class="step-one-page container flex_column_center_flexStart theme-container">
 
-    <!-- 选项卡头开始 -->
-    <scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true" wx:if="{{base_info.step==0}}">
-      <view wx:if="{{base_info.type==0}}" class="tab-item selected theme-font7">自主上传</view>
-      <view wx:if="{{base_info.type!=0}}" bindtap="switchWelType" data-category_id="0" class="tab-item theme-font8">自主上传</view>
-      <block wx:for="{{categoryList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:if="{{bean.id==base_info.type}}" class="tab-item selected theme-font7">{{bean.name}}</view>
-        <view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:else class="tab-item theme-font8">{{bean.name}}</view>
-      </block>
-    </scroll-view>
-    <!-- 选项卡头结束 -->
+		<!-- 选项卡头开始 -->
+		<scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true" wx:if="{{base_info.step==0}}">
+			<view wx:if="{{base_info.type==0}}" class="tab-item selected theme-font7">自主上传</view>
+			<view wx:if="{{base_info.type!=0}}" bindtap="switchWelType" data-category_id="0" class="tab-item theme-font8">自主上传</view>
+			<block wx:for="{{categoryList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:if="{{bean.id==base_info.type}}" class="tab-item selected theme-font7">{{bean.name}}</view>
+				<view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:else class="tab-item theme-font8">{{bean.name}}</view>
+			</block>
+		</scroll-view>
+		<!-- 选项卡头结束 -->
 
-    <!-- 新建自主上传选项卡开始 wx:if="{{selfUpNew}}" -->
-    <block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==0}}">
-      <view class="tab-body">
-        <view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
-          <image class="icon" src="/images/icon/A18668_pic.png"></image>
-          <view class="btn-add theme-font7">选择手机图片</view>
-        </view>
-      </view>
-      <view class="tab-foot flex_row_center_flexEnd theme7">
-        <button class="next theme-button-welcome" form-type="submit">下一步</button>
-      </view>
-    </block>
-    <!-- 新建自主上传选项卡结束 -->
+		<!-- 新建自主上传选项卡开始 wx:if="{{selfUpNew}}" -->
+		<block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==0}}">
+			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+				<view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
+					<image class="icon" src="/images/icon/A18668_pic.png"></image>
+					<view class="btn-add theme-font7">选择手机图片</view>
+				</view>
+			</view>
+			<view class="tab-foot flex_row_center_flexEnd theme7">
+				<button class="next theme-button-welcome" form-type="submit">下一步</button>
+			</view>
+		</block>
+		<!-- 新建自主上传选项卡结束 -->
 
-    <!-- 自主上传回显选项卡开始 -->
-    <block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==1}}">
-      <view class="tab-body">
-        <view class="img-panel flex_column_center_center theme7">
-          <image class="self-up-img" mode='aspectFill' src="{{base_info.img_info.choose_img_url}}"></image>
-        </view>
-        <view class="btn-group flex_row_center_center">
-          <view class="rechoose theme-button-welcome-dark" bindtap="chooseImage">重选</view>
-          <view class="rotate theme-button-add" bindtap="turnImg" data-angle="{{base_info.img_info.angle}}">旋转</view>
-        </view>
-      </view>
-      <view class="tab-foot flex_row_center_flexEnd theme7">
-        <!-- <view class="next theme-button-welcome">下一步</view> -->
-        <!-- <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input> -->
-        <input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
-        <input class='display_hide' name="oss_img_url" value="{{base_info.img_info.oss_img_url}}"> </input>
-        <input class='display_hide' name="angle" value="{{base_info.img_info.angle}}"> </input>
-        <button class="next theme-button-welcome" form-type="submit">下一步</button>
-      </view>
-    </block>
-    <!-- 自主上传回显选项卡结束 -->
+		<!-- 自主上传回显选项卡开始 -->
+		<block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==1}}">
+			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+				<view class="img-panel flex_column_center_center theme7">
+					<image class="self-up-img" mode='aspectFill' src="{{base_info.img_info.choose_img_url}}"></image>
+				</view>
+				<view class="btn-group flex_row_center_center">
+					<view class="rechoose theme-button-welcome-dark" bindtap="chooseImage">重选</view>
+					<view class="rotate theme-button-add" bindtap="turnImg" data-angle="{{base_info.img_info.angle}}">旋转</view>
+				</view>
+			</view>
+			<view class="tab-foot flex_row_center_flexEnd theme7">
+				<!-- <view class="next theme-button-welcome">下一步</view> -->
+				<!-- <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input> -->
+				<input class='display_hide' name="choose_img_url" value="{{base_info.img_info.choose_img_url}}"> </input>
+				<input class='display_hide' name="oss_img_url" value="{{base_info.img_info.oss_img_url}}"> </input>
+				<input class='display_hide' name="angle" value="{{base_info.img_info.angle}}"> </input>
+				<button class="next theme-button-welcome" form-type="submit">下一步</button>
+			</view>
+		</block>
+		<!-- 自主上传回显选项卡结束 -->
 
-    <!-- 模板选择选项卡开始 -->
-    <block wx:if="{{base_info.step==0 && base_info.type!=0}}">
-      <view class="tab-body">
-        <scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
-          <view class="weui-grids">
+		<!-- 模板选择选项卡开始 -->
+		<block wx:if="{{base_info.step==0 && base_info.type!=0}}">
+			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+				<scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
+					<view class="weui-grids">
 
-            <block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="weui-grid">
-                <image class="selected" src="{{bean.oss_addr}}"></image>
-                <view class="selected flex_column_center_center">
-                  <view class="fa-stack">
-                    <view class="fa fa-circle fa-stack-2x theme-font7" aria-hidden="true"></view>
-                    <view class="fa fa-check fa-stack-1x fa-inverse" aria-hidden="true"></view>
-                  </view>
-                </view>
-              </view>
-              <view wx:else class="weui-grid">
-                <image src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
-              </view>
-              <!-- <view class="weui-grid">
+						<block wx:for="{{imglist}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+							<view wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="weui-grid">
+								<image class="selected" src="{{bean.oss_addr}}"></image>
+								<view class="selected flex_column_center_center">
+									<view class="fa-stack">
+										<view class="fa fa-circle fa-stack-2x theme-font7" aria-hidden="true"></view>
+										<view class="fa fa-check fa-stack-1x fa-inverse" aria-hidden="true"></view>
+									</view>
+								</view>
+							</view>
+							<view wx:else class="weui-grid">
+								<image src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
+							</view>
+							<!-- <view class="weui-grid">
                 <image wx:if="{{base_info.img_info.backgroundimg_id==bean.id}}" class="selected" src="{{bean.oss_addr}}"></image>
                 <image wx:else src="{{bean.oss_addr}}" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" bindtap="selectBackImg" data-forscreen_url="{{bean.forscreen_url}}"></image>
               </view> -->
-            </block>
+						</block>
 
-            <!--<view class="weui-grid">
+						<!--<view class="weui-grid">
               <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
             </view> -->
 
-          </view>
-        </scroll-view>
-      </view>
-      <view class="tab-foot flex_row_center_flexEnd theme7">
-        <!-- <view class="next theme-button-welcome">下一步</view> -->
-        <button class="next theme-button-welcome" form-type="submit">下一步</button>
-      </view>
-      <input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input>
+					</view>
+				</scroll-view>
+			</view>
+			<view class="tab-foot flex_row_center_flexEnd theme7">
+				<!-- <view class="next theme-button-welcome">下一步</view> -->
+				<button class="next theme-button-welcome" form-type="submit">下一步</button>
+			</view>
+			<input class='display_hide' name="backgroundimg_id" value="{{base_info.img_info.backgroundimg_id}}"> </input>
 
 
-    </block>
-    <!-- 模板选择选项卡结束 -->
+		</block>
+		<!-- 模板选择选项卡结束 -->
 
-  </view>
+	</view>
 </form>
 <!-- 设置背景【第一步】结束 -->
 
 <!-- 设置文字【第二步】开始 -->
 <form wx:if="{{base_info.step == 1}}" bindsubmit="nextOption">
-  <view class="set-words-page container flex_column_center_flexStart theme-container">
-    <view class="show-panel theme7">
-      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
-      <view class="cover flex_column_center_center">
-        <!--自动生成欢迎词-->
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
-      </view>
-    </view>
-    <view class="set-panel">
-      <view class="wapper theme7">
-        <view class="words flex_row_center">
-          <view class="label">欢迎词</view>
-          <input placeholder="请输入欢迎词" value="{{base_info.word_info.welcome_word}}" placeholder-class="theme-font3" bindinput="inputWelcomeWord" maxlength="30"></input>
-        </view>
-        <view class="words flex_row_center">
-          <view class="label">字体</view>
-          <picker range="{{wordtype}}" value="{{wordtype_index}}" bindchange="selectWordType">
-            <view>{{base_info.word_type.name}}</view>
-          </picker>
-        </view>
-        <view class="size flex_row_center">
-          <view class="label">字体大小</view>
-          <view class="flex_row_center">
-            <block wx:for="{{wordsize_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view wx:if="{{base_info.word_size_info.word_size_id==bean.id}}" class="theme-font1 selected">{{bean.name}}</view>
-              <view wx:else class="theme-font1" bindtap="selectWordSize" data-id="{{bean.id}}" data-wordsize="{{bean.wordsize}}">{{bean.name}}</view>
-            </block>
-            <!-- <view class="theme-font1 selected">中</view>
+	<view class="set-words-page container flex_column_center_flexStart theme-container">
+		<view class="show-panel theme7">
+			<image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
+			<view class="cover flex_column_center_center">
+				<!--自动生成欢迎词-->
+				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
+			</view>
+		</view>
+		<view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
+			<view class="wapper theme7">
+				<view class="words flex_row_center">
+					<view class="label">欢迎词</view>
+					<input placeholder="请输入欢迎词" value="{{base_info.word_info.welcome_word}}" placeholder-class="theme-font3" bindinput="inputWelcomeWord" maxlength="30"></input>
+				</view>
+				<view class="words flex_row_center">
+					<view class="label">字体</view>
+					<picker range="{{wordtype}}" value="{{wordtype_index}}" bindchange="selectWordType">
+						<view>{{base_info.word_type.name}}</view>
+					</picker>
+				</view>
+				<view class="size flex_row_center">
+					<view class="label">字体大小</view>
+					<view class="flex_row_center">
+						<block wx:for="{{wordsize_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+							<view wx:if="{{base_info.word_size_info.word_size_id==bean.id}}" class="theme-font1 selected">{{bean.name}}</view>
+							<view wx:else class="theme-font1" bindtap="selectWordSize" data-id="{{bean.id}}" data-wordsize="{{bean.wordsize}}">{{bean.name}}</view>
+						</block>
+						<!-- <view class="theme-font1 selected">中</view>
             <view class="theme-font1">大</view>
             <view class="theme-font1">特大</view> -->
-          </view>
-        </view>
-        <view class="color flex_row_flexStart">
-          <view class="label">字体颜色</view>
-          <view class="weui-grids">
-            <block wx:for="{{color_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view wx:if="{{base_info.word_color_info.color_id == bean.id}}" class="weui-grid selected" style="background-color:{{bean.color}};"></view>
-              <view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}" data-id="{{bean.id}}"></view>
-            </block>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="page-foot flex_row_center_flexEnd theme7">
-      <view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
-      <button class="next theme-button-welcome" form-type="submit">下一步</button>
-    </view>
-  </view>
+					</view>
+				</view>
+				<view class="color flex_row_flexStart">
+					<view class="label">字体颜色</view>
+					<view class="weui-grids">
+						<block wx:for="{{color_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+							<view wx:if="{{base_info.word_color_info.color_id == bean.id}}" class="weui-grid selected" style="background-color:{{bean.color}};"></view>
+							<view wx:else class="weui-grid" style="background-color:{{bean.color}};" bindtap="selectWordColor" data-color="{{bean.color}}" data-id="{{bean.id}}"></view>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="page-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
+			<view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
+			<button class="next theme-button-welcome" form-type="submit">下一步</button>
+		</view>
+	</view>
 </form>
 <!-- 设置文字【第二步】开始 -->
 
 <!-- 选择音乐【第三步】开始 -->
 <form wx:if="{{base_info.step == 2}}" bindsubmit="nextOption">
-  <view class="choose-music-page container flex_column_center_flexStart theme-container">
-    <audio id="music" src="{{play_music_url}}"></audio>
-    <view class="show-panel theme7">
-      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
-      <view class="cover flex_column_center_center">
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
-      </view>
-    </view>
-    <scroll-view class="set-panel " scroll-y="true" scroll-with-animation="true">
-      <view class="wapper theme7">
+	<view class="choose-music-page container flex_column_center_flexStart theme-container">
+		<audio id="music" src="{{play_music_url}}"></audio>
+		<view class="show-panel theme7">
+			<image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
+			<view class="cover flex_column_center_center">
+				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
+			</view>
+		</view>
+		<scroll-view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);" scroll-y="true" scroll-with-animation="true">
+			<view class="wapper theme7">
 
-        <block wx:for="{{music_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <!--选中音乐-->
-          <view wx:if="{{base_info.music_info.music_id==bean.id}}" class="flex_column_flexStart_flexEnd selected">
-            <view class="flex_row_center_spaceBetween">
-              <view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
-              <block wx:if="{{bean.id !=0}}">
-                <image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
-                <image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
-              </block>
-              <!-- <image src="/images/icon/58525C_play.png"></image> -->
-            </view>
-          </view>
-          <!--未选中音乐-->
-          <view wx:else class="flex_column_flexStart_flexEnd">
-            <view class="flex_row_center_spaceBetween">
-              <view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
-              <block wx:if="{{bean.id !=0}}">
-                <image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
-                <image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
-              </block>
+				<block wx:for="{{music_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<!--选中音乐-->
+					<view wx:if="{{base_info.music_info.music_id==bean.id}}" class="flex_column_flexStart_flexEnd selected">
+						<view class="flex_row_center_spaceBetween">
+							<view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
+							<block wx:if="{{bean.id !=0}}">
+								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
+								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+							</block>
+							<!-- <image src="/images/icon/58525C_play.png"></image> -->
+						</view>
+					</view>
+					<!--未选中音乐-->
+					<view wx:else class="flex_column_flexStart_flexEnd">
+						<view class="flex_row_center_spaceBetween">
+							<view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
+							<block wx:if="{{bean.id !=0}}">
+								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
+								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+							</block>
 
-              <!-- <image src="/images/icon/58525C_play.png"></image> -->
-            </view>
-          </view>
-        </block>
+							<!-- <image src="/images/icon/58525C_play.png"></image> -->
+						</view>
+					</view>
+				</block>
 
-      </view>
-    </scroll-view>
-    <view class="page-foot flex_row_center_flexEnd theme7">
-      <view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
-      <!-- <view class="next theme-button-welcome">下一步</view> -->
-      <button class="next theme-button-welcome" form-type="submit">下一步</button>
-    </view>
-  </view>
+			</view>
+		</scroll-view>
+		<view class="page-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
+			<view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
+			<!-- <view class="next theme-button-welcome">下一步</view> -->
+			<button class="next theme-button-welcome" form-type="submit">下一步</button>
+		</view>
+	</view>
 </form>
 <!-- 选择音乐【第三步】开始 -->
 
 <!-- 设置包间时间【第四步】开始 -->
 <form wx:if="{{base_info.step == 3}}" bindsubmit="nextOption">
-  <view class="box-time-page container flex_column_center_flexStart theme-container">
-    <view class="show-panel theme7">
-      <image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
-      <view class="cover flex_column_center_center">
-        <view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
-      </view>
-    </view>
-    <view class="set-panel">
-      <view class="music flex_row_center_spaceBetween theme7" wx:if="{{base_info.music_info.music_id!=0}}">
-        <view>{{base_info.music_info.music_name}}</view>
-        <image src="/images/icon/58525C_play.png"></image>
-      </view>
-      <view class="datetime flex_column_flexStart_center theme7">
-        <radio-group class="flex_column_flexStart_center" bindchange="swichPlayType">
-          <view class="flex_row_center">
-            <radio wx:if="{{base_info.play_info.play_type==1}}" checked="true" value="1">立即播放</radio>
-            <radio wx:else value="1">立即播放</radio>
-          </view>
-          <view class="flex_column_flexStart_center">
-            <radio wx:if="{{base_info.play_info.play_type==2}}" checked="true" value="2">定时播放</radio>
-            <radio wx:else value="2">定时播放</radio>
-            <view class="flex_row_center">
-              <picker class="date theme-font3" mode="date" start="{{start_date}}" end="2099-09-01" bindchange="selectData">
-                <view wx:if="{{base_info.play_info.play_date==''}}">请选择日期</view>
-                <view wx:else>{{base_info.play_info.play_date}}</view>
-              </picker>
-              <picker class="time theme-font3" mode="time" start="00:00" end="23:59" bindchange="selectTiming">
-                <view wx:if="{{base_info.play_info.timing==''}}">请选择时间</view>
-                <view wx:else>{{base_info.play_info.timing}}</view>
-              </picker>
-            </view>
-          </view>
-        </radio-group>
-      </view>
-      <view class="box flex_column_flexStart_center theme7">
-        <view>播放包间</view>
-        <picker class="theme-font3" range="{{objectBoxArray}}" value="{{boxIndex}}" bindchange="selectRoom">
-          <view class="flex_row_center_spaceBetween">
-            <view>{{objectBoxArray[boxIndex]}}</view>
-            <image src="/images/icon/A18668_down_horn.png"></image>
-          </view>
-        </picker>
-      </view>
-    </view>
-    <view class="page-foot flex_row_center_flexEnd theme7">
-      <view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
-      <!-- <view class="next theme-button-welcome">下一步</view> -->
-      <button class="next theme-button-welcome" form-type="submit" disabled="{{completeBtn}}">完成</button>
-    </view>
-  </view>
+	<view class="box-time-page container flex_column_center_flexStart theme-container">
+		<view class="show-panel theme7">
+			<image class="box" mode="aspectFill" src="{{base_info.img_info.choose_img_url}}"></image>
+			<view class="cover flex_column_center_center">
+				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
+			</view>
+		</view>
+		<view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
+			<view class="music flex_row_center_spaceBetween theme7" wx:if="{{base_info.music_info.music_id!=0}}">
+				<view>{{base_info.music_info.music_name}}</view>
+				<image src="/images/icon/58525C_play.png"></image>
+			</view>
+			<view class="datetime flex_column_flexStart_center theme7">
+				<radio-group class="flex_column_flexStart_center" bindchange="swichPlayType">
+					<view class="flex_row_center">
+						<radio wx:if="{{base_info.play_info.play_type==1}}" checked="true" value="1">立即播放</radio>
+						<radio wx:else value="1">立即播放</radio>
+					</view>
+					<view class="flex_column_flexStart_center">
+						<radio wx:if="{{base_info.play_info.play_type==2}}" checked="true" value="2">定时播放</radio>
+						<radio wx:else value="2">定时播放</radio>
+						<view class="flex_row_center">
+							<picker class="date theme-font3" mode="date" start="{{start_date}}" end="2099-09-01" bindchange="selectData">
+								<view wx:if="{{base_info.play_info.play_date==''}}">请选择日期</view>
+								<view wx:else>{{base_info.play_info.play_date}}</view>
+							</picker>
+							<picker class="time theme-font3" mode="time" start="00:00" end="23:59" bindchange="selectTiming">
+								<view wx:if="{{base_info.play_info.timing==''}}">请选择时间</view>
+								<view wx:else>{{base_info.play_info.timing}}</view>
+							</picker>
+						</view>
+					</view>
+				</radio-group>
+			</view>
+			<view class="box flex_column_flexStart_center theme7">
+				<view>播放包间</view>
+				<picker class="theme-font3" range="{{objectBoxArray}}" value="{{boxIndex}}" bindchange="selectRoom">
+					<view class="flex_row_center_spaceBetween">
+						<view>{{objectBoxArray[boxIndex]}}</view>
+						<image src="/images/icon/A18668_down_horn.png"></image>
+					</view>
+				</picker>
+			</view>
+		</view>
+		<view class="page-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
+			<view class="prev theme-button-welcome-dark" bindtap="lastOption" data-step="{{base_info.step}}">上一步</view>
+			<!-- <view class="next theme-button-welcome">下一步</view> -->
+			<button class="next theme-button-welcome" form-type="submit" disabled="{{completeBtn}}">完成</button>
+		</view>
+	</view>
 </form>
 <!-- 设置包间时间【第四步】开始 -->

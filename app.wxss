@@ -15,7 +15,8 @@
   white-space: nowrap;
 }
 
-button::after, button::before {
+button::after,
+button::before {
   margin: unset;
   padding: unset;
   border: unset;
@@ -71,120 +72,224 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   white-space: nowrap;
 }
 
-.flex_row_flexStart, .flex_row_flexStart_flexStart, .flex_row_flexStart_flexEnd,
-.flex_row_flexStart_start, .flex_row_flexStart_end, .flex_row_flexStart_center,
-.flex_row_flexStart_spaceBetween, .flex_row_flexStart_spaceAround,
-.flex_row_center, .flex_row_center_flexStart, .flex_row_center_flexEnd,
-.flex_row_center_start, .flex_row_center_end, .flex_row_center_center,
-.flex_row_center_spaceBetween, .flex_row_center_spaceAround, .flex_row_flexEnd,
-.flex_row_flexEnd_flexStart, .flex_row_flexEnd_flexEnd, .flex_row_flexEnd_start,
-.flex_row_flexEnd_end, .flex_row_flexEnd_center, .flex_row_flexEnd_spaceBetween,
-.flex_row_flexEnd_spaceAround, .flex_column_flexStart,
-.flex_column_flexStart_flexStart, .flex_column_flexStart_flexEnd,
-.flex_column_flexStart_start, .flex_column_flexStart_end,
-.flex_column_flexStart_center, .flex_column_flexStart_spaceBetween,
-.flex_column_flexStart_spaceAround, .flex_column_center,
-.flex_column_center_flexStart, .flex_column_center_flexEnd,
-.flex_column_center_start, .flex_column_center_end, .flex_column_center_center,
-.flex_column_center_spaceBetween, .flex_column_center_spaceAround,
-.flex_column_flexEnd, .flex_column_flexEnd_flexStart,
-.flex_column_flexEnd_flexEnd, .flex_column_flexEnd_start,
-.flex_column_flexEnd_end, .flex_column_flexEnd_center,
-.flex_column_flexEnd_spaceBetween, .flex_column_flexEnd_spaceAround {
+.flex_row_flexStart,
+.flex_row_flexStart_flexStart,
+.flex_row_flexStart_flexEnd,
+.flex_row_flexStart_start,
+.flex_row_flexStart_end,
+.flex_row_flexStart_center,
+.flex_row_flexStart_spaceBetween,
+.flex_row_flexStart_spaceAround,
+.flex_row_center,
+.flex_row_center_flexStart,
+.flex_row_center_flexEnd,
+.flex_row_center_start,
+.flex_row_center_end,
+.flex_row_center_center,
+.flex_row_center_spaceBetween,
+.flex_row_center_spaceAround,
+.flex_row_flexEnd,
+.flex_row_flexEnd_flexStart,
+.flex_row_flexEnd_flexEnd,
+.flex_row_flexEnd_start,
+.flex_row_flexEnd_end,
+.flex_row_flexEnd_center,
+.flex_row_flexEnd_spaceBetween,
+.flex_row_flexEnd_spaceAround,
+.flex_column_flexStart,
+.flex_column_flexStart_flexStart,
+.flex_column_flexStart_flexEnd,
+.flex_column_flexStart_start,
+.flex_column_flexStart_end,
+.flex_column_flexStart_center,
+.flex_column_flexStart_spaceBetween,
+.flex_column_flexStart_spaceAround,
+.flex_column_center,
+.flex_column_center_flexStart,
+.flex_column_center_flexEnd,
+.flex_column_center_start,
+.flex_column_center_end,
+.flex_column_center_center,
+.flex_column_center_spaceBetween,
+.flex_column_center_spaceAround,
+.flex_column_flexEnd,
+.flex_column_flexEnd_flexStart,
+.flex_column_flexEnd_flexEnd,
+.flex_column_flexEnd_start,
+.flex_column_flexEnd_end,
+.flex_column_flexEnd_center,
+.flex_column_flexEnd_spaceBetween,
+.flex_column_flexEnd_spaceAround {
   display: flex;
 }
 
-.flex_row_flexStart, .flex_row_flexStart_flexStart, .flex_row_flexStart_flexEnd,
-.flex_row_flexStart_start, .flex_row_flexStart_end, .flex_row_flexStart_center,
-.flex_row_flexStart_spaceBetween, .flex_row_flexStart_spaceAround,
-.flex_row_center, .flex_row_center_flexStart, .flex_row_center_flexEnd,
-.flex_row_center_start, .flex_row_center_end, .flex_row_center_center,
-.flex_row_center_spaceBetween, .flex_row_center_spaceAround, .flex_row_flexEnd,
-.flex_row_flexEnd_flexStart, .flex_row_flexEnd_flexEnd, .flex_row_flexEnd_start,
-.flex_row_flexEnd_end, .flex_row_flexEnd_center, .flex_row_flexEnd_spaceBetween,
+.flex_row_flexStart,
+.flex_row_flexStart_flexStart,
+.flex_row_flexStart_flexEnd,
+.flex_row_flexStart_start,
+.flex_row_flexStart_end,
+.flex_row_flexStart_center,
+.flex_row_flexStart_spaceBetween,
+.flex_row_flexStart_spaceAround,
+.flex_row_center,
+.flex_row_center_flexStart,
+.flex_row_center_flexEnd,
+.flex_row_center_start,
+.flex_row_center_end,
+.flex_row_center_center,
+.flex_row_center_spaceBetween,
+.flex_row_center_spaceAround,
+.flex_row_flexEnd,
+.flex_row_flexEnd_flexStart,
+.flex_row_flexEnd_flexEnd,
+.flex_row_flexEnd_start,
+.flex_row_flexEnd_end,
+.flex_row_flexEnd_center,
+.flex_row_flexEnd_spaceBetween,
 .flex_row_flexEnd_spaceAround {
   flex-direction: row;
 }
 
-.flex_column_flexStart, .flex_column_flexStart_flexStart,
-.flex_column_flexStart_flexEnd, .flex_column_flexStart_start,
-.flex_column_flexStart_end, .flex_column_flexStart_center,
-.flex_column_flexStart_spaceBetween, .flex_column_flexStart_spaceAround,
-.flex_column_center, .flex_column_center_flexStart, .flex_column_center_flexEnd,
-.flex_column_center_start, .flex_column_center_end, .flex_column_center_center,
-.flex_column_center_spaceBetween, .flex_column_center_spaceAround,
-.flex_column_flexEnd, .flex_column_flexEnd_flexStart,
-.flex_column_flexEnd_flexEnd, .flex_column_flexEnd_start,
-.flex_column_flexEnd_end, .flex_column_flexEnd_center,
-.flex_column_flexEnd_spaceBetween, .flex_column_flexEnd_spaceAround {
+.flex_column_flexStart,
+.flex_column_flexStart_flexStart,
+.flex_column_flexStart_flexEnd,
+.flex_column_flexStart_start,
+.flex_column_flexStart_end,
+.flex_column_flexStart_center,
+.flex_column_flexStart_spaceBetween,
+.flex_column_flexStart_spaceAround,
+.flex_column_center,
+.flex_column_center_flexStart,
+.flex_column_center_flexEnd,
+.flex_column_center_start,
+.flex_column_center_end,
+.flex_column_center_center,
+.flex_column_center_spaceBetween,
+.flex_column_center_spaceAround,
+.flex_column_flexEnd,
+.flex_column_flexEnd_flexStart,
+.flex_column_flexEnd_flexEnd,
+.flex_column_flexEnd_start,
+.flex_column_flexEnd_end,
+.flex_column_flexEnd_center,
+.flex_column_flexEnd_spaceBetween,
+.flex_column_flexEnd_spaceAround {
   flex-direction: column;
 }
 
-.flex_row_flexStart, .flex_row_flexStart_flexStart, .flex_row_flexStart_flexEnd,
-.flex_row_flexStart_start, .flex_row_flexStart_end, .flex_row_flexStart_center,
-.flex_row_flexStart_spaceBetween, .flex_row_flexStart_spaceAround,
-.flex_column_flexStart, .flex_column_flexStart_flexStart,
-.flex_column_flexStart_flexEnd, .flex_column_flexStart_start,
-.flex_column_flexStart_end, .flex_column_flexStart_center,
-.flex_column_flexStart_spaceBetween, .flex_column_flexStart_spaceAround {
+.flex_row_flexStart,
+.flex_row_flexStart_flexStart,
+.flex_row_flexStart_flexEnd,
+.flex_row_flexStart_start,
+.flex_row_flexStart_end,
+.flex_row_flexStart_center,
+.flex_row_flexStart_spaceBetween,
+.flex_row_flexStart_spaceAround,
+.flex_column_flexStart,
+.flex_column_flexStart_flexStart,
+.flex_column_flexStart_flexEnd,
+.flex_column_flexStart_start,
+.flex_column_flexStart_end,
+.flex_column_flexStart_center,
+.flex_column_flexStart_spaceBetween,
+.flex_column_flexStart_spaceAround {
   align-items: flex-start;
 }
 
-.flex_row_center, .flex_row_center_flexStart, .flex_row_center_flexEnd,
-.flex_row_center_start, .flex_row_center_end, .flex_row_center_center,
-.flex_row_center_spaceBetween, .flex_row_center_spaceAround, .flex_column_center,
-.flex_column_center_flexStart, .flex_column_center_flexEnd,
-.flex_column_center_start, .flex_column_center_end, .flex_column_center_center,
-.flex_column_center_spaceBetween, .flex_column_center_spaceAround {
+.flex_row_center,
+.flex_row_center_flexStart,
+.flex_row_center_flexEnd,
+.flex_row_center_start,
+.flex_row_center_end,
+.flex_row_center_center,
+.flex_row_center_spaceBetween,
+.flex_row_center_spaceAround,
+.flex_column_center,
+.flex_column_center_flexStart,
+.flex_column_center_flexEnd,
+.flex_column_center_start,
+.flex_column_center_end,
+.flex_column_center_center,
+.flex_column_center_spaceBetween,
+.flex_column_center_spaceAround {
   align-items: center;
 }
 
-.flex_row_flexEnd, .flex_row_flexEnd_flexStart, .flex_row_flexEnd_flexEnd,
-.flex_row_flexEnd_start, .flex_row_flexEnd_end, .flex_row_flexEnd_center,
-.flex_row_flexEnd_spaceBetween, .flex_row_flexEnd_spaceAround,
-.flex_column_flexEnd, .flex_column_flexEnd_flexStart,
-.flex_column_flexEnd_flexEnd, .flex_column_flexEnd_start,
-.flex_column_flexEnd_end, .flex_column_flexEnd_center,
-.flex_column_flexEnd_spaceBetween, .flex_column_flexEnd_spaceAround {
+.flex_row_flexEnd,
+.flex_row_flexEnd_flexStart,
+.flex_row_flexEnd_flexEnd,
+.flex_row_flexEnd_start,
+.flex_row_flexEnd_end,
+.flex_row_flexEnd_center,
+.flex_row_flexEnd_spaceBetween,
+.flex_row_flexEnd_spaceAround,
+.flex_column_flexEnd,
+.flex_column_flexEnd_flexStart,
+.flex_column_flexEnd_flexEnd,
+.flex_column_flexEnd_start,
+.flex_column_flexEnd_end,
+.flex_column_flexEnd_center,
+.flex_column_flexEnd_spaceBetween,
+.flex_column_flexEnd_spaceAround {
   align-items: flex-end;
 }
 
-.flex_row_flexStart_flexStart, .flex_row_center_flexStart,
-.flex_row_flexEnd_flexStart, .flex_column_flexStart_flexStart,
-.flex_column_center_flexStart, .flex_column_flexEnd_flexStart {
+.flex_row_flexStart_flexStart,
+.flex_row_center_flexStart,
+.flex_row_flexEnd_flexStart,
+.flex_column_flexStart_flexStart,
+.flex_column_center_flexStart,
+.flex_column_flexEnd_flexStart {
   justify-content: flex-start;
 }
 
-.flex_row_flexStart_flexEnd, .flex_row_center_flexEnd, .flex_row_flexEnd_flexEnd,
-.flex_column_flexStart_flexEnd, .flex_column_center_flexEnd,
+.flex_row_flexStart_flexEnd,
+.flex_row_center_flexEnd,
+.flex_row_flexEnd_flexEnd,
+.flex_column_flexStart_flexEnd,
+.flex_column_center_flexEnd,
 .flex_column_flexEnd_flexEnd {
   justify-content: flex-end;
 }
 
-.flex_row_flexStart_start, .flex_row_center_start, .flex_row_flexEnd_start,
-.flex_column_flexStart_start, .flex_column_center_start,
+.flex_row_flexStart_start,
+.flex_row_center_start,
+.flex_row_flexEnd_start,
+.flex_column_flexStart_start,
+.flex_column_center_start,
 .flex_column_flexEnd_start {
   justify-content: start;
 }
 
-.flex_row_flexStart_end, .flex_row_center_end, .flex_row_flexEnd_end,
-.flex_column_flexStart_end, .flex_column_center_end, .flex_column_flexEnd_end {
+.flex_row_flexStart_end,
+.flex_row_center_end,
+.flex_row_flexEnd_end,
+.flex_column_flexStart_end,
+.flex_column_center_end,
+.flex_column_flexEnd_end {
   justify-content: end;
 }
 
-.flex_row_flexStart_center, .flex_row_center_center, .flex_row_flexEnd_center,
-.flex_column_flexStart_center, .flex_column_center_center,
+.flex_row_flexStart_center,
+.flex_row_center_center,
+.flex_row_flexEnd_center,
+.flex_column_flexStart_center,
+.flex_column_center_center,
 .flex_column_flexEnd_center {
   justify-content: center;
 }
 
-.flex_row_flexStart_spaceBetween, .flex_row_center_spaceBetween,
-.flex_row_flexEnd_spaceBetween, .flex_column_flexStart_spaceBetween,
-.flex_column_center_spaceBetween, .flex_column_flexEnd_spaceBetween {
+.flex_row_flexStart_spaceBetween,
+.flex_row_center_spaceBetween,
+.flex_row_flexEnd_spaceBetween,
+.flex_column_flexStart_spaceBetween,
+.flex_column_center_spaceBetween,
+.flex_column_flexEnd_spaceBetween {
   justify-content: space-between;
 }
 
-.flex_row_flexStart_spaceAround, .flex_row_center_spaceAround,
+.flex_row_flexStart_spaceAround,
+.flex_row_center_spaceAround,
 .flex_row_flexEnd_spaceAround,
 .flex_column_flexStart_spaceAround.flex_column_center_spaceAround.flex_column_flexEnd_spaceAround {
   justify-content: space-around;
