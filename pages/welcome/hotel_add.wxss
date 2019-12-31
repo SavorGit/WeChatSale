@@ -1,6 +1,6 @@
 /* pages/welcome/hotel_add.wxss */
 
-@font-face {
+/* @font-face {
   font-family: '王羲之书法字体';
   src: url('https://dev-oss.littlehotspot.com/media/resource/BiwF4bWprA.ttf');
 }
@@ -13,7 +13,7 @@
 @font-face {
   font-family: '汉仪中隶书简';
   src: url('https://dev-oss.littlehotspot.com/media/resource/cErBA5BAsC.ttf');
-}
+} */
 
 .tab-head {
   width: 100%;
