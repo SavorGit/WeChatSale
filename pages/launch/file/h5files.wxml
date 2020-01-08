@@ -1,0 +1,2 @@
+<!--pages/forscreen/forfile/h5files.wxml-->
+<web-view src="{{web_url}}"></web-view>

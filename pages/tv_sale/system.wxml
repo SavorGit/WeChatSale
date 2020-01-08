@@ -169,7 +169,7 @@
 
     <!-- 我的活动[列表] -->
     <block wx:if="{{showPageType == 3 && hotel_activity==true}}">
-      <block wx:if="{{is_my_activity == 0}}">
+      <block >
         <view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
           <view class="ads-mine full_width full_height flex_column_center">
             <view class="btn-ads-mine theme-button-welcome">添加我的活动</view>

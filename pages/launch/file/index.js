@@ -4,7 +4,6 @@ const app = getApp()
 var api_url = app.globalData.api_url;
 var openid;
 var box_mac;
-var is_open_simple;
 var policy;
 var signature;
 var oss_bucket = app.globalData.oss_bucket;
@@ -13,6 +12,7 @@ var oss_upload_url = app.globalData.oss_upload_url;
 var mobile_brand = app.globalData.mobile_brand;
 var mobile_model = app.globalData.mobile_model;
 var pos_id = 0;   //当前播放的文件图片索引
+var cache_key = app.globalData.cache_key;
 Page({
 
   /**
@@ -35,11 +35,9 @@ Page({
     var that = this;
     openid  = options.openid;
     box_mac = options.box_mac;
-    is_open_simple = options.is_open_simple;
     that.setData({
       openid:openid,
       box_mac:box_mac,
-      is_open_simple: is_open_simple
     })
 
     wx.request({
@@ -295,7 +293,7 @@ Page({
       var file_arr = forscreen_img.split('/');
       var file_length = file_arr.length - 1;
       var filename = file_arr[file_length - 2] + '_' + file_arr[file_length - 1] + '_' + file_arr[file_length];
-      var user_info = wx.getStorageSync("savor_user_info");
+      var user_info = wx.getStorageSync(cache_key + 'userinfo');
       var avatarUrl = user_info.avatarUrl;
       var nickName = user_info.nickName;
 
@@ -324,7 +322,8 @@ Page({
               resource_type: 1,
               mobile_brand: mobile_brand,
               mobile_model: mobile_model,
-              imgs: '["' + forscreen_img + '"]'
+              imgs: '["' + forscreen_img + '"]',
+              small_app_id:5
             },
           });
         },
@@ -341,7 +340,7 @@ Page({
     //console.log(e);
     var that = this;
 
-    var user_info = wx.getStorageSync("savor_user_info");
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var avatarUrl = user_info.avatarUrl;
     var nickName = user_info.nickName;
     var file_imgs = e.currentTarget.dataset.file_imgs;
@@ -446,7 +445,7 @@ Page({
     var forscreen_img = e.currentTarget.dataset.forscreen_img;  //图片的oss地址
     var filename = e.currentTarget.dataset.filename;            //文件名称
     var forscreen_id = e.currentTarget.dataset.forscreen_id;    //投屏唯一标识
-    var user_info = wx.getStorageSync("savor_user_info");
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var avatarUrl = user_info.avatarUrl;
     var nickName = user_info.nickName;
     var file_arr = forscreen_img.split('/');
@@ -477,7 +476,8 @@ Page({
             resource_type: 1,
             mobile_brand: mobile_brand,
             mobile_model: mobile_model,
-            imgs: '["' + forscreen_img + '"]'
+            imgs: '["' + forscreen_img + '"]',
+            small_app_id:5
           },
         });
       },
@@ -746,7 +746,7 @@ Page({
       var file_arr = forscreen_img.split('/');
       var file_length = file_arr.length - 1;
       var filename = file_arr[file_length - 2] + '_' + file_arr[file_length - 1] + '_' + file_arr[file_length];
-      var user_info = wx.getStorageSync("savor_user_info");
+      var user_info = wx.getStorageSync(cache_key + 'userinfo');
       var avatarUrl = user_info.avatarUrl;
       var nickName = user_info.nickName;
 
@@ -775,7 +775,8 @@ Page({
               resource_type: 1,
               mobile_brand: mobile_brand,
               mobile_model: mobile_model,
-              imgs: '["' + forscreen_img + '"]'
+              imgs: '["' + forscreen_img + '"]',
+              small_app_id:5
             },
           });
         },

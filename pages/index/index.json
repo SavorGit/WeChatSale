@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "MailList": "/components/modal/MailList",
-    "modal": "/components/modal/modal"
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal"
   }
 }

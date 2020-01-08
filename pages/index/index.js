@@ -371,12 +371,66 @@ Page({
   
   gotoForFile:function(e){
     //app.showToast('敬请期待');
-    wx.navigateTo({
-      url: '/pages/launch/file/index',
-    })
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    if (user_info.is_wx_auth != 3) {
+      that.setData({
+        showWXAuthLogin: true
+      })
+    } else {
+      var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+      var mobile = user_info.mobile;
+      var box_mac = link_box_info.box_mac;
+      if (box_mac == '' || box_mac == undefined) {
+        wx.showToast({
+          title: '请选择包间电视',
+          icon: 'none',
+          duration: 2000
+        });
+      } else {
+        console.log('dddd');
+        that.setData({
+          showMe: true,
+        })
+      }
+    }
     mta.Event.stat("clickforfile", {})
   },
-
+  //微信好友文件
+  wxFriendfiles: function(e) {
+    var that = this;
+    var box_mac = e.currentTarget.dataset.boxmac;
+    var openid = e.currentTarget.dataset.openid;
+    var is_open_simple = e.currentTarget.dataset.is_open_simple;
+    wx.navigateTo({
+      url: '/pages/launch/file/index?box_mac=' + box_mac + '&openid=' + openid ,
+      success: function(e) {
+        that.setData({
+          showMe: false
+        })
+      }
+    })
+  },
+  phonefiles: function(e) {
+    var that = this;
+    var box_mac = e.currentTarget.dataset.boxmac;
+    var openid = e.currentTarget.dataset.openid;
+    var is_open_simple = e.currentTarget.dataset.is_open_simple;
+    wx.navigateTo({
+      url: '/pages/launch/file/h5files?box_mac=' + box_mac + '&openid=' + openid ,
+      success: function(e) {
+        that.setData({
+          showMe: false
+        })
+      }
+    })
+  },
+  modalCancel: function(e) {
+    var that = this;
+    that.setData({
+      showMe: false,
+    })
+  },
   signIn: function(e) {
     var that = this;
     var box_mac = e.currentTarget.dataset.box_mac;
