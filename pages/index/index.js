@@ -370,7 +370,10 @@ Page({
   },
   
   gotoForFile:function(e){
-    app.showToast('敬请期待');
+    //app.showToast('敬请期待');
+    wx.navigateTo({
+      url: '/pages/launch/file/index',
+    })
     mta.Event.stat("clickforfile", {})
   },
 
