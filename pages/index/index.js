@@ -437,73 +437,81 @@ Page({
     var keys = e.currentTarget.dataset.keys;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
-    //sign_box_list
-    wx.request({
-      url: api_v_url + '/user/signin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: {
-        box_mac: box_mac,
-        openid: openid,
-      },
-      success: function(res) {
-        if (res.data.code == 10000) {
-          if (res.data.result.status == 2) {
-            for (var i = 0; i < sign_box_list.length; i++) {
-              if (keys == i) {
-                sign_box_list[i].status = 2;
-                sign_box_list[i].user = {
-                  "avatarUrl": user_info.avatarUrl,
-                  "nickName": user_info.nickName,
-                  "openid": user_info.openid,
-                  "user_id": user_info.user_id
-                };
+    if(user_info.is_wx_auth!=3){
+      that.setData({
+        showWXAuthLogin: true,
+
+      })
+    }else {
+      wx.request({
+        url: api_v_url + '/user/signin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          box_mac: box_mac,
+          openid: openid,
+        },
+        success: function(res) {
+          if (res.data.code == 10000) {
+            if (res.data.result.status == 2) {
+              for (var i = 0; i < sign_box_list.length; i++) {
+                if (keys == i) {
+                  sign_box_list[i].status = 2;
+                  sign_box_list[i].user = {
+                    "avatarUrl": user_info.avatarUrl,
+                    "nickName": user_info.nickName,
+                    "openid": user_info.openid,
+                    "user_id": user_info.user_id
+                  };
+                }
               }
+              that.setData({
+                sign_box_list: sign_box_list,
+              })
+              wx.showToast({
+                title: '签到成功',
+                icon: 'none',
+                duration: 2000
+              })
+              //数据埋点-点击包间签到
+              mta.Event.stat('indexRoomSign', { 'boxmac': box_mac,'openid':openid })
+            } else {
+              for (var i = 0; i < sign_box_list.length; i++) {
+                if (keys == i) {
+                  sign_box_list[i].status = 2;
+                  sign_box_list[i].user = {
+                    "avatarUrl": res.data.result.user.avatarUrl,
+                    "nickName": res.data.result.user.nickName,
+                    "openid": user_info.openid,
+                    "user_id": user_info.user_id
+                  };
+                }
+              }
+              var err_desc = '该包间已由' + res.data.result.user.nickName + '签到';
+              that.setData({
+                sign_box_list: sign_box_list,
+              })
+              wx.showToast({
+                title: err_desc,
+                icon: 'none',
+                duration: 2000
+              })
             }
-            that.setData({
-              sign_box_list: sign_box_list,
-            })
-            wx.showToast({
-              title: '签到成功',
-              icon: 'none',
-              duration: 2000
-            })
-            //数据埋点-点击包间签到
-            mta.Event.stat('indexRoomSign', { 'boxmac': box_mac,'openid':openid })
+  
+  
           } else {
-            for (var i = 0; i < sign_box_list.length; i++) {
-              if (keys == i) {
-                sign_box_list[i].status = 2;
-                sign_box_list[i].user = {
-                  "avatarUrl": res.data.result.user.avatarUrl,
-                  "nickName": res.data.result.user.nickName,
-                  "openid": user_info.openid,
-                  "user_id": user_info.user_id
-                };
-              }
-            }
-            var err_desc = '该包间已由' + res.data.result.user.nickName + '签到';
-            that.setData({
-              sign_box_list: sign_box_list,
-            })
             wx.showToast({
-              title: err_desc,
+              title: '签到失败，请重试',
               icon: 'none',
               duration: 2000
             })
           }
-
-
-        } else {
-          wx.showToast({
-            title: '签到失败，请重试',
-            icon: 'none',
-            duration: 2000
-          })
         }
-      }
-    })
+      })
+    }
+    //sign_box_list
+    
 
   },
   repeatSign: function(e) {
