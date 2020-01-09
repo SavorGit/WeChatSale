@@ -23,6 +23,18 @@ button::before {
   background-color: unset;
 }
 
+.button_none,
+.button_none::before,
+.button_none::after {
+  margin: inherit;
+  border: inherit;
+  padding: inherit;
+  border-radius: inherit;
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
 radio .wx-radio-input {
   width: 30rpx;
   height: 30rpx;
@@ -46,10 +58,10 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .container {
   width: 100vw;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; */
   color: #fff;
   background-color: #06111a;
 }

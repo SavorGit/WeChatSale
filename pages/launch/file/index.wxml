@@ -34,8 +34,8 @@
 			</view>
 		</scroll-view>
 		<view class="operation flex_row_center_center theme-panel-2">
-			<button class="rechoose theme-button" bindtap="reChooseFile">重选文件</button>
-			<button class="quit theme-button5" bindtap="exitForscreend" data-openid="{{openid}}" data-box_mac="{{box_mac}}">退出投屏</button>
+			<button class="rechoose theme-button-welcome" bindtap="reChooseFile">重选文件</button>
+			<button class="quit theme-button-welcome-dark" bindtap="exitForscreend" data-openid="{{openid}}" data-box_mac="{{box_mac}}">退出投屏</button>
 			<button class="previous flex_column_center_center font_333333_24" bindtap="changePic" data-action="1" data-file_imgs="{{file_imgs}}" data-pos_id="{{pos_id}}" data-forscreen_id="{{forscreen_id}}">
 				<label class="fa fa-chevron-circle-left"></label>
 				<label>播放上一页</label>
