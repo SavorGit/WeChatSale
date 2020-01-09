@@ -193,6 +193,7 @@ page {
 .set_top_box-panel>.scroll-view {
   width: 100%;
   /* height: calc(100% - 100rpx); */
+  padding-bottom: 100rpx;
 }
 
 .set_top_box-panel>.scroll-view .weui-grids {

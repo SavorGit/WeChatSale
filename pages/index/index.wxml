@@ -83,7 +83,7 @@
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<view class="title theme-font4">包间签到赚积分</view>
-		<view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+		<view class="scroll-view">
 			<view class='weui-grids'>
 				<block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class='weui-grid' wx:if="{{bean.status==2}}">
