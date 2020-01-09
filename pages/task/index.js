@@ -170,6 +170,26 @@ Page({
       setTaskBenefitWindowShow:false,
     })
   },
+  /**
+   * 管理员修改任务分润比例
+   */
+  editTaskShareBenefit:function(e){
+    var that = this;
+    var task_id = e.detail.value.task_id;
+    var bili  = e.detail.value.bili;
+    utils.PostRequest(api_url +'/aa/bb/cc',{
+      task_id : task_id,
+      bili:bili,
+      openid:openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('保存成功')
+      that.setData({
+        setTaskBenefitWindowShow:false,
+      })
+    },res=>{
+      app.showToast('保存失败');
+    })
+  },
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
