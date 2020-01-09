@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <import src="/pages/template/commons" />
 
-<view class="full_width theme-container">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
 
 	<!-- 酒楼、机顶盒、连接情况面板 -->
 	<view class="link-type-panel flex_row_center">
@@ -83,7 +83,7 @@
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<view class="title theme-font4">包间签到赚积分</view>
-		<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+		<view class="scroll-view" scroll-y="true" scroll-with-animation="true">
 			<view class='weui-grids'>
 				<block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class='weui-grid' wx:if="{{bean.status==2}}">
@@ -104,9 +104,9 @@
 					</view>
 				</block>
 			</view>
-		</scroll-view>
+		</view>
 	</view>
-</view>
+</scroll-view>
 
 <!-- 微信授权 -->
 <template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
@@ -127,12 +127,13 @@
 		</view>
 	</view>
 </modal>
+
 <!-- 选择文件弹窗 -->
 <bottomModal show="{{showMe}}" width="98%" height='340rpx' background-color='#FFFFFF' border-radius="20rpx" title-text='' title-color="" confirm-text='' confirm-color="#f6f3ee" cancel-text='' cancel-color='' bindcancel="modalCancel">
-	<view class="flex-column-center-space_between" style='padding: 10rpx; height: 60rpx; line-height: 60rpx; border-bottom: 2rpx solid rgba(246, 243, 238, 0.1);font-size: 30rpx; color: #666666;'>
+	<view class="flex_column_center_spaceBetween" style='padding:10rpx;height:60rpx;line-height:60rpx;border-bottom:2rpx solid rgba(246, 243, 238, 0.1);font-size:30rpx;color:#666666;'>
 		<label>选择要投屏的文件</label>
 	</view>
-	<view class="flex-column-center-center" style="width: 100%; font-size: 32rpx; color: #0076FF;">
+	<view class="flex_column_center_center" style="width:100%;font-size:32rpx;color:#a18668;">
 		<view style="width: 100%; border-top: 1rpx solid rgba(7,17,27,0.1);">
 			<button bindtap="wxFriendfiles" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-is_open_simple="{{is_open_simple}}" class="button_none" style="margin: 0;padding: 0; border: 0;border-radius: 0;">微信好友文件</button>
 		</view>
@@ -142,5 +143,6 @@
 	</view>
 	<view class='cancel-btn' style='flex: 1; margin-top: 10rpx; width: 100%; height: 60rpx; line-height: 60rpx; text-align: center; font-size: 30rpx; color: rgba(7,17,27,0.6);' bindtap='modalCancel'>取消</view>
 </bottomModal>
+
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
