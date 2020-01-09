@@ -19,7 +19,7 @@ Page({
     pageNo: 1, // 当前页码
     taskList: [], // 任务列表数据
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
-    openTaskInWindow: {} // 在任务详情弹窗中打开任务
+    openTaskInWindow: {}, // 在任务详情弹窗中打开任务
   },
 
   /**
@@ -145,6 +145,22 @@ Page({
     that.setData({
       taskDetailWindowShow: false
     });
+  },
+  /**
+   * 
+   * @param {*} requestData 
+   * @param {*} navigateBackOnError 
+   */
+  setShareBenefit:function(e){
+    var that = this;
+    var taskListIndex = e.currentTarget.dataset.index;
+    var taskList = that.data.taskList;
+    var taskInfo = taskList[taskListIndex];
+    that.setData({
+      taskInfo:taskInfo,
+      taskDetailWindowShow: false,
+      setTaskBenefitWindowShow:true,
+    })
   },
 
   /* **************************** 自定义方法 **************************** */
