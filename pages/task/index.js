@@ -177,6 +177,8 @@ Page({
     var that = this;
     var task_id = e.detail.value.task_id;
     var bili  = e.detail.value.bili;
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    var openid = userInfo.openid;
     utils.PostRequest(api_url +'/aa/bb/cc',{
       task_id : task_id,
       bili:bili,
