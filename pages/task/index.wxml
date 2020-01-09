@@ -2,6 +2,7 @@
 <!-- 任务列表 -->
 <import src="/pages/template/commons" />
 <wxs src="../../app.wxs" module="app" />
+
 <view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-main">
   <view class="flex_column_center_center">
     <image mode="widthFix" style="width:400rpx;margin-bottom:50rpx;" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/tasks_default.png"></image>
@@ -30,18 +31,50 @@
 
 <!-- 任务详情弹窗 -->
 <modal show="{{taskDetailWindowShow}}" width="550rpx" height='625rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
-  <view class="task-detail-window flex_column_center">
-    <view class="icon flex_column_center_center theme7">
-      <image wx:if='{{app.typeOf(openTaskInWindow.img_url) == "string" && openTaskInWindow.img_url != ""}}' src="{{openTaskInWindow.img_url}}"></image>
-      <view wx:else class="fa-stack fa-lg">
-        <view class="fa fa-television fa-stack-2x"></view>
-        <view class="fa fa-tasks fa-stack-1x"></view>
-      </view>
-    </view>
-    <view class="package flex_column_center theme7">
-      <view class="name theme-font1">{{openTaskInWindow.task_name}}</view>
-      <scroll-view class="detail" scroll-y="true" scroll-with-animation="true">{{openTaskInWindow.desc}}</scroll-view>
-      <view class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
-    </view>
-  </view>
+	<view class="task-detail-window flex_column_center">
+		<view class="top flex_row_flexEnd_spaceBetween">
+			<view></view>
+			<view class="icon flex_column_center_center theme7">
+				<image wx:if='{{app.typeOf(openTaskInWindow.img_url) == "string" && openTaskInWindow.img_url != ""}}' src="{{openTaskInWindow.img_url}}"></image>
+				<view wx:else class="fa-stack fa-lg">
+					<view class="fa fa-television fa-stack-2x"></view>
+					<view class="fa fa-tasks fa-stack-1x"></view>
+				</view>
+			</view>
+			<view>
+				<view class="fa fa-close"></view>
+			</view>
+		</view>
+		<view class="package flex_column_center theme7">
+			<view class="name theme-font1">{{openTaskInWindow.task_name}}</view>
+			<scroll-view class="detail" scroll-y="true" scroll-with-animation="true">{{openTaskInWindow.desc}}</scroll-view>
+			<!-- <view class="btn-confirm theme-background-9 theme-font4" bindtap=''>分润设置</view> -->
+			<view class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
+		</view>
+	</view>
+</modal>
+
+<!-- 任务分润设置弹窗 -->
+<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='490rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+	<view class="set-task-benefit-window flex_column_center theme7">
+		<view class="top flex_row_flexEnd_spaceBetween">
+			<view></view>
+			<view class="title">任务分润设置</view>
+			<view>
+				<view class="fa fa-close"></view>
+			</view>
+		</view>
+		<view class="main flex_column_center theme7">
+			<form>
+				<view class="desc">每完成一次任务的总额为100%，可设置员工完成任务后的奖励比例，剩余部分归管理员所有。</view>
+        <view class="set flex_row_center_spaceBetween">
+          <label>员工</label>
+          <slider block-size="12" step="10"/>
+          <label>管理员</label>
+        </view>
+				<view class="tip theme-font6">每月可修改3次</view>
+        <button class="btn-save theme-background-9 theme-font4">保存</button>
+			</form>
+		</view>
+	</view>
 </modal>

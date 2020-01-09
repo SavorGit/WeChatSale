@@ -31,7 +31,8 @@
   font-weight: 800;
 }
 
-.info > .name, .info > .detail {
+.info>.name,
+.info>.detail {
   width: 100%;
   height: 50rpx;
   line-height: 50rpx;
@@ -44,17 +45,19 @@
   font-weight: 600;
 }
 
-.profit-and-progress > .profit, .profit-and-progress > .progress {
+.profit-and-progress>.profit,
+.profit-and-progress>.progress {
   width: 100%;
   height: 50rpx;
   line-height: 50rpx;
 }
 
-.profit-and-progress > .profit {
+.profit-and-progress>.profit {
   text-align: center;
 }
 
-.info > .detail, .profit-and-progress > .progress {
+.info>.detail,
+.profit-and-progress>.progress {
   font-size: 24rpx;
 }
 
@@ -65,21 +68,37 @@
   height: 625rpx;
 }
 
-.task-detail-window > .icon {
-  width: 150rpx;
+.task-detail-window>.top {
+  width: 100%;
   height: 150rpx;
-  margin: 0;
-  border-radius: 50%;
   z-index: 2;
 }
 
-.task-detail-window > .icon > image {
+.task-detail-window>.top>view {
+  width: 150rpx;
+  height: 70rpx;
+}
+
+.task-detail-window>.top>.icon {
+  height: 150rpx;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.task-detail-window>.top>.icon>image {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
 }
 
-.task-detail-window > .package {
+.task-detail-window>.top>view:last-child {
+  width: 120rpx;
+  line-height: 70rpx;
+  padding-right: 30rpx;
+  text-align: right;
+}
+
+.task-detail-window>.package {
   width: 100%;
   height: calc(100% - 150rpx);
   margin-top: -75rpx;
@@ -88,7 +107,7 @@
   z-index: 1;
 }
 
-.task-detail-window > .package > .name {
+.task-detail-window>.package>.name {
   width: calc(100% - 40rpx);
   height: 40rpx;
   line-height: 40rpx;
@@ -98,18 +117,90 @@
   font-weight: 900;
 }
 
-.task-detail-window > .package > .detail {
+.task-detail-window>.package>.detail {
   width: calc(100% - 100rpx);
   height: calc(100% - 190rpx);
   padding: 20rpx 50rpx;
   font-size: 28rpx;
 }
 
-.task-detail-window > .package > .btn-confirm {
+.task-detail-window>.package>.btn-confirm {
   width: 400rpx;
   height: 60rpx;
   line-height: 60rpx;
   text-align: center;
   border-radius: 10rpx;
   font-size: 24rpx;
+}
+
+/* ======================= 任务分润设置弹窗 ======================= */
+.set-task-benefit-window {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.set-task-benefit-window>.top {
+  width: calc(100% - 40rpx);
+  height: 98rpx;
+  line-height: 98rpx;
+  margin: 0 20rpx;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.set-task-benefit-window>.top>view {
+  width: 50rpx;
+}
+
+.set-task-benefit-window>.top>.title {
+  width: calc(100% - 100rpx);
+  text-align: center;
+  font-size: 34rpx;
+}
+
+.set-task-benefit-window>.main {
+  width: calc(100% - 70rpx);
+  height: calc(100% - 170rpx);
+  padding: 35rpx 35rpx;
+  font-size: 24rpx;
+}
+
+.set-task-benefit-window>.main .set {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.set-task-benefit-window>.main .set>label {
+  width: 90rpx;
+  display: block;
+  text-align: center;
+}
+
+.set-task-benefit-window>.main .set>slider {
+  width: calc(100% - 180rpx);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.set-task-benefit-window>.main .tip {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 25rpx;
+  text-align: center;
+}
+
+.set-task-benefit-window>.main .btn-save {
+  width: 260rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 5rpx;
+  font-size: 28rpx;
 }

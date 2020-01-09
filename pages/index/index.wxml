@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <import src="/pages/template/commons" />
 
-<view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
+<view class="full_width theme-container">
 
 	<!-- 酒楼、机顶盒、连接情况面板 -->
 	<view class="link-type-panel flex_row_center">
