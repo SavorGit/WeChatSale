@@ -37,7 +37,7 @@ Page({
     wx.getSystemInfo({
       success: function(res) {
         console.log(res);
-        var web_url = api_url+"/h5/fileforscreen?windowHeight=" + res.windowHeight + "&statusBarHeight=" + res.statusBarHeight + "&box_mac=" + box_mac + "&mobile_brand=" + mobile_brand + "&mobile_model=" + mobile_model + "&openid=" + openid 
+        var web_url = api_url+"/h5/fileforscreen?source=sale&windowHeight=" + res.windowHeight + "&statusBarHeight=" + res.statusBarHeight + "&box_mac=" + box_mac + "&mobile_brand=" + mobile_brand + "&mobile_model=" + mobile_model + "&openid=" + openid 
         web_url = encodeURI(web_url);
         console.log(web_url);
         that.setData({
@@ -69,7 +69,7 @@ Page({
     var pageData = pageObje.data;
     if (app.globalData.fromPage == "/pages/launch/file/h5files_result") {
       app.globalData.fromPage = "";
-      var webUrl = api_url+"/h5/fileforscreen?windowHeight=" + pageData.windowHeight + "&statusBarHeight=" + pageData.statusBarHeight + "&box_mac=" + pageData.box_mac + "&mobile_brand=" + pageData.mobile_brand + "&mobile_model=" + pageData.mobile_model + "&openid=" + pageData.openid + "&is_open_simple=" + pageData.is_open_simple + "&time=" + new Date().getTime();
+      var webUrl = api_url+"/h5/fileforscreen?source=sale&windowHeight=" + pageData.windowHeight + "&statusBarHeight=" + pageData.statusBarHeight + "&box_mac=" + pageData.box_mac + "&mobile_brand=" + pageData.mobile_brand + "&mobile_model=" + pageData.mobile_model + "&openid=" + pageData.openid + "&is_open_simple=" + pageData.is_open_simple + "&time=" + new Date().getTime();
       webUrl = encodeURI(webUrl);
       console.log("onShow", pageData, webUrl);
       this.setData({
