@@ -36,7 +36,8 @@ Page({
     tv_forscreen:true,
     signin:true,
     showControlWindow:false,
-    exchangerecord:[] //兑换记录
+    exchangerecord:[],//兑换记录
+    is_have_adv:1,
   },
 
   onLoad: function(res) {
@@ -430,6 +431,21 @@ Page({
     that.setData({
       showMe: false,
     })
+  },
+  /**
+   * 宣传片列表
+   */
+  goToHotelAdv:function(e){
+    var that = this;
+    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+    var box_mac = link_box_info.box_mac;
+    if (box_mac == '' || typeof(box_mac) == 'undefined'){
+      app.showToast('请选择包间电视');
+    }else{
+      wx.navigateTo({
+        url: '/pages/adv/index',
+      })
+    } 
   },
   signIn: function(e) {
     var that = this;
