@@ -90,7 +90,7 @@ page {
 
 .prominent-function-panel {
   width: 680rpx;
-  height: 266rpx;
+  height: 200rpx;
   padding: 33rpx 35rpx;
   margin-top: 10rpx;
 }
@@ -128,7 +128,7 @@ page {
 .prominent-function-panel-2 {
   width: 680rpx;
   height: 300rpx;
-  padding: 20rpx 35rpx;
+  padding: 30rpx 35rpx;
   margin-top: 10rpx;
 }
 

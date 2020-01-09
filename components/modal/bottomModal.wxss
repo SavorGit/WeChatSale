@@ -31,7 +31,6 @@
   display: flex;
   flex-direction: column;
   /* background-color: #932c3f; */
-  margin-bottom: 110rpx;
 }
 
 .modal-btn-wrapper {

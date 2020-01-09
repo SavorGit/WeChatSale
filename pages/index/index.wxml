@@ -129,7 +129,7 @@
 </modal>
 
 <!-- 选择文件弹窗 -->
-<bottomModal show="{{showMe}}" width="98%" height='340rpx' background-color='#FFFFFF' border-radius="20rpx" title-text='' title-color="" confirm-text='' confirm-color="#f6f3ee" cancel-text='' cancel-color='' bindcancel="modalCancel">
+<bottomModal show="{{showMe}}" width="98%" height='340rpx' padding-bottom="calc({{SystemInfo.statusBarHeight}}px + 80rpx)" background-color='#FFFFFF' border-radius="20rpx" title-text='' title-color="" confirm-text='' confirm-color="#f6f3ee" cancel-text='' cancel-color='' bindcancel="modalCancel">
 	<view class="flex_column_center_spaceBetween" style='padding:10rpx;height:60rpx;line-height:60rpx;border-bottom:2rpx solid rgba(246, 243, 238, 0.1);font-size:30rpx;color:#666666;'>
 		<label>选择要投屏的文件</label>
 	</view>
