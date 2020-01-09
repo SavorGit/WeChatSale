@@ -148,8 +148,7 @@ Page({
   },
   /**
    * 
-   * @param {*} requestData 
-   * @param {*} navigateBackOnError 
+   * 点击弹出分润弹框 
    */
   setShareBenefit:function(e){
     var that = this;
@@ -162,7 +161,15 @@ Page({
       setTaskBenefitWindowShow:true,
     })
   },
-
+  /**
+   * 关闭分润弹窗
+   */
+  closeShareBenefit:function(e){
+    var that = this;
+    that.setData({
+      setTaskBenefitWindowShow:false,
+    })
+  },
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;

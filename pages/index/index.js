@@ -37,7 +37,7 @@ Page({
     signin:true,
     showControlWindow:false,
     exchangerecord:[],//兑换记录
-    is_have_adv:1,
+    is_have_adv:0,
   },
 
   onLoad: function(res) {
