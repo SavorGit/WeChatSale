@@ -19,18 +19,21 @@ page {
   padding: 0 25rpx;
 }
 
-.link-type-panel > .hotel, .link-type-panel > .box {
+.link-type-panel>.hotel,
+.link-type-panel>.box {
   width: 50%;
 }
 
-.link-type-panel > .hotel > image, .link-type-panel > .box image {
+.link-type-panel>.hotel>image,
+.link-type-panel>.box image {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
   margin-right: 20rpx;
 }
 
-.link-type-panel > .hotel > .choosed-hotel, .link-type-panel > .box .choosed-box {
+.link-type-panel>.hotel>.choosed-hotel,
+.link-type-panel>.box .choosed-box {
   width: calc(100% - 60rpx);
   font-size: 28rpx;
 }
@@ -41,7 +44,7 @@ page {
   margin-top: 10rpx;
 }
 
-.launch-option-panel > view {
+.launch-option-panel>view {
   width: 90rpx;
   height: 130rpx;
   line-height: unset;
@@ -52,13 +55,13 @@ page {
   background-color: unset;
 }
 
-.launch-option-panel > view > .icon {
+.launch-option-panel>view>.icon {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
 }
 
-.launch-option-panel > view > .title {
+.launch-option-panel>view>.title {
   width: 90rpx;
   height: 90rpx;
   font-size: 24rpx;
@@ -70,18 +73,18 @@ page {
   margin-top: 10rpx;
 }
 
-.broadcast-panel > .icon {
+.broadcast-panel>.icon {
   width: 40rpx;
   height: 30rpx;
   margin: 0 35rpx;
 }
 
-.broadcast-panel > .broadcast-list {
+.broadcast-panel>.broadcast-list {
   width: calc(100% - 110rpx);
   height: 36rpx;
 }
 
-.broadcast-panel > .broadcast-list swiper-item {
+.broadcast-panel>.broadcast-list swiper-item {
   font-size: 24rpx;
 }
 
@@ -92,7 +95,7 @@ page {
   margin-top: 10rpx;
 }
 
-.prominent-function-panel > .botton {
+.prominent-function-panel>.botton {
   width: 330rpx;
   height: 200rpx;
   margin-left: 20rpx;
@@ -101,54 +104,104 @@ page {
   background-size: 332rpx 200rpx;
 }
 
-.prominent-function-panel > .botton.btn-welcome_speech {
-  background-image: url('http://redian-produce.oss-cn-beijing.aliyuncs.com/WeChat/WeChatSale/pages/index/welcome_speech.png');
-}
-
-.prominent-function-panel > .botton.btn-birthday_song {
-  background-image: url('http://redian-produce.oss-cn-beijing.aliyuncs.com/WeChat/WeChatSale/pages/index/birthday_song.png');
-}
-
-.prominent-function-panel > .botton:first-child {
-  margin-left: 0;
-}
-
-.prominent-function-panel > .botton > .title {
+.prominent-function-panel>.botton>.title {
   font-size: 32rpx;
   font-weight: bold;
 }
 
-.prominent-function-panel > .botton > .desc {
+.prominent-function-panel>.botton>.desc {
   font-size: 22rpx;
+}
+
+.prominent-function-panel>.botton.btn-welcome_speech {
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech.png');
+}
+
+.prominent-function-panel>.botton.btn-birthday_song {
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song.png');
+}
+
+.prominent-function-panel>.botton:first-child {
+  margin-left: 0;
+}
+
+.prominent-function-panel-2 {
+  width: 680rpx;
+  height: 300rpx;
+  padding: 20rpx 35rpx;
+  margin-top: 10rpx;
+}
+
+.prominent-function-panel-2 .botton {
+  width: 295rpx;
+  height: 140rpx;
+  padding-left: 35rpx;
+  border-radius: 5rpx;
+  background-size: 330rpx 140rpx;
+}
+
+.prominent-function-panel-2 .botton>.title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.prominent-function-panel-2 .botton>.desc {
+  font-size: 22rpx;
+}
+
+.prominent-function-panel-2>.left,
+.prominent-function-panel-2>.right {
+  width: 330rpx;
+  height: 300rpx;
+}
+
+.prominent-function-panel-2>.right {
+  margin-left: 20rpx;
+}
+
+.prominent-function-panel-2>.left>.botton.btn-welcome_speech {
+  height: 300rpx;
+  background-size: 330rpx 300rpx;
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech-2.png');
+}
+
+.prominent-function-panel-2>.right>.botton.btn-birthday_song {
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song-2.png');
+}
+
+.prominent-function-panel-2>.right>.botton.btn-restaurant_trailer {
+  margin-top: 20rpx;
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/restaurant_trailer.png');
 }
 
 .set_top_box-panel {
   width: 100%;
-  height: calc(100% - 646rpx);
+  /* height: calc(100% - 646rpx); */
   margin-top: 10rpx;
+  padding-bottom: 100rpx;
 }
 
-.set_top_box-panel > .title {
+.set_top_box-panel>.title {
   width: 100%;
   height: 100rpx;
   line-height: 2.8;
   font-size: 24rpx;
   text-align: center;
-  background-image: url('http://redian-produce.oss-cn-beijing.aliyuncs.com/WeChat/WeChatSale/pages/index/set_top_box_list-title-bg.png');
+  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/set_top_box_list-title-bg.png');
   background-size: 100% 100rpx;
 }
 
-.set_top_box-panel > .scroll-view {
+.set_top_box-panel>.scroll-view {
   width: 100%;
-  height: calc(100% - 100rpx);
+  /* height: calc(100% - 100rpx); */
 }
 
-.set_top_box-panel > .scroll-view .weui-grids {
+.set_top_box-panel>.scroll-view .weui-grids {
   width: 630rpx;
   padding: 20rpx 60rpx 40rpx 60rpx;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid {
   width: 138rpx;
   height: 138rpx;
   margin-top: 25rpx;
@@ -157,23 +210,23 @@ page {
   background-color: #f6f4f2;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid:nth-child(4n + 1) {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid:nth-child(4n + 1) {
   margin-left: 5rpx;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid:nth-child(1),
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid:nth-child(2),
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid:nth-child(3),
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid:nth-child(4) {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid:nth-child(1),
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid:nth-child(2),
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid:nth-child(3),
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid:nth-child(4) {
   margin-top: 0;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box {
   width: 100%;
   height: 100%;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box > .light {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light {
   width: 82rpx;
   height: 82rpx;
   border-radius: 50%;
@@ -183,8 +236,8 @@ page {
   justify-content: center;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box > .light > image,
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box > .light > view {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light>image,
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light>view {
   width: 76rpx;
   height: 76rpx;
   border-radius: 50%;
@@ -195,12 +248,12 @@ page {
   justify-content: center;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box > .light.green-light {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light.green-light {
   background-color: #aeaaad;
   font-size: 28rpx;
 }
 
-.set_top_box-panel > .scroll-view .weui-grids > .weui-grid > .box > .name {
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.name {
   line-height: 24rpx;
   margin-top: 5rpx;
   font-size: 24rpx;
@@ -217,36 +270,37 @@ page {
   border-radius: 5rpx;
 }
 
-.control-window > .head {
+.control-window>.head {
   width: 100%;
   height: 90rpx;
   border-bottom: 2rpx solid #ededed;
 }
 
-.control-window > .head > view {
+.control-window>.head>view {
   width: calc(100% - 120rpx);
   font-size: 30rpx;
   text-align: center;
 }
 
-.control-window > .head > image {
+.control-window>.head>image {
   width: 40rpx;
   height: 40rpx;
   margin-right: 20rpx;
 }
 
-.control-window > .body {
+.control-window>.body {
   width: 100%;
   height: 308rpx;
 }
 
-.control-window > .body > .volume-group, .control-window > .body > .btn-exit {
+.control-window>.body>.volume-group,
+.control-window>.body>.btn-exit {
   width: 370rpx;
   height: 60rpx;
   margin-top: 75rpx;
 }
 
-.control-window > .body > .volume-group > view {
+.control-window>.body>.volume-group>view {
   width: 160rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -255,7 +309,7 @@ page {
   border-radius: 5rpx;
 }
 
-.control-window > .body > .btn-exit {
+.control-window>.body>.btn-exit {
   line-height: 60rpx;
   margin-top: 63rpx;
   text-align: center;

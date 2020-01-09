@@ -3,89 +3,109 @@
 
 <view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
-  <!-- 酒楼、机顶盒、连接情况面板 -->
-  <view class="link-type-panel flex_row_center">
-    <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
-      <image src="{{is_link == 1 ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
-      <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
-    </view>
-    <picker class='box flex_row_center theme-font4' style='{{user_info.hotel_id == -1 ? "" : "width:100%;"}}' range="{{objectBoxArray}}" bindchange="bindPickerChange">
-      <view class='full_width flex_row_center' style='width:{{user_info.hotel_id == -1 ? "calc(50vw - 25rpx)" : "calc(100vw - 50rpx)"}};'>
-        <image src="{{is_link == 1 ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
-        <view class='choosed-box one-line-overflow'>{{is_link == 1 ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
-      </view>
-    </picker>
-  </view>
+	<!-- 酒楼、机顶盒、连接情况面板 -->
+	<view class="link-type-panel flex_row_center">
+		<view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
+			<image src="{{is_link == 1 ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
+			<view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
+		</view>
+		<picker class='box flex_row_center theme-font4' style='{{user_info.hotel_id == -1 ? "" : "width:100%;"}}' range="{{objectBoxArray}}" bindchange="bindPickerChange">
+			<view class='full_width flex_row_center' style='width:{{user_info.hotel_id == -1 ? "calc(50vw - 25rpx)" : "calc(100vw - 50rpx)"}};'>
+				<image src="{{is_link == 1 ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
+				<view class='choosed-box one-line-overflow'>{{is_link == 1 ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
+			</view>
+		</picker>
+	</view>
 
-  <!-- 投屏操作面板 -->
-  <view class="launch-option-panel flex_row_center_spaceAround theme7">
-    <view bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
-      <image class='icon' src='/images/icon/E66B7A_pic.png'></image>
-      <view class='title theme-font7'>图片</view>
-    </view>
-    <view bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
-      <image class='icon' src='/images/icon/B36BE6_play.png'></image>
-      <view class='title theme-font7'>视频</view>
-    </view>
-    <view bindtap='gotoForFile' disabled='{{download_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
-      <image class='icon' src='/images/icon/FBA376_file.png'></image>
-      <view class='title theme-font7'>文件</view>
-    </view>
-    <view bindtap="switchShowControl" data-is_show="1">
-      <image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
-      <view class='title theme-font7'>控制</view>
-    </view>
-  </view>
+	<!-- 投屏操作面板 -->
+	<view class="launch-option-panel flex_row_center_spaceAround theme7">
+		<view bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">
+			<image class='icon' src='/images/icon/E66B7A_pic.png'></image>
+			<view class='title theme-font7'>图片</view>
+		</view>
+		<view bindtap='chooseVideo' disabled='{{video_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
+			<image class='icon' src='/images/icon/B36BE6_play.png'></image>
+			<view class='title theme-font7'>视频</view>
+		</view>
+		<view bindtap='gotoForFile' disabled='{{download_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}} ">
+			<image class='icon' src='/images/icon/FBA376_file.png'></image>
+			<view class='title theme-font7'>文件</view>
+		</view>
+		<view bindtap="switchShowControl" data-is_show="1">
+			<image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
+			<view class='title theme-font7'>控制</view>
+		</view>
+	</view>
 
-  <!-- 广播模块面板 -->
-  <view class="broadcast-panel flex_row_center" wx:if="{{exchangerecord.length>0}}">
-    <image class="icon" src="/images/icon/FFFFFF_horn.png"></image>
-    <swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
-      <block wx:for="{{exchangerecord}}" wx:for-item="baen" wx:key="key" wx:for-index="index">
-        <swiper-item class="one-line-overflow theme-font4">{{baen}}</swiper-item>
-      </block>
+	<!-- 广播模块面板 -->
+	<view class="broadcast-panel flex_row_center" wx:if="{{exchangerecord.length>0}}">
+		<image class="icon" src="/images/icon/FFFFFF_horn.png"></image>
+		<swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
+			<block wx:for="{{exchangerecord}}" wx:for-item="baen" wx:key="key" wx:for-index="index">
+				<swiper-item class="one-line-overflow theme-font4">{{baen}}</swiper-item>
+			</block>
 
-    </swiper>
-  </view>
+		</swiper>
+	</view>
 
-  <!-- 突出功能面板 -->
-  <view class="prominent-function-panel flex_row_center theme7">
-    <view bindtap="goToWelcome" class="botton btn-welcome_speech flex_column_flexStart_center theme-font4">
-      <view class="title">欢迎词</view>
-      <view class="desc">助力感动式服务</view>
-    </view>
-    <view bindtap="goToHappy" class="botton btn-birthday_song flex_column_flexStart_center theme-font4">
-      <view class="title">生日歌</view>
-      <view class="desc">提升食客满意度</view>
-    </view>
-  </view>
+	<!-- 突出功能面板[无宣传片] -->
+	<view class="prominent-function-panel flex_row_center theme7">
+		<view class="botton btn-welcome_speech flex_column_flexStart_center theme-font4" bindtap="goToWelcome">
+			<view class="title">欢迎词</view>
+			<view class="desc">助力感动式服务</view>
+		</view>
+		<view class="botton btn-birthday_song flex_column_flexStart_center theme-font4" bindtap="goToHappy">
+			<view class="title">生日歌</view>
+			<view class="desc">提升食客满意度</view>
+		</view>
+	</view>
 
-  <!-- 机顶盒列表 -->
-  <view class="set_top_box-panel theme7">
-    <view class="title theme-font4">包间签到赚积分</view>
-    <scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
-      <view class='weui-grids'>
-        <block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <view class='weui-grid' wx:if="{{bean.status==2}}">
-            <view class="box flex_column_center_center">
-              <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
-                <image src='{{bean.user.avatarUrl}}'></image>
-              </view>
-              <view class='name theme-font2'>{{bean.name}}</view>
-            </view>
-          </view>
-          <view class='weui-grid' wx:if="{{bean.status==1}}">
-            <view class="box flex_column_center_center" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
-              <view class='light green-light theme-font3'>
-                <view class="theme7">签到</view>
-              </view>
-              <view class='name theme-font2'>{{bean.name}}</view>
-            </view>
-          </view>
-        </block>
-      </view>
-    </scroll-view>
-  </view>
+	<!-- 突出功能面板[有宣传片] -->
+	<view class="prominent-function-panel-2 flex_row_center theme7">
+		<view class="left">
+			<view class="botton btn-welcome_speech flex_column_flexStart_center theme-font4" bindtap="goToWelcome">
+				<view class="title">欢迎词</view>
+				<view class="desc">助力感动式服务</view>
+			</view>
+		</view>
+		<view class="right flex_column_center">
+			<view class="botton btn-birthday_song flex_column_flexStart_center theme-font4" bindtap="goToHappy">
+				<view class="title">生日歌</view>
+				<view class="desc">提升食客满意度</view>
+			</view>
+			<view class="botton btn-restaurant_trailer flex_column_flexStart_center theme-font4" bindtap="">
+				<view class="title">宣传片</view>
+				<view class="desc">宣传餐厅产品形象</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 机顶盒列表 -->
+	<view class="set_top_box-panel theme7">
+		<view class="title theme-font4">包间签到赚积分</view>
+		<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+			<view class='weui-grids'>
+				<block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<view class='weui-grid' wx:if="{{bean.status==2}}">
+						<view class="box flex_column_center_center">
+							<view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
+								<image src='{{bean.user.avatarUrl}}'></image>
+							</view>
+							<view class='name theme-font2'>{{bean.name}}</view>
+						</view>
+					</view>
+					<view class='weui-grid' wx:if="{{bean.status==1}}">
+						<view class="box flex_column_center_center" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
+							<view class='light green-light theme-font3'>
+								<view class="theme7">签到</view>
+							</view>
+							<view class='name theme-font2'>{{bean.name}}</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+	</view>
 </view>
 
 <!--
@@ -176,34 +196,34 @@
 
 <!-- 控制弹窗 -->
 <modal show="{{showControlWindow}}" width="630rpx" height='400rpx' background-color='unset' title-text='' confirm-text='' ccancel-text='' cancel-text=''>
-  <view class="control-window theme7">
-    <view class="head flex_row_center_flexEnd">
-      <view>控制</view>
-      <image src="/images/icon/58525C_close.png" bindtap="switchShowControl" data-is_show="0"></image>
-    </view>
-    <view class="body flex_column_center">
-      <view class="volume-group flex_row_center_spaceBetween">
-        <view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 +</view>
-        <view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 -</view>
-      </view>
-      <view class="btn-exit theme-button-welcome-dark" bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</view>
-    </view>
-  </view>
+	<view class="control-window theme7">
+		<view class="head flex_row_center_flexEnd">
+			<view>控制</view>
+			<image src="/images/icon/58525C_close.png" bindtap="switchShowControl" data-is_show="0"></image>
+		</view>
+		<view class="body flex_column_center">
+			<view class="volume-group flex_row_center_spaceBetween">
+				<view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='2'>音量 +</view>
+				<view class="theme-button-welcome" bindtap='changeVolume' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}' data-change_type='1'>音量 -</view>
+			</view>
+			<view class="btn-exit theme-button-welcome-dark" bindtap='exitForscreen' data-intranet_ip='{{intranet_ip}}' data-openid='{{openid}}' data-box_mac='{{box_mac}}'>退出投屏</view>
+		</view>
+	</view>
 </modal>
 <!-- 选择文件弹窗 -->
 <bottomModal show="{{showMe}}" width="98%" height='340rpx' background-color='#FFFFFF' border-radius="20rpx" title-text='' title-color="" confirm-text='' confirm-color="#f6f3ee" cancel-text='' cancel-color='' bindcancel="modalCancel">
-  <view class="flex-column-center-space_between" style='padding: 10rpx; height: 60rpx; line-height: 60rpx; border-bottom: 2rpx solid rgba(246, 243, 238, 0.1);font-size: 30rpx; color: #666666;'>
-    <label>选择要投屏的文件</label>
-  </view>
-  <view class="flex-column-center-center" style="width: 100%; font-size: 32rpx; color: #0076FF;">
-    <view style="width: 100%; border-top: 1rpx solid rgba(7,17,27,0.1);">
-      <button bindtap="wxFriendfiles" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-is_open_simple="{{is_open_simple}}" class="button_none" style="margin: 0;padding: 0; border: 0;border-radius: 0;">微信好友文件</button>
-    </view>
-    <view style="width: 100%; border-top: 1rpx solid rgba(7,17,27,0.1); border-bottom: 10rpx solid rgba(7,17,27,0.05);">
-      <button bindtap="phonefiles" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-is_open_simple="{{is_open_simple}}" class="button_none" style="margin: 0;padding: 0; border: 0;border-radius: 0;">手机中的文件</button>
-    </view>
-  </view>
-  <view class='cancel-btn' style='flex: 1; margin-top: 10rpx; width: 100%; height: 60rpx; line-height: 60rpx; text-align: center; font-size: 30rpx; color: rgba(7,17,27,0.6);' bindtap='modalCancel'>取消</view>
+	<view class="flex-column-center-space_between" style='padding: 10rpx; height: 60rpx; line-height: 60rpx; border-bottom: 2rpx solid rgba(246, 243, 238, 0.1);font-size: 30rpx; color: #666666;'>
+		<label>选择要投屏的文件</label>
+	</view>
+	<view class="flex-column-center-center" style="width: 100%; font-size: 32rpx; color: #0076FF;">
+		<view style="width: 100%; border-top: 1rpx solid rgba(7,17,27,0.1);">
+			<button bindtap="wxFriendfiles" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-is_open_simple="{{is_open_simple}}" class="button_none" style="margin: 0;padding: 0; border: 0;border-radius: 0;">微信好友文件</button>
+		</view>
+		<view style="width: 100%; border-top: 1rpx solid rgba(7,17,27,0.1); border-bottom: 10rpx solid rgba(7,17,27,0.05);">
+			<button bindtap="phonefiles" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-is_open_simple="{{is_open_simple}}" class="button_none" style="margin: 0;padding: 0; border: 0;border-radius: 0;">手机中的文件</button>
+		</view>
+	</view>
+	<view class='cancel-btn' style='flex: 1; margin-top: 10rpx; width: 100%; height: 60rpx; line-height: 60rpx; text-align: center; font-size: 30rpx; color: rgba(7,17,27,0.6);' bindtap='modalCancel'>取消</view>
 </bottomModal>
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
