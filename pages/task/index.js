@@ -170,6 +170,15 @@ Page({
       setTaskBenefitWindowShow:false,
     })
   },
+  slideSet:function(e){
+    var that = this;
+    var staff_share_benefit = e.detail.value;  //设置数值
+    var manager_share_benefit = 100 - staff_share_benefit;  //管理员分润数值
+    that.setData({
+      staff_share_benefit:staff_share_benefit,
+      manager_share_benefit:manager_share_benefit
+    })
+  },
   /**
    * 管理员修改任务分润比例
    */

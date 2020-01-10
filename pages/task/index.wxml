@@ -75,7 +75,7 @@
         </view>
         <view class="set flex_row_center_spaceBetween">
           <label>员工</label>
-          <slider block-size="12" step="10"/>
+          <slider block-size="12" step="10" bindchange="slideSet" />
           <label>管理员</label>
         </view>
 				<view class="tip theme-font6">每月可修改3次</view>
