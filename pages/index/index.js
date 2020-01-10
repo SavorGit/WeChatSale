@@ -335,7 +335,7 @@ Page({
     } else {
       var timestamp = (new Date()).valueOf();
 
-      utils.PostRequest(api_url + '/Netty/Index/index', {
+      utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
         msg: '{ "action": 3,"openid":"' + openid + '"}',
       }, (data, headers, cookies, errMsg, statusCode) => {
@@ -359,7 +359,7 @@ Page({
     if (box_mac == '' || typeof(box_mac) == 'undefined') {
       app.showToast('请您先链接包间电视');
     } else {
-      utils.PostRequest(api_url + '/Netty/Index/index', {
+      utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
         msg: '{"action":31,"change_type":' + change_type + '}'
       }, (data, headers, cookies, errMsg, statusCode) => {
@@ -447,15 +447,26 @@ Page({
    */
   goToHotelAdv:function(e){
     var that = this;
-    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
-    var box_mac = link_box_info.box_mac;
-    if (box_mac == '' || typeof(box_mac) == 'undefined'){
-      app.showToast('请选择包间电视');
-    }else{
-      wx.navigateTo({
-        url: '/pages/adv/index',
-      })
-    } 
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if (typeof (hotel_id) =='undefined'){
+      app.showToast('请您先选择酒楼');
+    }else {
+      var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+      var box_mac = link_box_info.box_mac;
+      if (box_mac == '' || typeof(box_mac) == 'undefined'){
+        app.showToast('请选择包间电视');
+      }else{
+        wx.navigateTo({
+          url: '/pages/adv/index?hotel_id='+hotel_id+'&box_mac='+box_mac,
+        })
+      } 
+    }
+
   },
   signIn: function(e) {
     var that = this;

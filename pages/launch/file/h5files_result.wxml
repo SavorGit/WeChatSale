@@ -1,6 +1,6 @@
 <!--pages/forscreen/forfile/files.wxml-->
 <import src="/pages/template/commons" />
-<template is="navigationBarForTwoLevel" data='{{statusBarHeight: statusBarHeight,titleText:"热点投屏"}}' />
+
 
 <view class="container flex_column_center_flexStart theme-container" style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
 	<view class="page-top theme-panel-2">
@@ -18,14 +18,14 @@
 					<view id="list{{index}}" wx:if="{{pos_id == index}}" class="weui-grid pic-frame choose" bindtap="appointPic" data-forscreen_id="{{forscreen_id}}" data-forscreen_img="{{bean}}" data-pos_id="{{index}}">
 						<image src="{{oss_host}}/{{bean}}{{oss_suffix}}"></image>
 						<view class="cover theme-font4">
-							<image src="/images/icon2/1CBEB6_right-triangle.png"></image>
+							<image src="/images/icon/1CBEB6_right-triangle.png"></image>
 							<label class="page-number">{{index+1}}</label>
 						</view>
 					</view>
 					<view wx:if="{{pos_id != index}}" class="weui-grid pic-frame" bindtap="appointPic" data-forscreen_id="{{forscreen_id}}" data-forscreen_img="{{bean}}" data-pos_id="{{index}}">
 						<image src="{{oss_host}}/{{bean}}{{oss_suffix}}"></image>
 						<view class="cover theme-font1">
-							<image src="/images/icon2/FFFFFF_right-triangle.png"></image>
+							<image src="/images/icon/FFFFFF_right-triangle.png"></image>
 							<label class="page-number">{{index+1}}</label>
 						</view>
 					</view>
@@ -48,13 +48,7 @@
 	</view>
 	<view class="page-bottom"></view>
 </view>
-<!-- 遥控器 -->
-<template is="remoteControlWindow" data='{{popRemoteControlWindow: showControl, qrcode_img:qrcode_img, box_mac:box_mac, openid:openid, is_open_simple:is_open_simple}}' />
 
-<!-- 固定悬浮按钮组 -->
-<view wx:if="{{box_mac !=''}}">
-	<template is="fixedSuspensionButtonGroup" />
-</view>
 <view class="body-view">
 	<loading hidden="{{hiddens}}" bindchange="loadingChange">投屏文件处理中，请稍后!</loading>
 </view>

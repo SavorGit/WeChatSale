@@ -1,6 +1,12 @@
 <!--pages/adv/index.wxml-->
-<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
-	<view class="row flex_column_center_flexStart">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+	<block wx:for="{{adv_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+		<view class="row flex_column_center_flexStart" >
+			<image class="cover" src="{{bean.pubdetail[0].img_url}}"></image>
+			<view class="btn-launch-tv theme-button-welcome" bindtap="boxShow" data-pubdetail="{{bean.pubdetail}}" >电视播放</view>
+		</view>
+	</block>
+	<!-- <view class="row flex_column_center_flexStart">
 		<image class="cover" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 		<view class="btn-launch-tv theme-button-welcome">电视播放</view>
 	</view>
@@ -99,9 +105,5 @@
 	<view class="row flex_column_center_flexStart">
 		<image class="cover" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 		<view class="btn-launch-tv theme-button-welcome">电视播放</view>
-	</view>
-	<view class="row flex_column_center_flexStart">
-		<image class="cover" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-		<view class="btn-launch-tv theme-button-welcome">电视播放</view>
-	</view>
+	</view> -->
 </scroll-view>

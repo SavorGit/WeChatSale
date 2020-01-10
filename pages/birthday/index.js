@@ -3,6 +3,7 @@ const utils = require('../../utils/util.js')
 var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var hotel_id;
 var box_mac;
@@ -62,15 +63,15 @@ Page({
     var timestamp = (new Date()).valueOf();
     var forscreen_char = 'Happy Birthday';
 
-    utils.PostRequest(api_url + '/Netty/Index/index', {
+    utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
       box_mac: box_mac,
-      msg: '{ "action": 6,"url":"' + vediourl + '","filename":"' + filename + '","forscreen_id":"' + timestamp + '","resource_type":2}',
+      msg: '{ "action": 6,"url":"' + vediourl + '","filename":"' + filename + '","forscreen_id":"' + timestamp + '","resource_type":2,"openid":"'+openid+'"}',
     }, (data, headers, cookies, errMsg, statusCode) => {
       
       app.showToast('点播成功,电视即将开始播放');
       var mobile_brand = app.globalData.mobile_brand;
       var mobile_model = app.globalData.mobile_model;
-      utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics', {
+      utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
         forscreen_id: timestamp,
         openid: openid,
         box_mac: box_mac,

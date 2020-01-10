@@ -1,5 +1,6 @@
 //app.js
 import touch from './utils/touch.js'
+const utils = require('./utils/util.js')
 var mta = require('./utils/mta_analysis.js')
 App({
   getNowFormatDate: function() {
@@ -52,6 +53,44 @@ App({
       duration: duration,
       mask:mask,
     })
+  },
+  boxShow:function(box_mac='',pubdetail,res_type,action,that){
+    var self = this;
+    var user_info = wx.getStorageSync(this.globalData.cache_key + 'userinfo');
+    var avatarUrl = user_info.avatarUrl;
+    var nickName = user_info.nickName;
+    var openid = user_info.openid;
+    var forscreen_char = '';
+    var mobile_brand = this.globalData.mobile_brand;
+    var mobile_model = this.globalData.mobile_model;
+    
+    var forscreen_id = (new Date()).valueOf();
+    if(res_type==2){//视频
+      for (var i = 0; i < pubdetail.length; i++) {
+        var forscreen_url = pubdetail[i].forscreen_url
+        var filename      = pubdetail[i].filename
+        utils.PostRequest(this.globalData.api_url + '/Netty/Index/index', {
+          box_mac: box_mac,
+          msg: '{ "action": 5,"url":"' + forscreen_url + '","filename":"' + filename + '","forscreen_id":' + forscreen_id + ',"resource_id":' + forscreen_id + ',"openid":"'+openid+'"}',
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          
+          self.showToast('点播成功，电视即将播放');
+          utils.PostRequest(this.globalData.api_v_url + '/ForscreenLog/recordForScreenPics', {
+            forscreen_id: forscreen_id,
+            openid: openid,
+            box_mac: box_mac,
+            action: action,
+            mobile_brand: mobile_brand,
+            mobile_model: mobile_model,
+            forscreen_char: '',
+            imgs: '["'+forscreen_url+'"]',
+            small_app_id: 5,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+    
+            }, res => { }, { isShowLoading: false })
+        });
+      }
+    }
   },
   onLaunch: function () {
     var oss_tmp_key = this.globalData.oss_access_key_id;

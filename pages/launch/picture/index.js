@@ -271,7 +271,7 @@ Page({
             },
             success: function (ret) {
               wx.request({
-                url: api_url+'/Netty/Index/index',
+                url: api_url+'/Netty/Index/pushnetty',
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -279,7 +279,7 @@ Page({
                 data: {
                   box_mac: box_mac,
 
-                  msg: '{ "action": 44, "resource_type":2, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","img_nums":' + img_len + ',"forscreen_char":"' + forscreen_char + '","order":' + order + ',"forscreen_id":"' + forscreen_id + '","img_id":"' + timestamp + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName+'"}',
+                  msg: '{ "action": 44, "resource_type":2, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","img_nums":' + img_len + ',"forscreen_char":"' + forscreen_char + '","order":' + order + ',"forscreen_id":"' + forscreen_id + '","img_id":"' + timestamp + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName+'","res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
 
                 },
                 success: function (result) {
@@ -414,7 +414,7 @@ Page({
     var that = this;
     openid = res.currentTarget.dataset.openid;
     box_mac = res.currentTarget.dataset.box_mac;
-    utils.PostRequest(api_url + '/Netty/Index/index', {
+    utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
       box_mac: box_mac,
       msg: '{ "action": 3,"openid":"' + openid + '"}',
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -509,9 +509,9 @@ Page({
     var is_rotate = params.is_rotate;
     var angle = params.angle;
     if (is_rotate==1){
-      utils.PostRequest(api_url + '/Netty/Index/index', {
+      utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
-        msg: '{"action":8,"filename":"' + filename + '","rotation":"' + angle + '","url":"' + forscreen_img + '","openid":"' + user_info.openid+'"}',
+        msg: '{"action":8,"filename":"' + filename + '","rotation":"' + angle + '","url":"' + forscreen_img + '","openid":"' + user_info.openid+'","forscreen_id":'+forscreen_id+'}',
       }, (data, headers, cookies, errMsg, statusCode) => {
         app.showToast('投屏成功');
         utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
@@ -529,7 +529,7 @@ Page({
         })
       })
     }else {
-      utils.PostRequest(api_url + '/Netty/Index/index', {
+      utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
         msg: '{"action": 42,"resource_type":1, "url": "' + forscreen_img + '", "filename":"' + filename + '","openid":"' + openid + '","forscreen_id":"' + forscreen_id + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName + '","forscreen_char":"' + forscreen_char + '","rotation":"' + angle+'"}',
       }, (data, headers, cookies, errMsg, statusCode) => {

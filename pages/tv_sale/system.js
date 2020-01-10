@@ -427,14 +427,14 @@ Page({
 
     var timestamp = (new Date()).valueOf();
     wx.request({
-      url: api_url + '/Netty/Index/index',
+      url: api_url + '/Netty/Index/pushnetty',
       headers: {
         'Content-Type': 'application/json'
       },
       method: "POST",
       data: {
         box_mac: box_mac,
-        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + ',"qrcode_url":"' + qrcode_url + '"}',
+        msg: '{"goods_id":' + goods_id + ',"action":40,"forscreen_id":' + timestamp + ',"qrcode_url":"' + qrcode_url + '","openid":"'+openid+'"}',
       },
       success: function(res) {
         if (res.data.code == 10000) {

@@ -6,6 +6,7 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var box_mac = '';
 var openid  = '';
+var hotel_id= '';
 var pageNum = 1;
 Page({
 
@@ -20,57 +21,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
-    box_mac = options.boxShow;
+    box_mac = options.box_mac;
     openid  = options.openid;
+    hotel_id = options.hotel_id;
+    that.setData({
+      box_mac:box_mac,
+      openid:openid,
+      hotel_id:hotel_id
+    })  
     utils.PostRequest(api_v_url + '/adv/getAdvList', {
-      
       page: pageNum,
+      hotel_id:hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      console.log(data)
       that.setData({
-        adv_list:data.result
+        adv_list:data.result.datalist
       })
     });
   },
   loadMore:function(e){
     var that = this;
     pageNum +=1;
-    utils.PostRequest(api_url + '/aa/bb/cc', {
+    utils.PostRequest(api_url + '/adv/getAdvList', {
       page: pageNum,
+      hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        adv_list:data.result
+        adv_list:data.result.datalist
       })
     });
   },
   boxShow:function(e){
     var that = this;
-    var forscreen_url = e.currentTarget.dataset.forscreen_url;
-    var file_name     = e.currentTarget.dataset.file_name;
-    var forscreen_id = (new Date()).valueOf();
-    utils.PostRequest(api_url + '/Netty/Index/index', {
-      box_mac: box_mac,
-      msg: '{ "action": 5,"url":"' + forscreen_url + '","filename":"' + filename + '","forscreen_id":' + forscreen_id + ',"resource_id":' + forscreen_id + ',"openid":"'+openid+'"}',
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      
-      app.showToast('点播成功，电视即将播放');
-      var mobile_brand = app.globalData.mobile_brand;
-      var mobile_model = app.globalData.mobile_model;
-      utils.PostRequest(api_url + '/Smallapp/index/recordForScreenPics', {
-        forscreen_id: timestamp,
-        openid: openid,
-        box_mac: box_mac,
-        action: 5,
-        mobile_brand: mobile_brand,
-        mobile_model: mobile_model,
-        forscreen_char: '',
-        imgs: '["'+forscreen_url+'"]',
-        small_app_id: 5,
-      }, (data, headers, cookies, errMsg, statusCode) => {
-
-        }, res => { }, { isShowLoading: false })
-    });
+    var pubdetail = e.currentTarget.dataset.pubdetail;
+    var action =5;
+    console.log(box_mac)
+    app.boxShow(box_mac,pubdetail,2,action,that);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
