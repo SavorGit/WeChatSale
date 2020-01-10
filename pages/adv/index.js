@@ -23,9 +23,11 @@ Page({
     var that = this;
     box_mac = options.boxShow;
     openid  = options.openid;
-    utils.PostRequest(api_url + '/aa/bb/cc', {
+    utils.PostRequest(api_v_url + '/adv/getAdvList', {
+      
       page: pageNum,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      console.log(data)
       that.setData({
         adv_list:data.result
       })

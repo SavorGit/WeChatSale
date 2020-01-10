@@ -162,6 +162,16 @@ Page({
                   }
                 }
               })
+              //获取销售端配置  
+              utils.PostRequest(api_v_url +'/config/getConfig',{
+                hotel_id : hotel_id
+              }, (data, headers, cookies, errMsg, statusCode) => {
+                if(typeof(data.result.is_have_adv)!='undefined'){
+                  that.setData({
+                    is_have_adv:data.result.is_have_adv
+                  })
+                }
+              })
             } else {
               wx.reLaunch({
                 url: '/pages/tv_sale/system',
@@ -753,6 +763,16 @@ Page({
               sign_box_list: sign_box_list
             })
           }
+        }
+      })
+      //获取销售端配置  
+      utils.PostRequest(api_v_url +'/config/getConfig',{
+        hotel_id : hotel_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        if(typeof(data.result.is_have_adv)!='undefined'){
+          that.setData({
+            is_have_adv:data.result.is_have_adv
+          })
         }
       })
     }

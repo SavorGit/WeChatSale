@@ -193,7 +193,7 @@ App({
     mobile_brand: '',
     mobile_model: '',
     api_url: 'https://dev-mobile.littlehotspot.com',
-    api_v_url: 'https://dev-mobile.littlehotspot.com/smallsale14',
+    api_v_url: 'https://dev-mobile.littlehotspot.com/smallsale16',
     oss_upload_url: 'https://dev-image.littlehotspot.com',
     oss_url: 'https://dev-oss.littlehotspot.com',
     oss_bucket:'redian-produce',
