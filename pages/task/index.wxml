@@ -78,7 +78,7 @@
           <slider block-size="12" step="10" bindchange="slideSet" />
           <label>管理员</label>
         </view>
-				<view class="tip theme-font6">每月可修改3次</view>
+				<view class="tip theme-font6">本月剩余可修改3次</view>
         <button class="btn-save theme-background-9 theme-font4">保存</button>
 			</form>
 		</view>
