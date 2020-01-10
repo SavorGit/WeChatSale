@@ -55,7 +55,7 @@
 </modal>
 
 <!-- 任务分润设置弹窗 -->
-<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='490rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='540rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
 	<view class="set-task-benefit-window flex_column_center theme7">
 		<view class="top flex_row_flexEnd_spaceBetween">
 			<view></view>
@@ -67,9 +67,15 @@
 		<view class="main flex_column_center theme7">
 			<form>
 				<view class="desc">每完成一次任务的总额为100%，可设置员工完成任务后的奖励比例，剩余部分归管理员所有。</view>
+        <view class="percentage flex_row_center_spaceBetween">
+					<view></view>
+					<view>10</view>
+					<view>90</view>
+					<view></view>
+        </view>
         <view class="set flex_row_center_spaceBetween">
           <label>员工</label>
-          <slider block-size="12" step="10" show-value='true' />
+          <slider block-size="12" step="10"/>
           <label>管理员</label>
         </view>
 				<view class="tip theme-font6">每月可修改3次</view>
