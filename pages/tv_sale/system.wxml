@@ -152,7 +152,7 @@
           <view class='row flex_row_center full_width'>
             <label>活动范围</label>
             <radio-group class="flex_row_center_spaceBetween" bindchange="radioChange">
-              <radio bindtap="changeRoomType" wx:for="{{room_arr}}" wx:for-item="bean" wx:key="bean.id" value="{{bean.id}}" checked="{{bean.checked}}" data-room_type="{{bean.id}}">{{bean.name}}</radio>
+              <radio bindtap="changeRoomType" wx:for="{{room_arr}}" wx:for-item="bean" wx:key="key" value="{{bean.id}}" checked="{{bean.checked}}" data-room_type="{{bean.id}}">{{bean.name}}</radio>
             </radio-group>
           </view>
           <input class='display_hide' name="goods_img" value="{{my_activity_info.goods_img}}"> </input>
