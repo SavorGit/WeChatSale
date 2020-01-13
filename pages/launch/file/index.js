@@ -164,6 +164,7 @@ Page({
           resource_name: file_name,
           resource_size: file_size,
           resource_type:3,
+          small_app_id:5
         }, 
         success: function (res) {
           //console.log(res);
@@ -423,7 +424,8 @@ Page({
               resource_type: 1,
               mobile_brand: mobile_brand,
               mobile_model: mobile_model,
-              imgs: '["' + forscreen_img + '"]'
+              imgs: '["' + forscreen_img + '"]',
+              small_app_id:5
             },
           });
         },
@@ -618,6 +620,7 @@ Page({
           resource_name: file_name,
           resource_size: file_size,
           resource_type: 3,
+          small_app_id:5
         },
         success: function (res) {
           //console.log(res);
