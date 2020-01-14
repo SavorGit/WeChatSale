@@ -81,7 +81,7 @@ Page({
       data: {
         openid: openid,
         page: 1,
-        pageSize: 5
+        pagesize: 5
       },
       success: function(res) {
         if (res.data.code == 10000) {

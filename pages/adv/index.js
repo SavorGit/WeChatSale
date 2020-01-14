@@ -1,7 +1,6 @@
 // pages/adv/index.js
 const app = getApp()
 const utils = require('../../utils/util.js')
-var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var box_mac = '';
@@ -43,7 +42,7 @@ Page({
   loadMore:function(e){
     var that = this;
     pageNum +=1;
-    utils.PostRequest(api_url + '/adv/getAdvList', {
+    utils.PostRequest(api_v_url + '/adv/getAdvList', {
       page: pageNum,
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
