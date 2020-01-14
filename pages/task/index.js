@@ -27,6 +27,10 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    that.setData({
+      userInfo:userInfo
+    })
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
@@ -130,6 +134,7 @@ Page({
   popTaskDetailWindow: function(e) {
     let that = this;
     let taskListIndex = e.currentTarget.dataset.index;
+    
     that.setData({
       taskDetailWindowShow: true,
       openTaskInWindow: that.data.taskList[taskListIndex]
