@@ -3,10 +3,10 @@
  * 任务列表
  */
 
-const util = require('../../utils/util.js');
+const utils = require('../../utils/util.js');
 var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
-const api_url = app.globalData.api_url;
+const api_v_url = app.globalData.api_v_url;
 const cache_key = app.globalData.cache_key;
 
 Page({
@@ -152,14 +152,39 @@ Page({
    */
   setShareBenefit:function(e){
     var that = this;
-    var taskListIndex = e.currentTarget.dataset.index;
-    var taskList = that.data.taskList;
-    var taskInfo = taskList[taskListIndex];
-    that.setData({
-      taskInfo:taskInfo,
-      taskDetailWindowShow: false,
-      setTaskBenefitWindowShow:true,
-    })
+   
+    
+    var task_id = e.currentTarget.dataset.task_id;
+
+    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    if (userInfo.hotel_id == -1) {
+      var hotel_id = userInfo.select_hotel_id;
+    } else {
+      var hotel_id = userInfo.hotel_id;
+    }
+    var openid = userInfo.openid;
+
+    utils.PostRequest(api_v_url + '/task/getShareprofit', {
+      openid: openid,
+      hotel_id: hotel_id,
+      task_id:task_id 
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        //taskInfo:taskInfo,
+        level1:data.result.level1,
+        level2:data.result.level2,
+        num:data.result.num,
+        task_id:task_id,
+        openid:openid,
+        hotel_id:hotel_id,
+        shareprofit:data.result,
+        taskDetailWindowShow: false,
+        setTaskBenefitWindowShow:true,
+      })
+      
+     
+    });
+
   },
   /**
    * 关闭分润弹窗
@@ -175,23 +200,29 @@ Page({
     var staff_share_benefit = e.detail.value;  //设置数值
     var manager_share_benefit = 100 - staff_share_benefit;  //管理员分润数值
     that.setData({
-      staff_share_benefit:staff_share_benefit,
-      manager_share_benefit:manager_share_benefit
+      level2:staff_share_benefit,
+      level1:manager_share_benefit
     })
   },
   /**
    * 管理员修改任务分润比例
    */
   editTaskShareBenefit:function(e){
+    //console.log(e)
+    
     var that = this;
     var task_id = e.detail.value.task_id;
-    var bili  = e.detail.value.bili;
-    let userInfo = wx.getStorageSync(cache_key + 'userinfo');
-    var openid = userInfo.openid;
-    utils.PostRequest(api_url +'/aa/bb/cc',{
+    var level1  = e.detail.value.level1;
+    var level2  = e.detail.value.level2;
+    var openid = e.detail.value.openid;
+    var hotel_id = e.detail.value.hotel_id;
+    
+    utils.PostRequest(api_v_url +'/task/setShareprofit',{
       task_id : task_id,
-      bili:bili,
+      level1:level1,
+      level2:level2,
       openid:openid,
+      hotel_id:hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('保存成功')
       that.setData({
@@ -204,7 +235,7 @@ Page({
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
-    util.PostRequest(api_url + '/smallsale14/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
+    utils.PostRequest(api_v_url + '/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
       if (typeof(data) != 'object' || typeof(data.result) != 'object') {
         wx.showToast({
           title: "服务器返回数据错误！请用联系管理员。",

@@ -101,7 +101,8 @@ Page({
     activity_pop:true,
     hotel_activity:true,
     goods_manage : true,
-    room_name:''
+    room_name:'',
+    is_add_myactivity:0
     
   },
 
@@ -251,7 +252,8 @@ Page({
               is_my_activity: 1,
               my_activity_info: my_activity_info,
               box_btn: box_btn,
-              hotel_activity_list: hotel_activity_list
+              hotel_activity_list: hotel_activity_list,
+              is_add_myactivity:res.data.result.is_add_myactivity
             })
           } else {
             my_activity_info = {};
@@ -570,6 +572,7 @@ Page({
                 my_activity_info: my_activity_info,
                 hotel_activity_list: hotel_activity_list,
                 box_btn: box_btn,
+                is_add_myactivity:res.data.is_add_myactivity
               })
             } else {
               my_activity_info = {};
@@ -579,7 +582,8 @@ Page({
                 price: '',
                 is_my_activity: 0,
                 my_activity_info: my_activity_info,
-                hotel_activity_list: []
+                hotel_activity_list: [],
+                
               })
             }
 
@@ -983,7 +987,8 @@ Page({
             success: function(res) {
               if (res.data.code == 10000) {
                 that.setData({
-                  hotel_activity_list: res.data.result.datalist
+                  hotel_activity_list: res.data.result.datalist,
+                  is_add_myactivity:res.data.result.is_add_myactivity
                 })
                 
               }
@@ -1043,6 +1048,8 @@ Page({
   editGoods: function(e) {
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
     wx.request({ //我的活动
       url: api_v_url + '/goods/myGoodslist',
       header: {
@@ -1058,8 +1065,8 @@ Page({
       success: function(res) {
         if (res.data.code == 10000) {
           if (res.data.result.datalist.length > 0) {
-            var goods_status = res.data.result.datalist[0].status;
-            var room_type = res.data.result.datalist[0].scope;
+            var goods_status = res.data.result.datalist[index].status;
+            var room_type = res.data.result.datalist[index].scope;
             var check_status_arr = that.data.check_status_arr;
             var room_arr = that.data.room_arr;
             for (var i = 0; i < check_status_arr.length; i++) {
@@ -1078,21 +1085,21 @@ Page({
               }
             }
 
-            var resource_type = res.data.result.datalist[0].media_type;
-            my_activity_info = res.data.result.datalist[0]
+            var resource_type = res.data.result.datalist[index].media_type;
+            my_activity_info = res.data.result.datalist[index]
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
-            my_activity_info.room_type = res.data.result.datalist[0].scope;
-            var goods_name = res.data.result.datalist[0].goods_name;
+            my_activity_info.room_type = res.data.result.datalist[index].scope;
+            var goods_name = res.data.result.datalist[index].goods_name;
             if (resource_type == 1) {
-              var filename = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
+              var filename = app.globalData.oss_url + '/' + res.data.result.datalist[index].oss_addr;
+              my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[index].oss_addr;
             } else {
-              var filename = res.data.result.datalist[0].img_url
+              var filename = res.data.result.datalist[index].img_url
             }
-            var goods_img = res.data.result.datalist[0].oss_addr
+            var goods_img = res.data.result.datalist[index].oss_addr
             my_activity_info.goods_img = goods_img;
-            var price = res.data.result.datalist[0].price;
+            var price = res.data.result.datalist[index].price;
 
             that.setData({
               room_arr: room_arr,
@@ -1103,7 +1110,8 @@ Page({
               my_activity_info: my_activity_info,
               goods_name: goods_name,
               showPageType: 2,
-              is_my_activity: 0
+              is_my_activity: 0,
+              is_add_myactivity:res.data.result.is_add_myactivity
             })
           } else {
             that.setData({
@@ -1359,6 +1367,7 @@ Page({
                     my_activity_info: my_activity_info,
                     hotel_activity_list: hotel_activity_list,
                     box_btn: box_btn,
+                    is_add_myactivity:res.data.result.is_add_myactivity
                   })
                 } else {
                   my_activity_info = {};

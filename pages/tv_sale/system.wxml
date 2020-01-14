@@ -169,7 +169,7 @@
 
     <!-- 我的活动[列表] -->
     <block wx:if="{{showPageType == 3 && hotel_activity==true}}">
-      <block >
+      <block wx:if="{{is_add_myactivity==1}}">
         <view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
           <view class="ads-mine full_width full_height flex_column_center">
             <view class="btn-ads-mine theme-button-welcome">添加我的活动</view>
@@ -177,7 +177,7 @@
         </view>
       </block>
       <view class="row flex_row_center theme7 touch-move-unactive" wx:for="{{hotel_activity_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
-        <view class='content flex_row_center' wx:if="{{index==0 && is_my_activity==1}}">
+        <view class='content flex_row_center' wx:if="{{bean.is_my_activity==1}}">
           <view class="pic">
             <image class='photo full_height full_width' mode="aspectFill" src='{{bean.img_url}}'></image>
             <view class="flag theme-font4 theme-background-9">我的</view>
@@ -193,7 +193,7 @@
               </view>
             </view>
             <view class='operate flex_row_center_flexEnd'>
-              <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button-welcome-dark' bindtap="editGoods" data-goods_id="{{bean.goods_id}}">修改</button>
+              <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button-welcome-dark' bindtap="editGoods" data-goods_id="{{bean.goods_id}}" data-index="{{index}}">修改</button>
               <button wx:if="{{bean.status==2 && pro_play==true}}" class='btn-menu theme-button-welcome' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
               <button wx:if="{{bean.status==2}}" class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
             </view>

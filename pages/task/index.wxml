@@ -48,8 +48,8 @@
 		<view class="package flex_column_center theme7">
 			<view class="name theme-font1">{{openTaskInWindow.task_name}}</view>
 			<scroll-view class="detail" scroll-y="true" scroll-with-animation="true">{{openTaskInWindow.desc}}</scroll-view>
-			<view class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit'>分润设置</view>
-			<view class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
+			<view wx:if="{{openTaskInWindow.is_shareprofit==1}}" class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit' data-task_id="{{openTaskInWindow.task_id}}">分润设置</view>
+			<view wx:else class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
 		</view>
 	</view>
 </modal>
@@ -65,21 +65,26 @@
 			</view>
 		</view>
 		<view class="main flex_column_center theme7">
-			<form>
+			<form bindsubmit="editTaskShareBenefit">
 				<view class="desc">每完成一次任务的总额为100%，可设置员工完成任务后的奖励比例，剩余部分归管理员所有。</view>
         <view class="percentage flex_row_center_spaceBetween">
 					<view></view>
-					<view>10</view>
-					<view>90</view>
+					<view>{{level2}}</view>
+					<view>{{level1}}</view>
 					<view></view>
         </view>
         <view class="set flex_row_center_spaceBetween">
           <label>员工</label>
-          <slider block-size="12" step="10" bindchange="slideSet" />
+          <slider block-size="12" step="10" value="{{level2}}" bindchange="slideSet" />
           <label>管理员</label>
         </view>
-				<view class="tip theme-font6">本月剩余可修改3次</view>
-        <button class="btn-save theme-background-9 theme-font4">保存</button>
+				<view class="tip theme-font6">本月剩余可修改{{num}}次</view>
+				<input class="display_hide" name="task_id" value="{{task_id}}"></input>
+				<input class="display_hide" name="level1" value="{{level1}}"></input>
+				<input class="display_hide" name="level2" value="{{level2}}"></input>
+				<input class="display_hide" name="hotel_id" value="{{hotel_id}}"></input>
+				<input class="display_hide" name="openid" value="{{openid}}"></input>
+        <button form-type="submit" class="btn-save theme-background-9 theme-font4">保存</button>
 			</form>
 		</view>
 	</view>
