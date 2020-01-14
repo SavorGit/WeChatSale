@@ -203,6 +203,20 @@ Page({
             hiddens: true,
           })
           wx.request({
+            url: api_url+'/Netty/Index/pushnetty',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            data: {
+              box_mac: box_mac,
+              msg: '{"action":42, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","resource_type":2,"video_id":"' + timestamp + '","forscreen_id":"' + res_eup_time + '","play_times":' + play_times + ',"res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
+            },
+            success: function (result) {
+
+            },
+          });
+          wx.request({
             url: api_v_url+'/ForscreenLog/recordForScreenPics',
             header: {
               'content-type': 'application/json'
@@ -228,22 +242,7 @@ Page({
               small_app_id: 5,
             },
             success: function (ret) {
-              wx.request({
-                url: api_url+'/Netty/Index/pushnetty',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                method: "POST",
-                data: {
-                  box_mac: box_mac,
-                  msg: '{"action":42, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","resource_type":2,"video_id":"' + timestamp + '","forscreen_id":"' + res_eup_time + '","play_times":' + play_times + ',"res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
-                },
-                success: function (result) {
-
-
-                },
-
-              });
+              
             }
           });
         }

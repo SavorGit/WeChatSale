@@ -246,6 +246,28 @@ Page({
         });
         if (res.progress == 100) {
           var res_eup_time = (new Date()).valueOf();
+          
+          wx.request({
+            url: api_url+'/Netty/Index/pushnetty',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            data: {
+              box_mac: box_mac,
+
+              msg: '{ "action": 44, "resource_type":2, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","img_nums":' + img_len + ',"forscreen_char":"' + forscreen_char + '","order":' + order + ',"forscreen_id":"' + forscreen_id + '","img_id":"' + timestamp + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName+'","res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
+
+            },
+            success: function (result) {
+
+              that.setData({
+                updateStatus: 4,
+
+                percent: 0
+              })
+            },
+          });
           wx.request({
             url: api_v_url+'/ForscreenLog/recordForScreenPics',
             header: {
@@ -270,27 +292,7 @@ Page({
               small_app_id: 5,
             },
             success: function (ret) {
-              wx.request({
-                url: api_url+'/Netty/Index/pushnetty',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                method: "POST",
-                data: {
-                  box_mac: box_mac,
-
-                  msg: '{ "action": 44, "resource_type":2, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","img_nums":' + img_len + ',"forscreen_char":"' + forscreen_char + '","order":' + order + ',"forscreen_id":"' + forscreen_id + '","img_id":"' + timestamp + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName+'","res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
-
-                },
-                success: function (result) {
-
-                  that.setData({
-                    updateStatus: 4,
-
-                    percent: 0
-                  })
-                },
-              });
+              
 
             }
           });
