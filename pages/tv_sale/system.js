@@ -441,7 +441,7 @@ Page({
       success: function(res) {
         if (res.data.code == 10000) {
           wx.request({
-            url: api_url + '/Smallapp/index/recordForScreenPics',
+            url:api_v_url + '/ForscreenLog/recordForScreenPics',
             header: {
               'content-type': 'application/json'
             },
@@ -455,7 +455,7 @@ Page({
               forscreen_id: timestamp,
               resource_id: timestamp,
               imgs: '["' + imgs + '"]',
-              small_app_id: 5,
+              small_app_id: app.globalData.small_app_id,
             },
           });
           wx.showToast({

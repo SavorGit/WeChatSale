@@ -69,22 +69,23 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       
       app.showToast('点播成功,电视即将开始播放');
-      var mobile_brand = app.globalData.mobile_brand;
-      var mobile_model = app.globalData.mobile_model;
-      utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
-        forscreen_id: timestamp,
-        openid: openid,
-        box_mac: box_mac,
-        action: 5,
-        mobile_brand: mobile_brand,
-        mobile_model: mobile_model,
-        forscreen_char: forscreen_char,
-        imgs: '["media/resource/' + filename + '"]',
-        small_app_id: 5,
-      }, (data, headers, cookies, errMsg, statusCode) => {
-
-        }, res => { }, { isShowLoading: false })
+      
     });
+    var mobile_brand = app.globalData.mobile_brand;
+    var mobile_model = app.globalData.mobile_model;
+    utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+      forscreen_id: timestamp,
+      openid: openid,
+      box_mac: box_mac,
+      action: 5,
+      mobile_brand: mobile_brand,
+      mobile_model: mobile_model,
+      forscreen_char: forscreen_char,
+      imgs: '["media/resource/' + filename + '"]',
+      small_app_id: app.globalData.small_app_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      }, res => { }, { isShowLoading: false })
     mta.Event.stat("demanhappy", {})
   },
 

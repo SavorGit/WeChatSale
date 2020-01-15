@@ -465,7 +465,7 @@ Page({
                 resource_size: 0,
                 is_pub_hotelinfo: 0,
                 is_share: 0,
-                small_app_id: 5,
+                small_app_id: app.globalData.small_app_id,
 
               }, (data, headers, cookies, errMsg, statusCode) => {
 

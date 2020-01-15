@@ -289,7 +289,7 @@ Page({
               resource_size: res.totalBytesSent,
               is_pub_hotelinfo: is_pub_hotelinfo,
               is_share: is_share,
-              small_app_id: 5,
+              small_app_id: app.globalData.small_app_id,
             },
             success: function (ret) {
               
@@ -525,7 +525,7 @@ Page({
           mobile_brand: app.globalData.mobile_brand,
           mobile_model: app.globalData.mobile_model,
           imgs: '["' + forscreen_img + '"]',
-          small_app_id: 5,
+          small_app_id: app.globalData.small_app_id,
         }, (data, headers, cookies, errMsg, statusCode) => {
           
         })
@@ -545,7 +545,7 @@ Page({
           mobile_brand: app.globalData.mobile_brand,
           mobile_model: app.globalData.mobile_model,
           imgs: '["' + forscreen_img + '"]',
-          small_app_id: 5,
+          small_app_id: app.globalData.small_app_id,
         }, (data, headers, cookies, errMsg, statusCode) => {
 
         })

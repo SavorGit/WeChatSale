@@ -178,7 +178,7 @@ Page({
           resource_size: file_size,
           resource_type: 3,
           save_type: save_type,
-          small_app_id:5
+          small_app_id:app.globalData.small_app_id
         },
         success: function (res) {
           console.log(res);
@@ -350,7 +350,7 @@ Page({
               mobile_brand: mobile_brand,
               mobile_model: mobile_model,
               imgs: '["' + forscreen_img + '"]',
-              small_app_id:5
+              small_app_id:app.globalData.small_app_id
             },
           });
         },
@@ -448,7 +448,7 @@ Page({
               mobile_brand: mobile_brand,
               mobile_model: mobile_model,
               imgs: '["' + forscreen_img + '"]',
-              small_app_id:5
+              small_app_id:app.globalData.globalData
             },
           });
         },
@@ -504,7 +504,7 @@ Page({
             mobile_brand: mobile_brand,
             mobile_model: mobile_model,
             imgs: '["' + forscreen_img + '"]',
-            small_app_id:5
+            small_app_id:app.globalData.small_app_id
           },
         });
       },

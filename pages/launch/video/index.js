@@ -239,7 +239,7 @@ Page({
               is_share: is_share,
               forscreen_id: res_eup_time,
               duration: duration,
-              small_app_id: 5,
+              small_app_id: app.globalData.small_app_id,
             },
             success: function (ret) {
               

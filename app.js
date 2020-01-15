@@ -70,7 +70,7 @@ App({
         var forscreen_url = pubdetail[i].forscreen_url
         var filename      = pubdetail[i].filename
         var resource_id   = pubdetail[i].res_id
-        utils.PostRequest(this.globalData.api_url + '/Netty/Index/index', {
+        utils.PostRequest(this.globalData.api_url + '/Netty/Index/pushnetty', {
           box_mac: box_mac,
           msg: '{ "action": 5,"url":"' + forscreen_url + '","filename":"' + filename + '","forscreen_id":' + forscreen_id + ',"resource_id":' + resource_id + ',"openid":"'+openid+'"}',
         }, (data, headers, cookies, errMsg, statusCode) => {
@@ -88,7 +88,7 @@ App({
           mobile_model: mobile_model,
           forscreen_char: '',
           imgs: '["'+forscreen_url+'"]',
-          small_app_id: 5,
+          small_app_id: self.globalData.small_app_id,
         }, (data, headers, cookies, errMsg, statusCode) => {
   
           }, res => { }, { isShowLoading: false })
@@ -244,7 +244,8 @@ App({
     //box_type: 0,
     //is_zhilian: 1,
     oss_access_key_id:'LTAITBjXOpORHKfXlOX',
-    oss_xz_limit:4096     //oss旋转照片最大宽高
+    oss_xz_limit:4096,     //oss旋转照片最大宽高
+    small_app_id:5
   },
   touch: new touch()
 })
