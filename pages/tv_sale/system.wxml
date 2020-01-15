@@ -2,12 +2,12 @@
 <import src="/pages/template/commons" />
 
 <!-- 有机顶盒 -->
-<scroll-view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
+<view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 
-  <!-- 酒楼、机顶盒、连接情况面板 -->
-  <view class="link-type-panel">
-    <view class="wapper flex_row_center">
-      <!-- <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
+	<!-- 酒楼、机顶盒、连接情况面板 -->
+	<view class="link-type-panel">
+		<view class="wapper flex_row_center">
+			<!-- <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
         <image src='/images/icon/FFFFFF_linked.png'></image>
         <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view>
       </view>
@@ -17,326 +17,321 @@
           <view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
         </view>
       </picker> -->
-      <picker class='box flex_row_center theme-font4' style='width:100%;' range="{{objectBoxArray}}" bindchange="bindPickerChange">
-        <view class='flex_row_center' style='width:calc(100vw - 50rpx);'>
-          <image src="{{room_name != '' ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
-          <view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
-        </view>
-      </picker>
-    </view>
-  </view>
+			<picker class='box flex_row_center theme-font4' style='width:100%;' range="{{objectBoxArray}}" bindchange="bindPickerChange">
+				<view class='flex_row_center' style='width:calc(100vw - 50rpx);'>
+					<image src="{{room_name != '' ? '/images/icon/FFFFFF_linked.png' : '/images/icon/FFFFFF_unlink.png'}}"></image>
+					<view class='choosed-box one-line-overflow'>{{room_name != '' ? '已链接“' + room_name + '”的电视' : '您还未链接电视'}} ></view>
+				</view>
+			</picker>
+		</view>
+	</view>
 
-  <!-- 正在播放的活动面板 -->
-  <scroll-view wx:if="{{pro_play==true && play_list.length>0}}" class='playing-sale-panel' scroll-x="true" scroll-with-animation="true">
-    <view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
-      <view class='flag theme-font4'>{{index + 1}}</view>
-      <view class='ads flex_row_center'>
-        <image mode="aspectFill" src='{{bean.img_url}}'></image>
-        <view class='goods flex_column_flexStart_spaceBetween'>
-          <view class='title one-line-overflow'>{{bean.name}}</view>
-          <view class='infomation flex_row_center'>
-            <view class='price theme-font7'>￥{{bean.price}}</view>
-            <view class='block'></view>
-            <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-          </view>
-          <view class="status-bar flex_row_center_spaceBetween theme-font3">
-            <view>电视轮播中…</view>
-            <image src="/images/icon/A18668_delete.png" bindtap="delProgramPlay" data-goods_id="{{bean.goods_id}}" data-key="{{key}}" data-play_list="{{play_list}}"></image>
-          </view>
-        </view>
-        <!-- <button bindtap="delProgramPlay" data-goods_id="{{bean.goods_id}}" data-key="{{key}}" data-play_list="{{play_list}}">移除</button> -->
-      </view>
-    </view>
-  </scroll-view>
+	<!-- 正在播放的活动面板 -->
+	<scroll-view wx:if="{{pro_play==true && play_list.length>0}}" class='playing-sale-panel' scroll-x="true" scroll-with-animation="true">
+		<view class='row theme7' wx:for="{{play_list}}" wx:for-item="bean" wx:key="key" wx:index="index">
+			<view class='flag theme-font4'>{{index + 1}}</view>
+			<view class='ads flex_row_center'>
+				<image mode="aspectFill" src='{{bean.img_url}}'></image>
+				<view class='goods flex_column_flexStart_spaceBetween'>
+					<view class='title one-line-overflow'>{{bean.name}}</view>
+					<view class='infomation flex_row_center'>
+						<view class='price theme-font7'>￥{{bean.price}}</view>
+						<view class='block'></view>
+						<!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+					</view>
+					<view class="status-bar flex_row_center_spaceBetween theme-font3">
+						<view>电视轮播中…</view>
+						<image src="/images/icon/A18668_delete.png" bindtap="delProgramPlay" data-goods_id="{{bean.goods_id}}" data-key="{{key}}" data-play_list="{{play_list}}"></image>
+					</view>
+				</view>
+				<!-- <button bindtap="delProgramPlay" data-goods_id="{{bean.goods_id}}" data-key="{{key}}" data-play_list="{{play_list}}">移除</button> -->
+			</view>
+		</view>
+	</scroll-view>
 
-  <!-- 活动促销面板 -->
-  <view class='sale-panel full_width'>
-    <view class='tab-bar flex_row_center_spaceBetween theme7'>
-      <block wx:if="{{activity_pop==true && hotel_activity==true}}">
-        <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
-        <view class='dividing-line'></view>
-        <view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
-      </block>
-      <block wx:if="{{activity_pop==true && hotel_activity==false}}">
-        <view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
-      </block>
-      <block wx:if="{{activity_pop==false && hotel_activity==true}}">
-        <view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
-      </block>
-    </view>
+	<!-- 活动促销面板 -->
+	<view class='sale-panel full_width'>
+		<view class='tab-bar flex_row_center_spaceBetween theme7'>
+			<block wx:if="{{activity_pop==true && hotel_activity==true}}">
+				<view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
+				<view class='dividing-line'></view>
+				<view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
+			</block>
+			<block wx:if="{{activity_pop==true && hotel_activity==false}}">
+				<view bindtap="selectXxk" data-status="1" class='tab-title{{showPageType == 1 ? " selected" : ""}}'>活动促销</view>
+			</block>
+			<block wx:if="{{activity_pop==false && hotel_activity==true}}">
+				<view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
+			</block>
+		</view>
 
-    <!-- 活动促销 -->
-    <block wx:if="{{showPageType == 1 && activity_pop==true}}">
-      <block wx:if="{{sale_list.length > 0}}">
-        <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-          <view class='content flex_row_center' data-index="{{index}}">
-            <view class="pic">
-              <image mode="aspectFill" src='{{bean.img_url}}'></image>
-            </view>
-            <view class='goods flex_column_flexStart_spaceBetween'>
-              <view class='title one-line-overflow'>{{bean.goods_name}}</view>
-              <view class='infomation flex_row_flexStart_spaceBetween'>
-                <view class='theme-font7'>￥{{bean.price}}</view>
-                <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-              </view>
-              <view class='operate flex_row_center_flexEnd'>
-                <button wx:if="{{pro_play==true}}" class='btn-menu theme-button-welcome' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-                <button class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">大屏展示</button>
-                <button class='share theme-button-welcome' bindtap="pop_share" data-goods_info="{{bean}}">
-                  <view class="fa fa-share-alt" aria-hidden="true"></view>
-                </button>
-              </view>
-            </view>
-          </view>
-          <view class="del flex_column_center_center theme-button-add" catchtap="del" data-index="{{index}}" data-goods_id="{{bean.goods_id}}">删除</view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="no-data flex_column_center_center theme7" style="height:800rpx;" wx:if="{{goods_manage==true}}">
-          <view>您还没有选择要推广的活动</view>
-          <view>请前往【个人信息——活动商品管理】选择</view>
-          <view bindtap="addPopGoods">
-            <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
-          </view>
-        </view>
-      </block>
-    </block>
+		<!-- 活动促销 -->
+		<scroll-view wx:if="{{showPageType == 1 && activity_pop==true}}" class="system-sale" scroll-y="true" scroll-with-animation="true">
+			<block wx:if="{{sale_list.length > 0}}">
+				<view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+					<view class='content flex_row_center' data-index="{{index}}">
+						<view class="pic">
+							<image mode="aspectFill" src='{{bean.img_url}}'></image>
+						</view>
+						<view class='goods flex_column_flexStart_spaceBetween'>
+							<view class='title one-line-overflow'>{{bean.goods_name}}</view>
+							<view class='infomation flex_row_flexStart_spaceBetween'>
+								<view class='theme-font7'>￥{{bean.price}}</view>
+								<!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+							</view>
+							<view class='operate flex_row_center_flexEnd'>
+								<button wx:if="{{pro_play==true}}" class='btn-menu theme-button-welcome' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+								<button class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">大屏展示</button>
+								<button class='share theme-button-welcome' bindtap="pop_share" data-goods_info="{{bean}}">
+									<view class="fa fa-share-alt" aria-hidden="true"></view>
+								</button>
+							</view>
+						</view>
+					</view>
+					<view class="del flex_column_center_center theme-button-add" catchtap="del" data-index="{{index}}" data-goods_id="{{bean.goods_id}}">删除</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="no-data flex_column_center_center theme7" style="height:800rpx;" wx:if="{{goods_manage==true}}">
+					<view>您还没有选择要推广的活动</view>
+					<view>请前往【个人信息——活动商品管理】选择</view>
+					<view bindtap="addPopGoods">
+						<navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
+					</view>
+				</view>
+			</block>
+		</scroll-view>
 
-    <!-- 我的活动[添加] -->
-    <block wx:if="{{showPageType == 2 && is_my_activity==0}}">
-      <view class='ads-add theme7'>
-        <form bindsubmit="pubAct">
-          <view class='btn-add flex_column_center_center full_width'>
-            <block wx:if="{{my_activity_info.media_type == 0}}">
-              <image src='/images/icon/999999_upload.png'></image>
-              <view class="flex_row_center_spaceBetween">
-                <view class='theme-font7' bindtap="chooseImg">上传图片</view>
-                <view class='theme-font7' bindtap="chooseVideo">上传视频</view>
-              </view>
-            </block>
-            <block wx:if="{{my_activity_info.media_type == 2}}">
-              <view class='clear theme-font' bindtap="clearGoodsImg" data-resource_type="2">重选</view>
-              <image class="choosed-pic" src='{{filename}}'></image>
-            </block>
-            <block wx:if="{{my_activity_info.media_type == 1}}">
-              <view class='clear theme-font' bindtap="clearGoodsImg" data-resource_type="1">重选</view>
-              <video class="choosed-video" src="{{filename}}"></video>
-            </block>
-          </view>
-          <view class='row flex_row_center full_width'>
-            <label>商品名称</label>
-            <input name='goods_name' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{goods_name_focus}}" maxlength="30" value="{{goods_name}}"></input>
-          </view>
-          <view class='row flex_row_center full_width'>
-            <label>输入价格</label>
-            <input name='price' type="digit" placeholder='最高9999元  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
-          </view>
-          <view class='row flex_row_center full_width' style="width: 550rpx;">
-            <label>活动时间</label>
-            <view class="flex_row_center_center">
-              <picker class="flex_row_center_spaceBetween" mode='date' bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">
-                <view class="flex_row_center_spaceBetween">
-                  <label>{{my_activity_info.start_time}}</label>
-                  <image src='/images/icon/999999_calendar.png'></image>
-                </view>
-              </picker>
-              <label>~</label>
-              <picker class="flex_row_center_spaceBetween" mode='date' bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">
-                <view class="flex_row_center_spaceBetween">
-                  <label>{{my_activity_info.end_time}}</label>
-                  <image src='/images/icon/999999_calendar.png'></image>
-                </view>
-              </picker>
-            </view>
-          </view>
-          <view class='row flex_row_center full_width'>
-            <label>活动范围</label>
-            <radio-group class="flex_row_center_spaceBetween" bindchange="radioChange">
-              <radio bindtap="changeRoomType" wx:for="{{room_arr}}" wx:for-item="bean" wx:key="key" value="{{bean.id}}" checked="{{bean.checked}}" data-room_type="{{bean.id}}">{{bean.name}}</radio>
-            </radio-group>
-          </view>
-          <input class='display_hide' name="goods_img" value="{{my_activity_info.goods_img}}"> </input>
-          <input class='display_hide' name="room_type" value="{{my_activity_info.room_type}}"></input>
-          <input class='display_hide' name="start_time" value="{{my_activity_info.start_time}}"></input>
-          <input class='display_hide' name="end_time" value="{{my_activity_info.end_time}}"></input>
-          <input class='display_hide' name="goods_id" value="{{my_activity_info.goods_id}}"></input>
-          <input class='display_hide' name="file_size" value="{{my_activity_info.file_size}}"></input>
-          <input class="display_hide" name="duration" value="{{my_activity_info.duration}}"></input>
-          <button class='btn-submit flex_row_center theme-button-welcome' form-type="submit">添加活动</button>
-        </form>
-      </view>
-    </block>
+		<!-- 我的活动[添加] -->
+		<block wx:if="{{showPageType == 2 && is_my_activity==0}}">
+			<view class='ads-add theme7'>
+				<form bindsubmit="pubAct">
+					<view class='btn-add flex_column_center_center full_width'>
+						<block wx:if="{{my_activity_info.media_type == 0}}">
+							<image src='/images/icon/999999_upload.png'></image>
+							<view class="flex_row_center_spaceBetween">
+								<view class='theme-font7' bindtap="chooseImg">上传图片</view>
+								<view class='theme-font7' bindtap="chooseVideo">上传视频</view>
+							</view>
+						</block>
+						<block wx:if="{{my_activity_info.media_type == 2}}">
+							<view class='clear theme-font' bindtap="clearGoodsImg" data-resource_type="2">重选</view>
+							<image class="choosed-pic" src='{{filename}}'></image>
+						</block>
+						<block wx:if="{{my_activity_info.media_type == 1}}">
+							<view class='clear theme-font' bindtap="clearGoodsImg" data-resource_type="1">重选</view>
+							<video class="choosed-video" src="{{filename}}"></video>
+						</block>
+					</view>
+					<view class='row flex_row_center full_width'>
+						<label>商品名称</label>
+						<input name='goods_name' type="text" placeholder='请输入商品名称  ' placeholder-style='text-align: right;' focus="{{goods_name_focus}}" maxlength="30" value="{{goods_name}}"></input>
+					</view>
+					<view class='row flex_row_center full_width'>
+						<label>输入价格</label>
+						<input name='price' type="digit" placeholder='最高9999元  ' placeholder-style='text-align: right;' focus="{{price_focus}}" bindinput='setMaxPrice' value="{{price}}"></input>
+					</view>
+					<view class='row flex_row_center full_width' style="width: 550rpx;">
+						<label>活动时间</label>
+						<view class="flex_row_center_center">
+							<picker class="flex_row_center_spaceBetween" mode='date' bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">
+								<view class="flex_row_center_spaceBetween">
+									<label>{{my_activity_info.start_time}}</label>
+									<image src='/images/icon/999999_calendar.png'></image>
+								</view>
+							</picker>
+							<label>~</label>
+							<picker class="flex_row_center_spaceBetween" mode='date' bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">
+								<view class="flex_row_center_spaceBetween">
+									<label>{{my_activity_info.end_time}}</label>
+									<image src='/images/icon/999999_calendar.png'></image>
+								</view>
+							</picker>
+						</view>
+					</view>
+					<view class='row flex_row_center full_width'>
+						<label>活动范围</label>
+						<radio-group class="flex_row_center_spaceBetween" bindchange="radioChange">
+							<radio bindtap="changeRoomType" wx:for="{{room_arr}}" wx:for-item="bean" wx:key="key" value="{{bean.id}}" checked="{{bean.checked}}" data-room_type="{{bean.id}}">{{bean.name}}</radio>
+						</radio-group>
+					</view>
+					<input class='display_hide' name="goods_img" value="{{my_activity_info.goods_img}}"> </input>
+					<input class='display_hide' name="room_type" value="{{my_activity_info.room_type}}"></input>
+					<input class='display_hide' name="start_time" value="{{my_activity_info.start_time}}"></input>
+					<input class='display_hide' name="end_time" value="{{my_activity_info.end_time}}"></input>
+					<input class='display_hide' name="goods_id" value="{{my_activity_info.goods_id}}"></input>
+					<input class='display_hide' name="file_size" value="{{my_activity_info.file_size}}"></input>
+					<input class="display_hide" name="duration" value="{{my_activity_info.duration}}"></input>
+					<button class='btn-submit flex_row_center theme-button-welcome' form-type="submit">添加活动</button>
+				</form>
+			</view>
+		</block>
 
-    <!-- 我的活动[列表] -->
-    <block wx:if="{{showPageType == 3 && hotel_activity==true}}">
-      <block wx:if="{{is_add_myactivity==1}}">
-        <view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
-          <view class="ads-mine full_width full_height flex_column_center">
-            <view class="btn-ads-mine theme-button-welcome">添加我的活动</view>
-          </view>
-        </view>
-      </block>
-      <view class="row flex_row_center theme7 touch-move-unactive" wx:for="{{hotel_activity_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
-        <view class='content flex_row_center' wx:if="{{bean.is_my_activity==1}}">
-          <view class="pic">
-            <image class='photo full_height full_width' mode="aspectFill" src='{{bean.img_url}}'></image>
-            <view class="flag theme-font4 theme-background-9">我的</view>
-            <image class='status' wx:if="{{bean.status==1}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png'></image>
-            <image class='status' wx:if="{{bean.status==3}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'></image>
-            <image class='status' wx:if="{{bean.status==5}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-expire.png'></image>
-          </view>
-          <view class='goods flex_column_flexStart_spaceBetween'>
-            <view class='title one-line-overflow'>{{bean.goods_name}}</view>
-            <view class='infomation flex_row_flexStart_spaceBetween'>
-              <view class='price theme-font7'>￥{{bean.price}}
-                <!-- {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}-->
-              </view>
-            </view>
-            <view class='operate flex_row_center_flexEnd'>
-              <button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button-welcome-dark' bindtap="editGoods" data-goods_id="{{bean.goods_id}}" data-index="{{index}}">修改</button>
-              <button wx:if="{{bean.status==2 && pro_play==true}}" class='btn-menu theme-button-welcome' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
-              <button wx:if="{{bean.status==2}}" class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
-            </view>
-          </view>
-        </view>
-        <view class='content flex_row_center' wx:else>
-          <view class="pic">
-            <image mode="aspectFill" src='{{bean.img_url}}'></image>
-          </view>
-          <view class='goods flex_column_flexStart_spaceBetween'>
-            <view class='title one-line-overflow'>{{bean.goods_name}}</view>
-            <view class='infomation flex_row_flexStart_spaceBetween'>
-              <view class='price theme-font7'>￥{{bean.price}}</view>
-              <!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
-            </view>
-            <view class='operate flex_row_center_flexEnd'>
-              <button class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
+		<!-- 我的活动[列表] -->
+		<scroll-view wx:if="{{showPageType == 3 && hotel_activity==true}}" class="my-sale" scroll-y="true" scroll-with-animation="true">
+			<block wx:if="{{is_add_myactivity==1}}">
+				<view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
+					<view class="ads-mine full_width full_height flex_column_center">
+						<view class="btn-ads-mine theme-button-welcome">添加我的活动</view>
+					</view>
+				</view>
+			</block>
+			<view class="row flex_row_center theme7 touch-move-unactive" wx:for="{{hotel_activity_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}">
+				<view class='content flex_row_center' wx:if="{{bean.is_my_activity==1}}">
+					<view class="pic">
+						<image class='photo full_height full_width' mode="aspectFill" src='{{bean.img_url}}'></image>
+						<view class="flag theme-font4 theme-background-9">我的</view>
+						<image class='status' wx:if="{{bean.status==1}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-examining.png'></image>
+						<image class='status' wx:if="{{bean.status==3}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-unpass.png'></image>
+						<image class='status' wx:if="{{bean.status==5}}" src='https://oss.littlehotspot.com/Html5/images/sale/EB6877-expire.png'></image>
+					</view>
+					<view class='goods flex_column_flexStart_spaceBetween'>
+						<view class='title one-line-overflow'>{{bean.goods_name}}</view>
+						<view class='infomation flex_row_flexStart_spaceBetween'>
+							<view class='price theme-font7'>￥{{bean.price}}
+								<!-- {{my_activity_info.start_time}}~{{my_activity_info.end_time}} {{my_activity_info.room_type_desc}}-->
+							</view>
+						</view>
+						<view class='operate flex_row_center_flexEnd'>
+							<button wx:if="{{bean.status==2 || bean.status==3 || bean.status==5}}" class='btn-edit theme-button-welcome-dark' bindtap="editGoods" data-goods_id="{{bean.goods_id}}" data-index="{{index}}">修改</button>
+							<button wx:if="{{bean.status==2 && pro_play==true}}" class='btn-menu theme-button-welcome' bindtap="programPlay" data-goods_id="{{bean.goods_id}}">电视轮播</button>
+							<button wx:if="{{bean.status==2}}" class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
+						</view>
+					</view>
+				</view>
+				<view class='content flex_row_center' wx:else>
+					<view class="pic">
+						<image mode="aspectFill" src='{{bean.img_url}}'></image>
+					</view>
+					<view class='goods flex_column_flexStart_spaceBetween'>
+						<view class='title one-line-overflow'>{{bean.goods_name}}</view>
+						<view class='infomation flex_row_flexStart_spaceBetween'>
+							<view class='price theme-font7'>￥{{bean.price}}</view>
+							<!-- <view class='discount theme-font5'>返利 {{bean.rebate_integral}}积分</view> -->
+						</view>
+						<view class='operate flex_row_center_flexEnd'>
+							<button class='btn-tv theme-button-welcome' bindtap="boxShow" data-goods_id="{{bean.goods_id}}" data-oss_addr="{{bean.oss_addr}}" data-qrcode_url="{{bean.qrcode_url}}">电视播放</button>
+						</view>
+					</view>
+				</view>
+			</view>
+		</scroll-view>
 
+	</view>
 
-    <!-- 默认 -->
-    <block wx:else>
-    </block>
-
-  </view>
-
-</scroll-view>
+</view>
 <!-- 无机顶盒 -->
 <view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
-  <!-- 酒楼 
+	<!-- 酒楼 
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">
     <view class="choosed-hotel theme-font" bindtap="reChooseHotel">重选酒楼</view>
   </view>-->
-  <view class="link-type-panel" style="height:80rpx;margin-bottom:0;">
-    <view class="wapper flex_row_center">
-      <view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" style="width:100%;" data-id="{{user_info.select_hotel_id}}" bindtap="reChooseHotel">
-        <image src='/images/icon/FFFFFF_linked.png'></image>
-        <!-- <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view> -->
-        <view class="choosed-hotel one-line-overflow">当前在“{{user_info.select_hotel_name}}”酒楼，点击重选酒楼</view>
-      </view>
-    </view>
-  </view>
+	<view class="link-type-panel" style="height:80rpx;margin-bottom:0;">
+		<view class="wapper flex_row_center">
+			<view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" style="width:100%;" data-id="{{user_info.select_hotel_id}}" bindtap="reChooseHotel">
+				<image src='/images/icon/FFFFFF_linked.png'></image>
+				<!-- <view class="choosed-hotel one-line-overflow">{{user_info.select_hotel_name ? user_info.select_hotel_name : '请选择酒楼'}}</view> -->
+				<view class="choosed-hotel one-line-overflow">当前在“{{user_info.select_hotel_name}}”酒楼，点击重选酒楼</view>
+			</view>
+		</view>
+	</view>
 
-  <view class='sale-panel full_width full_height'>
-    <!-- 活动促销 -->
-    <block wx:if="{{showPageType == 1}}">
-      <block wx:if="{{(sale_list.length > 0 && goods_manage==true) || user_info.hotel_id==-1}}">
-        <view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
-          <view class='content flex_row_center' data-index="{{index}}">
-            <view class="pic">
-              <image mode="aspectFill" src='{{bean.img_url}}'></image>
-            </view>
-            <view class='goods flex_column_flexStart_spaceBetween'>
-              <view class='title one-line-overflow'>{{bean.goods_name}}</view>
-              <view class='infomation flex_row_flexStart_spaceBetween'>
-                <view class='price theme-font7'>￥{{bean.price}}</view>
-              </view>
-              <view class='operate flex_row_center_flexEnd'>
-                <button class='share theme-button-welcome' bindtap="pop_share" data-goods_info="{{bean}}">
-                  <view class="fa fa-share-alt" aria-hidden="true"></view>
-                </button>
-              </view>
-            </view>
-          </view>
-          <view class="del flex_column_center_center theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="no-data full_width theme7" wx:if="{{goods_manage==true}}">
-          <view>您还没有选择要推广的活动</view>
-          <view>请前往【个人信息——活动商品管理】选择</view>
-          <view>
-            <navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
-          </view>
-        </view>
-        <view class="no-data full_width theme7" wx:else>
-          <view>暂未开通活动商品管理，请联系小热点</view>
-        </view>
-      </block>
-    </block>
-  </view>
+	<view class='sale-panel full_width full_height'>
+		<!-- 活动促销 -->
+		<block wx:if="{{showPageType == 1}}">
+			<block wx:if="{{(sale_list.length > 0 && goods_manage==true) || user_info.hotel_id==-1}}">
+				<view class="row flex_row_center full_width theme7 {{bean.isTouchMove ? 'touch-move-active' : 'touch-move-unactive'}}" wx:for="{{sale_list}}" wx:for-item="bean" wx:key="key" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove">
+					<view class='content flex_row_center' data-index="{{index}}">
+						<view class="pic">
+							<image mode="aspectFill" src='{{bean.img_url}}'></image>
+						</view>
+						<view class='goods flex_column_flexStart_spaceBetween'>
+							<view class='title one-line-overflow'>{{bean.goods_name}}</view>
+							<view class='infomation flex_row_flexStart_spaceBetween'>
+								<view class='price theme-font7'>￥{{bean.price}}</view>
+							</view>
+							<view class='operate flex_row_center_flexEnd'>
+								<button class='share theme-button-welcome' bindtap="pop_share" data-goods_info="{{bean}}">
+									<view class="fa fa-share-alt" aria-hidden="true"></view>
+								</button>
+							</view>
+						</view>
+					</view>
+					<view class="del flex_column_center_center theme-button-add" catchtap="del" data-index="{{index}}">删除</view>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="no-data full_width theme7" wx:if="{{goods_manage==true}}">
+					<view>您还没有选择要推广的活动</view>
+					<view>请前往【个人信息——活动商品管理】选择</view>
+					<view>
+						<navigator class="theme-button-add" url="/pages/mine/pop_list">添加</navigator>
+					</view>
+				</view>
+				<view class="no-data full_width theme7" wx:else>
+					<view>暂未开通活动商品管理，请联系小热点</view>
+				</view>
+			</block>
+		</block>
+	</view>
 </view>
 
 <!-- 底部分享弹窗 -->
 <bottom-modal show="{{showShareBottomPopWindow}}" width="100%" height='370rpx' background-color='unset' padding-bottom="calc(28px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='close_share'>
-  <view class="share-bottom-pop-window">
-    <view class="title">分享</view>
-    <view class="btn-group flex_row_center_spaceAround">
-      <button class="flex_column_center" bindtap="recwsad" data-goods_info="{{goods_info}}">
-        <image src="/images/icon/goods.png"></image>
-        <view>推荐到好物圈</view>
-      </button>
-      <button class="flex_column_center" open-type='share' data-goods_info="{{goods_info}}">
-        <image src="/images/icon/wechart.png"></image>
-        <view>分享好友</view>
-      </button>
-      <button class="flex_column_center" bindtap="viewGoodsCode" data-goods_info="{{goods_info}}">
-        <image src="/images/icon/friends_circle.png"></image>
-        <view>生成商品码</view>
-      </button>
-    </view>
-  </view>
-  <view class="share-bottom-pop-window-cancel-btn flex_column_center_center" bindtap="close_share">取消</view>
+	<view class="share-bottom-pop-window">
+		<view class="title">分享</view>
+		<view class="btn-group flex_row_center_spaceAround">
+			<button class="flex_column_center" bindtap="recwsad" data-goods_info="{{goods_info}}">
+				<image src="/images/icon/goods.png"></image>
+				<view>推荐到好物圈</view>
+			</button>
+			<button class="flex_column_center" open-type='share' data-goods_info="{{goods_info}}">
+				<image src="/images/icon/wechart.png"></image>
+				<view>分享好友</view>
+			</button>
+			<button class="flex_column_center" bindtap="viewGoodsCode" data-goods_info="{{goods_info}}">
+				<image src="/images/icon/friends_circle.png"></image>
+				<view>生成商品码</view>
+			</button>
+		</view>
+	</view>
+	<view class="share-bottom-pop-window-cancel-btn flex_column_center_center" bindtap="close_share">取消</view>
 </bottom-modal>
 
 <!-- 底部商品码弹窗 -->
 <bottom-modal show="{{showBottomPopGoodsCodeWindow}}" width="100%" height='500px' background-color='unset' padding-bottom="calc(28px + {{SystemInfo.statusBarHeight}}px)" border-radius="0rpx" title-text='' confirm-text='' cancel-text='' bindclickMask='closeViewGoodsCode'>
-  <view class="bottom-pop-goods-code-window flex_column_center theme-font2 theme7">
-    <view class="top-bar flex_row_center_spaceBetween theme-font1">
-      <view class="title">商品码</view>
-      <view class="fa fa-close" bindtap="closeViewGoodsCode"></view>
-    </view>
-    <view class="detail flex_column_center_center">
-      <canvas canvas-id="goodsCode" class="goods-code"></canvas>
-    </view>
-    <view class="btn-group flex_row_center_spaceAround">
-      <!-- <button wx:if="{{hotel_has_room==1}}" class="launch theme-button-add" bindtap="viewRoomWin">大屏展示</button> -->
-      <button class="save theme-button" bindtap='saveImageToPhotosAlbum' data-share_goods_info="{{share_goods_info}}">保存到相册</button>
-    </view>
-    <view class="tip flex_row_center_center">保存图片到手机相册，将图片分享给您的好友~</view>
-  </view>
+	<view class="bottom-pop-goods-code-window flex_column_center theme-font2 theme7">
+		<view class="top-bar flex_row_center_spaceBetween theme-font1">
+			<view class="title">商品码</view>
+			<view class="fa fa-close" bindtap="closeViewGoodsCode"></view>
+		</view>
+		<view class="detail flex_column_center_center">
+			<canvas canvas-id="goodsCode" class="goods-code"></canvas>
+		</view>
+		<view class="btn-group flex_row_center_spaceAround">
+			<!-- <button wx:if="{{hotel_has_room==1}}" class="launch theme-button-add" bindtap="viewRoomWin">大屏展示</button> -->
+			<button class="save theme-button" bindtap='saveImageToPhotosAlbum' data-share_goods_info="{{share_goods_info}}">保存到相册</button>
+		</view>
+		<view class="tip flex_row_center_center">保存图片到手机相册，将图片分享给您的好友~</view>
+	</view>
 </bottom-modal>
 
 <!-- 选择投屏包间 -->
 <modal show="{{showMiddlePopChoseBoxWindow}}" width="600rpx" height='400rpx' border-radius="0rpx" background-color='unset' title-text='' confirm-text='' cancel-text=''>
-  <view class="middle-pop-chose-box-window theme-font2 theme7">
-    <view class="title theme-font1">请选择投屏包间</view>
-    <view class="main flex_column_center_center">
-      <picker class="room-picker flex_row_center_center" bindchange="bindBoxPickerChange" value="{{box_index}}" range="{{box_name_list}}">
-        <label>{{box_name_list[box_index]}}</label>
-        <label class="fa fa-caret-down" aria-hidden="true"></label>
-      </picker>
-    </view>
-    <view class="btn-group flex_row_center_spaceAround">
-      <button bindtap="boxShow" class="theme-button" data-goods_id="{{goods_info.goods_id}}" data-oss_addr="{{goods_info.oss_addr}}" data-box_index="{{box_index}}">确定</button>
-      <button class="theme-font4 theme8" bindtap="closeViewRoom">取消</button>
-    </view>
-  </view>
+	<view class="middle-pop-chose-box-window theme-font2 theme7">
+		<view class="title theme-font1">请选择投屏包间</view>
+		<view class="main flex_column_center_center">
+			<picker class="room-picker flex_row_center_center" bindchange="bindBoxPickerChange" value="{{box_index}}" range="{{box_name_list}}">
+				<label>{{box_name_list[box_index]}}</label>
+				<label class="fa fa-caret-down" aria-hidden="true"></label>
+			</picker>
+		</view>
+		<view class="btn-group flex_row_center_spaceAround">
+			<button bindtap="boxShow" class="theme-button" data-goods_id="{{goods_info.goods_id}}" data-oss_addr="{{goods_info.oss_addr}}" data-box_index="{{box_index}}">确定</button>
+			<button class="theme-font4 theme8" bindtap="closeViewRoom">取消</button>
+		</view>
+	</view>
 </modal>
 
 <!-- 酒楼列表弹窗 -->

@@ -20,7 +20,7 @@
 			<!-- 左侧列表内容部分 -->
 			<scroll-view id="mail_list_group" class="content" enable-back-to-top scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" bindscroll="onPageScroll">
 				<view wx:for="{{listMain}}" wx:for-item="group" wx:key="group_id" id="{{'inToView' + group.id}}" data-id='{{group.id}}'>
-					<view class="address_top">{{group.region}}-</view>
+					<view class="address_top">{{group.region}}</view>
 					<!-- <view wx:for="{{group.items}}" wx:for-item="item" wx:key="{{item.id}}">
             <view class="address_bottom" data-id='{{item.id}}'>{{item.name}}</view>
           </view> -->

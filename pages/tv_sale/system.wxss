@@ -33,7 +33,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   margin-bottom: -105rpx;
 }
 
-.link-type-panel > .wapper {
+.link-type-panel>.wapper {
   width: calc(100% - 50rpx);
   height: 80rpx;
   margin: 0;
@@ -41,20 +41,21 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   padding: 0 25rpx;
 }
 
-.link-type-panel > .wapper > .hotel, .link-type-panel > .wapper > .box {
+.link-type-panel>.wapper>.hotel,
+.link-type-panel>.wapper>.box {
   width: 50%;
 }
 
-.link-type-panel > .wapper > .hotel > image,
-.link-type-panel > .wapper > .box image {
+.link-type-panel>.wapper>.hotel>image,
+.link-type-panel>.wapper>.box image {
   width: 40rpx;
   height: 40rpx;
   border-radius: 50%;
   margin-right: 20rpx;
 }
 
-.link-type-panel > .wapper > .hotel > .choosed-hotel,
-.link-type-panel > .wapper > .box .choosed-box {
+.link-type-panel>.wapper>.hotel>.choosed-hotel,
+.link-type-panel>.wapper>.box .choosed-box {
   width: calc(100% - 60rpx);
   font-size: 28rpx;
 }
@@ -77,7 +78,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   margin-right: 30rpx;
 }
 
-.playing-sale-panel .row > .flag {
+.playing-sale-panel .row>.flag {
   width: 40rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -91,12 +92,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   background-color: rgba(235, 104, 119, 0.76);
 }
 
-.playing-sale-panel .row > .ads {
+.playing-sale-panel .row>.ads {
   width: 100%;
   height: 100%;
 }
 
-.playing-sale-panel .row > .ads > image {
+.playing-sale-panel .row>.ads>image {
   width: 120rpx;
   height: 120rpx;
   margin: auto 20rpx;
@@ -104,27 +105,27 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 10rpx;
 }
 
-.playing-sale-panel .row > .ads > .goods {
+.playing-sale-panel .row>.ads>.goods {
   width: calc(100% - 180rpx);
   height: 120rpx;
   font-size: 20rpx;
 }
 
-.playing-sale-panel .row > .ads > .goods > view {
+.playing-sale-panel .row>.ads>.goods>view {
   width: 100%;
   height: 30rpx;
   font-size: 24rpx;
 }
 
-.playing-sale-panel .row > .ads > .goods > .infomation > .block {
+.playing-sale-panel .row>.ads>.goods>.infomation>.block {
   width: 30rpx;
 }
 
-.playing-sale-panel .row > .ads > .goods > .status-bar {
+.playing-sale-panel .row>.ads>.goods>.status-bar {
   font-size: 20rpx;
 }
 
-.playing-sale-panel .row > .ads > .goods > .status-bar > image {
+.playing-sale-panel .row>.ads>.goods>.status-bar>image {
   width: 40rpx;
   height: 40rpx;
 }
@@ -149,17 +150,18 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 } */
 
 .sale-panel {
+  height: calc(100% - 280rpx);
   margin-top: 25rpx;
 }
 
-.sale-panel > .tab-bar {
+.sale-panel>.tab-bar {
   height: 70rpx;
   font-size: 24rpx;
   padding: 0 75rpx;
   border-bottom: 1rpx solid #d0cccc;
 }
 
-.sale-panel > .tab-bar > .tab-title {
+.sale-panel>.tab-bar>.tab-title {
   width: 300rpx;
   height: 70rpx;
   line-height: 70rpx;
@@ -168,12 +170,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   /* border-bottom: 4rpx solid #58525c; */
 }
 
-.sale-panel > .tab-bar > .tab-title.selected {
+.sale-panel>.tab-bar>.tab-title.selected {
   color: #a18668;
   border-bottom: 4rpx solid #a18668;
 }
 
-.sale-panel > .tab-bar > .dividing-line {
+.sale-panel>.tab-bar>.dividing-line {
   width: 3rpx;
   height: 100%;
   background-color: #ededed;
@@ -189,7 +191,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   /* border-bottom: 2rpx solid #ededed; */
 }
 
-.sale-panel .row > .content {
+.sale-panel .row>.content {
   width: 672rpx;
   height: 100%;
   margin-left: -180rpx;
@@ -197,24 +199,24 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   padding: 0 40rpx;
 }
 
-.sale-panel .row > .del {
+.sale-panel .row>.del {
   width: 180rpx;
   height: 100%;
 }
 
-.sale-panel .row > .content > .pic {
+.sale-panel .row>.content>.pic {
   width: 120rpx;
   height: 120rpx;
   padding-right: 25rpx;
 }
 
-.sale-panel .row > .content > .pic > image {
+.sale-panel .row>.content>.pic>image {
   width: 100%;
   height: 100%;
   border: 1rpx solid #ededed;
 }
 
-.sale-panel .row > .content > .pic > .flag {
+.sale-panel .row>.content>.pic>.flag {
   width: 50rpx;
   height: 30rpx;
   line-height: 30rpx;
@@ -227,7 +229,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 6rpx;
 }
 
-.sale-panel .row > .content > .pic > .status {
+.sale-panel .row>.content>.pic>.status {
   width: 120rpx;
   height: 120rpx;
   position: absolute;
@@ -236,13 +238,13 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border: unset;
 }
 
-.sale-panel .row > .content > .goods {
+.sale-panel .row>.content>.goods {
   width: calc(100% - 144rpx);
   height: 120rpx;
   font-size: 24rpx;
 }
 
-.sale-panel .row > .content > .goods > view {
+.sale-panel .row>.content>.goods>view {
   width: 100%;
   height: 40rpx;
 }
@@ -254,7 +256,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   overflow: hidden;
 } */
 
-.sale-panel .row > .content > .goods > .operate > button {
+.sale-panel .row>.content>.goods>.operate>button {
   width: 120rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -265,15 +267,15 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 5rpx;
 }
 
-.sale-panel .row > .content > .goods > .operate > .button::before,
-.sale-panel .row > .content > .goods > .operate > .button::after {
+.sale-panel .row>.content>.goods>.operate>.button::before,
+.sale-panel .row>.content>.goods>.operate>.button::after {
   background: unset;
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.sale-panel .row > .content > .goods > .operate > .share {
+.sale-panel .row>.content>.goods>.operate>.share {
   width: 40rpx;
   height: 40rpx;
 }
@@ -293,11 +295,11 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border: 2rpx solid rgb(196, 144, 191);
 } */
 
-.sale-panel .row > .ads-mine {
+.sale-panel .row>.ads-mine {
   justify-content: center;
 }
 
-.sale-panel .row > .ads-mine > .btn-ads-mine {
+.sale-panel .row>.ads-mine>.btn-ads-mine {
   width: 480rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -306,27 +308,29 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 10rpx;
 }
 
-.touch-move-active .content, .touch-move-active .del {
+.touch-move-active .content,
+.touch-move-active .del {
   -webkit-transform: translateX(0);
   transform: translateX(0);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
 
-.touch-move-unactive .content, .touch-move-unactive .del {
+.touch-move-unactive .content,
+.touch-move-unactive .del {
   -webkit-transform: translateX(180rpx);
   transform: translateX(180rpx);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
 
-.sale-panel > .no-data {
+.sale-panel>.no-data {
   width: 100%;
   height: 100%;
   font-size: 24rpx;
 }
 
-.sale-panel > .no-data .theme-button-add {
+.sale-panel>.no-data .theme-button-add {
   width: 250rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -337,7 +341,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 /********************* 我的活动[添加] *********************/
 
-.sale-panel > .ads-add {
+.sale-panel>.ads-add {
   height: 780rpx;
   padding-top: 35rpx;
   padding-bottom: 35rpx;
@@ -346,26 +350,26 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 24rpx;
 }
 
-.sale-panel > .ads-add .btn-add {
+.sale-panel>.ads-add .btn-add {
   height: 270rpx;
   border: 1rpx dashed #999;
 }
 
-.sale-panel > .ads-add .btn-add > view {
+.sale-panel>.ads-add .btn-add>view {
   width: 260rpx;
   margin-top: 59rpx;
 }
 
-.sale-panel > .ads-add .btn-add > view > view {
+.sale-panel>.ads-add .btn-add>view>view {
   text-decoration: underline;
 }
 
-.sale-panel > .ads-add .btn-add > image {
+.sale-panel>.ads-add .btn-add>image {
   width: 50rpx;
   height: 41rpx;
 }
 
-.sale-panel > .ads-add .btn-add > .clear {
+.sale-panel>.ads-add .btn-add>.clear {
   width: 90rpx;
   height: 40rpx;
   line-height: 40rpx;
@@ -380,26 +384,28 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 20rpx;
 }
 
-.sale-panel > .ads-add .btn-add > .choosed-pic,
-.sale-panel > .ads-add .btn-add > .choosed-video {
+.sale-panel>.ads-add .btn-add>.choosed-pic,
+.sale-panel>.ads-add .btn-add>.choosed-video {
   margin-top: -48rpx;
   width: calc(100% - 2rpx);
   height: calc(100% - 2rpx);
   z-index: 0;
 }
 
-.sale-panel > .ads-add .price, .sale-panel > .ads-add .time-quantum,
-.sale-panel > .ads-add .range, .sale-panel > .ads-add .row,
-.sale-panel > .ads-add .btn-submit {
+.sale-panel>.ads-add .price,
+.sale-panel>.ads-add .time-quantum,
+.sale-panel>.ads-add .range,
+.sale-panel>.ads-add .row,
+.sale-panel>.ads-add .btn-submit {
   margin-top: 41rpx;
   height: 60rpx;
 }
 
-.sale-panel > .ads-add .row > label {
+.sale-panel>.ads-add .row>label {
   width: 115rpx;
 }
 
-.sale-panel > .ads-add .row > input {
+.sale-panel>.ads-add .row>input {
   width: 365rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -407,12 +413,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border: 2rpx solid #ededed;
 }
 
-.sale-panel > .ads-add .row > view {
+.sale-panel>.ads-add .row>view {
   width: 365rpx;
   height: 50rpx;
 }
 
-.sale-panel > .ads-add .row > view > picker {
+.sale-panel>.ads-add .row>view>picker {
   width: 160rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -420,12 +426,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border: 2rpx solid #ededed;
 }
 
-.sale-panel > .ads-add .row > view > picker view {
+.sale-panel>.ads-add .row>view>picker view {
   width: 150rpx;
   height: 50rpx;
 }
 
-.sale-panel > .ads-add .row > view > picker label {
+.sale-panel>.ads-add .row>view>picker label {
   width: 120rpx;
   display: inline-block;
   vertical-align: middle;
@@ -433,13 +439,13 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   margin-right: 5rpx;
 }
 
-.sale-panel > .ads-add .row > view > picker image {
+.sale-panel>.ads-add .row>view>picker image {
   width: 30rpx;
   height: 30rpx;
   vertical-align: middle;
 }
 
-.sale-panel > .ads-add .row > view > label {
+.sale-panel>.ads-add .row>view>label {
   width: 45rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -447,11 +453,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   text-align: center;
 }
 
-.sale-panel > .ads-add .row > radio-group {
+.sale-panel>.ads-add .row>radio-group {
   width: 365rpx;
 }
 
-.sale-panel > .ads-add .btn-submit, .sale-panel > .ads-add .btn-submit::after {
+.sale-panel>.ads-add .btn-submit,
+.sale-panel>.ads-add .btn-submit::after {
   line-height: 50rpx;
   font-size: 24rpx;
   justify-content: center;
@@ -536,6 +543,11 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .sale-panel > .ads-list > .row > .btn-edit {
   width: 120rpx;
 }*/
+.sale-panel>.my-sale,
+.sale-panel>.system-sale {
+  width: 100%;
+  height: calc(100% - 70rpx);
+}
 
 /* ================================================== 底部分享弹窗 ================================================== */
 
@@ -546,26 +558,26 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   color: rgb(51, 51, 51);
 }
 
-.share-bottom-pop-window > .title {
+.share-bottom-pop-window>.title {
   padding: 20rpx 0;
   font-size: 30rpx;
   text-align: center;
 }
 
-.share-bottom-pop-window > .btn-group {
+.share-bottom-pop-window>.btn-group {
   width: 100%;
   height: calc(100% - 70rpx);
 }
 
-.share-bottom-pop-window > .btn-group > button::after,
-.share-bottom-pop-window > .btn-group > button::before {
+.share-bottom-pop-window>.btn-group>button::after,
+.share-bottom-pop-window>.btn-group>button::before {
   margin: 0;
   padding: 0;
   border: 0;
   background: unset;
 }
 
-.share-bottom-pop-window > .btn-group > button {
+.share-bottom-pop-window>.btn-group>button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -574,7 +586,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 24rpx;
 }
 
-.share-bottom-pop-window > .btn-group > button > image {
+.share-bottom-pop-window>.btn-group>button>image {
   width: 80rpx;
   height: 80rpx;
 }
@@ -595,7 +607,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   height: 100%;
 }
 
-.bottom-pop-goods-code-window > .top-bar {
+.bottom-pop-goods-code-window>.top-bar {
   width: calc(100% - 20px);
   height: 30px;
   padding: 0 10px;
@@ -603,12 +615,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 14px;
 }
 
-.bottom-pop-goods-code-window > .detail {
+.bottom-pop-goods-code-window>.detail {
   width: 100%;
   height: calc(100% - 110px);
 }
 
-.bottom-pop-goods-code-window > .detail > .goods-code {
+.bottom-pop-goods-code-window>.detail>.goods-code {
   width: 230px;
   height: 380px;
   border-radius: 10px;
@@ -616,14 +628,14 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   box-shadow: 2px 2px 5px #e6e6e6;
 }
 
-.bottom-pop-goods-code-window > .btn-group {
+.bottom-pop-goods-code-window>.btn-group {
   width: calc(100% - 40px);
   height: 40px;
   padding: 0 20px;
 }
 
-.bottom-pop-goods-code-window > .btn-group > .launch,
-.bottom-pop-goods-code-window > .btn-group > .save {
+.bottom-pop-goods-code-window>.btn-group>.launch,
+.bottom-pop-goods-code-window>.btn-group>.save {
   width: 125px;
   height: 30px;
   line-height: 30px;
@@ -634,7 +646,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   padding: 0;
 }
 
-.bottom-pop-goods-code-window > .tip {
+.bottom-pop-goods-code-window>.tip {
   height: 40px;
   font-size: 10px;
 }
@@ -648,7 +660,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 10rpx;
 }
 
-.middle-pop-chose-box-window > .title {
+.middle-pop-chose-box-window>.title {
   width: 100%;
   height: 40rpx;
   line-height: 40rpx;
@@ -656,23 +668,23 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 28rpx;
 }
 
-.middle-pop-chose-box-window > .main {
+.middle-pop-chose-box-window>.main {
   width: 100%;
   height: calc(100% - 100rpx);
 }
 
-.middle-pop-chose-box-window > .main > .room-picker {
+.middle-pop-chose-box-window>.main>.room-picker {
   width: 400rpx;
   height: 70rpx;
   background-color: #eee;
 }
 
-.middle-pop-chose-box-window > .btn-group {
+.middle-pop-chose-box-window>.btn-group {
   width: 100%;
   height: 60rpx;
 }
 
-.middle-pop-chose-box-window > .btn-group > button {
+.middle-pop-chose-box-window>.btn-group>button {
   width: 250rpx;
   height: 60rpx;
   line-height: 60rpx;
