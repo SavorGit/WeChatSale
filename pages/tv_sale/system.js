@@ -10,6 +10,7 @@ var policy;
 var signature;
 var accessid;
 var page = 1;
+var pop_page = 1;
 var common_appid = app.globalData.common_appid;
 var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
@@ -1008,6 +1009,7 @@ Page({
           })
           //数据埋点-活动添加成功
           mta.Event.stat('addActivitySucc', { 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
+          my_activity_info = {};
         } else {
           wx.showToast({
             title: tost_err_desc,
@@ -1032,7 +1034,7 @@ Page({
         //数据埋点-活动添加报错
         mta.Event.stat('addMyActivityErr', { 'code': 8, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
       },complete:function(e){
-        my_activity_info = {};
+        
       }
     })
 
@@ -2197,4 +2199,86 @@ Page({
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     mta.Event.stat('changeRoom', { 'openid': user_info.openid })
   }, //选择包间结束
+  loadMoreMyAct:function(e){
+    var that = this;
+    page +=1;
+    //console.log(hotel_id);
+    //console.log(openid);
+    wx.request({ //我的活动
+      url: api_v_url + '/goods/myGoodslist',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        hotel_id: hotel_id,
+        openid: openid,
+        type: 20,
+        page: page,
+        box_mac: box_mac,
+
+      },
+      success: function(res) {
+        if (res.data.code == 10000) {
+          if (res.data.result.datalist.length > 0) {
+            var goods_status = res.data.result.datalist[0].status;
+            if (goods_status == 2) {
+              var box_btn = false
+            } else {
+              var box_btn = true
+            }
+            var room_type = res.data.result.datalist[0].scope;
+            var check_status_arr = that.data.check_status_arr;
+            var room_arr = that.data.room_arr;
+            for (var i = 0; i < check_status_arr.length; i++) {
+              if (check_status_arr[i].status == goods_status) {
+                var check_status_img = check_status_arr[i].img;
+                break;
+              }
+            }
+            for (var j = 0; j < room_arr.length; j++) {
+              if (room_type == room_arr[j].id) {
+                var room_type_desc = room_arr[j].desc;
+                break;
+              }
+            }
+
+            var hotel_activity_list = res.data.result.datalist;
+            that.setData({
+              is_my_activity: 1,
+              
+              box_btn: box_btn,
+              hotel_activity_list: hotel_activity_list,
+              is_add_myactivity:res.data.result.is_add_myactivity
+            })
+          } else {
+           
+            that.setData({
+              price: '',
+              
+              is_my_activity: 0,
+
+            })
+          }
+
+        } else {
+          
+          that.setData({
+            price: '',
+            
+            is_my_activity: 0,
+
+          })
+        }
+      },
+      fail: function(res) {
+        
+        that.setData({
+          price: '',
+          
+          is_my_activity: 0,
+
+        })
+      }
+    })
+  }
 })

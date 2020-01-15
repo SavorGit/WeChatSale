@@ -168,7 +168,7 @@
 		</block>
 
 		<!-- 我的活动[列表] -->
-		<scroll-view wx:if="{{showPageType == 3 && hotel_activity==true}}" class="my-sale" scroll-y="true" scroll-with-animation="true">
+		<scroll-view wx:if="{{showPageType == 3 && hotel_activity==true}}" class="my-sale" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMoreMyAct">
 			<block wx:if="{{is_add_myactivity==1}}">
 				<view class="row flex_row_center theme7 touch-move-unactive" bindtap="addMyActivity">
 					<view class="ads-mine full_width full_height flex_column_center">
