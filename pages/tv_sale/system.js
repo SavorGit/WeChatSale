@@ -241,51 +241,51 @@ Page({
                 break;
               }
             }
-            my_activity_info = res.data.result.datalist[0]
+            /*my_activity_info = res.data.result.datalist[0]
             my_activity_info.room_type_desc = room_type_desc;
             my_activity_info.check_status_img = check_status_img;
             my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-            my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+            my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;*/
 
             var hotel_activity_list = res.data.result.datalist;
             that.setData({
               is_my_activity: 1,
-              my_activity_info: my_activity_info,
+              //my_activity_info: my_activity_info,
               box_btn: box_btn,
               hotel_activity_list: hotel_activity_list,
               is_add_myactivity:res.data.result.is_add_myactivity
             })
           } else {
-            my_activity_info = {};
+            /*my_activity_info = {};
             my_activity_info.media_type = 0;
-            my_activity_info.room_type = 0
+            my_activity_info.room_type = 0*/
             that.setData({
               price: '',
-              my_activity_info: my_activity_info,
+              //my_activity_info: my_activity_info,
               is_my_activity: 0,
 
             })
           }
 
         } else {
-          my_activity_info = {};
+          /*my_activity_info = {};
           my_activity_info.media_type = 0;
-          my_activity_info.room_type = 0
+          my_activity_info.room_type = 0*/
           that.setData({
             price: '',
-            my_activity_info: my_activity_info,
+            //my_activity_info: my_activity_info,
             is_my_activity: 0,
 
           })
         }
       },
       fail: function(res) {
-        my_activity_info = {};
+        /*my_activity_info = {};
         my_activity_info.media_type = 0;
-        my_activity_info.room_type = 0
+        my_activity_info.room_type = 0*/
         that.setData({
           price: '',
-          my_activity_info: my_activity_info,
+          //my_activity_info: my_activity_info,
           is_my_activity: 0,
 
         })
@@ -554,13 +554,13 @@ Page({
                     break;
                   }
                 }
-                my_activity_info = res.data.result.datalist[0]
+                /*my_activity_info = res.data.result.datalist[0]
                 my_activity_info.room_type_desc = room_type_desc;
                 my_activity_info.check_status_img = check_status_img;
                 my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-                my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+                my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;*/
               }else {
-                my_activity_info = {};
+                //my_activity_info = {};
               }
               
 
@@ -569,19 +569,19 @@ Page({
               var is_my_activity = res.data.result.is_my_activity
               that.setData({
                 is_my_activity: is_my_activity,
-                my_activity_info: my_activity_info,
+                //my_activity_info: my_activity_info,
                 hotel_activity_list: hotel_activity_list,
                 box_btn: box_btn,
                 is_add_myactivity:res.data.is_add_myactivity
               })
             } else {
-              my_activity_info = {};
+              /*my_activity_info = {};
               my_activity_info.media_type = 0;
-              my_activity_info.room_type = 0
+              my_activity_info.room_type = 0*/
               that.setData({
                 price: '',
                 is_my_activity: 0,
-                my_activity_info: my_activity_info,
+                //my_activity_info: my_activity_info,
                 hotel_activity_list: [],
                 
               })
@@ -589,25 +589,25 @@ Page({
 
           } else {
             
-            my_activity_info = {};
+            /*my_activity_info = {};
             my_activity_info.media_type = 0;
-            my_activity_info.room_type = 0
+            my_activity_info.room_type = 0*/
             that.setData({
               price: '',
               is_my_activity: 0,
-              my_activity_info: my_activity_info,
+              //my_activity_info: my_activity_info,
               hotel_activity_list:[]
             })
           }
         },
         fail: function(res) {
-          my_activity_info = {};
+          /*my_activity_info = {};
           my_activity_info.media_type = 0;
-          my_activity_info.room_type = 0
+          my_activity_info.room_type = 0*/
           that.setData({
             price: '',
             is_my_activity: 0,
-            my_activity_info: my_activity_info,
+            //my_activity_info: my_activity_info,
             hotel_activity_list: []
           })
         }
@@ -659,7 +659,7 @@ Page({
                 signature: signature
 
               },
-
+              
               success: function(res) {
                 my_activity_info.goods_img = oss_img;
                 my_activity_info.media_type = 2;
@@ -955,7 +955,7 @@ Page({
           } else {
             var box_btn = true;
           }
-          my_activity_info.goods_id = res.data.result.goods_id;
+          /*my_activity_info.goods_id = res.data.result.goods_id;
           my_activity_info.oss_addr = res.data.result.oss_addr;
           my_activity_info.file_size = file_size;
           my_activity_info.duration = duration;
@@ -970,7 +970,7 @@ Page({
             my_activity_info.img_url = res.data.result.img_url;
           } else {
             my_activity_info.img_url = app.globalData.oss_url + '/' + goods_img;
-          }
+          }*/
           wx.request({
             url: api_v_url + '/goods/myGoodslist',
             header: {
@@ -994,12 +994,12 @@ Page({
               }
             }
           })
-
+          
           that.setData({
             box_btn: box_btn,
             showPageType: 3,
             is_my_activity: 1,
-            my_activity_info: my_activity_info
+            //my_activity_info: my_activity_info
           })
           wx.showToast({
             title: tost_success_desc,
@@ -1031,6 +1031,8 @@ Page({
         })
         //数据埋点-活动添加报错
         mta.Event.stat('addMyActivityErr', { 'code': 8, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
+      },complete:function(e){
+        my_activity_info = {};
       }
     })
 
@@ -1349,13 +1351,13 @@ Page({
                         break;
                       }
                     }
-                    my_activity_info = res.data.result.datalist[0]
+                    /*my_activity_info = res.data.result.datalist[0]
                     my_activity_info.room_type_desc = room_type_desc;
                     my_activity_info.check_status_img = check_status_img;
                     my_activity_info.vedio_url = app.globalData.oss_url + '/' + res.data.result.datalist[0].oss_addr;
-                    my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;
+                    my_activity_info.qrcode_url = res.data.result.datalist[0].qrcode_url;*/
                   } else {
-                    my_activity_info = {};
+                    //my_activity_info = {};
                   }
 
 
@@ -1364,44 +1366,44 @@ Page({
                   var is_my_activity = res.data.result.is_my_activity
                   that.setData({
                     is_my_activity: is_my_activity,
-                    my_activity_info: my_activity_info,
+                    //my_activity_info: my_activity_info,
                     hotel_activity_list: hotel_activity_list,
                     box_btn: box_btn,
                     is_add_myactivity:res.data.result.is_add_myactivity
                   })
                 } else {
-                  my_activity_info = {};
+                  /*my_activity_info = {};
                   my_activity_info.media_type = 0;
-                  my_activity_info.room_type = 0
+                  my_activity_info.room_type = 0*/
                   that.setData({
                     price: '',
                     is_my_activity: 0,
-                    my_activity_info: my_activity_info,
+                    //my_activity_info: my_activity_info,
                     hotel_activity_list: []
                   })
                 }
 
               } else {
 
-                my_activity_info = {};
+                /*my_activity_info = {};
                 my_activity_info.media_type = 0;
-                my_activity_info.room_type = 0
+                my_activity_info.room_type = 0*/
                 that.setData({
                   price: '',
                   is_my_activity: 0,
-                  my_activity_info: my_activity_info,
+                  //my_activity_info: my_activity_info,
                   hotel_activity_list: []
                 })
               }
             },
             fail: function (res) {
-              my_activity_info = {};
+              /*my_activity_info = {};
               my_activity_info.media_type = 0;
-              my_activity_info.room_type = 0
+              my_activity_info.room_type = 0*/
               that.setData({
                 price: '',
                 is_my_activity: 0,
-                my_activity_info: my_activity_info,
+                //my_activity_info: my_activity_info,
                 hotel_activity_list: []
               })
             }
@@ -1508,62 +1510,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    /*var that = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
-    openid = user_info.openid;
-    if(user_info.hotel_id==-1){
-      hotel_id = user_info.select_hotel_id;
-      
-    }else{
-      hotel_id = user_info.hotel_id;
-    }
-    
-    var showPageType = this.data.showPageType;
-    if (showPageType == 1) {
-      wx.showLoading({
-        title: '加载中，请稍后',
-      })
-      page = page + 1;
-      wx.request({
-        url: api_v_url + '/goods/myGoodslist',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          hotel_id: hotel_id,
-          openid: openid,
-          page: page,
-          type: 10,
-          box_mac: link_box_info.box_mac
-        },
-        success: function(res) {
-          if (res.data.code == 10000) {
-            wx.hideLoading()
-            that.setData({
-              sale_list: res.data.result.datalist,
-            })
-
-          } else {
-            wx.hideLoading()
-            wx.showToast({
-              title: '加载失败，请重试',
-              icon: 'none',
-              duration: 2000,
-            })
-          }
-        },
-        fail: function(e) {
-          wx.hideLoading()
-          wx.showToast({
-            title: '加载失败，请重试',
-            icon: 'none',
-            duration: 2000,
-          })
-        }
-      })
-
-    }*/
 
   },
   /**
@@ -2044,6 +1990,7 @@ Page({
     var my_activity_info = {};
     my_activity_info.media_type= 0;
     my_activity_info.room_type = 0;
+    my_activity_info.goods_id = 0;
     //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
       showPageType: 2,

@@ -67,12 +67,13 @@ App({
     var forscreen_id = (new Date()).valueOf();
     if(res_type==2){//视频
       for (var i = 0; i < pubdetail.length; i++) {
-        var forscreen_url = pubdetail[i].forscreen_url
+        var res_url = self.globalData.oss_url+'/'+pubdetail[i].forscreen_url
+        var forscreen_url = pubdetail[i]. forscreen_url
         var filename      = pubdetail[i].filename
         var resource_id   = pubdetail[i].res_id
         utils.PostRequest(this.globalData.api_url + '/Netty/Index/pushnetty', {
           box_mac: box_mac,
-          msg: '{ "action": 5,"url":"' + forscreen_url + '","filename":"' + filename + '","forscreen_id":' + forscreen_id + ',"resource_id":' + resource_id + ',"openid":"'+openid+'"}',
+          msg: '{ "action": 5,"url":"' + res_url + '","filename":"' + filename + '","forscreen_id":' + forscreen_id + ',"resource_id":' + resource_id + ',"openid":"'+openid+'"}',
         }, (data, headers, cookies, errMsg, statusCode) => {
           
           self.showToast('点播成功，电视即将播放');

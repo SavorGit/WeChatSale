@@ -55,9 +55,7 @@ Page({
     var that = this;
     var pubdetail = e.currentTarget.dataset.pubdetail;
     var action =5;
-    for(var i=0;i<pubdetail.length;i++){
-      pubdetail[i].forscreen_url = pubdetail[i].res_url;
-    }
+    
     console.log(pubdetail);
     app.boxShow(box_mac,pubdetail,2,action,that);
   },
