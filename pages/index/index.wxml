@@ -2,12 +2,6 @@
 <import src="/pages/template/commons" />
 
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
-	<view class="theme7">
-		<slider block-size="28" step="20" min="2" value="12"></slider>
-		<slider block-size="28" style="margin: 10px 18px;"></slider>
-		<zy-slider min="0" max="100" step='10' minValue='7' maxValue="100" block-size="12" backgroundColor="#B0C4DE" bindlowValueChange="min" bindheighValueChange="max"></zy-slider>
-		<view>{{minV}}-{{maxV}}</view>
-	</view>
 	<!-- 酒楼、机顶盒、连接情况面板 -->
 	<view class="link-type-panel flex_row_center">
 		<view wx:if="{{user_info.hotel_id == -1}}" class="hotel flex_row_center theme-font4" data-id="{{user_info.select_hotel_id}}" bindtap="showMailListPage">
