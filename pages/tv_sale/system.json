@@ -3,5 +3,7 @@
     "MailList": "/components/modal/MailList",
     "modal": "/components/modal/modal",
     "bottom-modal": "/components/modal/bottomModal"
-  }
+  },
+  "enablePullDownRefresh": false,
+  "disableScroll": true
 }
