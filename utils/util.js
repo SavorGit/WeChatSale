@@ -15,19 +15,38 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 };
 
+/**
+ * 将小程序的API封装成支持Promise的API
+ * @params fn {Function} 小程序原始API，如wx.login
+ */
+const wxPromisify = fn => {
+  return function (obj = {}) {
+    return new Promise((resolve, reject) => {
+      obj.success = function (res) {
+        resolve(res);
+      };
+      obj.fail = function (res) {
+        reject(res);
+      };
+      fn(obj);
+    });
+  };
+};
+
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
+  wxPromisify: wxPromisify,
   verbose: verbose
 };
 
-module.exports.throttle = function(fn, gapTime) {
+module.exports.throttle = function (fn, gapTime) {
   if (gapTime == null || gapTime == undefined) {
     gapTime = 1500
   }
   let _lastTime = null
   // 返回新的函数
-  return function() {
+  return function () {
     let _nowTime = +new Date()
     if (_nowTime - _lastTime > gapTime || !_lastTime) {
       fn.apply(this, arguments) //将this和参数传给原函数
@@ -61,15 +80,15 @@ const HttpRequest = (options) => {
       mask: true
     });
   }
-  if (typeof(options) != 'object' || options == null) {
+  if (typeof (options) != 'object' || options == null) {
     throw "The request arguments is wrong";
   }
   let requestUrl = options.url;
-  if (typeof(requestUrl) != 'string') {
+  if (typeof (requestUrl) != 'string') {
     throw "The request 'url' is wrong";
   }
   let requestHeaders = options.header;
-  if (typeof(requestHeaders) != 'object') {
+  if (typeof (requestHeaders) != 'object') {
     requestHeaders = {};
   }
   let requestMethod = options.method;
@@ -80,7 +99,7 @@ const HttpRequest = (options) => {
     method: options.method,
     dataType: options.dataType,
     responseType: options.responseType,
-    success: function() {
+    success: function () {
       var successFnArgumentArray = [].slice.call(arguments);
       if (verbose == true) {
         console.log('util.HttpRequest.success', 'function', requestUrl, options.data, options.method, successFnArgumentArray);
@@ -88,7 +107,7 @@ const HttpRequest = (options) => {
       if (options.isShowLoading != false) {
         wx.hideLoading();
       }
-      if (typeof(options.success) == "function") {
+      if (typeof (options.success) == "function") {
         try {
           options.success.apply(requestOptions, successFnArgumentArray);
         } catch (err) {
@@ -96,7 +115,7 @@ const HttpRequest = (options) => {
         }
       }
     },
-    fail: function() {
+    fail: function () {
       var failFnArgumentArray = [].slice.call(arguments);
       if (verbose == true) {
         console.log('util.HttpRequest.fail', 'function', requestUrl, options.data, options.method, failFnArgumentArray);
@@ -104,7 +123,7 @@ const HttpRequest = (options) => {
       if (options.isShowLoading != false) {
         wx.hideLoading();
       }
-      if (typeof(options.fail) == "function") {
+      if (typeof (options.fail) == "function") {
         try {
           options.fail.apply(requestOptions, failFnArgumentArray);
         } catch (err) {
@@ -112,15 +131,15 @@ const HttpRequest = (options) => {
         }
       }
     },
-    error: function(err) {
+    error: function (err) {
       console.error(err);
     },
-    complete: function() {
+    complete: function () {
       var completeFnArgumentArray = [].slice.call(arguments);
       if (verbose == true) {
         console.log('util.HttpRequest.complete', 'function', requestUrl, options.data, options.method, completeFnArgumentArray);
       }
-      if (typeof(options.complete) == "function") {
+      if (typeof (options.complete) == "function") {
         try {
           options.complete.apply(requestOptions, completeFnArgumentArray);
         } catch (err) {
@@ -161,7 +180,7 @@ const HttpRequestForLHS = (options) => HttpRequest({
   dataType: options.dataType,
   responseType: options.responseType,
   isShowLoading: options.isShowLoading,
-  success: function(res) {
+  success: function (res) {
     var httpRequst = this;
     if (verbose == true) {
       console.log('util.HttpRequestForLHS.success', 'function', options.url, options.data, options.method, res);
@@ -174,7 +193,7 @@ const HttpRequestForLHS = (options) => HttpRequest({
       return;
     }
     var responseData = res.data;
-    if (typeof(responseData) != 'object' || responseData == null) {
+    if (typeof (responseData) != 'object' || responseData == null) {
       // wx.showLoading({
       //   mask: true
       // });
@@ -189,8 +208,8 @@ const HttpRequestForLHS = (options) => HttpRequest({
         icon: 'none',
         mask: true,
         duration: 5000,
-        complete: function() {
-          setTimeout(function() {
+        complete: function () {
+          setTimeout(function () {
             // wx.showLoading({
             //   mask: true
             // });
@@ -206,24 +225,24 @@ const HttpRequestForLHS = (options) => HttpRequest({
     var responseHeaders = res.header;
     var responseCookies = res.cookies;
     var errMsg = res.errMsg;
-    if (typeof(options.success) == "function") {
+    if (typeof (options.success) == "function") {
       options.success.call(this, responseData, responseHeaders, responseCookies, errMsg, statusCode);
     }
   },
-  fail: function(res) {
+  fail: function (res) {
     var failFnArgumentArray = [].slice.call(arguments);
     if (verbose == true) {
       console.log('util.HttpRequestForLHS.fail', 'function', options.url, options.data, options.method, res, failFnArgumentArray);
     }
-    if (typeof(options.fail) == "function") {
+    if (typeof (options.fail) == "function") {
       if (options.isShowToastForFail != false && !res.code) {
         wx.showToast({
           title: "网络异常！请稍后重试",
           icon: 'none',
           mask: true,
           duration: 2000,
-          complete: function() {
-            setTimeout(function() {
+          complete: function () {
+            setTimeout(function () {
               options.fail.apply(this, failFnArgumentArray);
             }, 2000);
           }
@@ -252,7 +271,7 @@ module.exports.HttpRequestForLHS = HttpRequestForLHS;
  *                                                          }             
  */
 const PostRequest = (url, data, successFn, failFn, options) => {
-  if (typeof(options) != 'object') {
+  if (typeof (options) != 'object') {
     options = {};
   }
   HttpRequestForLHS({
@@ -284,7 +303,7 @@ module.exports.PostRequest = PostRequest;
  *                                                          }
  */
 const GetRequest = (url, data, successFn, failFn, options) => {
-  if (typeof(options) != 'object') {
+  if (typeof (options) != 'object') {
     options = {};
   }
   HttpRequestForLHS({
@@ -301,8 +320,8 @@ const GetRequest = (url, data, successFn, failFn, options) => {
 };
 module.exports.GetRequest = GetRequest;
 
-const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
-  if (typeof(systemInfo) != "object") {
+const TouchMoveHandler = function (systemInfo, touchMoveExecuteTrip) {
+  if (typeof (systemInfo) != "object") {
     throw '"systemInfo" is not object';
   }
 
@@ -319,10 +338,10 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    * @para pixelValue      开始滑动的事件
    * @return 返回以 PX 为单位的数字。
    */
-  this.turnPixel = function(argumentName, pixelValue) {
+  this.turnPixel = function (argumentName, pixelValue) {
     let handler = this;
     let __movePixelValue = 0;
-    if (typeof(pixelValue) == "string") {
+    if (typeof (pixelValue) == "string") {
       let pixelValueLength = pixelValue.length;
       if (pixelValue.endsWith("rpx")) {
         // __movePixelValue = parseFloat(pixelValue.substr(0, pixelValueLength - 3)) / handler.options.systemInfo.pixelRatio;
@@ -331,7 +350,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
         // __movePixelValue = parseFloat(pixelValue.substr(0, pixelValueLength - 2));
         __movePixelValue = parseFloat(pixelValue);
       }
-    } else if (typeof(pixelValue) == "number") {
+    } else if (typeof (pixelValue) == "number") {
       __movePixelValue = pixelValue;
     } else {
       throw '"' + argumentName + '" is wrong';
@@ -339,7 +358,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
     if (__movePixelValue < 0) {
       throw '"' + argumentName + '" is out of range';
     }
-    if (typeof(__movePixelValue) == "number") {
+    if (typeof (__movePixelValue) == "number") {
       return __movePixelValue;
     } else {
       throw 'unknow error';
@@ -381,16 +400,16 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    *                                                           x // 元素移动距离
    *                                                      }
    */
-  this.touchMoveHandle = function(page, startEvent, endEvent, callbackFunction) {
+  this.touchMoveHandle = function (page, startEvent, endEvent, callbackFunction) {
     // console.log(page, startEvent, endEvent);
     let handler = this;
     handler.callbackHandel(callbackFunction, handler.Event.Start, page, startEvent, endEvent);
-    if (typeof(startEvent) != 'object' || startEvent == null) {
+    if (typeof (startEvent) != 'object' || startEvent == null) {
       handler.callbackHandel(callbackFunction, handler.Event.UndifindedStartTouchEvent, page, startEvent, endEvent);
       console.error('start-touch-event is null');
       return;
     }
-    if (typeof(endEvent) != 'object' || endEvent == null) {
+    if (typeof (endEvent) != 'object' || endEvent == null) {
       handler.callbackHandel(callbackFunction, handler.Event.UndifindedEndTouchEvent, page, startEvent, endEvent);
       console.error('end-touch-event is null');
       return;
@@ -433,13 +452,13 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    *                                                           x // 元素移动距离
    *                                                      }
    */
-  this.clickMoveHandle = function(page, slideType, trip, wechartEvent, callbackFunction) {
+  this.clickMoveHandle = function (page, slideType, trip, wechartEvent, callbackFunction) {
     // console.log(page, startEvent, endEvent);
     let handler = this;
     let startEvent = wechartEvent,
       endEvent = wechartEvent;
     handler.callbackHandel(callbackFunction, handler.Event.Start, page, startEvent, endEvent);
-    if (typeof(slideType) != 'number') {
+    if (typeof (slideType) != 'number') {
       handler.callbackHandel(callbackFunction, handler.Event.UndifindedSlideType, page, startEvent, endEvent);
       console.error('start-event is null');
       return;
@@ -466,7 +485,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    * @para startEvent          开始滑动的事件
    * @para endEvent            结束滑动的事件
    */
-  this.returnToOriginHandel = function(page, startEvent, endEvent) {
+  this.returnToOriginHandel = function (page, startEvent, endEvent) {
     let handler = this;
     let animation = wx.createAnimation({
       duration: 100,
@@ -479,7 +498,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
     page.setData({
       animationData: animation.export()
     });
-    setTimeout(function() {
+    setTimeout(function () {
       page.setData({
         animationData: {}
       });
@@ -505,7 +524,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    *                                                           x // 元素移动距离
    *                                                      }
    */
-  this.moveOnhorizontalHandel = function(page, top, left, x, startEvent, endEvent, callbackFunction) {
+  this.moveOnhorizontalHandel = function (page, top, left, x, startEvent, endEvent, callbackFunction) {
     if (verbose == true) {
       console.log("TouchMoveHandler.moveOnhorizontalHandel(page, top, left, x, startEvent, endEvent, callbackFunction)", page, startEvent, endEvent, top, left, x);
     }
@@ -525,7 +544,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
       __cardsModelData: __cardsModelData,
       animationData: animation.export()
     });
-    setTimeout(function() {
+    setTimeout(function () {
       if (page.data.__cardsModelData.length > 0) {
         page.setData({
           'cards_img[0]': page.data.__cardsModelData[0],
@@ -536,7 +555,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
           animationData: {}
         });
       }
-      setTimeout(function() {
+      setTimeout(function () {
         let backupAnimation = wx.createAnimation({
           duration: 0,
           // timingFunction: 'cubic-bezier(.8,.2,.1,0.8)'
@@ -550,7 +569,7 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
         page.setData({
           animationData: backupAnimation.export()
         });
-        setTimeout(function() {
+        setTimeout(function () {
           if (page.data.__cardsModelData.length >= 3) {
             page.setData({
               'cards_img[1]': page.data.__cardsModelData[1],
@@ -588,9 +607,9 @@ const TouchMoveHandler = function(systemInfo, touchMoveExecuteTrip) {
    * @para left                左边距
    * @para x                   水平滑动行程
    */
-  this.callbackHandel = function(callback, handleEvent, page, startEvent, endEvent, top, left, x) {
+  this.callbackHandel = function (callback, handleEvent, page, startEvent, endEvent, top, left, x) {
     let handler = this;
-    if (typeof(callback) != 'function') {
+    if (typeof (callback) != 'function') {
       return;
     }
     callback(handleEvent, page, startEvent, endEvent, top, left, x);
