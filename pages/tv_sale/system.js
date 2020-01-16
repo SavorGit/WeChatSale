@@ -457,6 +457,7 @@ Page({
               resource_id: timestamp,
               imgs: '["' + imgs + '"]',
               small_app_id: app.globalData.small_app_id,
+              goods_id:goods_id
             },
           });
           wx.showToast({
