@@ -460,7 +460,7 @@ Page({
             },
           });
           wx.showToast({
-            title: '电视播放成功',
+            title: '点播成功,电视即将播放',
             icon: 'none',
             duration: 2000,
           })
