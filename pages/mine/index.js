@@ -446,6 +446,21 @@ Page({
   },
   popActivityList: function(e) {
     //数据埋点-点击活动商品管理
+
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+      if(user_info.hotel_id==-1){
+        var hotel_id = user_info.select_hotel_id;
+      }else {
+        var hotel_id = user_info.hotel_id;
+      }
+      if(typeof(hotel_id)=='undefined'){
+        app.showToast('请您选择酒楼');
+      }else {
+        wx.navigateTo({
+          url: '/pages/mine/pop_list',
+        })
+      }
+
     mta.Event.stat('clickActivityGoodsList', {
       'openid': openid
     })
@@ -527,6 +542,19 @@ Page({
     if(id==1){//兑换
       mta.Event.stat("clickintegral", {})
     }else if(id==2){//任务列表
+      var user_info = wx.getStorageSync(cache_key + 'userinfo');
+      if(user_info.hotel_id==-1){
+        var hotel_id = user_info.select_hotel_id;
+      }else {
+        var hotel_id = user_info.hotel_id;
+      }
+      if(typeof(hotel_id)=='undefined'){
+        app.showToast('请您选择酒楼');
+      }else {
+        wx.navigateTo({
+          url: '/pages/task/index',
+        })
+      }
       mta.Event.stat("clicktask", {})
     }
     
