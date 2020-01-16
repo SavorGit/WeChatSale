@@ -2280,5 +2280,29 @@ Page({
         })
       }
     })
+  },
+  loadMoreHotelAct:function (e){
+    var that = this;
+    pop_page +=1;
+    wx.request({ //促销活动列表
+      url: api_v_url + '/goods/myGoodslist',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        hotel_id: hotel_id,
+        openid: openid,
+        page: pop_page,
+        type: 10,
+        box_mac: box_mac
+      },
+      success: function(res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            sale_list: res.data.result.datalist,
+          })
+        }
+      }
+    })
   }
 })
