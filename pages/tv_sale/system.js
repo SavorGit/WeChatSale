@@ -264,7 +264,7 @@ Page({
               price: '',
               //my_activity_info: my_activity_info,
               is_my_activity: 0,
-
+              is_add_myactivity:res.data.result.is_add_myactivity
             })
           }
 
@@ -585,6 +585,7 @@ Page({
                 is_my_activity: 0,
                 //my_activity_info: my_activity_info,
                 hotel_activity_list: [],
+                is_add_myactivity:res.data.is_add_myactivity
                 
               })
             }
@@ -1121,6 +1122,7 @@ Page({
           } else {
             that.setData({
               is_my_activity: 0,
+              is_add_myactivity:res.data.result.is_add_myactivity
 
             })
           }
@@ -1382,7 +1384,8 @@ Page({
                     price: '',
                     is_my_activity: 0,
                     //my_activity_info: my_activity_info,
-                    hotel_activity_list: []
+                    hotel_activity_list: [],
+                    is_add_myactivity:res.data.result.is_add_myactivity
                   })
                 }
 
@@ -1994,6 +1997,7 @@ Page({
     my_activity_info.media_type= 0;
     my_activity_info.room_type = 0;
     my_activity_info.goods_id = 0;
+    my_activity_info.name = '';
     //var is_my_activity = e.currentTarget.dataset.is_my_activity; 
     that.setData({
       showPageType: 2,
@@ -2257,6 +2261,7 @@ Page({
               price: '',
               
               is_my_activity: 0,
+              is_add_myactivity:res.data.result.is_add_myactivity
 
             })
           }
