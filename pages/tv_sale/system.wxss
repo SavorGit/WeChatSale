@@ -330,7 +330,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   font-size: 24rpx;
 }
 
-.sale-panel>.no-data .theme-button-add {
+.sale-panel .no-data .theme-button-add {
   width: 250rpx;
   height: 50rpx;
   line-height: 50rpx;
