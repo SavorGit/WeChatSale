@@ -27,7 +27,10 @@
     "pages/launch/file/index",
     "pages/launch/file/h5files",
     "pages/launch/file/h5files_result",
-    "pages/adv/index"
+    "pages/adv/index",
+    "pages/mine/team_member_detail",
+    "pages/mine/assign_waiter",
+    "pages/mine/select_waiter"
   ],
   "window": {
     "backgroundTextStyle": "light",
