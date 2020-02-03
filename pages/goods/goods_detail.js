@@ -1,10 +1,4 @@
-// pages/mine/assign_waiter.js
-const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
-var api_v_url = app.globalData.api_v_url;
-var cache_key = app.globalData.cache_key;
-var openid;
-var hotel_id;
+// pages/goods/goods_detail.js
 Page({
 
   /**
@@ -18,26 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    openid = options.openid;
-    hotel_id = options.hotel_id;
 
+  },
 
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
-      openid: openid,
-      hotel_id: hotel_id,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        room_list: data.result.datalist
-      })
-    })
-  },
-  assign_waiter:function(e){
-    var room_id = e.currentTarget.dataset.room_id;
-    wx.navigateTo({
-      url: '/pages/mine/select_waiter?room_id=' + room_id + '&manager_openid=' + openid + '&hotel_id=' + hotel_id,
-    })
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

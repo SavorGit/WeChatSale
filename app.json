@@ -30,7 +30,9 @@
     "pages/adv/index",
     "pages/mine/team_member_detail",
     "pages/mine/assign_waiter",
-    "pages/mine/select_waiter"
+    "pages/mine/select_waiter",
+    "pages/goods/goods_list",
+    "pages/goods/goods_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
