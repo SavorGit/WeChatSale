@@ -3,13 +3,27 @@
 <scroll-view class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 
 	<!-- 用户信息面板 -->
-	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width theme-panel-welcome-dark'>
+	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
 		<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
-		<view class='nickname'>{{nickName}}</view>
+		<view class="wapper flex_column_flexStart_center">
+			<view class='nickname'>{{nickName}}</view>
+			<view class="score flex_row_center_flexStart">
+				<view class="star-group flex_row_center_spaceBetween">
+					<view class="fa {{score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+				</view>
+				<view>综合评分：{{score}}</view>
+			</view>
+		</view>
 	</view>
-	<view wx:else class='user-info-panel full_width theme7'>
+	<view wx:else class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
 		<image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
-		<view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
+		<view class="wapper flex_column_flexStart_center">
+			<view class='nickname btn theme-font5' bindtap="userLogin">登录</view>
+		</view>
 	</view>
 
 	<!-- 收益概况面板 -->
@@ -127,4 +141,23 @@
       </view> -->
 		</view>
 	</view>
+</modal>
+
+<!-- 修改昵称弹窗 -->
+<modal show="{{showChangeNikenameWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+	<form>
+		<view class="change-nikename-window flex_column_center theme7">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="fa fa-lg" aria-hidden="true"></view>
+				<view>修改昵称</view>
+				<view class="fa fa-close fa-lg" aria-hidden="true" bindtap="closeChangeNikenameWindow"></view>
+			</view>
+			<view class="body-panel flex_column_center_spaceAround">
+				<view>
+					<input placeholder="请输入新的昵称"></input>
+				</view>
+				<view class="btn-submit theme-button-welcome">保存</view>
+			</view>
+		</view>
+	</form>
 </modal>

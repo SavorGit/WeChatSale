@@ -92,17 +92,14 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   background-color: #999;
 }
 
-.theme-button-welcome {
-  color: #fff;
-  background-color: #a18668;
-}
-
+.theme-button-welcome,
 .broadcast-panel {
   color: #fff;
   background-color: #a18668;
 }
 
-.theme-button-welcome-dark, .theme-panel-welcome-dark {
+.theme-button-welcome-dark,
+.theme-panel-welcome-dark {
   color: #fff;
   background-color: #58525c;
 }
