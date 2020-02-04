@@ -1,4 +1,11 @@
 // pages/goods/goods_detail.js
+const app = getApp()
+const utils = require('../../utils/util.js')
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var hotel_id;
+var openid;
+var goods_id;
 Page({
 
   /**
@@ -12,7 +19,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    goods_id = options.goods_id;
+    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+      goods_id:goods_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        goods_info: data.result
+      })
+    })
   },
 
   /**

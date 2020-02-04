@@ -33,6 +33,7 @@
     "pages/mine/select_waiter",
     "pages/goods/goods_list",
     "pages/goods/goods_detail"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
