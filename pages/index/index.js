@@ -92,6 +92,13 @@ Page({
               })
               var user_info = res.data.result.userinfo;
               var hotel_id = user_info.hotel_id;
+              //如果已登录 并且用户角色为服务员
+              if(user_info.role_type==3){
+                //跳转到服务员登陆页面
+                wx.reLaunch({
+                  url: '/pages/mine/warter_index',
+                })
+              }
             }
             //判断权限
             var tv_forscreen = app.in_array('tv_forscreen',user_info.service);
