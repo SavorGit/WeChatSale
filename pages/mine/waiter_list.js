@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
+    nickName: '昵称',
+    score: 3.6,
     waiter_list: [
       {
         avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
