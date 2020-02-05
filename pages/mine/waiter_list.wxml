@@ -1,30 +1,51 @@
 <!--pages/mine/waiter_list.wxml-->
-<view class="container theme-main">
-	<scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true">
-		<block wx:for="{{waiter_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-			<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween bottom-line">
-				<image class="header-img" src="{{bean.avatarUrl}}"></image>
-				<view class="nickname flex_column_flexStart_center">
-					<label class="full_width">{{bean.nickName}}</label>
+<scroll-view class='container theme-main' scroll-y="true" scroll-with-animation="true">
+	<!-- 用户信息面板 -->
+	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
+		<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
+		<view class="wapper flex_column_flexStart_center">
+			<view class='nickname'>{{nickName}}</view>
+			<view class="score flex_row_center_flexStart">
+				<view class="star-group flex_row_center_spaceBetween">
+					<view class="fa {{score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 				</view>
-				<view class="option flex_row_center_spaceBetween">
-					<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
-					<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
-				</view>
+				<view>综合评分：{{score}}</view>
 			</view>
-			<view wx:else class="row flex_row_center_spaceBetween">
-				<image class="header-img" src="{{bean.avatarUrl}}"></image>
-				<view class="nickname">
-					<label class="full_width">{{bean.nickName}}</label>
-				</view>
-				<view class="option flex_row_center_spaceBetween">
-					<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
-					<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
-				</view>
-			</view>
-		</block>
-		<view wx:if="{{waiter_list.length < 1}}" class="row">
-			<view class="nodata-msg full_width full_height flex_column_centert_center">名下暂无服务员~</view>
 		</view>
-	</scroll-view>
-</view>
+	</view>
+	<view wx:else class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
+		<image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
+		<view class="wapper flex_column_flexStart_center">
+			<view class='nickname btn theme-font5' bindtap="userLogin">登录</view>
+		</view>
+	</view>
+	<block wx:for="{{waiter_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+		<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween bottom-line">
+			<image class="header-img" src="{{bean.avatarUrl}}"></image>
+			<view class="nickname flex_column_flexStart_center">
+				<label class="full_width">{{bean.nickName}}</label>
+			</view>
+			<view class="option flex_row_center_spaceBetween">
+				<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+			</view>
+		</view>
+		<view wx:else class="row flex_row_center_spaceBetween">
+			<image class="header-img" src="{{bean.avatarUrl}}"></image>
+			<view class="nickname">
+				<label class="full_width">{{bean.nickName}}</label>
+			</view>
+			<view class="option flex_row_center_spaceBetween">
+				<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+			</view>
+		</view>
+	</block>
+	<view wx:if="{{waiter_list.length < 1}}" class="row">
+		<view class="nodata-msg full_width full_height flex_column_centert_center">名下暂无服务员~</view>
+	</view>
+</scroll-view>
