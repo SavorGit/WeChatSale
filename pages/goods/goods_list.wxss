@@ -1,1 +1,36 @@
 /* pages/goods/goods_list.wxss */
+.list {
+  width: calc(100% - 20rpx);
+  padding: 0 10rpx;
+}
+
+.item {
+  width: 50%;
+  padding: 10rpx;
+}
+
+.item>view {
+  width: 100%;
+  min-height: 340rpx;
+  padding-bottom: 10rpx;
+  border-radius: 10rpx;
+}
+
+.item>view>image {
+  width: 100%;
+  height: 340rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.item>view>.price {
+  width: 320rpx;
+  height: 50rpx;
+  padding: 0 10rpx;
+  font-size: 34rpx;
+}
+
+.item>view>.name {
+  width: 320rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+}

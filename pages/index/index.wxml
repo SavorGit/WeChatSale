@@ -79,6 +79,11 @@
 		</view>
 	</view>
 
+	<!-- 关注面板 -->
+	<view class="collect-panel theme7">
+		<official-account style="width:300px;height:84px;"></official-account>
+	</view>
+
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<view class="title theme-font4">包间签到赚积分</view>

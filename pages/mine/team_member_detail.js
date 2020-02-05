@@ -20,26 +20,30 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      userScore: 3.7, // 服务员所得分值
+      showPurviewManageWindow: true // 是否显示权限管理弹窗
+    });
     openid = options.openid;
     user_id = options.user_id;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
       openid: openid,
-      user_id:user_id,
-      page:1
+      user_id: user_id,
+      page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         user_info: data.result.user_info,
-        pingfen_list:data.result.datalist
+        pingfen_list: data.result.datalist
       })
     })
   },
   /**
    * 查询服务员某个时间段的评分列表
    */
-  warterScoreList:function(e){
+  warterScoreList: function (e) {
     var that = this;
     var start_date = e.detail.value.start_date;
-    var end_date   = e.detail.value.end_date;
+    var end_date = e.detail.value.end_date;
     utils.PostRequest(api_v_url + '/aa/bb', {
       openid: openid,
       user_id: user_id,
@@ -117,5 +121,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 打开权限管理弹窗
+  openPurviewManageWindow: function (e) {
+    let self = this;
+    self.setData({ showPurviewManageWindow: true });
+  },
+
+  // 关闭权限管理弹窗
+  closePurviewManageWindow: function (e) {
+    let self = this;
+    self.setData({ showPurviewManageWindow: false });
   }
 })

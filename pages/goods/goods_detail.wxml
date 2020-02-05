@@ -1,2 +1,13 @@
 <!--pages/goods/goods_detail.wxml-->
-<text>pages/goods/goods_detail.wxml</text>
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
+	<view class="wapper">
+		<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		<view class="price one-line-overflow theme-font6">￥234</view>
+		<view class="name one-line-overflow">商品标题</view>
+		<view class="desc">
+			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		</view>
+	</view>
+</scroll-view>

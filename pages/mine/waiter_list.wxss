@@ -1,0 +1,116 @@
+/* pages/mine/waiter_list.wxss */
+
+.container {
+  justify-content: start;
+  font-size: 24rpx;
+}
+
+/* ================================ 用户信息面板 ================================ */
+.user-info-panel {
+  height: 250rpx;
+  padding: 0 50rpx;
+}
+
+.user-info-panel>.head-img {
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 50%;
+}
+
+.user-info-panel>.wapper {
+  margin-left: 20rpx;
+}
+
+.user-info-panel>.wapper>.nickname {
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-info-panel>.wapper>.nickname.btn {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #ededed;
+  text-align: center;
+}
+
+.user-info-panel>.wapper>.score>view {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+}
+
+.user-info-panel>.wapper>.score>view:first-child {
+  margin-left: 0;
+}
+
+.user-info-panel>.wapper>.score>.star-group {
+  width: 200rpx;
+}
+
+/* ================================ 服务员列表 ================================ */
+.row {
+  height: 90rpx;
+  padding: 20rpx 0 10rpx 0;
+  margin: 0 25rpx;
+}
+
+.row>.header-img {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+}
+
+.row>.nickname {
+  width: calc(100% - 350rpx);
+  height: 90rpx;
+}
+
+.row>.nickname label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row>.option {
+  width: 220rpx;
+  height: 90rpx;
+}
+
+.row>.option>.btn-remove,
+.row>.option>.btn-detail {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #1cbeb6;
+  border: 1rpx solid #1cbeb6;
+  margin: 0;
+  padding: 0;
+}
+
+.row>.option>.btn-remove::before,
+.row>.option>.btn-remove::after,
+.row>.option>.btn-detail::before,
+.row>.option>.btn-detail::after {
+  content: unset;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: unset;
+}
+
+.row>.nodata-msg {
+  font-size: 30rpx;
+  color: #cecece;
+}
+
+.row.bottom-line {
+  border-bottom: 1rpx solid #fff;
+}

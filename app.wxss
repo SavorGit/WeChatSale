@@ -2,6 +2,54 @@
 @import "/font-awesome.wxss";
 
 /* ================================== 页面 ================================== */
+radio .wx-radio-input.wx-radio-input-checked {
+  background: none;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  content: '';
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+radio .wx-radio-input {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: none;
+}
+
+checkbox {
+  font-size: 28rpx;
+}
+
+checkbox .wx-checkbox-input {
+  width: 30rpx;
+  height: 30rpx;
+  background: unset;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 28rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 22rpx;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+button::after,
+button::before {
+  margin: unset;
+  padding: unset;
+  border: unset;
+  background-color: unset;
+}
 
 ::-webkit-scrollbar {
   width: 0;
@@ -15,12 +63,12 @@
   white-space: nowrap;
 }
 
-button::after,
-button::before {
-  margin: unset;
-  padding: unset;
-  border: unset;
-  background-color: unset;
+.two-line-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .button_none,
@@ -33,26 +81,6 @@ button::before {
   background: inherit;
   font-size: inherit;
   color: inherit;
-}
-
-radio .wx-radio-input {
-  width: 30rpx;
-  height: 30rpx;
-  border-radius: 50%;
-  background: none;
-}
-
-radio .wx-radio-input.wx-radio-input-checked {
-  background: none;
-}
-
-radio .wx-radio-input.wx-radio-input-checked::before {
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
-  content: '';
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transform: translate(-50%, -50%) scale(1);
 }
 
 .container {
@@ -76,12 +104,6 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .full_height {
   height: 100%;
-}
-
-.one-line-overflow {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .flex_row_flexStart,
