@@ -1,5 +1,4 @@
-/* pages/mine/team_members.wxss */
-
+/* pages/mine/waiter_list.wxss */
 .container {
   justify-content: start;
   font-size: 24rpx;
@@ -19,7 +18,7 @@
 }
 
 .row>.nickname {
-  width: calc(100% - 420rpx);
+  width: calc(100% - 350rpx);
   height: 90rpx;
 }
 
@@ -30,14 +29,13 @@
 }
 
 .row>.option {
-  width: 290rpx;
+  width: 220rpx;
   height: 90rpx;
 }
 
-.row>.option>.btn-detail,
-.row>.option>.btn-waiter,
-.row>.option>.btn-remove {
-  width: 80rpx;
+.row>.option>.btn-remove,
+.row>.option>.btn-detail {
+  width: 100rpx;
   height: 50rpx;
   line-height: 50rpx;
   border-radius: 10rpx;
@@ -48,16 +46,11 @@
   padding: 0;
 }
 
-.row>.option>.btn-waiter {
-  width: 100rpx;
-}
-
-.row>.option>.btn-detail::before,
-.row>.option>.btn-detail::after,
-.row>.option>.btn-waiter::before,
-.row>.option>.btn-waiter::after,
 .row>.option>.btn-remove::before,
-.row>.option>.btn-remove::after {
+.row>.option>.btn-remove::after,
+.row>.option>.btn-detail::before,
+.row>.option>.btn-detail::after {
+  content: unset;
   margin: 0;
   padding: 0;
   border: 0;

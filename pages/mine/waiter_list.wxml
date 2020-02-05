@@ -1,0 +1,30 @@
+<!--pages/mine/waiter_list.wxml-->
+<view class="container theme-main">
+	<scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true">
+		<block wx:for="{{waiter_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+			<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween bottom-line">
+				<image class="header-img" src="{{bean.avatarUrl}}"></image>
+				<view class="nickname flex_column_flexStart_center">
+					<label class="full_width">{{bean.nickName}}</label>
+				</view>
+				<view class="option flex_row_center_spaceBetween">
+					<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+					<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+				</view>
+			</view>
+			<view wx:else class="row flex_row_center_spaceBetween">
+				<image class="header-img" src="{{bean.avatarUrl}}"></image>
+				<view class="nickname">
+					<label class="full_width">{{bean.nickName}}</label>
+				</view>
+				<view class="option flex_row_center_spaceBetween">
+					<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+					<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+				</view>
+			</view>
+		</block>
+		<view wx:if="{{waiter_list.length < 1}}" class="row">
+			<view class="nodata-msg full_width full_height flex_column_centert_center">名下暂无服务员~</view>
+		</view>
+	</scroll-view>
+</view>
