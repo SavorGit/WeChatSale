@@ -1,1 +1,28 @@
 /* pages/mine/assign_waiter.wxss */
+.list {
+  width: calc(100% - 100rpx);
+  margin: 0 50rpx;
+}
+
+.row {
+  width: 100%;
+  height: 60rpx;
+  font-size: 28rpx;
+}
+
+.room {
+  width: 270rpx;
+}
+
+.waiter {
+  width: 260rpx;
+}
+
+.btn-update {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 26rpx;
+  border-radius: 5rpx;
+}

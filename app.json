@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mine/select_waiter",
     "pages/index/index",
     "pages/logs/logs",
     "pages/template/commons",
@@ -21,7 +22,6 @@
     "pages/mine/withdraw",
     "pages/mine/team_member_detail",
     "pages/mine/assign_waiter",
-    "pages/mine/select_waiter",
     "pages/task/index",
     "pages/welcome/index",
     "pages/welcome/hotel_add",
