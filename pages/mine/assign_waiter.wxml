@@ -1,30 +1,30 @@
 <!--pages/mine/assign_waiter.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
 	<view class="list flex_column_center">
-		<view class="row flex_row_center">
+		<view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP1</view>
-			<view class="waiter one-line-overflow">张三三</view>
-			<view class="btn-update theme-button-welcome">重新指定</view>
+			<view class="waiter one-line-overflow theme-font7">张三三</view>
+			<view class="btn-update theme-button-welcome">重选</view>
 		</view>
-		<view class="row flex_row_center">
+		<view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP2</view>
-			<view class="waiter one-line-overflow">张三三</view>
-			<view class="btn-update theme-button-welcome">重新指定</view>
+			<view class="waiter one-line-overflow theme-font7">张三三</view>
+			<view class="btn-update theme-button-welcome">重选</view>
 		</view>
-		<view class="row flex_row_center">
+		<view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP3</view>
-			<view class="waiter one-line-overflow">张三三</view>
-			<view class="btn-update theme-button-welcome">重新指定</view>
+			<view class="waiter one-line-overflow theme-font7">张三三</view>
+			<view class="btn-update theme-button-welcome">重选</view>
 		</view>
-		<view class="row flex_row_center">
+		<view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP4</view>
-			<view class="waiter one-line-overflow"></view>
+			<view class="waiter one-line-overflow theme-font7"></view>
 			<view class="btn-update theme-button-welcome">指定</view>
 		</view>
-		<view class="row flex_row_center">
+		<view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP5</view>
-			<view class="waiter one-line-overflow">张三三</view>
-			<view class="btn-update theme-button-welcome">重新指定</view>
+			<view class="waiter one-line-overflow theme-font7">张三三</view>
+			<view class="btn-update theme-button-welcome">重选</view>
 		</view>
 	</view>
 </scroll-view>

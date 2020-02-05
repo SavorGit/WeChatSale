@@ -6,7 +6,7 @@
 		<view class="wapper flex_column_flexStart_center">
 			<view class='nickname'>{{nickName}}</view>
 			<view class="score flex_row_center_flexStart">
-				<view class="star-group flex_row_center_spaceBetween">
+				<view class="star-group flex_row_center_spaceBetween star-color">
 					<view class="fa {{score >= 0.5 && score < 1 ? 'fa-star-half-o' : score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 					<view class="fa {{score >= 1.5 && score < 2 ? 'fa-star-half-o' : score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 					<view class="fa {{score >= 2.5 && score < 3 ? 'fa-star-half-o' : score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -18,24 +18,24 @@
 		</view>
 	</view>
 	<block wx:for="{{waiter_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-		<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween bottom-line">
+		<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
 			<image class="header-img" src="{{bean.avatarUrl}}"></image>
 			<view class="nickname flex_column_flexStart_center">
-				<label class="full_width">{{bean.nickName}}</label>
+				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-remove theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
-		<view wx:else class="row flex_row_center_spaceBetween">
+		<view wx:else class="row flex_row_center_spaceBetween theme7">
 			<image class="header-img" src="{{bean.avatarUrl}}"></image>
-			<view class="nickname">
-				<label class="full_width">{{bean.nickName}}</label>
+			<view class="nickname flex_column_flexStart_center">
+				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button class="btn-remove" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-remove theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
 	</block>
