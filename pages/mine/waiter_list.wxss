@@ -54,9 +54,8 @@
 
 /* ================================ 服务员列表 ================================ */
 .row {
-  height: 90rpx;
-  padding: 20rpx 0 10rpx 0;
-  margin: 0 25rpx;
+  height: 100rpx;
+  padding: 20rpx 25rpx 10rpx 25rpx;
 }
 
 .row>.header-img {
@@ -69,6 +68,7 @@
 .row>.nickname {
   width: calc(100% - 350rpx);
   height: 90rpx;
+  font-size: 28rpx;
 }
 
 .row>.nickname label {
@@ -85,12 +85,10 @@
 .row>.option>.btn-remove,
 .row>.option>.btn-detail {
   width: 100rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   border-radius: 10rpx;
   font-size: 24rpx;
-  color: #1cbeb6;
-  border: 1rpx solid #1cbeb6;
   margin: 0;
   padding: 0;
 }
@@ -112,5 +110,5 @@
 }
 
 .row.bottom-line {
-  border-bottom: 1rpx solid #fff;
+  border-bottom: 1rpx solid #ededed;
 }
