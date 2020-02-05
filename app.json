@@ -33,7 +33,8 @@
     "pages/launch/file/h5files_result",
     "pages/adv/index",
     "pages/goods/goods_list",
-    "pages/goods/goods_detail"
+    "pages/goods/goods_detail",
+    "pages/waiter/index"
     
   ],
   "window": {
