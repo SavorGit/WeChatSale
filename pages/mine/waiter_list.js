@@ -35,7 +35,8 @@ Page({
         avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
         nickName: '赵'
       }
-    ]
+    ],
+    showPurviewManageWindow: false// 是否显示权限管理弹窗
   },
 
   /**
@@ -43,11 +44,15 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    that.setData({
+      score: 3.7, // 服务员所得分值
+      showPurviewManageWindow: true // 是否显示权限管理弹窗
+    });
     var p_user_id = options.p_user_id;
-    openid    =  options.openid;
+    openid = options.openid;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
       user_id: p_user_id,
-      page :1
+      page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         water_list: data.result.datalist
@@ -57,11 +62,11 @@ Page({
   /**
    * 移除服务员
    */
-  remove_waiter:function(e){
-    var that  = this;
+  remove_waiter: function (e) {
+    var that = this;
     var user_id = e.currentTarget.dataset.user_id;
-    var openid  = e.currentTarget.dataset.openid;
-    var index   = e.currentTarget.dataset.index;
+    var openid = e.currentTarget.dataset.openid;
+    var index = e.currentTarget.dataset.index;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
       user_id: user_id,
       openid: openid
@@ -72,10 +77,10 @@ Page({
   /**
    * 查看服务员详情
    */
-  waiter_detail:function(e){
+  waiter_detail: function (e) {
     var waiter_id = e.currentTarget.dataset.waiter_id;
     wx.navigateTo({
-      url: '/pages/mine/team_member_detail?waiter_id='+waiter_id,
+      url: '/pages/mine/team_member_detail?waiter_id=' + waiter_id,
     })
 
   },
@@ -126,5 +131,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 打开权限管理弹窗
+  openPurviewManageWindow: function (e) {
+    let self = this;
+    self.setData({ showPurviewManageWindow: true });
+  },
+
+  // 关闭权限管理弹窗
+  closePurviewManageWindow: function (e) {
+    let self = this;
+    self.setData({ showPurviewManageWindow: false });
   }
 })

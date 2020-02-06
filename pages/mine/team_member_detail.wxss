@@ -17,10 +17,12 @@
   margin-left: 30rpx;
 }
 
+/* 
 .user-info-panel>view>image {
   width: 40rpx;
   height: 49rpx;
-}
+} 
+*/
 
 .user-info-panel>view>view {
   width: calc(100% - 50rpx);
@@ -144,7 +146,7 @@
   border-bottom: 1px solid #ededed;
 }
 
-/* ================================= 权限管理弹窗 ================================= */
+/* ================================= 权限管理弹窗 ================================= 
 .purview-manage-window {
   width: 100%;
   height: 100%;
@@ -185,3 +187,4 @@
   text-align: center;
   border-radius: 5rpx;
 }
+*/

@@ -22,7 +22,7 @@ Page({
     var that = this;
     that.setData({
       userScore: 3.7, // 服务员所得分值
-      showPurviewManageWindow: true // 是否显示权限管理弹窗
+      // showPurviewManageWindow: true // 是否显示权限管理弹窗
     });
     openid = options.openid;
     user_id = options.user_id;
