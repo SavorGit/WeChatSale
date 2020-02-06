@@ -1,6 +1,7 @@
 // pages/mine/assign_waiter.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
+const mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -18,6 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     var that = this;
     openid = options.openid;
     hotel_id = options.hotel_id;

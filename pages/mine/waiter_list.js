@@ -44,6 +44,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     var p_user_id = options.p_user_id;
+    openid    =  options.openid;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
       user_id: p_user_id,
       page :1
@@ -53,17 +54,30 @@ Page({
       })
     })
   },
-  loadMore:function(e){
-    var that = this;
-    page +=1;
+  /**
+   * 移除服务员
+   */
+  remove_waiter:function(e){
+    var that  = this;
+    var user_id = e.currentTarget.dataset.user_id;
+    var openid  = e.currentTarget.dataset.openid;
+    var index   = e.currentTarget.dataset.index;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
-      user_id: p_user_id,
-      page: page
+      user_id: user_id,
+      openid: openid
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        water_list: data.result.datalist
-      })
+      //去掉移除的服务员 生成新的服务员列表
     })
+  },
+  /**
+   * 查看服务员详情
+   */
+  waiter_detail:function(e){
+    var waiter_id = e.currentTarget.dataset.waiter_id;
+    wx.navigateTo({
+      url: '/pages/mine/team_member_detail?waiter_id='+waiter_id,
+    })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

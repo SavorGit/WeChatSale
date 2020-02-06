@@ -98,6 +98,7 @@ Page({
                 wx.reLaunch({
                   url: '/pages/mine/warter_index',
                 })
+                return false;
               }
             }
             //判断权限
@@ -850,5 +851,25 @@ Page({
       showControlWindow: is_show
     })
     
+  },
+  /**
+   * 指定服务员
+   */
+  assign_waiter:function(e){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var openid = user_info.openid;
+    if(user_info.select_hotel_id>0){
+      var hotel_id= user_info.select_hotel_id;
+    }else {
+      if(user_info.hotel_id==-1){
+        app.showToast('请先选择酒楼');
+        return false;
+      }else {
+        var hotel_id = user_info.hotel_id
+      }
+    }
+    wx.navigateTo({
+      url: '/pages/mine/assign_waiter?openid='+openid+'&hotel_id='+hotel_id,
+    })
   }
 })

@@ -89,7 +89,7 @@
 		<!-- <view class="title theme-font4">包间签到赚积分</view> -->
 		<view class="title flex_row_center_spaceBetween">
 			<view class="theme-font1">包间签到</view>
-			<view class="theme-font7">指定服务员></view>
+			<view bindtap="assign_waiter" data-openid="{{openid}}"  class="theme-font7">指定服务员></view>
 		</view>
 		<view class="scroll-view">
 			<view class='weui-grids'>

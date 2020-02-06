@@ -149,6 +149,17 @@ Page({
     })
   },
   /**
+   * 查看我的服务员列表
+   */
+  waiter_list:function(e){
+    var invite_id = e.currentTarget.dataset.invite_id;
+    var userinfo = wx.getStorageSync(cache_key + 'userinfo');
+    var openid = e.target.dataset.openid;
+    wx.navigateTo({
+      url: '/pages/mine/waiter_list?p_user_id=' + invite_id + '&openid=' + openid,
+    })
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
