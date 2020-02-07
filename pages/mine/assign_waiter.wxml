@@ -1,12 +1,15 @@
 <!--pages/mine/assign_waiter.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
 	<view class="list flex_column_center">
+    <block wx:for="{{room_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 		<view class="row flex_row_center theme7">
-			<view class="room one-line-overflow">VIP1</view>
-			<view class="waiter one-line-overflow theme-font7">张三三</view>
-			<view class="btn-update theme-button-welcome">重选</view>
+			<view class="room one-line-overflow">{{bean.room_name}}</view>
+			<view class="waiter one-line-overflow theme-font7">{{bean.staff_name}}</view>
+			<view class="btn-update theme-button-welcome" wx:if="{{bean.staff_id>0}}" bindtap="assign_waiter" data-room_id="{{bean.room_id}}">重选</view>
+      <view class="btn-update theme-button-welcome" wx:else bindtap="assign_waiter" data-room_id="{{bean.room_id}}">指定</view>
 		</view>
-		<view class="row flex_row_center theme7">
+    </block>
+		<!-- <view class="row flex_row_center theme7">
 			<view class="room one-line-overflow">VIP2</view>
 			<view class="waiter one-line-overflow theme-font7">张三三</view>
 			<view class="btn-update theme-button-welcome">重选</view>
@@ -25,6 +28,6 @@
 			<view class="room one-line-overflow">VIP5</view>
 			<view class="waiter one-line-overflow theme-font7">张三三</view>
 			<view class="btn-update theme-button-welcome">重选</view>
-		</view>
+		</view> -->
 	</view>
 </scroll-view>

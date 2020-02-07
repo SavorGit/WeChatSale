@@ -24,13 +24,13 @@ Page({
     openid = options.openid;
     hotel_id = options.hotel_id;
 
-
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    //获取员工保健列表
+    utils.PostRequest(api_v_url + '/staff/getStaffRoomList', {
       openid: openid,
       hotel_id: hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        room_list: data.result.datalist
+        room_list: data.result
       })
     })
   },

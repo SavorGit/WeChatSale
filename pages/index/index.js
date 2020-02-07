@@ -38,7 +38,7 @@ Page({
     showControlWindow:false,
     exchangerecord:[],//兑换记录
     is_have_adv:0,
-    is_view_offical:false,  //是否展示关注组件
+    subscribe_status:3  //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
   },
 
   onLoad: function(res) {
@@ -133,18 +133,7 @@ Page({
 
             }
             if (user_info.hotel_has_room == 1) {
-              //是否显示关注入口
-              utils.PostRequest(api_v_url + '/config/getConfig', {
-                hotel_id: hotel_id,
-                openid:user_info.openid
-              }, (data, headers, cookies, errMsg, statusCode) => {
-                var is_subscribe = data.result.is_subscribe
-                var is_get_gzh_openid = data.result.is_get_gzh_openid
-                that.setData({
-                  is_view_offical: is_subscribe,
-                  is_get_gzh_openid: is_get_gzh_openid
-                })
-              })
+              
 
               //获取酒楼包间列表
               wx.request({
@@ -185,14 +174,15 @@ Page({
               })
               //获取销售端配置  
               utils.PostRequest(api_v_url +'/config/getConfig',{
-                hotel_id : hotel_id
+                hotel_id : hotel_id,
+                openid:openid
               }, (data, headers, cookies, errMsg, statusCode) => {
-                if(typeof(data.result.is_have_adv)!='undefined'){
-                  that.setData({
-                    is_have_adv:data.result.is_have_adv
-                  })
-                }
+                that.setData({
+                  is_have_adv: data.result.is_have_adv,
+                  subscribe_status: data.result.subscribe_status
+                })
               })
+              
             } else {
               wx.reLaunch({
                 url: '/pages/tv_sale/system',

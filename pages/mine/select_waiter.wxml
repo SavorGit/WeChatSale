@@ -4,9 +4,16 @@
 		<view class="row flex_row_center theme7">
 			<view class="head-img">无</view>
 			<view class="waiter one-line-overflow theme-font7">暂不指定</view>
-			<view class="btn-update theme-button-welcome">选择</view>
+			<view class="btn-update theme-button-welcome" bindtap="selectWaiter" data-staff_id="0">选择</view>
 		</view>
-		<view class="row flex_row_center theme7">
+    <block wx:for="{{waiter_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+      <view class="row flex_row_center theme7">
+        <image class="head-img" src="{{bean.avatarUrl}}"></image>
+        <view class="waiter one-line-overflow theme-font7">{{bean.nickName}}</view>
+        <view class="btn-update theme-button-welcome" bindtap="selectWaiter" data-staff_id="{{bean.staff_id}}">选择</view>
+      </view>
+    </block>
+		<!-- <view class="row flex_row_center theme7">
 			<image class="head-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 			<view class="waiter one-line-overflow theme-font7">张三三</view>
 			<view class="btn-update theme-button-welcome">选择</view>
@@ -25,11 +32,6 @@
 			<image class="head-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 			<view class="waiter one-line-overflow theme-font7">张三三</view>
 			<view class="btn-update theme-button-welcome">选择</view>
-		</view>
-		<view class="row flex_row_center theme7">
-			<image class="head-img" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-			<view class="waiter one-line-overflow theme-font7">张三三</view>
-			<view class="btn-update theme-button-welcome">选择</view>
-		</view>
+		</view> -->
 	</view>
 </scroll-view>

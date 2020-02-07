@@ -22,7 +22,8 @@ Page({
   onLoad: function (options) {
     room_id = options.room_id;
     manager_openid = options.manager_openid;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    hotel_id = options.hotel_id;
+    utils.PostRequest(api_v_url + '/staff/stafflist', {
       openid: manager_openid,
       hotel_id: hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -32,10 +33,11 @@ Page({
     })
   },
   selectWaiter:function(e){
-    var user_id = e.currentTarget.dataset.user_id;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
-      manager_openid: manager_openid,
-      user_id: user_id,
+    var staff_id = e.currentTarget.dataset.staff_id;
+    utils.PostRequest(api_v_url + '/staff/setRoomstaff', {
+      openid: manager_openid,
+      staff_id: staff_id,
+      room_id:room_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('选择成功');
       wx.navigateBack({
