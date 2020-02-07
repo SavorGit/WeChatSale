@@ -12,11 +12,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var self = this;
-    self.setData({
+    var that = this;
+    /*self.setData({
       userScore: 3.7, // 服务员所得分值
       showPurviewManageWindow: true // 是否显示权限管理弹窗
-    });
+    });*/
+    
   },
 
   /**

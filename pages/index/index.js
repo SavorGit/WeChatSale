@@ -38,6 +38,7 @@ Page({
     showControlWindow:false,
     exchangerecord:[],//兑换记录
     is_have_adv:0,
+    is_view_offical:false,  //是否展示关注组件
   },
 
   onLoad: function(res) {
@@ -132,7 +133,19 @@ Page({
 
             }
             if (user_info.hotel_has_room == 1) {
-              
+              //是否显示关注入口
+              utils.PostRequest(api_v_url + '/config/getConfig', {
+                hotel_id: hotel_id,
+                openid:user_info.openid
+              }, (data, headers, cookies, errMsg, statusCode) => {
+                var is_subscribe = data.result.is_subscribe
+                var is_get_gzh_openid = data.result.is_get_gzh_openid
+                that.setData({
+                  is_view_offical: is_subscribe,
+                  is_get_gzh_openid: is_get_gzh_openid
+                })
+              })
+
               //获取酒楼包间列表
               wx.request({
                 url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
