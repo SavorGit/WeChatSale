@@ -33,6 +33,11 @@ Page({
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
+    if (user_info.select_hotel_id > 0) {
+      var hotel_id = user_info.select_hotel_id;
+    }else {
+      var hotel_id = user_info.hotel_id;
+    }
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
     var goods_manage = app.in_array('goods_manage', user_info.service);
@@ -48,7 +53,9 @@ Page({
       staff_manage: staff_manage,
       integral_manage: integral_manage,
       task_manage: task_manage,
-      integral_shop: integral_shop
+      integral_shop: integral_shop,
+      hotel_id: hotel_id,
+      openid: openid
     })
     wx.request({
       url: api_v_url + '/user/center',

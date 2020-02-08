@@ -1,4 +1,9 @@
 // pages/waiter/index.js
+const app = getApp()
+var mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
 Page({
 
   /**
@@ -13,6 +18,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options);
     /*self.setData({
       userScore: 3.7, // 服务员所得分值
       showPurviewManageWindow: true // 是否显示权限管理弹窗

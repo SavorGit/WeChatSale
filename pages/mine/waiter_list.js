@@ -1,41 +1,19 @@
 // pages/mine/waiter_list.js
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
+var hotel_id;
 var openid;
 var page = 1;
+var is_scangoods;
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-    avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-    nickName: '昵称',
-    score: 3.6,
-    waiter_list: [
-      {
-        avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        nickName: '张三三'
-      },
-      {
-        avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        nickName: '李四'
-      },
-      {
-        avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        nickName: '王一一'
-      },
-      {
-        avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        nickName: '高大大'
-      },
-      {
-        avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-        nickName: '赵'
-      }
-    ],
+  data: { 
     showPurviewManageWindow: false// 是否显示权限管理弹窗
   },
 
@@ -43,21 +21,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.setData({
-      score: 3.7, // 服务员所得分值
-      showPurviewManageWindow: true // 是否显示权限管理弹窗
-    });
-    var p_user_id = options.p_user_id;
     openid = options.openid;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
-      user_id: p_user_id,
+    hotel_id = options.hotel_id;
+    var that = this;
+    
+    /*utils.PostRequest(api_v_url + '/staff/stafflist', {
+      openid: openid,
+      hotel_id:hotel_id,
       page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
+      is_scangoods = data.result.user.is_scangoods
       that.setData({
-        water_list: data.result.datalist
+        water_list: data.result.datalist,
+        user_info:data.result.user,
+        is_scangoods:is_scangoods
       })
-    })
+    })*/
   },
   /**
    * 移除服务员
@@ -67,22 +46,60 @@ Page({
     var user_id = e.currentTarget.dataset.user_id;
     var openid = e.currentTarget.dataset.openid;
     var index = e.currentTarget.dataset.index;
+    var waiter_list = e.currentTarget.dataset.waiter_list;
     utils.PostRequest(api_v_url + '/aa/bb/cc', {
       user_id: user_id,
       openid: openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       //去掉移除的服务员 生成新的服务员列表
+      waiter_list.splice(index,1);
+      that.setData({
+        waiter_list: waiter_list
+      })
     })
   },
   /**
    * 查看服务员详情
    */
   waiter_detail: function (e) {
-    var waiter_id = e.currentTarget.dataset.waiter_id;
+    var openid = e.currentTarget.dataset.openid;
     wx.navigateTo({
-      url: '/pages/mine/team_member_detail?waiter_id=' + waiter_id,
+      url: '/pages/mine/team_member_detail?openid=' + openid,
     })
 
+  },
+  handleCheckboxChange:function(e){
+    var that = this;
+    var vals = e.detail.value;
+    if(vals.lengh==0){
+      //值设置为0
+      is_scangoods = 0;
+
+    }else {
+      is_scangoods = 1;
+    }
+    that.setData({
+      is_scangoods: is_scangoods
+    })
+  },
+  /**
+   * 设置二级员工权限
+   */
+  savePower:function(e){
+    console.log(e)
+    var that = this;
+    var is_scangoods = e.detail.value.is_scangoods;
+    var staff_id = e.detail.value.staff_id
+    utils.PostRequest(api_v_url + '/staff/setPermission', {
+      openid: openid,
+      is_scangoods: is_scangoods,
+      staff_id: staff_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        showPurviewManageWindow: false,
+      })
+      app.showToast('保存成功');
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

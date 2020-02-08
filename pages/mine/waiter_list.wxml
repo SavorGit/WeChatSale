@@ -2,11 +2,11 @@
 <scroll-view class='container theme-main' scroll-y="true" scroll-with-animation="true">
 	<!-- 用户信息面板 -->
 	<view class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
-		<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
+		<image class='head-img' src='{{user_info.avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
 		<view class="flex_row_flexStart_spaceBetween">
 			<view class="wapper flex_column_flexStart_center">
-				<view class='nickname'>{{nickName}}</view>
-				<view class="score flex_row_center_flexStart">
+				<view class='nickname'>{{user_info.nickName}}</view>
+				<!-- <view class="score flex_row_center_flexStart">
 					<view class="star-group flex_row_center_spaceBetween star-color">
 						<view class="fa {{score >= 0.5 && score < 1 ? 'fa-star-half-o' : score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 						<view class="fa {{score >= 1.5 && score < 2 ? 'fa-star-half-o' : score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -15,7 +15,7 @@
 						<view class="fa {{score >= 4.5 && score < 5 ? 'fa-star-half-o' : score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 					</view>
 					<view>综合评分：{{score}}</view>
-				</view>
+				</view> -->
 			</view>
 			<image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image>
 		</view>
@@ -27,7 +27,7 @@
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="waiter_detail" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-detail theme-button-welcome" bindtap="waiter_detail"  data-openid="{{bean.openid}}">详情</button>
 				<button class="btn-remove theme-button-welcome" bindtap="remove_waiter" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
@@ -37,8 +37,8 @@
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button class="btn-remove theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
+				<button class="btn-detail theme-button-welcome" bindtap="waiter_detail" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn-remove theme-button-welcome" bindtap="remove_waiter" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
 	</block>
@@ -49,7 +49,7 @@
 
 <!-- 权限管理弹窗 -->
 <modal show="{{showPurviewManageWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
-	<form>
+	<form bindsubmit="savePower">
 		<view class="purview-manage-window flex_column_center theme7">
 			<view class="title-bar flex_row_center_spaceBetween">
 				<view class="fa fa-lg" aria-hidden="true"></view>
@@ -58,10 +58,16 @@
 			</view>
 			<view class="body-panel flex_column_center_spaceAround">
 				<view>
-					<checkbox value="{{item.name}}" checked="{{item.checked}}" />
+          <checkbox-group bindchange="handleCheckboxChange">
+          
+					<checkbox  value="1" checked="{{is_scangoods==1? true:false}}" />
 					<label>查看热点商品库</label>
+          
+          </checkbox-group>
 				</view>
-				<view class="btn-submit theme-button-welcome">保存</view>
+        <input class="display_hide"  name="is_scangoods" value="{{is_scangoods}}"></input>
+        <input class="display_hide" name="staff_id" value="{{user_info.staff_id}}"> </input>
+				<button class="btn-submit theme-button-welcome" form-type="submit">保存</button>
 			</view>
 		</view>
 	</form>
