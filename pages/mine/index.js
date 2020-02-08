@@ -91,10 +91,7 @@ Page({
         }
       }
     })
-    that.setData({
-      score: 3.7, // 获取的评分
-      showChangeNikenameWindow: true// 是否显示修改昵称窗口
-    });
+    
   },
   loadMore: function (res) {
     var that = this;
