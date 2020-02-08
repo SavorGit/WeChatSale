@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "modal": "/components/modal/modal",
-    "bottomModal": "/components/modal/bottomModal"
+    "bottomModal": "/components/modal/bottomModal",
+    "zy-slider": "/components/slider/zy-slider"
   },
   "enablePullDownRefresh": false,
   "disableScroll": true

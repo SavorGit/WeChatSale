@@ -1,12 +1,15 @@
 // components/slider/zy-slider.js
-var utils = require('../../utils/util')
+var utils = require('../../utils/util');
+
 /**
  * 自定义modal浮层
  * 使用方法：
  *   
-<zy-slider min="0" max="100" step='1'  minValue='10' maxValue="70" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="#B0C4DE" rightBackgroundColor="#00F0F0" selectedColor="#F6F2EE" bind:lowValueChange="lowValueChange" bind:heighValueChange="heighValueChange"/>
+<zy-slider width="100%" left="0" min="0" max="100" step='1'  minValue='10' maxValue="70" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="#B0C4DE" rightBackgroundColor="#00F0F0" selectedColor="#F6F2EE" bind:lowValueChange="lowValueChange" bind:heighValueChange="heighValueChange"/>
  
 属性说明：
+  width                 : String slider 组件宽度
+  left                  : String slider 组件距左边距
   min                   : Number slider 最小值
   max                   : Number slider 最大值
   step                  : Number slider 步长，取值必须大于 0，并且可被(max - min)整除
@@ -31,11 +34,23 @@ var utils = require('../../utils/util')
 使用模块：
  场馆 -> 发布 -> 选择使用物品
  */
+const RegExpRPX = new RegExp("\\d+rpx", "i"), RegExpPX = new RegExp("\\d+px", "i");
+const SliderLock = { left: false, rigth: false };
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
+    /** slider 宽度 */
+    width: {
+      type: String,
+      value: '100%'
+    },
+    /** slider 左边距 */
+    left: {
+      type: String,
+      value: '0'
+    },
     /** slider 最小值 */
     min: {
       type: Number,
@@ -185,6 +200,10 @@ Component({
      * 左边滑块滑动
      */
     _minMove: function (e) {
+      if (SliderLock.left == true) {
+        return;
+      }
+      SliderLock.left = true;
       let pagex = e.changedTouches[0].pageX / this.data.ratio - this.data.containerLeft - this.data.sliderSize / 2;
       let lastValue = e.target.dataset.lastleft;
       let stepValue = this.data.bigTrip * this.data.step / (this.data.max - this.data.min);
@@ -210,12 +229,17 @@ Component({
         };
         this.triggerEvent('lowValueChange', myEventDetail);
       }
+      SliderLock.left = false;
     },
 
     /**
      * 右边滑块滑动
      */
     _maxMove: function (e) {
+      if (SliderLock.rigth == true) {
+        return;
+      }
+      SliderLock.rigth = true;
       let pagex = e.changedTouches[0].pageX / this.data.ratio - this.data.containerLeft - this.data.sliderSize / 2;
       let lastValue = e.target.dataset.lastright;
       let stepValue = this.data.bigTrip * this.data.step / (this.data.max - this.data.min);
@@ -243,6 +267,7 @@ Component({
         };
         this.triggerEvent('heighValueChange', myEventDetail);
       }
+      SliderLock.rigth = false;
     },
 
     /**
@@ -290,11 +315,36 @@ Component({
       .then(() => {
         var query = wx.createSelectorQuery().in(this);
         query.select(".container").boundingClientRect(function (res) {
+          let containerWidth = res.width / that.data.ratio, containerLeft = res.left / that.data.ratio;
+          if (containerWidth == 0) {
+            let inputWidth = that.data.width;
+            if (typeof (inputWidth) == 'number' && inputWidth > 0) {
+              containerWidth = inputWidth;
+            } else if (typeof (inputWidth) == 'string') {
+              if (RegExpRPX.test(inputWidth)) {
+                try { containerWidth = parseInt(inputWidth); } catch (error) { }
+              } else if (RegExpPX.test(inputWidth)) {
+                try { containerWidth = parseInt(inputWidth) / that.data.ratio; } catch (error) { }
+              }
+            }
+          }
+          if (containerLeft == 0) {
+            let inputLeft = that.data.left;
+            if (typeof (inputLeft) == 'number' && inputLeft > 0) {
+              containerLeft = inputLeft;
+            } else if (typeof (inputLeft) == 'string') {
+              if (RegExpRPX.test(inputLeft)) {
+                try { containerLeft = parseInt(inputLeft); } catch (error) { }
+              } else if (RegExpPX.test(inputLeft)) {
+                try { containerLeft = parseInt(inputLeft) / that.data.ratio; } catch (error) { }
+              }
+            }
+          }
           that.setData({
-            totalTrip: res.width / that.data.ratio - that.data.sliderSize,
-            bigTrip: res.width / that.data.ratio - that.data.sliderSize * 2,
-            rightTrip: res.width / that.data.ratio - that.data.sliderSize,
-            containerLeft: res.left / that.data.ratio
+            totalTrip: containerWidth - that.data.sliderSize,
+            bigTrip: containerWidth - that.data.sliderSize * 2,
+            rightTrip: containerWidth - that.data.sliderSize,
+            containerLeft: containerLeft
           });
 
           /**

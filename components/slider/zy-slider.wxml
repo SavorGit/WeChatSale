@@ -1,5 +1,5 @@
 <!--components/slider/zy-slider.wxml-->
-<view class="container {{hideOption}}">
+<view class="container {{hideOption}}" style="width:{{width}}">
 	<view>
 		<view class="slider-item min" style="top:{{7 - blockSize / 2}}px;left:{{leftTrip - 2 - blockSize / ratio / 2}}rpx;background-color:{{blockColor}};width:{{blockSize}}px;height:{{blockSize}}px;z-index:{{leftTrip==bigTrip?3:2}};" data-lastleft="{{leftTrip}}" catchtouchmove="_minMove"></view>
 		<view class="slider-item max" style="top:{{7 - blockSize / 2}}px;left:{{rightTrip - 6 - blockSize / ratio * 1.5}}rpx;background-color:{{blockColor}};width:{{blockSize}}px;height:{{blockSize}}px;z-index:{{rightTrip==0?3:2}};" data-lastright="{{rightTrip}}" catchtouchmove="_maxMove"></view>

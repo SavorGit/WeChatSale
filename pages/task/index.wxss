@@ -165,6 +165,7 @@
   font-size: 24rpx;
 }
 
+/*
 .set-task-benefit-window>.main .percentage {
   width: 100%;
   height: 50rpx;
@@ -190,6 +191,37 @@
   margin: 0;
   padding: 0;
   border: 0;
+}
+*/
+
+.set-task-benefit-window>.main .set {
+  width: 100%;
+  height: 200rpx;
+  margin-top: 40rpx;
+}
+
+.set-task-benefit-window>.main .set>view {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 0 20rpx;
+}
+
+.set-task-benefit-window>.main .set>view>label {
+  width: 120rpx;
+}
+
+.set-task-benefit-window>.main .set>zy-slider {
+  width: 100%;
+  margin: 10rpx 0 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.set-task-benefit-window>.main .percentage {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 40rpx;
 }
 
 .set-task-benefit-window>.main .tip {

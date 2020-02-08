@@ -55,7 +55,7 @@
 </modal>
 
 <!-- 任务分润设置弹窗 -->
-<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='540rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='700rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
 	<view class="set-task-benefit-window flex_column_center theme7">
 		<view class="top flex_row_flexEnd_spaceBetween">
 			<view></view>
@@ -67,6 +67,7 @@
 		<view class="main flex_column_center theme7">
 			<form bindsubmit="editTaskShareBenefit">
 				<view class="desc">每完成一次任务的总额为100%，可设置员工完成任务后的奖励比例，剩余部分归管理员所有。</view>
+				<!--
         <view class="percentage flex_row_center_spaceBetween">
 					<view></view>
 					<view>{{level2}}</view>
@@ -77,6 +78,27 @@
           <label>员工</label>
           <slider block-size="12" step="10" value="{{level2}}" bindchange="slideSet" />
           <label>管理员</label>
+        </view>
+				-->
+        <view class="set flex_column_flexStart">
+					<view class="flex_row_center">
+						<label style="width:120rpx;">管理员</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(154, 168, 242)"></label>
+					</view>
+					<view class="flex_row_center">
+						<label style="width:120rpx;">一级员工</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(161, 134, 104)"></label>
+					</view>
+					<view class="flex_row_center">
+						<label style="width:120rpx;">二级员工</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(88, 82, 92)"></label>
+					</view>
+					<zy-slider width="528rpx" left="110rpx" min="0" max="100" step='10'  minValue='{{level2}}' maxValue="{{level3}}" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="rgb(154, 168, 242)" rightBackgroundColor="rgb(88, 82, 92)" selectedColor="rgb(161, 134, 104)" bindlowValueChange="lowValueChange" bindheighValueChange="heighValueChange"/>
+        </view>
+        <view class="percentage flex_row_center_spaceAround">
+					<view>{{level1}}</view>
+					<view>{{level2}}</view>
+					<view>{{level3}}</view>
         </view>
 				<view class="tip theme-font6">本月剩余可修改{{num}}次</view>
 				<input class="display_hide" name="task_id" value="{{task_id}}"></input>
