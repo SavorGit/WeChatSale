@@ -1,14 +1,16 @@
 <!--pages/goods/goods_list.wxml-->
-<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<view class="list weui-grids">
-		<view class="item flex_column_center_center weui-grid">
-			<view class="flex_column_center theme7">
-				<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-				<view class="price theme-font6">￥234</view>
-				<view class="name two-line-overflow">【春节不打烊】香奈儿Chanel 唇膏可可小...</view>
-			</view>
-		</view>
-		<view class="item flex_column_center_center weui-grid">
+    <block wx:for="goods_list"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+      <view class="item flex_column_center_center weui-grid">
+        <view class="flex_column_center theme7">
+          <image src="{{bean.img_url}}"></image>
+          <view class="price theme-font6">￥{{bean.price}}</view>
+          <view class="name two-line-overflow">{{bean.name}}</view>
+        </view>
+      </view>
+    </block>
+		<!-- <view class="item flex_column_center_center weui-grid">
 			<view class="flex_column_center theme7">
 				<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 				<view class="price theme-font6">￥234</view>
@@ -126,6 +128,6 @@
 				<view class="price theme-font6">￥234</view>
 				<view class="name two-line-overflow">【春节不打烊】香奈儿Chanel 唇膏可可小【春节不打烊】香奈儿Chanel 唇膏可可小</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </scroll-view>

@@ -23,13 +23,13 @@ Page({
     hotel_id = options.hotel_id;
     openid   = options.openid;
     
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    utils.PostRequest(api_v_url + '/goods/goodslist', {
       openid: openid,
       hotel_id: hotel_id,
       page : 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        goods_list: data.result.datalist
+        goods_list: data.result
       })
     })
   },
@@ -40,7 +40,7 @@ Page({
     var that = this;
     page +=1;
 
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    utils.PostRequest(api_v_url + '/goods/goodslist', {
       openid: openid,
       hotel_id: hotel_id,
       page :page

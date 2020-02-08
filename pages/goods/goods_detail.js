@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
     goods_id = options.goods_id;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    utils.PostRequest(api_v_url + '/goods/detail', {
       goods_id:goods_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({

@@ -1,13 +1,16 @@
 <!--pages/goods/goods_detail.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
 	<view class="wapper">
-		<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-		<view class="price one-line-overflow theme-font6">￥234</view>
-		<view class="name one-line-overflow">商品标题</view>
+		<image src="{{goods_info.img_url}}"></image>
+		<view class="price one-line-overflow theme-font6">￥{{goods_info.price}}</view>
+		<view class="name one-line-overflow">{{goods_info.name}}</view>
 		<view class="desc">
-			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+      <block wx:for="{{goods_info.detail_content}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<image src="{{bean}}"></image>
+			</block>
+      
+      <!-- <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image> -->
 		</view>
 	</view>
 </scroll-view>
