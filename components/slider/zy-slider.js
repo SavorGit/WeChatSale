@@ -297,61 +297,70 @@ Component({
         rightTrip: this.data.totalTrip,
         leftTrip: 0
       });
+    },
+    redraw: function (data, callback) {
+      this.setData(data, function () {
+        this._propertyLeftValueChange();
+        this._propertyRightValueChange();
+        if (typeof (callback) == 'function') {
+          callback();
+        }
+      });
     }
   },
 
   ready: function () {
-    let that = this;
+    let component = this;
     // console.log('zy-slider', 'ready');
     // const getSystemInfo = utils.wxPromisify(wx.getSystemInfo);
     // const queryContainer = utils.wxPromisify(wx.createSelectorQuery().in(this).select(".container").boundingClientRect);
     utils.wxPromisify(wx.getSystemInfo)()
       .then(res => {
         let ratio = res.windowWidth / 750;
-        that.setData({
+        component.setData({
           ratio: ratio
         });
       })
       .then(() => {
         var query = wx.createSelectorQuery().in(this);
         query.select(".container").boundingClientRect(function (res) {
-          let containerWidth = res.width / that.data.ratio, containerLeft = res.left / that.data.ratio;
+          let containerWidth = res.width / component.data.ratio, containerLeft = res.left / component.data.ratio;
           if (containerWidth == 0) {
-            let inputWidth = that.data.width;
+            let inputWidth = component.data.width;
             if (typeof (inputWidth) == 'number' && inputWidth > 0) {
               containerWidth = inputWidth;
             } else if (typeof (inputWidth) == 'string') {
               if (RegExpRPX.test(inputWidth)) {
                 try { containerWidth = parseInt(inputWidth); } catch (error) { }
               } else if (RegExpPX.test(inputWidth)) {
-                try { containerWidth = parseInt(inputWidth) / that.data.ratio; } catch (error) { }
+                try { containerWidth = parseInt(inputWidth) / component.data.ratio; } catch (error) { }
               }
             }
           }
           if (containerLeft == 0) {
-            let inputLeft = that.data.left;
+            let inputLeft = component.data.left;
             if (typeof (inputLeft) == 'number' && inputLeft > 0) {
               containerLeft = inputLeft;
             } else if (typeof (inputLeft) == 'string') {
               if (RegExpRPX.test(inputLeft)) {
                 try { containerLeft = parseInt(inputLeft); } catch (error) { }
               } else if (RegExpPX.test(inputLeft)) {
-                try { containerLeft = parseInt(inputLeft) / that.data.ratio; } catch (error) { }
+                try { containerLeft = parseInt(inputLeft) / component.data.ratio; } catch (error) { }
               }
             }
           }
-          that.setData({
-            totalTrip: containerWidth - that.data.sliderSize,
-            bigTrip: containerWidth - that.data.sliderSize * 2,
-            rightTrip: containerWidth - that.data.sliderSize,
+          component.setData({
+            totalTrip: containerWidth - component.data.sliderSize,
+            bigTrip: containerWidth - component.data.sliderSize * 2,
+            rightTrip: containerWidth - component.data.sliderSize,
             containerLeft: containerLeft
           });
 
           /**
            * 设置初始滑块位置
            */
-          that._propertyLeftValueChange();
-          that._propertyRightValueChange();
+          component._propertyLeftValueChange();
+          component._propertyRightValueChange();
         }).exec();
       });
   }

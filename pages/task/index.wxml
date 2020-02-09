@@ -93,7 +93,7 @@
 						<label style="width:120rpx;">二级员工</label>
 						<label style="width:100rpx;height:6rpx;background-color:rgb(88, 82, 92)"></label>
 					</view>
-					<zy-slider width="528rpx" left="110rpx" min="0" max="100" step='10'  minValue='{{level2}}' maxValue="{{level3}}" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="rgb(154, 168, 242)" rightBackgroundColor="rgb(88, 82, 92)" selectedColor="rgb(161, 134, 104)" bindlowValueChange="lowValueChange" bindheighValueChange="heighValueChange"/>
+					<zy-slider id="setTaskBenefitSlider" width="528rpx" left="110rpx" min="0" max="100" step='10'  minValue='0' maxValue="100" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="rgb(154, 168, 242)" rightBackgroundColor="rgb(88, 82, 92)" selectedColor="rgb(161, 134, 104)" bindlowValueChange="lowValueChange" bindheighValueChange="heighValueChange"/>
         </view>
         <view class="percentage flex_row_center_spaceAround">
 					<view>{{level1}}</view>

@@ -23,53 +23,60 @@
 	</view>
 
 	<view class="evaluate-list-panel theme7">
-		<view class="title flex_row_center_spaceBetween">
+		<view class="title flex_row_flexEnd_spaceBetween">
 			<view>评价</view>
-			<view class="theme-font2">2020-01-01~02-01</view>
+			<view class="flex_row_center_spaceBetween">
+				<view class="flex_row_center_spaceBetween theme-font2">
+					<picker mode="date">2020.01.01</picker>
+					<label>~</label>
+					<picker mode="date">2020.02.01</picker>
+				</view>
+				<view class="theme-button-welcome">查询</view>
+			</view>
 		</view>
 		<view class="body">
 			<view class="tip theme-font3">为您找到{{comment_total}}条评价，平均服务评分{{comment_avg_score}}</view>
 			<view class="list">
-				<block wx:for="{{comment_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
-				<view class="row flex_row_flexStart" wx:if="{{index+1==comment_list.length}}">
-					<image src="{{bean.avatarUrl}}"></image>
-					<view class="flex_column_flexStart">
-						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">{{bean.nickName}}</view>
-							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+				<block wx:for="{{comment_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<view class="row flex_row_flexStart" wx:if="{{index+1==comment_list.length}}">
+						<image src="{{bean.avatarUrl}}"></image>
+						<view class="flex_column_flexStart">
+							<view class="user-info flex_column_flexStart_flexEnd">
+								<view class="nikename">{{bean.nickName}}</view>
+								<view class="flex_row_center_spaceBetween star-color">
+									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								</view>
 							</view>
+							<view class="comment two-line-overflow">{{bean.content}}</view>
+							<view class="datetime theme-font2">{{bean.time}}</view>
+							<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 						</view>
-						<view class="comment two-line-overflow">{{bean.content}}</view>
-						<view class="datetime theme-font2">{{bean.time}}</view>
-						<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 					</view>
-				</view>
 
 
-        <view class="row flex_row_flexStart bottom-line" wx:else>
-					<image src="{{bean.avatarUrl}}"></image>
-					<view class="flex_column_flexStart">
-						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">{{bean.nickName}}</view>
-							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="row flex_row_flexStart bottom-line" wx:else>
+						<image src="{{bean.avatarUrl}}"></image>
+						<view class="flex_column_flexStart">
+							<view class="user-info flex_column_flexStart_flexEnd">
+								<view class="nikename">{{bean.nickName}}</view>
+								<view class="flex_row_center_spaceBetween star-color">
+									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								</view>
 							</view>
+							<view class="comment two-line-overflow">{{bean.content}}</view>
+							<view class="datetime theme-font2">{{bean.time}}</view>
+							<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 						</view>
-						<view class="comment two-line-overflow">{{bean.content}}</view>
-						<view class="datetime theme-font2">{{bean.time}}</view>
-						<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 					</view>
-				</view>
-        </block>
+				</block>
 			</view>
 		</view>
 	</view>

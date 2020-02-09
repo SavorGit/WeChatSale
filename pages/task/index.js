@@ -25,11 +25,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let that = this;
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     that.setData({
-      userInfo:userInfo
+      userInfo: userInfo
     })
     wx.showLoading({
       title: '加载中',
@@ -41,7 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     let that = this;
     wx.hideLoading();
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
@@ -60,28 +60,28 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     let that = this;
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     let that = this;
     console.log('Page.onPullDownRefresh');
   },
@@ -89,21 +89,21 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
 
   /**
    * 刷新列表
    */
-  flushTaskList: function(e) {
+  flushTaskList: function (e) {
     let that = this;
     // console.log('flushTaskList', e);
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
@@ -117,7 +117,7 @@ Page({
   /**
    * 加载下页面数据
    */
-  loadingNextPageData: function(e) {
+  loadingNextPageData: function (e) {
     let that = this;
     // console.log('loadingNextPageData', e);
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
@@ -131,10 +131,10 @@ Page({
   /**
    * 弹出任务详情弹窗
    */
-  popTaskDetailWindow: function(e) {
+  popTaskDetailWindow: function (e) {
     let that = this;
     let taskListIndex = e.currentTarget.dataset.index;
-    
+
     that.setData({
       taskDetailWindowShow: true,
       openTaskInWindow: that.data.taskList[taskListIndex]
@@ -145,7 +145,7 @@ Page({
   /**
    * 点击任务详情弹窗确定按钮
    */
-  taskDetailWindowConfirm: function(e) {
+  taskDetailWindowConfirm: function (e) {
     let that = this;
     that.setData({
       taskDetailWindowShow: false
@@ -155,15 +155,21 @@ Page({
    * 
    * 点击弹出分润弹框 
    */
-  setShareBenefit:function(e){
+  setShareBenefit: function (e) {
     var that = this;
-   
+
     that.setData({
       taskDetailWindowShow: false,
       setTaskBenefitWindowShow: true,
-      level2:20,
-      level3:80
-    })
+      level1: 10,
+      level2: 70,
+      level3: 20
+    }, function () {
+      this.selectComponent('#setTaskBenefitSlider').redraw({
+        minValue: this.data.level1,
+        maxValue: this.data.level1 + this.data.level2
+      });
+    });
 
     /*var task_id = e.currentTarget.dataset.task_id;
 
@@ -200,61 +206,61 @@ Page({
   /**
    * 关闭分润弹窗
    */
-  closeShareBenefit:function(e){
+  closeShareBenefit: function (e) {
     var that = this;
     that.setData({
-      setTaskBenefitWindowShow:false,
+      setTaskBenefitWindowShow: false,
     })
   },
-  slideSet:function(e){
+  slideSet: function (e) {
     var that = this;
     var staff_share_benefit = e.detail.value;  //设置数值
     var manager_share_benefit = 100 - staff_share_benefit;  //管理员分润数值
     that.setData({
-      level2:staff_share_benefit,
-      level1:manager_share_benefit
+      level2: staff_share_benefit,
+      level1: manager_share_benefit
     })
   },
   /**
    * 管理员修改任务分润比例
    */
-  editTaskShareBenefit:function(e){
+  editTaskShareBenefit: function (e) {
     //console.log(e)
-    
+
     var that = this;
     var task_id = e.detail.value.task_id;
-    var level1  = e.detail.value.level1;
-    var level2  = e.detail.value.level2;
+    var level1 = e.detail.value.level1;
+    var level2 = e.detail.value.level2;
     var openid = e.detail.value.openid;
     var hotel_id = e.detail.value.hotel_id;
-    
-    utils.PostRequest(api_v_url +'/task/setShareprofit',{
-      task_id : task_id,
-      level1:level1,
-      level2:level2,
-      openid:openid,
-      hotel_id:hotel_id,
+
+    utils.PostRequest(api_v_url + '/task/setShareprofit', {
+      task_id: task_id,
+      level1: level1,
+      level2: level2,
+      openid: openid,
+      hotel_id: hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('保存成功')
       that.setData({
-        setTaskBenefitWindowShow:false,
+        setTaskBenefitWindowShow: false,
       })
-    },res=>{
+    }, res => {
       app.showToast('保存失败');
     })
   },
   /* **************************** 自定义方法 **************************** */
-  loadingData: function(requestData, navigateBackOnError) {
+  loadingData: function (requestData, navigateBackOnError) {
     let that = this;
-    utils.PostRequest(api_v_url + '/task/getHotelTastList', requestData, function(data, headers, cookies, errMsg, httpCode) {
-      if (typeof(data) != 'object' || typeof(data.result) != 'object') {
+    utils.PostRequest(api_v_url + '/task/getHotelTastList', requestData, function (data, headers, cookies, errMsg, httpCode) {
+      if (typeof (data) != 'object' || typeof (data.result) != 'object') {
         wx.showToast({
           title: "服务器返回数据错误！请用联系管理员。",
           icon: 'none',
           mask: true,
           duration: 5000,
-          success: function() {
-            setTimeout(function() {
+          success: function () {
+            setTimeout(function () {
               wx.navigateBack();
             }, 2000);
           }
@@ -263,14 +269,14 @@ Page({
       }
       let taskListForReturn = data.result;
       let taskListShowStatus = 0;
-      if (typeof(taskListForReturn) != 'object') {
+      if (typeof (taskListForReturn) != 'object') {
         wx.showToast({
           title: "服务器返回任务列表错误！请用联系管理员。",
           icon: 'none',
           mask: true,
           duration: 5000,
-          success: function() {
-            setTimeout(function() {
+          success: function () {
+            setTimeout(function () {
               wx.navigateBack();
             }, 2000);
           }
@@ -292,7 +298,7 @@ Page({
         pageNo: requestData.page,
         taskList: taskListForReturn
       });
-    }, function(res) {
+    }, function (res) {
       if (navigateBackOnError == true) {
         wx.navigateBack();
       }

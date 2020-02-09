@@ -67,8 +67,25 @@
 }
 
 .evaluate-list-panel>.title>view:last-child {
+  width: 430rpx;
   font-size: 28rpx;
   /* color: #A0856A; */
+}
+
+.evaluate-list-panel>.title>view:last-child>view:first-child>picker {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 1rpx solid #ededed;
+}
+
+.evaluate-list-panel>.title>view:last-child>view:last-child {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 10rpx;
 }
 
 .evaluate-list-panel>.body {
