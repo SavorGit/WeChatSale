@@ -158,8 +158,14 @@ Page({
   setShareBenefit:function(e){
     var that = this;
    
-    
-    var task_id = e.currentTarget.dataset.task_id;
+    that.setData({
+      taskDetailWindowShow: false,
+      setTaskBenefitWindowShow: true,
+      level2:20,
+      level3:80
+    })
+
+    /*var task_id = e.currentTarget.dataset.task_id;
 
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     if (userInfo.hotel_id == -1) {
@@ -188,7 +194,7 @@ Page({
       })
       
      
-    });
+    });*/
 
   },
   /**
