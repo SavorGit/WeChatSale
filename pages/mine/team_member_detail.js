@@ -25,15 +25,25 @@ Page({
       // showPurviewManageWindow: true // 是否显示权限管理弹窗
     });
     openid = options.openid;
-    user_id = options.user_id;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+    
+    utils.PostRequest(api_v_url + '/goods/goodslist', {
       openid: openid,
-      user_id: user_id,
-      page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        user_info: data.result.user_info,
-        pingfen_list: data.result.datalist
+        user_info: data.result,
+        avatarUrl: data.result.avatarUrl,
+        nickName: data.result.nickName,
+        userScore: data.result.score
+      })
+    })
+    utils.PostRequest(api_v_url + '/comment/commentlist', {
+      openid: openid,
+      page: 1,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        comment_list: data.result.datalist,
+        comment_total: data.result.total,
+        comment_avg_score: data.result.avg_score
       })
     })
   },

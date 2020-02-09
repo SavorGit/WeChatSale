@@ -2,8 +2,14 @@
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 const utils = require('../../utils/util.js')
+var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_url = app.globalData.oss_url;
+var openid;
+var avatarUrl;
+var nickName;
 Page({
 
   /**
@@ -18,12 +24,122 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options);
-    /*self.setData({
-      userScore: 3.7, // 服务员所得分值
-      showPurviewManageWindow: true // 是否显示权限管理弹窗
-    });*/
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    utils.PostRequest(api_v_url + '/goods/goodslist', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        user_info: data.result,
+        avatarUrl: data.result.avatarUrl,
+        nickName: data.result.nickName,
+        userScore: data.result.score
+      })
+    })
+    utils.PostRequest(api_v_url + '/comment/commentlist', {
+      openid: openid,
+      page:1,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        comment_list: data.result.datalist,
+        comment_total: data.result.total,
+        comment_avg_score: data.result.avg_score
+      })
+    })
+
     
+    
+  },
+
+  /**
+   * 修改头像
+   */
+  editAvatar:function(e){
+    var that = this;
+    var staff_id = e.currentTarget.dataset.staff_id;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var filename = res.tempFilePaths[0];
+
+        var index1 = filename.lastIndexOf(".");
+        var index2 = filename.length;
+        var timestamp = (new Date()).valueOf();
+
+        var postf = filename.substring(index1, index2);//后缀名\
+        var postf_t = filename.substring(index1, index2);//后缀名
+        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+
+        var img_url = timestamp + postf;
+
+
+        console.log(img_url);
+        console.log(oss_upload_url)
+        console.log(postf_w)
+        console.log(postf_t)
+        console.log(postf)
+        console.log(filename)
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          success: function (rest) {
+            var policy = rest.data.policy;
+            var signature = rest.data.signature;
+            
+            wx.uploadFile({
+              url: oss_upload_url,
+              filePath: filename,
+              name: 'file',
+              header: {
+                'Content-Type': 'image/' + postf_w
+              },
+              formData: {
+                Bucket: "redian-produce",
+                name: img_url,
+                key: "forscreen/resource/" + img_url,
+                policy: policy,
+                OSSAccessKeyId: app.globalData.oss_access_key_id,
+                sucess_action_status: "200",
+                signature: signature
+
+              },
+
+              success: function (res) {
+
+                utils.PostRequest(api_v_url + '/user/edit', {
+                  openid: openid,
+                  avatar_url: "forscreen/resource/" + img_url,
+                }, (data, headers, cookies, errMsg, statusCode) => {
+                  that.setData({
+                    avatarUrl: oss_url + "/forscreen/resource/" + img_url
+                  })
+                  app.showTost('头像修改成功')
+                })
+              },
+              fail: function ({ errMsg }) {
+                app.showTost('头像修改失败')
+              },
+            });
+          }
+        })
+      }
+    })
+  },
+  editNickname:function(e){
+    var name = e.detail.value.name;
+    utils.PostRequest(api_v_url + '/user/edit', {
+      openid: openid,
+      name: name,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        nickname: name
+      })
+      app.showTost('昵称修改成功')
+    })
   },
 
   /**

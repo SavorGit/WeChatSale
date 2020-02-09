@@ -87,6 +87,7 @@ Page({
                 data: rts,
               })
             }else{
+              
               wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: res.data.result.userinfo,
@@ -94,10 +95,10 @@ Page({
               var user_info = res.data.result.userinfo;
               var hotel_id = user_info.hotel_id;
               //如果已登录 并且用户角色为服务员
-              if(user_info.role_type==3){
+              if (user_info.role_type==3){
                 //跳转到服务员登陆页面
                 wx.reLaunch({
-                  url: '/pages/mine/warter_index',
+                  url: '/pages/waiter/index',
                 })
                 return false;
               }

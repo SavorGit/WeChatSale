@@ -146,9 +146,17 @@ Page({
                   })
                 }else {
                   if (res.data.result.hotel_has_room == 1) {
-                    wx.reLaunch({
-                      url: '/pages/index/index',
-                    })
+                    var role_type = res.data.result.role_type;
+                    if(role_type==3){
+                      wx.reLaunch({
+                        url: '/pages/waiter/index',
+                      })
+                    }else{
+                      wx.reLaunch({
+                        url: '/pages/index/index',
+                      })
+                    }
+                    
                   } else {
                     wx.reLaunch({
                       url: '/pages/tv_sale/system',
@@ -263,9 +271,16 @@ Page({
             showRegister: false
           })
           if(user_info.hotel_has_room==1){
-            wx.reLaunch({
-              url: '/pages/index/index',
-            })
+            if(user_info.role_type==3){
+              wx.reLaunch({
+                url: '/pages/waiter/index',
+              })
+            }else {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
+            
           }else {
             wx.reLaunch({
               url: '/pages/tv_sale/system',

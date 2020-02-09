@@ -1,10 +1,10 @@
 <!--pages/mine/team_member_detail.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
 	<view class="user-info-panel flex_row_center_flexStart theme7">
-		<image class="head" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		<image class="head" src="{{avatarUrl}}"></image>
 		<view class="flex_row_flexStart_spaceBetween">
 			<view class="flex_column_flexStart_center">
-				<view>奔波儿霸</view>
+				<view>{{nickName}}</view>
 				<view class="flex_row_center star-color">
 					<view class="flex_row_center_spaceBetween">
 						<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -28,98 +28,48 @@
 			<view class="theme-font2">2020-01-01~02-01</view>
 		</view>
 		<view class="body">
-			<view class="tip theme-font3">为您找到123条评价，平均服务评分3.7</view>
+			<view class="tip theme-font3">为您找到{{comment_total}}条评价，平均服务评分{{comment_avg_score}}</view>
 			<view class="list">
-				<view class="row flex_row_flexStart bottom-line">
-					<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<block wx:for="{{comment_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="row flex_row_flexStart" wx:if="{{index+1==comment_list.length}}">
+					<image src="{{bean.avatarUrl}}"></image>
 					<view class="flex_column_flexStart">
 						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">张三三</view>
+							<view class="nikename">{{bean.nickName}}</view>
 							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 							</view>
 						</view>
-						<view class="comment two-line-overflow">服务态度很好，很细心~XXXXX XXX XXXX X X X X X X XXXX XX XXXX XX XX~X XXX XXXX XXX XX XXXXX X XXXXXX XX XXXXX ~X XX XXXXX XXX XXXXXX XXXXXXX XXXXX X~XXXXX XXXXXX XXXXXX XXXX XX XX XXX XXXX~ XX XX XX XXX XXXXX XXXX XXXX XXX XXXX XXX</view>
-						<view class="datetime theme-font2">2020-01-01 12:10</view>
-						<view class="address theme-font2">花家怡园（世贸店）- vip1</view>
+						<view class="comment two-line-overflow">{{bean.content}}</view>
+						<view class="datetime theme-font2">{{bean.time}}</view>
+						<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 					</view>
 				</view>
-				<view class="row flex_row_flexStart bottom-line">
-					<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+
+
+        <view class="row flex_row_flexStart bottom-line" wx:else>
+					<image src="{{bean.avatarUrl}}"></image>
 					<view class="flex_column_flexStart">
 						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">张三三</view>
+							<view class="nikename">{{bean.nickName}}</view>
 							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 							</view>
 						</view>
-						<view class="comment two-line-overflow">服务态度很好，很细心~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</view>
-						<view class="datetime theme-font2">2020-01-01 12:10</view>
-						<view class="address theme-font2">花家怡园（世贸店）- vip1</view>
+						<view class="comment two-line-overflow">{{bean.content}}</view>
+						<view class="datetime theme-font2">{{bean.time}}</view>
+						<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 					</view>
 				</view>
-				<view class="row flex_row_flexStart bottom-line">
-					<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="flex_column_flexStart">
-						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">张三三</view>
-							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-							</view>
-						</view>
-						<view class="comment two-line-overflow">服务态度很好，很细心~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</view>
-						<view class="datetime theme-font2">2020-01-01 12:10</view>
-						<view class="address theme-font2">花家怡园（世贸店）- vip1</view>
-					</view>
-				</view>
-				<view class="row flex_row_flexStart bottom-line">
-					<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="flex_column_flexStart">
-						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">张三三</view>
-							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-							</view>
-						</view>
-						<view class="comment two-line-overflow">服务态度很好，很细心~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</view>
-						<view class="datetime theme-font2">2020-01-01 12:10</view>
-						<view class="address theme-font2">花家怡园（世贸店）- vip1</view>
-					</view>
-				</view>
-				<view class="row flex_row_flexStart">
-					<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="flex_column_flexStart">
-						<view class="user-info flex_column_flexStart_flexEnd">
-							<view class="nikename">张三三</view>
-							<view class="flex_row_center_spaceBetween star-color">
-								<view class="fa {{userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								<view class="fa {{userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-							</view>
-						</view>
-						<view class="comment two-line-overflow">服务态度很好，很细心~XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</view>
-						<view class="datetime theme-font2">2020-01-01 12:10</view>
-						<view class="address theme-font2">花家怡园（世贸店）- vip1</view>
-					</view>
-				</view>
+        </block>
 			</view>
 		</view>
 	</view>
