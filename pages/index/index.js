@@ -875,5 +875,12 @@ Page({
     wx.navigateTo({
       url: '/pages/mine/assign_waiter?openid='+openid+'&hotel_id='+hotel_id,
     })
+  },
+  gotoPublic:function(e){
+    var openid = e.currentTarget.dataset.openid;
+    var web_url = app.globalData.api_url +'/h5/subscribe/mp/p/'+openid;
+    wx.navigateTo({
+      url: '/pages/h5/index?web_url='+web_url,
+    })
   }
 })
