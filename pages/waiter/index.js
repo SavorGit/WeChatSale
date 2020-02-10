@@ -26,7 +26,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
-    utils.PostRequest(api_v_url + '/goods/goodslist', {
+    utils.PostRequest(api_v_url + '/staff/detail', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({

@@ -104,6 +104,7 @@
 				<input class="display_hide" name="task_id" value="{{task_id}}"></input>
 				<input class="display_hide" name="level1" value="{{level1}}"></input>
 				<input class="display_hide" name="level2" value="{{level2}}"></input>
+        <input class="display_hide" name="level3" value="{{level3}}"></input>
 				<input class="display_hide" name="hotel_id" value="{{hotel_id}}"></input>
 				<input class="display_hide" name="openid" value="{{openid}}"></input>
         <button form-type="submit" class="btn-save theme-background-9 theme-font4">保存</button>

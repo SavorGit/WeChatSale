@@ -25,30 +25,35 @@ Page({
     hotel_id = options.hotel_id;
     var that = this;
     
-    /*utils.PostRequest(api_v_url + '/staff/stafflist', {
+    utils.PostRequest(api_v_url + '/staff/stafflist', {
       openid: openid,
       hotel_id:hotel_id,
       page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       is_scangoods = data.result.user.is_scangoods
       that.setData({
-        water_list: data.result.datalist,
+        waiter_list: data.result.datalist,
         user_info:data.result.user,
         is_scangoods:is_scangoods
       })
-    })*/
+    })
   },
   /**
    * 移除服务员
    */
   remove_waiter: function (e) {
     var that = this;
-    var user_id = e.currentTarget.dataset.user_id;
+    console.log(e);
+    //var user_id = e.currentTarget.dataset.user_id;
+    var invite_id = e.currentTarget.dataset.invite_id;
     var openid = e.currentTarget.dataset.openid;
-    var index = e.currentTarget.dataset.index;
+    var index = e.currentTarget.dataset.keys;
     var waiter_list = e.currentTarget.dataset.waiter_list;
-    utils.PostRequest(api_v_url + '/aa/bb/cc', {
-      user_id: user_id,
+    
+
+
+    utils.PostRequest(api_v_url + '/user/removeEmployee', {
+      invite_id: invite_id,
       openid: openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       //去掉移除的服务员 生成新的服务员列表

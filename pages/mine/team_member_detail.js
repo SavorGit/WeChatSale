@@ -1,6 +1,7 @@
 // pages/mine/team_member_detail.js
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -26,7 +27,7 @@ Page({
     });
     openid = options.openid;
     
-    utils.PostRequest(api_v_url + '/goods/goodslist', {
+    utils.PostRequest(api_v_url + '/staff/detail', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({

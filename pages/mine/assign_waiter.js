@@ -51,7 +51,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    //获取员工保健列表
+    utils.PostRequest(api_v_url + '/staff/getStaffRoomList', {
+      openid: openid,
+      hotel_id: hotel_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        room_list: data.result
+      })
+    })
   },
 
   /**
