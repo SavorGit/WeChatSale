@@ -17,7 +17,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
   },
 
   /**
@@ -39,7 +38,7 @@ Page({
     })
     utils.PostRequest(api_v_url + '/comment/commentlist', {
       openid: openid,
-      page:1,
+      page: 1,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         comment_list: data.result.datalist,
@@ -50,8 +49,7 @@ Page({
       })
     })
 
-    
-    
+
   },
   /**
    * 更改开始、结束日期
@@ -113,7 +111,7 @@ Page({
   /**
    * 修改头像
    */
-  editAvatar:function(e){
+  editAvatar: function (e) {
     var that = this;
     var staff_id = e.currentTarget.dataset.staff_id;
     wx.chooseImage({
@@ -148,7 +146,7 @@ Page({
           success: function (rest) {
             var policy = rest.data.policy;
             var signature = rest.data.signature;
-            
+
             wx.uploadFile({
               url: oss_upload_url,
               filePath: filename,
@@ -188,14 +186,15 @@ Page({
       }
     })
   },
-  editNickname:function(e){
+  editNickname: function (e) {
     var name = e.detail.value.name;
     utils.PostRequest(api_v_url + '/user/edit', {
       openid: openid,
       name: name,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        nickname: name
+        nickname: name,
+        showChangeNikenameWindow: false
       })
       app.showTost('昵称修改成功')
     })
@@ -248,5 +247,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 打开修改昵称弹窗
+  openChangeNikenameWindow: function (e) {
+    let self = this;
+    self.setData({ showChangeNikenameWindow: true });
+  },
+
+  // 关闭修改昵称弹窗
+  closeChangeNikenameWindow: function (e) {
+    let self = this;
+    self.setData({ showChangeNikenameWindow: false });
   }
 })
