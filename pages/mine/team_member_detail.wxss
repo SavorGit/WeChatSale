@@ -59,7 +59,7 @@
   margin: 0 40rpx;
 }
 
-.evaluate-list-panel>.title>view:first-child {
+.evaluate-list-panel>.title>view {
   width: 120rpx;
   height: 65rpx;
   line-height: 70rpx;
@@ -68,13 +68,13 @@
   border-bottom: 5rpx solid #a18668;
 }
 
-.evaluate-list-panel>.title>view:last-child {
+.evaluate-list-panel>.title .search-wapper {
   width: 430rpx;
   font-size: 28rpx;
   /* color: #A0856A; */
 }
 
-.evaluate-list-panel>.title>view:last-child>view:first-child>picker {
+.evaluate-list-panel>.title .search-wapper>view>picker {
   width: 150rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -82,12 +82,16 @@
   border: 1rpx solid #ededed;
 }
 
-.evaluate-list-panel>.title>view:last-child>view:last-child {
+.evaluate-list-panel>.title .search-wapper>button {
   width: 100rpx;
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
   border-radius: 10rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
 }
 
 .evaluate-list-panel>.body {
