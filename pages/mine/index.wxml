@@ -77,7 +77,7 @@
 		</view>
 	</view>
 	<!-- 我的员工面板 -->
-	<view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2) && staff_manage==true}}">
+	<!-- <view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2) && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
@@ -88,7 +88,14 @@
           <navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}">更多...</navigator>
         </block>
       </label>
-		</view>
+		</view> -->
+  <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
+		<view class='title theme-font2'>
+			<label>我的员工</label>
+			<label wx:if="{{staff_list.length>0}}">
+				<navigator url="/pages/mine/team_members">更多...</navigator>
+			</label>
+		</view>  
 		<view class="list">
 			<view class="cell add" bindtap="addStaff">
 				<label class="fa fa-plus"></label>
