@@ -86,7 +86,7 @@
 
 <!-- 修改昵称弹窗 -->
 <modal show="{{showChangeNikenameWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
-	<form>
+	<form bindsubmit="editNickname">
 		<view class="change-nikename-window flex_column_center theme7">
 			<view class="title-bar flex_row_center_spaceBetween">
 				<view class="fa fa-lg" aria-hidden="true"></view>
@@ -95,9 +95,9 @@
 			</view>
 			<view class="body-panel flex_column_center_spaceAround">
 				<view>
-					<input placeholder="请输入新的昵称"></input>
+					<input placeholder="请输入新的昵称" name="nickname"></input>
 				</view>
-				<view class="btn-submit theme-button-welcome" bindtap="editNickname">保存</view>
+				<button class="btn-submit theme-button-welcome" form-type="submit"    bindtap="editNickname">保存</button>
 			</view>
 		</view>
 	</form>

@@ -174,11 +174,11 @@ Page({
                   that.setData({
                     avatarUrl: oss_url + "/forscreen/resource/" + img_url
                   })
-                  app.showTost('头像修改成功')
+                  app.showToast('头像修改成功')
                 })
               },
               fail: function ({ errMsg }) {
-                app.showTost('头像修改失败')
+                app.showToast('头像修改失败')
               },
             });
           }
@@ -187,16 +187,19 @@ Page({
     })
   },
   editNickname: function (e) {
-    var name = e.detail.value.name;
+    var that = this;
+   
+    var name = e.detail.value.nickname;
+    console.log(name);
     utils.PostRequest(api_v_url + '/user/edit', {
       openid: openid,
       name: name,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        nickname: name,
+        nickName: name,
         showChangeNikenameWindow: false
       })
-      app.showTost('昵称修改成功')
+      app.showToast('昵称修改成功')
     })
   },
 

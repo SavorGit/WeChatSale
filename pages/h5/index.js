@@ -12,8 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var web_url = options.web_url;
-    console.log(options)
+    that.setData({
+      web_url:web_url
+    })
   },
 
   /**
