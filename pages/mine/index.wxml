@@ -46,7 +46,7 @@
 			<view class="order flex_row_center_spaceBetween">
 				<view>
 					<view>15</view>
-					<view>在售菜品</view>
+					<view bindtap="saleDishes">在售菜品</view>
 				</view>
 				<view>
 					<view>30</view>

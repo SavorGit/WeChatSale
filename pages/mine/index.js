@@ -582,5 +582,15 @@ Page({
   closeChangeNikenameWindow: function (e) {
     let self = this;
     self.setData({ showChangeNikenameWindow: false });
+  },
+  saleDishes:function(e){
+    var that = this;
+    var hotel_id = that.data.hotel_id
+    if(typeof(hotel_id)=='undefined' || hotel_id==''){
+      app.showToast('请您选择酒楼')
+    }
+    wx.navigateTo({
+      url: '/pages/hotel/dishes/index?hotel_id=' + hotel_id + '&openid=' + openid,
+    })
   }
 })
