@@ -35,7 +35,11 @@
     "pages/goods/goods_list",
     "pages/goods/goods_detail",
     "pages/waiter/index",
-    "pages/h5/index"
+    "pages/h5/index",
+    "pages/hotel/dishes/index",
+    "pages/hotel/dishes/add_dishes",
+    "pages/hotel/order/index"
+
     
   ],
   "window": {
