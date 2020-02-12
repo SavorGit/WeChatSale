@@ -48,7 +48,7 @@
 		<view class="package flex_column_center theme7">
 			<view class="name theme-font1">{{openTaskInWindow.task_name}}</view>
 			<scroll-view class="detail" scroll-y="true" scroll-with-animation="true">{{openTaskInWindow.desc}}</scroll-view>
-			<view wx:if="{{openTaskInWindow.is_shareprofit==1 && userInfo.role_type==1}}" class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit' data-task_id="{{openTaskInWindow.task_id}}">分润设置</view>
+			<view wx:if="{{openTaskInWindow.is_shareprofit==1 && userInfo.role_type==2}}" class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit' data-task_id="{{openTaskInWindow.task_id}}">分润设置</view>
 			<view wx:else class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
 		</view>
 	</view>
