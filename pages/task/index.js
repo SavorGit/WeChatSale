@@ -158,18 +158,6 @@ Page({
   setShareBenefit: function (e) {
     var that = this;
 
-    /*that.setData({
-      taskDetailWindowShow: false,
-      setTaskBenefitWindowShow: true,
-      level1: 10,
-      level2: 70,
-      level3: 20
-    }, function () {
-      this.selectComponent('#setTaskBenefitSlider').redraw({
-        minValue: this.data.level1,
-        maxValue: this.data.level1 + this.data.level2
-      });
-    });*/
 
     var task_id = e.currentTarget.dataset.task_id;
 
@@ -184,28 +172,22 @@ Page({
     utils.PostRequest(api_v_url + '/task/getShareprofit', {
       openid: openid,
       hotel_id: hotel_id,
-      task_id:task_id 
+      task_id: task_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         //taskInfo:taskInfo,
-        level1:data.result.level1,
-        level2:data.result.level2,
-        level3:data.result.level3,
-        num:data.result.num,
-        task_id:task_id,
-        openid:openid,
-        hotel_id:hotel_id,
-        shareprofit:data.result,
+        level1: data.result.level1,
+        level2: data.result.level2,
+        num: data.result.num,
+        task_id: task_id,
+        openid: openid,
+        hotel_id: hotel_id,
+        shareprofit: data.result,
         taskDetailWindowShow: false,
-        setTaskBenefitWindowShow:true,
-      }, function () {
-        this.selectComponent('#setTaskBenefitSlider').redraw({
-          minValue: this.data.level1,
-          maxValue: this.data.level1 + this.data.level2
-        });
-      });
-      
-     
+        setTaskBenefitWindowShow: true,
+      })
+
+
     });
 
   },
@@ -227,63 +209,16 @@ Page({
       level1: manager_share_benefit
     })
   },
-  lowValueChange:function(e){
-    console.log(e);
-    var that = this;
-    var lowValue = e.detail.lowValue;
-    var level1 = that.data.level1;
-    var level2 = that.data.level2;
-    var level3 = that.data.level3;
-    level1 = lowValue;
-    level2 = 100 - level3 - level1;
-
-    that.setData({
-      level1:level1,
-      level2:level2,
-      level3:level3
-    }, function () {
-      this.selectComponent('#setTaskBenefitSlider').redraw({
-        minValue: this.data.level1,
-        maxValue: this.data.level1 + this.data.level2
-      });
-    });
-
-  },
-  heighValueChange:function(e){
-    var that = this;
-    var heighValue = e.detail.heighValue;
-    var level1 = that.data.level1;
-    var level2 = that.data.level2;
-    var level3 = that.data.level3;
-
-    level3 = 100 - heighValue;
-    level2 = 100 - level1 - level3;
-
-    that.setData({
-      level1: level1,
-      level2: level2,
-      level3: level3
-    }, function () {
-      this.selectComponent('#setTaskBenefitSlider').redraw({
-        minValue: this.data.level1,
-        maxValue: this.data.level1 + this.data.level2
-      });
-    });
-
-  },
   /**
    * 管理员修改任务分润比例
    */
   editTaskShareBenefit: function (e) {
-    
+    //console.log(e)
+
     var that = this;
     var task_id = e.detail.value.task_id;
     var level1 = e.detail.value.level1;
     var level2 = e.detail.value.level2;
-    var level3 = e.detail.value.level3;
-    var total = level1+ level2 + level3;
-    
-
     var openid = e.detail.value.openid;
     var hotel_id = e.detail.value.hotel_id;
 
@@ -291,7 +226,6 @@ Page({
       task_id: task_id,
       level1: level1,
       level2: level2,
-      level3:level3,
       openid: openid,
       hotel_id: hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
