@@ -36,6 +36,30 @@
 		<view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
 	</view>
 
+	<!-- 销售面板 -->
+	<view class="sale-panel">
+		<view class="wapper flex_row_center_spaceAround broadcast-panel">
+			<view class="shop">
+				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
+				<view>我的店铺</view>
+			</view>
+			<view class="order flex_row_center_spaceBetween">
+				<view>
+					<view>15</view>
+					<view>在售菜品</view>
+				</view>
+				<view>
+					<view>30</view>
+					<view>待处理订单</view>
+				</view>
+				<view>
+					<view>300</view>
+					<view>全部订单</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
 	<!-- 收益概况面板 -->
 	<view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
 		<view class='top theme-font2'>
@@ -59,6 +83,14 @@
 			</view>
 		</view>
 		<view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换</view>
+	</view>
+
+	<!-- 订单列表面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween">
+			<view>订单列表</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
 	</view>
 
 	<!-- 任务列表 套用【活动商品管理面板】样式-->
@@ -89,13 +121,13 @@
         </block>
       </label>
 		</view> -->
-  <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
+	<view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
 				<navigator url="/pages/mine/team_members">更多...</navigator>
 			</label>
-		</view>  
+		</view>
 		<view class="list">
 			<view class="cell add" bindtap="addStaff">
 				<label class="fa fa-plus"></label>

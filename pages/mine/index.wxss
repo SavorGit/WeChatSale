@@ -59,7 +59,8 @@
 }
 */
 .user-info-panel {
-  height: 250rpx;
+  height: 200rpx;
+  padding-bottom: 50rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,6 +88,45 @@
   border-radius: 30rpx;
   border: 1rpx solid #ededed;
   text-align: center;
+}
+
+/* ================================ 销售面板 ================================ */
+.sale-panel {
+  width: 100%;
+  height: 100rpx;
+  margin-top: -50rpx;
+}
+
+.sale-panel>.wapper {
+  width: calc(100% - 100rpx);
+  height: 100%;
+  margin: 0 50rpx;
+  border-radius: 10rpx;
+}
+
+.sale-panel>.wapper>.shop {
+  width: 160rpx;
+  text-align: center;
+}
+
+.sale-panel>.wapper>.shop>.fa {
+  font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale-panel>.wapper>.order {
+  width: calc(100% - 165rpx);
+  border-left: 5rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.sale-panel>.wapper>.order>view {
+  width: 160rpx;
+  text-align: center;
+}
+
+.sale-panel>.wapper>.order>view>view:first-child {
+  font-size: 34rpx;
 }
 
 /* ================================ 收益概况面板 ================================ */
