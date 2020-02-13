@@ -85,11 +85,15 @@
 }
 
 .share-window>.title-bar {
-  width: 100%;
+  width: calc(100% - 80rpx);
   height: 120rpx;
   padding: 0 40rpx;
   font-size: 32rpx;
   font-weight: bold;
+}
+
+.share-window>.title-bar>.fa-close {
+  font-size: 50rpx;
 }
 
 .share-window>.body {

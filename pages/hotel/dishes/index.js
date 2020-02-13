@@ -272,6 +272,12 @@ Page({
     });
   },
 
+  // 关闭分享菜品窗口
+  closeShareGoodsWindow: function (e) {
+    let self = this;
+    self.setData({ showGoodsPopWindow: false });
+  },
+
   // 保存菜品图片到相册
   saveShareGoodsPic: function (e) {
     let self = this;
@@ -314,7 +320,7 @@ Page({
     self.drawSharePicture({
       canvasId: 'shopCanvas',// 画布标识
       object: {
-        picture: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg', // 展示的图片
+        picture: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg', // 展示的图片
         activePicture: 'https://oss.littlehotspot.com/WeChat/resource/vip-icons/huangguan.png', // 活动的图片
         name: '不出门抗击疫情，线上享超值菜品', // 名称
         hotel: {
@@ -334,6 +340,12 @@ Page({
         });
       }
     });
+  },
+
+  // 关闭分享店铺窗口
+  closeShareShopWindow: function (e) {
+    let self = this;
+    self.setData({ showShopPopWindow: false });
   },
 
   // 保存店铺图片到相册
