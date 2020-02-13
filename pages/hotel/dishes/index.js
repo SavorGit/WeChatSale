@@ -5,7 +5,7 @@ const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
-var hotel_id ;
+var merchant_id ;
 var openid ;
 var page = 1;
 Page({
@@ -23,12 +23,12 @@ Page({
   onLoad: function (options) {
     var that = this;
     openid = options.openid;
-    hotel_id = options.hotel_id;
+    merchant_id = options.merchant_id;
 
     //获取酒楼菜品列表
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page:1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
@@ -43,9 +43,9 @@ Page({
   loadMore:function(e){
     var that = this;
     page +=1;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page: page
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({

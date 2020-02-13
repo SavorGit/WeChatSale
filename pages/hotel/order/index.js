@@ -5,7 +5,7 @@ const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
-var hotel_id;
+var merchant_id;
 var openid;
 var page = 1;
 var page_all = 1;
@@ -26,12 +26,17 @@ Page({
   onLoad: function (options) {
     var that = this;
     openid = options.openid
-    hotel_id = options.hotel_id;
+    merchant_id = options.merchant_id;
+    var order_status = options.order_status
+    that.setData({
+      order_status:order_status
+    })
+
 
     //全部订单
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page :1,
       order_status:0
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -40,9 +45,9 @@ Page({
       })
     })
     //处理中的订单
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page: 1,
       order_status: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -51,9 +56,9 @@ Page({
       })
     })
     //已完成的订单
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page: 1,
       order_status: 2
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -85,9 +90,9 @@ Page({
       page = page_complete;
     }
     //已完成的订单
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
       openid: openid,
-      hotel_id: hotel_id,
+      merchant_id: merchant_id,
       page: page,
       order_status: order_status
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -105,6 +110,22 @@ Page({
         })
       }
       
+    })
+  },
+  /**
+   * 处理订单
+   */
+  deal_order:function(e){
+    var order_id = e.currentTarget.dataset.order_id;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      order_id:order_id,
+      merchant_id: merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      //处理订单的状态改变
+      /**
+       *   逻辑需要写
+       */
+      app.showToast('处理成功');
     })
   },
   /**

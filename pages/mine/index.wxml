@@ -44,16 +44,16 @@
 				<view>我的店铺</view>
 			</view>
 			<view class="order flex_row_center_spaceBetween">
-				<view>
-					<view>15</view>
-					<view bindtap="saleDishes">在售菜品</view>
+				<view bindtap="saleDishes" >
+					<view>{{dish_num}}</view>
+					<view >在售菜品</view>
 				</view>
-				<view>
-					<view>30</view>
-					<view>待处理订单</view>
+				<view bindtap="gotoOrder" data-order_status="1" >
+					<view>{{dishorder_process_num}}</view>
+					<view >待处理订单</view>
 				</view>
-				<view>
-					<view>300</view>
+				<view bindtap="gotoOrder" data-order_status="0" >
+					<view>{{dishorder_all_num}}</view>
 					<view>全部订单</view>
 				</view>
 			</view>
@@ -86,7 +86,7 @@
 	</view>
 
 	<!-- 订单列表面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoOrder" data-order_status="0">
 		<view class="full_width full_height flex_row_center_spaceBetween">
 			<view>订单列表</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

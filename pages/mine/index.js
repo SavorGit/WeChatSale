@@ -74,6 +74,10 @@ Page({
             is_open_integral: res.data.result.is_open_integral,
             month_integral: res.data.result.month_integral,
             next_month_integral: res.data.result.next_month_integral,
+            dish_num: res.data.result.dish_num,
+            dishorder_all_num: res.data.result.dishorder_all_num,
+            dishorder_process_num: res.data.result.dishorder_process_num,
+            merchant_id: res.data.result.merchant_id
           })
         }
       }
@@ -585,12 +589,17 @@ Page({
   },
   saleDishes:function(e){
     var that = this;
-    var hotel_id = that.data.hotel_id
-    if(typeof(hotel_id)=='undefined' || hotel_id==''){
-      app.showToast('请您选择酒楼')
-    }
+    var merchant_id = that.data.merchant_id;
     wx.navigateTo({
-      url: '/pages/hotel/dishes/index?hotel_id=' + hotel_id + '&openid=' + openid,
+      url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid,
+    })
+  },
+  gotoOrder:function(e){
+    var that = this;
+    var merchant_id = that.data.merchant_id;
+    var order_status = e.currentTarget.dataset.order_status
+    wx.navigateTo({
+      url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid+'&order_status='+order_status,
     })
   }
 })
