@@ -1,3 +1,233 @@
 <!--pages/hotel/dishes/index.wxml-->
-<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-</scroll-view>
+<view class='container theme-container'>
+	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_center">
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn off-line">已下架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn off-line">已下架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_center_spaceBetween theme7">
+				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="info flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
+					<view class="price theme-font5">￥168</view>
+					<view class="btn-group flex_row_center_spaceBetween">
+						<view class="btn on-line">已上架</view>
+						<view class="btn theme-button-welcome">置顶</view>
+						<view class="btn share-goods theme-button-welcome-dark">分享</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+	<view class="page-bottom flex_row_center_spaceBetween">
+		<view class="btn add-goods theme-button-welcome">新增菜品</view>
+		<view class="btn share-shop theme-button-welcome-dark" bindtap="openShareShopWindow">分享店铺</view>
+	</view>
+</view>
+
+<!-- 分享菜品 -->
+<bottomModal show="{{showGoodsPopWindow}}" width="100%" height='1040rpx' padding-bottom='0' background-color='#ededed' border-radius="0" title-text='' confirm-text='' cancel-text=''>
+	<view class="share-window goods">
+		<view class="title-bar flex_row_center">
+			<view class="theme-font1">菜品二维码</view>
+		</view>
+		<view class="body flex_column_center">
+			<canvas canvas-id="goodsCanvas" class="share-canvas goods"></canvas>
+		</view>
+		<view class="foot">
+			<view class="btn save theme-button-welcome" bindtap="saveShareGoodsPic">保存</view>
+		</view>
+	</view>
+</bottomModal>
+
+<!-- 分享店铺 -->
+<bottomModal show="{{showShopPopWindow}}" width="100%" height='1040rpx' padding-bottom='0' background-color='#ededed' border-radius="0" title-text='' confirm-text='' cancel-text=''>
+	<view class="share-window shop">
+		<view class="title-bar flex_row_center">
+			<view class="theme-font1">店铺二维码</view>
+		</view>
+		<view class="body flex_column_center">
+			<canvas canvas-id="shopCanvas" class="share-canvas shop"></canvas>
+		</view>
+		<view class="foot">
+			<view class="btn save theme-button-welcome" bindtap="saveShareShopPic">保存</view>
+		</view>
+	</view>
+</bottomModal>
