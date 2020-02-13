@@ -1,1 +1,104 @@
 /* pages/hotel/dishes/add_dishes.wxss */
+.goods-info {
+  width: 100vw;
+  height: calc(100% - 80rpx);
+}
+
+.goods-info>.row {
+  width: calc(100% - 120rpx);
+  height: 100rpx;
+}
+
+.goods-info>.row>.lable {
+  width: 120rpx;
+  font-size: 32rpx;
+}
+
+.goods-info>.row>.input,
+.goods-info>.row>.wapper {
+  width: calc(100% - 170rpx);
+  font-size: 24rpx;
+}
+
+.goods-info>.row:first-child {
+  margin-top: 80rpx;
+}
+
+.goods-info>.row:first-child>.input {
+  width: calc(100% - 180rpx - 2px);
+  height: calc(90rpx - 2px);
+  padding: 5rpx;
+  border: 1rpx solid #ededed;
+}
+
+.goods-info>.row:nth-child(2) {
+  height: 40rpx;
+  margin-top: 30rpx;
+}
+
+.goods-info>.row:nth-child(2)>.input {
+  width: calc(100% - 180rpx - 2px);
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 5rpx;
+  border: 1rpx solid #ededed;
+}
+
+.goods-info>.row:nth-child(3) {
+  height: 310rpx;
+  margin-top: 60rpx;
+}
+
+.goods-info>.row:nth-child(3)>.wapper {
+  height: 100%;
+}
+
+.goods-info>.row:nth-child(3)>.wapper>.row {
+  width: 100%;
+  height: 140rpx;
+}
+
+.goods-info>.row:nth-child(3)>.wapper>.row>.cell {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #ededed;
+  font-size: 37rpx;
+}
+
+.goods-info>.row:nth-child(4) {
+  height: 300rpx;
+  margin-top: 60rpx;
+}
+
+.goods-info>.row:nth-child(4)>.lable {
+  width: 160rpx;
+}
+
+.goods-info>.row:nth-child(4)>.wapper {
+  height: 100%;
+  border: 1rpx solid #ededed;
+}
+
+.goods-info>.row:nth-child(4)>.wapper>.input {
+  width: calc(100% - 10rpx);
+  height: 230rpx;
+  padding: 5rpx;
+}
+
+.goods-info>.row:nth-child(4)>.wapper>view {
+  width: calc(100% - 30rpx);
+  height: 60rpx;
+  padding: 0 15rpx;
+  line-height: 60rpx;
+  text-align: end;
+  font-size: 43rpx;
+  background-color: rgba(161, 134, 104, 0.2);
+}
+
+.btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
