@@ -1,7 +1,7 @@
 <!--pages/tv_sale/mine.wxml-->
 
 <import src="/pages/template/commons" />
-<view class="container theme-main">
+<view class="container theme-container">
 
   <!-- 正在播放的活动面板 -->
   <view class='playing-sale-panel full_width'>

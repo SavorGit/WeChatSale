@@ -1,6 +1,6 @@
 <!--pages/launch/video/index.wxml-->
 
-<view class="container theme-main">
+<view class="container theme-container">
 
 
   <!-- ================================== 上传视频前 ================================== -->

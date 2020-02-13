@@ -1,7 +1,7 @@
 <!--pages/download/index.wxml-->
 <import src="/pages/template/commons" />
 
-<view class="container theme-main">
+<view class="container theme-container">
   <view class='full_width page-top'>
   </view>
   <scroll-view class='full_width page-main' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">

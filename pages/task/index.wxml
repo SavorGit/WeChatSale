@@ -3,13 +3,13 @@
 <import src="/pages/template/commons" />
 <wxs src="../../app.wxs" module="app" />
 
-<view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-main">
+<view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-container">
   <view class="flex_column_center_center">
     <image mode="widthFix" style="width:400rpx;margin-bottom:50rpx;" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/tasks_default.png"></image>
     <view>{{taskListShowStatus == 0 ? '加载中...' : '暂无任务，敬请期待'}}</view>
   </view>
 </view>
-<scroll-view wx:else class="container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadingNextPageData">
+<scroll-view wx:else class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadingNextPageData">
   <view wx:for='{{taskList}}' wx:for-item="bean" wx:key="key" wx:for-index="index" class="row flex_column_center {{index + 1 >= taskList.length ? 'last-padding-bottom' : ''}}">
     <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
       <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>

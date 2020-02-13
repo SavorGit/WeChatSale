@@ -2,7 +2,7 @@
 <import src="/pages/template/commons" />
 
 <!-- 有机顶盒 -->
-<view wx:if="{{hotel_has_room}}" class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
+<view wx:if="{{hotel_has_room}}" class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 
 	<!-- 酒楼、机顶盒、连接情况面板 -->
 	<view class="link-type-panel">
@@ -221,7 +221,7 @@
 
 </view>
 <!-- 无机顶盒 -->
-<view wx:else class="container theme-main" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
+<view wx:else class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);">
 
 	<!-- 酒楼 
   <view class="hotel-choose-panel theme7" wx:if="{{user_info.hotel_id==-1}}">

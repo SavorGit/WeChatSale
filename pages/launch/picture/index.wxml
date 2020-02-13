@@ -1,6 +1,6 @@
 <!--pages/launch/picture/index.wxml-->
 
-<view class="container theme-main">
+<view class="container theme-container">
 
 
   <!-- ================================== 上传图片前 ================================== -->

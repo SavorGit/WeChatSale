@@ -1,7 +1,7 @@
 <!--pages/user/login.wxml-->
 <import src="/pages/template/commons" />
 
-<view class="container theme-main">
+<view class="container theme-container">
   <view class='full_width page_top'></view>
   <view class='full_width page_main'>
     <view class='brand'>

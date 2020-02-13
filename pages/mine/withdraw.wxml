@@ -1,7 +1,7 @@
 <!--pages/mine/withdraw.wxml-->
 <!-- 积分提现 -->
 <import src="/pages/template/commons" />
-<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
   <view class="integral-panel flex_column_center_center theme7">
     <view class="title theme-font1">可使用积分</view>
     <view class="integral theme-font6">{{userIntegral}}</view>

@@ -1,5 +1,5 @@
 <!--pages/mine/pop_detail.wxml-->
-<view class="container theme-main">
+<view class="container theme-container">
   <view class="video-wapper full_width">
     <video wx:if="{{goods_info.media_type==1}}" class="full_width full_height" src="{{goods_info.video_url}}"></video>
     <image wx:else class="full_width full_height" src="{{goods_info.img_url}}"></image>

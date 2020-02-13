@@ -1,6 +1,6 @@
 <!--pages/mine/integral_list.wxml-->
 <wxs src="../../app.wxs" module="app"></wxs>
-<view class="container theme-main">
+<view class="container theme-container">
   <view class="top-bar theme-font1 theme7">
     <picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
       <label>{{integralTypeNameArr[integralTypeIndex]}}</label>
@@ -31,6 +31,6 @@
     </block>
   </scroll-view>
 </view>
-<view wx:if="{{integral_list.length == 0}}" class="container theme-main" style="justify-content:center;">
+<view wx:if="{{integral_list.length == 0}}" class="container theme-container" style="justify-content:center;">
   <view class="theme-font3">暂无积分收益</view>
 </view>

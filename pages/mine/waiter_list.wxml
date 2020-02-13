@@ -1,5 +1,5 @@
 <!--pages/mine/waiter_list.wxml-->
-<scroll-view class='container theme-main' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<!-- 用户信息面板 -->
 	<view class='user-info-panel full_width flex_row_center_flexStart theme-panel-welcome-dark'>
 		<image class='head-img' src='{{user_info.avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>

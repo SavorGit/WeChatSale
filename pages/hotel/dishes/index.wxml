@@ -1,2 +1,3 @@
 <!--pages/hotel/dishes/index.wxml-->
-<text>pages/hotel/dishes/index.wxml</text>
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+</scroll-view>
