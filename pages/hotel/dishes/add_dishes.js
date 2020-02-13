@@ -22,6 +22,11 @@ Page({
     dish_img_4: '',
     dish_img_5: '',
     intro_type:1,  //介绍类型  1：文本 2： 图片
+    intro_img_0:'',
+    intro_img_1: '',
+    intro_img_2: '',
+    intro_img_3: '',
+    intro_img_4: '',
   },
 
   /**
@@ -172,11 +177,46 @@ Page({
     var intro_type = that.data.intro_type;
     if(intro_type==1){//文本介绍
       var intro = e.detail.value.intro
+      if(intro==''){
+        app.showToast('请填写菜品介绍')
+        return false;
+      }
     }else if(intro_type==2){//图片介绍
+      var intro_img0 = e.detail.value.intro_img0;
+      var intro_img1 = e.detail.value.intro_img1;
+      var intro_img2 = e.detail.value.intro_img2;
+      var intro_img3 = e.detail.value.intro_img3;
+      var intro_img4 = e.detail.value.intro_img4;
 
+      var intro_imgs = '';
+      if (intro_img0 != '') {
+        intro_imgs += intro_img0 + ',';
+      }
+      if (intro_img1 != '') {
+        intro_imgs += intro_img1 + ',';
+      }
+      if (intro_img2 != '') {
+        intro_imgs += intro_img2 + ',';
+      }
+      if (intro_img3 != '') {
+        intro_imgs += intro_img3 + ',';
+      }
+      if (intro_img4 != '') {
+        intro_imgs += intro_img4 + ',';
+      }
+
+      if (intro_imgs.length == 0) {
+        app.showToast('请上传菜品介绍图')
+        return false;
+      } else {
+        intro_imgs = intro_imgs.substring(0, intro_imgs.length - 1);
+        if (intro_imgs.length == 0) {
+          app.showToast('请上传菜品介绍图')
+          return false;
+        }
+      }
+      var intro = intro_imgs;
     }
-    
-
     utils.PostRequest(api_v_url + '/dish/addDish', {
       imgs: imgs,
       intro: intro,
@@ -190,7 +230,6 @@ Page({
         delta: 1
       })
     })
-
   },
   /**
    * 切换菜品介绍类型  1 文本 2 图片
@@ -208,7 +247,92 @@ Page({
     })
   },
   uploadIntroPic:function(e){
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var filename_arr = res.tempFilePaths;
 
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          success:function(rt){
+            var policy = rt.data.policy;
+            var signature = rt.data.signature;   
+            for(var i=0;i<filename_arr.length;i++){
+              var filename = filename_arr[i];
+
+              var index1 = filename.lastIndexOf(".");
+              var index2 = filename.length;
+              var timestamp = (new Date()).valueOf();
+
+              var postf = filename.substring(index1, index2);//后缀名\
+              var postf_t = filename.substring(index1, index2);//后缀名
+              var postf_w = filename.substring(index1 + 1, index2);//后缀名
+
+              var img_url = timestamp + postf;
+              wx.uploadFile({
+                url: oss_upload_url,
+                filePath: filename,
+                name: 'file',
+                header: {
+                  'Content-Type': 'image/' + postf_w
+                },
+                formData: {
+                  Bucket: "redian-produce",
+                  name: img_url,
+                  key: "forscreen/resource/" + img_url,
+                  policy: policy,
+                  OSSAccessKeyId: app.globalData.oss_access_key_id,
+                  sucess_action_status: "200",
+                  signature: signature
+
+                },
+
+                success: function (res) {
+                  var intro_img_url = "forscreen/resource/" + img_url
+                  if(i=0){
+                    that.setData({
+                      intro_img0: dish_img_url,
+                    })
+                  }
+                  if (i = 1) {
+                    that.setData({
+                      intro_img1: dish_img_url,
+                    })
+                  }
+                  if (i = 2) {
+                    that.setData({
+                      intro_img2: dish_img_url,
+                    })
+                  }
+                  if (i = 3) {
+                    that.setData({
+                      intro_img3: dish_img_url,
+                    })
+                  }
+                  if (i = 4) {
+                    that.setData({
+                      intro_img4: dish_img_url,
+                    })
+                  }
+                },
+                fail: function ({ errMsg }) {
+
+                },
+              });
+            } 
+          }
+        })
+        
+
+        
+      }
+    })
   },
 
   /**
