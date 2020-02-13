@@ -15,7 +15,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    dish_img_0:'',
+    dish_img_1: '',
+    dish_img_2: '',
+    dish_img_3: '',
+    dish_img_4: '',
+    dish_img_5: '',
+    intro_type:1,  //介绍类型  1：文本 2： 图片
   },
 
   /**
@@ -31,6 +37,7 @@ Page({
    */
   uploadDishesPic:function(e){
     var keys = e.currentTarget.dataset.keys;
+    var is_desc_img = e.currentTarget.dataset.is_desc_img;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -76,8 +83,32 @@ Page({
               },
 
               success: function (res) {
-
-                
+                var dish_img_url = "forscreen/resource/" + img_url
+                if(keys=0){
+                  that.setData({
+                    dish_img_0: dish_img_url,
+                  })
+                }else if(keys ==1){
+                  that.setData({
+                    dish_img_1: dish_img_url,
+                  })
+                }else if(keys=2){
+                  that.setData({
+                    dish_img_2: dish_img_url,
+                  })
+                }else if(keys ==3){
+                  that.setData({
+                    dish_img_3: dish_img_url,
+                  })
+                }else if(keys ==4){
+                  that.setData({
+                    dish_img_4: dish_img_url,
+                  })
+                }else if(keys ==5){
+                  that.setData({
+                    dish_img_5: dish_img_url,
+                  })
+                }
               },
               fail: function ({ errMsg }) {
                 
@@ -89,24 +120,97 @@ Page({
     })
   },
   addDishes:function(e){
-    var name = e.detail.value.name;
-    var price = e.detail.value.price;
-    var desc = e.detail.value.desc;
-    var dishes_pic = e.detail.dishes_pic;
-    var desc_img = e.detail.value.desc_img;
+    var that = this;
 
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid: openid,
-      hotel_id:hotel_id,
+    var name = e.detail.value.name;
+    if(name==''){
+      app.showToast('请填写菜品名称');
+      return false;
+    }
+    var price = e.detail.value.price;
+    if (price == '') {
+      app.showToast('请填写价格');
+      return false;
+    }
+
+    var dish_img0 = e.detail.value.dish_img0;
+    var dish_img1 = e.detail.value.dish_img1;
+    var dish_img2 = e.detail.value.dish_img2;
+    var dish_img3 = e.detail.value.dish_img3;
+    var dish_img4 = e.detail.value.dish_img4;
+    var dish_img5 = e.detail.value.dish_img5;
+    var imgs = '';
+    if (dish_img0 !=''){
+      imgs += dish_img0+',';
+    }
+    if(dish_img1 !=''){
+      imgs += dish_img1 +',';
+    }
+    if(dish_img2 !=''){
+      imgs += dish_img2 + ',';
+    }
+    if (dish_img3 != '') {
+      imgs += dish_img3 + ',';
+    }
+    if (dish_img4 != '') {
+      imgs += dish_img4 + ',';
+    }
+    if (dish_img5 != '') {
+      imgs += dish_img5 + ',';
+    }
+    if(imgs.length==0){
+      app.showToast('请上传菜品图')
+      return false;
+    }else {
+      imgs = imgs.substring(0,imgs.length-1);
+      if(imgs.length==0){
+        app.showToast('请上传菜品图')
+        return false;
+      }
+    }
+
+    var intro_type = that.data.intro_type;
+    if(intro_type==1){//文本介绍
+      var intro = e.detail.value.intro
+    }else if(intro_type==2){//图片介绍
+
+    }
+    
+
+    utils.PostRequest(api_v_url + '/dish/addDish', {
+      imgs: imgs,
+      intro: intro,
+      intro_type: intro_type,
       name:name,
+      openid: openid,
       price:price,
-      desc:desc,
-      desc_img:desc_img
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
+      wx.navigateBack({
+        delta: 1
+      })
     })
 
   },
+  /**
+   * 切换菜品介绍类型  1 文本 2 图片
+   */
+  switchIntroType:function(e){
+    var that = this ;
+    var intro_type = that.data.intro_type
+    if(intro_type==1){
+      intro_type ==2
+    }else if(intro_type==2){
+      intro_type==1
+    }
+    that.setData({
+      intro_type:intro_type
+    })
+  },
+  uploadIntroPic:function(e){
+
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
