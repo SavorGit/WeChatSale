@@ -74,7 +74,8 @@ Page({
     var top_item = dishes_list[index];
 
     utils.PostRequest(api_v_url + '/dish/top', {
-      goods_id: goods_id
+      goods_id: goods_id,
+      openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       dishes_list[0].is_top = 0;
       top_item.is_top = 1;
