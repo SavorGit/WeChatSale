@@ -9,103 +9,103 @@
 	<!-- 全部订单 -->
 	<scroll-view wx:if="{{order_status == '0'}}" class="scroll-view" scroll-y="true" scroll-with-animation="true">
 		<view class="list all">
-    <block wx:for="{{all_order_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
-			<view class="row flex_column_center_spaceBetween theme7 bottom-space">
-				<view class="head flex_row_center_spaceBetween theme-font8">
-					<view>{{bean.add_time}}</view>
-					<view wx:if="{{bean.status==2}}">已完成</view>
-          <view wx:if="{{bean.status==1}}">待处理</view>
-				</view>
-				<view class="body flex_row_center_spaceBetween">
-					<view class="left flex_column_center">
-						<image class="pic" src="{{bean.goods_img}}"></image>
-						<view class="price theme-button-add">￥{{bean.price}}</view>
+			<block wx:for="{{all_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
+					<view class="head flex_row_center_spaceBetween theme-font8">
+						<view>{{bean.add_time}}</view>
+						<view wx:if="{{bean.status==2}}">已完成</view>
+						<view wx:if="{{bean.status==1}}">待处理</view>
 					</view>
-					<view class="right flex_column_flexStart_spaceBetween">
-						<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
-						<view class="flex_row_center theme-font7">
-							<view>{{bean.contact}}</view>
-							<view>{{bean.phone}}</view>
+					<view class="body flex_row_center_spaceBetween">
+						<view class="left flex_column_center">
+							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<view class="price theme-button-add">￥{{bean.price}}</view>
 						</view>
-						<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-						<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						<view class="right flex_column_flexStart_spaceBetween">
+							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
+							<view class="flex_row_center theme-font7">
+								<view>{{bean.contact}}</view>
+								<view>{{bean.phone}}</view>
+							</view>
+							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
+							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						</view>
+					</view>
+					<view class="foot flex_row_center_spaceBetween">
+						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
+						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 					</view>
 				</view>
-				<view class="foot flex_row_center_spaceBetween">
-					<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-          <view bindtap="deal_order"  data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
-				</view>
-			</view>
-    </block>
-			
+			</block>
+
 		</view>
 	</scroll-view>
 
 	<!-- 待处理订单 -->
 	<scroll-view wx:if="{{order_status == '1'}}" class="scroll-view" scroll-y="true" scroll-with-animation="true">
 		<view class="list all">
-      <block wx:for="{{deal_order_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
-			<view class="row flex_column_center_spaceBetween theme7 bottom-space">
-				<view class="head flex_row_center_spaceBetween theme-font8">
-					<view>{{bean.add_time}}</view>
-					<view>待处理</view>
-				</view>
-				<view class="body flex_row_center_spaceBetween">
-					<view class="left flex_column_center">
-						<image class="pic" src="{{bean.goods_img}}"></image>
-						<view class="price theme-button-add">￥{{bean.price}}</view>
+			<block wx:for="{{deal_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
+					<view class="head flex_row_center_spaceBetween theme-font8">
+						<view>{{bean.add_time}}</view>
+						<view>待处理</view>
 					</view>
-					<view class="right flex_column_flexStart_spaceBetween">
-						<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
-						<view class="flex_row_center theme-font7">
-							<view>{{bean.contact}}</view>
-							<view>{{bean.phone}}</view>
+					<view class="body flex_row_center_spaceBetween">
+						<view class="left flex_column_center">
+							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<view class="price theme-button-add">￥{{bean.price}}</view>
 						</view>
-						<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-						<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						<view class="right flex_column_flexStart_spaceBetween">
+							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
+							<view class="flex_row_center theme-font7">
+								<view>{{bean.contact}}</view>
+								<view>{{bean.phone}}</view>
+							</view>
+							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
+							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						</view>
+					</view>
+					<view class="foot flex_row_center_spaceBetween">
+						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
+						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 					</view>
 				</view>
-				<view class="foot flex_row_center_spaceBetween">
-					<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-          <view bindtap="deal_order"  data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
-				</view>
-			</view>
-      </block>
-			
-			
+			</block>
+
+
 		</view>
 	</scroll-view>
 
 	<!-- 已完成订单 -->
 	<scroll-view wx:if="{{order_status == '2'}}" class="scroll-view" scroll-y="true" scroll-with-animation="true">
 		<view class="list all">
-			<block wx:for="{{complete_order_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
-			<view class="row flex_column_center_spaceBetween theme7 bottom-space">
-				<view class="head flex_row_center_spaceBetween theme-font8">
-					<view>{{bean.add_time}}</view>
-					<view>已完成</view>
-				</view>
-				<view class="body flex_row_center_spaceBetween">
-					<view class="left flex_column_center">
-						<image class="pic" src="{{bean.goods_img}}"></image>
-						<view class="price theme-button-add">￥{{bean.price}}</view>
+			<block wx:for="{{complete_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
+					<view class="head flex_row_center_spaceBetween theme-font8">
+						<view>{{bean.add_time}}</view>
+						<view>已完成</view>
 					</view>
-					<view class="right flex_column_flexStart_spaceBetween">
-						<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
-						<view class="flex_row_center theme-font7">
-							<view>{{bean.contact}}</view>
-							<view>{{bean.phone}}</view>
+					<view class="body flex_row_center_spaceBetween">
+						<view class="left flex_column_center">
+							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<view class="price theme-button-add">￥{{bean.price}}</view>
 						</view>
-						<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-						<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						<view class="right flex_column_flexStart_spaceBetween">
+							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
+							<view class="flex_row_center theme-font7">
+								<view>{{bean.contact}}</view>
+								<view>{{bean.phone}}</view>
+							</view>
+							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
+							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+						</view>
+					</view>
+					<view class="foot flex_row_center_spaceBetween">
+						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
+						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 					</view>
 				</view>
-				<view class="foot flex_row_center_spaceBetween">
-					<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-          <view bindtap="deal_order"  data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
-				</view>
-			</view>
-      </block>
+			</block>
 		</view>
 	</scroll-view>
 </view>

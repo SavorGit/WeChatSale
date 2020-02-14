@@ -32,7 +32,7 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      hotel_id:hotel_id
+      hotel_id: hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
@@ -47,7 +47,7 @@ Page({
         merchant_info: data.result
       })
     })
-    
+
 
   },
   /**
@@ -100,22 +100,22 @@ Page({
         }
       }
     })
-    
 
-    
+
+
   },
   /**
    * 上架下架商品
    */
-  putawayDish:function(e){
+  putawayDish: function (e) {
     var that = this;
     var status = e.currentTarget.dataset.status;
     var goods_id = e.currentTarget.dataset.goods_id;
     var keys = e.currentTarget.dataset.keys;
-    if(status==1){
+    if (status == 1) {
       var msg = '确认上架该商品?';
       var toast = '上架成功';
-    }else {
+    } else {
       var msg = '确认下架该商品?';
       var toast = '下架成功';
     }
@@ -127,7 +127,7 @@ Page({
           utils.PostRequest(api_v_url + '/dish/putaway', {
             openid: openid,
             goods_id: goods_id,
-            status:status
+            status: status
           }, (data, headers, cookies, errMsg, statusCode) => {
             /*var dishes_list = that.data.dishes_list;
             dishes_list[keys].status = status;
@@ -150,14 +150,14 @@ Page({
         }
       }
     })
-    
+
   },
   /**
    * 新增菜品
    */
-  addDishes:function(e){
+  addDishes: function (e) {
     wx.navigateTo({
-      url: '/pages/hotel/dishes/add_dishes?merchant_id='+merchant_id+"&openid="+openid,
+      url: '/pages/hotel/dishes/add_dishes?merchant_id=' + merchant_id + "&openid=" + openid,
     })
   },
   /**
@@ -285,6 +285,7 @@ Page({
                 wx.hideLoading();
                 let pixelRatio = 2;
                 let x = 0, y = 0, fontSize = 12;
+                let __x = 0, __y = 0, __pictureWidth = 0, __pictureHeight = 0, __pictureWidthRatio = 1, __pictureHeightRatio = 1;
                 const canvasContext = wx.createCanvasContext(data.canvasId);
                 canvasContext.setFillStyle('#FFFFFF');
 
@@ -293,11 +294,33 @@ Page({
 
                 x = 15; y = 15;
                 let objectPictureWidth = 470, objectPictureHeight = 300;
-                canvasContext.drawImage(picture.path, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(objectPictureWidth / pixelRatio), parseInt(objectPictureHeight / pixelRatio));
+                let __objectPictureWidth = picture.width * pixelRatio, __objectPictureHeight = picture.height * pixelRatio;
+                __pictureWidthRatio = __objectPictureWidth / objectPictureWidth; __pictureHeightRatio = __objectPictureHeight / objectPictureHeight;
+                if (__pictureWidthRatio > __pictureHeightRatio) {
+                  __pictureWidth = objectPictureWidth * __pictureHeightRatio;
+                  __pictureHeight = __objectPictureHeight;
+                  __x = __objectPictureWidth / 2 - __pictureWidth / 2; __y = 0;
+                } else {
+                  __pictureWidth = __objectPictureWidth;
+                  __pictureHeight = objectPictureHeight * __pictureWidthRatio;
+                  __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2
+                }
+                canvasContext.drawImage(picture.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(objectPictureWidth / pixelRatio), parseInt(objectPictureHeight / pixelRatio));
 
                 let activePictureWidth = 125, activePictureHeight = 125;
+                let __activePictureWidth = activePicture.width * pixelRatio, __activePictureHeight = activePicture.height * pixelRatio;
+                __pictureWidthRatio = __activePictureWidth / activePictureWidth; __pictureHeightRatio = __activePictureHeight / activePictureHeight;
+                if (__pictureWidthRatio > __pictureHeightRatio) {
+                  __pictureWidth = activePictureWidth * __pictureHeightRatio;
+                  __pictureHeight = __activePictureHeight;
+                  __x = __activePictureWidth / 2 - __pictureWidth / 2; __y = 0;
+                } else {
+                  __pictureWidth = __activePictureWidth;
+                  __pictureHeight = activePictureHeight * __pictureWidthRatio;
+                  __x = 0; __y = __activePictureHeight / 2 - __pictureHeight / 2
+                }
                 x = fullWidth - activePictureWidth; y = 0;
-                canvasContext.drawImage(activePicture.path, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(activePictureWidth / pixelRatio), parseInt(activePictureHeight / pixelRatio));
+                canvasContext.drawImage(activePicture.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(activePictureWidth / pixelRatio), parseInt(activePictureHeight / pixelRatio));
 
                 x = 25; y += objectPictureHeight + 25;
                 fontSize = 28;
@@ -310,8 +333,19 @@ Page({
                 y = canvasSelf.drawMultilineText(canvasContext, data.object.hotel.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
 
                 let qrCodeWidth = 250, qrCodeHeight = 250;
+                let __qrCodeWidth = qrCode.width * pixelRatio, __qrCodeHeight = qrCode.height * pixelRatio;
+                __pictureWidthRatio = __qrCodeWidth / qrCodeWidth; __pictureHeightRatio = __qrCodeHeight / qrCodeHeight;
+                if (__pictureWidthRatio > __pictureHeightRatio) {
+                  __pictureWidth = qrCodeWidth * __pictureHeightRatio;
+                  __pictureHeight = __qrCodeHeight;
+                  __x = __qrCodeWidth / 2 - __pictureWidth / 2; __y = 0;
+                } else {
+                  __pictureWidth = __qrCodeWidth;
+                  __pictureHeight = qrCodeHeight * __pictureWidthRatio;
+                  __x = 0; __y = __qrCodeHeight / 2 - __pictureHeight / 2
+                }
                 x = fullWidth / 2 - qrCodeWidth / 2; y += 25;
-                canvasContext.drawImage(qrCode.path, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(qrCodeWidth / pixelRatio), parseInt(qrCodeHeight / pixelRatio));
+                canvasContext.drawImage(qrCode.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(qrCodeWidth / pixelRatio), parseInt(qrCodeHeight / pixelRatio));
 
                 let grd = canvasContext.createLinearGradient(0, 0, fullWidth, 0);
                 grd.addColorStop(0, '#F19154');
