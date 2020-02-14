@@ -38,9 +38,8 @@
     "pages/h5/index",
     "pages/hotel/dishes/index",
     "pages/hotel/dishes/add_dishes",
+    "pages/hotel/dishes/detail",
     "pages/hotel/order/index"
-
-    
   ],
   "window": {
     "backgroundTextStyle": "light",

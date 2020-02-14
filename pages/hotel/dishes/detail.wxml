@@ -1,0 +1,33 @@
+<!--pages/hotel/dishes/detail.wxml-->
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="goods-info theme-panel">
+		<image class="pic" mode="aspectFill" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		<view class="flex_column_flexStart_spaceAround">
+			<view class="name one-line-overflow">【10人套餐】8荤6素超值员工套餐，专供企业</view>
+			<view class="price theme-font5">￥668</view>
+		</view>
+	</view>
+  <!--
+	<view class="hotel-info flex_row_center_spaceBetween theme-panel">
+		<image class="pic" mode="aspectFill" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		<view class="info flex_column_flexStart_spaceBetween">
+			<view class="name one-line-overflow">花家怡园（世贸店）</view>
+			<view class="one-line-overflow theme-font7">供发布了10个菜品</view>
+		</view>
+		<view class="btn-group flex_column_center_flexEnd">
+			<view class="btn theme-font7">进入</view>
+		</view>
+	</view>
+  -->
+	<view class="goods-detail theme-panel">
+		<view class="title">详情</view>
+		<view class="detail-text">详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情</view>
+		<view class="detail-pic flex_column_center_flexStart">
+			<image class="pic" mode="widthFix" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			<image class="pic" mode="widthFix" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+		</view>
+	</view>
+  <!--
+	<view class="btn-buy theme-button-add">下单</view>
+  -->
+</scroll-view>
