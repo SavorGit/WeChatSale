@@ -9,15 +9,16 @@ var merchant_id;
 var openid;
 var page = 1;
 var page_all = 1;
-var page_dealing =1 ;
-var page_complete=1;
+var page_dealing = 1;
+var page_complete = 1;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    order_status:0
+    selectedTab: 'all',
+    order_status: 0
   },
 
   /**
@@ -29,7 +30,7 @@ Page({
     merchant_id = options.merchant_id;
     var order_status = options.order_status
     that.setData({
-      order_status:order_status
+      order_status: order_status
     })
 
 
@@ -37,11 +38,11 @@ Page({
     utils.PostRequest(api_v_url + '/order/dishOrderlist', {
       openid: openid,
       merchant_id: merchant_id,
-      page :1,
-      status:0
+      page: 1,
+      status: 0
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        all_order_list:data.result
+        all_order_list: data.result
       })
     })
     //处理中的订单
@@ -68,25 +69,25 @@ Page({
     })
 
   },
-  swichOrderList:function(e){
+  swichOrderList: function (e) {
     var that = this;
     var order_status = e.currentTarget.dataset.order_status
     that.setData({
-      order_status:order_status,
+      order_status: order_status,
     })
 
   },
-  loadMore:function(e){
+  loadMore: function (e) {
     var that = this;
     var order_status = that.data.order_status
-    if(order_status==0){
-      page_all +1;
+    if (order_status == 0) {
+      page_all + 1;
       page = page_all;
-    }else if(order_status==1){
-      page_dealing +=1;
+    } else if (order_status == 1) {
+      page_dealing += 1;
       page = page_dealing;
-    }else if (order_status==2){
-      page_complete +=1;
+    } else if (order_status == 2) {
+      page_complete += 1;
       page = page_complete;
     }
     //已完成的订单
@@ -96,29 +97,29 @@ Page({
       page: page,
       order_status: order_status
     }, (data, headers, cookies, errMsg, statusCode) => {
-      if(order_status==0){
+      if (order_status == 0) {
         that.setData({
           all_order_list: data.result
         })
-      }else if(order_status==1){
+      } else if (order_status == 1) {
         that.setData({
           deal_order_list: data.result
         })
-      }else if(order_status==3){
+      } else if (order_status == 3) {
         that.setData({
-          complete_order_list:data.result
+          complete_order_list: data.result
         })
       }
-      
+
     })
   },
   /**
    * 处理订单
    */
-  deal_order:function(e){
+  deal_order: function (e) {
     var order_id = e.currentTarget.dataset.order_id;
     utils.PostRequest(api_v_url + '/aa/bb', {
-      order_id:order_id,
+      order_id: order_id,
       merchant_id: merchant_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       //处理订单的状态改变
@@ -175,5 +176,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  switchTab: function (e) {
+    let self = this;
+    let selectedTab = e.currentTarget.dataset.tab;
+    self.setData({ selectedTab: selectedTab });
   }
 })
