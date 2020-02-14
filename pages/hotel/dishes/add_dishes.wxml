@@ -1,65 +1,83 @@
 <!--pages/hotel/dishes/add_dishes.wxml-->
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<form bindsubmit="addDishes">
-  <view class="goods-info flex_column_center theme7">
-		<view class="row flex_row_flexStart_spaceBetween">
-			<view class="lable flex_row_center_spaceBetween theme-font1">菜品名</view>
-			<textarea class="input" placeholder="请输入菜品名称" name="name"></textarea>
-		</view>
-		<view class="row flex_row_flexStart_spaceBetween">
-			<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
-			<input class="input" placeholder="请输入菜品价格" name='price'></input>
-		</view>
-		<view class="row flex_row_flexStart_spaceBetween">
-			<view class="lable flex_row_center_spaceBetween theme-font1">菜品图</view>
-			<view class="wapper flex_column_center_spaceBetween">
-				<view class="row flex_row_center_spaceBetween">
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="0">
-						<view class="fa fa-plus" aria-hidden="true"></view>
+		<view class="goods-info flex_column_center theme7">
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">菜品名</view>
+				<textarea class="input" placeholder="请输入菜品名称" name="name"></textarea>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
+				<input class="input" placeholder="请输入菜品价格" name='price'></input>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">菜品图</view>
+				<view class="wapper flex_column_center_spaceBetween">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="0">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="1">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="2">
+							<image mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						</view>
 					</view>
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="1">
-						<view class="fa fa-plus" aria-hidden="true"></view>
-					</view>
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="2">
-						<view class="fa fa-plus" aria-hidden="true"></view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="3">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="4">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="5">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
 					</view>
 				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="3">
-						<view class="fa fa-plus" aria-hidden="true"></view>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">菜品介绍</view>
+				<view class="wapper flex_column_center">
+					<textarea class="input" placeholder="请输入菜品介绍" name="intro"></textarea>
+					<!--
+					<view>
+						<view class="fa fa-camera theme-font7" aria-hidden="true"></view>
 					</view>
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="4">
-						<view class="fa fa-plus" aria-hidden="true"></view>
-					</view>
-					<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="5">
-						<view class="fa fa-plus" aria-hidden="true"></view>
+					-->
+				</view>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">详情图片</view>
+				<view class="wapper flex_column_center_spaceBetween">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="cell flex_column_center_center">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
+						<view class="cell flex_column_center_center">
+							<image mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						</view>
+						<view class="cell flex_column_center_center">
+							<view class="fa fa-plus" aria-hidden="true"></view>
+						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		<view class="row flex_row_flexStart_spaceBetween">
-			<view class="lable flex_row_center_spaceBetween theme-font1">菜品介绍</view>
-			<view class="wapper flex_column_center">
-				<textarea class="input" placeholder="请输入菜品介绍" name="intro"></textarea>
-				<view>
-					<view class="fa fa-camera theme-font7" aria-hidden="true"></view>
-				</view>
-			</view>
-		</view>
-	</view>
-  <input class='display_hide' name="dish_img0" value="{{dish_img0}}"> </input>
-  <input class='display_hide' name="dish_img1" value="{{dish_img1}}"> </input>
-  <input class='display_hide' name="dish_img2" value="{{dish_img2}}"> </input>
-  <input class='display_hide' name="dish_img3" value="{{dish_img3}}"> </input>
-  <input class='display_hide' name="dish_img4" value="{{dish_img4}}"> </input>
-  <input class='display_hide' name="dish_img5" value="{{dish_img5}}"> </input>
+		<input class='display_hide' name="dish_img0" value="{{dish_img0}}"> </input>
+		<input class='display_hide' name="dish_img1" value="{{dish_img1}}"> </input>
+		<input class='display_hide' name="dish_img2" value="{{dish_img2}}"> </input>
+		<input class='display_hide' name="dish_img3" value="{{dish_img3}}"> </input>
+		<input class='display_hide' name="dish_img4" value="{{dish_img4}}"> </input>
+		<input class='display_hide' name="dish_img5" value="{{dish_img5}}"> </input>
 
-  <input class='display_hide' name="intro_img0" value="{{intro_img0}}"> </input>
-  <input class='display_hide' name="intro_img1" value="{{intro_img1}}"> </input>
-  <input class='display_hide' name="intro_img2" value="{{intro_img2}}"> </input>
-  <input class='display_hide' name="intro_img3" value="{{intro_img3}}"> </input>
-  <input class='display_hide' name="intro_img4" value="{{intro_img4}}"> </input>
+		<input class='display_hide' name="intro_img0" value="{{intro_img0}}"> </input>
+		<input class='display_hide' name="intro_img1" value="{{intro_img1}}"> </input>
+		<input class='display_hide' name="intro_img2" value="{{intro_img2}}"> </input>
+		<input class='display_hide' name="intro_img3" value="{{intro_img3}}"> </input>
+		<input class='display_hide' name="intro_img4" value="{{intro_img4}}"> </input>
 
-	<button class="btn save theme-button-welcome" form-type="submit">保存</button>
-  </form>
+		<button class="btn save theme-button-welcome" form-type="submit">保存</button>
+	</form>
 </scroll-view>

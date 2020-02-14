@@ -1,7 +1,7 @@
 /* pages/hotel/dishes/add_dishes.wxss */
 .goods-info {
   width: 100vw;
-  height: calc(100% - 100rpx);
+  /* height: calc(100% - 100rpx); */
 }
 
 .goods-info>.row {
@@ -65,6 +65,11 @@
   font-size: 37rpx;
 }
 
+.goods-info>.row:nth-child(3)>.wapper>.row>.cell>image {
+  width: 100%;
+  height: 100%;
+}
+
 .goods-info>.row:nth-child(4) {
   height: 300rpx;
   margin-top: 60rpx;
@@ -81,11 +86,12 @@
 
 .goods-info>.row:nth-child(4)>.wapper>.input {
   width: calc(100% - 10rpx);
-  height: 230rpx;
+  /* height: 230rpx; */
+  height: calc(100% - 10rpx);
   padding: 5rpx;
 }
 
-.goods-info>.row:nth-child(4)>.wapper>view {
+/* .goods-info>.row:nth-child(4)>.wapper>view {
   width: calc(100% - 30rpx);
   height: 60rpx;
   padding: 0 15rpx;
@@ -93,6 +99,36 @@
   text-align: end;
   font-size: 43rpx;
   background-color: rgba(161, 134, 104, 0.2);
+} */
+
+.goods-info>.row:nth-child(5) {
+  height: 200rpx;
+  margin-top: 60rpx;
+}
+
+.goods-info>.row:nth-child(5)>.lable {
+  width: 160rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper {
+  height: 100%;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row {
+  width: 100%;
+  height: 140rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row>.cell {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #bebebe;
+  font-size: 37rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row>.cell>image {
+  width: 100%;
+  height: 100%;
 }
 
 .btn {
@@ -101,4 +137,8 @@
   line-height: 100rpx;
   text-align: center;
   font-size: 32rpx;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
