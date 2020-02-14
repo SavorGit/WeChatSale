@@ -434,6 +434,31 @@ Page({
         }
       }
     })
+    wx.request({
+      url: api_v_url + '/user/center',
+      header: {
+        'content-type': 'application/json'
+      },
+      data: {
+        openid: openid,
+      },
+      success: function (res) {
+        if (res.data.code == 10000) {
+          that.setData({
+            avatarUrl: res.data.result.avatarUrl,
+            nickName: res.data.result.nickName,
+            integral: res.data.result.integral,
+            is_open_integral: res.data.result.is_open_integral,
+            month_integral: res.data.result.month_integral,
+            next_month_integral: res.data.result.next_month_integral,
+            dish_num: res.data.result.dish_num,
+            dishorder_all_num: res.data.result.dishorder_all_num,
+            dishorder_process_num: res.data.result.dishorder_process_num,
+            merchant_id: res.data.result.merchant_id
+          })
+        }
+      }
+    })
     //数据埋点-进入个人信息页面
     mta.Event.stat('showUserIndex', {
       'openid': user_info.openid

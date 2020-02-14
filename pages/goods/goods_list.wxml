@@ -1,7 +1,7 @@
 <!--pages/goods/goods_list.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<view class="list weui-grids">
-    <block wx:for="goods_list"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+    <block wx:for="{{goods_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view class="item flex_column_center_center weui-grid">
         <view class="flex_column_center theme7">
           <image src="{{bean.img_url}}"></image>
