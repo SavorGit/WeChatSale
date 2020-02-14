@@ -38,7 +38,7 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page :1,
-      order_status:0
+      status:0
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         all_order_list:data.result
@@ -49,7 +49,7 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      order_status: 1
+      status: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         deal_order_list: data.result
@@ -60,7 +60,7 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      order_status: 2
+      status: 2
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         complete_order_list: data.result
