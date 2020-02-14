@@ -1,20 +1,24 @@
 <!--pages/hotel/dishes/index.wxml-->
 <view class='container theme-container'>
-	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_center">
-			<view class="row flex_row_center_spaceBetween theme7">
-				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-				<view class="info flex_column_flexStart_spaceBetween">
-					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
-					<view class="price theme-font5">￥168</view>
-					<view class="btn-group flex_row_center_spaceBetween">
-						<view class="btn on-line">已上架</view>
-						<view class="btn theme-button-welcome">置顶</view>
-						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
-					</view>
-				</view>
-			</view>
-			<view class="row flex_row_center_spaceBetween theme7">
+      <block wx:for="{{dishes_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="row flex_row_center_spaceBetween theme7">
+          <image class="pic" mode="aspectFull" src="{{bean.img_url}}"></image>
+          <view class="info flex_column_flexStart_spaceBetween">
+            <view class="name two-line-overflow">{{bean.name}}</view>
+            <view class="price theme-font5">￥{{bean.price}}</view>
+            <view class="btn-group flex_row_center_spaceBetween">
+              <view class="btn on-line" wx:if="{{bean.status==1}}">已上架</view>
+              <view class="btn on-line" wx:if="{{bean.status==2}}">已下架</view>
+              <view class="btn theme-button-welcome" wx:if="{{bean.is_top==0}}" bindtap="setTop" data-keys="{{index}}">置顶</view>
+              <view class="btn theme-button-welcome" wx:if="{{bean.is_top==1}}">已置顶</view>
+              <view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}">分享</view>
+            </view>
+          </view>
+        </view>
+      </block>
+			<!-- <view class="row flex_row_center_spaceBetween theme7">
 				<image class="pic" mode="aspectFull" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
 				<view class="info flex_column_flexStart_spaceBetween">
 					<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜</view>
@@ -193,12 +197,12 @@
 						<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow">分享</view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</scroll-view>
 	<view class="page-bottom flex_row_center_spaceBetween">
-		<view class="btn add-goods theme-button-welcome">新增菜品</view>
-		<view class="btn share-shop theme-button-welcome-dark" bindtap="openShareShopWindow">分享店铺</view>
+		<view class="btn add-goods theme-button-welcome" bindtap="addDishes" >新增菜品</view>
+		<view class="btn share-shop theme-button-welcome-dark" bindtap="openShareShopWindow" data-picture="{{merchant_info.img}}" data-qrcode_url="{{merchant_info.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-tips="{{merchant_info.tips}}">分享店铺</view>
 	</view>
 </view>
 

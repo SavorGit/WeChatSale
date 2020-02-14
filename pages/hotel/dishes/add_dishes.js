@@ -7,7 +7,7 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
 var oss_url = app.globalData.oss_url;
-var hotel_id;
+var merchant_id;
 var openid;
 Page({
 
@@ -15,18 +15,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dish_img_0:'',
-    dish_img_1: '',
-    dish_img_2: '',
-    dish_img_3: '',
-    dish_img_4: '',
-    dish_img_5: '',
+    dish_img0:'',
+    dish_img1: '',
+    dish_img2: '',
+    dish_img3: '',
+    dish_img4: '',
+    dish_img5: '',
     intro_type:1,  //介绍类型  1：文本 2： 图片
-    intro_img_0:'',
-    intro_img_1: '',
-    intro_img_2: '',
-    intro_img_3: '',
-    intro_img_4: '',
+    intro_img0:'',
+    intro_img1: '',
+    intro_img2: '',
+    intro_img3: '',
+    intro_img4: '',
   },
 
   /**
@@ -34,13 +34,14 @@ Page({
    */
   onLoad: function (options) {
     openid = options.openid;
-    hotel_id = options.hotel_id;
+    merchant_id = options.hotel_id;
 
   },
   /**
    * 上传菜品图
    */
   uploadDishesPic:function(e){
+    var that = this;
     var keys = e.currentTarget.dataset.keys;
     var is_desc_img = e.currentTarget.dataset.is_desc_img;
     wx.chooseImage({
@@ -89,34 +90,35 @@ Page({
 
               success: function (res) {
                 var dish_img_url = "forscreen/resource/" + img_url
+                
                 if(keys=0){
                   that.setData({
-                    dish_img_0: dish_img_url,
+                    dish_img0: dish_img_url,
                   })
                 }else if(keys ==1){
                   that.setData({
-                    dish_img_1: dish_img_url,
+                    dish_img1: dish_img_url,
                   })
                 }else if(keys=2){
                   that.setData({
-                    dish_img_2: dish_img_url,
+                    dish_img2: dish_img_url,
                   })
                 }else if(keys ==3){
                   that.setData({
-                    dish_img_3: dish_img_url,
+                    dish_img3: dish_img_url,
                   })
                 }else if(keys ==4){
                   that.setData({
-                    dish_img_4: dish_img_url,
+                    dish_img4: dish_img_url,
                   })
                 }else if(keys ==5){
                   that.setData({
-                    dish_img_5: dish_img_url,
+                    dish_img5: dish_img_url,
                   })
                 }
               },
               fail: function ({ errMsg }) {
-                
+                app.showToast('图片上传失败，请重试')
               },
             });
           }
@@ -126,7 +128,7 @@ Page({
   },
   addDishes:function(e){
     var that = this;
-
+    console.log(e)
     var name = e.detail.value.name;
     if(name==''){
       app.showToast('请填写菜品名称');

@@ -24,7 +24,7 @@ Page({
     var that = this;
     openid = options.openid;
     merchant_id = options.merchant_id;
-
+    
     //获取酒楼菜品列表
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
@@ -35,6 +35,16 @@ Page({
         dishes_list: data.result
       })
     })
+    //获取商家信息
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      openid: openid,
+      merchant_id: merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        merchant_info: data.result
+      })
+    })
+    
 
   },
   /**
@@ -58,13 +68,21 @@ Page({
    */
   setTop: function (e) {
     var that = this;
-    var index = e.currentTarget.dataset.index;
+    var index = e.currentTarget.dataset.keys;
     var dishes_list = that.data.dishes_list;
     var top_item = dishes_list[index];
     dishes_list.splice(index, 1);
     dishes_list.unshift(top_item);
     that.setData({
       dishes_list: dishes_list
+    })
+  },
+  /**
+   * 新增菜品
+   */
+  addDishes:function(e){
+    wx.navigateTo({
+      url: '/pages/hotel/dishes/add_dishes?merchant_id='+merchant_id+"&openid="+openid,
     })
   },
   /**
@@ -78,7 +96,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    //获取酒楼菜品列表
+    utils.PostRequest(api_v_url + '/dish/goodslist', {
+      openid: openid,
+      merchant_id: merchant_id,
+      page: 1
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        dishes_list: data.result
+      })
+    })
   },
 
   /**
@@ -246,17 +274,22 @@ Page({
   // 打开分享菜品窗口
   openShareGoodsWindow: function (e) {
     let self = this;
+    console.log(e)
+    var pictrue = e.currentTarget.dataset.img_url;
+    var qrCode = e.currentTarget.dataset.qrcode;
+    var hotel_name = e.currentTarget.dataset.hotel_name;
+    var goods_name = e.currentTarget.dataset.goods_name;
     self.setData({ showGoodsPopWindow: true });
     self.drawSharePicture({
       canvasId: 'goodsCanvas',// 画布标识
       object: {
-        picture: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg', // 展示的图片
+        picture: pictrue, // 展示的图片
         activePicture: 'https://oss.littlehotspot.com/WeChat/resource/vip-icons/huangguan.png', // 活动的图片
-        name: '抗击疫情10人平价套餐，企业专享', // 名称
+        name: goods_name, // 名称
         hotel: {
-          name: '花家怡园（世贸店）'// 酒楼名称
+          name: hotel_name // 酒楼名称
         },
-        qrCode: 'https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg', // 二维码图片
+        qrCode: qrCode, // 二维码图片
         tipContent: '扫码或长按识别，即可前往购买'// 提示信息
       },
       getTempFilePath: function () {// 生成图片临时地址的回调函数
@@ -316,17 +349,22 @@ Page({
   // 打开分享店铺窗口
   openShareShopWindow: function (e) {
     let self = this;
+    console.log(e);
+    var picture = e.currentTarget.dataset.picture;
+    var qrcode_url = e.currentTarget.dataset.qrcode_url;
+    var hotel_name = e.currentTarget.dataset.hotel_name;
+    var tips = e.currentTarget.dataset.tips;
     self.setData({ showShopPopWindow: true });
     self.drawSharePicture({
       canvasId: 'shopCanvas',// 画布标识
       object: {
-        picture: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg', // 展示的图片
+        picture: picture, // 展示的图片
         activePicture: 'https://oss.littlehotspot.com/WeChat/resource/vip-icons/huangguan.png', // 活动的图片
-        name: '不出门抗击疫情，线上享超值菜品', // 名称
+        name: tips, // 名称
         hotel: {
-          name: '花家怡园（世贸店）'// 酒楼名称
+          name: hotel_name  // 酒楼名称
         },
-        qrCode: 'https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg', // 二维码图片
+        qrCode: qrcode_url, // 二维码图片
         tipContent: '扫码或长按识别，即可前往购买'// 提示信息
       },
       getTempFilePath: function () {// 生成图片临时地址的回调函数
