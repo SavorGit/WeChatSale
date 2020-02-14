@@ -76,24 +76,69 @@ Page({
     var goods_id = e.currentTarget.dataset.goods_id;
     var dishes_list = that.data.dishes_list;
     var top_item = dishes_list[index];
+    wx.showModal({
+      title: '提示',
+      content: '确认置顶该商品?',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/dish/top', {
+            goods_id: goods_id,
+            openid: openid,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            dishes_list[0].is_top = 0;
+            top_item.is_top = 1;
 
-    utils.PostRequest(api_v_url + '/dish/top', {
-      goods_id: goods_id,
-      openid:openid,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      dishes_list[0].is_top = 0;
-      top_item.is_top = 1;
+            dishes_list.splice(index, 1);
+            dishes_list.unshift(top_item);
 
-      dishes_list.splice(index, 1);
-      dishes_list.unshift(top_item);
 
-      
-      that.setData({
-        dishes_list: dishes_list
-      })
-      app.showToast('置顶成功');
+            that.setData({
+              dishes_list: dishes_list
+            })
+            app.showToast('置顶成功');
+          })
+        }
+      }
     })
+    
 
+    
+  },
+  /**
+   * 上架下架商品
+   */
+  putawayDish:function(e){
+    var that = this;
+    var status = e.currentTarget.dataset.status;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    var keys = e.currentTarget.dataset.keys;
+    if(status==1){
+      var msg = '确认上架该商品?';
+      var toast = '上架成功';
+    }else {
+      var msg = '确认下架该商品?';
+      var toast = '下架成功';
+    }
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/dish/putaway', {
+            openid: openid,
+            goods_id: goods_id,
+            status:status
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            var dishes_list = that.data.dishes_list;
+            dishes_list[keys].status = status;
+            that.setData({
+              dishes_list: dishes_list
+            })
+            app.showToast(toast)
+          })
+        }
+      }
+    })
     
   },
   /**
