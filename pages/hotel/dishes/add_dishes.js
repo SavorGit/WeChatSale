@@ -27,6 +27,7 @@ Page({
     intro_img2: '',
     intro_img3: '',
     intro_img4: '',
+    oss_url:app.globalData.oss_url+'/',
   },
 
   /**
@@ -41,9 +42,11 @@ Page({
    * 上传菜品图
    */
   uploadDishesPic:function(e){
+    console.log(e)
     var that = this;
     var keys = e.currentTarget.dataset.keys;
     var is_desc_img = e.currentTarget.dataset.is_desc_img;
+    var type = e.currentTarget.dataset.type;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -90,31 +93,60 @@ Page({
 
               success: function (res) {
                 var dish_img_url = "forscreen/resource/" + img_url
-                
-                if(keys=0){
-                  that.setData({
-                    dish_img0: dish_img_url,
-                  })
+                console.log(keys)
+                if(keys==0){
+                  if (type==1){
+                    that.setData({
+                      dish_img0: dish_img_url,
+                    })
+                  }else {
+                    that.setData({
+                      intro_img0: dish_img_url,
+                    })
+                  }
+                  
                 }else if(keys ==1){
-                  that.setData({
-                    dish_img1: dish_img_url,
-                  })
-                }else if(keys=2){
-                  that.setData({
-                    dish_img2: dish_img_url,
-                  })
+                  if(type==1){
+                    that.setData({
+                      dish_img1: dish_img_url,
+                    })
+                  }else {
+                    that.setData({
+                      intro_img1: dish_img_url,
+                    })
+                  }
+                 
+                }else if(keys==2){
+                  if(type==1){
+                    that.setData({
+                      dish_img2: dish_img_url,
+                    })
+                  }else {
+                    that.setData({
+                      intro_img2: dish_img_url,
+                    })
+                  }
+                  
                 }else if(keys ==3){
-                  that.setData({
-                    dish_img3: dish_img_url,
-                  })
+                  if(type==1){
+                    that.setData({
+                      dish_img3: dish_img_url,
+                    })
+                  }
+                  
                 }else if(keys ==4){
-                  that.setData({
-                    dish_img4: dish_img_url,
-                  })
+                  if(type==1){
+                    that.setData({
+                      dish_img4: dish_img_url,
+                    })
+                  }
+                  
                 }else if(keys ==5){
-                  that.setData({
-                    dish_img5: dish_img_url,
-                  })
+                  if(type==1){
+                    that.setData({
+                      dish_img5: dish_img_url,
+                    })
+                  }
                 }
               },
               fail: function ({ errMsg }) {
@@ -175,57 +207,48 @@ Page({
         return false;
       }
     }
+    var intro = e.detail.value.intro
+    
+    var intro_img0 = e.detail.value.intro_img0;
+    var intro_img1 = e.detail.value.intro_img1;
+    var intro_img2 = e.detail.value.intro_img2;
 
-    var intro_type = that.data.intro_type;
-    if(intro_type==1){//文本介绍
-      var intro = e.detail.value.intro
-      if(intro==''){
-        app.showToast('请填写菜品介绍')
+    var intro_imgs = '';
+    if (intro_img0 != '') {
+      intro_imgs += intro_img0 + ',';
+    }
+    if (intro_img1 != '') {
+      intro_imgs += intro_img1 + ',';
+    }
+    if (intro_img2 != '') {
+      intro_imgs += intro_img2 + ',';
+    }
+    
+
+    if (intro_imgs.length == 0) {
+      if (intro == '') {
+        app.showToast('请填写菜品介绍或者上传详情图片')
         return false;
-      }
-    }else if(intro_type==2){//图片介绍
-      var intro_img0 = e.detail.value.intro_img0;
-      var intro_img1 = e.detail.value.intro_img1;
-      var intro_img2 = e.detail.value.intro_img2;
-      var intro_img3 = e.detail.value.intro_img3;
-      var intro_img4 = e.detail.value.intro_img4;
-
-      var intro_imgs = '';
-      if (intro_img0 != '') {
-        intro_imgs += intro_img0 + ',';
-      }
-      if (intro_img1 != '') {
-        intro_imgs += intro_img1 + ',';
-      }
-      if (intro_img2 != '') {
-        intro_imgs += intro_img2 + ',';
-      }
-      if (intro_img3 != '') {
-        intro_imgs += intro_img3 + ',';
-      }
-      if (intro_img4 != '') {
-        intro_imgs += intro_img4 + ',';
-      }
-
+      }    
+      
+    } else {
+      intro_imgs = intro_imgs.substring(0, intro_imgs.length - 1);
       if (intro_imgs.length == 0) {
-        app.showToast('请上传菜品介绍图')
-        return false;
-      } else {
-        intro_imgs = intro_imgs.substring(0, intro_imgs.length - 1);
-        if (intro_imgs.length == 0) {
-          app.showToast('请上传菜品介绍图')
+
+        if (intro == '') {
+          app.showToast('请填写菜品介绍或者上传详情图片')
           return false;
-        }
+        }   
       }
-      var intro = intro_imgs;
     }
     utils.PostRequest(api_v_url + '/dish/addDish', {
+      detail_imgs: intro_imgs,
       imgs: imgs,
       intro: intro,
-      intro_type: intro_type,
       name:name,
       openid: openid,
       price:price,
+      
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
       wx.navigateBack({

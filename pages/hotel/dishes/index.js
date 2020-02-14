@@ -69,13 +69,27 @@ Page({
   setTop: function (e) {
     var that = this;
     var index = e.currentTarget.dataset.keys;
+    var goods_id = e.currentTarget.dataset.goods_id;
     var dishes_list = that.data.dishes_list;
     var top_item = dishes_list[index];
-    dishes_list.splice(index, 1);
-    dishes_list.unshift(top_item);
-    that.setData({
-      dishes_list: dishes_list
+
+    utils.PostRequest(api_v_url + '/dish/top', {
+      goods_id: goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      dishes_list[0].is_top = 0;
+      top_item.is_top = 1;
+
+      dishes_list.splice(index, 1);
+      dishes_list.unshift(top_item);
+
+      
+      that.setData({
+        dishes_list: dishes_list
+      })
+      app.showToast('置顶成功');
     })
+
+    
   },
   /**
    * 新增菜品

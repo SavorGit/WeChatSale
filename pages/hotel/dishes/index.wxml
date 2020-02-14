@@ -11,7 +11,7 @@
             <view class="btn-group flex_row_center_spaceBetween">
               <view class="btn on-line" wx:if="{{bean.status==1}}">已上架</view>
               <view class="btn on-line" wx:if="{{bean.status==2}}">已下架</view>
-              <view class="btn theme-button-welcome" wx:if="{{bean.is_top==0}}" bindtap="setTop" data-keys="{{index}}">置顶</view>
+              <view class="btn theme-button-welcome" wx:if="{{bean.is_top==0}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
               <view class="btn theme-button-welcome" wx:if="{{bean.is_top==1}}">已置顶</view>
               <view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}">分享</view>
             </view>
