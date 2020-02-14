@@ -4,11 +4,11 @@
 		<view class="goods-info flex_column_center theme7">
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品名</view>
-				<textarea class="input" placeholder="请输入菜品名称" name="name"></textarea>
+				<textarea class="input" placeholder="请输入菜品名称" name="name" maxlength="30"></textarea>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
-				<input class="input" placeholder="请输入菜品价格" name='price'></input>
+				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品图</view>
@@ -46,7 +46,7 @@
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品介绍</view>
 				<view class="wapper flex_column_center">
-					<textarea class="input" placeholder="请输入菜品介绍" name="intro"></textarea>
+					<textarea class="input" placeholder="请输入菜品介绍" name="intro" maxlength="50"></textarea>
 					<!--
 					<view>
 						<view class="fa fa-camera theme-font7" aria-hidden="true"></view>
