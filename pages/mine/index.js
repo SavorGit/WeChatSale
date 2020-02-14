@@ -615,8 +615,9 @@ Page({
   saleDishes:function(e){
     var that = this;
     var merchant_id = that.data.merchant_id;
+    var hotel_id = that.data.hotel_id;
     wx.navigateTo({
-      url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid,
+      url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid +"&hotel_id="+hotel_id,
     })
   },
   gotoOrder:function(e){

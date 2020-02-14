@@ -8,6 +8,7 @@ var cache_key = app.globalData.cache_key;
 var merchant_id;
 var openid;
 var page = 1;
+var hotel_id;
 Page({
 
   /**
@@ -22,14 +23,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options)
     openid = options.openid;
     merchant_id = options.merchant_id;
-    
+    hotel_id = options.hotel_id;
     //获取酒楼菜品列表
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1
+      page: 1,
+      hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
@@ -56,7 +59,8 @@ Page({
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      hotel_id: hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
@@ -116,7 +120,8 @@ Page({
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1
+      page: 1,
+      hotel_id: hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
