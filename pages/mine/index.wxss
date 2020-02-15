@@ -59,8 +59,8 @@
 }
 */
 .user-info-panel {
-  height: 200rpx;
-  padding-bottom: 50rpx;
+  height: 175rpx;
+  padding-bottom: 75rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -93,8 +93,8 @@
 /* ================================ 销售面板 ================================ */
 .sale-panel {
   width: 100%;
-  height: 100rpx;
-  margin-top: -50rpx;
+  height: 150rpx;
+  margin-top: -75rpx;
 }
 
 .sale-panel>.wapper {
