@@ -81,7 +81,7 @@ Page({
     var that = this;
     var order_status = that.data.order_status
     if (order_status == 0) {
-      page_all + 1;
+      page_all += 1;
       page = page_all;
     } else if (order_status == 1) {
       page_dealing += 1;
@@ -95,19 +95,19 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: page,
-      order_status: order_status
+      status: order_status
     }, (data, headers, cookies, errMsg, statusCode) => {
       if (order_status == 0) {
         that.setData({
-          all_order_list: data.result
+          all_order_list: data.result.datalist
         })
       } else if (order_status == 1) {
         that.setData({
-          deal_order_list: data.result
+          deal_order_list: data.result.datalist
         })
       } else if (order_status == 3) {
         that.setData({
-          complete_order_list: data.result
+          complete_order_list: data.result.datalist
         })
       }
 

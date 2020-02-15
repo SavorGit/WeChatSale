@@ -616,16 +616,26 @@ Page({
     var that = this;
     var merchant_id = that.data.merchant_id;
     var hotel_id = that.data.hotel_id;
-    wx.navigateTo({
-      url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid +"&hotel_id="+hotel_id,
-    })
+    if (typeof (merchant_id) == 'undefined') {
+      return false;
+    } else {
+      wx.navigateTo({
+        url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid + "&hotel_id=" + hotel_id,
+      })
+    }
+    
   },
   gotoOrder:function(e){
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
-    wx.navigateTo({
-      url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid+'&order_status='+order_status,
-    })
+    if (typeof (merchant_id)=='undefined'){
+      return false;
+    }else {
+      wx.navigateTo({
+        url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status,
+      })
+    }
+    
   }
 })

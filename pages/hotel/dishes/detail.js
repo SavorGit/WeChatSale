@@ -1,4 +1,11 @@
 // pages/hotel/dishes/detail.js
+const app = getApp()
+const mta = require('../../../utils/mta_analysis.js')
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var goods_id;
 Page({
 
   /**
@@ -12,7 +19,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    var that = this;
+    goods_id = options.goods_id
+    utils.PostRequest(api_v_url + '/dish/detail', {
+      
+      goods_id: goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        goods_info: data.result
+      })
+    },function(){
+      wx.navigateBack({
+        delta:1
+      })
+    })
   },
 
   /**
