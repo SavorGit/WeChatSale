@@ -121,76 +121,85 @@ Page({
     var order_id = e.currentTarget.dataset.order_id;
     var keys = e.currentTarget.dataset.keys;
     var order_status = that.data.order_status 
-    utils.PostRequest(api_v_url + '/order/dishorderProcess', {
-      order_id: order_id,
-      openid: openid,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      //处理订单的状态改变
-      /**
-       *   逻辑需要写
-       */
-      if(order_status==0){
-        var all_order_list = that.data.all_order_list
-        all_order_list[keys].status = 2; 
-        that.setData({
-          all_order_list:all_order_list
-        })
 
-        //处理中的订单
-        utils.PostRequest(api_v_url + '/order/dishOrderlist', {
-          openid: openid,
-          merchant_id: merchant_id,
-          page: page_dealing,
-          status: 1
-        }, (data, headers, cookies, errMsg, statusCode) => {
-          that.setData({
-            deal_order_list: data.result.datalist
-          })
-        })
-        //已完成的订单
-        utils.PostRequest(api_v_url + '/order/dishOrderlist', {
-          openid: openid,
-          merchant_id: merchant_id,
-          page: page_complete,
-          status: 2
-        }, (data, headers, cookies, errMsg, statusCode) => {
-          that.setData({
-            complete_order_list: data.result.datalist
-          })
-        })
+    wx.showModal({
+      title: '提示',
+      content: '确认置顶该商品?',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/order/dishorderProcess', {
+            order_id: order_id,
+            openid: openid,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            //处理订单的状态改变
+            /**
+             *   逻辑需要写
+             */
+            if (order_status == 0) {
+              var all_order_list = that.data.all_order_list
+              all_order_list[keys].status = 2;
+              that.setData({
+                all_order_list: all_order_list
+              })
 
-      }else if(order_status==1){
-        var deal_order_list = that.data.deal_order_list
-        deal_order_list.splice(keys,1);
-        that.setData({
-          deal_order_list: deal_order_list
-        })
+              //处理中的订单
+              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+                openid: openid,
+                merchant_id: merchant_id,
+                page: page_dealing,
+                status: 1
+              }, (data, headers, cookies, errMsg, statusCode) => {
+                that.setData({
+                  deal_order_list: data.result.datalist
+                })
+              })
+              //已完成的订单
+              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+                openid: openid,
+                merchant_id: merchant_id,
+                page: page_complete,
+                status: 2
+              }, (data, headers, cookies, errMsg, statusCode) => {
+                that.setData({
+                  complete_order_list: data.result.datalist
+                })
+              })
+
+            } else if (order_status == 1) {
+              var deal_order_list = that.data.deal_order_list
+              deal_order_list.splice(keys, 1);
+              that.setData({
+                deal_order_list: deal_order_list
+              })
+            }
+            app.showToast('处理成功');
+
+            //全部订单
+            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              openid: openid,
+              merchant_id: merchant_id,
+              page: page_all,
+              status: 0
+            }, (data, headers, cookies, errMsg, statusCode) => {
+              that.setData({
+                all_order_list: data.result.datalist
+              })
+            })
+
+            //已完成的订单
+            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              openid: openid,
+              merchant_id: merchant_id,
+              page: page_complete,
+              status: 2
+            }, (data, headers, cookies, errMsg, statusCode) => {
+              that.setData({
+                complete_order_list: data.result.datalist
+              })
+            })
+          })
+        }
       }
-      app.showToast('处理成功');
-
-      //全部订单
-      utils.PostRequest(api_v_url + '/order/dishOrderlist', {
-        openid: openid,
-        merchant_id: merchant_id,
-        page: page_all,
-        status: 0
-      }, (data, headers, cookies, errMsg, statusCode) => {
-        that.setData({
-          all_order_list: data.result.datalist
-        })
-      })
-
-      //已完成的订单
-      utils.PostRequest(api_v_url + '/order/dishOrderlist', {
-        openid: openid,
-        merchant_id: merchant_id,
-        page: page_complete,
-        status: 2
-      }, (data, headers, cookies, errMsg, statusCode) => {
-        that.setData({
-          complete_order_list: data.result.datalist
-        })
-      })
     })
   },
   /**
