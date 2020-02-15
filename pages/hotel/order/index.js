@@ -124,7 +124,7 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '确认置顶该商品?',
+      content: '确认处理该订单?',
       success: function (res) {
         if (res.confirm) {
           utils.PostRequest(api_v_url + '/order/dishorderProcess', {
