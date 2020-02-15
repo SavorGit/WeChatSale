@@ -163,11 +163,11 @@ Page({
   /**
    * 查看菜品详情
    */
-  gotoDeshDetail:function(e){
+  gotoDeshDetail: function (e) {
     console.log(e)
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.navigateTo({
-      url: '/pages/hotel/dishes/detail?goods_id='+goods_id,
+      url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
     })
   },
   /**
@@ -231,35 +231,6 @@ Page({
   },
 
   /**
-   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
-   * @param context      画布上下文
-   * @param str          字符串
-   * @param fontSize     文字大小
-   * @param left         左边距
-   * @param top          上边距
-   * @param canvasWidth  文本最大宽度
-   * @param lineHeight   行高
-   * @return y 上边距 
-   */
-  drawMultilineText: function (context, str, fontSize, left, top, canvasWidth, lineHeight) {
-    let lineWordCount = parseInt(canvasWidth / fontSize);
-    context.setFontSize(fontSize);
-    if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
-    if (lineWordCount >= str.length) {
-      top += lineHeight;
-      context.fillText(str, left + 115 - context.measureText(str).width / 2, top);
-      return top;
-    }
-    let lineString = str.substring(0, lineWordCount);
-    if (canvasWidth - context.measureText(lineString).width <= fontSize) {
-      top += lineHeight;
-      context.fillText(lineString, left + 115 - context.measureText(lineString).width / 2, top);
-      return this.drawMultilineText(context, str.substring(lineWordCount), fontSize, left, top, canvasWidth, lineHeight);
-    }
-    return this.drawMultilineText(context, str.substring(lineString.length), fontSize, left, top, canvasWidth, lineHeight);
-  },
-
-  /**
    * 画图。
    *
    * @param data   生成图片所需要的数据。
@@ -296,7 +267,7 @@ Page({
                 let pixelRatio = 2;
                 let x = 0, y = 0, fontSize = 12;
                 let __x = 0, __y = 0, __pictureWidth = 0, __pictureHeight = 0, __pictureWidthRatio = 1, __pictureHeightRatio = 1;
-                const canvasContext = wx.createCanvasContext(data.canvasId);
+                const canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
                 canvasContext.setFillStyle('#FFFFFF');
 
                 let fullWidth = 500, fullHeight = 740;
@@ -304,58 +275,25 @@ Page({
 
                 x = 15; y = 15;
                 let objectPictureWidth = 470, objectPictureHeight = 300;
-                let __objectPictureWidth = picture.width * pixelRatio, __objectPictureHeight = picture.height * pixelRatio;
-                __pictureWidthRatio = __objectPictureWidth / objectPictureWidth; __pictureHeightRatio = __objectPictureHeight / objectPictureHeight;
-                if (__pictureWidthRatio > __pictureHeightRatio) {
-                  __pictureWidth = objectPictureWidth * __pictureHeightRatio;
-                  __pictureHeight = __objectPictureHeight;
-                  __x = __objectPictureWidth / 2 - __pictureWidth / 2; __y = 0;
-                } else {
-                  __pictureWidth = __objectPictureWidth;
-                  __pictureHeight = objectPictureHeight * __pictureWidthRatio;
-                  __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2
-                }
-                canvasContext.drawImage(picture.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(objectPictureWidth / pixelRatio), parseInt(objectPictureHeight / pixelRatio));
+                canvasContext.drawImageAspectFill(picture, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(objectPictureWidth / pixelRatio), parseInt(objectPictureHeight / pixelRatio));
 
                 let activePictureWidth = 125, activePictureHeight = 125;
-                let __activePictureWidth = activePicture.width * pixelRatio, __activePictureHeight = activePicture.height * pixelRatio;
-                __pictureWidthRatio = __activePictureWidth / activePictureWidth; __pictureHeightRatio = __activePictureHeight / activePictureHeight;
-                if (__pictureWidthRatio > __pictureHeightRatio) {
-                  __pictureWidth = activePictureWidth * __pictureHeightRatio;
-                  __pictureHeight = __activePictureHeight;
-                  __x = __activePictureWidth / 2 - __pictureWidth / 2; __y = 0;
-                } else {
-                  __pictureWidth = __activePictureWidth;
-                  __pictureHeight = activePictureHeight * __pictureWidthRatio;
-                  __x = 0; __y = __activePictureHeight / 2 - __pictureHeight / 2
-                }
                 x = fullWidth - activePictureWidth; y = 0;
-                canvasContext.drawImage(activePicture.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(activePictureWidth / pixelRatio), parseInt(activePictureHeight / pixelRatio));
+                canvasContext.drawImageAspectFill(activePicture, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(activePictureWidth / pixelRatio), parseInt(activePictureHeight / pixelRatio));
 
                 x = 25; y += objectPictureHeight + 25;
                 fontSize = 28;
                 canvasContext.setFillStyle("#333333");
-                y = canvasSelf.drawMultilineText(canvasContext, data.object.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
+                y = canvasContext.drawOneLineText(data.object.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
 
                 x = 25; y += 25;
                 fontSize = 24;
                 canvasContext.setFillStyle("#a18668");
-                y = canvasSelf.drawMultilineText(canvasContext, data.object.hotel.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
+                y = canvasContext.drawOneLineText(data.object.hotel.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
 
                 let qrCodeWidth = 250, qrCodeHeight = 250;
-                let __qrCodeWidth = qrCode.width * pixelRatio, __qrCodeHeight = qrCode.height * pixelRatio;
-                __pictureWidthRatio = __qrCodeWidth / qrCodeWidth; __pictureHeightRatio = __qrCodeHeight / qrCodeHeight;
-                if (__pictureWidthRatio > __pictureHeightRatio) {
-                  __pictureWidth = qrCodeWidth * __pictureHeightRatio;
-                  __pictureHeight = __qrCodeHeight;
-                  __x = __qrCodeWidth / 2 - __pictureWidth / 2; __y = 0;
-                } else {
-                  __pictureWidth = __qrCodeWidth;
-                  __pictureHeight = qrCodeHeight * __pictureWidthRatio;
-                  __x = 0; __y = __qrCodeHeight / 2 - __pictureHeight / 2
-                }
                 x = fullWidth / 2 - qrCodeWidth / 2; y += 25;
-                canvasContext.drawImage(qrCode.path, parseInt(__x / pixelRatio), parseInt(__y / pixelRatio), parseInt(__pictureWidth / pixelRatio), parseInt(__pictureHeight / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(qrCodeWidth / pixelRatio), parseInt(qrCodeHeight / pixelRatio));
+                canvasContext.drawImageAspectFill(qrCode, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(qrCodeWidth / pixelRatio), parseInt(qrCodeHeight / pixelRatio));
 
                 let grd = canvasContext.createLinearGradient(0, 0, fullWidth, 0);
                 grd.addColorStop(0, '#F19154');
@@ -367,7 +305,6 @@ Page({
 
                 let tipContentMetrics = canvasContext.measureText(data.object.tipContent);
                 fontSize = 24;
-                // x = fullWidth / 2 - tipContentMetrics.width / 2; y = fullHeight - tipBannerHeight / 2 + fontSize / 2 - fontSize;
                 x = fullWidth / 2 - tipContentMetrics.width * pixelRatio / 2; y = fullHeight - tipBannerHeight / 2 + fontSize / 2 - 2;
                 canvasContext.setFontSize(parseInt(fontSize / pixelRatio));
                 canvasContext.setFillStyle("#FFFFFF");

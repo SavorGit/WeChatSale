@@ -616,3 +616,93 @@ const TouchMoveHandler = function (systemInfo, touchMoveExecuteTrip) {
   }
 };
 module.exports.TouchMoveHandler = TouchMoveHandler;
+
+const createCanvasContext = (canvasContext) => {
+  /**
+   * 绘制单行文本，由于文字比较多，这里我们写了一个函数处理
+   * @param str          字符串
+   * @param fontSize     文字大小
+   * @param left         左边距
+   * @param top          上边距
+   * @param canvasWidth  文本最大宽度
+   * @param lineHeight   行高
+   * @return y 上边距 
+   */
+  canvasContext.drawOneLineText = function (str, fontSize, left, top, canvasWidth, lineHeight) {
+    // console.log('utils.createCanvasContext.drawOneLineText', str, fontSize, left, top, canvasWidth, lineHeight);
+    let lineWordCount = parseInt(canvasWidth / fontSize);
+    this.setFontSize(fontSize);
+    if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
+    top += lineHeight;
+    if (lineWordCount >= str.length) {
+      this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
+      return top;
+    }
+    let lineString = '', printString = '', cutOffset = 0;
+    do {
+      cutOffset++;
+      lineString = str.substring(0, lineWordCount - cutOffset);
+      printString = lineString + '...';
+    } while (canvasWidth - this.measureText(printString).width <= fontSize);
+    this.fillText(printString, left + 115 - this.measureText(printString).width / 2, top);
+    return top;
+  };
+  /**
+   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * @param str          字符串
+   * @param fontSize     文字大小
+   * @param left         左边距
+   * @param top          上边距
+   * @param canvasWidth  文本最大宽度
+   * @param lineHeight   行高
+   * @return y 上边距 
+   */
+  canvasContext.drawMultiLineText = function (str, fontSize, left, top, canvasWidth, lineHeight) {
+    // console.log('utils.createCanvasContext.drawMultiLineText', str, fontSize, left, top, canvasWidth, lineHeight);
+    let lineWordCount = parseInt(canvasWidth / fontSize);
+    this.setFontSize(fontSize);
+    if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
+    if (lineWordCount >= str.length) {
+      top += lineHeight;
+      this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
+      return top;
+    }
+    let lineString = '';
+    do {
+      lineString = str.substring(0, lineWordCount);
+      lineWordCount++;
+    } while (canvasWidth - this.measureText(lineString).width > fontSize);
+    lineWordCount -= 2;
+    if (canvasWidth - this.measureText(lineString).width <= fontSize) {
+      top += lineHeight;
+      this.fillText(lineString, left + 115 - this.measureText(lineString).width / 2, top);
+      return this.drawMultiLineText(str.substring(lineWordCount), fontSize, left, top, canvasWidth, lineHeight);
+    }
+    return this.drawMultiLineText(str.substring(lineString.length), fontSize, left, top, canvasWidth, lineHeight);
+  };
+  /**
+   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * @param imageResource   所要绘制的图片资源（网络图片要通过 getImageInfo / downloadFile 先下载）
+   * @param dx              imageResource的左上角在目标 canvas 上 x 轴的位置
+   * @param dy              imageResource的左上角在目标 canvas 上 y 轴的位置
+   * @param dWidth          在目标画布上绘制imageResource的宽度，允许对绘制的imageResource进行缩放
+   * @param dHeight         在目标画布上绘制imageResource的高度，允许对绘制的imageResource进行缩放
+   */
+  canvasContext.drawImageAspectFill = function (imageResource, dx, dy, dWidth, dHeight) {
+    // console.log('utils.createCanvasContext.drawImageAspectFill', imageResource, dx, dy, dWidth, dHeight);
+    let __objectPictureWidth = imageResource.width, __objectPictureHeight = imageResource.height, __pictureWidth = 0, __pictureHeight = 0;
+    let __pictureWidthRatio = __objectPictureWidth / dWidth, __pictureHeightRatio = __objectPictureHeight / dHeight, __x = 0, __y = 0;
+    if (__pictureWidthRatio > __pictureHeightRatio) {
+      __pictureWidth = dWidth * __pictureHeightRatio;
+      __pictureHeight = __objectPictureHeight;
+      __x = __objectPictureWidth / 2 - __pictureWidth / 2; __y = 0;
+    } else {
+      __pictureWidth = __objectPictureWidth;
+      __pictureHeight = dHeight * __pictureWidthRatio;
+      __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2
+    }
+    this.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
+  };
+  return canvasContext;
+};
+module.exports.createCanvasContext = createCanvasContext;

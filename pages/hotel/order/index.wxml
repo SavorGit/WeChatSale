@@ -28,7 +28,7 @@
 								<view>{{bean.phone}}</view>
 							</view>
 							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
 						</view>
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
@@ -62,7 +62,7 @@
 								<view>{{bean.phone}}</view>
 							</view>
 							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
 						</view>
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
@@ -97,7 +97,7 @@
 								<view>{{bean.phone}}</view>
 							</view>
 							<view class="two-line-overflow theme-font7">{{bean.address}}</view>
-							<view class="theme-font8">希望送过时间: {{bean.delivery_time}}</view>
+							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
 						</view>
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
