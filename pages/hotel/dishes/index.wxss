@@ -29,6 +29,8 @@
 
 .scroll-view .list>.row>.info>.name,
 .scroll-view .list>.row>.info>.price {
+  width: 100%;
+  height: 33.3%;
   font-size: 32rpx;
 }
 

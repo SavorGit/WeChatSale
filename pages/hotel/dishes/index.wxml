@@ -4,10 +4,10 @@
 		<view class="list flex_column_center">
 			<block wx:for="{{dishes_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="row flex_row_center_spaceBetween theme7">
-					<image bindtap="gotoDeshDetail" data-goods_id="{{bean.id}}" class="pic" mode="aspectFill" src="{{bean.img_url}}"></image>
+					<image class="pic" mode="aspectFill" bindtap="gotoDeshDetail" data-goods_id="{{bean.id}}" src="{{bean.img_url}}"></image>
 					<view class="info flex_column_flexStart_spaceBetween">
-						<view class="name two-line-overflow">{{bean.name}}</view>
-						<view class="price theme-font5">￥{{bean.price}}</view>
+						<view class="name two-line-overflow" bindtap="gotoDeshDetail" data-goods_id="{{bean.id}}">{{bean.name}}</view>
+						<view class="price theme-font5" bindtap="gotoDeshDetail" data-goods_id="{{bean.id}}">￥{{bean.price}}</view>
 						<view class="btn-group flex_row_center_spaceBetween">
 							<view class="btn on-line" wx:if="{{bean.status==1}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="2">已上架</view>
 							<view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
