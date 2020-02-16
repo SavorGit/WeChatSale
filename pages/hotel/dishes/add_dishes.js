@@ -69,6 +69,9 @@ Page({
           title: '图片上传中...',
           mask:true
         })
+        that.setData({
+          addDisabled:true
+        })
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
           headers: {
@@ -98,13 +101,16 @@ Page({
 
               success: function (res) {
                 var dish_img_url = "forscreen/resource/" + img_url
-                console.log(keys)
+                console.log('keys:'+keys)
+                console.log('type:'+type);
+                console.log(dish_img_url);
                 if(keys==0){
                   if (type==1){
                     that.setData({
                       dish_img0: dish_img_url,
                     })
                   }else {
+                    console.log(dish_img_url)
                     that.setData({
                       intro_img0: dish_img_url,
                     })
@@ -154,15 +160,26 @@ Page({
                   }
                 }
                 wx.hideLoading();
+                
+                setTimeout(function () {
+                  that.setData({
+                    addDisabled: false
+                  })
+                }, 1000);
               },
               fail: function ({ errMsg }) {
                 wx.hideLoading();
                 app.showToast('图片上传失败，请重试')
-
+                that.setData({
+                  addDisabled: false
+                })
               },
             });
           },fail:function(e){
             wx.hideLoading();
+            that.setData({
+              addDisabled: false
+            })
           }
         })
       }
@@ -171,7 +188,6 @@ Page({
   addDishes:function(e){
     var that = this;
     
-    console.log(e)
     var name = e.detail.value.name;
     if(name==''){
       app.showToast('请填写菜品名称');
@@ -260,6 +276,7 @@ Page({
     that.setData({
       addDisabled: true,
     })
+    console.log('intro'+intro);
     utils.PostRequest(api_v_url + '/dish/addDish', {
       detail_imgs: intro_imgs,
       imgs: imgs,
