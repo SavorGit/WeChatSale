@@ -341,7 +341,7 @@ Page({
       canvasId: 'goodsCanvas',// 画布标识
       object: {
         picture: pictrue, // 展示的图片
-        activePicture: 'https://oss.littlehotspot.com/media/resource/pnyWdBRfjJ.png', // 活动的图片
+        activePicture: 'https://oss.littlehotspot.com/media/resource/wJtZrkyrah.png', // 活动的图片
         name: goods_name, // 名称
         hotel: {
           name: hotel_name // 酒楼名称
@@ -416,7 +416,7 @@ Page({
       canvasId: 'shopCanvas',// 画布标识
       object: {
         picture: picture, // 展示的图片
-        activePicture: 'https://oss.littlehotspot.com/WeChat/resource/vip-icons/huangguan.png', // 活动的图片
+        activePicture: 'https://oss.littlehotspot.com/media/resource/wJtZrkyrah.png', // 活动的图片
         name: tips, // 名称
         hotel: {
           name: hotel_name  // 酒楼名称
