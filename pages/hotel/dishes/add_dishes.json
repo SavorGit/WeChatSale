@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "新增菜品",
+  "disableScroll": true,
   "usingComponents": {}
 }
