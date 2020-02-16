@@ -4,7 +4,7 @@
 		<view class="goods-info flex_column_center theme7">
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品名</view>
-				<textarea class="input" placeholder="请输入菜品名称" name="name" maxlength="30"></textarea>
+				<textarea class="input" placeholder="请输入菜品名称" name="name" maxlength="50"></textarea>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>

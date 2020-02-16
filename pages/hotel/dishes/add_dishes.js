@@ -49,6 +49,13 @@ Page({
     var is_desc_img = e.currentTarget.dataset.is_desc_img;
     var type = e.currentTarget.dataset.type;
     
+    wx.showLoading({
+      title: '图片上传中...',
+      mask: true
+    })
+    that.setData({
+      addDisabled: true
+    })
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -65,13 +72,7 @@ Page({
         var postf_w = filename.substring(index1 + 1, index2);//后缀名
 
         var img_url = timestamp + postf;
-        wx.showLoading({
-          title: '图片上传中...',
-          mask:true
-        })
-        that.setData({
-          addDisabled:true
-        })
+        
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
           headers: {
@@ -181,6 +182,11 @@ Page({
               addDisabled: false
             })
           }
+        })
+      },fail:function(e){
+        wx.hideLoading();
+        that.setData({
+          addDisabled: false
         })
       }
     })

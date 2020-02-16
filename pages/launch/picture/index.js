@@ -111,6 +111,7 @@ Page({
     var mobile_brand = app.globalData.mobile_brand;
     var mobile_model = app.globalData.mobile_model;
     var forscreen_char = e.detail.value.forscreen_char;
+    forscreen_char = forscreen_char.split('\n').join('');
     var play_times = e.detail.value.play_times;
     var upimgs = [];
     var is_pub_hotelinfo = e.detail.value.is_pub_hotelinfo;   //是否公开显示餐厅信息
@@ -361,7 +362,7 @@ Page({
     params.forscreen_img = forscreen_img;
     params.filename = filename;
     params.play_times = res.target.dataset.play_times;
-    params.forscreen_char = res.currentTarget.dataset.forscreen_char;
+    params.forscreen_char = res.currentTarget.dataset.forscreen_char.split('\n').join('');
     params.rotate = 0;
     params.angle  = angle;
 
@@ -448,7 +449,7 @@ Page({
     var up_imgs = that.data.up_imgs;
     var play_times = e.currentTarget.dataset.play_times;
     var forscreen_char = e.currentTarget.dataset.forscreen_char;
-
+    forscreen_char = forscreen_char.split('\n').join('');
 
 
     angle +=90;
