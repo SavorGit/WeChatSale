@@ -88,8 +88,19 @@
   font-size: 30rpx;
 }
 
-.row>.body>.right>view:nth-child(2)>view:first-child {
-  width: 120rpx;
+.row>.body>.right>view:nth-child(2)>view {
+  min-width: 120rpx;
+}
+
+.row>.body>.right>view:nth-child(2)>button {
+  height: 30rpx;
+  line-height: 30rpx;
+  background: unset;
+  color: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .row>.foot {
