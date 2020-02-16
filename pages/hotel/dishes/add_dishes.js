@@ -28,6 +28,7 @@ Page({
     intro_img3: '',
     intro_img4: '',
     oss_url:app.globalData.oss_url+'/',
+    addDisabled:false,
   },
 
   /**
@@ -47,6 +48,7 @@ Page({
     var keys = e.currentTarget.dataset.keys;
     var is_desc_img = e.currentTarget.dataset.is_desc_img;
     var type = e.currentTarget.dataset.type;
+    
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -63,7 +65,10 @@ Page({
         var postf_w = filename.substring(index1 + 1, index2);//后缀名
 
         var img_url = timestamp + postf;
-
+        wx.showLoading({
+          title: '图片上传中...',
+          mask:true
+        })
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
           headers: {
@@ -148,11 +153,16 @@ Page({
                     })
                   }
                 }
+                wx.hideLoading();
               },
               fail: function ({ errMsg }) {
+                wx.hideLoading();
                 app.showToast('图片上传失败，请重试')
+
               },
             });
+          },fail:function(e){
+            wx.hideLoading();
           }
         })
       }
@@ -160,6 +170,7 @@ Page({
   },
   addDishes:function(e){
     var that = this;
+    
     console.log(e)
     var name = e.detail.value.name;
     if(name==''){
@@ -246,6 +257,9 @@ Page({
         }   
       }
     }
+    that.setData({
+      addDisabled: true,
+    })
     utils.PostRequest(api_v_url + '/dish/addDish', {
       detail_imgs: intro_imgs,
       imgs: imgs,
@@ -258,6 +272,13 @@ Page({
       app.showToast('添加成功')
       wx.navigateBack({
         delta: 1
+      })
+      that.setData({
+        addDisabled: false,
+      })
+    },function(){
+      that.setData({
+        addDisabled: false,
       })
     })
   },

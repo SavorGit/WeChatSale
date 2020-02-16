@@ -85,6 +85,6 @@
 		<input class='display_hide' name="intro_img1" value="{{intro_img1}}"> </input>
 		<input class='display_hide' name="intro_img2" value="{{intro_img2}}"> </input>
 
-		<button class="btn save theme-button-welcome" form-type="submit">保存</button>
+		<button class="btn save theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">保存</button>
 	</form>
 </scroll-view>
