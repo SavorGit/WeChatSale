@@ -25,7 +25,7 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 							<view class="flex_row_center theme-font7">
 								<view>{{bean.contact}}</view>
-								<view>{{bean.phone}}</view>
+								<button bindtap='phonecallevent' data-tel="{{bean.phone}}">{{bean.phone}}</button>
 							</view>
 							<view class="four-line-overflow theme-font7">{{bean.address}}</view>
 							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
@@ -59,7 +59,7 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 							<view class="flex_row_center theme-font7">
 								<view>{{bean.contact}}</view>
-								<view>{{bean.phone}}</view>
+								<button bindtap='phonecallevent' data-tel="{{bean.phone}}">{{bean.phone}}</button>
 							</view>
 							<view class="four-line-overflow theme-font7">{{bean.address}}</view>
 							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
@@ -94,7 +94,7 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 							<view class="flex_row_center theme-font7">
 								<view>{{bean.contact}}</view>
-								<view>{{bean.phone}}</view>
+								<button bindtap='phonecallevent' data-tel="{{bean.phone}}">{{bean.phone}}</button>
 							</view>
 							<view class="four-line-overflow theme-font7">{{bean.address}}</view>
 							<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
