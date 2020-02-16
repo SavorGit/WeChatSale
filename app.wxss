@@ -71,6 +71,24 @@ button::before {
   -webkit-box-orient: vertical;
 }
 
+
+.three-line-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+
+.four-line-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
 .button_none,
 .button_none::before,
 .button_none::after {
