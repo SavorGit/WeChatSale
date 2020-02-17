@@ -43,8 +43,10 @@
   border-bottom: 1rpx solid #999;
 }
 
-.page_main .login_form .account, .page_main .login_form .invitation,
-.page_main .login_form .verification, .page_main .login_form .login_btn {
+.page_main .login_form .account,
+.page_main .login_form .invitation,
+.page_main .login_form .verification,
+.page_main .login_form .login_btn {
   height: 80rpx;
 }
 
@@ -71,12 +73,18 @@
 
 .page_main .login_form .login_btn {
   margin-top: 150rpx;
+  height: 200rpx;
 }
 
 .page_main .login_form .login_btn button {
   width: 100%;
   height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
   font-size: 30rpx;
+  padding: 0;
+  border: 0;
+  padding: 0;
 }
 
 .page_bottom {
