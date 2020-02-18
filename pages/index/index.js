@@ -99,6 +99,7 @@ Page({
                 wx.reLaunch({
                   url: '/pages/hotel/register/index',
                 })
+                return false;
               }
 
               //如果已登录 并且用户角色为服务员
