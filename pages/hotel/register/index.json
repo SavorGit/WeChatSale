@@ -1,5 +1,9 @@
 {
   "navigationBarTitleText": "店铺主页",
   "disableScroll": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "MailList": "/components/modal/MailList",
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal"
+  }
 }
