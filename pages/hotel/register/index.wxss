@@ -109,13 +109,13 @@
 
 .scroll-view .list>.row>.info>view {
   width: 100%;
-  height: calc(100% - 50rpx);
+  height: calc(100% - 85rpx);
   font-size: 32rpx;
 }
 
-/* .scroll-view .list>.row>.info>.name {
-  height: 80rpx;
-} */
+.scroll-view .list>.row>.info>.price {
+  height: 40rpx;
+}
 
 .scroll-view .list>.row>.info>.btn-group {
   width: 340rpx;
