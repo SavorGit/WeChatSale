@@ -12,6 +12,7 @@
     "pages/hotel/dishes/add_dishes",
     "pages/hotel/dishes/detail",
     "pages/hotel/order/index",
+    "pages/hotel/register/index",
     "pages/launch/file/index",
     "pages/launch/file/h5files",
     "pages/launch/file/h5files_result",

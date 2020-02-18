@@ -44,7 +44,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" type="number"></input>
 						</view>
 					</view>
 					<view class="row city flex_row_center_spaceBetween">
