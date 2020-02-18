@@ -170,8 +170,17 @@
   text-align: center;
   margin-right: -3rpx;
   border-radius: 5rpx;
-  border: 1px solid #a18668;
   font-size: 32rpx;
+}
+
+.contacts>.body>.validate-code>.input-group>.btn-get-code.enable {
+  color: #a18668;
+  border: 1px solid #a18668;
+}
+
+.contacts>.body>.validate-code>.input-group>.btn-get-code.disable {
+  color: #bebebe;
+  border: 1px solid #bebebe;
 }
 
 .btn-group {
