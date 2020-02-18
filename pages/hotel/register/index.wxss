@@ -161,3 +161,50 @@
   text-align: center;
   font-size: 32rpx;
 }
+
+/* ============================= 分享菜品 ============================= */
+.share-window {
+  width: 100vw;
+  height: 1040rpx;
+}
+
+.share-window>.title-bar {
+  width: calc(100% - 80rpx);
+  height: 120rpx;
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.share-window>.title-bar>.fa-close {
+  font-size: 50rpx;
+}
+
+.share-window>.body {
+  width: 100%;
+  height: calc(100% - 220rpx);
+}
+
+.share-window>.body>.share-canvas {
+  width: 250px;
+  height: 370px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.share-window>.foot {
+  width: 100%;
+  height: 100rpx;
+}
+
+.share-window>.foot>.btn {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 32rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

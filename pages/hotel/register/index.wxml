@@ -23,7 +23,7 @@
 						<view class="fa fa-external-link fa-lg" aria-hidden="true"></view>
 						<view>分享店铺</view>
 					</button>
-					<button class="btn flex_row_center_center" >
+					<button class="btn flex_row_center_center">
 						<view class="fa fa-phone fa-lg" aria-hidden="true"></view>
 						<view>电话订餐:{{merchant_info.mobile}}</view>
 					</button>
@@ -39,7 +39,7 @@
 							<view class="btn on-line" wx:if="{{bean.status==1}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="2">已上架</view>
 							<view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
 
-              
+
 							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==0 && bean.status==1}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
 							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==1 && bean.status==1}}">已置顶</view>
 
@@ -47,8 +47,8 @@
 						</view>
 					</view>
 				</view>
-				
-				
+
+
 			</view>
 		</view>
 	</scroll-view>
