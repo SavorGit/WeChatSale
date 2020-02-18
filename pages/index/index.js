@@ -94,6 +94,13 @@ Page({
               })
               var user_info = res.data.result.userinfo;
               var hotel_id = user_info.hotel_id;
+              //如果是注册的酒楼
+              if (user_info.hotel_type==2){
+                wx.reLaunch({
+                  url: '/pages/hotel/register/index',
+                })
+              }
+
               //如果已登录 并且用户角色为服务员
               if (user_info.role_type==3){
                 //跳转到服务员登陆页面

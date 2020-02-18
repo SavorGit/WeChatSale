@@ -1,7 +1,7 @@
 <!--pages/user/register.wxml-->
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<form>
+	<form bindsubmit="registerHotel">
 		<view class="wapper">
 			<view class="panel basic theme7">
 				<view class="title-bar flex_row_center theme-font7">
@@ -14,7 +14,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" name="name" placeholder="请输入" maxlength="30"></input>
+							<input class="input" name="name" placeholder="请输入" maxlength="30" focus="{{name_focus}}"></input>
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
@@ -34,7 +34,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入。如：300"></input>
+							<input class="input" placeholder="请输入。如：300" name='avg_exp' type="number" focus="{{avg_focus}}"></input>
 							<view class="unit">元/人</view>
 						</view>
 					</view>
@@ -44,7 +44,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入" type="number"></input>
+							<input class="input" placeholder="请输入" name="tel"  maxlength="20" focus="{{tel_focus}}"></input>
 						</view>
 					</view>
 					<view class="row city flex_row_center_spaceBetween">
@@ -67,7 +67,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<textarea class="input" placeholder="多行输入"></textarea>
+							<textarea class="input" placeholder="多行输入" name='addr' maxlength="200" focus="{{addr_focus}}"></textarea>
 						</view>
 					</view>
 				</view>
@@ -80,16 +80,17 @@
 					<view class="pic-row flex_row_flexStart_spaceBetween">
 						<view class="label-group flex_row_center">
 							<view class="label theme-font1">餐厅LOGO</view>
-							<view class="flag theme-font5"></view>
+							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
-								<!-- <view class="explain"> </view>
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-								</view> -->
 
-                <view class="input flex_column_center_center">
+								
+								<view class="input flex_column_center_center" wx:if="{{logoimg !=''}}" bindtap="uploadDishesPic" data-type="logo" data-keys="0">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{logoimg}}"></image>
+								</view> 
+
+                <view class="input flex_column_center_center" wx:if="{{logoimg ==''}}" bindtap="uploadDishesPic" data-type="logo" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 							</view>
@@ -98,14 +99,17 @@
 					<view class="pic-row shop-face flex_row_flexStart_spaceBetween">
 						<view class="label-group flex_row_center">
 							<view class="label theme-font1">门脸照</view>
-							<view class="flag theme-font5"></view>
+							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
 								<view class="explain theme-font3">(需拍全，包含完整的牌匾、门框)</view>
-								<view class="input flex_column_center_center">
+								<view class="input flex_column_center_center" wx:if="{{faceimg ==''}}" bindtap="uploadDishesPic" data-type="face" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
+                <view class="input flex_column_center_center" wx:if="{{faceimg !=''}}" bindtap="uploadDishesPic" data-type="face" data-keys="0">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{faceimg}}"></image>
+								</view> 
 							</view>
 						</view>
 					</view>
@@ -117,9 +121,12 @@
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
 								<view class="explain"> </view>
-								<view class="input flex_column_center_center">
+								<view class="input flex_column_center_center" wx:if="{{envimg ==''}}" bindtap="uploadDishesPic" data-type="env" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
+                <view class="input flex_column_center_center" wx:if="{{envimg !=''}}" bindtap="uploadDishesPic" data-type="env" data-keys="0">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{envimg}}"></image>
+								</view> 
 							</view>
 						</view>
 					</view>
@@ -136,7 +143,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name='legal_name' maxlength="30" focus="{{legal_focus}}"></input>
 						</view>
 					</view>
 					<view class="pic-row flex_row_flexStart_spaceBetween">
@@ -146,20 +153,35 @@
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
-								<view class="input flex_column_center_center">
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img0 ==''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
+
+                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img0 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="0">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img0}}"></image>
+								</view>
+
+
 								<view class="explain">正面</view>
 							</view>
 							<view class="frame">
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img1 ==''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="1">
+									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
+
+                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img1 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="1">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img1}}"></image>
+								</view>
+
 								<view class="explain">反面</view>
 							</view>
 							<view class="frame">
-								<view class="input flex_column_center_center">
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img2 ==''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="2">
 									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+
+                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img2 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="2">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img2}}"></image>
 								</view>
 								<view class="explain">法人手持</view>
 							</view>
@@ -172,14 +194,22 @@
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img0 ==''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+
+                <view class="input flex_column_center_center"  wx:if="{{legal_charter_img0 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img0}}"></image>
 								</view>
 								<view class="explain">营业执照</view>
 							</view>
 							<view class="frame">
-								<view class="input flex_column_center_center">
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 ==''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
 									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+
+                <view class="input flex_column_center_center"  wx:if="{{legal_charter_img1 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
 								</view>
 								<view class="explain">许可证</view>
 							</view>
@@ -198,7 +228,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name='contractor' maxlength="30" focus="{{contractor_focus}}"></input>
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
@@ -207,7 +237,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobileOnInput" focus="{{mobile_focus}}"></input>
 						</view>
 					</view>
 					<view class="row validate-code flex_row_center_spaceBetween">
@@ -216,14 +246,27 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入"></input>
-							<view class="btn-get-code theme-font7">获取</view>
+							<input class="input" placeholder="请输入" name="verify_code" focus="{{verify_code_focus}}"></input>
+							<view class="btn-get-code enable" wx:if="{{is_get_sms_code==0}}" data-mobile='{{mobile}}' bindtap='getSmsCode'>获取</view>
+
+              <view wx:else class="btn-get-code disable">{{sms_time_djs}} S</view>
 						</view>
 					</view>
 				</view>
 			</view>
 			<view class="btn-group">
-				<button class="submit theme-button-welcome">提交</button>
+        <input class='display_hide' name="logoimg" value="{{logoimg}}"> </input>
+        <input class='display_hide' name="faceimg" value="{{faceimg}}"> </input>
+        <input class='display_hide' name="envimg" value="{{envimg}}"> </input>
+        <input class='display_hide' name="legal_idcard_img0" value="{{legal_idcard_img0}}"> </input>
+        <input class='display_hide' name="legal_idcard_img1" value="{{legal_idcard_img1}}"> </input>
+        <input class='display_hide' name="legal_idcard_img2" value="{{legal_idcard_img2}}"> </input>
+        <input class='display_hide' name="legal_charter_img0" value="{{legal_charter_img0}}"> </input>
+        <input class='display_hide' name="legal_charter_img1" value="{{legal_charter_img1}}"> </input>
+        
+        
+        
+				<button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">提交</button>
 			</view>
 		</view>
 	</form>
@@ -231,5 +274,5 @@
 
 <!-- 提交成功弹窗 -->
 <modal show="{{showRegisterSuccessPopWindow}}" width="600rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='提交' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='确定' confirm-color="#FFFFFF" confirm-background-color="#EB6877" confirm-border-radius="0 0 10rpx 10rpx" cancel-text='' bindconfirm='modalConfirm'>
-	<view class="theme-font1" style="width:calc(100% - 80rpx);line-height:40rpx;padding:0 40rpx;font-size:30rpx;">您的申请已经成功提交，稍后会有工作人员与您核实信息。请保持通话畅通。</view>
+	<view class="theme-font1" style="width:calc(100% - 80rpx);line-height:40rpx;padding:0 40rpx;font-size:30rpx;">{{message}}</view>
 </modal>
