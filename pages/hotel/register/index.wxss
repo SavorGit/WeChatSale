@@ -109,7 +109,7 @@
 
 .scroll-view .list>.row>.info>view {
   width: 100%;
-  height: calc(100% - 85rpx);
+  height: calc(100% - 95rpx);
   font-size: 32rpx;
 }
 
