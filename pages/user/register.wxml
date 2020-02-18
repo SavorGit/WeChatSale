@@ -14,7 +14,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" name="name" placeholder="请输入" maxlength="30"></input>
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
@@ -23,8 +23,8 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<picker class="input">
-								<view>请选择</view>
+							<picker class="input"  bindchange="bindCuiPickerChange" value="{{cuisineIndex}}" range="{{cuisineArray}}">
+								<view>{{cuisineArray[cuisineIndex]}}</view>
 							</picker>
 						</view>
 					</view>
@@ -53,11 +53,11 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input">
-								<view>---请选择---</view>
+							<picker class="input" bindchange="bindCityPickerChange" value="{{cityIndex}}" range="{{cityArray}}">
+								<view>{{cityArray[cityIndex]}}</view>
 							</picker>
-							<picker class="input">
-								<view>---请选择---</view>
+							<picker class="input" bindchange="bindAreaPickerChange" value="{{areaIndex}}" range="{{areaArray}}">
+								<view>{{areaArray[areaIndex]}}</view>
 							</picker>
 						</view>
 					</view>
@@ -84,9 +84,13 @@
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
-								<view class="explain"> </view>
+								<!-- <view class="explain"> </view>
 								<view class="input flex_column_center_center">
 									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view> -->
+
+                <view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 							</view>
 						</view>

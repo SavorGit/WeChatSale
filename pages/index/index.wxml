@@ -86,7 +86,7 @@
       <image style="width:100%;height:84px;" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg" bindtap="gotoPublic" data-openid="{{openid}}"></image>
     </block>
 	</view>-->
-
+<navigator url="/pages/user/register?openid={{openid}}">test</navigator>
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<!-- <view class="title theme-font4">包间签到赚积分</view> -->
