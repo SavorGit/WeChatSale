@@ -1,2 +1,231 @@
 <!--pages/user/register.wxml-->
-<text>pages/user/register.wxml</text>
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<form>
+		<view class="wapper">
+			<view class="panel basic theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">基本信息</view>
+				</view>
+				<view class="body">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">餐厅名称</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">菜品类型</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<picker class="input">
+								<view>请选择</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row consumption-per-person flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">人均消费</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<input class="input" placeholder="请输入。如：300"></input>
+							<view class="unit">元/人</view>
+						</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">订餐电话</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row city flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">所在城市</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input">
+								<view>---请选择---</view>
+							</picker>
+							<picker class="input">
+								<view>---请选择---</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row address flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">餐厅地址</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<textarea class="input" placeholder="多行输入"></textarea>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel face theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">餐厅形象</view>
+				</view>
+				<view class="body">
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">餐厅LOGO</view>
+							<view class="flag theme-font5"></view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="explain"> </view>
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="pic-row shop-face flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">门脸照</view>
+							<view class="flag theme-font5"></view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="explain theme-font3">(需拍全，包含完整的牌匾、门框)</view>
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">店内环境照</view>
+							<view class="flag theme-font5"></view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="explain"> </view>
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel manage theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">经营信息</view>
+				</view>
+				<view class="body">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">法人姓名</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">法人身份证</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+								<view class="explain">正面</view>
+							</view>
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+								<view class="explain">反面</view>
+							</view>
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+								<view class="explain">法人手持</view>
+							</view>
+						</view>
+					</view>
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">执照</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+								<view class="explain">营业执照</view>
+							</view>
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+								<view class="explain">许可证</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel contacts theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">联系人</view>
+				</view>
+				<view class="body">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">姓名</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">联系方式</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row validate-code flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">验证码</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<input class="input" placeholder="请输入"></input>
+							<view class="btn-get-code theme-font7">获取</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="btn-group">
+				<button class="submit theme-button-welcome">提交</button>
+			</view>
+		</view>
+	</form>
+</scroll-view>
+
+<!-- 提交成功弹窗 -->
+<modal show="{{showRegisterSuccessPopWindow}}" width="600rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='提交' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='确定' confirm-color="#FFFFFF" confirm-background-color="#EB6877" confirm-border-radius="0 0 10rpx 10rpx" cancel-text='' bindconfirm='modalConfirm'>
+	<view class="theme-font1" style="width:calc(100% - 80rpx);line-height:40rpx;padding:0 40rpx;font-size:30rpx;">您的申请已经成功提交，稍后会有工作人员与您核实信息。请保持通话畅通。</view>
+</modal>

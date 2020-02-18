@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "用户注册",
+  "disableScroll": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
 }

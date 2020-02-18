@@ -27,8 +27,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .savor-btn {
-  background-color: #1cbeb6;
   color: #fff;
+  background-color: #1cbeb6;
 }
 
 .theme {
