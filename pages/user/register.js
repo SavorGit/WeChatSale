@@ -326,25 +326,25 @@ Page({
     var that = this;
     console.log(e);
     console.log(that.data)
-    var name = e.detail.value.name; //餐厅名称
+    var name = e.detail.value.name.replace(/\s+/g, ''); //餐厅名称
     var cuisineIndex = that.data.cuisineIndex;
     var cityIndex = that.data.cityIndex;
     var areaIndex = that.data.areaIndex;
-    var avg_exp = e.detail.value.avg_exp;
-    var tel = e.detail.value.tel;
-    var addr = e.detail.value.addr;
+    var avg_exp = e.detail.value.avg_exp.replace(/\s+/g, '');
+    var tel = e.detail.value.tel.replace(/\s+/g, '');
+    var addr = e.detail.value.addr.replace(/\s+/g, '');
     var logoimg = e.detail.value.logoimg;
     var faceimg = e.detail.value.faceimg;
     var envimg = e.detail.value.envimg;
-    var legal_name = e.detail.value.legal_name;
+    var legal_name = e.detail.value.legal_name.replace(/\s+/g, '');
     var legal_idcard_img0 = e.detail.value.legal_idcard_img0;
     var legal_idcard_img1 = e.detail.value.legal_idcard_img1;
     var legal_idcard_img2 = e.detail.value.legal_idcard_img2;
     var legal_charter_img0 = e.detail.value.legal_charter_img0;
     var legal_charter_img1 = e.detail.value.legal_charter_img1;
-    var contractor = e.detail.value.contractor;
-    var mobile = e.detail.value.mobile;
-    var verify_code = e.detail.value.verify_code;
+    var contractor = e.detail.value.contractor.replace(/\s+/g, '');
+    var mobile = e.detail.value.mobile.replace(/\s+/g, '');
+    var verify_code = e.detail.value.verify_code.replace(/\s+/g, '');
 
 
     if(name==''){

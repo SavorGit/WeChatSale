@@ -323,24 +323,33 @@ Page({
       },
       success:function(rt){
         if(rt.data.code==10000){
-          if (rt.data.result.hotel_has_room==1){
+
+          if(rt.data.result.hotel_type==2){
             wx.reLaunch({
-              url: '/pages/index/index',
+              url: '/pages/hotel/register/index',
             })
+            return false;
           }else {
-            wx.reLaunch({
-              url: '/pages/tv_sale/system',
+            if (rt.data.result.hotel_has_room == 1) {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            } else {
+              wx.reLaunch({
+                url: '/pages/tv_sale/system',
+              })
+            }
+            var user_info = rt.data.result;
+            //var user_info = wx.getStorageSync(cache_key + "userinfo");
+            //user_info.is_login = 1;
+
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: user_info,
             })
+            wx.removeStorageSync(cache_key + 'link_box_info');
           }
-          var user_info = rt.data.result;
-          //var user_info = wx.getStorageSync(cache_key + "userinfo");
-          //user_info.is_login = 1;
           
-          wx.setStorage({
-            key: cache_key+'userinfo',
-            data: user_info,
-          })
-          wx.removeStorageSync(cache_key + 'link_box_info');
         }else {
           wx.showToast({
             title: rt.data.msg,

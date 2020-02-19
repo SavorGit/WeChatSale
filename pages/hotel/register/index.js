@@ -425,6 +425,18 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton();
+
+    var that = this;
+    
+    var merchant_id = that.data.merchant_id;
+    utils.PostRequest(api_v_url + '/dish/goodslist', {
+      merchant_id: merchant_id,
+      page: page,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        dishes_list: data.result
+      })
+    })
   },
 
   /**
