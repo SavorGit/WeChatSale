@@ -15,7 +15,7 @@
 							<view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
 							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==0 && bean.status==1}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
 							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==1 && bean.status==1}}">已置顶</view>
-							<view wx:if="{{bean.status==1}}" class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}">分享</view>
+							<view wx:if="{{bean.status==1}}" class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}" data-goods_id="{{bean.id}}">分享</view>
 						</view>
 					</view>
 				</view>

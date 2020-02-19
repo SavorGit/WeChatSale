@@ -331,11 +331,11 @@ Page({
   // 打开分享菜品窗口
   openShareGoodsWindow: function (e) {
     let self = this;
-    console.log(e)
     var pictrue = e.currentTarget.dataset.img_url;
     var qrCode = e.currentTarget.dataset.qrcode;
     var hotel_name = e.currentTarget.dataset.hotel_name;
     var goods_name = e.currentTarget.dataset.goods_name;
+    var goods_id = e.currentTarget.dataset.goods_id;
     self.setData({ showGoodsPopWindow: true });
     self.drawSharePicture({
       canvasId: 'goodsCanvas',// 画布标识
@@ -360,6 +360,7 @@ Page({
         });
       }
     });
+    mta.Event.stat('shareDishes', { 'openid': openid, 'goods_id': goods_id})
   },
 
   // 关闭分享菜品窗口
@@ -435,6 +436,7 @@ Page({
         });
       }
     });
+    mta.Event.stat('shareMerchant', { 'merchantid': merchant_id,'openid':openid })
   },
 
   // 关闭分享店铺窗口

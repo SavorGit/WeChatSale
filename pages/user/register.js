@@ -388,10 +388,10 @@ Page({
       })
       return false;
     }
-    if (logoimg==''){
+    /*if (logoimg==''){
       app.showToast('请上传餐厅logo图');
       return false;
-    }
+    }*/
     if (faceimg==''){
       app.showToast('请上传餐厅门脸图');
       return false;

@@ -80,7 +80,7 @@
 					<view class="pic-row flex_row_flexStart_spaceBetween">
 						<view class="label-group flex_row_center">
 							<view class="label theme-font1">餐厅LOGO</view>
-							<view class="flag theme-font5">*</view>
+							<view class="flag theme-font5"></view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
