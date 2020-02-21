@@ -1,0 +1,10 @@
+<!--pages/mine/setting/list.wxml-->
+
+<scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
+	<view class="wapper">
+		<view class="row flex_row_center_spaceBetween theme-panel">
+			<view class="title">第三方外卖平台</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
+</scroll-view>

@@ -39,14 +39,19 @@
   height: 200rpx;
 }
 
-.shop>.info>.right>.name {
+.shop>.info>.right>view {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.shop>.info>.right>view:first-child>.name {
+  width: calc(100% - 70rpx);
   font-size: 32rpx;
   font-weight: bold;
 }
 
-.shop>.info>.right>view {
-  width: 100%;
-  font-size: 28rpx;
+.shop>.info>.right>view:first-child>.fa {
+  font-size: 60rpx;
 }
 
 .shop>.info>.right>view:nth-child(2)>view {
@@ -160,6 +165,18 @@
   line-height: 100rpx;
   text-align: center;
   font-size: 32rpx;
+}
+
+.page-bottom>.mine-order>.new-count {
+  min-width: 30rpx;
+  max-width: 100rpx;
+  height: 20rpx;
+  padding: 5rpx;
+  margin-left: 10rpx;
+  line-height: 20rpx;
+  text-align: center;
+  font-size: 20rpx;
+  border-radius: 15rpx;
 }
 
 /* ============================= 分享菜品 ============================= */

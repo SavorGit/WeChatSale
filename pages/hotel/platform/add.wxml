@@ -1,0 +1,49 @@
+<!--pages/hotel/platform/add.wxml-->
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<form>
+		<view class="wapper">
+			<view class="page-main">
+				<view class="panel face theme7">
+					<view class="title-bar flex_row_center theme-font7">
+						<view class="title">第三方平台入口</view>
+					</view>
+					<view class="body">
+
+						<view class="row flex_row_center_spaceBetween">
+							<view class="label-group flex_row_center">
+								<view class="label theme-font1">名称</view>
+								<view class="flag theme-font5">*</view>
+							</view>
+							<view class="input-group">
+								<input class="input" name="name" placeholder="请输入" maxlength="30"></input>
+							</view>
+						</view>
+						<view class="pic-row flex_row_flexStart_spaceBetween">
+							<view class="label-group flex_row_center">
+								<view class="label theme-font1">二维码</view>
+								<view class="flag theme-font5">*</view>
+							</view>
+							<view class="input-group flex_row_center_flexStart">
+								<view class="frame">
+									<!--
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+                -->
+									<view class="input flex_column_center_center">
+										<view class="fa fa-plus" aria-hidden="true"></view>
+									</view>
+								</view>
+							</view>
+						</view>
+
+					</view>
+				</view>
+			</view>
+			<view class="page-bottom">
+				<view class="btn save theme-button-add">保存</view>
+			</view>
+		</view>
+	</form>
+</scroll-view>

@@ -27,13 +27,23 @@
 		</view>
 	</view>
 	-->
-	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width theme-panel-welcome-dark'>
-		<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
-		<view class='nickname'>{{nickName}}</view>
+	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+		<view class="left"></view>
+		<view class="center flex_column_center_center">
+			<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
+			<view class='nickname'>{{nickName}}</view>
+		</view>
+		<view class="right flex_row_flexStart_flexEnd">
+			<view class="fa fa-cog" aria-hidden="true"></view>
+		</view>
 	</view>
-	<view wx:else class='user-info-panel full_width theme7'>
-		<image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
-		<view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
+	<view wx:else class='user-info-panel full_width flex_row_center_center theme7'>
+		<view class="left"></view>
+		<view class="center flex_column_center_center">
+			<image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
+			<view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
+		</view>
+		<view class="right"></view>
 	</view>
 
 	<!-- 销售面板 -->
@@ -44,15 +54,15 @@
 				<view>我的店铺</view>
 			</view>
 			<view class="order flex_row_center_spaceBetween">
-				<view bindtap="saleDishes" >
+				<view bindtap="saleDishes">
 					<view>{{dish_num}}</view>
-					<view >在售菜品</view>
+					<view>在售菜品</view>
 				</view>
-				<view bindtap="gotoOrder" data-order_status="1" >
+				<view bindtap="gotoOrder" data-order_status="1">
 					<view>{{dishorder_process_num}}</view>
-					<view >待处理订单</view>
+					<view>待处理订单</view>
 				</view>
-				<view bindtap="gotoOrder" data-order_status="0" >
+				<view bindtap="gotoOrder" data-order_status="0">
 					<view>{{dishorder_all_num}}</view>
 					<view>全部订单</view>
 				</view>

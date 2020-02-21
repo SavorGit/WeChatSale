@@ -1,0 +1,19 @@
+/* pages/mine/setting/list.wxss */
+.wapper {
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  width: calc(100% - 60rpx);
+  height: 60rpx;
+  padding: 20rpx 30rpx;
+}
+
+.row>.title {
+  font-size: 32rpx;
+}
+
+.row>.fa {
+  font-size: 34rpx;
+}
