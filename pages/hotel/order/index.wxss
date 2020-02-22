@@ -32,7 +32,7 @@
 
 .row {
   width: 100%;
-  height: 350rpx;
+  height: 500rpx;
 }
 
 .row>.head,
@@ -44,26 +44,35 @@
   font-size: 24rpx;
 }
 
+.row>.head {
+  height: 70rpx;
+  padding-top: 25rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 3rpx dashed #ededed;
+}
+
 .row>.body {
-  min-height: 234rpx;
-  border-top: 3rpx solid #ededed;
-  border-bottom: 3rpx solid #ededed;
+  height: calc(100% - 330rpx);
 }
 
 .row>.body>.left {
-  width: 200rpx;
-  height: 200rpx;
+  width: 120rpx;
+  height: 120rpx;
 }
 
 .row>.body>.left>.pic {
-  width: 200rpx;
-  height: 200rpx;
+  width: 100%;
+  height: 100%;
+  border-radius: 5rpx;
 }
 
-.row>.body>.left>.pic>image {
-  width: 200rpx;
-  height: 200rpx;
-  border-radius: 5rpx;
+.row>.body>.left.multiple-goods {
+  width: calc(100% - 200rpx);
+}
+
+.row>.body>.left.multiple-goods>.pic {
+  width: 120rpx;
+  margin-right: 20rpx;
 }
 
 .row>.body>.left>.price {
@@ -75,24 +84,25 @@
   margin-top: -27rpx;
 }
 
-.row>.body>.right {
-  width: 445rpx;
-  min-height: 200rpx;
+.row>.body>.center {
+  width: calc(100% - 240rpx);
+  height: 100%;
+  margin-left: 15rpx;
 }
 
-.row>.body>.right>view {
+.row>.body>.center>view {
   width: 100%;
 }
 
-.row>.body>.right>view:first-child {
-  font-size: 30rpx;
+.row>.body>.center>view:first-child {
+  font-size: 28rpx;
 }
 
-.row>.body>.right>view:nth-child(2)>view {
+/* .row>.body>.center>view:nth-child(2)>view {
   min-width: 120rpx;
 }
 
-.row>.body>.right>view:nth-child(2)>button {
+.row>.body>.center>view:nth-child(2)>button {
   height: 30rpx;
   line-height: 30rpx;
   background: unset;
@@ -101,12 +111,56 @@
   margin: 0;
   padding: 0;
   border: 0;
+} */
+
+.row>.body>.center.multiple-goods {
+  width: 90rpx;
+}
+
+.row>.body>.center.multiple-goods>view:first-child {
+  font-size: 42rpx;
+}
+
+.row>.body>.right {
+  width: 155rpx;
+  height: 100%;
+}
+
+.row>.body>.right>.price {
+  font-size: 36rpx;
+}
+
+.row>.body>.right>.count {
+  font-size: 24rpx;
+}
+
+.row>.important {
+  width: calc(100% - 120rpx);
+  height: 150rpx;
+  padding: 0 40rpx 0 80rpx;
+}
+
+.row>.important>view {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+
+.row>.important button {
+  color: inherit;
+  font-size: inherit;
+  background: inherit;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .row>.foot {
   width: calc(100% - 40rpx);
-  height: 50rpx;
+  height: 65rpx;
   padding-right: 0;
+  border-top: 3rpx dashed #ededed;
 }
 
 .row>.foot>.order-number {
