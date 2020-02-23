@@ -1,7 +1,7 @@
 <!--pages/hotel/platform/add.wxml-->
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<form>
+	<form bindsubmit="addPlatform">
 		<view class="wapper">
 			<view class="page-main">
 				<view class="panel face theme7">
@@ -26,12 +26,12 @@
 							</view>
 							<view class="input-group flex_row_center_flexStart">
 								<view class="frame">
-									<!--
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-								</view>
-                -->
-									<view class="input flex_column_center_center">
+									
+                  <view  bindtap="uploadPlatformPic" class="input flex_column_center_center" wx:if="{{img_path!=''}}">
+                    <image class="pic" mode="aspectFill" src="{{oss_url}}{{img_path}}"></image>
+                  </view>
+                
+									<view bindtap="uploadPlatformPic" class="input flex_column_center_center" wx:else>
 										<view class="fa fa-plus" aria-hidden="true"></view>
 									</view>
 								</view>
@@ -41,8 +41,9 @@
 					</view>
 				</view>
 			</view>
+      <input class='display_hide' name="img_path" value="{{img_path}}"> </input>
 			<view class="page-bottom">
-				<view class="btn save theme-button-add">保存</view>
+				<button class="btn save theme-button-add" form-type="submit" disabled="{{addDisabled}}">保存</button>
 			</view>
 		</view>
 	</form>
