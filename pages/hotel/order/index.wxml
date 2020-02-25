@@ -18,7 +18,7 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
@@ -26,10 +26,10 @@
 
             <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
               <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image class="pic" mode="aspectFill" src="{{item.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>3}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 
@@ -52,39 +52,7 @@
 						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 					</view>
 				</view>
-				<!-- <view class="row flex_column_center_spaceBetween theme7 bottom-space">
-					<view class="head flex_row_center_spaceBetween theme-font8">
-						<view>{{bean.add_time}}</view>
-						<view wx:if="{{bean.status==2}}">已完成</view>
-						<view wx:if="{{bean.status==1}}">待处理</view>
-					</view>
-					<view class="body flex_row_center_spaceBetween">
-						<view class="left multiple-goods flex_row_center">
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						</view>
-						<view class="center multiple-goods flex_column_center_center">
-							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
-						</view>
-						<view class="right flex_column_center_center">
-							<view class="price theme-font1">￥{{bean.price}}</view>
-							<view class="count theme-font3">共1件</view>
-						</view>
-					</view>
-					<view class="important">
-						<view class="flex_row_center theme-font7">
-							<view>{{bean.contact}}</view>
-							<button bindtap='phonecallevent' data-tel="{{bean.phone}}">{{bean.phone}}</button>
-						</view>
-						<view class="four-line-overflow theme-font7">{{bean.address}}</view>
-						<view class="theme-font8">希望送达时间: {{bean.delivery_time}}</view>
-					</view>
-					<view class="foot flex_row_center_spaceBetween">
-						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
-					</view>
-				</view> -->
+				
 			</block>
 
 		</view>
@@ -101,7 +69,7 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
@@ -109,10 +77,10 @@
 
             <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
               <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image class="pic" mode="aspectFill" src="{{item.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>3}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 						<view class="right flex_column_center_center">
@@ -151,7 +119,7 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
@@ -159,10 +127,10 @@
 
             <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
               <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image class="pic" mode="aspectFill" src="{{item.goods_img}}"></image>
+							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>3}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 						<view class="right flex_column_center_center">

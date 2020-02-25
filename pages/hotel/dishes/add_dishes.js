@@ -299,6 +299,7 @@ Page({
       that.setData({
         addDisabled: false,
       })
+      mta.Event.stat('addDishe', { 'openid': openid,'merchantid':merchant_id })
     },function(){
       that.setData({
         addDisabled: false,
