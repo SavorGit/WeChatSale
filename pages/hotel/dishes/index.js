@@ -186,7 +186,7 @@ Page({
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1,
+      page: page,
       hotel_id: hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
