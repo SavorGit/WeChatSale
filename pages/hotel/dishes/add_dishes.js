@@ -9,6 +9,7 @@ var oss_upload_url = app.globalData.oss_upload_url;
 var oss_url = app.globalData.oss_url;
 var merchant_id;
 var openid;
+let swapImageObject={1:null,2:null};
 Page({
 
   /**
@@ -394,5 +395,38 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  // 长按对调位置
+  longPressForChangePosition: function (e) {
+    let self = this;
+    let clickIndex = e.currentTarget.dataset.index;
+    let picType = e.currentTarget.dataset.type;
+    let propetyNameProfix = "", nextClickTip = null, reclickTip = null;
+    if (picType == 1) {
+      propetyNameProfix = "dish_img";
+      reclickTip = "操作错误，重新选择第一张菜品图片";
+      nextClickTip = "请长按下一张菜品图片进行对调";
+    } else if (picType == 2) {
+      propetyNameProfix = "intro_img";
+      reclickTip = "操作错误，重新选择第一张详情图片";
+      nextClickTip = "请长按下一张详情图片进行对调";
+    }
+    let picObj = self.data[propetyNameProfix + clickIndex];
+    if (typeof (picObj) != "string" || picObj.trim() == "") {
+      swapImageObject[picType] = null;
+      wx.showToast({ icon: 'none', title: reclickTip, duration: 3000 });
+      return;
+    }
+    if (swapImageObject[picType] == null) {
+      swapImageObject[picType] = { index: clickIndex, picObj: picObj };
+      wx.showToast({ icon: 'none', title: nextClickTip, duration: 3000 });
+      return;
+    }
+    let lastImageObject = swapImageObject[picType]; swapImageObject[picType] = null;
+    let dataSrc = self.data;
+    dataSrc[propetyNameProfix + lastImageObject.index] = picObj;
+    dataSrc[propetyNameProfix + clickIndex] = lastImageObject.picObj;
+    self.setData(dataSrc);
+  },
 })
