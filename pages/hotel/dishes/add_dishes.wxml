@@ -10,35 +10,35 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
-			<view class="row flex_row_flexStart_spaceBetween">
+			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品图</view>
 				<view class="wapper flex_column_center_spaceBetween">
 					<view class="row flex_row_center_spaceBetween">
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="0" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img0==''}}"></view>
-              <image wx:if="{{dish_img0!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img0}}"></image>
+							<image wx:if="{{dish_img0!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img0}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="1" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img1==''}}"></view>
-              <image wx:if="{{dish_img1!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img1}}"></image>
+							<image wx:if="{{dish_img1!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img1}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="2" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img2==''}}"></view>
-              <image wx:if="{{dish_img2!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img2}}"></image>
+							<image wx:if="{{dish_img2!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img2}}"></image>
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="3" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img3==''}}"></view>
-              <image wx:if="{{dish_img3!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img3}}"></image>
+							<image wx:if="{{dish_img3!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img3}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="4" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img4==''}}"></view>
-              <image wx:if="{{dish_img4!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img4}}"></image>
+							<image wx:if="{{dish_img4!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img4}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="5" data-type="1">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{dish_img5==''}}"></view>
-              <image wx:if="{{dish_img5!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img5}}"></image>
+							<image wx:if="{{dish_img5!=''}}" mode="aspectFill" src="{{oss_url}}{{dish_img5}}"></image>
 						</view>
 					</view>
 				</view>
@@ -54,21 +54,35 @@
 					-->
 				</view>
 			</view>
-			<view class="row flex_row_flexStart_spaceBetween">
+			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">详情图片</view>
 				<view class="wapper flex_column_center_spaceBetween">
 					<view class="row flex_row_center_spaceBetween">
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="0" data-type="2">
 							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img0==''}}"></view>
-              <image wx:if="{{intro_img0!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img0}}"></image>
+							<image wx:if="{{intro_img0!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img0}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="1" data-type="2">
-								<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img1==''}}"></view>
-              <image wx:if="{{intro_img1!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img1}}"></image>
+							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img1==''}}"></view>
+							<image wx:if="{{intro_img1!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img1}}"></image>
 						</view>
 						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="2" data-type="2">
-								<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img2==''}}"></view>
-              <image wx:if="{{intro_img2!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img2}}"></image>
+							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img2==''}}"></view>
+							<image wx:if="{{intro_img2!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img2}}"></image>
+						</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="3" data-type="2">
+							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img3==''}}"></view>
+							<image wx:if="{{intro_img3!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img3}}"></image>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="4" data-type="2">
+							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img4==''}}"></view>
+							<image wx:if="{{intro_img4!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img4}}"></image>
+						</view>
+						<view class="cell flex_column_center_center" bindtap="uploadDishesPic" data-keys="5" data-type="2">
+							<view class="fa fa-plus" aria-hidden="true" wx:if="{{intro_img5==''}}"></view>
+							<image wx:if="{{intro_img5!=''}}" mode="aspectFill" src="{{oss_url}}{{intro_img5}}"></image>
 						</view>
 					</view>
 				</view>
