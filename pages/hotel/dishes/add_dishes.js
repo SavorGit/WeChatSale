@@ -307,21 +307,7 @@ Page({
       })
     })
   },
-  /**
-   * 切换菜品介绍类型  1 文本 2 图片
-   */
-  switchIntroType:function(e){
-    var that = this ;
-    var intro_type = that.data.intro_type
-    if(intro_type==1){
-      intro_type ==2
-    }else if(intro_type==2){
-      intro_type==1
-    }
-    that.setData({
-      intro_type:intro_type
-    })
-  },
+  
   setTotalCount: function (res) {
     var regu = "^([0-9]*[.0-9])$"; // 小数测试
     var re = new RegExp(regu);
