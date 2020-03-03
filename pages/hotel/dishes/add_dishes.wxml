@@ -13,81 +13,59 @@
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
-				<view class="lable flex_column_flexStart theme-font1">
+				 <view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>
 					<p style="font-size:24rpx">(长按对调图片位置)</p>
 				</view>
 				<view class="wapper flex_column_center_spaceBetween">
+        <!-- 第一行-->
 					<view class="row flex_row_center_spaceBetween">
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img0) == 'string' && dish_img0==''}}" class="image-waper flex_column_center_center" data-keys="0" data-type="1" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(dish_img0) == 'string' && dish_img0!=''}}" class="image-waper flex_column_center_center" data-index="0" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
+						
+            <block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="cell flex_column_center_center" wx:if="{{index<3}}">
+
+							<view  class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
 									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img0}}"></image>
-							</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
+							</view> 
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img1) == 'string' && dish_img1==''}}" class="image-waper flex_column_center_center" data-keys="1" data-type="1" bindtap="uploadDishesPic">
+            </block>
+            <view class="cell flex_column_center_center" wx:if="{{dish_img_list.length<3}}">
+              <view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="1">
 								<view class="fa fa-plus" aria-hidden="true"></view>
 							</view>
-							<view wx:if="{{app.typeOf(dish_img1) == 'string' && dish_img1!=''}}" class="image-waper flex_column_center_center" data-index="1" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img1}}"></image>
-							</view>
-						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img2) == 'string' && dish_img2==''}}" class="image-waper flex_column_center_center" data-keys="2" data-type="1" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(dish_img2) == 'string' && dish_img2!=''}}" class="image-waper flex_column_center_center" data-index="2" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img2}}"></image>
-							</view>
+
 						</view>
 					</view>
-					<view class="row flex_row_center_spaceBetween">
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img3) == 'string' && dish_img3==''}}" class="image-waper flex_column_center_center" data-keys="3" data-type="1" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(dish_img3) == 'string' && dish_img3!=''}}" class="image-waper flex_column_center_center" data-index="3" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
+          <!-- 第二行-->
+          <view class="row flex_row_center_spaceBetween" wx:if="{{dish_img_list.length>=3}}">
+						
+            <block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="cell flex_column_center_center" wx:if="{{index>2}}">
+
+							<view  class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
 									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img3}}"></image>
-							</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
+							</view> 
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img4) == 'string' && dish_img4==''}}" class="image-waper flex_column_center_center" data-keys="4" data-type="1" bindtap="uploadDishesPic">
+            </block>
+            
+            
+            
+            <view class="cell flex_column_center_center" wx:if="{{dish_img_list.length>2 && dish_img_list.length<5}}">
+              <view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="1">
 								<view class="fa fa-plus" aria-hidden="true"></view>
 							</view>
-							<view wx:if="{{app.typeOf(dish_img4) == 'string' && dish_img4!=''}}" class="image-waper flex_column_center_center" data-index="4" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img4}}"></image>
-							</view>
+
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(dish_img5) == 'string' && dish_img5==''}}" class="image-waper flex_column_center_center" data-keys="5" data-type="1" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(dish_img5) == 'string' && dish_img5!=''}}" class="image-waper flex_column_center_center" data-index="5" data-type="1" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{dish_img5}}"></image>
-							</view>
-						</view>
+
+            
 					</view>
+					
 				</view>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
@@ -107,89 +85,61 @@
 					<p style="font-size:24rpx">(长按对调图片位置)</p>
 				</view>
 				<view class="wapper flex_column_center_spaceBetween">
+					
+					<!-- 第一行-->
 					<view class="row flex_row_center_spaceBetween">
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(intro_img0) == 'string' && intro_img0==''}}" class="image-waper flex_column_center_center" data-keys="0" data-type="2" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(intro_img0) == 'string' && intro_img0!=''}}" class="image-waper flex_column_center_center" data-index="0" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
+						
+            <block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="cell flex_column_center_center" wx:if="{{index<3}}">
+
+							<view  class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
 									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img0}}"></image>
-							</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
+							</view> 
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(intro_img1) == 'string' && intro_img1==''}}" class="image-waper flex_column_center_center" data-keys="1" data-type="2" bindtap="uploadDishesPic">
+            </block>
+            
+            
+            
+            <view class="cell flex_column_center_center" wx:if="{{dish_intro_img_list.length<3}}">
+              <view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="2">
 								<view class="fa fa-plus" aria-hidden="true"></view>
 							</view>
-							<view wx:if="{{app.typeOf(intro_img1) == 'string' && intro_img1!=''}}" class="image-waper flex_column_center_center" data-index="1" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img1}}"></image>
-							</view>
-						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(intro_img2) == 'string' && intro_img2==''}}" class="image-waper flex_column_center_center" data-keys="2" data-type="2" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(intro_img2) == 'string' && intro_img2!=''}}" class="image-waper flex_column_center_center" data-index="2" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img2}}"></image>
-							</view>
+
 						</view>
 					</view>
-					<view class="row flex_row_center_spaceBetween">
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(intro_img3) == 'string' && intro_img3==''}}" class="image-waper flex_column_center_center" data-keys="3" data-type="2" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(intro_img3) == 'string' && intro_img3!=''}}" class="image-waper flex_column_center_center" data-index="3" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
+          <!-- 第二行-->
+          <view class="row flex_row_center_spaceBetween" wx:if="{{dish_img_list.length>=3}}">
+						
+            <block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="cell flex_column_center_center" wx:if="{{index>2}}">
+
+							<view  class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
 									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img3}}"></image>
-							</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
+							</view> 
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{iapp.typeOf(ntro_img4) == 'string' && ntro_img4==''}}" class="image-waper flex_column_center_center" data-keys="4" data-type="2" bindtap="uploadDishesPic">
+            </block>
+            
+            
+            
+            <view class="cell flex_column_center_center" wx:if="{{dish_intro_img_list.length>2 && dish_intro_img_list.length<5}}">
+              <view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="2">
 								<view class="fa fa-plus" aria-hidden="true"></view>
 							</view>
-							<view wx:if="{{iapp.typeOf(ntro_img4) == 'string' && ntro_img4!=''}}" class="image-waper flex_column_center_center" data-index="4" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img4}}"></image>
-							</view>
+
 						</view>
-						<view class="cell flex_column_center_center">
-							<view wx:if="{{app.typeOf(intro_img5) == 'string' && intro_img5==''}}" class="image-waper flex_column_center_center" data-keys="5" data-type="2" bindtap="uploadDishesPic">
-								<view class="fa fa-plus" aria-hidden="true"></view>
-							</view>
-							<view wx:if="{{app.typeOf(intro_img5) == 'string' && intro_img5!=''}}" class="image-waper flex_column_center_center" data-index="5" data-type="2" bindlongpress="longPressForChangePosition">
-								<view class="del-pic flex_column_flexEnd">
-									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
-								</view>
-								<image mode="aspectFill" src="{{oss_url}}{{intro_img5}}"></image>
-							</view>
-						</view>
+
+            
 					</view>
 				</view>
 			</view>
 		</view>
-		<input class='display_hide' name="dish_img0" value="{{dish_img0}}"> </input>
-		<input class='display_hide' name="dish_img1" value="{{dish_img1}}"> </input>
-		<input class='display_hide' name="dish_img2" value="{{dish_img2}}"> </input>
-		<input class='display_hide' name="dish_img3" value="{{dish_img3}}"> </input>
-		<input class='display_hide' name="dish_img4" value="{{dish_img4}}"> </input>
-		<input class='display_hide' name="dish_img5" value="{{dish_img5}}"> </input>
-
-		<input class='display_hide' name="intro_img0" value="{{intro_img0}}"> </input>
-		<input class='display_hide' name="intro_img1" value="{{intro_img1}}"> </input>
-		<input class='display_hide' name="intro_img2" value="{{intro_img2}}"> </input>
+		
 
 		<button class="btn save theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">保存</button>
 	</form>
