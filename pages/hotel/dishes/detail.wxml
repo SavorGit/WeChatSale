@@ -26,7 +26,11 @@
   -->
 	<view class="goods-detail theme-panel">
 		<view class="title">详情</view>
-		<view class="detail-text">{{goods_info.intro}}</view>
+		<view class="detail-text">
+    <text>
+    {{goods_info.intro}}
+    </text>
+    </view>
 		<view class="detail-pic flex_column_center_flexStart">
       <block wx:for="{{goods_info.detail_imgs}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 			<image class="pic" mode="widthFix" src="{{bean}}"></image>
