@@ -1,0 +1,293 @@
+/* pages/hotel/dishes/add_dishes.wxss */
+.goods-info {
+  width: 100vw;
+  /* height: calc(100% - 100rpx); */
+}
+
+.goods-info>.row,
+.goods-info>.pic_row {
+  width: calc(100% - 120rpx);
+  height: 100rpx;
+  margin-top: 60rpx;
+}
+
+.goods-info>.row>.lable,
+.goods-info>.pic_row>.lable {
+  width: 160rpx;
+  font-size: 32rpx;
+}
+
+.goods-info>.row>.input,
+.goods-info>.row>.wapper,
+.goods-info>.pic_row>.wapper {
+  width: calc(100% - 170rpx);
+  font-size: 24rpx;
+}
+
+.goods-info>.row>.wapper {
+  height: 100%;
+  border: 1rpx solid #bebebe;
+}
+
+.goods-info>.row>.wapper>.input {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.goods-info>.row>.input {
+  width: calc(100% - 180rpx - 2px);
+  padding: 5rpx;
+  border: 1rpx solid #bebebe;
+}
+
+.goods-info>.row:first-child {
+  margin-top: 80rpx;
+}
+
+.goods-info>.row:first-child>.input {
+  height: calc(90rpx - 2px);
+}
+
+.goods-info>.row:nth-child(2) {
+  height: 40rpx;
+  margin-top: 30rpx;
+}
+
+.goods-info>.row:nth-child(2)>.input {
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 5rpx;
+}
+
+.goods-info>.pic_row>.wapper {
+  height: 100%;
+}
+
+/* /----------------------------旧结构----------------------------\ */
+.goods-info>.pic_row>.wapper>.row {
+  width: 100%;
+  height: 140rpx;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell,
+.goods-info>.pic_row>.wapper>.row>.cell>.image-waper {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell>.image-waper>image {
+  width: 134rpx;
+  height: 134rpx;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell {
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell:nth-child(3n+1) {
+  margin-left: 0;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell:nth-child(1),
+.goods-info>.pic_row>.wapper>.row>.cell:nth-child(2),
+.goods-info>.pic_row>.wapper>.row>.cell:nth-child(3) {
+  margin-top: 0;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell>.image-waper>.del-pic {
+  width: 100%;
+  height: 50rpx;
+  margin-top: -25rpx;
+  margin-bottom: -25rpx;
+  margin-right: -25rpx;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell>.image-waper>.del-pic>.fa-times-circle {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 50rpx;
+  z-index: 15;
+}
+
+.goods-info>.pic_row>.wapper>.row>.cell>.image-waper {
+  border: 1rpx solid #bebebe;
+  font-size: 37rpx;
+}
+
+/* \----------------------------旧结构----------------------------/ */
+
+/* /----------------------------新结构----------------------------\ */
+.goods-info>.pic_row>.wapper>.cell,
+.goods-info>.pic_row>.wapper>.cell>.image-waper {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.goods-info>.pic_row>.wapper>.cell>.image-waper>image {
+  width: 134rpx;
+  height: 134rpx;
+}
+
+.goods-info>.pic_row>.wapper>.cell {
+  /* position: relative; */
+  float: left;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+  /* box-sizing: border-box; */
+}
+
+.goods-info>.pic_row>.wapper>.cell:nth-child(3n+1) {
+  margin-left: 0;
+}
+
+.goods-info>.pic_row>.wapper>.cell:nth-child(1),
+.goods-info>.pic_row>.wapper>.cell:nth-child(2),
+.goods-info>.pic_row>.wapper>.cell:nth-child(3) {
+  margin-top: 0;
+}
+
+.goods-info>.pic_row>.wapper>.cell>.image-waper>.del-pic {
+  width: 100%;
+  height: 50rpx;
+  margin-top: -25rpx;
+  margin-bottom: -25rpx;
+  margin-right: -25rpx;
+}
+
+.goods-info>.pic_row>.wapper>.cell>.image-waper>.del-pic>.fa-times-circle {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 50rpx;
+  z-index: 15;
+}
+
+.goods-info>.pic_row>.wapper>.cell>.image-waper {
+  border: 1rpx solid #bebebe;
+  font-size: 37rpx;
+}
+
+/* \----------------------------新结构----------------------------/ */
+
+.goods-info>.pic_row.one_pic_rows {
+  height: 140rpx;
+}
+
+.goods-info>.pic_row.two_pic_rows {
+  height: 310rpx;
+}
+
+.goods-info>.pic_row.three_pic_rows {
+  height: 480rpx;
+}
+
+/* 
+.goods-info>.row:nth-child(3) {
+  height: 310rpx;
+  margin-top: 60rpx;
+}
+
+.goods-info>.row:nth-child(3)>.wapper {
+  height: 100%;
+}
+
+.goods-info>.row:nth-child(3)>.wapper>.row {
+  width: 100%;
+  height: 140rpx;
+}
+
+.goods-info>.row:nth-child(3)>.wapper>.row>.cell {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #bebebe;
+  font-size: 37rpx;
+}
+
+.goods-info>.row:nth-child(3)>.wapper>.row>.cell>image {
+  width: 100%;
+  height: 100%;
+}
+*/
+
+.goods-info>.row:nth-child(4) {
+  height: 300rpx;
+}
+
+/*
+.goods-info>.row:nth-child(4)>.lable {
+  width: 160rpx;
+}
+
+.goods-info>.row:nth-child(4)>.wapper {
+  height: 100%;
+  border: 1rpx solid #bebebe;
+}
+
+.goods-info>.row:nth-child(4)>.wapper>.input {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+*/
+/* .goods-info>.row:nth-child(4)>.wapper>view {
+  width: calc(100% - 30rpx);
+  height: 60rpx;
+  padding: 0 15rpx;
+  line-height: 60rpx;
+  text-align: end;
+  font-size: 43rpx;
+  background-color: rgba(161, 134, 104, 0.2);
+} */
+
+/*
+.goods-info>.row:nth-child(5) {
+  height: 200rpx;
+}
+
+.goods-info>.row:nth-child(5)>.lable {
+  width: 160rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper {
+  height: 100%;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row {
+  width: 100%;
+  height: 140rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row>.cell {
+  width: 140rpx;
+  height: 140rpx;
+  border: 1rpx solid #bebebe;
+  font-size: 37rpx;
+}
+
+.goods-info>.row:nth-child(5)>.wapper>.row>.cell>image {
+  width: 100%;
+  height: 100%;
+}
+*/
+
+.goods-info>.row:last-child,
+.goods-info>.pic_row:last-child {
+  margin-bottom: 50rpx;
+}
+
+.btn {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

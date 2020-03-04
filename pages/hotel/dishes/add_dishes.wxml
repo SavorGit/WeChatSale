@@ -21,7 +21,7 @@
 					<block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="cell flex_column_center_center">
 						<view  class="image-waper flex_column_center_center">
-							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
+							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="1">
 								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 							</view>
 							<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
@@ -111,7 +111,7 @@
 					<block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="cell flex_column_center_center">
 						<view  class="image-waper flex_column_center_center">
-							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}">
+							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="2">
 								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 							</view>
 							<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
