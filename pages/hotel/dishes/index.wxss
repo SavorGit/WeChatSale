@@ -38,9 +38,10 @@
 } */
 
 .scroll-view .list>.row>.info>.btn-group {
-  width: 340rpx;
+  width: 100%;
+  /* width: 340rpx; */
   height: 45rpx;
-  padding-left: calc(100% - 340rpx);
+  /* padding-left: calc(100% - 340rpx); */
 }
 
 .scroll-view .list>.row>.info>.btn-group>.btn {
