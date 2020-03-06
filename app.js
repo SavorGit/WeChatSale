@@ -54,6 +54,12 @@ App({
       mask:mask,
     })
   },
+  sleep:function (delay) {
+    var start = (new Date()).getTime();
+    while((new Date()).getTime() - start < delay) {
+      continue;
+    }
+  },
   boxShow:function(box_mac='',pubdetail,res_type,action,that){
     var self = this;
     var user_info = wx.getStorageSync(this.globalData.cache_key + 'userinfo');

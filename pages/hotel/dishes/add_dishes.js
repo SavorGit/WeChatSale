@@ -188,6 +188,7 @@ Page({
               var img_url = timestamp + postf;
               //console.log(img_url)
               that.upOss(filename, postf_w, img_url, policy, signature, i, flag, type)
+              app.sleep(1)
             }
           }
         })
