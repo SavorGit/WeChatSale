@@ -164,6 +164,10 @@ Page({
       var total_pic = that.data.dish_intro_img_list.length;
       var choose_num = 6 - total_pic;
     }
+    if(total_pic>=6){
+      app.showToast('最多上传6张照片');
+      return false;
+    }
     wx.chooseImage({
       count: choose_num, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
