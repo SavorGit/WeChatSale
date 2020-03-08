@@ -15,7 +15,7 @@
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				 <view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>
-					<p style="font-size:24rpx">(长按对调图片位置)</p>
+					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
 				</view>
 				<view class="wapper">
 					<block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -28,14 +28,14 @@
 						</view> 
 					</view>
 					<view class="cell flex_column_center_center" wx:if="{{index+1==dish_img_list.length && dish_img_list.length<6}}">
-						<view class="image-waper flex_column_center_center" bindtap="uploadDishesPic" data-type="1">
-							<view class="fa fa-plus" aria-hidden="true"></view>
+						<view class="image-waper flex_column_center_center" >
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
 					</block>
 					<view class="cell flex_column_center_center" wx:if="{{dish_img_list.length<1}}">
-						<view class="image-waper flex_column_center_center" bindtap="uploadDishesPic" data-type="1">
-							<view class="fa fa-plus" aria-hidden="true"></view>
+						<view class="image-waper flex_column_center_center" >
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
 				</view>
@@ -55,7 +55,7 @@
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>详情图片</p>
-					<p style="font-size:24rpx">(长按对调图片位置)</p>
+					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
 				</view>
 				<view class="wapper">
 					<block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -68,14 +68,14 @@
 						</view> 
 					</view>
 					<view class="cell flex_column_center_center" wx:if="{{index+1==dish_intro_img_list.length&&dish_intro_img_list.length<6}}">
-						<view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="2">
-							<view class="fa fa-plus" aria-hidden="true"></view>
+						<view  class="image-waper flex_column_center_center"  >
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
 					</block>
 					<view class="cell flex_column_center_center" wx:if="{{dish_intro_img_list.length<1}}">
-						<view  class="image-waper flex_column_center_center"  bindtap="uploadDishesPic" data-type="2">
-							<view class="fa fa-plus" aria-hidden="true"></view>
+						<view  class="image-waper flex_column_center_center"  >
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
 				</view>

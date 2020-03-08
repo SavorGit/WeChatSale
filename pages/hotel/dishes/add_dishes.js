@@ -20,6 +20,7 @@ Page({
     dish_intro_img_list:[],   //菜品介绍图
     oss_url:app.globalData.oss_url+'/',
     addDisabled:false,
+    upDisabled:false,
   },
 
   /**
@@ -181,7 +182,8 @@ Page({
       mask: true
     })
     that.setData({
-      addDisabled: true
+      addDisabled: true,
+      upDisabled:true
     })
     
     wx.chooseImage({
@@ -217,16 +219,21 @@ Page({
               that.upOss(filename, postf_w, img_url, policy, signature, i, flag, type)
               app.sleep(1)
             }
+          },
+          fail:function(rt){
+            wx.hideLoading();
+            that.setData({
+              addDisabled: false,
+              upDisabled: false
+            })
+
           }
         })
-
-
-
-        
       }, fail: function (e) {
         wx.hideLoading();
         that.setData({
-          addDisabled: false
+          addDisabled: false,
+          upDisabled: false
         })
       }
     })
@@ -257,24 +264,38 @@ Page({
         if (type == 1) {
           var dish_img_list = that.data.dish_img_list;
           dish_img_list.push("forscreen/resource/" + img_url);
-          that.setData({
-            dish_img_list: dish_img_list
-          })
+          
           var end_flag = dish_img_list.length
         } else if (type == 2) {
           var dish_intro_img_list = that.data.dish_intro_img_list;
           dish_intro_img_list.push("forscreen/resource/" + img_url);
-          that.setData({
-            dish_intro_img_list: dish_intro_img_list
-          })
+          
           var end_flag = dish_intro_img_list.length
         }
         
         if (end_flag==flag){
-          wx.hideLoading();
-          that.setData({
-            addDisabled: false
-          })
+          if(type==1){
+            that.setData({
+              dish_img_list: dish_img_list
+            }, () => {
+              wx.hideLoading();
+              that.setData({
+                addDisabled: false,
+                upDisabled: false
+              })
+            })
+          }else if(type==2){
+            that.setData({
+              dish_intro_img_list: dish_intro_img_list
+            }, () => {
+              wx.hideLoading();
+              that.setData({
+                addDisabled: false,
+                upDisabled: false
+              })
+            })
+          }
+          
         }
       }
     })
