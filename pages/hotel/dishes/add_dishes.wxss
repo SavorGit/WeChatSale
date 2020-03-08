@@ -132,6 +132,10 @@
   height: 134rpx;
 }
 
+.goods-info>.pic_row>.wapper>.cell>.image-waper>.fa {
+  background: none;
+}
+
 .goods-info>.pic_row>.wapper>.cell {
   /* position: relative; */
   float: left;
