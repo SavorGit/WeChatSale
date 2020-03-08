@@ -34,11 +34,24 @@ Page({
    * 上传菜品图
    */
   uploadOneDishesPic:function(e){
-    console.log(e)
+    app.sleep(200);
     var that = this;
     var keys = e.currentTarget.dataset.keys;
     var type = e.currentTarget.dataset.type;
     
+    if (type == 1) {
+      var total_pic = that.data.dish_img_list.length;
+      //var choose_num = 6 - total_pic;
+    } else {
+      var total_pic = that.data.dish_intro_img_list.length;
+      //var choose_num = 6 - total_pic;
+    }
+    if (total_pic > 6) {
+      app.showToast('最多上传6张照片');
+      return false;
+    }
+
+
     wx.showLoading({
       title: '图片上传中...',
       mask: true
@@ -150,6 +163,19 @@ Page({
   uploadDishesPic:function(e){
     var that = this;
     var type = e.currentTarget.dataset.type;
+    if (type == 1) {
+      var total_pic = that.data.dish_img_list.length;
+      var choose_num = 6 - total_pic;
+    } else {
+      var total_pic = that.data.dish_intro_img_list.length;
+      var choose_num = 6 - total_pic;
+    }
+    if (total_pic >= 6) {
+      app.showToast('最多上传6张照片');
+      return false;
+    }
+
+
     wx.showLoading({
       title: '图片上传中...',
       mask: true
@@ -157,24 +183,14 @@ Page({
     that.setData({
       addDisabled: true
     })
-    if(type==1){
-      var total_pic = that.data.dish_img_list.length;
-      var choose_num = 6 - total_pic;
-    }else {
-      var total_pic = that.data.dish_intro_img_list.length;
-      var choose_num = 6 - total_pic;
-    }
-    if(total_pic>=6){
-      app.showToast('最多上传6张照片');
-      return false;
-    }
+    
     wx.chooseImage({
       count: choose_num, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         var tempFilePaths = res.tempFilePaths;  //多张图片临时地址
-        var flag = tempFilePaths.length -1;
+        var flag = tempFilePaths.length + total_pic;
         console.log(flag)
         wx.request({
           url: api_url + '/Smallapp/Index/getOssParams',
@@ -244,15 +260,17 @@ Page({
           that.setData({
             dish_img_list: dish_img_list
           })
+          var end_flag = dish_img_list.length
         } else if (type == 2) {
           var dish_intro_img_list = that.data.dish_intro_img_list;
           dish_intro_img_list.push("forscreen/resource/" + img_url);
           that.setData({
             dish_intro_img_list: dish_intro_img_list
           })
+          var end_flag = dish_intro_img_list.length
         }
         
-        if(i==flag){
+        if (end_flag==flag){
           wx.hideLoading();
           that.setData({
             addDisabled: false
