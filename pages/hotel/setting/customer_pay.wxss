@@ -1,0 +1,41 @@
+/* pages/hotel/setting/customer_pay.wxss */
+/**
+ * 收款设置页面
+ */
+
+.panel {
+  width: 100%;
+  height: 100%;
+}
+
+.panel>.status {
+  height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+
+.panel>.user {
+  text-align: center;
+}
+
+.panel>.user>.head {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.panel>.user>.name {
+  font-size: 28rpx;
+}
+
+.panel>.btn {
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 5rpx;
+  font-size: 32rpx;
+  margin: 50rpx 0 0 0;
+  padding: 0;
+  border: 0;
+}

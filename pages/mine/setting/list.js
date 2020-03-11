@@ -62,5 +62,53 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  gotoSetting: function (e) {
+    wx.showLoading({
+      title: '正在跳转...',
+      mask: true
+    });
+    let jumpType = e.currentTarget.dataset.type;
+    switch (jumpType) {
+      case 'basic':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/basic',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'distribution':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/distribution',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'customer-pay':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/customer_pay',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'third-platform':
+        wx.navigateTo({
+          url: '/pages/hotel/platform/index',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      default:
+        wx.showToast({
+          icon: 'none',
+          title: '无此类型',
+        });
+        break;
+    }
   }
 })

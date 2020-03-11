@@ -1,4 +1,8 @@
 <!--pages/user/register.wxml-->
+<!--
+ | 用户注册页面
+ |-->
+
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<form bindsubmit="registerHotel">
@@ -23,7 +27,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<picker class="input"  bindchange="bindCuiPickerChange" value="{{cuisineIndex}}" range="{{cuisineArray}}">
+							<picker class="input" bindchange="bindCuiPickerChange" value="{{cuisineIndex}}" range="{{cuisineArray}}">
 								<view>{{cuisineArray[cuisineIndex]}}</view>
 							</picker>
 						</view>
@@ -44,7 +48,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入" name="tel"  maxlength="20" focus="{{tel_focus}}"></input>
+							<input class="input" placeholder="请输入" name="tel" maxlength="20" focus="{{tel_focus}}"></input>
 						</view>
 					</view>
 					<view class="row city flex_row_center_spaceBetween">
@@ -85,12 +89,12 @@
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame">
 
-								
+
 								<view class="input flex_column_center_center" wx:if="{{logoimg !=''}}" bindtap="uploadDishesPic" data-type="logo" data-keys="0">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{logoimg}}"></image>
-								</view> 
+								</view>
 
-                <view class="input flex_column_center_center" wx:if="{{logoimg ==''}}" bindtap="uploadDishesPic" data-type="logo" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{logoimg ==''}}" bindtap="uploadDishesPic" data-type="logo" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 							</view>
@@ -107,9 +111,9 @@
 								<view class="input flex_column_center_center" wx:if="{{faceimg ==''}}" bindtap="uploadDishesPic" data-type="face" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-                <view class="input flex_column_center_center" wx:if="{{faceimg !=''}}" bindtap="uploadDishesPic" data-type="face" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{faceimg !=''}}" bindtap="uploadDishesPic" data-type="face" data-keys="0">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{faceimg}}"></image>
-								</view> 
+								</view>
 							</view>
 						</view>
 					</view>
@@ -124,10 +128,92 @@
 								<view class="input flex_column_center_center" wx:if="{{envimg ==''}}" bindtap="uploadDishesPic" data-type="env" data-keys="0">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-                <view class="input flex_column_center_center" wx:if="{{envimg !=''}}" bindtap="uploadDishesPic" data-type="env" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{envimg !=''}}" bindtap="uploadDishesPic" data-type="env" data-keys="0">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{envimg}}"></image>
-								</view> 
+								</view>
 							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel business-time theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">营业时间</view>
+				</view>
+				<view class="body">
+					<!--
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">营业时间</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group"></view>
+					</view>
+					-->
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row make-time flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">出餐时间</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<input class="input" placeholder="请输入" type="number"></input>
+							<view class="unit">分钟</view>
 						</view>
 					</view>
 				</view>
@@ -157,7 +243,7 @@
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 
-                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img0 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img0 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="0">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img0}}"></image>
 								</view>
 
@@ -169,7 +255,7 @@
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 
-                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img1 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="1">
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img1 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="1">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img1}}"></image>
 								</view>
 
@@ -180,7 +266,7 @@
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 
-                <view class="input flex_column_center_center"  wx:if="{{legal_idcard_img2 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="2">
+								<view class="input flex_column_center_center" wx:if="{{legal_idcard_img2 !=''}}" bindtap="uploadDishesPic" data-type="idcard" data-keys="2">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_idcard_img2}}"></image>
 								</view>
 								<view class="explain">法人手持</view>
@@ -198,7 +284,7 @@
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 
-                <view class="input flex_column_center_center"  wx:if="{{legal_charter_img0 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img0 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img0}}"></image>
 								</view>
 								<view class="explain">营业执照</view>
@@ -208,7 +294,7 @@
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
 
-                <view class="input flex_column_center_center"  wx:if="{{legal_charter_img1 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
 								</view>
 								<view class="explain">许可证</view>
@@ -249,23 +335,23 @@
 							<input class="input" placeholder="请输入" name="verify_code" focus="{{verify_code_focus}}"></input>
 							<view class="btn-get-code enable" wx:if="{{is_get_sms_code==0}}" data-mobile='{{mobile}}' bindtap='getSmsCode'>获取</view>
 
-              <view wx:else class="btn-get-code disable">{{sms_time_djs}} S</view>
+							<view wx:else class="btn-get-code disable">{{sms_time_djs}} S</view>
 						</view>
 					</view>
 				</view>
 			</view>
 			<view class="btn-group">
-        <input class='display_hide' name="logoimg" value="{{logoimg}}"> </input>
-        <input class='display_hide' name="faceimg" value="{{faceimg}}"> </input>
-        <input class='display_hide' name="envimg" value="{{envimg}}"> </input>
-        <input class='display_hide' name="legal_idcard_img0" value="{{legal_idcard_img0}}"> </input>
-        <input class='display_hide' name="legal_idcard_img1" value="{{legal_idcard_img1}}"> </input>
-        <input class='display_hide' name="legal_idcard_img2" value="{{legal_idcard_img2}}"> </input>
-        <input class='display_hide' name="legal_charter_img0" value="{{legal_charter_img0}}"> </input>
-        <input class='display_hide' name="legal_charter_img1" value="{{legal_charter_img1}}"> </input>
-        
-        
-        
+				<input class='display_hide' name="logoimg" value="{{logoimg}}"> </input>
+				<input class='display_hide' name="faceimg" value="{{faceimg}}"> </input>
+				<input class='display_hide' name="envimg" value="{{envimg}}"> </input>
+				<input class='display_hide' name="legal_idcard_img0" value="{{legal_idcard_img0}}"> </input>
+				<input class='display_hide' name="legal_idcard_img1" value="{{legal_idcard_img1}}"> </input>
+				<input class='display_hide' name="legal_idcard_img2" value="{{legal_idcard_img2}}"> </input>
+				<input class='display_hide' name="legal_charter_img0" value="{{legal_charter_img0}}"> </input>
+				<input class='display_hide' name="legal_charter_img1" value="{{legal_charter_img1}}"> </input>
+
+
+
 				<button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">提交</button>
 			</view>
 		</view>

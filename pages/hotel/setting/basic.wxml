@@ -1,0 +1,184 @@
+<!--pages/hotel/setting/basic.wxml-->
+<!--
+ | 基本信息设置页面
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<form bindsubmit="registerHotel">
+		<view class="wapper">
+			<view class="panel basic theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">基本信息</view>
+				</view>
+				<view class="body">
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">餐厅LOGO</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+								<!--
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+                -->
+							</view>
+						</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">订餐电话</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+
+				</view>
+			</view>
+			<view class="panel business-time theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">营业时间</view>
+				</view>
+				<view class="body">
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row make-time flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">出餐时间</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<input class="input" placeholder="请输入" type="number"></input>
+							<view class="unit">分钟</view>
+							<view class="fa fa-question-circle theme-font7" aria-hidden="true" bindtap="openTipPopWindow"></view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel notice theme7">
+				<!--
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">经营信息</view>
+				</view>
+        -->
+				<view class="body">
+					<view class="row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">公告</view>
+							<view class="flag theme-font5"></view>
+						</view>
+						<view class="input-group">
+							<textarea class="input" placeholder="0~200字"></textarea>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel manage theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">资质上传</view>
+				</view>
+				<view class="body">
+					<view class="pic-row flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">执照</view>
+							<view class="flag theme-font5"></view>
+						</view>
+						<view class="input-group flex_row_center_flexStart">
+							<view class="frame">
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+								<!--
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+                -->
+								<view class="explain">营业执照</view>
+							</view>
+							<view class="frame">
+								<!--
+								<view class="input flex_column_center_center">
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+                -->
+								<view class="input flex_column_center_center">
+									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								</view>
+								<view class="explain">食品经营许可证</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="btn-group">
+				<button class="btn theme-button-welcome" form-type="submit">提交</button>
+			</view>
+		</view>
+	</form>
+</scroll-view>
+
+<!-- 提示弹窗 -->
+<modal show="{{showTipPopWindow}}" width="600rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='{{tipTitle}}' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='关闭' confirm-color="#ffffff" confirm-background-color="#a18668" confirm-border-radius="0 0 10rpx 10rpx" cancel-text='' cancel-color='rgba(7,17,27,0.6)' cancel-background-color="unset" cancel-border-radius="0rpx" bindconfirm='closeTipPopWindow'>
+	<view style="padding:0 30rpx;font-size:28rpx;">{{tipContent}}</view>
+</modal>
