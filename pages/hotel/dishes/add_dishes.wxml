@@ -12,18 +12,18 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
-      <view class="row flex_row_flexStart_spaceBetween">
+      <!-- <view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">是否支持全国售卖</view>
 				<radio-group class="radio-group" bindchange="changeSale">
             
           <radio value="1" checked="{{is_sale==1?true:false}}">是</radio>
           <radio value="0" checked="{{is_sale==0?true:false}}">否</radio>
         </radio-group>
-			</view>
+			</view> -->
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">全国售卖</view>
 				<view class="input" style="border:none;">
-					<switch checked="true" />
+					<switch checked="{{is_sale==1?true:false}}"  bindchange="changeSale"/>
 				</view>
 			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">

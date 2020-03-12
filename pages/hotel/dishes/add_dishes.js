@@ -331,7 +331,12 @@ Page({
   },
   //是否支持全国售卖
   changeSale:function(e){
-    var is_sale = e.detail.value;
+    var is_sale = this.data.is_sale
+    if(is_sale==1){
+      is_sale = 0;
+    }else if(is_sale==0){
+      is_sale = 1;
+    }
     this.setData({
       is_sale:is_sale
     })
