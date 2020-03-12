@@ -2,8 +2,11 @@
 /**
  * 代购 - 主页
  */
-
-
+const app = getApp()
+const utils = require('../../utils/util.js')
+const mta = require('../../utils/mta_analysis.js')
+var cache_key = app.globalData.cache_key;
+var openid;
 Page({
 
   /**
@@ -17,7 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
   },
 
   /**
@@ -97,7 +101,7 @@ Page({
         break;
       case 'order':
         wx.navigateTo({
-          url: '/pages/purchase/order/index',
+          url: '/pages/purchase/order/index?openid='+openid,
           success: function (res) {
             wx.hideLoading();
           }
@@ -105,7 +109,7 @@ Page({
         break;
       case 'recod':
         wx.navigateTo({
-          url: '/pages/purchase/share/log',
+          url: '/pages/purchase/share/log?openid='+openid,
           success: function (res) {
             wx.hideLoading();
           }

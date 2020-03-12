@@ -21,6 +21,7 @@ Page({
     oss_url:app.globalData.oss_url+'/',
     addDisabled:false,
     upDisabled:false,
+    is_sale:1
   },
 
   /**
@@ -328,6 +329,13 @@ Page({
       })
     }
   },
+  //是否支持全国售卖
+  changeSale:function(e){
+    var is_sale = e.detail.value;
+    this.setData({
+      is_sale:is_sale
+    })
+  },
   addDishes:function(e){
     var that = this;
     
@@ -376,7 +384,7 @@ Page({
       space = ',';
     }
 
-
+    var is_sale = that.data.is_sale;
 
     that.setData({
       addDisabled: true,
@@ -385,6 +393,7 @@ Page({
       detail_imgs: intro_imgs,
       imgs: imgs,
       intro: intro,
+      is_sale: is_sale,
       name:name,
       openid: openid,
       price:price,

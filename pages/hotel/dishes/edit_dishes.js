@@ -22,6 +22,7 @@ Page({
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
+    is_sale:'',
   },
 
   /**
@@ -38,7 +39,9 @@ Page({
       var goods_info = data.result;
       var dish_img_list = data.result.cover_imgs_path;
       var dish_intro_img_list = data.result.detail_imgs_path;
+      var is_sale = goods_info.is_sale;
       that.setData({
+        is_sale:is_sale,
         goods_info: goods_info,
         dish_img_list: dish_img_list,
         dish_intro_img_list: dish_intro_img_list,
@@ -347,6 +350,12 @@ Page({
       })
     }
   },
+  changeSale:function(e){
+    var is_sale = e.detail.value;
+    that.setData({
+      is_sale:is_sale
+    })
+  },
   editDishes: function (e) {
     var that = this;
 
@@ -394,7 +403,7 @@ Page({
       intro_imgs += space + dish_intro_img_list[i];
       space = ',';
     }
-
+    var is_sale = that.data.is_sale;
 
 
     that.setData({
@@ -405,6 +414,7 @@ Page({
       goods_id: goods_id,
       imgs: imgs,
       intro: intro,
+      is_sale: is_sale,
       name: name,
       openid: openid,
       price: price,
