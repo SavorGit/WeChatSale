@@ -264,7 +264,7 @@ Page({
       var id = e.currentTarget.dataset.goods_id;
     }
     wx.navigateTo({
-      url: '/pages/hotel/dishes/detail?goods_id=' + id,
+      url: '/pages/purchase/dishes/detail?goods_id=' + id,
     })
   },
   /**

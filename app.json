@@ -66,6 +66,11 @@
     "navigationBarTitleText": "小热点-销售版",
     "navigationBarTextStyle": "white"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "tabBar": {
     "custom": true,
     "color": "#999999",
