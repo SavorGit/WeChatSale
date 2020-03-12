@@ -10,13 +10,26 @@
 		<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
 			<view class="page-wapper" style='height: calc(100vh - 46px - {{statusBarHeight}}px -10rpx);'>
 				<view wx:if="{{is_have_default_address==false}}" class="consignee-info input-panel theme-panel">
-
+					<view class="name flex_row_center_spaceBetween">
+						<view class="lable">收货人</view>
+						<input placeholder="请输入" name="contact" maxlength="10"></input>
+					</view>
+					<view class="phone flex_row_center_spaceBetween">
+						<view class="lable">联系电话</view>
+						<input placeholder="请输入" name="phone"></input>
+					</view>
+					<view class="address flex_row_flexStart_spaceBetween">
+						<view class="lable">收货地址</view>
+						<textarea placeholder="请输入" name="address" maxlength="100"></textarea>
+					</view>
+					<!--
 					<view class="choose-consignee flex_row_center_spaceBetween" bindtap="selectAddress">
 						<view class="lable">请选择收货地址</view>
 						<view class="btn flex_row_center_flexEnd">
 							<view class="fa fa-angle-right" aria-hidden="true"></view>
 						</view>
 					</view>
+					-->
 				</view>
 				<view wx:else class="consignee-info input-panel theme-panel">
 					<view class="head flex_row_center_spaceBetween" bindtap="selectAddress">

@@ -67,11 +67,10 @@ textarea {
   margin-left: 30rpx;
 }
 
-/*
 .consignee-info>.name,
 .consignee-info>.phone {
   width: calc(100% - 120rpx);
-  border-bottom: 1px solid #ededed;
+  /* border-bottom: 1px solid #ededed; */
 }
 
 .consignee-info>.address {
@@ -79,7 +78,8 @@ textarea {
   height: 150rpx;
   margin-top: 15rpx;
 }
-*/
+
+/*
 .consignee-info>.choose-consignee {
   height: 120rpx;
 }
@@ -87,6 +87,7 @@ textarea {
 .consignee-info>.choose-consignee>.lable {
   width: 210rpx;
 }
+*/
 
 .arrive-time {
   height: 90rpx;
