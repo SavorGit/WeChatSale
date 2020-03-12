@@ -1,4 +1,31 @@
 /* pages/user/register.wxss */
+/**
+ * 用户注册页面
+ */
+
+
+.tab-bar {
+  width: 100%;
+  height: 110rpx;
+}
+
+.tab-bar>.tab {
+  width: 200rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border: 3rpx solid #A18668;
+}
+
+.tab-bar>.tab.agent {
+  border-radius: 10rpx 0 0 10rpx;
+}
+
+.tab-bar>.tab.hotel {
+  border-radius: 0 10rpx 10rpx 0;
+}
+
 .panel {
   width: 100%;
   margin-top: 20rpx;
@@ -105,6 +132,27 @@
   line-height: 40rpx;
   text-align: center;
   font-size: 28rpx;
+}
+
+.agent>.panel:first-child {
+  margin-top: 0;
+}
+
+.agent>.panel>.body>.valicode>.input-group>.input {
+  width: calc(100% - 130rpx);
+}
+
+.agent>.panel>.body>.valicode>.input-group>.btn {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #A18668;
+  border: 3rpx solid #A18668;
+  border-radius: 5rpx;
+  margin: 0;
+  padding: 0;
 }
 
 .basic {

@@ -20,6 +20,12 @@
           <radio value="0" checked="{{is_sale==0?true:false}}">否</radio>
         </radio-group>
 			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">全国售卖</view>
+				<view class="input" style="border:none;">
+					<switch checked="true" />
+				</view>
+			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				 <view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>

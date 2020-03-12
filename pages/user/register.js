@@ -15,8 +15,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showRegisterSuccessPopWindow:false,
-    mobile:'',
+    tab: 'agent',
+    showRegisterSuccessPopWindow: false,
+    mobile: '',
     cityArray: ['北京'],
     objectCityArray: [],
     cityIndex: 0,
@@ -29,27 +30,27 @@ Page({
     objectCuisineArray: [],
     cuisineIndex: 0,
 
-    addDisabled:false,
+    addDisabled: false,
     oss_url: app.globalData.oss_url + '/',
-    logoimg:'',
-    faceimg:'',
-    envimg:'',
-    legal_idcard_img0:'',
-    legal_idcard_img1:'',
-    legal_idcard_img2:'',
-    legal_charter_img0:'',
-    legal_charter_img1:'',
-    is_get_sms_code:'',
-    name_focus:false,
-    avg_focus:false,
-    tel_focus:false,
-    addr_focus:false,
-    legal_focus:false,
-    contractor_focus:false,
-    mobile_focus:false,
-    verify_code_focus:false,
+    logoimg: '',
+    faceimg: '',
+    envimg: '',
+    legal_idcard_img0: '',
+    legal_idcard_img1: '',
+    legal_idcard_img2: '',
+    legal_charter_img0: '',
+    legal_charter_img1: '',
+    is_get_sms_code: '',
+    name_focus: false,
+    avg_focus: false,
+    tel_focus: false,
+    addr_focus: false,
+    legal_focus: false,
+    contractor_focus: false,
+    mobile_focus: false,
+    verify_code_focus: false,
   },
-  
+
 
 
   /**
@@ -76,7 +77,7 @@ Page({
         cityArray: data.result.city_name_list,
         objectCityArray: data.result.city_list
       })
-    }) 
+    })
   },
   //城市切换 
   bindCityPickerChange: function (e) {
@@ -94,14 +95,14 @@ Page({
 
       //获取城市列表
       utils.PostRequest(api_v_url + '/Area/getSecArea', {
-        area_id:area_id
+        area_id: area_id
       }, (data, headers, cookies, errMsg, statusCode) => {
         console.log(data)
         that.setData({
           areaArray: data.result.area_name_list,
           objectAreaArray: data.result.area_list
         })
-      }) 
+      })
     }
   },
   //切换区域
@@ -202,40 +203,40 @@ Page({
 
               success: function (res) {
                 var dish_img_url = "forscreen/resource/" + img_url
-                
-                if(type=='logo'){//logo图
+
+                if (type == 'logo') {//logo图
                   that.setData({
                     logoimg: dish_img_url
                   })
-                }else if(type=='face'){ //门帘
+                } else if (type == 'face') { //门帘
                   that.setData({
                     faceimg: dish_img_url
                   })
-                } else if (type =='env'){ //环境
+                } else if (type == 'env') { //环境
                   that.setData({
-                    envimg:dish_img_url
+                    envimg: dish_img_url
                   })
-                } else if (type =='idcard'){  //法人身份证
-                  if(keys==0){
+                } else if (type == 'idcard') {  //法人身份证
+                  if (keys == 0) {
                     that.setData({
                       legal_idcard_img0: dish_img_url
                     })
-                  }else if(keys==1){
+                  } else if (keys == 1) {
                     that.setData({
                       legal_idcard_img1: dish_img_url
                     })
-                  }else if(keys==2){
+                  } else if (keys == 2) {
                     that.setData({
                       legal_idcard_img2: dish_img_url
                     })
                   }
-                  
-                } else if (type =='charter'){//执照
-                  if(keys==0){
+
+                } else if (type == 'charter') {//执照
+                  if (keys == 0) {
                     that.setData({
                       legal_charter_img0: dish_img_url
                     })
-                  }else if(keys ==1){
+                  } else if (keys == 1) {
                     that.setData({
                       legal_charter_img1: dish_img_url
                     })
@@ -321,8 +322,8 @@ Page({
       }, 1000);
     })
   },
-  registerHotel:function(e){
-    
+  registerHotel: function (e) {
+
     var that = this;
     console.log(e);
     console.log(that.data)
@@ -347,25 +348,25 @@ Page({
     var verify_code = e.detail.value.verify_code.replace(/\s+/g, '');
 
 
-    if(name==''){
+    if (name == '') {
       app.showToast('请输入餐厅名称');
       that.setData({
-        name_focus:true
+        name_focus: true
       })
       return false;
     }
-    if (cuisineIndex==0){
+    if (cuisineIndex == 0) {
       app.showToast('请选择菜品类型');
       return false;
     }
-    if (avg_exp==''){
+    if (avg_exp == '') {
       app.showToast('请输入人均消费');
       that.setData({
         avg_focus: true
       })
       return false;
     }
-    if (tel==''){
+    if (tel == '') {
       app.showToast('请输入订餐电话');
       that.setData({
         tel_focus: true
@@ -373,7 +374,7 @@ Page({
       return false;
     }
 
-    if (cityIndex==0){
+    if (cityIndex == 0) {
       app.showToast('请选择所在城市');
       return false;
     }
@@ -381,7 +382,7 @@ Page({
       app.showToast('请选择所在区域');
       return false;
     }
-    if (addr==''){
+    if (addr == '') {
       app.showToast('请输入餐厅地址');
       that.setData({
         addr_focus: true
@@ -392,11 +393,11 @@ Page({
       app.showToast('请上传餐厅logo图');
       return false;
     }*/
-    if (faceimg==''){
+    if (faceimg == '') {
       app.showToast('请上传餐厅门脸图');
       return false;
     }
-    if (legal_name==''){
+    if (legal_name == '') {
       app.showToast('请输入法人姓名');
       that.setData({
         legal_focus: true
@@ -415,7 +416,7 @@ Page({
       app.showToast('请上传法人手持身份证件照');
       return false;
     }
-    if (legal_charter_img0==''){
+    if (legal_charter_img0 == '') {
       app.showToast('请上传营业执照');
       return false;
     }
@@ -424,36 +425,36 @@ Page({
       return false;
     }
 
-    if (contractor==''){
+    if (contractor == '') {
       app.showToast('请输入联系人姓名');
       that.setData({
-        contractor_focus:true
+        contractor_focus: true
       })
       return false;
     }
-    if(mobile==''){
+    if (mobile == '') {
       app.showToast('请输入联系方式');
       that.setData({
         mobile_focus: true
       })
-      return false;   
+      return false;
     }
-    if (verify_code==''){
+    if (verify_code == '') {
       app.showToast('请输入手机验证码');
       that.setData({
         verify_code_focus: true
       })
-      return false;   
+      return false;
     }
-    
+
     var foods_list = that.data.objectCuisineArray
     var food_style_id = foods_list[cuisineIndex].id;
 
     var area_list = that.data.objectCityArray;
     var area_id = area_list[cityIndex].id;
-    
+
     var county_list = that.data.objectAreaArray;
-    
+
     var county_id = county_list[cityIndex].id;
 
 
@@ -490,7 +491,7 @@ Page({
       verify_code: verify_code
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        showRegisterSuccessPopWindow:true,
+        showRegisterSuccessPopWindow: true,
         message: data.result.message
       })
     })
@@ -547,5 +548,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  // 选项卡选择
+  showTab: function (e) {
+    let self = this;
+    let tabType = e.currentTarget.dataset.tab;
+    self.setData({ tab: tabType });
   }
 })

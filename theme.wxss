@@ -21,6 +21,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #fff;
 }
 
+.wx-switch-input {
+  background: #50D2C2 !important;
+  border: #50d2c2 !important;
+}
+
 .link_relief {
   color: #a18668;
   /* color: #1cbeb6; */
@@ -104,7 +109,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .theme-button-welcome,
-.broadcast-panel {
+.broadcast-panel,
+.selected {
   color: #fff;
   background-color: #a18668;
 }

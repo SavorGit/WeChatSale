@@ -51,6 +51,21 @@ button::before {
   background-color: unset;
 }
 
+.wx-switch-input {
+  width: 82rpx !important;
+  height: 36rpx !important;
+}
+
+.wx-switch-input::before {
+  width: 80rpx !important;
+  height: 36rpx !important;
+}
+
+.wx-switch-input::after {
+  width: 40rpx !important;
+  height: 36rpx !important;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
