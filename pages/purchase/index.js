@@ -85,7 +85,7 @@ Page({
     switch (pageType) {
       case 'foods':
         wx.navigateTo({
-          url: '/pages/purchase/merchant/index',
+          url: '/pages/purchase/merchant/index?openid='+openid,
           success: function (res) {
             wx.hideLoading();
           }
@@ -93,7 +93,7 @@ Page({
         break;
       case 'share':
         wx.navigateTo({
-          url: '/pages/purchase/share/index',
+          url: '/pages/purchase/share/index?openid='+openid,
           success: function (res) {
             wx.hideLoading();
           }

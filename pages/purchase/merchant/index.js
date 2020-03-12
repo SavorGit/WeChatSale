@@ -558,7 +558,7 @@ Page({
       return false;
     } else {
       wx.navigateTo({
-        url: '/pages/purchase/merchant/detail?merchant_id=' + merchant_id,
+        url: '/pages/purchase/merchant/detail?merchant_id=' + merchant_id+"&openid="+openid,
       })
     }
 
@@ -570,7 +570,7 @@ Page({
       return false;
     } else {
       wx.navigateTo({
-        url: '/pages/purchase/dishes/detail?goods_id=' + goods_id,
+        url: '/pages/purchase/dishes/detail?goods_id=' + goods_id+"&openid="+openid,
       })
     }
 

@@ -10,7 +10,7 @@ const mta = require('../../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var goods_id;
-
+var openid;
 Page({
 
   /**

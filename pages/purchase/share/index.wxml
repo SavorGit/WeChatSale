@@ -36,7 +36,7 @@
 	<scroll-view class='{{is_link==1 ? "page_main_scroll_banner": "page_main_scroll" }}' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class='page_main'>
 			<view class='row-item flex_column_flexStart_spaceBetween theme-panel' wx:for="{{hotel_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-				<view class="row-top flex_row_flexStart_flexStart" wx:if="{{bean.is_takeout==1}}">
+				<view class="row-top flex_row_flexStart_flexStart" >
 					<view class='cover flex_column_center_flexStart' bindtap="gotoMerchant" data-merchant_id="{{bean.merchant_id}}">
 						<image mode="aspectFill" src='{{bean.img_url}}' binderror="bindImgErro" data-index="{{index}}"></image>
 						<view class="theme-rad-panel">支持外卖</view>
@@ -62,31 +62,7 @@
 					</view>
 				</view>
 
-				<view class="row-top flex_row_flexStart_flexStart" wx:else>
-					<view class='cover flex_column_center_flexStart' bindtap="previewImage" data-src="{{bean.img_url}}" data-hotelid="{{bean.hotel_id}}">
-						<image mode="aspectFill" src='{{bean.img_url}}' binderror="bindImgErro" data-index="{{index}}"></image>
-						<!-- <view class="theme-rad-panel" wx:if="{{bean.is_takeout==1}}">支持外卖</view> -->
-					</view>
-					<view class='i-right flex_column_flexStart_spaceBetween'>
-						<view class='ir-top flex_row_flexStart_flexStart'>
-							<view class='irt-left'>
-								<label class='hotel-name'>{{bean.name}}</label>
-								<view class='irtl-bottom theme-font3'>
-									<label>{{bean.food_name}}</label>
-									<label wx:if="{{bean.avg_expense>0}}">￥{{bean.avg_expense}}/人</label>
-									<label wx:else></label>
-								</view>
-							</view>
-							<view class='option' wx:if="{{bean.tel !=''}}">
-								<button class="fa fa-phone-square theme-font5" aria-hidden="true" bindtap='phonecallevent' data-tel="{{bean.tel}}" data-hotelid="{{bean.hotel_id}}"></button>
-							</view>
-						</view>
-						<view class='address'>
-							<label class="fa fa-map-marker icon"></label>
-							<label>{{bean.addr}}</label>
-						</view>
-					</view>
-				</view>
+				
 
 
 				<view class="row-bottom" wx:if="{{bean.goods.length>0}}">
