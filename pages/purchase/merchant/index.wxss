@@ -12,6 +12,7 @@
 
 .page_top>view {
   padding: 0 45rpx 0 40rpx;
+  font-size: 28rpx;
 }
 
 .page_top>view .city_show>.icon {
