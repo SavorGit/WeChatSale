@@ -87,7 +87,6 @@
     </block>
 	</view>-->
 <!-- <navigator url="/pages/user/register">test</navigator>  -->
-<navigator url="/pages/purchase/index">test</navigator>
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<!-- <view class="title theme-font4">包间签到赚积分</view> -->
