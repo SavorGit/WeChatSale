@@ -1,4 +1,9 @@
 // pages/hotel/order/index.js
+/**
+ * 代购 - 订单列表页面
+ */
+
+
 const app = getApp()
 const utils = require('../../../utils/util.js')
 const mta = require('../../../utils/mta_analysis.js')
@@ -76,7 +81,7 @@ Page({
     var that = this;
     var order_status = that.data.order_status
     if (order_status == 0) {
-      page_all +=1;
+      page_all += 1;
       page = page_all;
     } else if (order_status == 1) {
       page_dealing += 1;
@@ -107,54 +112,54 @@ Page({
 
     })
   },
-  gotoDishDetail:function(e){
+  gotoDishDetail: function (e) {
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.navigateTo({
-      url: '/pages/hotel/dishes/detail?goods_id='+goods_id,
+      url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
     })
   },
-  reBuy:function(e){
-    var that = this ;
+  reBuy: function (e) {
+    var that = this;
     var order_id = e.currentTarget.dataset.order_id;
     var merchant_id = e.currentTarget.dataset.merchant_id;
     var merchant_name = e.currentTarget.dataset.merchant_name;
     var keys = e.currentTarget.dataset.keys;
     var order_status = that.data.order_status;
-    if(order_status==0){//全部订单
+    if (order_status == 0) {//全部订单
       var order_list = that.data.all_order_list
       var goods_list = order_list[keys].goods;
-    
-    }else if(order_status ==2){
+
+    } else if (order_status == 2) {
       var order_list = that.data.complete_order_list;
       var goods_list = order_list[keys].goods;
     }
     var can_buy = 0;
-    for(var i=0;i<goods_list.length;i++){
-      if(goods_list[i].status==1){
+    for (var i = 0; i < goods_list.length; i++) {
+      if (goods_list[i].status == 1) {
         can_buy = 1;
         break;
       }
     }
-    if(can_buy==0){
+    if (can_buy == 0) {
       app.showToast('已下架,不可购买');
       return false;
     }
 
     wx.navigateTo({
-      url: '/pages/hotel/order/account?openid=' + openid + '&merchant_id=' + merchant_id + '&merchant_name=' + merchant_name + '&order_type=3&order_id='+order_id,
+      url: '/pages/hotel/order/account?openid=' + openid + '&merchant_id=' + merchant_id + '&merchant_name=' + merchant_name + '&order_type=3&order_id=' + order_id,
     })
   },
-  gotoOrderDetail:function(e){
+  gotoOrderDetail: function (e) {
     var order_id = e.currentTarget.dataset.order_id;
     wx.navigateTo({
-      url: '/pages/hotel/order/detail?openid='+openid+'&order_id='+order_id,
+      url: '/pages/hotel/order/detail?openid=' + openid + '&order_id=' + order_id,
     })
   },
-  gotoMerchant:function(e){
+  gotoMerchant: function (e) {
     var merchant_id = e.currentTarget.dataset.merchant_id;
-    if(merchant_id !='' && typeof(merchant_id)){
+    if (merchant_id != '' && typeof (merchant_id)) {
       wx.navigateTo({
-        url: '/pages/hotel/detail?merchant_id='+merchant_id,
+        url: '/pages/hotel/detail?merchant_id=' + merchant_id,
       })
     }
   },
@@ -180,7 +185,7 @@ Page({
         all_order_list: data.result.datalist
       })
     })
-    
+
     //已完成的订单
     utils.PostRequest(api_url + '/Smallapp4/order/dishOrderlist', {
       openid: openid,

@@ -1,2 +1,73 @@
 <!--pages/purchase/share/log.wxml-->
-<text>pages/purchase/share/log.wxml</text>
+<!--
+ | 选品记录列表页面
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="list">
+		<view class="daily">
+			<view class="date">2020-02-02</view>
+			<view class="hotel theme-panel">
+				<view class="name theme-font7">花家怡园(世茂店)</view>
+				<view class="order-list weui-grids">
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装经典口味，口感醇厚 金爸爸经典10条装经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="hotel theme-panel">
+				<view class="name theme-font7">淮扬府(安定门店)</view>
+				<view class="order-list weui-grids">
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="daily">
+			<view class="date">2020-02-03</view>
+			<view class="hotel theme-panel">
+				<view class="name theme-font7">淮扬府(安定门店)</view>
+				<view class="order-list weui-grids">
+					<view class="weui-grid flex_column_center_center">
+						<view class="goods">
+							<image class="img" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<view class="name two-line-overflow">经典口味，口感醇厚 金爸爸经典10条装</view>
+							<view class="price theme-font5">￥66.6</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>

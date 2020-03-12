@@ -1,4 +1,9 @@
 // pages/hotel/order/detail.js
+/**
+ * 代购 - 订单详情页面
+ */
+
+
 const app = getApp()
 const utils = require('../../../utils/util.js')
 const mta = require('../../../utils/mta_analysis.js')
@@ -24,17 +29,17 @@ Page({
     //订单详情
     utils.PostRequest(api_url + '/Smallapp4/order/dishOrderdetail', {
       openid: openid,
-      order_id:order_id,
+      order_id: order_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        order_info:data.result
+        order_info: data.result
       })
     });
   },
-  gotoDeshes:function(e){
+  gotoDeshes: function (e) {
     console.log(e)
     var goods_id = e.currentTarget.dataset.goods_id;
-    if(goods_id !='' && typeof(goods_id)!='undefined'){
+    if (goods_id != '' && typeof (goods_id) != 'undefined') {
       wx.navigateTo({
         url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
       })

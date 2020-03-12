@@ -1,4 +1,9 @@
 // pages/purchase/index.js
+/**
+ * 代购 - 主页
+ */
+
+
 Page({
 
   /**
@@ -62,5 +67,56 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  // 页面跳转
+  gotoPage: function (e) {
+    let self = this;
+    let pageType = e.currentTarget.dataset.page;
+    wx.showLoading({
+      title: '正在跳转...',
+      mask: true
+    });
+    switch (pageType) {
+      case 'foods':
+        wx.navigateTo({
+          url: '/pages/purchase/merchant/index',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'share':
+        wx.navigateTo({
+          url: '/pages/purchase/share/index',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'order':
+        wx.navigateTo({
+          url: '/pages/purchase/order/index',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      case 'recod':
+        wx.navigateTo({
+          url: '/pages/purchase/share/log',
+          success: function (res) {
+            wx.hideLoading();
+          }
+        });
+        break;
+      default:
+        wx.showToast({
+          icon: 'none',
+          title: '无此页面',
+        });
+        break;
+    }
   }
 })

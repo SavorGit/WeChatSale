@@ -1,2 +1,26 @@
 <!--pages/purchase/index.wxml-->
-<text>pages/purchase/index.wxml</text>
+<!--
+ | 代购 - 主页
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="list flex_column_center_spaceAround">
+		<view class="item flex_column_center_center panel-color-foods" data-page="foods" bindtap="gotoPage">
+			<view class="fa fa-shopping-cart" aria-hidden="true"></view>
+			<view class="name">购买美食</view>
+		</view>
+		<view class="item flex_column_center_center panel-color-share" data-page="share" bindtap="gotoPage">
+			<view class="fa fa-share-alt-square" aria-hidden="true"></view>
+			<view class="name">选品分享</view>
+		</view>
+		<view class="item flex_column_center_center panel-color-order" data-page="order" bindtap="gotoPage">
+			<view class="fa fa-bars" aria-hidden="true"></view>
+			<view class="name">我的订单</view>
+		</view>
+		<view class="item flex_column_center_center panel-color-recod" data-page="recod" bindtap="gotoPage">
+			<view class="fa fa-newspaper-o" aria-hidden="true"></view>
+			<view class="name">选品记录</view>
+		</view>
+	</view>
+</scroll-view>

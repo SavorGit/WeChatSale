@@ -1,9 +1,10 @@
 <!--pages/hotel/dishes/detail.wxml-->
-<import src="/pages/template/commons" />
-<template is="navigationBarForShare" data='{{statusBarHeight: statusBarHeight,titleText:"菜品详情"}}' wx:if="{{is_share==true}}" />
-<template is="navigationBarForTwoLevel" data='{{statusBarHeight: statusBarHeight,titleText:"菜品详情"}}' wx:if="{{is_share==false}}" />
+<!--
+ | 菜品详情页面
+ |-->
 
-<view class='container flex-column-center-flex_start theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
+
+<view class='container flex_column_center_flexStart theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
 	<scroll-view class='scroll-view' scroll-y="true" scroll-with-animation="true">
 		<view class="goods-info theme-panel">
 			<swiper class="pic-group" indicator-dots="true" autoplay="true">
@@ -11,57 +12,57 @@
 					<image mode="aspectFill" src="{{bean}}"></image>
 				</swiper-item>
 			</swiper>
-			<view class="flex-column-flex_start-space_around">
+			<view class="flex_column_flexStart_spaceAround">
 				<view class="name one-line-overflow">{{goods_info.name}}</view>
 				<view class="price theme-font5">￥{{goods_info.price}}</view>
 			</view>
 		</view>
-		<view class="hotel-info flex-row-center-space_between theme-panel">
+		<view class="hotel-info flex_row_center_spaceBetween theme-panel">
 			<image class="pic" mode="aspectFill" src="{{merchant.img}}"></image>
-			<view class="info flex-column-flex_start-space_between">
+			<view class="info flex_column_flexStart_spaceBetween">
 				<view class="name two-line-overflow">{{merchant.name}}</view>
 				<view class="one-line-overflow theme-font7">共发布了{{merchant.num}}个菜品</view>
 			</view>
-			<view class="btn-group flex-column-center-flex_end" bindtap="gotoHotelDetail" data-merchant_id="{{merchant.merchant_id}}">
+			<view class="btn-group flex_column_center_flexEnd" bindtap="gotoHotelDetail" data-merchant_id="{{merchant.merchant_id}}">
 				<view class="btn theme-font7">进入</view>
 			</view>
 		</view>
 		<view class="goods-detail theme-panel">
 			<view class="title">详情</view>
 			<view class="detail-text">
-      <text>
-      {{goods_info.intro}}
-      </text></view>
-			<view class="detail-pic flex-column-center-flex_start">
+				<text>
+				{{goods_info.intro}}
+				</text></view>
+			<view class="detail-pic flex_column_center_flexStart">
 				<block wx:for="{{goods_info.detail_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
 					<image class="pic" mode="widthFix" src="{{bean}}"></image>
 				</block>
 			</view>
 		</view>
 	</scroll-view>
-	<view class="btn-buy flex-column-center-center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>
+	<view class="btn-buy flex_column_center_center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>
 </view>
 
 <!-- 更改订单商品窗口 -->
 <view wx:if="{{showChangeOrderGoodsPopWindow}}" class="change-order-goods-window">
 	<view class="mask"></view>
 	<view class="window {{showChangeOrderGoodsWindow?'fadeInDown':'fadeOutUp'}}">
-		<view class="title-bar flex-row-center-space_between">
+		<view class="title-bar flex_row_center_spaceBetween">
 			<view class="title theme-font2" bindtap="gotoOrder">选择菜品数量</view>
-			<view class="btn clean flex-row-center-space_around theme-font7" bindtap="clearCart">
+			<view class="btn clean flex_row_center_spaceAround theme-font7" bindtap="clearCart">
 				<view></view>
 				<view class="fa fa-close fa-lg" aria-hidden="true" bindtap="closeChangeOrderGoodsWindow"></view>
 			</view>
 		</view>
 		<scroll-view class="body theme-panel" scroll-y="true" scroll-with-animation="true">
 			<view class="list">
-				<view class="item flex-row-center-flex_start">
+				<view class="item flex_row_center_flexStart">
 					<view class="name two-line-overflow">{{goods_info.name}}</view>
 					<view class="price theme-font5">
 						<label>￥</label>
 						<text>{{goods_info.price}}</text>
 					</view>
-					<view class="count-chooser flex-row-center-space_between">
+					<view class="count-chooser flex_row_center_spaceBetween">
 						<view class="fa fa-minus-circle" aria-hidden="true" bindtap="cutNum"></view>
 						<input value="{{amount}}" disabled="true" />
 						<view class="fa fa-plus-circle" aria-hidden="true" bindtap="addNum"></view>

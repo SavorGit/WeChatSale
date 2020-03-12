@@ -1,4 +1,8 @@
 /* pages/hotel/order/account.wxss */
+/**
+ * 代购 - 确认订单页面
+ */
+
 
 input,
 picker,

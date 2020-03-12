@@ -1,4 +1,9 @@
 /* pages/hotel/detail.wxss */
+/**
+ * 代购 - 餐厅详情页面
+ */
+
+
 @import "/animation.wxss";
 
 .wapper {

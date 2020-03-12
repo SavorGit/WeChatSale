@@ -1,4 +1,9 @@
 // pages/hotel/order/account.js
+/**
+ * 代购 - 确认订单页面
+ */
+
+
 const app = getApp()
 const utils = require('../../../utils/util.js')
 const mta = require('../../../utils/mta_analysis.js')

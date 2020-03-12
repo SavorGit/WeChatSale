@@ -1,4 +1,7 @@
 /* pages/hotel/cooperation.wxss */
+/**
+ * 代购 - 美食餐厅页面
+ */
 
 /* =========================== 页面头部 =========================== */
 .page_top {
@@ -138,6 +141,9 @@
   line-height: 60rpx;
   font-size: 60rpx;
   border-radius: 25rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .page_main>.row-item>.row-top>.i-right>.address {

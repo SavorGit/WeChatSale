@@ -1,4 +1,9 @@
 // pages/hotel/cooperation.js
+/**
+ * 代购 - 选品分享页面
+ */
+
+
 const utils = require('../../../utils/util.js')
 var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()

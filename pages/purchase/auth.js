@@ -1,4 +1,9 @@
 // pages/purchase/auth.js
+/**
+ * 审核页面
+ */
+
+
 Page({
 
   /**

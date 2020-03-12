@@ -1,3 +1,5 @@
 {
+  "navigationBarTitleText": "主页",
+  "disableScroll": true,
   "usingComponents": {}
 }

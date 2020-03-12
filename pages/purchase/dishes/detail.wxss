@@ -1,4 +1,9 @@
 /* pages/hotel/dishes/detail.wxss */
+/**
+ * 菜品详情页面
+ */
+
+
 @import "/animation.wxss";
 
 .goods-info {

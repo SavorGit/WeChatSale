@@ -1,1 +1,15 @@
 /* pages/purchase/auth.wxss */
+/**
+ * 审核页面
+ */
+
+
+.content {
+  font-size: 46rpx;
+  font-weight: bold;
+}
+
+.tip {
+  margin-top: 100rpx;
+  font-size: 32rpx;
+}

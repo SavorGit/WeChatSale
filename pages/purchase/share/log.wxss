@@ -1,1 +1,72 @@
 /* pages/purchase/share/log.wxss */
+/**
+ * 选品记录列表页面
+ */
+
+
+.list {
+  width: 100%;
+}
+
+.daily {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.daily>.date {
+  width: calc(100% - 40rpx);
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.daily>.hotel {
+  width: calc(100% - 30rpx);
+  margin: 10rpx 15rpx 0 15rpx;
+  border-radius: 10rpx;
+}
+
+.daily>.hotel>.name {
+  width: calc(100% - 40rpx);
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+}
+
+.daily>.hotel>.order-list {
+  width: calc(100% - 40rpx);
+  padding: 0 20rpx;
+}
+
+.daily>.hotel>.order-list>.weui-grid {
+  width: 50%;
+}
+
+.daily>.hotel>.order-list>.weui-grid>.goods {
+  width: 320rpx;
+  margin-bottom: 10rpx;
+  border: 3rpx solid #DEDEDE;
+  border-radius: 10rpx;
+}
+
+.daily>.hotel>.order-list>.weui-grid>.goods>.img {
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 10rpx;
+}
+
+.daily>.hotel>.order-list>.weui-grid>.goods>.name {
+  height: 70rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+}
+
+.daily>.hotel>.order-list>.weui-grid>.goods>.price {
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+}

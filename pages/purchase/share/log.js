@@ -1,4 +1,9 @@
 // pages/purchase/share/log.js
+/**
+ * 选品记录列表页面
+ */
+
+
 Page({
 
   /**

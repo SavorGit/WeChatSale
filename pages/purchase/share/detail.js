@@ -1,4 +1,9 @@
 // pages/hotel/detail.js
+/**
+ * 代购 - 餐厅详情页面
+ */
+
+
 const app = getApp()
 const utils = require('../../../utils/util.js')
 const mta = require('../../../utils/mta_analysis.js')
