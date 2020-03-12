@@ -10,29 +10,9 @@ const mta = require('../../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var merchant_id;
+var openid ;
 var page = 1;
-let SavorUtils = {
-  User: {
 
-    // 判断用户是否注册
-    isRegister: pageContext => utils.PostRequest(api_url + '/smallapp21/User/isRegister', {
-      openid: pageContext.data.openid,
-      page_id: 41
-    }, (data, headers, cookies, errMsg, statusCode) => wx.setStorage({
-      key: 'savor_user_info',
-      data: data.result.userinfo,
-    }), function () {
-      wx.setStorage({
-        key: 'savor_user_info',
-        data: {
-          openid: app.globalData.openid
-        }
-      })
-
-    }, { isShowLoading: false }),
-  },
-
-};
 Page({
 
   /**
@@ -50,97 +30,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     var that = this;
+    openid = options.openid;
+    merchant_id = options.merchant_id
+    //商家详情
+    that.getMerchantInfo(merchant_id);
 
+    //菜品列表
+    that.getDishInfo(merchant_id)
 
-    if (app.globalData.openid && app.globalData.openid != '') {
-      //注册用户
-      that.setData({
-        openid: app.globalData.openid
-      });
-      SavorUtils.User.isRegister(that); //判断用户是否注册
-
-      if (typeof (options.q) != 'undefined') {
-        var q = decodeURIComponent(options.q);
-        var selemite = q.indexOf("?");
-        var pams = q.substring(selemite + 3, q.length);
-
-        var pams_arr = pams.split('_');
-        merchant_id = pams_arr[1];
-        that.setData({
-          is_share: true
-        })
-        mta.Event.stat('openShareMerchant', { 'merchantid': merchant_id, 'openid': app.globalData.openid })
-      } else {
-        merchant_id = options.merchant_id;
-        if (typeof (options.is_share) != 'undefined' && options.is_share == 1) {
-          that.setData({
-            is_share: true
-          })
-          mta.Event.stat('openShareMerchant', { 'merchantid': merchant_id, 'openid': app.globalData.openid })
-        } else {
-          that.setData({
-            is_share: false
-          })
-        }
-      }
-
-      //商家详情
-      that.getMerchantInfo(merchant_id);
-
-      //菜品列表
-      that.getDishInfo(merchant_id)
-
-      //购物车列表
-      that.getCartInfo(merchant_id);
-
-
-    } else {
-      app.openidCallback = openid => {
-        if (openid != '') {
-          that.setData({
-            openid: openid
-          });
-          SavorUtils.User.isRegister(that); //判断用户是否注册
-
-
-
-          if (typeof (options.q) != 'undefined') {
-            var q = decodeURIComponent(options.q);
-            var selemite = q.indexOf("?");
-            var pams = q.substring(selemite + 3, q.length);
-
-            var pams_arr = pams.split('_');
-            merchant_id = pams_arr[1];
-            that.setData({
-              is_share: true
-            })
-            mta.Event.stat('openShareMerchant', { 'merchantid': merchant_id, 'openid': openid })
-          } else {
-            merchant_id = options.merchant_id;
-            if (typeof (options.is_share) != 'undefined' && options.is_share == 1) {
-              that.setData({
-                is_share: true
-              })
-              mta.Event.stat('openShareMerchant', { 'merchantid': merchant_id, 'openid': openid })
-            } else {
-              that.setData({
-                is_share: false
-              })
-            }
-          }
-
-          //商家详情
-          that.getMerchantInfo(merchant_id);
-
-          //菜品列表
-          that.getDishInfo(merchant_id)
-          //购物车列表
-          that.getCartInfo(merchant_id);
-        }
-      }
-    }
-
+    //购物车列表
+    that.getCartInfo(merchant_id);
 
   },
   getMerchantInfo: function (merchant_id) {
