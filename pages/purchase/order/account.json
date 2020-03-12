@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "确认订单",
+  "disableScroll": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal"
+  }
 }
