@@ -1,6 +1,6 @@
 // pages/hotel/setting/agent_setting.js
 /**
- * 代购设置页面
+ * 分销设置页面
  */
 
 const app = getApp()
@@ -85,6 +85,6 @@ Page({
   // 打开提示弹窗
   openChangeSalePriceTipPopWindow: function (e) {
     let self = this;
-    self.setData({ showTipsPopWindow: true, tipsPopWindowTitle: '提示', tipsPopWindowContents: ['1.您在允许代购改价售卖时，代购可以在菜品原价的基础上进行调整。以此来进行售卖获得代购自己的收益。', '2.如果您不支持菜品改价售卖，可能会使代购售卖您餐厅的菜品时产生障碍，需要单独与您在线下沟通代购在帮您餐厅售卖菜品时如何获得利润。'] });
+    self.setData({ showTipsPopWindow: true, tipsPopWindowTitle: '提示', tipsPopWindowContents: ['1.您在允许分销改价售卖时，分销可以在菜品原价的基础上进行调整。以此来进行售卖获得分销自己的收益。', '2.如果您不支持菜品改价售卖，可能会使分销售卖您餐厅的菜品时产生障碍，需要单独与您在线下沟通分销在帮您餐厅售卖菜品时如何获得利润。'] });
   },
 })

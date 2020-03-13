@@ -6,11 +6,11 @@
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="tab-bar flex_row_center_center theme7">
-		<view class="tab agent{{tab == 'agent' ? ' selected' : ''}}" data-tab="agent" bindtap="showTab">代购注册</view>
+		<view class="tab agent{{tab == 'agent' ? ' selected' : ''}}" data-tab="agent" bindtap="showTab">分销注册</view>
 		<view class="tab hotel{{tab == 'hotel' ? ' selected' : ''}}" data-tab="hotel" bindtap="showTab">餐厅注册</view>
 	</view>
 
-	<!-- 代购注册 -->
+	<!-- 分销注册 -->
 	<form wx:if="{{tab == 'agent'}}" bindsubmit="registerPurchase">
 		<view class="tab-body agent">
 			<view class="panel theme7">

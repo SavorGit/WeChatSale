@@ -582,7 +582,7 @@ Page({
   },
 
   /**
-   * 代购注册
+   * 分销注册
    */
   registerPurchase:function(e){
     console.log(e)
