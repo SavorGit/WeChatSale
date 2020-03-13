@@ -31,7 +31,15 @@ Page({
       share_list: data.result.datalist
     }));
   },
-
+  loadMore:function(e){
+    page +=1;
+    utils.PostRequest(api_v_url + '/purchase/selectionList', {
+      openid: openid,
+      page: page
+    }, (data, headers, cookies, errMsg, statusCode) => that.setData({
+      share_list: data.result.datalist
+    }));
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
