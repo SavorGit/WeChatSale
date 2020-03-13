@@ -283,7 +283,7 @@ Page({
 
       function getHotelList(area_id, county_id, food_style_id, avg_exp_id) {
         wx.request({
-          url: api_v_url + '/merchant/purchaseMerchantLis',
+          url: api_v_url + '/merchant/purchaseMerchantList',
           header: {
             'content-type': 'application/json'
           },
@@ -386,7 +386,7 @@ Page({
 
       function getHotelList(area_id, county_id, food_style_id, avg_exp_id) {
         wx.request({
-          url: api_v_url + '/merchant/purchaseMerchantLis',
+          url: api_v_url + '/merchant/purchaseMerchantList',
           header: {
             'content-type': 'application/json'
           },
@@ -432,7 +432,7 @@ Page({
 
     function getHotelList(area_id, county_id, food_style_id, avg_exp_id) {
       wx.request({
-        url: api_v_url + '/merchant/purchaseMerchantLis',
+        url: api_v_url + '/merchant/purchaseMerchantList',
         header: {
           'content-type': 'application/json'
         },
@@ -477,7 +477,7 @@ Page({
 
     function getHotelList(area_id, county_id, food_style_id, avg_exp_id) {
       wx.request({
-        url: api_v_url + '/merchant/purchaseMerchantLis',
+        url: api_v_url + '/merchant/purchaseMerchantList',
         header: {
           'content-type': 'application/json'
         },
@@ -522,7 +522,7 @@ Page({
 
     function getHotelList(area_id, county_id, food_style_id, avg_exp_id) {
       wx.request({
-        url: api_v_url + '/merchant/purchaseMerchantLis',
+        url: api_v_url + '/merchant/purchaseMerchantList',
         header: {
           'content-type': 'application/json'
         },

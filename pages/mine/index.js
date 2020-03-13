@@ -649,5 +649,17 @@ Page({
         url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid ,
       })
     }
+  },
+  gotoSetting:function(e){
+    var that = this;
+    var merchant_id = that.data.merchant_id;
+    var order_status = e.currentTarget.dataset.order_status
+    if (typeof (merchant_id) == 'undefined') {
+      return false;
+    } else {
+      wx.navigateTo({
+        url: '/pages/mine/setting/list?merchant_id=' + merchant_id + '&openid=' + openid,
+      })
+    }
   }
 })

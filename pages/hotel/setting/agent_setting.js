@@ -3,7 +3,14 @@
  * 代购设置页面
  */
 
-
+const app = getApp()
+const mta = require('../../../utils/mta_analysis.js')
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var merchant_id;
+var openid;
 Page({
 
   /**
@@ -17,7 +24,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    merchant_id = options.merchant_id;
+    openid = options.openid;
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      merchant_id: merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      console.log(data.result)
+    })
   },
 
   /**

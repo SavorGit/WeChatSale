@@ -3,7 +3,14 @@
  * 设置列表页面
  */
 
-
+const app = getApp()
+var mta = require('../../../utils/mta_analysis.js')
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var merchant_id ; 
 Page({
 
   /**
@@ -17,7 +24,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    openid = options.openid;
+    merchant_id = options.merchant_id;
   },
 
   /**
@@ -121,7 +129,7 @@ Page({
         break;
       case 'third-platform':
         wx.navigateTo({
-          url: '/pages/hotel/platform/index',
+          url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },
@@ -135,7 +143,7 @@ Page({
         break;
       case 'agent-setting':
         wx.navigateTo({
-          url: '/pages/hotel/setting/agent_setting',
+          url: '/pages/hotel/setting/agent_setting?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },
