@@ -1,6 +1,6 @@
 // pages/hotel/cooperation.js
 /**
- * 代购 - 美食餐厅页面
+ * 分销 - 美食餐厅页面
  */
 
 

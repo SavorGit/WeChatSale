@@ -26,7 +26,7 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="agent-setting" bindtap="gotoSetting">
-			<view class="title">代购设置</view>
+			<view class="title">分销设置</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>

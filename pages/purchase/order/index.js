@@ -1,6 +1,6 @@
 // pages/hotel/order/index.js
 /**
- * 代购 - 订单列表页面
+ * 分销 - 订单列表页面
  */
 
 

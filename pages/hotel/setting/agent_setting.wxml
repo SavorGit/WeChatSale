@@ -10,7 +10,7 @@
 			<view class="body flex_column_flexStart_flexStart">
 				<view class="row flex_row_center_spaceBetween">
 					<view class="left flex_row_center_flexStart">
-						<view class="label">允许代购改价售卖</view>
+						<view class="label">允许分销改价售卖</view>
 						<view class="star theme-font5">*</view>
 						<view class="fa fa-question-circle-o" aria-hidden="true" bindtap="openChangeSalePriceTipPopWindow"></view>
 					</view>

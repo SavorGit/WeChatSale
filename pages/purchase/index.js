@@ -1,6 +1,6 @@
 // pages/purchase/index.js
 /**
- * 代购 - 主页
+ * 分销 - 主页
  */
 const app = getApp()
 const utils = require('../../utils/util.js')
