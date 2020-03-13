@@ -28,7 +28,7 @@
     "pages/purchase/share/index",
     "pages/purchase/share/detail",
     "pages/purchase/share/log",
-
+    "pages/purchase/share/poster",
     "pages/launch/file/index",
     "pages/launch/file/h5files",
     "pages/launch/file/h5files_result",

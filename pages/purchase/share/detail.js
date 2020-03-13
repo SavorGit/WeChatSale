@@ -156,7 +156,7 @@ Page({
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
       page: 1,
-      type:2
+      type: 2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -201,7 +201,7 @@ Page({
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
       page: page,
-      type:2
+      type: 2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -454,7 +454,7 @@ Page({
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
       page: page,
-      type:2
+      type: 2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -504,7 +504,7 @@ Page({
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
       page: page,
-      type:2
+      type: 2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -557,4 +557,12 @@ Page({
       self.setData({ showShoppingCartPopWindow: false });
     }, 500);
   },
+
+  // 跳转到海报页
+  gotoPoster: function (e) {
+    let self = this;
+    wx.navigateTo({
+      url: '/pages/purchase/share/poster',
+    });
+  }
 })

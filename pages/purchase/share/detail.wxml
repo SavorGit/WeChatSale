@@ -73,10 +73,13 @@
 						<view class="show-new-count theme-rad-panel"></view>
 					</view>
 				</view>
+				<view class="info">您共选中了{{cart_dish_nums}}件菜品</view>
+				<!--
 				<view class="info">已添加{{cart_dish_nums}}件菜品，合计{{total_price}}元</view>
+				-->
 			</view>
-			<view class="right flex_row_center_flexEnd" bindtap="gotoOrder">
-				<view class="btn buy theme-button-welcome">下单</view>
+			<view class="right flex_row_center_flexEnd" bindtap="gotoPoster">
+				<view class="btn buy theme-button-welcome">生成海报</view>
 			</view>
 		</view>
 	</view>
@@ -87,7 +90,7 @@
 	<view class="mask" bindtap="closeShoppingCartWindow"></view>
 	<view class="window {{showShoppingCartWindow?'fadeInDown':'fadeOutUp'}}">
 		<view class="title-bar flex_row_center_spaceBetween">
-			<view class="title theme-font2" bindtap="gotoOrder">去结算</view>
+			<view class="title theme-font2" bindtap="gotoOrder">已选菜品</view>
 			<view class="btn clean flex_row_center_spaceAround theme-font7" bindtap="clearCart">
 				<view class="fa fa-trash-o fa-lg" aria-hidden="true"></view>
 				<view>清空</view>
@@ -107,18 +110,6 @@
 						<view class="fa fa-plus-circle" aria-hidden="true" bindtap="addNum" data-keys="{{index}}"></view>
 					</view>
 				</view>
-				<!-- <view class="item flex_row_center_flexStart">
-					<view class="name two-line-overflow">干锅土豆-中辣</view>
-					<view class="price theme-font5">
-						<label>￥</label>
-						<text>11</text>
-					</view>
-					<view class="count-chooser flex_row_center_spaceBetween">
-						<view class="fa fa-minus-circle" aria-hidden="true"></view>
-						<input value="1" />
-						<view class="fa fa-plus-circle" aria-hidden="true"></view>
-					</view>
-				</view> -->
 			</view>
 		</scroll-view>
 	</view>
