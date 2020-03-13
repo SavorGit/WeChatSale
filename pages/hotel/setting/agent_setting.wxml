@@ -1,0 +1,29 @@
+<!--pages/hotel/setting/agent_setting.wxml-->
+<!--
+ | 菜品详情页面
+ |-->
+
+
+<view class='container flex_column_center_flexStart theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
+	<view class="warpper flex_column_center_flexStart">
+		<view class="panel flex_column_center_flexStart theme-panel">
+			<view class="body flex_column_flexStart_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="left flex_row_center_flexStart">
+						<view class="label">允许代购改价售卖</view>
+						<view class="star theme-font5">*</view>
+						<view class="fa fa-question-circle-o" aria-hidden="true" bindtap="openChangeSalePriceTipPopWindow"></view>
+					</view>
+					<view class="right">
+						<switch checked="true"></switch>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 提示弹窗 -->
+<modal show="{{showTipsPopWindow}}" width="600rpx" height='450rpx' border-radius="10rpx" background-color='#ffffff' title-text='{{tipsPopWindowTitle}}' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='关闭' confirm-color="#FFFFFF" confirm-background-color="#A18668" confirm-border-radius="0rpx" cancel-text=''>
+	<view wx:for="{{tipsPopWindowContents}}" wx:for-item="content" wx:key="index" style="text-indent:2em;padding:10rpx 30rpx;font-size:28rpx">{{content}}</view>
+</modal>

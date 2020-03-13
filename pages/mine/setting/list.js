@@ -1,4 +1,9 @@
 // pages/mine/setting/list.js
+/**
+ * 设置列表页面
+ */
+
+
 Page({
 
   /**
@@ -62,5 +67,92 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 跳转页面
+  gotoSetting: function (e) {
+    wx.showLoading({
+      title: '正在跳转...',
+      mask: true
+    });
+    let jumpType = e.currentTarget.dataset.type;
+    switch (jumpType) {
+      case 'basic':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/basic',
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
+      case 'distribution':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/distribution',
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
+      case 'customer-pay':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/customer_pay',
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
+      case 'third-platform':
+        wx.navigateTo({
+          url: '/pages/hotel/platform/index',
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
+      case 'agent-setting':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/agent_setting',
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
+      default:
+        wx.showToast({
+          icon: 'none',
+          title: '无此类型',
+        });
+        break;
+    }
   }
 })

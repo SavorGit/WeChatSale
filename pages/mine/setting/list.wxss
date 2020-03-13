@@ -1,4 +1,9 @@
 /* pages/mine/setting/list.wxss */
+/**
+ * 设置列表页面
+ */
+
+
 .wapper {
   width: 100%;
   height: 100%;
@@ -10,8 +15,16 @@
   padding: 20rpx 30rpx;
 }
 
-.row>.title {
+.row>.warper {
+  width: calc(100% - 50rpx);
+}
+
+.row .title {
   font-size: 32rpx;
+}
+
+.row .choose {
+  font-size: 28rpx;
 }
 
 .row>.fa {

@@ -98,16 +98,17 @@
 		</view>
 		<scroll-view class="body theme-panel" scroll-y="true" scroll-with-animation="true">
 			<view class="list">
-				<view class="item flex_row_center_flexStart" wx:for="{{cart_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-					<view class="name two-line-overflow">{{bean.name}}</view>
-					<view class="price theme-font5">
-						<label>￥</label>
-						<text>{{bean.price}}</text>
+				<view class="item flex_row_center_spaceBetween" wx:for="{{cart_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+					<view class="left flex_column_center_flexStart">
+						<image class="pic" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="price theme-rad-panel">￥{{bean.price}}</view>
 					</view>
-					<view class="count-chooser flex_row_center_spaceBetween">
-						<view class="fa fa-minus-circle" aria-hidden="true" bindtap="cutNum" data-keys="{{index}}"></view>
-						<input value="{{bean.amount}}" disabled="true" />
-						<view class="fa fa-plus-circle" aria-hidden="true" bindtap="addNum" data-keys="{{index}}"></view>
+					<view class="right">
+						<view class="name two-line-overflow">{{bean.name}}</view>
+						<view class="sale-price">
+							<input wx:if="{{index==0}}" placeholder="请输入售卖价格"></input>
+							<view wx:else>￥288</view>
+						</view>
 					</view>
 				</view>
 			</view>

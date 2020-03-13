@@ -17,6 +17,7 @@
     "pages/hotel/register/index",
     "pages/hotel/platform/add",
     "pages/hotel/platform/index",
+    "pages/hotel/setting/agent_setting",
     "pages/purchase/index",
     "pages/purchase/auth",
     "pages/purchase/merchant/index",

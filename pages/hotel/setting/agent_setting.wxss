@@ -1,0 +1,46 @@
+/* pages/hotel/setting/agent_setting.wxss */
+/**
+ * 菜品详情页面
+ */
+
+
+.warpper {
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  width: 100%;
+}
+
+.panel>.body {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.panel>.body>.row {
+  width: 100%;
+  height: 50rpx;
+}
+
+.panel>.body>.row>.left {
+  width: 50%;
+}
+
+.panel>.body>.row>.left>.label {
+  font-size: 28rpx;
+}
+
+.panel>.body>.row>.left>.star {
+  font-size: 28rpx;
+  margin-left: 5rpx;
+}
+
+.panel>.body>.row>.left>.fa {
+  font-size: 32rpx;
+  margin-left: 15rpx;
+}
+
+.panel>.body>.row>.right {
+  width: 50%;
+}

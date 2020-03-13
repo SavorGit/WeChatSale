@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "代购设置",
+  "disableScroll": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
+}
