@@ -146,20 +146,20 @@ Page({
     }
 
     wx.navigateTo({
-      url: '/pages/hotel/order/account?openid=' + openid + '&merchant_id=' + merchant_id + '&merchant_name=' + merchant_name + '&order_type=3&order_id=' + order_id,
+      url: '/pages/purchase/order/account?openid=' + openid + '&merchant_id=' + merchant_id + '&merchant_name=' + merchant_name + '&order_type=3&order_id=' + order_id,
     })
   },
   gotoOrderDetail: function (e) {
     var order_id = e.currentTarget.dataset.order_id;
     wx.navigateTo({
-      url: '/pages/hotel/order/detail?openid=' + openid + '&order_id=' + order_id,
+      url: '/pages/purchase/order/detail?openid=' + openid + '&order_id=' + order_id,
     })
   },
   gotoMerchant: function (e) {
     var merchant_id = e.currentTarget.dataset.merchant_id;
     if (merchant_id != '' && typeof (merchant_id)) {
       wx.navigateTo({
-        url: '/pages/hotel/detail?merchant_id=' + merchant_id,
+        url: '/pages/purchase/merchant/detail?merchant_id=' + merchant_id + "&openid=" + openid,
       })
     }
   },

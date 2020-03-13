@@ -44,7 +44,7 @@
 						<view class="address two-line-overflow">{{address_info.address}}</view>
 					</view>
 				</view>
-				<view class="arrive-time input-panel theme-panel">
+				<!-- <view class="arrive-time input-panel theme-panel">
 					<view class="flex_row_center_spaceBetween">
 						<view class="lable">送达时间</view>
 						<view class="flex_row_center_spaceBetween">
@@ -57,7 +57,7 @@
 							<view class="fa fa-calendar" aria-hidden="true"></view>
 						</view>
 					</view>
-				</view>
+				</view> -->
 				<view class="goods-info input-panel theme-panel">
 					<view class="head">订单信息</view>
 					<view class="body flex_column_center_spaceBetween">

@@ -198,9 +198,29 @@ Page({
               })
             }
           } else { //未授权登陆 跳转到登陆页面
-            wx.reLaunch({
-              url: '/pages/user/login',
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: res.data.result.userinfo,
             })
+            var user_info = res.data.result.userinfo;
+            if(user_info.role_type== 4){//如果用户未代购注册
+              if (user_info.status == 1) {
+                wx.reLaunch({
+                  url: '/pages/purchase/index',
+                })
+                return false;
+              } else if (user_info.status == 2) {
+                wx.reLaunch({
+                  url: '/pages/purchase/auth',
+                })
+                return false;
+              }
+            }else{
+              wx.reLaunch({
+                url: '/pages/user/login',
+              })
+            }
+            
           }
         }
       })

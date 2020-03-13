@@ -11,7 +11,7 @@
 	</view>
 
 	<!-- 代购注册 -->
-	<form wx:if="{{tab == 'agent'}}">
+	<form wx:if="{{tab == 'agent'}}" bindsubmit="registerPurchase">
 		<view class="tab-body agent">
 			<view class="panel theme7">
 				<view class="body">
@@ -21,7 +21,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name="name" placeholder="请输入" maxlength="30" focus="{{pname_focus}}"></input>
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
@@ -30,7 +30,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name='idnumber' focus="{{idnumber_focus}}"></input>
 						</view>
 					</view>
 					<view class="pic-row flex_row_flexStart_spaceBetween">
@@ -39,37 +39,36 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
-							<view class="frame">
-								<view class="input flex_column_center_center">
+							<view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="0">
+								<view class="input flex_column_center_center" wx:if="{{id_before==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								<!--
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								
+								<view class="input flex_column_center_center" wx:else>
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_before}}"></image>
 								</view>
-								-->
+								
 								<view class="explain">正面</view>
 							</view>
-							<view class="frame">
-								<!--
-								<view class="input flex_column_center_center">
+							<view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="1">
+								
+								<view class="input flex_column_center_center" wx:if="{{id_after==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								-->
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								
+								<view class="input flex_column_center_center" wx:else>
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_after}}"></image>
 								</view>
 								<view class="explain">反面</view>
 							</view>
-							<view class="frame">
-								<view class="input flex_column_center_center">
+							<view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="2">
+								<view class="input flex_column_center_center" wx:if="{{id_hold==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								<!--
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+								
+								<view class="input flex_column_center_center" wx:else>
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_hold}}"></image>
 								</view>
-								-->
 								<view class="explain">手持</view>
 							</view>
 						</view>
@@ -80,7 +79,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobilePurOnInput" focus="{{pmobile_focus}}"></input>
 						</view>
 					</view>
 					<view class="row valicode flex_row_center_spaceBetween">
@@ -89,11 +88,15 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入"></input>
-							<view class="btn">获取</view>
+							<input class="input" placeholder="请输入" name='verify_code' focus="{{pverify_code_focus}}"></input>
+							<view class="btn"  wx:if="{{p_is_get_sms_code==0}}" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
+              <view class="btn" wx:else>{{p_sms_time_djs}}</view>
 						</view>
 					</view>
 				</view>
+			</view>
+      <view class="btn-group">
+				<button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">提交</button>
 			</view>
 		</view>
 	</form>

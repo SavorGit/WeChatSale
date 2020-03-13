@@ -34,6 +34,10 @@ Page({
     var that = this;
     openid = options.openid;
     merchant_id = options.merchant_id
+    that.setData({
+      openid:openid,
+      merchant_id:merchant_id
+    })
     //商家详情
     that.getMerchantInfo(merchant_id);
 
@@ -56,7 +60,8 @@ Page({
     var that = this;
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: 1
+      page: 1,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -100,7 +105,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -124,7 +130,7 @@ Page({
   gotoDisheDetail: function (e) {
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.navigateTo({
-      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id,
+      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id+"&openid="+openid,
     })
   },
   previewImage: function (e) {
@@ -352,7 +358,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -401,7 +408,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));

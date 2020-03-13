@@ -41,10 +41,7 @@
 					<view class="lable theme-font3">配送地址</view>
 					<view class="view two-line-overflow">{{order_info.address}}</view>
 				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<view class="lable theme-font3">配送时间</view>
-					<view class="view">{{order_info.delivery_time}}</view>
-				</view>
+				
 			</view>
 		</view>
 		<view class="input-panel theme-panel">

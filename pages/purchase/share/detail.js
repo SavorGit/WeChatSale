@@ -155,7 +155,8 @@ Page({
     var that = this;
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: 1
+      page: 1,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -199,7 +200,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -451,7 +453,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
@@ -500,7 +503,8 @@ Page({
     //菜品列表
     utils.PostRequest(api_url + '/Smallapp4/dish/goodslist', {
       merchant_id: merchant_id,
-      page: page
+      page: page,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));

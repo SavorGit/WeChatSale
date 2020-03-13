@@ -41,7 +41,7 @@ Page({
     var goods_id = e.currentTarget.dataset.goods_id;
     if (goods_id != '' && typeof (goods_id) != 'undefined') {
       wx.navigateTo({
-        url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
+        url: '/pages/purchase/dishes/detail?goods_id=' + goods_id+"&openid="+openid,
       })
     }
   },

@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideHomeButton();
   },
 
   /**
@@ -101,7 +101,7 @@ Page({
         break;
       case 'order':
         wx.navigateTo({
-          url: '/pages/purchase/order/index?openid='+openid,
+          url: '/pages/purchase/order/index?openid=' + openid +"&order_status=0",
           success: function (res) {
             wx.hideLoading();
           }

@@ -18,6 +18,7 @@ Page({
     tab: 'agent',
     showRegisterSuccessPopWindow: false,
     mobile: '',
+    purMobile:'',
     cityArray: ['北京'],
     objectCityArray: [],
     cityIndex: 0,
@@ -41,6 +42,7 @@ Page({
     legal_charter_img0: '',
     legal_charter_img1: '',
     is_get_sms_code: '',
+    p_is_get_sms_code: '',
     name_focus: false,
     avg_focus: false,
     tel_focus: false,
@@ -49,6 +51,14 @@ Page({
     contractor_focus: false,
     mobile_focus: false,
     verify_code_focus: false,
+
+    pname_focus:false,
+    idnumber_focus:false,
+    pmobile_focus:false,
+    pverify_code_focus:false,
+    id_before:'',
+    id_after:'',
+    id_hold:''
   },
 
 
@@ -203,7 +213,7 @@ Page({
 
               success: function (res) {
                 var dish_img_url = "forscreen/resource/" + img_url
-
+                
                 if (type == 'logo') {//logo图
                   that.setData({
                     logoimg: dish_img_url
@@ -239,6 +249,21 @@ Page({
                   } else if (keys == 1) {
                     that.setData({
                       legal_charter_img1: dish_img_url
+                    })
+                  }
+                } else if (type =='pu_idcard'){//身份证
+                  console.log('idcard_0'+dish_img_url)
+                  if(keys==0){
+                    that.setData({
+                      id_before:dish_img_url
+                    })
+                  }else if(keys==1){
+                    that.setData({
+                      id_after: dish_img_url
+                    })
+                  }else if(keys==2){
+                    that.setData({
+                      id_hold: dish_img_url
                     })
                   }
                 }
@@ -499,6 +524,132 @@ Page({
   modalConfirm: function (e) {
     wx.navigateBack({
       delta: 1
+    })
+  },
+
+  //输入手机号失去焦点
+  mobilePurOnInput: function (res) {
+    var that = this;
+    var purMobile = res.detail.value;
+    that.setData({
+      purMobile: purMobile
+    })
+  },
+
+  /**
+   * 发送手机验证码
+   */
+  sendPurcode:function(e){
+    console.log(e)
+    var that = this;
+    var purMobile = e.currentTarget.dataset.purmobile;
+    if (purMobile == '') {
+
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
+    }
+    var is_mobile = app.checkMobile(purMobile);
+    if (!is_mobile) {
+      return;
+    }
+    utils.PostRequest(api_v_url + '/sms/sendRegisterCode', {
+      mobile: purMobile,
+      type:2
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      sms_time_djs = 60
+      that.setData({
+        p_is_get_sms_code: 1,
+        p_sms_time_djs: sms_time_djs
+      })
+      var timer8_0 = setInterval(function () {
+        sms_time_djs -= 1;
+        that.setData({
+          p_sms_time_djs: sms_time_djs
+        });
+        if (sms_time_djs == 0) {
+          that.setData({
+            p_is_get_sms_code: 0,
+          })
+          clearInterval(timer8_0);
+        }
+
+      }, 1000);
+    })
+  },
+
+  /**
+   * 代购注册
+   */
+  registerPurchase:function(e){
+    console.log(e)
+    var that = this;
+    var name = e.detail.value.name.replace(/\s+/g, '');
+    var idnumber = e.detail.value.idnumber.replace(/\s+/g, '');
+
+    var mobile = e.detail.value.mobile.replace(/\s+/g, '');
+    var verify_code = e.detail.value.verify_code.replace(/\s+/g, '');
+    if(name==''){
+      app.showToast('请输入姓名');
+      that.setData({
+        pname_focus: true
+      })
+      return false;
+    }
+    if(idnumber==''){
+      app.showToast('请输入身份证号');
+      that.setData({
+        idnumber_focus: true
+      })
+      return false;
+    }
+    var id_before = that.data.id_before;
+    if(id_before==''){
+      app.showToast('请上传身份证正面照');
+      return false;
+    }
+    var id_after = that.data.id_after;
+    if(id_after==''){
+      app.showToast('请上传身份证反面照');
+      return false;
+    }
+    var id_hold = that.data.id_hold;
+    if(id_hold==''){
+      app.showToast('请上传手持身份证照');
+      return false;
+    }
+
+    if(mobile==''){
+      app.showToast('请输入手机号');
+      that.setData({
+        pmobile_focus: true
+      })
+      return false;
+    }
+    if(verify_code==''){
+      app.showToast('请输入验证码');
+      that.setData({
+        pverify_code_focus: true
+      })
+      return false;
+    }
+    var idcard = id_before+','+id_after+','+id_hold
+
+
+    utils.PostRequest(api_v_url + '/purchase/register', {
+      idcard: idcard,
+      idnumber: idnumber,
+      mobile: mobile,
+      name: name,
+      openid:openid,
+      verify_code: verify_code
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      wx.reLaunch({
+        url: '/pages/purchase/auth',
+      })
     })
   },
   /**

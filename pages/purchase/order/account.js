@@ -138,12 +138,12 @@ Page({
    */
   placeOrder: function (e) {
     var that = this;
-    //var contact = e.detail.value.contact.replace(/\s+/g, '');
-    //var address = e.detail.value.address.replace(/\s+/g, '');
-    //var phone = e.detail.value.phone;
+    var contact = e.detail.value.contact.replace(/\s+/g, '');
+    var address = e.detail.value.address.replace(/\s+/g, '');
+    var phone = e.detail.value.phone;
     var address_id = e.detail.value.address_id;
-    var delivery_date = e.detail.value.delivery_date;
-    var delivery_time = e.detail.value.delivery_time;
+    //var delivery_date = e.detail.value.delivery_date;
+    //var delivery_time = e.detail.value.delivery_time;
     if(order_type==1){
       var amount = e.detail.value.amount;
     }else {
@@ -183,29 +183,21 @@ Page({
     carts = JSON.stringify(carts);
     
 
-    if (address_id==''){
-      app.showToast('请选择收货地址')
-      return false;
-    }
-    if (delivery_date == '') {
-      app.showToast('请选择送达日期');
-      return false;
-    }
-    if (delivery_time == '') {
-      app.showToast('请选择送达时间');
-      return false;
-    }
     
-    var delivery_time = delivery_date + ' ' + delivery_time;
+    
+    //var delivery_time = delivery_date + ' ' + delivery_time;
 
     that.setData({
       addDisabled: true
     })
     //下单
     utils.PostRequest(api_url + '/Smallapp4/order/addDishorder', {
-      address_id:address_id,
+      //address_id:address_id,
+      contact: contact,
+      address: address,
+      phone: phone,
       amount: amount,
-      delivery_time: delivery_time,
+      
       goods_id: goods_id,
       openid: openid,
       carts: carts
