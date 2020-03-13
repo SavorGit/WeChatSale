@@ -24,12 +24,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     merchant_id = options.merchant_id;
     openid = options.openid;
     utils.PostRequest(api_v_url + '/merchant/info', {
       merchant_id: merchant_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      console.log(data.result)
+      var is_changeprice = data.result.is_changeprice;
+      that.setData({
+        is_changeprice: is_changeprice
+      })
+    })
+  },
+  editChangeprice:function(e){
+    var that = this;
+    var is_changeprice = e.detail.value;
+    if(is_changeprice){
+      is_changeprice = 1;
+    }else {
+      is_changeprice = 0;
+    }
+    utils.PostRequest(api_v_url + '/merchant/setChangeprice', {
+      is_changeprice: is_changeprice,
+      openid:openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('设置成功')
+      that.setData({
+        is_changeprice: is_changeprice
+      })
+    },()=>function(){
+      app.showToast('设置失败')
+      if(is_changeprice==1){
+        is_changeprice = 0;
+      }else{
+        is_changeprice = 1;
+      }
+      that.setData({
+        is_changeprice: is_changeprice 
+      })
     })
   },
 
