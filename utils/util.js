@@ -620,6 +620,8 @@ module.exports.TouchMoveHandler = TouchMoveHandler;
 const createCanvasContext = (canvasContext) => {
   /**
    * 绘制单行文本，由于文字比较多，这里我们写了一个函数处理
+   * 在此方法前，执行setFillStyle为字体着色
+   * 
    * @param str          字符串
    * @param fontSize     文字大小
    * @param left         左边距
@@ -628,43 +630,81 @@ const createCanvasContext = (canvasContext) => {
    * @param lineHeight   行高
    * @return y 上边距 
    */
-  canvasContext.drawOneLineText = function (str, fontSize, left, top, canvasWidth, lineHeight) {
-    // console.log('utils.createCanvasContext.drawOneLineText', str, fontSize, left, top, canvasWidth, lineHeight);
-    let lineWordCount = parseInt(canvasWidth / fontSize);
-    this.setFontSize(fontSize);
-    if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
-    top += lineHeight;
-    if (lineWordCount >= str.length) {
-      this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
-      return top;
-    }
-    let lineString = '', printString = '', cutOffset = 0;
-    do {
-      cutOffset++;
-      lineString = str.substring(0, lineWordCount - cutOffset);
-      printString = lineString + '...';
-    } while (canvasWidth - this.measureText(printString).width <= fontSize);
-    this.fillText(printString, left + 115 - this.measureText(printString).width / 2, top);
-    return top;
+  canvasContext.drawOneLineText = function (str, fontSize, left, top, canvasWidth, lineHeight, isCenter) {
+    // // console.log('utils.createCanvasContext.drawOneLineText', str, fontSize, left, top, canvasWidth, lineHeight);
+    // let lineWordCount = parseInt(canvasWidth / fontSize);
+    // this.setFontSize(fontSize);
+    // if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
+    // top += lineHeight;
+    // if (lineWordCount >= str.length) {
+    //   let _left = left;
+    //   if (isCenter == true) {
+    //     _left += (canvasWidth - this.measureText(str).width) / 2;
+    //   }
+    //   this.fillText(str, _left, top);
+    //   // this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
+    //   return top;
+    // }
+    // let lineString = '', printString = '', cutOffset = 0;
+    // do {
+    //   cutOffset++;
+    //   lineString = str.substring(0, lineWordCount - cutOffset);
+    //   printString = lineString + '...';
+    // } while (canvasWidth - this.measureText(printString).width <= fontSize);
+    // let _left = left;
+    // if (isCenter == true) {
+    //   _left += (canvasWidth - this.measureText(str).width) / 2;
+    // }
+    // this.fillText(printString, _left, top);
+    // // this.fillText(printString, left + 115 - this.measureText(printString).width / 2, top);
+    // return top;
+    return this.__drawMultiLineText(str, fontSize, left, top, canvasWidth, lineHeight, isCenter, 1, 1);
   };
   /**
    * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * 在此方法前，执行setFillStyle为字体着色
+   * 
    * @param str          字符串
    * @param fontSize     文字大小
    * @param left         左边距
    * @param top          上边距
    * @param canvasWidth  文本最大宽度
    * @param lineHeight   行高
+   * @param isCenter     是否水平居中显示
+   * @param lineCount    显示行数
    * @return y 上边距 
    */
-  canvasContext.drawMultiLineText = function (str, fontSize, left, top, canvasWidth, lineHeight) {
+  canvasContext.drawMultiLineText = function (str, fontSize, left, top, canvasWidth, lineHeight, isCenter, lineCount) {
+    return this.__drawMultiLineText(str, fontSize, left, top, canvasWidth, lineHeight, isCenter, 1, lineCount);
+  };
+  /**
+   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * 在此方法前，执行setFillStyle为字体着色
+   * 
+   * @param str          字符串
+   * @param fontSize     文字大小
+   * @param left         左边距
+   * @param top          上边距
+   * @param canvasWidth  文本最大宽度
+   * @param lineHeight   行高
+   * @param isCenter     是否水平居中显示
+   * @param lineNo       行号
+   * @param lineCount    显示行数
+   * @return y 上边距 
+   */
+  canvasContext.__drawMultiLineText = function (str, fontSize, left, top, canvasWidth, lineHeight, isCenter, lineNo, lineCount) {
     // console.log('utils.createCanvasContext.drawMultiLineText', str, fontSize, left, top, canvasWidth, lineHeight);
     let lineWordCount = parseInt(canvasWidth / fontSize);
     this.setFontSize(fontSize);
     if (typeof (lineHeight) != 'number') { lineHeight = fontSize; }
     if (lineWordCount >= str.length) {
       top += lineHeight;
-      this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
+      let _left = left;
+      if (isCenter == true) {
+        _left += (canvasWidth - this.measureText(str).width) / 2;
+      }
+      this.fillText(str, _left, top);
+      // this.fillText(str, left + 115 - this.measureText(str).width / 2, top);
       return top;
     }
     let lineString = '';
@@ -672,16 +712,36 @@ const createCanvasContext = (canvasContext) => {
       lineString = str.substring(0, lineWordCount);
       lineWordCount++;
     } while (canvasWidth - this.measureText(lineString).width > fontSize);
-    lineWordCount -= 2;
-    if (canvasWidth - this.measureText(lineString).width <= fontSize) {
-      top += lineHeight;
-      this.fillText(lineString, left + 115 - this.measureText(lineString).width / 2, top);
-      return this.drawMultiLineText(str.substring(lineWordCount), fontSize, left, top, canvasWidth, lineHeight);
+    while (canvasWidth < this.measureText(lineString).width) {
+      lineWordCount--;
+      lineString = str.substring(0, lineWordCount);
     }
-    return this.drawMultiLineText(str.substring(lineString.length), fontSize, left, top, canvasWidth, lineHeight);
+    top += lineHeight;
+    if (typeof (lineNo) == 'number' && typeof (lineCount) == 'number' && lineNo >= lineCount) {
+      let printString = '', cutOffset = 0;
+      do {
+        cutOffset++;
+        lineString = str.substring(0, lineWordCount - cutOffset);
+        printString = lineString + '...';
+      } while (canvasWidth - this.measureText(printString).width <= fontSize);
+      let _left = left;
+      if (isCenter == true) {
+        _left += (canvasWidth - this.measureText(printString).width) / 2;
+      }
+      this.fillText(printString, _left, top);
+      return top;
+    }
+    let _left = left;
+    if (isCenter == true) {
+      _left += (canvasWidth - this.measureText(lineString).width) / 2;
+    }
+    this.fillText(lineString, _left, top);
+    // this.fillText(lineString, left + 115 - this.measureText(lineString).width / 2, top);
+    return this.__drawMultiLineText(str.substring(lineWordCount), fontSize, left, top, canvasWidth, lineHeight, isCenter, ++lineNo, lineCount);
   };
   /**
-   * 绘制多行文本，由于文字比较多，这里我们写了一个函数处理
+   * 等比缩放图片，以短边显示全。
+   * 
    * @param imageResource   所要绘制的图片资源（网络图片要通过 getImageInfo / downloadFile 先下载）
    * @param dx              imageResource的左上角在目标 canvas 上 x 轴的位置
    * @param dy              imageResource的左上角在目标 canvas 上 y 轴的位置
@@ -689,6 +749,8 @@ const createCanvasContext = (canvasContext) => {
    * @param dHeight         在目标画布上绘制imageResource的高度，允许对绘制的imageResource进行缩放
    */
   canvasContext.drawImageAspectFill = function (imageResource, dx, dy, dWidth, dHeight) {
+    let ctx = this;
+    ctx.save();
     // console.log('utils.createCanvasContext.drawImageAspectFill', imageResource, dx, dy, dWidth, dHeight);
     let __objectPictureWidth = imageResource.width, __objectPictureHeight = imageResource.height, __pictureWidth = 0, __pictureHeight = 0;
     let __pictureWidthRatio = __objectPictureWidth / dWidth, __pictureHeightRatio = __objectPictureHeight / dHeight, __x = 0, __y = 0;
@@ -699,10 +761,68 @@ const createCanvasContext = (canvasContext) => {
     } else {
       __pictureWidth = __objectPictureWidth;
       __pictureHeight = dHeight * __pictureWidthRatio;
-      __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2
+      __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2;
     }
-    this.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
+    ctx.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
+    ctx.restore();
   };
+  /**
+   * 等比缩放图片，以短边显示全。
+   * 
+   * @param imageResource   所要绘制的图片资源（网络图片要通过 getImageInfo / downloadFile 先下载）
+   * @param dx              imageResource的左上角在目标 canvas 上 x 轴的位置
+   * @param dy              imageResource的左上角在目标 canvas 上 y 轴的位置
+   * @param dWidth          在目标画布上绘制imageResource的宽度，允许对绘制的imageResource进行缩放
+   * @param dHeight         在目标画布上绘制imageResource的高度，允许对绘制的imageResource进行缩放
+   * @param r               圆角的半径。相对于缩放后。
+   */
+  canvasContext.drawImageArc = function (imageResource, dx, dy, dWidth, dHeight, r) {
+    let ctx = this;
+    ctx.save();
+    // console.log('utils.createCanvasContext.drawImageArc', imageResource, dx, dy, dWidth, dHeight);
+    let __objectPictureWidth = imageResource.width, __objectPictureHeight = imageResource.height, __pictureWidth = 0, __pictureHeight = 0;
+    let __pictureWidthRatio = __objectPictureWidth / dWidth, __pictureHeightRatio = __objectPictureHeight / dHeight, __x = 0, __y = 0;
+    let __r = null;
+    if (__pictureWidthRatio > __pictureHeightRatio) {
+      __pictureWidth = dWidth * __pictureHeightRatio;
+      __pictureHeight = __objectPictureHeight;
+      __x = __objectPictureWidth / 2 - __pictureWidth / 2; __y = 0;
+    } else {
+      __pictureWidth = __objectPictureWidth;
+      __pictureHeight = dHeight * __pictureWidthRatio;
+      __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2;
+    }
+    if (typeof (r) == 'number') {
+      ctx.beginPath();
+      ctx.arc(dx + dWidth / 2, dy + dHeight / 2, r, 0, Math.PI * 2, false);
+      ctx.clip();
+    }
+    ctx.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
+    ctx.restore();
+  };
+  /**
+   * 绘制圆角矩形。
+   * 
+   * @param x              矩形的左上角在目标 canvas 上 x 轴的位置
+   * @param y              矩形的左上角在目标 canvas 上 y 轴的位置
+   * @param width          在目标画布上绘制矩形的宽度
+   * @param height         在目标画布上绘制矩形的高度
+   * @param r              矩形圆角半径
+   * @param fill           是否填充
+   * @param stroke         是否描边
+   */
+  canvasContext.drawRoundedRect = function (x, y, width, height, r, fill, stroke) {
+    let ctx = this;
+    ctx.save(); ctx.beginPath(); // draw top and top right corner 
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + width, y, x + width, y + r, r); // draw right side and bottom right corner 
+    ctx.arcTo(x + width, y + height, x + width - r, y + height, r); // draw bottom and bottom left corner 
+    ctx.arcTo(x, y + height, x, y + height - r, r); // draw left and top left corner 
+    ctx.arcTo(x, y, x + r, y, r);
+    if (fill) { ctx.fill(); }
+    if (stroke) { ctx.stroke(); }
+    ctx.restore();
+  }
   return canvasContext;
 };
 module.exports.createCanvasContext = createCanvasContext;

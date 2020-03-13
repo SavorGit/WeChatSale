@@ -23,8 +23,8 @@ Page({
     let testData = {
       canvasId: 'sharePoster',// 画布标识
       page: {
-        headImg: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 头部图片
-        footImg: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 底部图片
+        headImg: 'https://oss.littlehotspot.com/WeChat/WeChatSale/pages/purchase/share/poster/head.png',// 头部图片
+        footImg: 'https://oss.littlehotspot.com/WeChat/WeChatSale/pages/purchase/share/poster/foot.png',// 底部图片
         list: [
           {
             hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
@@ -35,51 +35,37 @@ Page({
           },
           {
             hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭',// 菜品名称
+            name: '老北京烤鸭',// 菜品名称
             pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
             salePrice: '￥298',// 销售价格
             marketPrice: '￥300'// 市场价格
           },
           {
             hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭',// 菜品名称
+            name: '传承百年 秘制老北京烤鸭',// 菜品名称
             pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
             salePrice: '￥298',// 销售价格
             marketPrice: '￥300'// 市场价格
           },
           {
             hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭',// 菜品名称
+            name: '宫廷秘制老北京烤鸭 宫廷秘制 礼盒装',// 菜品名称
             pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
             salePrice: '￥298',// 销售价格
             marketPrice: '￥300'// 市场价格
           },
           {
-            hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭',// 菜品名称
+            hotel: '北京全聚德烤鸭（前门店）北京全聚德烤鸭（前门店）北京全聚德烤鸭（前门店）',// 酒楼名称
+            name: '传承百年 老北京烤鸭传承百年 老北京烤鸭传承百年 老北京烤鸭传承百年 老北京烤鸭',// 菜品名称
             pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
             salePrice: '￥298',// 销售价格
             marketPrice: '￥300'// 市场价格
           },
         ]
       },
-      /*
-      object: {
-        picture: picture, // 展示的图片
-        activePicture: 'https://oss.littlehotspot.com/media/resource/wJtZrkyrah.png', // 活动的图片
-        name: tips, // 名称
-        hotel: {
-          name: hotel_name  // 酒楼名称
-        },
-        qrCode: qrcode_url, // 二维码图片
-        tipContent: '扫码或长按识别，即可前往购买'// 提示信息
-      },
-      */
       getTempFilePath: function () {// 生成图片临时地址的回调函数
         wx.canvasToTempFilePath({
           canvasId: 'sharePoster',
-          destWidth: 1080,
-          destHeight: 2600,
           success: (res) => {
             self.setData({
               shareTempFilePath: res.tempFilePath
@@ -88,7 +74,7 @@ Page({
         });
       }
     };
-    self.drawPosterPicture(testData);
+    self.drawPosterPicture(self, testData);
   },
 
   /**
@@ -141,98 +127,155 @@ Page({
   },
 
 
-  drawPosterPicture: function (data) {
+  drawPosterPicture: function (pageContext, data) {
     let canvasSelf = this;
-    // wx.showLoading({
-    //   title: '加载中...',
-    //   mask: true
-    // });
-
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    if (typeof (data) != 'object') {
+      wx.hideLoading({
+        complete: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '无绘制画布'
+          });
+        }
+      });
+    }
+    if (typeof (data.page) != 'object') {
+      wx.hideLoading({
+        complete: (res) => {
+          wx.showToast({
+            icon: 'none',
+            title: '无绘制数据'
+          });
+        }
+      });
+    }
+    let dataList = [];
+    if (typeof (data.page.list) == 'object' && data.page.list instanceof Array) {
+      dataList = data.page.list;
+    }
     let systemInfo = app.SystemInfo;
-    let pixelRatio = systemInfo.pixelRatio;
-    let fontSize = 12;
+    let documentWidth = systemInfo.documentWidth;
     let canvasWidth = 750;
-    let canvasHeight = 1806;
+    let canvasHeight = 685 + dataList.length * 300;
+    let pixelRatio = canvasWidth / documentWidth;
+    let fontSize = 12;
+    let waitCount = 0;
     let x = 0, y = 0, width = 0, height = 0;
     // let __x,__y,__width,__height;
 
+    // 设置画布高度
+    pageContext.setData({ posterPictureHeight: canvasHeight });
+
     const canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
+
+    // 绘制背景
     canvasContext.setFillStyle('#FFDC11');
-    canvasContext.fillRect(0, 0, parseInt(canvasWidth / pixelRatio), parseInt(canvasHeight / pixelRatio));
+    canvasContext.fillRect(x, y, parseInt(canvasWidth / pixelRatio), parseInt(canvasHeight / pixelRatio));
     // canvasContext.draw();
+    canvasContext.save();
 
-    canvasContext.draw(false, data.getTempFilePath);
-    /*
+    // 绘制头部
+    let headImgX = 50, headImgY = 60, headImgWidth = 500, headImgHeight = 450;
+    waitCount++;
     wx.getImageInfo({
-      src: data.object.picture, success: function (picture) {
-        wx.getImageInfo({
-          src: data.object.activePicture, success: function (activePicture) {
-            wx.getImageInfo({
-              src: data.object.qrCode, success: function (qrCode) {
-                wx.hideLoading();
-                let pixelRatio = 2;
-                let x = 0, y = 0, fontSize = 12;
-                let __x = 0, __y = 0, __pictureWidth = 0, __pictureHeight = 0, __pictureWidthRatio = 1, __pictureHeightRatio = 1;
-                const canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
-                canvasContext.setFillStyle('#FFFFFF');
-
-                let fullWidth = 500, fullHeight = 740;
-                canvasContext.fillRect(x, y, parseInt(fullWidth / pixelRatio), parseInt(fullHeight / pixelRatio));
-
-                x = 15; y = 15;
-                let objectPictureWidth = 470, objectPictureHeight = 300;
-                canvasContext.drawImageAspectFill(picture, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(objectPictureWidth / pixelRatio), parseInt(objectPictureHeight / pixelRatio));
-
-                let activePictureWidth = 125, activePictureHeight = 125;
-                x = fullWidth - activePictureWidth; y = 0;
-                canvasContext.drawImageAspectFill(activePicture, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(activePictureWidth / pixelRatio), parseInt(activePictureHeight / pixelRatio));
-
-                x = 25; y += objectPictureHeight + 25;
-                fontSize = 28;
-                canvasContext.setFillStyle("#333333");
-                y = canvasContext.drawOneLineText(data.object.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
-
-                x = 25; y += 25;
-                fontSize = 24;
-                canvasContext.setFillStyle("#a18668");
-                y = canvasContext.drawOneLineText(data.object.hotel.name, parseInt(fontSize / pixelRatio), parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt((fullWidth - 50) / pixelRatio)) * pixelRatio;
-
-                let qrCodeWidth = 250, qrCodeHeight = 250;
-                x = fullWidth / 2 - qrCodeWidth / 2; y += 25;
-                canvasContext.drawImageAspectFill(qrCode, parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(qrCodeWidth / pixelRatio), parseInt(qrCodeHeight / pixelRatio));
-
-                let grd = canvasContext.createLinearGradient(0, 0, fullWidth, 0);
-                grd.addColorStop(0, '#F19154');
-                grd.addColorStop(1, '#F15D61');
-                canvasContext.setFillStyle(grd)
-                let tipBannerWidth = fullWidth, tipBannerHeight = 50;
-                x = 0; y = fullHeight - tipBannerHeight;
-                canvasContext.fillRect(parseInt(x / pixelRatio), parseInt(y / pixelRatio), parseInt(tipBannerWidth / pixelRatio), parseInt(tipBannerHeight / pixelRatio));
-
-                let tipContentMetrics = canvasContext.measureText(data.object.tipContent);
-                fontSize = 24;
-                x = fullWidth / 2 - tipContentMetrics.width * pixelRatio / 2; y = fullHeight - tipBannerHeight / 2 + fontSize / 2 - 2;
-                canvasContext.setFontSize(parseInt(fontSize / pixelRatio));
-                canvasContext.setFillStyle("#FFFFFF");
-                canvasContext.fillText(data.object.tipContent, parseInt(x / pixelRatio), parseInt(y / pixelRatio));
-
-                canvasContext.draw(false, data.getTempFilePath);
-              },
-              fail: function (picture) {
-                wx.hideLoading();
-              }
-            });
-          },
-          fail: function (picture) {
-            wx.hideLoading();
-          }
-        });
-      },
-      fail: function (picture) {
-        wx.hideLoading();
+      src: data.page.headImg, success: function (res) {
+        try {
+          canvasContext.drawImageAspectFill(res, parseInt(headImgX / pixelRatio), parseInt(headImgY / pixelRatio), parseInt(headImgWidth / pixelRatio), parseInt(headImgHeight / pixelRatio));
+        } catch (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '图片[' + data.page.headImg + ']加载失败',
+          });
+        }
+        waitCount--;
       }
     });
-    */
+    x += headImgX + headImgWidth; y += headImgY + headImgHeight + 20;
+
+    // 绘制商品列表
+    if (typeof (dataList) == 'object' && dataList instanceof Array && dataList.length > 0) {
+      for (let index = 0; index < dataList.length; index++) {
+        canvasContext.save();
+        let item = dataList[index];
+        let itemX = 55, itemY = y + 30, itemWidth = 650, itemHeight = 270, borderRadius = 10, isFill = true, isStroke = false;
+        canvasContext.setFillStyle('#FFFFFF');
+        canvasContext.drawRoundedRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(itemHeight / pixelRatio), parseInt(borderRadius / pixelRatio), isFill, isStroke);
+        itemY += 15;
+        const grd = canvasContext.createLinearGradient(0, 0, parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
+        grd.addColorStop(0, '#000000');
+        grd.addColorStop(1, '#FFFFFF');
+        canvasContext.setFillStyle(grd)
+        canvasContext.fillRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
+        canvasContext.restore();
+        fontSize = 24;
+        // canvasContext.fillText(item.hotel, parseInt(100 / pixelRatio), parseInt(((itemY + (50 - 30) / 2 + 24)) / pixelRatio));
+        canvasContext.drawOneLineText(item.hotel, parseInt(fontSize / pixelRatio), parseInt(100 / pixelRatio), parseInt((itemY - 15) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
+        canvasContext.save();
+        itemX += 20, itemY += 50 + 15;
+        let picX = itemX, picY = itemY, picWidth = 175, picHeight = 175;
+        let nameX = itemX + picWidth + 30, nameY = itemY, nameWidth = 400, nameHeight = 80, lineCount = 2;
+        fontSize = 32;
+        canvasContext.setFillStyle('#000000');
+        itemY = canvasContext.drawMultiLineText(item.name, parseInt(fontSize / pixelRatio), parseInt(nameX / pixelRatio), parseInt((nameY + 15) / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / lineCount / pixelRatio), true, lineCount) * pixelRatio;
+        let salePriceX = itemX + picWidth + 30, salePriceY = itemY + 10, salePriceWidth = 400, salePriceHeight = 40;
+        fontSize = 33;
+        canvasContext.setFillStyle('#F44358');
+        itemY = canvasContext.drawOneLineText(item.salePrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
+        // fontSize = 28;
+        // canvasContext.setFillStyle('#999999');
+        // itemY = canvasContext.drawOneLineText(item.marketPrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
+        canvasContext.restore();
+        waitCount++;
+        wx.getImageInfo({
+          src: item.pic, success: function (res) {
+            try {
+              canvasContext.drawImageArc(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt((picWidth > picHeight ? picHeight / 2 : picWidth / 2) / pixelRatio));
+            } catch (error) {
+              wx.showToast({
+                icon: 'none',
+                title: '图片[' + item.pic + ']加载失败',
+              });
+            }
+            waitCount--;
+          }
+        });
+        y += 300;
+      }
+    }
+
+    // 绘制底部
+    let footImgX = 50, footImgY = y + 40, footImgWidth = 350, footImgHeight = 65;
+    waitCount++;
+    wx.getImageInfo({
+      src: data.page.footImg, success: function (res) {
+        try {
+          canvasContext.drawImageAspectFill(res, parseInt((canvasWidth - footImgWidth) / 2 / pixelRatio), parseInt(footImgY / pixelRatio), parseInt(footImgWidth / pixelRatio), parseInt(footImgHeight / pixelRatio));
+        } catch (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '图片[' + data.page.footImg + ']加载失败',
+          });
+        }
+        waitCount--;
+      }
+    });
+    x += footImgX + footImgWidth; y += footImgY + footImgHeight;
+
+    // 统一保存
+    canvasContext.save();
+    let waitTimer = setInterval(function () {
+      if (waitCount > 0) {
+        return;
+      }
+      clearInterval(waitTimer);
+      canvasContext.restore();
+      canvasContext.draw(false, data.getTempFilePath);
+      wx.hideLoading();
+    }, 2000);
   },
 
   // 保存海报图片到相册

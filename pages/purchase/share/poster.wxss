@@ -18,7 +18,7 @@
 
 .page-main {
   width: 750rpx;
-  height: 1806rpx;
+  height: 1885rpx;
 }
 
 .page-main>canvas {

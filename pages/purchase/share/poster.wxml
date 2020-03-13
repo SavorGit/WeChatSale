@@ -6,7 +6,7 @@
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="warpper flex_column_center_flexStart">
-		<view class="page-main">
+		<view class="page-main" style="height:{{posterPictureHeight}}rpx;">
 			<canvas canvas-id="sharePoster"></canvas>
 		</view>
 		<view class="page-bottom">
