@@ -172,6 +172,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .sale-panel>.tab-bar>.tab-title.selected {
   color: #a18668;
+  background-color: unset;
   border-bottom: 4rpx solid #a18668;
 }
 
