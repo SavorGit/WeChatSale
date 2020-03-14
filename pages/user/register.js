@@ -15,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab: 'agent',
+    tab: 'hotel',
     showRegisterSuccessPopWindow: false,
     mobile: '',
     purMobile:'',
