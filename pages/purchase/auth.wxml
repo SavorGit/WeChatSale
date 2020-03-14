@@ -6,5 +6,5 @@
 
 <view class='container flex_column_center_center theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="content">正在审核，请稍候重试</view>
-	<view class="tip">如有疑问，请致电13800138000</view>
+	<view class="tip">如有疑问，请致电13811966726</view>
 </view>
