@@ -6,6 +6,11 @@
 
 let app = getApp();
 let utils = require('../../../utils/util.js');
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var merchant_id;
+var openid;
 Page({
 
   /**
@@ -25,43 +30,7 @@ Page({
       page: {
         headImg: 'https://oss.littlehotspot.com/WeChat/WeChatSale/pages/purchase/share/poster/head.png',// 头部图片
         footImg: 'https://oss.littlehotspot.com/WeChat/WeChatSale/pages/purchase/share/poster/foot.png',// 底部图片
-        list: [
-          {
-            hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭',// 菜品名称
-            pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
-            salePrice: '￥298',// 销售价格
-            marketPrice: '￥300'// 市场价格
-          },
-          {
-            hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '老北京烤鸭',// 菜品名称
-            pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
-            salePrice: '￥298',// 销售价格
-            marketPrice: '￥300'// 市场价格
-          },
-          {
-            hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 秘制老北京烤鸭',// 菜品名称
-            pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
-            salePrice: '￥298',// 销售价格
-            marketPrice: '￥300'// 市场价格
-          },
-          {
-            hotel: '北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '宫廷秘制老北京烤鸭 宫廷秘制 礼盒装',// 菜品名称
-            pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
-            salePrice: '￥298',// 销售价格
-            marketPrice: '￥300'// 市场价格
-          },
-          {
-            hotel: '北京全聚德烤鸭（前门店）北京全聚德烤鸭（前门店）北京全聚德烤鸭（前门店）',// 酒楼名称
-            name: '传承百年 老北京烤鸭传承百年 老北京烤鸭传承百年 老北京烤鸭传承百年 老北京烤鸭',// 菜品名称
-            pic: 'https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',// 菜品图片
-            salePrice: '￥298',// 销售价格
-            marketPrice: '￥300'// 市场价格
-          },
-        ]
+        list: []
       },
       getTempFilePath: function () {// 生成图片临时地址的回调函数
         wx.canvasToTempFilePath({
@@ -74,6 +43,30 @@ Page({
         });
       }
     };
+
+    merchant_id = options.merchant_id;
+    openid = options.openid;
+    var merchant_name = options.merchant_name
+    var post_list = wx.getStorageSync(cache_key + 'cart_set_poster_' + merchant_id);
+    if(post_list==''){
+      post_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id)
+    }
+    post_list = JSON.parse(post_list);
+    for (var i = 0; i < post_list.length; i++) {
+      post_list[i].hotel = merchant_name;
+      post_list[i].pic = post_list[i].img_url;
+      post_list[i].marketPrice = '￥'+post_list[i].price;
+      if (post_list[i].set_price != '' && typeof (post_list[i].set_price) != 'undefined') {
+        post_list[i].salePrice = '￥' +post_list[i].set_price
+        post_list[i].recPrice = post_list[i].set_price
+      } else {
+        post_list[i].salePrice = '￥' +post_list[i].price;
+        post_list[i].recPrice = post_list[i].price;
+      }
+
+    }
+    testData.page.list = post_list;
+    
     self.drawPosterPicture(self, testData);
   },
 
@@ -276,6 +269,27 @@ Page({
       canvasContext.draw(false, data.getTempFilePath);
       wx.hideLoading();
     }, 2000);
+
+    var poster = [];
+    for(var j=0;j<dataList.length;j++){
+      var tmp = {};
+      tmp.id = dataList[j].id;
+      tmp.price = dataList[j].recPrice;
+      poster.push(tmp);
+    }
+    poster = JSON.stringify(poster);
+    console.log*(poster)
+    //生成海报日志
+    utils.PostRequest(api_v_url + '/purchase/generatePoster', {
+      openid: openid,
+      poster: poster,
+      merchant_id:merchant_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      wx.removeStorageSync(cache_key + 'cart_set_poster_' + merchant_id);
+      wx.removeStorageSync(cache_key + 'cart_poster_' + merchant_id);
+    });
+
+    //删除缓存
   },
 
   // 保存海报图片到相册

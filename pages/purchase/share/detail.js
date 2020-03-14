@@ -11,6 +11,7 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var merchant_id;
+var openid;
 var page = 1;
 
 Page({
@@ -32,6 +33,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     merchant_id = options.merchant_id
+    openid = options.openid;
     //商家详情
     that.getMerchantInfo(merchant_id);
 
@@ -269,26 +271,7 @@ Page({
     cart_list = JSON.stringify(cart_list);
     wx.setStorageSync(cache_key + 'cart_set_poster_' + merchant_id, cart_list)
   },
-  /**
-   * 去结算
-   */
-  gotoOrder: function (e) {
-    let self = this;
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id);
-    if (cart_list != '') {
-      wx.navigateTo({
-        url: '/pages/hotel/order/account?openid=' + this.data.openid + '&merchant_id=' + merchant_id + '&merchant_name=' + this.data.hotel_info.name + '&order_type=2',
-      })
-
-      self.setData({ showShoppingCartWindow: false });
-      setTimeout(function () {
-        self.setData({ showShoppingCartPopWindow: false });
-      }, 500);
-      mta.Event.stat('gotoAccounts', { 'openid': this.data.openid })
-    } else {
-      app.showToast('购物车没有商品');
-    }
-  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -365,31 +348,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    var that = this;
-
-    var img_url = that.data.hotel_info.img;
-    var hotel_name = that.data.hotel_info.name;
-    //console.log(e)
-    //console.log(that.data)
-    mta.Event.stat('shareMerchant', { 'merchantid': merchant_id, 'openid': that.data.openid, 'types': 1 })
-    if (e.from === 'button') {
-      // 来自页面内转发按钮
-      return {
-        title: hotel_name + '推出了特惠菜品',
-        path: '/pages/hotel/detail?merchant_id=' + merchant_id + "&is_share=1",
-        imageUrl: img_url,
-        success: function (res) {
-        },
-      }
-    } else {
-      return {
-        title: hotel_name + '推出了特惠菜品',
-        path: '/pages/hotel/detail?merchant_id=' + merchant_id + "&is_share=1",
-        imageUrl: img_url,
-        success: function (res) {
-        },
-      }
-    }
+    
 
   },
 
@@ -412,8 +371,15 @@ Page({
   // 跳转到海报页
   gotoPoster: function (e) {
     let self = this;
-    wx.navigateTo({
-      url: '/pages/purchase/share/poster?merchant_id='+merchant_id,
-    });
+    var post_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id);
+    if(post_list!=''){
+      wx.navigateTo({
+        url: '/pages/purchase/share/poster?merchant_id=' + merchant_id + '&openid=' + openid + "&merchant_name=" + self.data.hotel_info.name,
+      });
+      self.closeShoppingCartWindow();
+    }else {
+      app.showToast('请选择菜品')
+    }
+    
   }
 })

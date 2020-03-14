@@ -23,6 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     openid = options.openid;
     utils.PostRequest(api_v_url + '/purchase/selectionList', {
       openid: openid,
@@ -32,6 +33,7 @@ Page({
     }));
   },
   loadMore:function(e){
+    var that = this;
     page +=1;
     utils.PostRequest(api_v_url + '/purchase/selectionList', {
       openid: openid,
@@ -39,6 +41,12 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       share_list: data.result.datalist
     }));
+  },
+  gotoDishes:function(e){
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/purchase/dishes/detail?goods_id='+goods_id+'&openid='+openid,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

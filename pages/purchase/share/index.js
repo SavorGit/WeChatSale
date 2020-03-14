@@ -556,7 +556,7 @@ Page({
       return false;
     } else {
       wx.navigateTo({
-        url: '/pages/purchase/share/detail?merchant_id=' + merchant_id,
+        url: '/pages/purchase/share/detail?merchant_id=' + merchant_id+'&openid='+openid,
       })
     }
 

@@ -23,10 +23,10 @@
 					</view>
 				</view>
 				<view class="btn-group flex_row_center_center">
-					<button class="btn flex_row_center_center" open-type='share' data-img_url="{{hotel_info.img}}" data-hotel_name="{{hotel_info.name}}">
+					<!-- <button class="btn flex_row_center_center" open-type='share' data-img_url="{{hotel_info.img}}" data-hotel_name="{{hotel_info.name}}">
 						<view class="fa fa-external-link fa-lg" aria-hidden="true"></view>
 						<view>分享店铺</view>
-					</button>
+					</button> -->
 					<!-- <button class='theme-button' bindtap='phonecallevent' data-tel="{{bean.tel}}" data-hotelid="{{bean.hotel_id}}">预订电话</button> -->
 					<button wx:if="{{hotel_info.tel!=''}}" class="btn flex_row_center_center" bindtap='phonecallevent' data-tel="{{hotel_info.tel}}">
 						<view class="fa fa-phone fa-lg" aria-hidden="true"></view>
@@ -37,10 +37,10 @@
 						<view>电话订餐</view>
 					</button>
 
-					<button class="btn flex_row_center_center" bindtap="gotoPlatform">
+					<!-- <button class="btn flex_row_center_center" bindtap="gotoPlatform">
 						<view class="fa fa-cubes fa-lg" aria-hidden="true"></view>
 						<view>其他平台</view>
-					</button>
+					</button> -->
 				</view>
 			</view>
 
