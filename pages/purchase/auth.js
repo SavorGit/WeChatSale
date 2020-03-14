@@ -36,18 +36,18 @@ Page({
    */
   onShow: function () {
     wx.hideHomeButton();
-    var user_info = wx.getStorageSync(cache_key+"userinfo");
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
     utils.PostRequest(api_v_url + '/User/isRegister', {
-      openid:openid
+      openid: openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       var userinfo = data.result.userinfo;
-      if (userinfo.role_type==4 && userinfo.status==1){
+      if (userinfo.role_type == 4 && userinfo.status == 1) {
         wx.reLaunch({
           url: '/pages/purchase/index',
         })
       }
-      
+
     });
   },
 
@@ -84,5 +84,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  /**
+   * 拨打订餐电话
+   */
+  phonecallevent: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: '13811966726'
+    });
   }
 })
