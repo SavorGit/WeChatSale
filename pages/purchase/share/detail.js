@@ -129,7 +129,7 @@ Page({
   gotoDisheDetail: function (e) {
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.navigateTo({
-      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id,
+      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id + '&openid=' + openid +'&is_share=1',
     })
   },
   previewImage: function (e) {

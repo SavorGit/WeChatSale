@@ -30,9 +30,14 @@ Page({
     var that = this;
     openid = options.openid;
     goods_id = options.goods_id;   
+    var is_share = 0;
+    if (typeof (options.is_share)!='undefined'){
+      var is_share = options.is_share
+    }
     that.setData({
       openid:openid,
-      goods_id:goods_id
+      goods_id:goods_id,
+      is_share: is_share
     })
       //菜品详情
     that.getDishInfo(goods_id)
@@ -69,10 +74,19 @@ Page({
 
   },
   gotoHotelDetail: function (e) {
+    var that = this;
+    var is_share = that.data.is_share;
     var merchant_id = e.currentTarget.dataset.merchant_id;
-    wx.navigateTo({
-      url: '/pages/purchase/merchant/detail?merchant_id=' + merchant_id,
-    })
+    if(is_share==0){
+      wx.navigateTo({
+        url: '/pages/purchase/merchant/detail?merchant_id=' + merchant_id+'&openid='+openid,
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/purchase/share/detail?merchant_id=' + merchant_id+'&openid='+openid,
+      })
+    }
+    
   },
   gotoPlaceOrder: function (e) {
     var self = this;

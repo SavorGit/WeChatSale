@@ -40,7 +40,7 @@
 			</view>
 		</view>
 	</scroll-view>
-	<view class="btn-buy flex_column_center_center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>
+	<view wx:if="{{is_share==0}}" class="btn-buy flex_column_center_center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>
 </view>
 
 <!-- 更改订单商品窗口 -->
