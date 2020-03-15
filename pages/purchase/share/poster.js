@@ -46,14 +46,15 @@ Page({
 
     merchant_id = options.merchant_id;
     openid = options.openid;
-    var merchant_name = options.merchant_name
+    //var merchant_name = options.merchant_name
     var post_list = wx.getStorageSync(cache_key + 'cart_set_poster');
     if(post_list==''){
       post_list = wx.getStorageSync(cache_key + 'cart_poster')
     }
     post_list = JSON.parse(post_list);
     for (var i = 0; i < post_list.length; i++) {
-      post_list[i].hotel = merchant_name;
+      post_list[i].hotel = post_list[i].hotel;
+      post_list[i].area_name = post_list[i].area_name;
       post_list[i].pic = post_list[i].img_url;
       post_list[i].marketPrice = '￥'+post_list[i].price;
       if (post_list[i].set_price != '' && typeof (post_list[i].set_price) != 'undefined') {

@@ -164,7 +164,7 @@ Page({
     
     
     var cart_dish_nums = 0;
-    
+    var hotel_info = that.data.hotel_info;
     if (cart_list == '') {
 
       let dishesList = that.data.dishes_list;
@@ -176,7 +176,8 @@ Page({
       }, 500);
       cart_list = [];
       goods_info.amount = 1;
-
+      goods_info.hotel = hotel_info.name;
+      goods_info.area_name = hotel_info.area_name
       cart_list.unshift(goods_info);
 
       for (var i = 0; i < cart_list.length; i++) {
@@ -219,6 +220,8 @@ Page({
         }, 500);
 
         goods_info.amount = 1;
+        goods_info.hotel = hotel_info.name;
+        goods_info.area_name = hotel_info.area_name
         cart_list.unshift(goods_info);
       }
 
