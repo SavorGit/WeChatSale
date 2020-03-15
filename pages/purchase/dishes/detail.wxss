@@ -110,7 +110,14 @@
 
 .scroll-view {
   width: 100%;
+}
+
+.scroll-view.btn {
   height: calc(100% - 88rpx);
+}
+
+.scroll-view.nobtn {
+  height: 100%;
 }
 
 .btn-buy {

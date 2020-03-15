@@ -5,7 +5,7 @@
 
 
 <view class='container flex_column_center_flexStart theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
-	<scroll-view class='scroll-view' scroll-y="true" scroll-with-animation="true">
+	<scroll-view class='scroll-view {{is_share==0?"btn":"nobtn"}}' scroll-y="true" scroll-with-animation="true">
 		<view class="goods-info theme-panel">
 			<swiper class="pic-group" indicator-dots="true" autoplay="true">
 				<swiper-item class="pic" wx:for="{{goods_info.cover_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
@@ -30,9 +30,8 @@
 		<view class="goods-detail theme-panel">
 			<view class="title">详情</view>
 			<view class="detail-text">
-				<text>
-				{{goods_info.intro}}
-				</text></view>
+				<text>{{goods_info.intro}}</text>
+			</view>
 			<view class="detail-pic flex_column_center_flexStart">
 				<block wx:for="{{goods_info.detail_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
 					<image class="pic" mode="widthFix" src="{{bean}}"></image>
