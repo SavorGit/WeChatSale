@@ -185,7 +185,17 @@ Page({
         all_order_list: data.result.datalist
       })
     })
+    //处理中的订单
+    utils.PostRequest(api_url + '/Smallapp4/order/dishOrderlist', {
+      openid: openid,
 
+      page: page_dealing,
+      status: 1
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        deal_order_list: data.result.datalist
+      })
+    })
     //已完成的订单
     utils.PostRequest(api_url + '/Smallapp4/order/dishOrderlist', {
       openid: openid,

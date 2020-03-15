@@ -85,8 +85,8 @@ Page({
         poster: poster,
         merchant_id: merchant_id
       }, (data, headers, cookies, errMsg, statusCode) => {
-        wx.removeStorageSync(cache_key + 'cart_set_poster');
-        wx.removeStorageSync(cache_key + 'cart_poster');
+        //wx.removeStorageSync(cache_key + 'cart_set_poster');
+        //wx.removeStorageSync(cache_key + 'cart_poster');
       });
     };
     testData.fail = function () {
