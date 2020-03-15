@@ -345,10 +345,22 @@ Page({
 
               // 售价显示
               let salePriceX = downArrowX + 30, salePriceY = downArrowY + 90, salePriceWidth = 120;
-              canvasContext.setFontSize(parseInt(22 / pixelRatio));
-              canvasContext.fillText(item.salePrice.substr(0, 1), parseInt(salePriceX / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(salePriceWidth / pixelRatio));
-              canvasContext.setFontSize(parseInt(40 / pixelRatio));
-              canvasContext.fillText(item.salePrice.substring(1), parseInt((salePriceX + 22) / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(salePriceWidth / pixelRatio));
+              canvasContext.setFontSize(parseInt(20 / pixelRatio));
+              canvasContext.fillText(item.salePrice.substr(0, 1), parseInt(salePriceX / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(30 / pixelRatio));
+              if (item.salePrice.length > 7) {
+                canvasContext.setFontSize(parseInt(22 / pixelRatio));
+              } else if (item.salePrice.length > 6) {
+                canvasContext.setFontSize(parseInt(26 / pixelRatio));
+              } else if (item.salePrice.length > 5) {
+                canvasContext.setFontSize(parseInt(30 / pixelRatio));
+              } else if (item.salePrice.length > 4) {
+                canvasContext.setFontSize(parseInt(40 / pixelRatio));
+              } else if (item.salePrice.length > 3) {
+                canvasContext.setFontSize(parseInt(44 / pixelRatio));
+              } else {
+                canvasContext.setFontSize(parseInt(50 / pixelRatio));
+              }
+              canvasContext.fillText(item.salePrice.substring(1), parseInt((salePriceX + 20) / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(salePriceWidth - 50 / pixelRatio));
             }
           });
           y += itemBlockHeight;

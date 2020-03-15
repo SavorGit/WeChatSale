@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.warpper {
+  height: 100%;
+}
+
 .page-bottom,
 .page-bottom>.btn {
   height: 88rpx;
@@ -18,12 +22,12 @@
 
 .page-main {
   width: 750rpx;
-  height: 1885rpx;
+  height: calc(100% - 88rpx);
 }
 
-.page-main>canvas {
+.page-main canvas {
   width: 100%;
-  height: 100%;
+  height: 1885rpx;
 }
 
 .page-bottom>.btn {
