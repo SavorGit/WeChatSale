@@ -47,9 +47,9 @@ Page({
     merchant_id = options.merchant_id;
     openid = options.openid;
     var merchant_name = options.merchant_name
-    var post_list = wx.getStorageSync(cache_key + 'cart_set_poster_' + merchant_id);
+    var post_list = wx.getStorageSync(cache_key + 'cart_set_poster');
     if(post_list==''){
-      post_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id)
+      post_list = wx.getStorageSync(cache_key + 'cart_poster')
     }
     post_list = JSON.parse(post_list);
     for (var i = 0; i < post_list.length; i++) {
@@ -285,8 +285,8 @@ Page({
       poster: poster,
       merchant_id:merchant_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      wx.removeStorageSync(cache_key + 'cart_set_poster_' + merchant_id);
-      wx.removeStorageSync(cache_key + 'cart_poster_' + merchant_id);
+      wx.removeStorageSync(cache_key + 'cart_set_poster');
+      wx.removeStorageSync(cache_key + 'cart_poster');
     });
 
     //删除缓存

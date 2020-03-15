@@ -67,7 +67,7 @@ Page({
   },
   getCartInfo: function (merchant_id) {
     var that = this;
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id)
+    var cart_list = wx.getStorageSync(cache_key + 'cart_poster' )
     if (cart_list != '') {
       cart_list = JSON.parse(cart_list);
       var total_price = 0;
@@ -159,17 +159,21 @@ Page({
     var that = this;
     let index = e.currentTarget.dataset.index;
     var goods_info = e.currentTarget.dataset.goods_info;
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id)
-    let dishesList = that.data.dishes_list;
-    dishesList[index].addToCart = true;
-    that.setData({ dishes_list: dishesList });
-    setTimeout(function () {
-      delete dishesList[index].addToCart;
-      that.setData({ dishes_list: dishesList });
-    }, 500);
+    var cart_list = wx.getStorageSync(cache_key + 'cart_poster')
+    
+    
+    
     var cart_dish_nums = 0;
     
     if (cart_list == '') {
+
+      let dishesList = that.data.dishes_list;
+      dishesList[index].addToCart = true;
+      that.setData({ dishes_list: dishesList });
+      setTimeout(function () {
+        delete dishesList[index].addToCart;
+        that.setData({ dishes_list: dishesList });
+      }, 500);
       cart_list = [];
       goods_info.amount = 1;
 
@@ -187,10 +191,13 @@ Page({
         //total_price: total_price
       })
       cart_list = JSON.stringify(cart_list);
-      wx.setStorageSync(cache_key + 'cart_poster_' + merchant_id, cart_list)
+      wx.setStorageSync(cache_key + 'cart_poster' , cart_list)
     } else {
       cart_list = JSON.parse(cart_list)
-
+      if (cart_list.length >= 4) {
+        app.showToast('最多可选4个商品');
+        return false;
+      }
       var is_have = 0;
       for (var i = 0; i < cart_list.length; i++) {
         if (cart_list[i].id == goods_info.id) {
@@ -203,6 +210,14 @@ Page({
         app.showToast('该菜品已被选中');
         return false;
       }else if (is_have == 0) {
+        let dishesList = that.data.dishes_list;
+        dishesList[index].addToCart = true;
+        that.setData({ dishes_list: dishesList });
+        setTimeout(function () {
+          delete dishesList[index].addToCart;
+          that.setData({ dishes_list: dishesList });
+        }, 500);
+
         goods_info.amount = 1;
         cart_list.unshift(goods_info);
       }
@@ -219,7 +234,7 @@ Page({
         //total_price: total_price
       })
       cart_list = JSON.stringify(cart_list);
-      wx.setStorageSync(cache_key + 'cart_poster_' + merchant_id, cart_list)
+      wx.setStorageSync(cache_key + 'cart_poster' , cart_list)
 
     }
     app.showToast('添加成功', 2000, 'success')
@@ -233,7 +248,7 @@ Page({
   clearCart: function (e) {
     var that = this;
     wx.removeStorage({
-      key: cache_key + 'cart_poster_' + merchant_id,
+      key: cache_key + 'cart_poster' ,
       success(res) {
         that.setData({
           cart_list: [],
@@ -248,7 +263,7 @@ Page({
   },
   setSalePrice:function(e){
     console.log(e)
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id);
+    var cart_list = wx.getStorageSync(cache_key + 'cart_poster');
     var keys = e.currentTarget.id;
     var price = e.detail.value;
     cart_list = JSON.parse(cart_list)
@@ -269,7 +284,7 @@ Page({
       cart_list[keys].set_price = '';
     }
     cart_list = JSON.stringify(cart_list);
-    wx.setStorageSync(cache_key + 'cart_set_poster_' + merchant_id, cart_list)
+    wx.setStorageSync(cache_key + 'cart_set_poster' , cart_list)
   },
   
   /**
@@ -292,7 +307,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id)
+    var cart_list = wx.getStorageSync(cache_key + 'cart_poster' )
     if (cart_list != '') {
       cart_list = JSON.parse(cart_list);
       that.setData({
@@ -371,7 +386,7 @@ Page({
   // 跳转到海报页
   gotoPoster: function (e) {
     let self = this;
-    var post_list = wx.getStorageSync(cache_key + 'cart_poster_' + merchant_id);
+    var post_list = wx.getStorageSync(cache_key + 'cart_poster');
     if(post_list!=''){
       wx.navigateTo({
         url: '/pages/purchase/share/poster?merchant_id=' + merchant_id + '&openid=' + openid + "&merchant_name=" + self.data.hotel_info.name,
