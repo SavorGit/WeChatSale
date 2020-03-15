@@ -142,6 +142,18 @@ Page({
     var address = e.detail.value.address.replace(/\s+/g, '');
     var phone = e.detail.value.phone;
     var address_id = e.detail.value.address_id;
+    if(contact==''){
+      app.showToast('请输入收货人名称');
+      return false;
+    }
+    if(phone==''){
+      app.showToast('请输入联系电话');
+      return false;
+    }
+    if(address==''){
+      app.showToast('请输入收货地址');
+      return false;
+    }
     //var delivery_date = e.detail.value.delivery_date;
     //var delivery_time = e.detail.value.delivery_time;
     if(order_type==1){
