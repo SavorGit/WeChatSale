@@ -225,144 +225,8 @@ Page({
       if (typeof (dataList) == 'object' && dataList instanceof Array && dataList.length > 0) {
         for (let index = 0; index < dataList.length; index++) {
           let item = dataList[index];
-          // canvasContext.save();
-          // let itemX = 55, itemY = y + 30, itemWidth = 640, itemHeight = 270, borderRadius = 10, isFill = true, isStroke = false;
-          // canvasContext.setFillStyle('#FFFFFF');
-          // canvasContext.drawRoundedRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(itemHeight / pixelRatio), parseInt(borderRadius / pixelRatio), isFill, isStroke);
-          // itemY += 15;
-          // const grd = canvasContext.createLinearGradient(0, 0, parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
-          // grd.addColorStop(0, '#000000');
-          // grd.addColorStop(1, '#FFFFFF');
-          // canvasContext.setFillStyle(grd);
-          // canvasContext.fillRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
-          // canvasContext.restore();
-          // fontSize = 24;
-          // // canvasContext.fillText(item.hotel, parseInt(100 / pixelRatio), parseInt(((itemY + (50 - 30) / 2 + 24)) / pixelRatio));
-          // canvasContext.drawOneLineText(item.hotel, parseInt(fontSize / pixelRatio), parseInt(100 / pixelRatio), parseInt((itemY - 15) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
-          // canvasContext.save();
-          // itemX += 20, itemY += 50 + 15;
-          // let picX = itemX, picY = itemY, picWidth = 175, picHeight = 175;
-          // let nameX = itemX + picWidth + 30, nameY = itemY, nameWidth = 400, nameHeight = 80, lineCount = 2;
-          // fontSize = 32;
-          // canvasContext.setFillStyle('#000000');
-          // itemY = canvasContext.drawMultiLineText(item.name, parseInt(fontSize / pixelRatio), parseInt(nameX / pixelRatio), parseInt((nameY + 15) / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / lineCount / pixelRatio), true, lineCount) * pixelRatio;
-          // let salePriceX = itemX + picWidth + 30, salePriceY = itemY + 10, salePriceWidth = 400, salePriceHeight = 40;
-          // fontSize = 33;
-          // canvasContext.setFillStyle('#F44358');
-          // itemY = canvasContext.drawOneLineText(item.salePrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
-          // // fontSize = 28;
-          // // canvasContext.setFillStyle('#999999');
-          // // itemY = canvasContext.drawOneLineText(item.marketPrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
-          // canvasContext.restore();
-          // waitCount++;
-          // wx.getImageInfo({
-          //   src: item.pic, success: function (res) {
-          //     try {
-          //       canvasContext.drawImageArc(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt((picWidth > picHeight ? picHeight / 2 : picWidth / 2) / pixelRatio));
-          //     } catch (error) {
-          //       wx.showToast({
-          //         icon: 'none',
-          //         title: '图片[' + item.pic + ']加载失败',
-          //       });
-          //     }
-          //     waitCount--;
-          //   }
-          // });
-          // y += 300;
-
-
-          let itemX = 50, itemY = y + 30, itemWidth = 650, itemHeight = 475, itemBorderRadius = 10;
-          let picX = itemX, picY = itemY, picWidth = itemWidth, picHeight = 460, picBorderRadius = itemBorderRadius;
-          waitCount++;
-          wx.getImageInfo({
-            src: item.pic, success: function (res) {
-              try {
-                canvasContext.drawImageRoundedRect(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picBorderRadius / pixelRatio));
-              } catch (error) {
-                wx.showToast({
-                  icon: 'none',
-                  title: '图片[' + item.pic + ']加载失败',
-                });
-              }
-              waitCount--;
-              let hotelGrd = canvasContext.createLinearGradient(parseInt(itemX / pixelRatio), parseInt((itemY + 15) / pixelRatio), parseInt((itemX + 600) / pixelRatio), parseInt((itemY + 65) / pixelRatio));
-              hotelGrd.addColorStop(0, '#000000');
-              hotelGrd.addColorStop(1, 'rgba(0, 0, 0, 0)');
-              canvasContext.setFillStyle(hotelGrd);
-              canvasContext.fillRect(parseInt(itemX / pixelRatio), parseInt((itemY + 15) / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
-              canvasContext.setFontSize(30);
-              fontSize = 24;
-              canvasContext.setFillStyle('#FFDC11');
-              canvasContext.drawOneLineText(item.area + item.hotel, parseInt(fontSize / pixelRatio), parseInt((itemX + 20) / pixelRatio), parseInt((itemY) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
-
-              // 底部横条渐变
-              canvasContext.beginPath();
-              let aX = itemX, aY = itemY + 390;
-              const nameGrd = canvasContext.createLinearGradient(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio), parseInt((itemX + itemWidth) / pixelRatio), parseInt((itemY + itemHeight) / pixelRatio));
-              nameGrd.addColorStop(0, '#F960A5');
-              nameGrd.addColorStop(0.3, '#FF8A81');
-              nameGrd.addColorStop(0.7, '#FFCAC1');
-              nameGrd.addColorStop(1, '#FFDAA1');
-              canvasContext.setFillStyle(nameGrd);
-              canvasContext.moveTo(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio));
-              canvasContext.lineTo(parseInt((aX + itemWidth - 180) / pixelRatio), parseInt(aY / pixelRatio));
-              canvasContext.lineTo(parseInt((aX + itemWidth - 110) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
-              canvasContext.lineTo(parseInt(aX / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
-              canvasContext.lineTo(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio));
-              canvasContext.moveTo(parseInt((aX + itemWidth) / pixelRatio), parseInt(aY / pixelRatio));
-              canvasContext.lineTo(parseInt((aX + itemWidth) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
-              canvasContext.lineTo(parseInt((aX + itemWidth - 70) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
-              canvasContext.lineTo(parseInt((aX + itemWidth) / pixelRatio), parseInt(aY / pixelRatio));
-              canvasContext.fill();
-
-              // 底部箭头渐变
-              canvasContext.beginPath();
-              let downArrowX = itemX + itemWidth - 175, downArrowY = itemY + 330, downArrowWidth = 170, downArrowHeight = 145;
-              let downArrowGrd = canvasContext.createLinearGradient(parseInt(downArrowX / pixelRatio), parseInt(downArrowY / pixelRatio), parseInt(downArrowX / pixelRatio), parseInt((downArrowY + downArrowHeight) / pixelRatio));
-              downArrowGrd.addColorStop(0, '#9E95F8');
-              downArrowGrd.addColorStop(1, '#EA8ED9');
-              canvasContext.setFillStyle(downArrowGrd);
-              canvasContext.moveTo(parseInt(downArrowX / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth / 2) / pixelRatio), parseInt((downArrowY + downArrowHeight) / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 25) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 25) / pixelRatio), parseInt(downArrowY / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 145) / pixelRatio), parseInt(downArrowY / pixelRatio));
-              canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 145) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
-              canvasContext.lineTo(parseInt(downArrowX / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
-              canvasContext.fill();
-
-              // 名称显示
-              let nameX = itemX + 30, nameY = itemY + 370, nameWidth = 500, nameHeight = 70;
-              fontSize = 36;
-              canvasContext.setFillStyle('#FFFFFF');
-              canvasContext.drawOneLineText(item.name, parseInt(fontSize / pixelRatio), parseInt(nameX / pixelRatio), parseInt(nameY / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / pixelRatio));
-
-              // 售价提示显示
-              let salePriceTipX = downArrowX + 25, salePriceTipY = downArrowY, salePriceTipWidth = 120, salePriceTipHeight = 40;
-              fontSize = 28;
-              canvasContext.drawOneLineText(item.salePriceTip, parseInt(fontSize / pixelRatio), parseInt(salePriceTipX / pixelRatio), parseInt(salePriceTipY / pixelRatio), parseInt(salePriceTipWidth / pixelRatio), parseInt(salePriceTipHeight / pixelRatio), true);
-
-              // 售价显示
-              let salePriceX = downArrowX + 30, salePriceY = downArrowY + 90, salePriceWidth = 120;
-              canvasContext.setFontSize(parseInt(20 / pixelRatio));
-              canvasContext.fillText(item.salePrice.substr(0, 1), parseInt(salePriceX / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(30 / pixelRatio));
-              if (item.salePrice.length > 7) {
-                canvasContext.setFontSize(parseInt(22 / pixelRatio));
-              } else if (item.salePrice.length > 6) {
-                canvasContext.setFontSize(parseInt(26 / pixelRatio));
-              } else if (item.salePrice.length > 5) {
-                canvasContext.setFontSize(parseInt(30 / pixelRatio));
-              } else if (item.salePrice.length > 4) {
-                canvasContext.setFontSize(parseInt(40 / pixelRatio));
-              } else if (item.salePrice.length > 3) {
-                canvasContext.setFontSize(parseInt(44 / pixelRatio));
-              } else {
-                canvasContext.setFontSize(parseInt(50 / pixelRatio));
-              }
-              canvasContext.fillText(item.salePrice.substring(1), parseInt((salePriceX + 20) / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(salePriceWidth - 50 / pixelRatio));
-            }
-          });
+          // canvasSelf.goodsItemEdition1(canvasContext, pixelRatio, canvasWidth, canvasHeight, x, y, width, height, waitCount, item);
+          canvasSelf.goodsItemEdition2(canvasContext, pixelRatio, canvasWidth, canvasHeight, x, y, width, height, waitCount, item);
           y += itemBlockHeight;
         }
       }
@@ -408,6 +272,7 @@ Page({
       }, 2000);
     } catch (error) {
       wx.hideLoading();
+      console.error(error);
       try {
         if (typeof (data.fail) == 'function') {
           data.fail(error);
@@ -419,6 +284,152 @@ Page({
         });
       }
     }
+  },
+
+  goodsItemEdition1: function (canvasContext, pixelRatio, canvasWidth, canvasHeight, x, y, width, height, waitCount, item) {
+    canvasContext.save();
+    let fontSize = 12;
+    let itemX = 55, itemY = y + 30, itemWidth = 640, itemHeight = 270, borderRadius = 10, isFill = true, isStroke = false;
+    canvasContext.setFillStyle('#FFFFFF');
+    canvasContext.drawRoundedRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(itemHeight / pixelRatio), parseInt(borderRadius / pixelRatio), isFill, isStroke);
+    itemY += 15;
+    const grd = canvasContext.createLinearGradient(0, 0, parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
+    grd.addColorStop(0, '#000000');
+    grd.addColorStop(1, '#FFFFFF');
+    canvasContext.setFillStyle(grd);
+    canvasContext.fillRect(parseInt(itemX / pixelRatio), parseInt(itemY / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
+    canvasContext.restore();
+    fontSize = 24;
+    // canvasContext.fillText(item.hotel, parseInt(100 / pixelRatio), parseInt(((itemY + (50 - 30) / 2 + 24)) / pixelRatio));
+    canvasContext.drawOneLineText(item.hotel, parseInt(fontSize / pixelRatio), parseInt(100 / pixelRatio), parseInt((itemY - 15) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
+    canvasContext.save();
+    itemX += 20, itemY += 50 + 15;
+    let picX = itemX, picY = itemY, picWidth = 175, picHeight = 175;
+    let nameX = itemX + picWidth + 30, nameY = itemY, nameWidth = 400, nameHeight = 80, lineCount = 2;
+    fontSize = 32;
+    canvasContext.setFillStyle('#000000');
+    itemY = canvasContext.drawMultiLineText(item.name, parseInt(fontSize / pixelRatio), parseInt(nameX / pixelRatio), parseInt((nameY + 15) / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / lineCount / pixelRatio), true, lineCount) * pixelRatio;
+    let salePriceX = itemX + picWidth + 30, salePriceY = itemY + 10, salePriceWidth = 400, salePriceHeight = 40;
+    fontSize = 33;
+    canvasContext.setFillStyle('#F44358');
+    itemY = canvasContext.drawOneLineText(item.salePrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
+    // fontSize = 28;
+    // canvasContext.setFillStyle('#999999');
+    // itemY = canvasContext.drawOneLineText(item.marketPrice, parseInt(fontSize / pixelRatio), parseInt(salePriceX / pixelRatio), parseInt((salePriceY + 15) / pixelRatio), parseInt(salePriceWidth / pixelRatio), parseInt(salePriceHeight / pixelRatio), true) * pixelRatio;
+    canvasContext.restore();
+    waitCount++;
+    wx.getImageInfo({
+      src: item.pic, success: function (res) {
+        try {
+          canvasContext.drawImageArc(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt((picWidth > picHeight ? picHeight / 2 : picWidth / 2) / pixelRatio));
+        } catch (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '图片[' + item.pic + ']加载失败',
+          });
+        }
+        waitCount--;
+      }
+    });
+  },
+
+  goodsItemEdition2: function (canvasContext, pixelRatio, canvasWidth, canvasHeight, x, y, width, height, waitCount, item) {
+    let fontSize = 12;
+    let itemX = 50, itemY = y + 30, itemWidth = 650, itemHeight = 475, itemBorderRadius = 10;
+    let picX = itemX, picY = itemY, picWidth = itemWidth, picHeight = 460, picBorderRadius = itemBorderRadius;
+    waitCount++;
+    wx.getImageInfo({
+      src: item.pic, success: function (res) {
+        try {
+          canvasContext.drawImageRoundedRect(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picBorderRadius / pixelRatio));
+        } catch (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '图片[' + item.pic + ']加载失败',
+          });
+        }
+        waitCount--;
+        let hotelGrd = canvasContext.createLinearGradient(parseInt(itemX / pixelRatio), parseInt((itemY + 15) / pixelRatio), parseInt((itemX + 600) / pixelRatio), parseInt((itemY + 65) / pixelRatio));
+        hotelGrd.addColorStop(0, '#000000');
+        hotelGrd.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        canvasContext.setFillStyle(hotelGrd);
+        canvasContext.fillRect(parseInt(itemX / pixelRatio), parseInt((itemY + 15) / pixelRatio), parseInt(itemWidth / pixelRatio), parseInt(50 / pixelRatio));
+        canvasContext.setFontSize(30);
+        fontSize = 24;
+        canvasContext.setFillStyle('#FFDC11');
+        canvasContext.drawOneLineText(item.area + item.hotel, parseInt(fontSize / pixelRatio), parseInt((itemX + 20) / pixelRatio), parseInt((itemY) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
+
+        // 底部横条渐变
+        canvasContext.beginPath();
+        let aX = itemX, aY = itemY + 390;
+        const nameGrd = canvasContext.createLinearGradient(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio), parseInt((itemX + itemWidth) / pixelRatio), parseInt((itemY + itemHeight) / pixelRatio));
+        nameGrd.addColorStop(0, '#F960A5');
+        nameGrd.addColorStop(0.3, '#FF8A81');
+        nameGrd.addColorStop(0.7, '#FFCAC1');
+        nameGrd.addColorStop(1, '#FFDAA1');
+        canvasContext.setFillStyle(nameGrd);
+        canvasContext.moveTo(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio));
+        canvasContext.lineTo(parseInt((aX + itemWidth - 180) / pixelRatio), parseInt(aY / pixelRatio));
+        canvasContext.lineTo(parseInt((aX + itemWidth - 110) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
+        canvasContext.lineTo(parseInt(aX / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
+        canvasContext.lineTo(parseInt(aX / pixelRatio), parseInt(aY / pixelRatio));
+        canvasContext.moveTo(parseInt((aX + itemWidth) / pixelRatio), parseInt(aY / pixelRatio));
+        canvasContext.lineTo(parseInt((aX + itemWidth) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
+        canvasContext.lineTo(parseInt((aX + itemWidth - 70) / pixelRatio), parseInt((itemY + picHeight) / pixelRatio));
+        canvasContext.lineTo(parseInt((aX + itemWidth) / pixelRatio), parseInt(aY / pixelRatio));
+        canvasContext.fill();
+
+        // 底部箭头渐变
+        canvasContext.beginPath();
+        let downArrowX = itemX + itemWidth - 175, downArrowY = itemY + 330, downArrowWidth = 170, downArrowHeight = 145;
+        let downArrowGrd = canvasContext.createLinearGradient(parseInt(downArrowX / pixelRatio), parseInt(downArrowY / pixelRatio), parseInt(downArrowX / pixelRatio), parseInt((downArrowY + downArrowHeight) / pixelRatio));
+        downArrowGrd.addColorStop(0, '#9E95F8');
+        downArrowGrd.addColorStop(1, '#EA8ED9');
+        canvasContext.setFillStyle(downArrowGrd);
+        canvasContext.moveTo(parseInt(downArrowX / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth / 2) / pixelRatio), parseInt((downArrowY + downArrowHeight) / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 25) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 25) / pixelRatio), parseInt(downArrowY / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 145) / pixelRatio), parseInt(downArrowY / pixelRatio));
+        canvasContext.lineTo(parseInt((downArrowX + downArrowWidth - 145) / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
+        canvasContext.lineTo(parseInt(downArrowX / pixelRatio), parseInt((downArrowY + 60) / pixelRatio));
+        canvasContext.fill();
+
+        // 名称显示
+        let nameX = itemX + 30, nameY = itemY + 370, nameWidth = 500, nameHeight = 70;
+        fontSize = 36;
+        canvasContext.setFillStyle('#FFFFFF');
+        canvasContext.drawOneLineText(item.name, parseInt(fontSize / pixelRatio), parseInt(nameX / pixelRatio), parseInt(nameY / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / pixelRatio));
+
+        // 售价提示显示
+        let salePriceTipX = downArrowX + 25, salePriceTipY = downArrowY, salePriceTipWidth = 120, salePriceTipHeight = 40;
+        fontSize = 28;
+        canvasContext.drawOneLineText(item.salePriceTip, parseInt(fontSize / pixelRatio), parseInt(salePriceTipX / pixelRatio), parseInt(salePriceTipY / pixelRatio), parseInt(salePriceTipWidth / pixelRatio), parseInt(salePriceTipHeight / pixelRatio), true);
+
+        // 售价显示
+        let salePriceX = downArrowX + 30, salePriceY = downArrowY + 90, salePriceWidth = 120, xOffset = 0;
+        if (item.salePrice.length > 7) {
+          fontSize = 22; xOffset = 2;
+        } else if (item.salePrice.length > 6) {
+          fontSize = 26; xOffset = 0;
+        } else if (item.salePrice.length > 5) {
+          fontSize = 30; xOffset = 4;
+        } else if (item.salePrice.length > 4) {
+          fontSize = 40; xOffset = -4;
+        } else if (item.salePrice.length > 3) {
+          fontSize = 44; xOffset = 6;
+        } else if (item.salePrice.length > 2) {
+          fontSize = 48; xOffset = 14;
+        } else {
+          fontSize = 52; xOffset = 20;
+        }
+        canvasContext.setFontSize(parseInt(20 / pixelRatio));
+        canvasContext.fillText(item.salePrice.substr(0, 1), parseInt((salePriceX + xOffset) / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(30 / pixelRatio));
+        canvasContext.setFontSize(parseInt(fontSize / pixelRatio));
+        canvasContext.fillText(item.salePrice.substring(1), parseInt((salePriceX + xOffset + 20) / pixelRatio), parseInt(salePriceY / pixelRatio), parseInt(salePriceWidth - 50 / pixelRatio));
+      }
+    });
   },
 
   // 保存海报图片到相册
