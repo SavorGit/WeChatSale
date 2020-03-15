@@ -11,6 +11,7 @@ var page = 1;
 var page_all = 1;
 var page_dealing = 1;
 var page_complete = 1;
+var type;
 Page({
 
   /**
@@ -29,6 +30,7 @@ Page({
     openid = options.openid
     merchant_id = options.merchant_id;
     var order_status = options.order_status
+    type = options.type;
     that.setData({
       order_status: order_status
     })
@@ -39,7 +41,8 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      status: 0
+      status: 0,
+      type: type
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         all_order_list: data.result.datalist
@@ -50,7 +53,8 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      status: 1
+      status: 1,
+      type: type
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         deal_order_list: data.result.datalist
@@ -61,7 +65,8 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
-      status: 2
+      status: 2,
+      type: type
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         complete_order_list: data.result.datalist
@@ -95,7 +100,8 @@ Page({
       openid: openid,
       merchant_id: merchant_id,
       page: page,
-      status: order_status
+      status: order_status,
+      type: type
     }, (data, headers, cookies, errMsg, statusCode) => {
       if (order_status == 0) {
         that.setData({
@@ -147,7 +153,8 @@ Page({
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_dealing,
-                status: 1
+                status: 1,
+                type: type
               }, (data, headers, cookies, errMsg, statusCode) => {
                 that.setData({
                   deal_order_list: data.result.datalist
@@ -158,7 +165,8 @@ Page({
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_complete,
-                status: 2
+                status: 2,
+                type: type
               }, (data, headers, cookies, errMsg, statusCode) => {
                 that.setData({
                   complete_order_list: data.result.datalist
@@ -179,7 +187,8 @@ Page({
               openid: openid,
               merchant_id: merchant_id,
               page: page_all,
-              status: 0
+              status: 0,
+              type: type
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
                 all_order_list: data.result.datalist
@@ -191,7 +200,8 @@ Page({
               openid: openid,
               merchant_id: merchant_id,
               page: page_complete,
-              status: 2
+              status: 2,
+              type: type
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
                 complete_order_list: data.result.datalist

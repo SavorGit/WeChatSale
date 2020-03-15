@@ -316,7 +316,17 @@ Page({
     cart_list = JSON.stringify(cart_list);
     wx.setStorageSync(cache_key + 'cart_set_poster' , cart_list)
   },
-  
+  checkSetPrice:function(e){
+    console.log(e);
+    var price = e.detail.value;
+    
+    price = price.replace(/\D/g, '')
+    if(price<1|| price>9999){
+      return ''
+    }else {
+      return price
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

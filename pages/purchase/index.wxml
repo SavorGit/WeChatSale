@@ -2,7 +2,7 @@
 <!--
  | 分销 - 主页
  |-->
-
+<import src="/pages/template/commons" />
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="list flex_column_center_spaceAround">
@@ -24,3 +24,5 @@
 		</view>
 	</view>
 </scroll-view>
+<!-- 微信授权 -->
+<template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
