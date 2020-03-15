@@ -52,7 +52,7 @@ Page({
       post_list = wx.getStorageSync(cache_key + 'cart_poster')
     }
     post_list = JSON.parse(post_list);
-    
+
     for (var i = 0; i < post_list.length; i++) {
       post_list[i].hotel = post_list[i].hotel;
       post_list[i].area = '\u2762 ' + post_list[i].area_name + ' \u2022 ';
@@ -293,7 +293,7 @@ Page({
               canvasContext.setFontSize(30);
               fontSize = 24;
               canvasContext.setFillStyle('#FFDC11');
-              canvasContext.drawOneLineText(item.area + item.hotel, parseInt(fontSize / pixelRatio), parseInt(100 / pixelRatio), parseInt((itemY) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
+              canvasContext.drawOneLineText(item.area + item.hotel, parseInt(fontSize / pixelRatio), parseInt((itemX + 20) / pixelRatio), parseInt((itemY) / pixelRatio), parseInt(600 / pixelRatio), parseInt(50 / pixelRatio));
 
               // 底部横条渐变
               canvasContext.beginPath();
