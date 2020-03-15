@@ -58,7 +58,7 @@ Page({
     pverify_code_focus:false,
     id_before:'',
     id_after:'',
-    id_hold:''
+    //id_hold:''
   },
 
 
@@ -260,10 +260,6 @@ Page({
                   }else if(keys==1){
                     that.setData({
                       id_after: dish_img_url
-                    })
-                  }else if(keys==2){
-                    that.setData({
-                      id_hold: dish_img_url
                     })
                   }
                 }
@@ -606,6 +602,14 @@ Page({
       })
       return false;
     }
+    var is_idnumber = app.checkIdCard(idnumber)
+    if(!is_idnumber){
+      app.showToast('请输入正确身份证号');
+      that.setData({
+        idnumber_focus: true
+      })
+      return false;
+    }
     var id_before = that.data.id_before;
     if(id_before==''){
       app.showToast('请上传身份证正面照');
@@ -616,11 +620,7 @@ Page({
       app.showToast('请上传身份证反面照');
       return false;
     }
-    var id_hold = that.data.id_hold;
-    if(id_hold==''){
-      app.showToast('请上传手持身份证照');
-      return false;
-    }
+    
 
     if(mobile==''){
       app.showToast('请输入手机号');
@@ -629,6 +629,15 @@ Page({
       })
       return false;
     }
+    var is_mobile = app.checkMobile(mobile);
+    if (!is_mobile) {
+      app.showToast('请输入正确的手机号');
+      that.setData({
+        pmobile_focus: true
+      })
+      return false;
+    }
+
     if(verify_code==''){
       app.showToast('请输入验证码');
       that.setData({
@@ -636,7 +645,7 @@ Page({
       })
       return false;
     }
-    var idcard = id_before+','+id_after+','+id_hold
+    var idcard = id_before+','+id_after
 
 
     utils.PostRequest(api_v_url + '/purchase/register', {

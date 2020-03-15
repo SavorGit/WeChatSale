@@ -67,7 +67,7 @@
 
 				<view class="row-bottom" wx:if="{{bean.goods.length>0}}">
 					<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-						<image mode="aspectFill" src="{{item.img}}" bindtap="gotoDishes" data-goods_id="{{item.id}}"></image>
+						<image mode="aspectFill" src="{{item.img}}" bindtap="gotoMerchant" data-merchant_id="{{bean.merchant_id}}"></image>
 					</block>
 
 				</view>

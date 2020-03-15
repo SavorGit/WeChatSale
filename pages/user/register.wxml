@@ -6,8 +6,9 @@
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="tab-bar flex_row_center_center theme7">
+    <view class="tab hotel{{tab == 'hotel' ? ' selected' : ''}}" data-tab="hotel" bindtap="showTab">餐厅注册</view>
 		<view class="tab agent{{tab == 'agent' ? ' selected' : ''}}" data-tab="agent" bindtap="showTab">分销注册</view>
-		<view class="tab hotel{{tab == 'hotel' ? ' selected' : ''}}" data-tab="hotel" bindtap="showTab">餐厅注册</view>
+		
 	</view>
 
 	<!-- 分销注册 -->
@@ -61,7 +62,7 @@
 								</view>
 								<view class="explain">反面</view>
 							</view>
-							<view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="2">
+							<!-- <view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="2">
 								<view class="input flex_column_center_center" wx:if="{{id_hold==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
@@ -70,7 +71,7 @@
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_hold}}"></image>
 								</view>
 								<view class="explain">手持</view>
-							</view>
+							</view> -->
 						</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">

@@ -86,6 +86,15 @@ App({
       continue;
     }
   },
+  checkIdCard:function (idcard) {
+    const regIdCard = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if(!regIdCard.test(idcard)) {
+      //errorMsg = '身份证号填写有误';
+      return false;
+    } else {
+      return true;
+    }
+  },
   boxShow:function(box_mac='',pubdetail,res_type,action,that){
     var self = this;
     var user_info = wx.getStorageSync(this.globalData.cache_key + 'userinfo');
