@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/hotel/order/agent",
     "pages/index/index",
     "pages/adv/index",
     "pages/birthday/index",
@@ -15,6 +14,7 @@
     "pages/hotel/dishes/detail",
     "pages/hotel/order/index",
     "pages/hotel/order/detail",
+    "pages/hotel/order/agent",
     "pages/hotel/register/index",
     "pages/hotel/platform/add",
     "pages/hotel/platform/index",
