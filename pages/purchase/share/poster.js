@@ -203,7 +203,7 @@ Page({
       canvasContext.save();
 
       // 绘制头部
-      let headImgX = 50, headImgY = 60, headImgWidth = 500, headImgHeight = 450;
+      let headImgX = 50, headImgY = 60, headImgWidth = 650, headImgHeight = 450;
       waitCount++;
       wx.getImageInfo({
         src: data.page.headImg, success: function (res) {
