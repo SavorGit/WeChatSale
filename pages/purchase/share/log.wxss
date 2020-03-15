@@ -55,7 +55,7 @@
 .daily>.hotel>.order-list>.weui-grid>.goods>.img {
   width: 320rpx;
   height: 320rpx;
-  border-radius: 10rpx;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 .daily>.hotel>.order-list>.weui-grid>.goods>.name {

@@ -99,7 +99,7 @@
 					<view class="name two-line-overflow">{{bean.name}}</view>
 					<view class="price theme-font5">
 						<label>￥</label>
-						<text>{{bean.price}}</text>
+						<text class="one-line-overflow">{{bean.price}}</text>
 					</view>
 					<view class="count-chooser flex_row_center_spaceBetween">
 						<view class="fa fa-minus-circle" aria-hidden="true" bindtap="cutNum" data-keys="{{index}}"></view>

@@ -271,19 +271,23 @@
 }
 
 .shopping-cart-window>.window>.body .list>.item>.name {
-  width: calc(100% - 264rpx);
+  width: calc(100% - 294rpx);
   font-size: 33rpx;
 }
 
 .shopping-cart-window>.window>.body .list>.item>.price {
-  width: 120rpx;
+  width: 150rpx;
 }
 
 .shopping-cart-window>.window>.body .list>.item>.price>label {
+  width: 30rpx;
+  display: inline-block;
   font-size: 21rpx;
 }
 
 .shopping-cart-window>.window>.body .list>.item>.price>text {
+  width: calc(100% - 30rpx);
+  display: inline-block;
   font-size: 32rpx;
 }
 
