@@ -4,6 +4,7 @@ const mta = require('../../../utils/mta_analysis.js')
 const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
 var openid;
 var order_id; 
 Page({
@@ -20,7 +21,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    openid = options.openid;
+    //openid = options.openid;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    console.log(user_info)
+    openid = user_info.openid;
     order_id = options.order_id
     utils.PostRequest(api_v_url + '/order/dishOrderdetail', {
       openid: openid,

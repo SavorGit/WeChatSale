@@ -37,11 +37,12 @@ Page({
     })
   },
   loadMore:function(e){
+    var that = this;
     page +=1;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/purchase/userList', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1,
+      page: page,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         userList: data.result.datalist
@@ -61,8 +62,9 @@ Page({
   gotoOrder:function(e){
     var status = e.currentTarget.dataset.status;
     var type = e.currentTarget.dataset.type;
+    var p_openid = e.currentTarget.dataset.p_openid
     wx.navigateTo({
-      url: '/pages/hotel/order/index?merchant_id' + merchant_id +'&order_status='+status+"&type="+type+'&openid='+openid,
+      url: '/pages/hotel/order/index?merchant_id' + merchant_id + '&order_status=' + status + "&type=" + type + '&openid=' + p_openid,
     })
   },
   /**
@@ -76,7 +78,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    utils.PostRequest(api_v_url + '/purchase/userList', {
+      openid: openid,
+      merchant_id: merchant_id,
+      page: page,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        userList: data.result.datalist
+      })
+    })
   },
 
   /**

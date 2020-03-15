@@ -11,13 +11,13 @@
 			<view class="left">
 				<image class="user-head" mode="aspectFill" src="{{bean.avatarUrl}}"></image>
 			</view>
-			<view class="center flex_column_flexStart_spaceAround" wx:if="{{bean.order_num==0}}" bindtap="gotoOrder" data-status="0" data-type="2">
+			<view class="center flex_column_flexStart_spaceAround" wx:if="{{bean.order_num==0}}" bindtap="gotoOrder" data-status="0" data-type="3" data-p_openid="{{bean.openid}}"> 
 				<view class="user-name one-line-overflow">{{bean.name}}</view>
 				<view class="order-tip one-line-overflow theme-font3" >没有待处理订单</view>
         
 			</view>
 
-      <view class="center flex_column_flexStart_spaceAround" wx:else bindtap="gotoOrder" data-status="1" data-type="3">
+      <view class="center flex_column_flexStart_spaceAround" wx:else bindtap="gotoOrder" data-status="1" data-type="3" data-p_openid="{{bean.openid}}">
 				<view class="user-name one-line-overflow">{{bean.name}}</view>
         <view  class="order-tip one-line-overflow theme-font5">{{bean.order_num}}个待处理订单</view>
 			</view>

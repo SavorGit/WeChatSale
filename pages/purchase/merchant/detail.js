@@ -86,6 +86,12 @@ Page({
         cart_dish_nums: cart_dish_nums,
         total_price: total_price,
       })
+    }else {
+      that.setData({
+        cart_list: [],
+        cart_dish_nums: 0,
+        total_price: 0,
+      })
     }
 
   },

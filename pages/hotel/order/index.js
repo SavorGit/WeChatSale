@@ -127,6 +127,7 @@ Page({
     var order_id = e.currentTarget.dataset.order_id;
     var keys = e.currentTarget.dataset.keys;
     var order_status = that.data.order_status 
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
 
     wx.showModal({
       title: '提示',
@@ -135,7 +136,7 @@ Page({
         if (res.confirm) {
           utils.PostRequest(api_v_url + '/order/dishorderProcess', {
             order_id: order_id,
-            openid: openid,
+            openid: user_info.openid,
           }, (data, headers, cookies, errMsg, statusCode) => {
             //处理订单的状态改变
             /**
