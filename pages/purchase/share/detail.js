@@ -291,6 +291,11 @@ Page({
     
     var keys = e.currentTarget.id;
     var price = e.detail.value;
+    if (price < 1 || price >9999){
+      app.showToast('请输入1-9999的价格');
+      return false;
+    }
+
     cart_list = JSON.parse(cart_list)
     if(cart_list.length>4){
       app.showToast('最多可选4个商品');

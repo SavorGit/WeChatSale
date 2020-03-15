@@ -363,7 +363,10 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
-    var cart_list = wx.getStorageSync(cache_key + 'cart_' + merchant_id)
+
+    that.getCartInfo (merchant_id)
+
+    /*var cart_list = wx.getStorageSync(cache_key + 'cart_' + merchant_id)
     if (cart_list != '') {
       cart_list = JSON.parse(cart_list);
       that.setData({
@@ -375,7 +378,7 @@ Page({
         cart_dish_nums: 0,
         total_price: 0
       })
-    }
+    }*/
   },
 
   /**
