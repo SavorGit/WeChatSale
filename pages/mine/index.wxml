@@ -53,16 +53,31 @@
 				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
 				<view>我的店铺</view>
 			</view>
-			<view class="order flex_row_center_spaceBetween">
+			<view class="order flex_row_center_spaceBetween" wx:if="{{is_purchase==1}}">
 				<view bindtap="saleDishes">
 					<view>{{dish_num}}</view>
 					<view>在售菜品</view>
 				</view>
-				<view bindtap="gotoOrder" data-order_status="1">
+				<view bindtap="gotoPurchaseOrder" data-order_status="1" data-type="2">
+					<view>{{dishorder_purchase_num}}</view>
+					<view>分销订单</view>
+				</view>
+				<view bindtap="gotoOrder" data-order_status="0" data-type="1">
+					<view>{{dishorder_common_num}}</view>
+					<view>普通订单</view>
+				</view>
+			</view>
+
+      <view class="order flex_row_center_spaceBetween" wx:else>
+				<view bindtap="saleDishes">
+					<view>{{dish_num}}</view>
+					<view>在售菜品</view>
+				</view>
+				<view bindtap="gotoOrder" data-order_status="1" data-type="0">
 					<view>{{dishorder_process_num}}</view>
 					<view>待处理订单</view>
 				</view>
-				<view bindtap="gotoOrder" data-order_status="0">
+				<view bindtap="gotoOrder" data-order_status="0" data-type="0">
 					<view>{{dishorder_all_num}}</view>
 					<view>全部订单</view>
 				</view>

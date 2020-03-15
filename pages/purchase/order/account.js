@@ -212,7 +212,8 @@ Page({
       
       goods_id: goods_id,
       openid: openid,
-      carts: carts
+      carts: carts,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => {
       if(order_type==2){
         wx.removeStorage({

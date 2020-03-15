@@ -77,7 +77,10 @@ Page({
             dish_num: res.data.result.dish_num,
             dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
-            merchant_id: res.data.result.merchant_id
+            merchant_id: res.data.result.merchant_id,
+            dishorder_purchase_num: res.data.result.dishorder_purchase_num,
+            dishorder_common_num: res.data.result.dishorder_common_num,
+            is_purchase: res.data.result.is_purchase
           })
         }
       }
@@ -629,11 +632,12 @@ Page({
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
+    var type = e.currentTarget.dataset.type;
     if (typeof (merchant_id)=='undefined'){
       return false;
     }else {
       wx.navigateTo({
-        url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status,
+        url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status +'&type='+type,
       })
     }
     
@@ -659,6 +663,18 @@ Page({
     } else {
       wx.navigateTo({
         url: '/pages/mine/setting/list?merchant_id=' + merchant_id + '&openid=' + openid,
+      })
+    }
+  },
+  gotoPurchaseOrder:function(e){
+    var that = this;
+    var merchant_id = that.data.merchant_id;
+    var order_status = e.currentTarget.dataset.order_status
+    if (typeof (merchant_id) == 'undefined') {
+      return false;
+    } else {
+      wx.navigateTo({
+        url: '/pages/hotel/order/agent?merchant_id=' + merchant_id + '&openid=' + openid,
       })
     }
   }
