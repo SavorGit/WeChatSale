@@ -105,8 +105,8 @@
 					</view>
 					<view class="right">
 						<view class="name two-line-overflow">{{bean.name}}</view>
-						<view class="sale-price">
-							<input type='digit' bindblur="setSalePrice" id='{{index}}' name="{{index}}" wx:if="{{is_changeprice==1}}" placeholder="请输入售卖价格"></input>
+						<view class="sale-price" >
+							<input type='digit' value="{{bean.set_price}}" bindblur="setSalePrice" id='{{index}}' name="{{index}}" wx:if="{{is_changeprice==1}}" placeholder="请输入售卖价格"></input>
 							<view wx:else>￥{{bean.price}}</view>
 						</view>
 					</view>

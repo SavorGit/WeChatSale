@@ -52,6 +52,7 @@ Page({
       post_list = wx.getStorageSync(cache_key + 'cart_poster')
     }
     post_list = JSON.parse(post_list);
+    
     for (var i = 0; i < post_list.length; i++) {
       post_list[i].hotel = post_list[i].hotel;
       post_list[i].area = '\u2762 ' + post_list[i].area_name + ' \u2022 ';

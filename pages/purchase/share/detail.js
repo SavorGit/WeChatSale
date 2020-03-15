@@ -67,7 +67,11 @@ Page({
   },
   getCartInfo: function (merchant_id) {
     var that = this;
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster' )
+    var cart_list = wx.getStorageSync(cache_key + 'cart_set_poster')
+    if(cart_list==''){
+      cart_list = wx.getStorageSync(cache_key + 'cart_poster')
+    }
+    
     if (cart_list != '') {
       cart_list = JSON.parse(cart_list);
       var total_price = 0;
@@ -159,9 +163,12 @@ Page({
     var that = this;
     let index = e.currentTarget.dataset.index;
     var goods_info = e.currentTarget.dataset.goods_info;
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster')
-    
-    
+    var cart_list = wx.getStorageSync(cache_key + 'cart_set_poster')
+    var is_set = 1;
+    if(cart_list==''){
+      is_set = 0;
+      cart_list = wx.getStorageSync(cache_key + 'cart_poster')
+    }
     
     var cart_dish_nums = 0;
     var hotel_info = that.data.hotel_info;
@@ -178,6 +185,7 @@ Page({
       goods_info.amount = 1;
       goods_info.hotel = hotel_info.name;
       goods_info.area_name = hotel_info.area_name
+      goods_info.set_price = '';
       cart_list.unshift(goods_info);
 
       for (var i = 0; i < cart_list.length; i++) {
@@ -222,6 +230,7 @@ Page({
         goods_info.amount = 1;
         goods_info.hotel = hotel_info.name;
         goods_info.area_name = hotel_info.area_name
+        goods_info.set_price = '';
         cart_list.unshift(goods_info);
       }
 
@@ -237,8 +246,12 @@ Page({
         //total_price: total_price
       })
       cart_list = JSON.stringify(cart_list);
-      wx.setStorageSync(cache_key + 'cart_poster' , cart_list)
-
+      if(is_set==0){
+        wx.setStorageSync(cache_key + 'cart_poster', cart_list)
+      }else if(is_set==1){
+        wx.setStorageSync(cache_key + 'cart_poster', cart_list)
+        wx.setStorageSync(cache_key + 'cart_set_poster', cart_list)
+      }
     }
     app.showToast('添加成功', 2000, 'success')
     mta.Event.stat('addCart', { 'openid': that.data.openid, 'goodsid': goods_info.id })
@@ -253,12 +266,17 @@ Page({
     wx.removeStorage({
       key: cache_key + 'cart_poster' ,
       success(res) {
+        wx.removeStorageSync(cache_key + 'cart_set_poster' )
         that.setData({
           cart_list: [],
           cart_dish_nums: 0,
           total_price: 0,
         })
         app.showToast('清空成功', 2000, 'success')
+        that.setData({ showShoppingCartWindow: false });
+        setTimeout(function () {
+          that.setData({ showShoppingCartPopWindow: false });
+        }, 500);
       }, fail: function () {
         app.showToast('清空成功')
       }
@@ -266,11 +284,15 @@ Page({
   },
   setSalePrice:function(e){
     console.log(e)
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster');
+    var cart_list = wx.getStorageSync(cache_key + 'cart_set_poster');
+    if(cart_list==''){
+      cart_list = wx.getStorageSync(cache_key + 'cart_poster');
+    }
+    
     var keys = e.currentTarget.id;
     var price = e.detail.value;
     cart_list = JSON.parse(cart_list)
-    if(cart_list.length>=4){
+    if(cart_list.length>4){
       app.showToast('最多可选4个商品');
       return false;
     }
@@ -310,7 +332,10 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       dishes_list: data.result
     }));
-    var cart_list = wx.getStorageSync(cache_key + 'cart_poster' )
+    var cart_list = wx.getStorageSync(cache_key + 'cart_set_poster');
+    if(cart_list==''){
+      var cart_list = wx.getStorageSync(cache_key + 'cart_poster')
+    }
     if (cart_list != '') {
       cart_list = JSON.parse(cart_list);
       that.setData({
@@ -373,6 +398,23 @@ Page({
   // 打开购物车弹窗
   openShoppingCartWindow: function (e) {
     let self = this;
+    var cart_list = wx.getStorageSync(cache_key + 'cart_set_poster');
+    if(cart_list==''){
+      cart_list = wx.getStorageSync(cache_key + 'cart_poster');
+    }
+    if (cart_list != '') {
+      cart_list = JSON.parse(cart_list);
+      self.setData({
+        cart_list: cart_list
+      })
+    } else {
+      self.setData({
+        cart_list: [],
+        cart_dish_nums: 0,
+        total_price: 0
+      })
+    }
+    
     self.setData({ showShoppingCartPopWindow: true, showShoppingCartWindow: true });
 
   },
@@ -390,6 +432,7 @@ Page({
   gotoPoster: function (e) {
     let self = this;
     var post_list = wx.getStorageSync(cache_key + 'cart_poster');
+    
     if(post_list!=''){
       wx.navigateTo({
         url: '/pages/purchase/share/poster?merchant_id=' + merchant_id + '&openid=' + openid + "&merchant_name=" + self.data.hotel_info.name,
