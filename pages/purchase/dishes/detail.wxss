@@ -191,14 +191,18 @@
 }
 
 .change-order-goods-window>.window>.body .list>.item>.price {
-  width: 120rpx;
+  width: 150rpx;
 }
 
-.change-order-goods-window>.window>.body .list>.item>.price>label {
+.shopping-cart-window>.window>.body .list>.item>.price>label {
+  width: 30rpx;
+  display: inline-block;
   font-size: 21rpx;
 }
 
-.change-order-goods-window>.window>.body .list>.item>.price>text {
+.shopping-cart-window>.window>.body .list>.item>.price>text {
+  width: calc(100% - 30rpx);
+  display: inline-block;
   font-size: 32rpx;
 }
 
