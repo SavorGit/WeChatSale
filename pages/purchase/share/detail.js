@@ -317,7 +317,6 @@ Page({
     wx.setStorageSync(cache_key + 'cart_set_poster' , cart_list)
   },
   checkSetPrice:function(e){
-    console.log(e);
     var price = e.detail.value;
     
     price = price.replace(/\D/g, '')
