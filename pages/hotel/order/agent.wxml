@@ -1,0 +1,70 @@
+<!--pages/hotel/order/agent.wxml-->
+<!--
+ | 分销订单页面
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="list flex_column_flexStart_flexStart">
+		<view class="item flex_row_center_spaceBetween theme-panel">
+			<view class="left">
+				<image class="user-head" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="user-name one-line-overflow">张三</view>
+				<view class="order-tip one-line-overflow theme-font5">10个待处理订单</view>
+			</view>
+			<view class="right">
+				<view class="btn fa fa-phone theme-button-welcome" aria-hidden="true"></view>
+			</view>
+		</view>
+		<view class="item flex_row_center_spaceBetween theme-panel">
+			<view class="left">
+				<image class="user-head" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="user-name one-line-overflow">张三</view>
+				<view class="order-tip one-line-overflow theme-font3">没有待处理订单</view>
+			</view>
+			<view class="right">
+				<view class="btn fa fa-phone theme-button-welcome" aria-hidden="true"></view>
+			</view>
+		</view>
+		<view class="item flex_row_center_spaceBetween theme-panel">
+			<view class="left">
+				<image class="user-head" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="user-name one-line-overflow">张三</view>
+				<view class="order-tip one-line-overflow theme-font5">10个待处理订单</view>
+			</view>
+			<view class="right">
+				<view class="btn fa fa-phone theme-button-welcome" aria-hidden="true"></view>
+			</view>
+		</view>
+		<view class="item flex_row_center_spaceBetween theme-panel">
+			<view class="left">
+				<image class="user-head" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="user-name one-line-overflow">张三</view>
+				<view class="order-tip one-line-overflow theme-font5">10个待处理订单</view>
+			</view>
+			<view class="right">
+				<view class="btn fa fa-phone theme-button-welcome" aria-hidden="true"></view>
+			</view>
+		</view>
+		<view class="item flex_row_center_spaceBetween theme-panel">
+			<view class="left">
+				<image class="user-head" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="user-name one-line-overflow">张三</view>
+				<view class="order-tip one-line-overflow theme-font5">10个待处理订单</view>
+			</view>
+			<view class="right">
+				<view class="btn fa fa-phone theme-button-welcome" aria-hidden="true"></view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
