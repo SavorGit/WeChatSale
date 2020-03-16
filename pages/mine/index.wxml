@@ -146,7 +146,14 @@
         </block>
       </label>
 		</view>
-    
+    <view class="list">
+			<view class="cell add" bindtap="addStaff">
+				<label class="fa fa-plus"></label>
+			</view>
+			<view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
+				<image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+			</view>
+		</view>
   </view>
 	<!-- <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
 		<view class='title theme-font2'>
