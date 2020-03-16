@@ -30,8 +30,8 @@
 }
 
 .row>.option {
-  /* width: 290rpx; */
-  width: 90rpx;
+  width: 290rpx;
+  /* width: 90rpx; */
   height: 90rpx;
 }
 
