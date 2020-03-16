@@ -75,7 +75,7 @@
 }
 
 .evaluate-list-panel>.title .search-wapper>view>picker {
-  width: 150rpx;
+  width: 160rpx;
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
