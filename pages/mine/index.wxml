@@ -30,7 +30,8 @@
 	<view wx:if="{{is_wx_auth==3}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
 		<view class="left"></view>
 		<view class="center flex_column_center_center">
-			<image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image>
+			<!-- <image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image> -->
+      <image class='head-img' src='{{avatarUrl}}'></image>
 			<view class='nickname'>{{nickName}}</view>
 		</view>
 		<view class="right flex_row_flexStart_flexEnd" bindtap="gotoSetting">
