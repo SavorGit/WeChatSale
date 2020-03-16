@@ -135,11 +135,11 @@
 		</view>
 	</view>
 	<!-- 我的员工面板 -->
-	<view class="team-members-panel full_width theme7" wx:if="{{(role_type ==0 || role_type==1 || role_type==2 ) && staff_manage==true}}">
+	<view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
-        <block wx:if="{{role_type==0}}">
+        <block wx:if="{{role_type==1}}">
 				<navigator url="/pages/mine/team_members">更多...</navigator>
         </block>
         <block wx:if="{{role_type==2}}">
