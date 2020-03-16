@@ -1,6 +1,6 @@
 <!--pages/mine/index.wxml-->
 <import src="/pages/template/commons" />
-<scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true" >
 
 	<!-- 用户信息面板 -->
 	<!--
@@ -134,7 +134,7 @@
 		</view>
 	</view>
 	<!-- 我的员工面板 -->
-	<!-- <view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2) && staff_manage==true}}">
+	<view class="team-members-panel full_width theme7" wx:if="{{(role_type ==0 || role_type==1 || role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
@@ -145,8 +145,10 @@
           <navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}">更多...</navigator>
         </block>
       </label>
-		</view> -->
-	<view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
+		</view>
+    
+  </view>
+	<!-- <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
@@ -161,7 +163,7 @@
 				<image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
 			</view>
 		</view>
-	</view>
+	</view> -->
 
 	<!-- 收益详情面板 
   <view class='profit-details-panel full_width theme7'>

@@ -3,13 +3,13 @@
 <import src="/pages/template/commons" />
 <wxs src="../../app.wxs" module="app" />
 
-<view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-container">
+<view wx:if="{{taskListShowStatus == 0 || taskListShowStatus == 1}}" class="container flex_column_center_center theme-main">
   <view class="flex_column_center_center">
     <image mode="widthFix" style="width:400rpx;margin-bottom:50rpx;" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/tasks_default.png"></image>
     <view>{{taskListShowStatus == 0 ? '加载中...' : '暂无任务，敬请期待'}}</view>
   </view>
 </view>
-<scroll-view wx:else class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadingNextPageData">
+<scroll-view wx:else class="container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadingNextPageData">
   <view wx:for='{{taskList}}' wx:for-item="bean" wx:key="key" wx:for-index="index" class="row flex_column_center {{index + 1 >= taskList.length ? 'last-padding-bottom' : ''}}">
     <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
       <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -48,14 +48,14 @@
 		<view class="package flex_column_center theme7">
 			<view class="name theme-font1">{{openTaskInWindow.task_name}}</view>
 			<scroll-view class="detail" scroll-y="true" scroll-with-animation="true">{{openTaskInWindow.desc}}</scroll-view>
-			<view wx:if="{{openTaskInWindow.is_shareprofit==1 && userInfo.role_type==2}}" class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit' data-task_id="{{openTaskInWindow.task_id}}">分润设置</view>
+			<view wx:if="{{openTaskInWindow.is_shareprofit==1 && userInfo.role_type==1}}" class="btn-confirm theme-background-9 theme-font4" bindtap='setShareBenefit' data-task_id="{{openTaskInWindow.task_id}}">分润设置</view>
 			<view wx:else class="btn-confirm theme-background-9 theme-font4" bindtap='taskDetailWindowConfirm'>我知道了</view>
 		</view>
 	</view>
 </modal>
 
 <!-- 任务分润设置弹窗 -->
-<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='540rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{setTaskBenefitWindowShow}}" width="600rpx" height='700rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
 	<view class="set-task-benefit-window flex_column_center theme7">
 		<view class="top flex_row_flexEnd_spaceBetween">
 			<view></view>
@@ -67,6 +67,7 @@
 		<view class="main flex_column_center theme7">
 			<form bindsubmit="editTaskShareBenefit">
 				<view class="desc">每完成一次任务的总额为100%，可设置员工完成任务后的奖励比例，剩余部分归管理员所有。</view>
+				<!--
         <view class="percentage flex_row_center_spaceBetween">
 					<view></view>
 					<view>{{level2}}</view>
@@ -78,10 +79,32 @@
           <slider block-size="12" step="10" value="{{level2}}" bindchange="slideSet" />
           <label>管理员</label>
         </view>
+				-->
+        <view class="set flex_column_flexStart">
+					<view class="flex_row_center">
+						<label style="width:120rpx;">管理员</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(154, 168, 242)"></label>
+					</view>
+					<view class="flex_row_center">
+						<label style="width:120rpx;">一级员工</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(161, 134, 104)"></label>
+					</view>
+					<view class="flex_row_center">
+						<label style="width:120rpx;">二级员工</label>
+						<label style="width:100rpx;height:6rpx;background-color:rgb(88, 82, 92)"></label>
+					</view>
+					<zy-slider id="setTaskBenefitSlider" width="528rpx" left="110rpx" min="0" max="100" step='10'  minValue='0' maxValue="100" blockSize="12" blockColor='#EDEDED' leftBackgroundColor="rgb(154, 168, 242)" rightBackgroundColor="rgb(88, 82, 92)" selectedColor="rgb(161, 134, 104)" bindlowValueChange="lowValueChange" bindheighValueChange="heighValueChange"/>
+        </view>
+        <view class="percentage flex_row_center_spaceAround">
+					<view>{{level1}}</view>
+					<view>{{level2}}</view>
+					<view>{{level3}}</view>
+        </view>
 				<view class="tip theme-font6">本月剩余可修改{{num}}次</view>
 				<input class="display_hide" name="task_id" value="{{task_id}}"></input>
 				<input class="display_hide" name="level1" value="{{level1}}"></input>
 				<input class="display_hide" name="level2" value="{{level2}}"></input>
+        <input class="display_hide" name="level3" value="{{level3}}"></input>
 				<input class="display_hide" name="hotel_id" value="{{hotel_id}}"></input>
 				<input class="display_hide" name="openid" value="{{openid}}"></input>
         <button form-type="submit" class="btn-save theme-background-9 theme-font4">保存</button>
