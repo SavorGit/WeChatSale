@@ -1,0 +1,39 @@
+/* pages/hotel/setting/distribution.wxss */
+/**
+ * 配送设置页面
+ */
+
+
+.list {
+  width: 100%;
+  min-height: calc(100vh - 88rpx);
+}
+
+.item {
+  width: calc(100% - 100rpx);
+  height: 70rpx;
+  padding: 0 50rpx;
+}
+
+.item>.radio {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+}
+
+.doc-bottom {
+  width: 100%;
+  height: 88rpx;
+}
+
+.doc-bottom>.btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-radius: 0;
+  font-size: 32rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

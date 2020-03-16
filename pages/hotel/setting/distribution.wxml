@@ -1,0 +1,24 @@
+<!--pages/hotel/setting/distribution.wxml-->
+<!--
+ | 配送设置页面
+ |-->
+
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<form>
+		<view class="list">
+			<radio-group>
+				<view class="item flex_row_center_flexStart theme-panel">
+					<radio class="radio" checked='true'>平台配送</radio>
+				</view>
+				<view class="item flex_row_center_flexStart theme-panel">
+					<radio class="radio">自主配送</radio>
+				</view>
+			</radio-group>
+		</view>
+		<view class="doc-bottom">
+			<view class="btn save theme-button-welcome">保存</view>
+		</view>
+	</form>
+</scroll-view>
