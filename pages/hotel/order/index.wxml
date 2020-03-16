@@ -1,4 +1,9 @@
 <!--pages/hotel/order/index.wxml-->
+<!--
+ | 订单列表页面
+ |-->
+
+
 <view class='container theme-container'>
 	<view class="tab-bar flex_row_center theme-font1 theme7">
 		<view class="tab all {{order_status == 0 ? 'selecte' :''}}" bindtap="swichOrderList" data-order_status="0">全部订单</view>
@@ -24,12 +29,12 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-            <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
-              <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 
@@ -49,10 +54,16 @@
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
 						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
+						<!--
 						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
+						-->
+						<view class="btn-group flex_row_center_spaceBetween">
+							<view class="btn order-untaking theme-button-welcome-dark">不接单</view>
+							<view class="btn order-taking theme-button-welcome">接单</view>
+						</view>
 					</view>
 				</view>
-				
+
 			</block>
 
 		</view>
@@ -75,12 +86,12 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-            <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
-              <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
+						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 						<view class="right flex_column_center_center">
@@ -98,10 +109,16 @@
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
 						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
+						<!--
 						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
+						-->
+						<view class="btn-group flex_row_center_spaceBetween">
+							<view class="btn order-untaking theme-button-welcome-dark">不接单</view>
+							<view class="btn order-taking theme-button-welcome">接单</view>
+						</view>
 					</view>
 				</view>
-				
+
 			</block>
 
 
@@ -125,12 +142,12 @@
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-            <view class="left multiple-goods flex_row_center"  wx:if="{{bean.goods.length>1}}">
-              <block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-							<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
+						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
-						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center"  wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
 							<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
 						</view>
 						<view class="right flex_column_center_center">
@@ -151,7 +168,7 @@
 						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 					</view>
 				</view>
-				
+
 			</block>
 		</view>
 	</scroll-view>

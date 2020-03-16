@@ -19,11 +19,11 @@
 }
 
 .tab-bar>.tab.agent {
-  border-radius: 10rpx 0 0 10rpx;
+  border-radius: 0 10rpx 10rpx 0;
 }
 
 .tab-bar>.tab.hotel {
-  border-radius: 0 10rpx 10rpx 0;
+  border-radius: 10rpx 0 0 10rpx;
 }
 
 .panel {
@@ -155,6 +155,7 @@
   padding: 0;
 }
 
+/* ============================ 基本信息 ============================ */
 .basic {
   height: 600rpx;
   margin-top: 0;
@@ -191,6 +192,7 @@
   height: 100%;
 }
 
+/* ============================ 餐厅形象 ============================ */
 .face>.body>.shop-face>.input-group>.frame {
   width: 100%;
 }
@@ -199,10 +201,31 @@
   text-align: left;
 }
 
+/* ============================ 营业时间 ============================ */
+.business-time>.body>.make-time>.input-group>.input {
+  width: calc(100% - 100rpx);
+}
+
+.business-time>.body>.make-time>.input-group>.unit {
+  width: 100rpx;
+  text-align: right;
+  font-size: 28rpx;
+}
+
+.business-time>.body>.datetime>.input-group>.input {
+  width: 45%;
+}
+
+.business-time>.body>.datetime>.input-group>.input:last-child {
+  margin-right: -3rpx;
+}
+
+/* ============================ 经营信息 ============================ */
 .manage {
   height: 530rpx;
 }
 
+/* ============================ 联系人 ============================ */
 .contacts {
   height: 320rpx;
 }

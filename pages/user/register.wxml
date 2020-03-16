@@ -6,9 +6,9 @@
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="tab-bar flex_row_center_center theme7">
-    <view class="tab hotel{{tab == 'hotel' ? ' selected' : ''}}" data-tab="hotel" bindtap="showTab">餐厅注册</view>
+		<view class="tab hotel{{tab == 'hotel' ? ' selected' : ''}}" data-tab="hotel" bindtap="showTab">餐厅注册</view>
 		<view class="tab agent{{tab == 'agent' ? ' selected' : ''}}" data-tab="agent" bindtap="showTab">分销注册</view>
-		
+
 	</view>
 
 	<!-- 分销注册 -->
@@ -44,19 +44,19 @@
 								<view class="input flex_column_center_center" wx:if="{{id_before==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								
+
 								<view class="input flex_column_center_center" wx:else>
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_before}}"></image>
 								</view>
-								
+
 								<view class="explain">正面</view>
 							</view>
 							<view class="frame" bindtap="uploadDishesPic" data-type="pu_idcard" data-keys="1">
-								
+
 								<view class="input flex_column_center_center" wx:if="{{id_after==''}}">
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								
+
 								<view class="input flex_column_center_center" wx:else>
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{id_after}}"></image>
 								</view>
@@ -90,13 +90,13 @@
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
 							<input class="input" placeholder="请输入" name='verify_code' focus="{{pverify_code_focus}}"></input>
-							<view class="btn"  wx:if="{{p_is_get_sms_code==0}}" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
-              <view class="btn" wx:else>{{p_sms_time_djs}}</view>
+							<view class="btn" wx:if="{{p_is_get_sms_code==0}}" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
+							<view class="btn" wx:else>{{p_sms_time_djs}}</view>
 						</view>
 					</view>
 				</view>
 			</view>
-      <view class="btn-group">
+			<view class="btn-group">
 				<button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">提交</button>
 			</view>
 		</view>
@@ -230,6 +230,88 @@
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{envimg}}"></image>
 								</view>
 							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="panel business-time theme7">
+				<view class="title-bar flex_row_center theme-font7">
+					<view class="title">营业时间</view>
+				</view>
+				<view class="body">
+					<!--
+					<view class="row flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">营业时间</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group"></view>
+					</view>
+					-->
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">午餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐开始</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row datetime flex_row_flexStart_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">晚餐结束</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<picker class="input" mode="date">
+								<view>选择日期</view>
+							</picker>
+							<picker class="input" mode="time">
+								<view>选择时间</view>
+							</picker>
+						</view>
+					</view>
+					<view class="row make-time flex_row_center_spaceBetween">
+						<view class="label-group flex_row_center">
+							<view class="label theme-font1">出餐时间</view>
+							<view class="flag theme-font5">*</view>
+						</view>
+						<view class="input-group flex_row_center_spaceBetween">
+							<input class="input" placeholder="请输入" type="number"></input>
+							<view class="unit">分钟</view>
 						</view>
 					</view>
 				</view>
