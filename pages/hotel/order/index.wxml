@@ -31,7 +31,7 @@
 
 						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
@@ -88,7 +88,7 @@
 
 						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
@@ -144,7 +144,7 @@
 
 						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
