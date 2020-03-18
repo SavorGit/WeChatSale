@@ -1,10 +1,10 @@
 <!--pages/mine/team_member_detail.wxml-->
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<view class="user-info-panel flex_row_center_flexStart theme7">
-		<image class="head" src="{{avatarUrl}}"></image>
+		<image class="head" src="{{avatarUrl}}" bindtap="editAvatar" data-staff_openid="{{user_info.openid}}"></image>
 		<view class="flex_row_flexStart_spaceBetween">
 			<view class="flex_column_flexStart_center">
-				<view>{{nickName}}</view>
+				<view bindtap="openChangeNikenameWindow">{{nickName}}</view>
 				<view class="flex_row_center star-color">
 					<view class="flex_row_center_spaceBetween">
 						<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -106,3 +106,22 @@
 	</form>
 </modal>
 -->
+<!-- 修改昵称弹窗 -->
+<modal show="{{showChangeNikenameWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+	<form bindsubmit="editNickname">
+		<view class="change-nikename-window flex_column_center theme7">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="fa fa-lg" aria-hidden="true"></view>
+				<view>修改昵称</view>
+				<view class="fa fa-close fa-lg" aria-hidden="true" bindtap="closeChangeNikenameWindow"></view>
+			</view>
+			<view class="body-panel flex_column_center_spaceAround">
+				<view>
+					<input placeholder="请输入新的昵称" name="nickname"></input>
+				</view>
+        <input class='display_hide' name="staff_openid" value="{{user_info.openid}}"> </input>
+				<button class="btn-submit theme-button-welcome" form-type="submit"    bindtap="editNickname">保存</button>
+			</view>
+		</view>
+	</form>
+</modal>

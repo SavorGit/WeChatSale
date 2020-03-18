@@ -38,29 +38,7 @@ Page({
         })
       }
     })
-    this.setData({
-      staff_list: [
-        {
-          avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-          nickName: '张三三'
-        },
-        {
-          avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-          nickName: '李四'
-        },
-        {
-          avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-          nickName: '王一一'
-        },
-        {
-          avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-          nickName: '高大大'
-        },
-        {
-          avatarUrl: 'http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg',
-          nickName: '赵'
-        }
-      ]});
+    
   },
   loadMore: function (res) {
     var that = this;

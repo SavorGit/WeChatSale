@@ -3,6 +3,9 @@ const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
 const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
+var api_url = app.globalData.api_url;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_url = app.globalData.oss_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var user_id;
@@ -35,6 +38,7 @@ Page({
         avatarUrl: data.result.avatarUrl,
         nickName: data.result.nickName,
         userScore: data.result.score,
+        staff_id:data.result.staff_id,
       })
     })
     utils.PostRequest(api_v_url + '/comment/commentlist', {
@@ -114,7 +118,107 @@ Page({
   onReady: function () {
 
   },
+  // 打开修改昵称弹窗
+  openChangeNikenameWindow: function (e) {
+    let self = this;
+    self.setData({ showChangeNikenameWindow: true });
+  },
 
+  // 关闭修改昵称弹窗
+  closeChangeNikenameWindow: function (e) {
+    let self = this;
+    self.setData({ showChangeNikenameWindow: false });
+  },
+
+  /**
+  * 修改头像
+  */
+  editAvatar: function (e) {
+    var that = this;
+    var staff_id = e.currentTarget.dataset.staff_id;
+    var staff_openid = e.currentTarget.dataset.staff_openid;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var filename = res.tempFilePaths[0];
+
+        var index1 = filename.lastIndexOf(".");
+        var index2 = filename.length;
+        var timestamp = (new Date()).valueOf();
+
+        var postf = filename.substring(index1, index2);//后缀名\
+        var postf_t = filename.substring(index1, index2);//后缀名
+        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+
+        var img_url = timestamp + postf;
+
+
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          success: function (rest) {
+            var policy = rest.data.policy;
+            var signature = rest.data.signature;
+
+            wx.uploadFile({
+              url: oss_upload_url,
+              filePath: filename,
+              name: 'file',
+              header: {
+                'Content-Type': 'image/' + postf_w
+              },
+              formData: {
+                Bucket: "redian-produce",
+                name: img_url,
+                key: "forscreen/resource/" + img_url,
+                policy: policy,
+                OSSAccessKeyId: app.globalData.oss_access_key_id,
+                sucess_action_status: "200",
+                signature: signature
+
+              },
+
+              success: function (res) {
+
+                utils.PostRequest(api_v_url + '/user/edit', {
+                  openid: staff_openid,
+                  avatar_url: "forscreen/resource/" + img_url,
+                }, (data, headers, cookies, errMsg, statusCode) => {
+                  that.setData({
+                    avatarUrl: oss_url + "/forscreen/resource/" + img_url
+                  })
+                  app.showToast('头像修改成功')
+                })
+              },
+              fail: function ({ errMsg }) {
+                app.showToast('头像修改失败')
+              },
+            });
+          }
+        })
+      }
+    })
+  },
+  editNickname: function (e) {
+    var that = this;
+
+    var name = e.detail.value.nickname;
+    var staff_openid = e.detail.value.staff_openid;
+    utils.PostRequest(api_v_url + '/user/edit', {
+      openid: openid,
+      name: name,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        nickName: name,
+        showChangeNikenameWindow: false
+      })
+      app.showToast('昵称修改成功')
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
