@@ -95,8 +95,9 @@ Page({
     var that = this;
     var is_scangoods = e.detail.value.is_scangoods;
     var staff_id = e.detail.value.staff_id
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
     utils.PostRequest(api_v_url + '/staff/setPermission', {
-      openid: openid,
+      openid: user_info.openid,
       is_scangoods: is_scangoods,
       staff_id: staff_id
     }, (data, headers, cookies, errMsg, statusCode) => {
