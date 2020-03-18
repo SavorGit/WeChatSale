@@ -59,6 +59,10 @@ Page({
     id_before:'',
     id_after:'',
     //id_hold:''
+    lunch_s_time:'',
+    lunch_e_time:'',
+    dinner_s_time:'',
+    dinner_e_time:''
   },
 
 
@@ -367,6 +371,12 @@ Page({
     var contractor = e.detail.value.contractor.replace(/\s+/g, '');
     var mobile = e.detail.value.mobile.replace(/\s+/g, '');
     var verify_code = e.detail.value.verify_code.replace(/\s+/g, '');
+    var lunch_s_time = e.detail.value.lunch_s_time;
+    var lunch_e_time = e.detail.value.lunch_e_time;
+    var dinner_s_time = e.detail.value.dinner_s_time;
+    var dinner_e_time = e.detail.value.dinner_e_time;
+    var chucan_time = e.detail.value.chucan_time;
+
 
 
     if (name == '') {
@@ -416,6 +426,26 @@ Page({
     }*/
     if (faceimg == '') {
       app.showToast('请上传餐厅门脸图');
+      return false;
+    }
+    if(lunch_s_time==''){
+      app.showToast('请选择午餐开始时间');
+      return false;
+    }
+    if (lunch_e_time==''){
+      app.showToast('请选择午餐结束时间');
+      return false;
+    }
+    if(dinner_s_time==''){
+      app.showToast('请选择晚餐开始时间');
+      return false;
+    }
+    if(dinner_e_time==''){
+      app.showToast('请选择晚餐结束时间');
+      return false;
+    }
+    if (chucan_time==''){
+      app.showToast('请输入出餐时间');
       return false;
     }
     if (legal_name == '') {
@@ -660,6 +690,30 @@ Page({
         url: '/pages/purchase/auth',
       })
     })
+  },
+  selectOpenTime:function(e){
+    var that = this;
+    var keys= e.currentTarget.dataset.keys;
+    var time = e.detail.value;
+    if(keys==1){
+      that.setData({
+        lunch_s_time: time
+      })
+    }else if(keys==2){
+      that.setData({
+        lunch_e_time: time
+      })
+    }else if(keys==3){
+      that.setData({
+        dinner_s_time: time
+      })
+    }else if(keys==4){
+      that.setData({
+        dinner_e_time: time
+      })
+    }
+    
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -17,16 +17,15 @@
 							<view class="label theme-font1">餐厅LOGO</view>
 							<view class="flag theme-font5">*</view>
 						</view>
-						<view class="input-group flex_row_center_flexStart">
-							<view class="frame">
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="input-group flex_row_center_flexStart" bindtap="uploadDishesPic" data-type="logo">
+							<view class="frame" >
+								<view class="input flex_column_center_center"  wx:if="{{logoimg!=''}}">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{logoimg}}"></image>
 								</view>
-								<!--
-								<view class="input flex_column_center_center">
+                <view class="input flex_column_center_center"  wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-                -->
+              
 							</view>
 						</view>
 					</view>
@@ -36,7 +35,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入"></input>
+							<input class="input" placeholder="请输入" maxlength="30"></input>
 						</view>
 					</view>
 
@@ -53,9 +52,9 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
+							</picker> -->
 							<picker class="input" mode="time">
 								<view>选择时间</view>
 							</picker>
@@ -67,9 +66,9 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
+							</picker> -->
 							<picker class="input" mode="time">
 								<view>选择时间</view>
 							</picker>
@@ -81,9 +80,9 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
+							</picker> -->
 							<picker class="input" mode="time">
 								<view>选择时间</view>
 							</picker>
@@ -95,9 +94,9 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
+							</picker> -->
 							<picker class="input" mode="time">
 								<view>选择时间</view>
 							</picker>
@@ -129,7 +128,7 @@
 							<view class="flag theme-font5"></view>
 						</view>
 						<view class="input-group">
-							<textarea class="input" placeholder="0~200字"></textarea>
+							<textarea class="input" placeholder="0~200字" maxlength="200"></textarea>
 						</view>
 					</view>
 				</view>
@@ -145,26 +144,28 @@
 							<view class="flag theme-font5"></view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
-							<view class="frame">
-								<view class="input flex_column_center_center">
+							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
+								
+								
+								<view class="input flex_column_center_center"  wx:if="{{legal_charter_img0 !=''}}">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img0}}"></image>
+								</view>
+                <view class="input flex_column_center_center" wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-								<!--
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-								</view>
-                -->
+                
 								<view class="explain">营业执照</view>
 							</view>
-							<view class="frame">
-								<!--
-								<view class="input flex_column_center_center">
+							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
+							
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
+								</view>
+                
+								<view class="input flex_column_center_center" wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-                -->
-								<view class="input flex_column_center_center">
-									<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-								</view>
+                
 								<view class="explain">食品经营许可证</view>
 							</view>
 						</view>
@@ -172,7 +173,7 @@
 				</view>
 			</view>
 			<view class="btn-group">
-				<button class="btn theme-button-welcome" form-type="submit">提交</button>
+				<button class="btn theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">提交</button>
 			</view>
 		</view>
 	</form>

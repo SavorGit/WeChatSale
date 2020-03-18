@@ -254,11 +254,11 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							</picker> -->
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="1">
+								<view>{{lunch_s_time==''?'选择时间':lunch_s_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -268,11 +268,11 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							</picker> -->
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="2">
+								<view>{{lunch_e_time==''?'选择时间':lunch_e_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -282,11 +282,11 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							</picker> -->
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="3">
+								<view>{{dinner_s_time==''?'选择时间':dinner_s_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -296,11 +296,11 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<picker class="input" mode="date">
+							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
-							</picker>
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							</picker> -->
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="4">
+								<view>{{dinner_e_time==''?'选择时间':dinner_e_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -310,7 +310,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入" type="number"></input>
+							<input class="input" placeholder="请输入" type="number" name="chucan_time"></input>
 							<view class="unit">分钟</view>
 						</view>
 					</view>
