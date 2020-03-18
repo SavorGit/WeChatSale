@@ -69,7 +69,7 @@
 }
 
 .evaluate-list-panel>.title .search-wapper {
-  width: 430rpx;
+  width: 460rpx;
   font-size: 28rpx;
   /* color: #A0856A; */
 }
