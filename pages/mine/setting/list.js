@@ -111,7 +111,7 @@ Page({
         break;
       case 'distribution':
         wx.navigateTo({
-          url: '/pages/hotel/setting/distribution',
+          url: '/pages/hotel/setting/distribution?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },
@@ -125,7 +125,7 @@ Page({
         break;
       case 'customer-pay':
         wx.navigateTo({
-          url: '/pages/hotel/setting/customer_pay',
+          url: '/pages/hotel/setting/customer_pay?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },

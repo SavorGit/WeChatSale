@@ -6,19 +6,25 @@
 
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<form>
+	<form bindsubmit="setPlatform">
 		<view class="list">
 			<radio-group>
 				<view class="item flex_row_center_flexStart theme-panel">
-					<radio class="radio" checked='true'>平台配送</radio>
-				</view>
+					<radio-group bindchange="platformChange">
+          <radio name="delivery_platform" value="1" class="radio" wx:if="{{delivery_platform==1}}" checked='true'>平台配送</radio>
+          <radio value="1" class="radio" wx:else>平台配送</radio>
+          </radio-group>
+        </view>
 				<view class="item flex_row_center_flexStart theme-panel">
-					<radio class="radio">自主配送</radio>
-				</view>
+					<radio-group bindchange="platformChange">
+          <radio name="delivery_platform" value="2" wx:if="{{delivery_platform==2}}" checked='true'  class="radio">自主配送</radio>
+          <radio name="delivery_platform" value="2"  wx:else  class="radio">自主配送</radio>
+          </radio-group>
+        </view>
 			</radio-group>
 		</view>
 		<view class="doc-bottom">
-			<view class="btn save theme-button-welcome">保存</view>
+			<button class="btn save theme-button-welcome" form-type="submit">保存</button>
 		</view>
 	</form>
 </scroll-view>

@@ -39,7 +39,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       var merchant_info = data.result;
       that.setData({
-        logoimg:merchant_info.logoimg,
+        faceimg:merchant_info.faceimg,
         mobile:merchant_info.mobilem,
         lunch_s_time: merchant_info.lunch_s_time,
         lunch_e_time:merchant_info.lun_e-time,
