@@ -5,7 +5,7 @@
 
 <import src="/pages/template/commons" />
 <scroll-view class='container theme-container theme-panel' scroll-y="true" scroll-with-animation="true">
-	<view class="panel flex_column_center_center" wx:if="{{pay_info!=''}}">
+	<view class="panel flex_column_center_center" wx:if="{{is_set==1}}">
 		<view class="status" wx:if="{{pay_info.status==1}}">审核中...</view>
     <view class="status" wx:if="{{pay_info.status==2}}">审核通过</view>
     <view class="status" wx:if="{{pay_info.status==3}}">审核不通过</view>

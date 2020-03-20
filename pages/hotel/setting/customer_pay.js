@@ -18,7 +18,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showWXAuthLogin:false
+    showWXAuthLogin:false,
+    is_set:0
   },
 
   /**
@@ -34,8 +35,10 @@ Page({
       var pay_info = data.result
       if(pay_info==''){
         var showWXAuthLogin = true;
+        var is_set = 0
       }else{
         var showWXAuthLogin = false;
+        var is_set = 1;
       }
       that.setData({
         pay_info: pay_info,
@@ -45,7 +48,9 @@ Page({
   },
   resetPayInfoP:function(e){
     var that = this;
-
+    that.setData({
+      showWXAuthLogin:true
+    })
   },
   onGetUserInfo: function (res) {
     var that = this;
@@ -57,18 +62,43 @@ Page({
           var avatarUrl = rets.userInfo.avatarUrl;
           var nickName = rets.userInfo.nickName;
 
-          utils.PostRequest(api_v_url + '/merchant/setPayee', {
-            openid: openid,
-            avatarUrl: avatarUrl,
-            nickName: nickName,
+          utils.PostRequest(api_v_url + '/User/registerCom', {
+            'openid': openid,
+            'avatarUrl': avatarUrl,
+            'nickName': nickName,
+            'gender': rets.userInfo.gender,
+            'session_key': app.globalData.session_key,
+            'iv': rets.iv,
+            'encryptedData': rets.encryptedData
           }, (data, headers, cookies, errMsg, statusCode) => {
-            
+            utils.PostRequest(api_v_url + '/merchant/setPayee', {
+              openid: openid,
+              payee_openid: openid,
+            }, (data, headers, cookies, errMsg, statusCode) => {
+              var pay_info = { "status": 1, "avatarUrl": avatarUrl, "nickName": nickName};
+             
+              that.setData({
+                is_set:1,
+                showWXAuthLogin:false,
+                pay_info: pay_info
+              })
+            })
           })
+          
+
+          
           
         }
       })
       
     } 
+  },
+  closeAuth: function () {
+    var that = this;
+    that.setData({
+      showWXAuthLogin: false,
+    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
