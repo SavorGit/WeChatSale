@@ -38,17 +38,24 @@ Page({
       merchant_id: merchant_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var merchant_info = data.result;
+      console.log(merchant_info)
+      var legal_charter_img0 = ''
+      var legal_charter_img1 = '';
+      if(merchant_info.charter_path.length>0){
+        legal_charter_img0 = merchant_info.charter_path[0];
+        legal_charter_img1 = merchant_info.charter_path[1];
+      }
       that.setData({
-        faceimg:merchant_info.faceimg,
-        mobile:merchant_info.mobilem,
-        lunch_s_time: merchant_info.lunch_s_time,
-        lunch_e_time:merchant_info.lun_e-time,
-        dinner_s_time:merchant_info.dinner_s_time,
-        dinner_e_time:merchant_info.dinner_e_time,
+        faceimg: merchant_info.img_path,
+        mobile: merchant_info.mobile,
+        lunch_s_time: merchant_info.business_lunchshours,
+        lunch_e_time: merchant_info.business_lunchehours,
+        dinner_s_time: merchant_info.business_dinnershours,
+        dinner_e_time: merchant_info.business_dinnerehours,
         meal_time: merchant_info.meal_time,
         notice: merchant_info.notice,
-        zhizhao: merchant_info.zhizhao,
-        sp_xukz:merchant_info.sp_xukz,
+        legal_charter_img0: legal_charter_img1,
+        legal_charter_img1: legal_charter_img1,
       })
     })
   },
@@ -228,12 +235,12 @@ Page({
     var lunch_e_time = that.data.lunch_e_time;
     var dinner_s_time = that.data.dinner_s_time;
     var dinner_e_time = that.data.dinner_e_time;
-
+    var meal_time = e.detail.value.meal_time;
     var notice = e.detail.value.notice;
     var legal_charter_img0 = that.data.legal_charter_img0;
     var legal_charter_img1 = that.data.legal_charter_img1;
 
-    var legal_charter = legal_charter_img0 + ',' + legal_charter_img0;
+    
 
     if (faceimg==''){
       app.showToast('请上传餐厅门脸图');
@@ -271,12 +278,28 @@ Page({
       app.showToast('午餐结束时间不能早于晚餐开始时间');
       return false;
     }
-
+    if(meal_time==''){
+      app.showToast('请输入出餐时间');
+      return false;
+    }
+    if (legal_charter_img0 == '') {
+      app.showToast('请上传营业执照');
+      return false;
+    }
+    if (legal_charter_img1 == '') {
+      app.showToast('请上食品经营许可证');
+      return false;
+    }
+    var legal_charter = legal_charter_img0 + ',' + legal_charter_img0;
+    // var business_lunchhours = lunch_s_time + '-' + lunch_e_time
+    var business_dinnerhours =  dinner_s_time+'-'+dinner_e_time
     utils.PostRequest(api_v_url + '/merchant/setHotelinfo', {
-      business_lunchhours: business_lunchhours,
-      business_dinnerhours: business_dinnerhours,
-      charter: charter,
-      logoimg: logoimg,
+      business_lunchshours: lunch_s_time,
+      business_lunchehours: lunch_e_time,
+      business_dinnershours: dinner_s_time,
+      business_dinnerehours: dinner_e_time,
+      legal_charter: legal_charter,
+      img: faceimg,
       meal_time: meal_time,
       notice: notice,
       tel: tel,
@@ -287,8 +310,6 @@ Page({
         delta:1,
       })
     })
-
-    Smallsale18 
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

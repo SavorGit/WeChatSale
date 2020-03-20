@@ -97,7 +97,7 @@ Page({
     switch (jumpType) {
       case 'basic':
         wx.navigateTo({
-          url: '/pages/hotel/setting/basic?merchant_id='+merchant_id,
+          url: '/pages/hotel/setting/basic?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },

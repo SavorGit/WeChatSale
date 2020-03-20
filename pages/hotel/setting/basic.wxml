@@ -5,7 +5,7 @@
 
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<form bindsubmit="registerHotel">
+	<form bindsubmit="setMerchantInfo">
 		<view class="wapper">
 			<view class="panel basic theme7">
 				<view class="title-bar flex_row_center theme-font7">
@@ -108,7 +108,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入" type="number"></input>
+							<input class="input" name="meal_time" value="{{meal_time}}" placeholder="请输入" type="number"></input>
 							<view class="unit">分钟</view>
 							<view class="fa fa-question-circle theme-font7" aria-hidden="true" bindtap="openTipPopWindow"></view>
 						</view>
@@ -141,7 +141,7 @@
 					<view class="pic-row flex_row_flexStart_spaceBetween">
 						<view class="label-group flex_row_center">
 							<view class="label theme-font1">执照</view>
-							<view class="flag theme-font5"></view>
+							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
