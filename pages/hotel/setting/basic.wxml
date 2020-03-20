@@ -14,13 +14,13 @@
 				<view class="body">
 					<view class="pic-row flex_row_flexStart_spaceBetween">
 						<view class="label-group flex_row_center">
-							<view class="label theme-font1">餐厅LOGO</view>
+							<view class="label theme-font1">餐厅门脸图</view>
 							<view class="flag theme-font5">*</view>
 						</view>
-						<view class="input-group flex_row_center_flexStart" bindtap="uploadDishesPic" data-type="logo">
+						<view class="input-group flex_row_center_flexStart" bindtap="uploadDishesPic" data-type="face" data-keys="0">
 							<view class="frame" >
-								<view class="input flex_column_center_center"  wx:if="{{logoimg!=''}}">
-									<image class="pic" mode="aspectFill" src="{{oss_url}}{{logoimg}}"></image>
+								<view class="input flex_column_center_center"  wx:if="{{faceimg!=''}}">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{faceimg}}"></image>
 								</view>
                 <view class="input flex_column_center_center"  wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
@@ -35,7 +35,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" placeholder="请输入" maxlength="30"></input>
+							<input class="input" name="tel" value="mobile" placeholder="请输入" maxlength="30"></input>
 						</view>
 					</view>
 
@@ -55,8 +55,8 @@
 							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
 							</picker> -->
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="1">
+								<view>{{lunch_s_time==''?'选择时间':lunch_s_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -69,8 +69,8 @@
 							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
 							</picker> -->
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="2">
+								<view>{{lunch_e_time==''?'选择时间':lunch_e_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -83,8 +83,8 @@
 							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
 							</picker> -->
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="3">
+								<view>{{dinner_s_time==''?'选择时间':dinner_s_time}}</view>
 							</picker>
 						</view>
 					</view>
@@ -97,8 +97,8 @@
 							<!-- <picker class="input" mode="date">
 								<view>选择日期</view>
 							</picker> -->
-							<picker class="input" mode="time">
-								<view>选择时间</view>
+							<picker class="input" mode="time" bindchange="selectOpenTime" data-keys="4">
+								<view>{{dinner_e_time==''?'选择时间':dinner_e_time}}</view>
 							</picker>
 						</view>
 					</view>

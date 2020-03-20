@@ -21,13 +21,36 @@ Page({
     showTipPopWindow: false,
     tipContent: '',
     oss_url: app.globalData.oss_url + '/',
+    lunch_s_time:'',
+    lunch_e_time:'',
+    dinner_s_time:'',
+    dinner_e_time: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    openid = options.openid;
+    merchant_id = options.merchant_id;
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      merchant_id: merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var merchant_info = data.result;
+      that.setData({
+        logoimg:merchant_info.logoimg,
+        mobile:merchant_info.mobilem,
+        lunch_s_time: merchant_info.lunch_s_time,
+        lunch_e_time:merchant_info.lun_e-time,
+        dinner_s_time:merchant_info.dinner_s_time,
+        dinner_e_time:merchant_info.dinner_e_time,
+        meal_time: merchant_info.meal_time,
+        notice: merchant_info.notice,
+        zhizhao: merchant_info.zhizhao,
+        sp_xukz:merchant_info.sp_xukz,
+      })
+    })
   },
   /**
    * 上传菜品图
@@ -172,6 +195,100 @@ Page({
         })
       }
     })
+  },
+  selectOpenTime: function (e) {
+    var that = this;
+    var keys = e.currentTarget.dataset.keys;
+    var time = e.detail.value;
+    if (keys == 1) {
+      that.setData({
+        lunch_s_time: time
+      })
+    } else if (keys == 2) {
+      that.setData({
+        lunch_e_time: time
+      })
+    } else if (keys == 3) {
+      that.setData({
+        dinner_s_time: time
+      })
+    } else if (keys == 4) {
+      that.setData({
+        dinner_e_time: time
+      })
+    }
+
+
+  },
+  setMerchantInfo:function(e){
+    var that = this;
+    var faceimg = that.data.faceimg;
+    var tel = e.detail.value.tel;
+    var lunch_s_time = that.data.lunch_s_time;
+    var lunch_e_time = that.data.lunch_e_time;
+    var dinner_s_time = that.data.dinner_s_time;
+    var dinner_e_time = that.data.dinner_e_time;
+
+    var notice = e.detail.value.notice;
+    var legal_charter_img0 = that.data.legal_charter_img0;
+    var legal_charter_img1 = that.data.legal_charter_img1;
+
+    var legal_charter = legal_charter_img0 + ',' + legal_charter_img0;
+
+    if (faceimg==''){
+      app.showToast('请上传餐厅门脸图');
+      return false;
+    }
+    if(tel==''){
+      app.showToast('请填写订餐电话');
+      return false;
+    }
+    if (lunch_s_time == '') {
+      app.showToast('请选择午餐开始时间');
+      return false;
+    }
+    if (lunch_e_time == '') {
+      app.showToast('请选择午餐结束时间');
+      return false;
+    }
+    if (dinner_s_time == '') {
+      app.showToast('请选择晚餐开始时间');
+      return false;
+    }
+    if (dinner_e_time == '') {
+      app.showToast('请选择晚餐结束时间');
+      return false;
+    }
+    if (lunch_s_time >= lunch_e_time) {
+      app.showToast('午餐开始结束时间有误');
+      return false;
+    }
+    if (dinner_s_time >= dinner_e_time) {
+      app.showToast('晚餐开始结束时间有误');
+      return false;
+    }
+    if (lunch_e_time > dinner_s_time) {
+      app.showToast('午餐结束时间不能早于晚餐开始时间');
+      return false;
+    }
+
+    utils.PostRequest(api_v_url + '/merchant/setHotelinfo', {
+      business_lunchhours: business_lunchhours,
+      business_dinnerhours: business_dinnerhours,
+      charter: charter,
+      logoimg: logoimg,
+      meal_time: meal_time,
+      notice: notice,
+      tel: tel,
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('保存成功');
+      wx.navigateBack({
+        delta:1,
+      })
+    })
+
+    Smallsale18 
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -13,10 +13,23 @@
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="distribution" bindtap="gotoSetting">
 			<view class="warper flex_row_center_spaceBetween">
 				<view class="title">配送设置</view>
-				<view class="choose theme-font3">平台配置</view>
+				<view class="choose theme-font3" wx:if="{{delivery_platform==1}}">平台配置</view>
+        <view class="choose theme-font3" wx:if="{{delivery_platform==2}}">自主配置</view>
 			</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
+    <view class="row flex_row_center_spaceBetween theme-panel" data-type="distribution" >
+			<view class="warper flex_row_center_spaceBetween">
+				<view class="title">支持到店自取</view>
+				<view class="choose theme-font3">
+        <switch checked='true'></switch>
+        </view>
+        
+			</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+
+
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="customer-pay" bindtap="gotoSetting">
 			<view class="title">收款设置</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

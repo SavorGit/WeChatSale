@@ -26,6 +26,7 @@ Page({
   onLoad: function (options) {
     openid = options.openid;
     merchant_id = options.merchant_id;
+
   },
 
   /**
@@ -39,7 +40,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      merchant_id:merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        merchant_info:data.result,
+        delivery_platform: data.result.delivery_platform,
+        delivery_type: data.result.delivery_type,
+      })
+    })
   },
 
   /**
@@ -87,7 +97,7 @@ Page({
     switch (jumpType) {
       case 'basic':
         wx.navigateTo({
-          url: '/pages/hotel/setting/basic',
+          url: '/pages/hotel/setting/basic?merchant_id='+merchant_id,
           success: function (res) {
             wx.hideLoading();
           },
