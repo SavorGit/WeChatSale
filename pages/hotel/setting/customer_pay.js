@@ -47,6 +47,29 @@ Page({
     var that = this;
 
   },
+  onGetUserInfo: function (res) {
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    openid = user_info.openid;
+    if (res.detail.errMsg == 'getUserInfo:ok') {
+      wx.getUserInfo({
+        success(rets) {
+          var avatarUrl = rets.userInfo.avatarUrl;
+          var nickName = rets.userInfo.nickName;
+
+          utils.PostRequest(api_v_url + '/merchant/setPayee', {
+            openid: openid,
+            avatarUrl: avatarUrl,
+            nickName: nickName,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            
+          })
+          
+        }
+      })
+      
+    } 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
