@@ -488,8 +488,8 @@ Page({
 
     var legal_charter = '';
 
-    legal_charter += legal_idcard_img0 + ',';
-    legal_charter += legal_idcard_img1 + ',';
+    legal_charter += legal_charter_img1 + ',';
+    legal_charter += legal_charter_img1 + ',';
 
     //注册酒楼
     utils.PostRequest(api_v_url + '/merchant/register', {
