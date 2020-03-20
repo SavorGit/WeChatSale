@@ -33,6 +33,7 @@ Page({
       merchant_id: merchant_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var pay_info = data.result
+      console.log(pay_info)
       if(pay_info==''){
         var showWXAuthLogin = true;
         var is_set = 0
@@ -41,12 +42,13 @@ Page({
         var is_set = 1;
       }
       that.setData({
+        is_set: is_set,
         pay_info: pay_info,
         showWXAuthLogin: showWXAuthLogin
       })
     })
   },
-  resetPayInfoP:function(e){
+  resetPayInfo:function(e){
     var that = this;
     that.setData({
       showWXAuthLogin:true
