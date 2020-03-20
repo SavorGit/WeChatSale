@@ -310,7 +310,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" placeholder="请输入" type="number" name="chucan_time"></input>
+							<input class="input" placeholder="请输入" type="number" name="meal_time"></input>
 							<view class="unit">分钟</view>
 						</view>
 					</view>
@@ -395,7 +395,7 @@
 								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
 								</view>
-								<view class="explain">许可证</view>
+								<view class="explain">食品经营许可证</view>
 							</view>
 						</view>
 					</view>

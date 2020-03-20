@@ -371,11 +371,11 @@ Page({
     var contractor = e.detail.value.contractor.replace(/\s+/g, '');
     var mobile = e.detail.value.mobile.replace(/\s+/g, '');
     var verify_code = e.detail.value.verify_code.replace(/\s+/g, '');
-    var lunch_s_time = e.detail.value.lunch_s_time;
-    var lunch_e_time = e.detail.value.lunch_e_time;
-    var dinner_s_time = e.detail.value.dinner_s_time;
-    var dinner_e_time = e.detail.value.dinner_e_time;
-    var chucan_time = e.detail.value.chucan_time;
+    var lunch_s_time = that.data.lunch_s_time;
+    var lunch_e_time = that.data.lunch_e_time;
+    var dinner_s_time = that.data.dinner_s_time;
+    var dinner_e_time = that.data.dinner_e_time;
+    var meal_time = e.detail.value.meal_time;
 
 
 
@@ -444,7 +444,19 @@ Page({
       app.showToast('请选择晚餐结束时间');
       return false;
     }
-    if (chucan_time==''){
+    if(lunch_s_time>=lunch_e_time){
+      app.showToast('午餐开始结束时间有误');
+      return false;
+    }
+    if(dinner_s_time>=dinner_e_time){
+      app.showToast('晚餐开始结束时间有误');
+      return false;
+    }
+    if(lunch_e_time>dinner_s_time){
+      app.showToast('午餐结束时间不能早于晚餐开始时间');
+      return false;
+    }
+    if (meal_time==''){
       app.showToast('请输入出餐时间');
       return false;
     }
@@ -521,12 +533,17 @@ Page({
     legal_charter += legal_charter_img0 + ',';
     legal_charter += legal_charter_img1 + ',';
 
+    //营业时间
+    var business_lunchhours = lunch_s_time+'-'+ lunch_e_time;
+    var business_dinnerhours = dinner_s_time+'-'+dinner_e_time;
+    
     //注册酒楼
     utils.PostRequest(api_v_url + '/merchant/register', {
       openid: openid,
       addr: addr,
       area_id: area_id,
       avg_exp: avg_exp,
+      
       contractor: contractor,
       county_id: county_id,
       envimg: envimg,
@@ -539,7 +556,10 @@ Page({
       mobile: mobile,
       name: name,
       tel: tel,
-      verify_code: verify_code
+      verify_code: verify_code,
+      business_lunchhours: business_lunchhours,
+      business_dinnerhours: business_dinnerhours,
+      meal_time:meal_time
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         showRegisterSuccessPopWindow: true,
