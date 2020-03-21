@@ -22,7 +22,8 @@
 			<view class="warper flex_row_center_spaceBetween">
 				<view class="title">支持到店自取</view>
 				<view class="choose theme-font3">
-					<switch checked='true'></switch>
+					<switch  wx:if="{{is_shopself==1}}" checked='true' bindchange="setShopself"></switch>
+          <switch  wx:else  bindchange="setShopself"></switch>
 				</view>
 			</view>
 		</view>

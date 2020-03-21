@@ -120,6 +120,43 @@ Page({
     })
   },
   /**
+   * 接单不接单
+   */
+  orderReceive:function(e){
+    var that = this;
+    var order_id = e.currentTarget.dataset.order_id;
+    var keys = e.currentTarget.dataset.keys;
+    var order_status = that.data.order_status 
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var action = e.currentTarget.dataset.action;
+
+    if(action==1){
+      var msg ='确认接单';
+    }else if(action==2){
+      var msg = '确认不接单';
+    }
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      success:function(res){
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/order/orderReceive', {
+            action: action,
+            openid: user_info.openid,
+            order_id: order_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            if(order_status==0){//全部订单
+              
+            }else if(order_status==1){//待处理订单
+
+            }
+
+          })
+        }
+      }
+    })
+  },
+  /**
    * 处理订单
    */
   deal_order: function (e) {

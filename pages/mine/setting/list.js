@@ -47,11 +47,28 @@ Page({
       that.setData({
         merchant_info:data.result,
         delivery_platform: data.result.delivery_platform,
-        delivery_type: data.result.delivery_type,
+        is_shopself: data.result.is_shopself,
       })
     })
   },
-
+  setShopself:function(e){
+    var that = this;
+    console.log(e);
+    var status = e.detail.value;
+    if(status==false){
+      var is_shopself = 0;
+    }else if(status==true){
+      var is_shopself = 1;
+    }
+    utils.PostRequest(api_v_url + '/merchant/setShopself', {
+      openid: openid,
+      is_shopself: is_shopself
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        is_shopself: is_shopself
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
