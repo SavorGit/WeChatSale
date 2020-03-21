@@ -18,14 +18,14 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_flexStart" bindtap="uploadDishesPic" data-type="face" data-keys="0">
-							<view class="frame" >
-								<view class="input flex_column_center_center"  wx:if="{{faceimg!=''}}">
+							<view class="frame">
+								<view class="input flex_column_center_center" wx:if="{{faceimg!=''}}">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{faceimg}}"></image>
 								</view>
-                <view class="input flex_column_center_center"  wx:else>
+								<view class="input flex_column_center_center" wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-              
+
 							</view>
 						</view>
 					</view>
@@ -110,7 +110,7 @@
 						<view class="input-group flex_row_center_spaceBetween">
 							<input class="input" name="meal_time" value="{{meal_time}}" placeholder="请输入" type="number"></input>
 							<view class="unit">分钟</view>
-							<view class="fa fa-question-circle theme-font7" aria-hidden="true" bindtap="openTipPopWindow"></view>
+							<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="make-time" bindtap="openTipPopWindow"></view>
 						</view>
 					</view>
 				</view>
@@ -145,27 +145,27 @@
 						</view>
 						<view class="input-group flex_row_center_flexStart">
 							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="0">
-								
-								
-								<view class="input flex_column_center_center"  wx:if="{{legal_charter_img0 !=''}}">
+
+
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img0 !=''}}">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img0}}"></image>
 								</view>
-                <view class="input flex_column_center_center" wx:else>
-									<view class="fa fa-plus" aria-hidden="true"></view>
-								</view>
-                
-								<view class="explain">营业执照</view>
-							</view>
-							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
-							
-								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}">
-									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
-								</view>
-                
 								<view class="input flex_column_center_center" wx:else>
 									<view class="fa fa-plus" aria-hidden="true"></view>
 								</view>
-                
+
+								<view class="explain">营业执照</view>
+							</view>
+							<view class="frame" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
+
+								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}">
+									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
+								</view>
+
+								<view class="input flex_column_center_center" wx:else>
+									<view class="fa fa-plus" aria-hidden="true"></view>
+								</view>
+
 								<view class="explain">食品经营许可证</view>
 							</view>
 						</view>

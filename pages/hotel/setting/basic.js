@@ -21,9 +21,9 @@ Page({
     showTipPopWindow: false,
     tipContent: '',
     oss_url: app.globalData.oss_url + '/',
-    lunch_s_time:'',
-    lunch_e_time:'',
-    dinner_s_time:'',
+    lunch_s_time: '',
+    lunch_e_time: '',
+    dinner_s_time: '',
     dinner_e_time: '',
   },
 
@@ -41,7 +41,7 @@ Page({
       console.log(merchant_info)
       var legal_charter_img0 = ''
       var legal_charter_img1 = '';
-      if(merchant_info.charter_path.length>0){
+      if (merchant_info.charter_path.length > 0) {
         legal_charter_img0 = merchant_info.charter_path[0];
         legal_charter_img1 = merchant_info.charter_path[1];
       }
@@ -227,7 +227,7 @@ Page({
 
 
   },
-  setMerchantInfo:function(e){
+  setMerchantInfo: function (e) {
     var that = this;
     var faceimg = that.data.faceimg;
     var tel = e.detail.value.tel;
@@ -240,13 +240,13 @@ Page({
     var legal_charter_img0 = that.data.legal_charter_img0;
     var legal_charter_img1 = that.data.legal_charter_img1;
 
-    
 
-    if (faceimg==''){
+
+    if (faceimg == '') {
       app.showToast('请上传餐厅门脸图');
       return false;
     }
-    if(tel==''){
+    if (tel == '') {
       app.showToast('请填写订餐电话');
       return false;
     }
@@ -278,7 +278,7 @@ Page({
       app.showToast('午餐结束时间不能早于晚餐开始时间');
       return false;
     }
-    if(meal_time==''){
+    if (meal_time == '') {
       app.showToast('请输入出餐时间');
       return false;
     }
@@ -292,7 +292,7 @@ Page({
     }
     var legal_charter = legal_charter_img0 + ',' + legal_charter_img0;
     // var business_lunchhours = lunch_s_time + '-' + lunch_e_time
-    var business_dinnerhours =  dinner_s_time+'-'+dinner_e_time
+    var business_dinnerhours = dinner_s_time + '-' + dinner_e_time
     utils.PostRequest(api_v_url + '/merchant/setHotelinfo', {
       business_lunchshours: lunch_s_time,
       business_lunchehours: lunch_e_time,
@@ -307,7 +307,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('保存成功');
       wx.navigateBack({
-        delta:1,
+        delta: 1,
       })
     })
   },
@@ -363,7 +363,14 @@ Page({
   // 打开提示弹窗
   openTipPopWindow: function (e) {
     let self = this;
-    self.setData({ showTipPopWindow: true, tipTitle: '说明', tipContent: '提示内容' });
+    let tipType = e.currentTarget.dataset.type;
+    switch (tipType) {
+      case 'make-time':
+        self.setData({ showTipPopWindow: true, tipTitle: '说明', tipContent: '出餐时间即餐厅在接到食客订单之后多长时间可以将菜品准备好。我们将在您出餐之后通知外卖配送骑手上门取货。例如：您设定的出餐时间为30分钟，食客在11:00下单，我们则在11:30通知外卖骑手上门取餐。' });
+        break;
+      default:
+        break;
+    }
   },
 
   // 打开提示弹窗
