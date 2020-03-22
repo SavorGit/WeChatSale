@@ -32,7 +32,8 @@ Page({
     var order_status = options.order_status
     type = options.type;
     that.setData({
-      order_status: order_status
+      order_status: order_status,
+      type: type
     })
 
 

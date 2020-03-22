@@ -64,7 +64,7 @@ Page({
     var type = e.currentTarget.dataset.type;
     var p_openid = e.currentTarget.dataset.p_openid
     wx.navigateTo({
-      url: '/pages/hotel/order/index?merchant_id' + merchant_id + '&order_status=' + status + "&type=" + type + '&openid=' + p_openid,
+      url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&order_status=' + status + "&type=" + type + '&openid=' + p_openid,
     })
   },
   /**
