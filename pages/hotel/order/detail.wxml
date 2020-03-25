@@ -9,15 +9,6 @@
 					<view class="status">待商家确认></view>
 				</view>
 			</view>
-			<!-- 已完成 -->
-			<view class="status-panel input-panel theme-panel">
-				<view class="head flex_row_center_spaceBetween">
-					<view class="status">订单已送达></view>
-				</view>
-				<view class="body">
-					<view class="tip theme-font5">感谢您对小热点的信任，期待您再次光临</view>
-				</view>
-			</view>
 			<!-- 自取地址信息(此板块不受状态影响) -->
 			<view class="input-panel theme-panel">
 				<view class="head">自取地址</view>
