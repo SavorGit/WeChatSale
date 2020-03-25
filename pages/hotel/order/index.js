@@ -224,7 +224,7 @@ Page({
       content: '确认处理该订单?',
       success: function (res) {
         if (res.confirm) {
-          utils.PostRequest(api_v_url + '/order/dishorderProcess', {
+          utils.PostRequest(api_v_url + '/order/orderProcess', {
             order_id: order_id,
             openid: user_info.openid,
           }, (data, headers, cookies, errMsg, statusCode) => {
