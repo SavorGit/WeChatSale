@@ -2,6 +2,19 @@
 
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="page-wapper">
+		<!-- 派送中 -->
+		<view class="status-panel input-panel theme-panel">
+			<view class="head flex_row_center_spaceBetween">
+				<view class="status">派送中></view>
+				<view class="distance">骑手距食客还有1.2km</view>
+			</view>
+			<view class="body">
+				<map id="map" longitude="113.324520" latitude="23.099994" scale="14"></map>
+				<view class="btn theme-button-welcome" bindtap="">
+					<view class="fa fa-phone" aria-hidden="true"> 联系骑手</view>
+				</view>
+			</view>
+		</view>
 		<view class="goods-info input-panel theme-panel">
 			<view class="head">菜品信息</view>
 			<view class="body flex_column_center_spaceBetween">
@@ -16,7 +29,7 @@
 						<view class="count one-line-overflow">X{{bean.amount}}</view>
 					</view>
 				</view>
-				
+
 			</view>
 			<view class="foot flex_row_center_spaceBetween">
 				<view class="theme-font2">合计：{{order_info.amount}}件菜品</view>
@@ -58,6 +71,47 @@
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">完成时间</view>
 					<view class="view">{{order_info.finish_time}}</view>
+				</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">发票信息</view>
+			<view class="body flex-column-center-space_between">
+				<!-- 企业 -->
+				<view class="row flex-row-center-space_between">
+					<view class="lable theme-font3">企业名称</view>
+					<view class="view">xxxx</view>
+				</view>
+				<view class="row flex-row-center-space_between">
+					<view class="lable theme-font3">企业税号</view>
+					<view class="view">xxxxx</view>
+				</view>
+				<!-- 个人 -->
+				<view class="row flex-row-center-space_between">
+					<view class="lable theme-font3">个人姓名</view>
+					<view class="view">xxxxx</view>
+				</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">餐具</view>
+			<view class="body flex-column-center-space_between">
+				<!--
+				<view class="row flex-row-center-space_between">
+					<view class="lable theme-font3">数量</view>
+					<view class="view">2</view>
+				</view>
+				-->
+				<view class="row flex-row-center-space_between">
+					<view class="view">2份</view>
+				</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">订单备注</view>
+			<view class="body flex_column_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween" style="height:unset;">
+					<view class="view" style="width:100%;">x xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx</view>
 				</view>
 			</view>
 		</view>
