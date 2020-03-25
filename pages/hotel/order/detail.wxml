@@ -2,19 +2,53 @@
 
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="page-wapper">
-		<!-- 派送中 -->
-		<view class="status-panel input-panel theme-panel" wx:if="{{order_info.status==15 || order_info.status==16}}">
-			<view class="head flex_row_center_spaceBetween">
-				<view class="status">{{order_info.status_str}}></view>
-				<view class="distance" >骑手距餐厅还有{{order_info.distance}}</view>
+		<!-- 食客自提 -->
+		<block>
+			<view class="status-panel input-panel theme-panel">
+				<view class="head flex_row_center_spaceBetween">
+					<view class="status">待商家确认></view>
+				</view>
 			</view>
-			<view class="body">
-				<map id="map" longitude="113.324520" latitude="23.099994" scale="14"></map>
-				<button class="btn theme-button-welcome" bindtap='phonecallevent' data-tel="{{order_info.transporter.phone}}">
-					<view class="fa fa-phone" aria-hidden="true"> 联系骑手</view>
-				</button>
+			<!-- 已完成 -->
+			<view class="status-panel input-panel theme-panel">
+				<view class="head flex_row_center_spaceBetween">
+					<view class="status">订单已送达></view>
+				</view>
+				<view class="body">
+					<view class="tip theme-font5">感谢您对小热点的信任，期待您再次光临</view>
+				</view>
 			</view>
-		</view>
+			<!-- 自取地址信息(此板块不受状态影响) -->
+			<view class="input-panel theme-panel">
+				<view class="head">自取地址</view>
+				<view class="body flex_column_center_spaceBetween">
+					<view class="row flex_row_center_spaceBetween">
+						<!-- 注意：行首空格不能删除 -->
+						<view class="view fa fa-map-marker" style="width:100%;" aria-hidden="true"> (注意：行首空格不能删除)北京市朝阳区X XX XXX XXX XX XX XXX XX X X XX XXX XX XX</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">预留手机</view>
+						<view class="view">13800138000</view>
+					</view>
+				</view>
+			</view>
+		</block>
+		<!-- 外卖配送 -->
+		<block>
+			<!-- 派送中 -->
+			<view class="status-panel input-panel theme-panel" wx:if="{{order_info.status==15 || order_info.status==16}}">
+				<view class="head flex_row_center_spaceBetween">
+					<view class="status">{{order_info.status_str}}></view>
+					<view class="distance">骑手距餐厅还有{{order_info.distance}}</view>
+				</view>
+				<view class="body">
+					<map id="map" longitude="113.324520" latitude="23.099994" scale="14"></map>
+					<button class="btn theme-button-welcome" bindtap='phonecallevent' data-tel="{{order_info.transporter.phone}}">
+						<view class="fa fa-phone" aria-hidden="true"> 联系骑手</view>
+					</button>
+				</view>
+			</view>
+		</block>
 		<view class="goods-info input-panel theme-panel">
 			<view class="head">菜品信息</view>
 			<view class="body flex_column_center_spaceBetween">
@@ -38,6 +72,13 @@
 		</view>
 		<view class="input-panel theme-panel">
 			<view class="head">配送信息</view>
+			<!-- 食客自提 -->
+			<view class="body flex_column_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="view">到店自提</view>
+				</view>
+			</view>
+			<!-- 外卖配送 -->
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">联系人</view>
@@ -55,7 +96,7 @@
 					<view class="lable theme-font3">配送时间</view>
 					<view class="view">{{order_info.delivery_time}}</view>
 				</view>
-        <view class="row flex_row_center_spaceBetween" wx:if="{{order_info.type==1}}">
+				<view class="row flex_row_center_spaceBetween" wx:if="{{order_info.type==1}}">
 					<view class="lable theme-font3">配送费用</view>
 					<view class="view">{{order_info.delivery_fee}}</view>
 				</view>
@@ -76,7 +117,7 @@
 					<view class="lable theme-font3">完成时间</view>
 					<view class="view">{{order_info.finish_time}}</view>
 				</view>
-        <view class="row flex_row_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">订单金额</view>
 					<view class="view">{{order_info.total_fee}}</view>
 				</view>
@@ -84,37 +125,37 @@
 		</view>
 		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
 			<view class="head">发票信息</view>
-			<view class="body flex-column-center-space_between">
+			<view class="body flex_column_center_spaceBetween">
 				<!-- 企业 -->
-        <block wx:if="{{order_info.invoice.title_type==0}}">
-				<view class="row flex-row-center-space_between">
-					<view class="lable theme-font3">企业名称</view>
-					<view class="view">{{order_info.invoice.company}}</view>
-				</view>
-				<view class="row flex-row-center-space_between">
-					<view class="lable theme-font3">企业税号</view>
-					<view class="view">{{order_info.invoice.credit_code}}</view>
-				</view>
-        </block>
-        <block wx:elif="{{order_info.invoice.title_type==1}}">
-				<!-- 个人 -->
-				<view class="row flex-row-center-space_between">
-					<view class="lable theme-font3">个人姓名</view>
-					<view class="view">{{order_info.invoice.company}}</view>
-				</view>
-        </block>
+				<block wx:if="{{order_info.invoice.title_type==0}}">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">企业名称</view>
+						<view class="view">{{order_info.invoice.company}}</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">企业税号</view>
+						<view class="view">{{order_info.invoice.credit_code}}</view>
+					</view>
+				</block>
+				<block wx:elif="{{order_info.invoice.title_type==1}}">
+					<!-- 个人 -->
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">个人姓名</view>
+						<view class="view">{{order_info.invoice.company}}</view>
+					</view>
+				</block>
 			</view>
 		</view>
 		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
 			<view class="head">餐具</view>
-			<view class="body flex-column-center-space_between">
+			<view class="body flex_column_center_spaceBetween">
 				<!--
-				<view class="row flex-row-center-space_between">
+				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">数量</view>
 					<view class="view">2</view>
 				</view>
 				-->
-				<view class="row flex-row-center-space_between" wx:if="{{order_info.tableware>0}}">
+				<view class="row flex_row_center_spaceBetween" wx:if="{{order_info.tableware>0}}">
 					<view class="view">{{order_info.tableware}}份</view>
 				</view>
 			</view>
