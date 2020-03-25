@@ -76,6 +76,10 @@
 					<view class="lable theme-font3">完成时间</view>
 					<view class="view">{{order_info.finish_time}}</view>
 				</view>
+        <view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">订单金额</view>
+					<view class="view">{{order_info.total_fee}}</view>
+				</view>
 			</view>
 		</view>
 		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
