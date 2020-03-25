@@ -3,10 +3,10 @@
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="page-wapper">
 		<!-- 食客自提 -->
-		<block>
-			<view class="status-panel input-panel theme-panel">
+		<block wx:if="{{order_info.delivery_type==2 && order_info.type==1}}" >
+			<view class="status-panel input-panel theme-panel" wx:if="{{order_info.status==10 || order_info.status==13 || order_info.status==17 || order_info.status==18 || order_info.status==19}}">
 				<view class="head flex_row_center_spaceBetween">
-					<view class="status">待商家确认></view>
+					<view class="status">{{order_info.status_str}}></view>
 				</view>
 			</view>
 			<!-- 自取地址信息(此板块不受状态影响) -->
@@ -15,17 +15,17 @@
 				<view class="body flex_column_center_spaceBetween">
 					<view class="row flex_row_center_spaceBetween">
 						<!-- 注意：行首空格不能删除 -->
-						<view class="view fa fa-map-marker" style="width:100%;" aria-hidden="true"> (注意：行首空格不能删除)北京市朝阳区X XX XXX XXX XX XX XXX XX X X XX XXX XX XX</view>
+						<view class="view fa fa-map-marker" style="width:100%;" aria-hidden="true"> {{order_info.address}}</view>
 					</view>
 					<view class="row flex_row_center_spaceBetween">
 						<view class="lable theme-font3">预留手机</view>
-						<view class="view">13800138000</view>
+						<view class="view">{{order_info.phone}}</view>
 					</view>
 				</view>
 			</view>
 		</block>
 		<!-- 外卖配送 -->
-		<block>
+		<block wx:elif="{{order_info.delivery_type==1 && order_info.type==1}}">
 			<!-- 派送中 -->
 			<view class="status-panel input-panel theme-panel" wx:if="{{order_info.status==15 || order_info.status==16}}">
 				<view class="head flex_row_center_spaceBetween">
@@ -64,13 +64,13 @@
 		<view class="input-panel theme-panel">
 			<view class="head">配送信息</view>
 			<!-- 食客自提 -->
-			<view class="body flex_column_center_spaceBetween">
+			<view class="body flex_column_center_spaceBetween" wx:if="{{order_info.delivery_type==2}}">
 				<view class="row flex_row_center_spaceBetween">
-					<view class="view">到店自提</view>
+					<view class="view">到店自提,自提时间：{{order_info.selfpick_time}}</view>
 				</view>
 			</view>
 			<!-- 外卖配送 -->
-			<view class="body flex_column_center_spaceBetween">
+			<view class="body flex_column_center_spaceBetween" wx:else>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">联系人</view>
 					<view class="view">{{order_info.contact}}</view>
