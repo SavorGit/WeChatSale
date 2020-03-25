@@ -55,6 +55,10 @@
 					<view class="lable theme-font3">配送时间</view>
 					<view class="view">{{order_info.delivery_time}}</view>
 				</view>
+        <view class="row flex_row_center_spaceBetween" wx:if="{{order_info.type==1}}">
+					<view class="lable theme-font3">配送费用</view>
+					<view class="view">{{order_info.delivery_fee}}</view>
+				</view>
 			</view>
 		</view>
 		<view class="input-panel theme-panel">
