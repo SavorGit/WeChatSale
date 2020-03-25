@@ -3,16 +3,16 @@
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="page-wapper">
 		<!-- 派送中 -->
-		<view class="status-panel input-panel theme-panel">
+		<view class="status-panel input-panel theme-panel" wx:if="{{order_info.status==15 || order_info.status==16}}">
 			<view class="head flex_row_center_spaceBetween">
-				<view class="status">派送中></view>
-				<view class="distance">骑手距食客还有1.2km</view>
+				<view class="status">{{order_info.status_str}}></view>
+				<view class="distance" >骑手距餐厅还有{{order_info.distance}}</view>
 			</view>
 			<view class="body">
 				<map id="map" longitude="113.324520" latitude="23.099994" scale="14"></map>
-				<view class="btn theme-button-welcome" bindtap="">
+				<button class="btn theme-button-welcome" bindtap='phonecallevent' data-tel="{{order_info.transporter.phone}}">
 					<view class="fa fa-phone" aria-hidden="true"> 联系骑手</view>
-				</view>
+				</button>
 			</view>
 		</view>
 		<view class="goods-info input-panel theme-panel">
@@ -74,26 +74,30 @@
 				</view>
 			</view>
 		</view>
-		<view class="input-panel theme-panel">
+		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
 			<view class="head">发票信息</view>
 			<view class="body flex-column-center-space_between">
 				<!-- 企业 -->
+        <block wx:if="{{order_info.invoice.title_type==0}}">
 				<view class="row flex-row-center-space_between">
 					<view class="lable theme-font3">企业名称</view>
-					<view class="view">xxxx</view>
+					<view class="view">{{order_info.invoice.company}}</view>
 				</view>
 				<view class="row flex-row-center-space_between">
 					<view class="lable theme-font3">企业税号</view>
-					<view class="view">xxxxx</view>
+					<view class="view">{{order_info.invoice.credit_code}}</view>
 				</view>
+        </block>
+        <block wx:elif="{{order_info.invoice.title_type==1}}">
 				<!-- 个人 -->
 				<view class="row flex-row-center-space_between">
 					<view class="lable theme-font3">个人姓名</view>
-					<view class="view">xxxxx</view>
+					<view class="view">{{order_info.invoice.company}}</view>
 				</view>
+        </block>
 			</view>
 		</view>
-		<view class="input-panel theme-panel">
+		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
 			<view class="head">餐具</view>
 			<view class="body flex-column-center-space_between">
 				<!--
@@ -102,16 +106,16 @@
 					<view class="view">2</view>
 				</view>
 				-->
-				<view class="row flex-row-center-space_between">
-					<view class="view">2份</view>
+				<view class="row flex-row-center-space_between" wx:if="{{order_info.tableware>0}}">
+					<view class="view">{{order_info.tableware}}份</view>
 				</view>
 			</view>
 		</view>
-		<view class="input-panel theme-panel">
+		<view class="input-panel theme-panel" wx:if="{{order_info.type==1}}">
 			<view class="head">订单备注</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween" style="height:unset;">
-					<view class="view" style="width:100%;">x xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx xx xxx x xx xxx</view>
+					<view class="view" style="width:100%;">{{order_info.remark}}</view>
 				</view>
 			</view>
 		</view>
