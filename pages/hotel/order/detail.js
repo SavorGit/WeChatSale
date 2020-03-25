@@ -26,7 +26,7 @@ Page({
     console.log(user_info)
     openid = user_info.openid;
     order_id = options.order_id
-    utils.PostRequest(api_v_url + '/order/dishOrderdetail', {
+    utils.PostRequest(api_v_url + '/order/detail', {
       openid: openid,
       order_id:order_id
     }, (data, headers, cookies, errMsg, statusCode) => {

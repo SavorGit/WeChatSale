@@ -38,7 +38,7 @@ Page({
 
 
     //全部订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -50,7 +50,7 @@ Page({
       })
     })
     //处理中的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -62,7 +62,7 @@ Page({
       })
     })
     //已完成的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -97,7 +97,7 @@ Page({
       page = page_complete;
     }
     //已完成的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: page,
@@ -146,15 +146,67 @@ Page({
             openid: user_info.openid,
             order_id: order_id
           }, (data, headers, cookies, errMsg, statusCode) => {
+            app.showToast('操作成功');
             if(order_status==0){//全部订单
-              
+              var order_list = that.data.all_order_list
+              if(action==2){
+                
+                order_list.splice(keys, 1)
+                
+              }else if(action==1){
+                order_list[keys].status = 14;
+                order_list[keys].status_str = '待骑手接单';
+              }
+              that.setData({
+                all_order_list: order_list
+              })
             }else if(order_status==1){//待处理订单
-
+              if(action==2){
+                var order_list = that.data.deal_order_list;
+                order_list.splice(keys, 1)
+                
+              }else if(action==1){
+                order_list[keys].status = 14;
+                order_list[keys].status_str = '待骑手接单';
+              }
+              that.setData({
+                deal_order_list: order_list
+              })
             }
-
+            if(action==2){
+              //已完成的订单
+              that.getOrderList(2);
+            }
+            
           })
         }
       }
+    })
+  },
+  getOrderList:function(status){
+    var that = this;
+    utils.PostRequest(api_v_url + '/order/orderlist', {
+      openid: openid,
+      merchant_id: merchant_id,
+      page: page_complete,
+      status: status,
+      type: type
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(status==0){
+        that.setData({
+          all_order_list: data.result.datalist
+        })
+      }else if(status==1){
+        that.setData({
+          deal_order_list: data.result.datalist
+        })
+      }else if(status==2){
+        that.setData({
+          complete_order_list: data.result.datalist
+        })
+      }
+      
+
     })
   },
   /**
@@ -188,7 +240,7 @@ Page({
               })
 
               //处理中的订单
-              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              utils.PostRequest(api_v_url + '/order/orderlist', {
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_dealing,
@@ -200,7 +252,7 @@ Page({
                 })
               })
               //已完成的订单
-              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              utils.PostRequest(api_v_url + '/order/orderlist', {
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_complete,
@@ -222,7 +274,7 @@ Page({
             app.showToast('处理成功');
 
             //全部订单
-            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+            utils.PostRequest(api_v_url + '/order/orderlist', {
               openid: openid,
               merchant_id: merchant_id,
               page: page_all,
@@ -235,7 +287,7 @@ Page({
             })
 
             //已完成的订单
-            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+            utils.PostRequest(api_v_url + '/order/orderlist', {
               openid: openid,
               merchant_id: merchant_id,
               page: page_complete,

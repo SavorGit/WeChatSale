@@ -18,14 +18,13 @@
 				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
 					<view class="head flex_row_center_spaceBetween theme-font8">
 						<view>{{bean.add_time}}</view>
-						<view wx:if="{{bean.status==2}}">已完成</view>
-						<view wx:if="{{bean.status==1}}">待处理</view>
+            <view>{{bean.status_str}}</view>
 					</view>
 					<view class="body flex_row_center_spaceBetween">
-						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
 							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
-						<view class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
@@ -136,7 +135,7 @@
 				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
 					<view class="head flex_row_center_spaceBetween theme-font8">
 						<view>{{bean.add_time}}</view>
-						<view>已完成</view>
+						<view>{{bean.status_str}}</view>
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
