@@ -53,10 +53,10 @@
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
 						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-						<block wx:if="{{type==3}}">
+						<block wx:if="{{bean.status==1}}">
 						<view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
             </block>
-						<block wx:else>
+						<block wx:elif="{{bean.status==3}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
 							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}">不接单</view>
 							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}">接单</view>
@@ -77,7 +77,7 @@
 				<view class="row flex_column_center_spaceBetween theme7 bottom-space">
 					<view class="head flex_row_center_spaceBetween theme-font8">
 						<view>{{bean.add_time}}</view>
-						<view>待处理</view>
+						<view>{{bean.status_str}}</view>
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
@@ -110,10 +110,10 @@
 					</view>
 					<view class="foot flex_row_center_spaceBetween">
 						<view class="order-number theme-font3">订单号: {{bean.order_id}}</view>
-						<block wx:if="{{type==3}}">
+						<block wx:if="{{bean.status==1}}">
 						  <view bindtap="deal_order" data-order_id="{{bean.order_id}}" class="btn pending theme-button-welcome" wx:if="{{bean.status==1}}" data-keys="{{index}}">处理</view>
 						</block>
-            <block wx:else>
+            <block wx:elif="{{bean.status==13}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
 							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}">不接单</view>
 							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}">接单</view>
