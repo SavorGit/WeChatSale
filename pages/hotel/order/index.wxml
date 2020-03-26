@@ -58,8 +58,8 @@
             </block>
 						<block wx:elif="{{bean.status==13}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
-							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}">不接单</view>
-							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}">接单</view>
+							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">不接单</view>
+							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">接单</view>
 						</view>
             </block>
 					</view>
@@ -115,8 +115,8 @@
 						</block>
             <block wx:elif="{{bean.status==13}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
-							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}">不接单</view>
-							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}">接单</view>
+							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">不接单</view>
+							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">接单</view>
 						</view>
             </block>
 					</view>

@@ -130,7 +130,9 @@ Page({
     var order_status = that.data.order_status 
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     var action = e.currentTarget.dataset.action;
-
+    var delivery_type = e.currentTarget.dataset.delivery_type;
+    //console.log(e);
+    //return false;
     if(action==1){
       var msg ='确认接单';
     }else if(action==2){
@@ -154,29 +156,40 @@ Page({
                 order_list.splice(keys, 1)
                 
               }else if(action==1){
-                order_list[keys].status = 14;
-                order_list[keys].status_str = '待骑手接单';
+                if (delivery_type==1){
+                  order_list[keys].status = 14;
+                  order_list[keys].status_str = '待骑手接单';
+                }else {
+                  order_list.splice(keys, 1)
+                }
+                
               }
               that.setData({
                 all_order_list: order_list
               })
             }else if(order_status==1){//待处理订单
+              var order_list = that.data.deal_order_list;
               if(action==2){
-                var order_list = that.data.deal_order_list;
+                
                 order_list.splice(keys, 1)
                 
               }else if(action==1){
-                order_list[keys].status = 14;
-                order_list[keys].status_str = '待骑手接单';
+                if(delivery_type==1){
+                  order_list[keys].status = 14;
+                  order_list[keys].status_str = '待骑手接单';
+                }else {
+                  order_list.splice(keys, 1)
+                }
+                
               }
               that.setData({
                 deal_order_list: order_list
               })
             }
-            if(action==2){
-              //已完成的订单
-              that.getOrderList(2);
-            }
+            
+            //已完成的订单
+            that.getOrderList(2);
+            
             
           })
         }
