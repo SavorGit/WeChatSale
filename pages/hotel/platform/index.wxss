@@ -1,7 +1,7 @@
 /* pages/hotel/platform/index.wxss */
 .wapper {
   width: calc(100% - 60rpx);
-  height: calc(100% - 60rpx);
+  /* height: calc(100% - 60rpx); */
   padding: 30rpx;
 }
 
