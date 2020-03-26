@@ -52,7 +52,7 @@ button::before {
 }
 
 .wx-switch-input {
-  width: 82rpx !important;
+  width: 80rpx !important;
   height: 36rpx !important;
 }
 

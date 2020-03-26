@@ -128,7 +128,7 @@
 							<view class="flag theme-font5"></view>
 						</view>
 						<view class="input-group">
-							<textarea class="input" name="notice" value="{{notice}}" placeholder="0~200字" maxlength="200" maxlength="200"></textarea>
+							<textarea wx:if="{{showTipPopWindow!=true}}" class="input" name="notice" value="{{notice}}" placeholder="0~200字" maxlength="200" maxlength="200"></textarea>
 						</view>
 					</view>
 				</view>
