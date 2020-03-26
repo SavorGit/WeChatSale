@@ -250,6 +250,19 @@ Page({
       app.showToast('请填写订餐电话');
       return false;
     }
+    if(meal_time<20){
+      app.showToast('最小设置20分钟');
+      return false;
+    }
+    if(meal_time%10 !=0){
+      app.showToast('请输入10的倍数');
+      return false;
+    }
+    // var reg = new RegExp('^(\d3,4\d3,4|\d{3,4}-)?\d{7,8}$');
+    // if (!reg.test(tel)){
+    //   app.showToast('请输入正确的订餐电话');
+    //   return false;
+    // }
     if (lunch_s_time == '') {
       app.showToast('请选择午餐开始时间');
       return false;
