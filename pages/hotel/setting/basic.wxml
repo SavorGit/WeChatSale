@@ -35,7 +35,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group">
-							<input class="input" name="tel" value="{{mobile}}" placeholder="请输入" maxlength="30"></input>
+							<input class="input" name="tel" value="{{tel}}" placeholder="请输入" maxlength="30" type="number"></input>
 						</view>
 					</view>
 

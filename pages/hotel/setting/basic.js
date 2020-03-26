@@ -47,7 +47,7 @@ Page({
       }
       that.setData({
         faceimg: merchant_info.img_path,
-        mobile: merchant_info.mobile,
+        tel: merchant_info.tel,
         lunch_s_time: merchant_info.business_lunchshours,
         lunch_e_time: merchant_info.business_lunchehours,
         dinner_s_time: merchant_info.business_dinnershours,
