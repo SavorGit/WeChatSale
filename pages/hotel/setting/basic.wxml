@@ -108,7 +108,7 @@
 							<view class="flag theme-font5">*</view>
 						</view>
 						<view class="input-group flex_row_center_spaceBetween">
-							<input class="input" maxlength="3" name="meal_time" value="{{meal_time}}" placeholder="请输入" type="number" placeholder="例如20，30"></input>
+							<input class="input" maxlength="3" name="meal_time" value="{{meal_time}}" placeholder="请输入" type="number" placeholder="请输入10的倍数,例如20，30"></input>
 							<view class="unit">分钟</view>
 							<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="make-time" bindtap="openTipPopWindow"></view>
 						</view>
