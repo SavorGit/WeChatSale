@@ -54,7 +54,7 @@ Page({
         dinner_e_time: merchant_info.business_dinnerehours,
         meal_time: merchant_info.meal_time,
         notice: merchant_info.notice,
-        legal_charter_img0: legal_charter_img1,
+        legal_charter_img0: legal_charter_img0,
         legal_charter_img1: legal_charter_img1,
       })
     })
@@ -290,7 +290,7 @@ Page({
       app.showToast('请上食品经营许可证');
       return false;
     }
-    var legal_charter = legal_charter_img0 + ',' + legal_charter_img0;
+    var legal_charter = legal_charter_img0 + ',' + legal_charter_img1;
     // var business_lunchhours = lunch_s_time + '-' + lunch_e_time
     var business_dinnerhours = dinner_s_time + '-' + dinner_e_time
     utils.PostRequest(api_v_url + '/merchant/setHotelinfo', {
