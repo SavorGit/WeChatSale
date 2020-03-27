@@ -33,7 +33,7 @@
 					<view class="distance">骑手距餐厅还有{{order_info.distance}}</view>
 				</view>
 				<view class="body">
-					<map id="map" longitude="113.324520" latitude="23.099994" scale="14"></map>
+					<map id="map" longitude="{{order_info.user_location.lng}}" latitude="{{order_info.user_location.lat}}" scale="14" markers="{{markers}}" bindmarkertap="markertap" polyline="{{order_info.polyline}}" bindregionchange="regionchange" show-location></map>
 					<button class="btn theme-button-welcome" bindtap='phonecallevent' data-tel="{{order_info.transporter.phone}}">
 						<view class="fa fa-phone" aria-hidden="true"> 联系骑手</view>
 					</button>

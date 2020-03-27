@@ -30,8 +30,10 @@ Page({
       openid: openid,
       order_id:order_id
     }, (data, headers, cookies, errMsg, statusCode) => {
+
       that.setData({
-        order_info: data.result
+        order_info: data.result,
+        markers: data.result.markers
       })
     })
   },
