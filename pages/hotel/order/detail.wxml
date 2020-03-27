@@ -118,7 +118,7 @@
 			<view class="head">发票信息</view>
 			<view class="body flex_column_center_spaceBetween">
 				<!-- 企业 -->
-				<block wx:if="{{order_info.invoice.title_type==0}}">
+				<block wx:if="{{order_info.invoice.title_type==1}}">
 					<view class="row flex_row_center_spaceBetween">
 						<view class="lable theme-font3">企业名称</view>
 						<view class="view">{{order_info.invoice.company}}</view>
@@ -128,7 +128,7 @@
 						<view class="view">{{order_info.invoice.credit_code}}</view>
 					</view>
 				</block>
-				<block wx:elif="{{order_info.invoice.title_type==1}}">
+				<block wx:elif="{{order_info.invoice.title_type==2}}">
 					<!-- 个人 -->
 					<view class="row flex_row_center_spaceBetween">
 						<view class="lable theme-font3">个人姓名</view>
