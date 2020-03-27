@@ -152,21 +152,25 @@ Page({
             if(order_status==0){//全部订单
               var order_list = that.data.all_order_list
               if(action==2){
-                
-                order_list.splice(keys, 1)
+                order_list[keys].status = 18;
+                order_list[keys].status_str = '商家取消';
+                //order_list.splice(keys, 1)
                 
               }else if(action==1){
                 if (delivery_type==1){
                   order_list[keys].status = 14;
                   order_list[keys].status_str = '待骑手接单';
                 }else {
-                  order_list.splice(keys, 1)
+                  order_list[keys].status = 17;
+                  order_list[keys].status_str = '已完成';
                 }
                 
               }
               that.setData({
                 all_order_list: order_list
               })
+              //待处理订单
+              that.getOrderList(1);
             }else if(order_status==1){//待处理订单
               var order_list = that.data.deal_order_list;
               if(action==2){
@@ -185,6 +189,8 @@ Page({
               that.setData({
                 deal_order_list: order_list
               })
+              //全部订单
+              that.getOrderList(0);
             }
             
             //已完成的订单
