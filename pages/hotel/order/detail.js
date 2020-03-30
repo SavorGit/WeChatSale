@@ -37,6 +37,19 @@ Page({
       })
     })
   },
+  reFreshOrder:function(e){
+    var that = this;
+    utils.PostRequest(api_v_url + '/order/detail', {
+      openid: openid,
+      order_id: order_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      that.setData({
+        order_info: data.result,
+        markers: data.result.markers
+      })
+    })
+  },
   /**
    * 拨打订餐电话
    */
