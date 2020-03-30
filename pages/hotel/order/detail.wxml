@@ -1,5 +1,4 @@
 <!--pages/hotel/order/detail.wxml-->
-
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="page-wapper">
 		<!-- 食客自提 -->
@@ -31,7 +30,7 @@
 				<view class="head flex_row_center_spaceBetween">
 					<view class="status">{{order_info.status_str}}></view>
 					<view class="distance" wx:if="{{order_info.status==15}}">骑手距餐厅还有{{order_info.distance}}</view>
-          <view class="distance" wx:if="{{order_info.status==16}}">骑手距餐厅买家{{order_info.distance}}</view>
+          <view class="distance" wx:if="{{order_info.status==16}}">骑手距买家还有{{order_info.distance}}</view>
 				</view>
 				<view class="body">
 					<map id="map" longitude="{{order_info.user_location.lng}}" latitude="{{order_info.user_location.lat}}" scale="14" markers="{{markers}}" bindmarkertap="markertap" polyline="{{order_info.polyline}}" bindregionchange="regionchange" show-location></map>
