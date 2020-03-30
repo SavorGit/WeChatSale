@@ -45,8 +45,12 @@
 }
 
 .status-panel>.head>.distance {
-  width: 300rpx;
+  width: 350rpx;
   font-size: 24rpx;
+}
+
+.status-panel>.head>.distance>.content {
+  width: calc(100% - 60rpx);
 }
 
 .status-panel>.head>.distance>.btn {
