@@ -48,6 +48,7 @@ Page({
         order_info: data.result,
         markers: data.result.markers
       })
+      app.showToast('刷新成功');
     })
   },
   /**

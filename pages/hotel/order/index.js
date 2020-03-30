@@ -204,10 +204,17 @@ Page({
   },
   getOrderList:function(status){
     var that = this;
+    if (status == 0) {
+      page = page_all;
+    } else if (status == 1) {
+      page = page_dealing;
+    } else if (status == 2) {
+      page = page_complete;
+    }
     utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: page_complete,
+      page: page,
       status: status,
       type: type
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -356,7 +363,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    that.getOrderList(0)
+    that.getOrderList(1)
+    that.getOrderList(2)
   },
 
   /**
