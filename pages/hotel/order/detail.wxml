@@ -72,7 +72,7 @@
 			<!-- 食客自提 -->
 			<view class="body flex_column_center_spaceBetween" wx:if="{{order_info.delivery_type==2}}">
 				<view class="row flex_row_center_spaceBetween">
-					<view class="view">到店自提,自提时间：{{order_info.selfpick_time}}</view>
+					<view class="view" style="width:100%;">到店自提,自提时间：{{order_info.selfpick_time}}</view>
 				</view>
 			</view>
 			<!-- 外卖配送 -->
