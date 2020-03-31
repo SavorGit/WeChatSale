@@ -22,15 +22,15 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image  class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
@@ -58,8 +58,8 @@
             </block>
 						<block wx:elif="{{bean.status==13}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
-							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">不接单</view>
-							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">接单</view>
+							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}" data-delivery_platform="{{bean.delivery_platform}}">不接单</view>
+							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}" data-delivery_platform="{{bean.delivery_platform}}">接单</view>
 						</view>
             </block>
 					</view>
@@ -81,15 +81,15 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image  class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
@@ -115,8 +115,8 @@
 						</block>
             <block wx:elif="{{bean.status==13}}">
 						<view class="btn-group flex_row_center_spaceBetween" wx:if="{{bean.status==13}}">
-							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">不接单</view>
-							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}">接单</view>
+							<view class="btn order-untaking theme-button-welcome-dark" bindtap="orderReceive" data-action="2" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}" data-delivery_platform="{{bean.delivery_platform}}">不接单</view>
+							<view class="btn order-taking theme-button-welcome" bindtap="orderReceive" data-action="1" data-keys="{{index}}" data-order_id="{{bean.order_id}}" data-delivery_type="{{bean.delivery_type}}" data-delivery_platform="{{bean.delivery_platform}}">接单</view>
 						</view>
             </block>
 					</view>
@@ -139,15 +139,15 @@
 					</view>
 					<view class="body flex_row_center_spaceBetween">
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left flex_row_center" wx:if="{{bean.goods.length==1}}">
-							<image bindtap="gotoDishDetail" data-goods_id="{{bean.goods_id}}" class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
+							<image  class="pic" mode="aspectFill" src="{{bean.goods_img}}"></image>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center flex_column_center_center" wx:if="{{bean.goods.length==1}}">
 							<view class="one-line-overflow theme-font1">{{bean.goods_name}}</view>
 						</view>
 
-						<view class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
+						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="left multiple-goods flex_row_center" wx:if="{{bean.goods.length>1}}">
 							<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
-								<image wx:if="{{idx<4}}" bindtap="gotoDishDetail" data-goods_id="{{item.id}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+								<image wx:if="{{idx<4}}"  class="pic" mode="aspectFill" src="{{item.img}}"></image>
 							</block>
 						</view>
 						<view bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}" class="center multiple-goods flex_column_center_center" wx:if="{{bean.goods.length>1}}">
