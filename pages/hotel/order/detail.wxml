@@ -57,8 +57,9 @@
 			<view class="body flex_column_center_spaceBetween">
 				<view class="hotel theme-font7">由{{order_info.merchant.name}}提供</view>
 				<view class="row flex_row_center_spaceBetween" wx:for="{{order_info.goods}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-					<image class="pic" mode="aspectFill" src="{{bean.img}}"></image>
-					<view class="center">
+          
+					<image bindtap="gotoDishDetail" data-goods_id="{{bean.id}}" class="pic" mode="aspectFill" src="{{bean.img}}"></image>
+					<view class="center" bindtap="gotoDishDetail" data-goods_id="{{bean.id}}">
 						<view class="name two-line-overflow">{{bean.goods_name}}</view>
 						<view class="price theme-font5">￥{{bean.price}}</view>
 					</view>

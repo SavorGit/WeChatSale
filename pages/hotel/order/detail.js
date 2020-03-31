@@ -61,6 +61,13 @@ Page({
     })
 
   },
+  gotoDishDetail: function (e) {
+    console.log(e)
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
