@@ -45,6 +45,12 @@
 					</button>
 				</view>
 			</view>
+
+      <view class="status-panel input-panel theme-panel" wx:else>
+        <view class="head flex_row_center_spaceBetween">
+					<view class="status">{{order_info.status_str}}></view>
+        </view>
+      </view>
 		</block>
 		<view class="goods-info input-panel theme-panel">
 			<view class="head">菜品信息</view>
