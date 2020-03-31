@@ -47,6 +47,7 @@
   line-height: 70rpx;
   text-align: center;
   border-bottom: 4rpx solid #a18668;
+  background-color: unset;
 }
 
 .tab-body {
@@ -113,6 +114,7 @@
   position: absolute;
   top: 0;
   font-size: 46rpx;
+  background-color: unset;
 }
 
 .tab-body>.template-panel .weui-grid>view.selected>.fa-stack>.fa-check {
@@ -130,6 +132,7 @@
   height: 180rpx;
   border: 5rpx solid #a18668;
   border-radius: 5rpx;
+  background-color: unset;
 }
 
 .tab-foot,
@@ -262,6 +265,7 @@
 .set-words-page>.set-panel>.wapper>view.size>view>view.selected,
 .set-words-page>.set-panel>.wapper>view.color>view>view.selected {
   border: 3rpx solid #a18668;
+  background-color: unset;
 }
 
 .set-words-page>.set-panel>.wapper>view.color {

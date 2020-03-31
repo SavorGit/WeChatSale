@@ -313,7 +313,7 @@
 								<view class="input flex_column_center_center" wx:if="{{legal_charter_img1 !=''}}" bindtap="uploadDishesPic" data-type="charter" data-keys="1">
 									<image class="pic" mode="aspectFill" src="{{oss_url}}{{legal_charter_img1}}"></image>
 								</view>
-								<view class="explain">许可证</view>
+								<view class="explain">食品经营许可证</view>
 							</view>
 						</view>
 					</view>

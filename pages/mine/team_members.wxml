@@ -1,6 +1,6 @@
 <!--pages/mine/team_members.wxml-->
 <import src="/pages/template/commons" />
-<!-- <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
 		<view wx:if="{{index + 1 != staff_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
 			<image class="header-img" src="{{bean.avatarUrl}}"></image>
@@ -8,8 +8,8 @@
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button class="btn-waiter theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
+				<!-- <button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button> -->
+				<button class="btn-waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
 				<button class="btn-remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
@@ -19,7 +19,7 @@
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
 			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
+				<!-- <button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button> -->
 				<button class="btn-waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
 				<button class="btn-remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
@@ -28,8 +28,8 @@
 	<view wx:if="{{staff_list.length < 1}}" class="row">
 		<view class="nodata-msg full_width full_height flex_column_center_center">名下暂无员工~</view>
 	</view>
-</scroll-view> -->
-<view class="container theme-container">
+</scroll-view>
+<!-- <view class="container theme-container">
 	<scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
 			<view wx:if="{{index + 1 != staff_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
@@ -55,4 +55,4 @@
 			<view class="nodata-msg full_width full_height">名下暂无员工~</view>
 		</view>
 	</scroll-view>
-</view>
+</view> -->
