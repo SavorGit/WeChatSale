@@ -19,7 +19,7 @@
 			<!-- <image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image> -->
 		</view>
 	</view>
-
+  
 	<view class="evaluate-list-panel theme7">
 		<view class="title flex_row_flexEnd_spaceBetween">
 			<view>评价</view>
@@ -97,7 +97,7 @@
 				<view>
 					<input placeholder="请输入新的昵称" name="nickname"></input>
 				</view>
-				<button class="btn-submit theme-button-welcome" form-type="submit"    bindtap="editNickname">保存</button>
+				<button class="btn-submit theme-button-welcome" form-type="submit">保存</button>
 			</view>
 		</view>
 	</form>

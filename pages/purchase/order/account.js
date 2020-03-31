@@ -203,7 +203,7 @@ Page({
       addDisabled: true
     })
     //下单
-    utils.PostRequest(api_url + '/Smallapp4/order/addDishorder', {
+    utils.PostRequest(api_url + '/Smallapp4/order/addOrder', {
       //address_id:address_id,
       contact: contact,
       address: address,

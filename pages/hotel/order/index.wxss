@@ -1,4 +1,9 @@
 /* pages/hotel/order/index.wxss */
+/**
+ * 订单列表页面
+ */
+
+
 .tab-bar {
   width: calc(100% - 80rpx);
   height: 88rpx;
@@ -167,11 +172,16 @@
   white-space: nowrap;
 }
 
-.row>.foot>.btn {
+.row>.foot>.btn,
+.row>.foot>.btn-group>.btn {
   width: 150rpx;
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
+}
+
+.row>.foot>.btn-group {
+  width: 330rpx;
 }
 
 .row.bottom-space {

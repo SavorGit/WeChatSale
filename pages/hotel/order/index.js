@@ -32,12 +32,13 @@ Page({
     var order_status = options.order_status
     type = options.type;
     that.setData({
-      order_status: order_status
+      order_status: order_status,
+      type: type
     })
 
 
     //全部订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -49,7 +50,7 @@ Page({
       })
     })
     //处理中的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -61,7 +62,7 @@ Page({
       })
     })
     //已完成的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: 1,
@@ -96,7 +97,7 @@ Page({
       page = page_complete;
     }
     //已完成的订单
-    utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+    utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
       page: page,
@@ -120,6 +121,121 @@ Page({
     })
   },
   /**
+   * 接单不接单
+   */
+  orderReceive:function(e){
+    var that = this;
+    var order_id = e.currentTarget.dataset.order_id;
+    var keys = e.currentTarget.dataset.keys;
+    var order_status = that.data.order_status 
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var action = e.currentTarget.dataset.action;
+    var delivery_type = e.currentTarget.dataset.delivery_type;
+    //console.log(e);
+    //return false;
+    if(action==1){
+      var msg ='确认接单';
+    }else if(action==2){
+      var msg = '确认不接单';
+    }
+    wx.showModal({
+      title: '提示',
+      content: msg,
+      success:function(res){
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/order/orderReceive', {
+            action: action,
+            openid: user_info.openid,
+            order_id: order_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            app.showToast('操作成功');
+            if(order_status==0){//全部订单
+              var order_list = that.data.all_order_list
+              if(action==2){
+                order_list[keys].status = 18;
+                order_list[keys].status_str = '商家取消';
+                //order_list.splice(keys, 1)
+                
+              }else if(action==1){
+                if (delivery_type==1){
+                  order_list[keys].status = 14;
+                  order_list[keys].status_str = '待骑手接单';
+                }else {
+                  order_list[keys].status = 17;
+                  order_list[keys].status_str = '已完成';
+                }
+                
+              }
+              that.setData({
+                all_order_list: order_list
+              })
+              //待处理订单
+              that.getOrderList(1);
+            }else if(order_status==1){//待处理订单
+              var order_list = that.data.deal_order_list;
+              if(action==2){
+                
+                order_list.splice(keys, 1)
+                
+              }else if(action==1){
+                if(delivery_type==1){
+                  order_list[keys].status = 14;
+                  order_list[keys].status_str = '待骑手接单';
+                }else {
+                  order_list.splice(keys, 1)
+                }
+                
+              }
+              that.setData({
+                deal_order_list: order_list
+              })
+              //全部订单
+              that.getOrderList(0);
+            }
+            
+            //已完成的订单
+            that.getOrderList(2);
+            
+            
+          })
+        }
+      }
+    })
+  },
+  getOrderList:function(status){
+    var that = this;
+    if (status == 0) {
+      page = page_all;
+    } else if (status == 1) {
+      page = page_dealing;
+    } else if (status == 2) {
+      page = page_complete;
+    }
+    utils.PostRequest(api_v_url + '/order/orderlist', {
+      openid: openid,
+      merchant_id: merchant_id,
+      page: page,
+      status: status,
+      type: type
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(status==0){
+        that.setData({
+          all_order_list: data.result.datalist
+        })
+      }else if(status==1){
+        that.setData({
+          deal_order_list: data.result.datalist
+        })
+      }else if(status==2){
+        that.setData({
+          complete_order_list: data.result.datalist
+        })
+      }
+      
+
+    })
+  },
+  /**
    * 处理订单
    */
   deal_order: function (e) {
@@ -134,7 +250,7 @@ Page({
       content: '确认处理该订单?',
       success: function (res) {
         if (res.confirm) {
-          utils.PostRequest(api_v_url + '/order/dishorderProcess', {
+          utils.PostRequest(api_v_url + '/order/orderProcess', {
             order_id: order_id,
             openid: user_info.openid,
           }, (data, headers, cookies, errMsg, statusCode) => {
@@ -150,7 +266,7 @@ Page({
               })
 
               //处理中的订单
-              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              utils.PostRequest(api_v_url + '/order/orderlist', {
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_dealing,
@@ -162,7 +278,7 @@ Page({
                 })
               })
               //已完成的订单
-              utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+              utils.PostRequest(api_v_url + '/order/orderlist', {
                 openid: openid,
                 merchant_id: merchant_id,
                 page: page_complete,
@@ -184,7 +300,7 @@ Page({
             app.showToast('处理成功');
 
             //全部订单
-            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+            utils.PostRequest(api_v_url + '/order/orderlist', {
               openid: openid,
               merchant_id: merchant_id,
               page: page_all,
@@ -197,7 +313,7 @@ Page({
             })
 
             //已完成的订单
-            utils.PostRequest(api_v_url + '/order/dishOrderlist', {
+            utils.PostRequest(api_v_url + '/order/orderlist', {
               openid: openid,
               merchant_id: merchant_id,
               page: page_complete,
@@ -247,7 +363,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    that.getOrderList(0)
+    that.getOrderList(1)
+    that.getOrderList(2)
   },
 
   /**

@@ -26,6 +26,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border: #50d2c2 !important;
 }
 
+.wx-switch-input::before {
+  background: #EDEDED !important;
+  border: #EDEDED !important;
+}
+
 .link_relief {
   color: #a18668;
   /* color: #1cbeb6; */

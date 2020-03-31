@@ -26,6 +26,7 @@ Page({
   onLoad: function (options) {
     openid = options.openid;
     merchant_id = options.merchant_id;
+
   },
 
   /**
@@ -39,9 +40,35 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      merchant_id:merchant_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        merchant_info:data.result,
+        delivery_platform: data.result.delivery_platform,
+        is_shopself: data.result.is_shopself,
+      })
+    })
   },
-
+  setShopself:function(e){
+    var that = this;
+    console.log(e);
+    var status = e.detail.value;
+    if(status==false){
+      var is_shopself = 0;
+    }else if(status==true){
+      var is_shopself = 1;
+    }
+    utils.PostRequest(api_v_url + '/merchant/setShopself', {
+      openid: openid,
+      is_shopself: is_shopself
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        is_shopself: is_shopself
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -87,7 +114,7 @@ Page({
     switch (jumpType) {
       case 'basic':
         wx.navigateTo({
-          url: '/pages/hotel/setting/basic',
+          url: '/pages/hotel/setting/basic?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },
@@ -101,7 +128,7 @@ Page({
         break;
       case 'distribution':
         wx.navigateTo({
-          url: '/pages/hotel/setting/distribution',
+          url: '/pages/hotel/setting/distribution?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },
@@ -115,7 +142,7 @@ Page({
         break;
       case 'customer-pay':
         wx.navigateTo({
-          url: '/pages/hotel/setting/customer_pay',
+          url: '/pages/hotel/setting/customer_pay?merchant_id=' + merchant_id + '&openid=' + openid,
           success: function (res) {
             wx.hideLoading();
           },

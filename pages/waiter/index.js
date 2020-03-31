@@ -194,7 +194,7 @@ Page({
     utils.PostRequest(api_v_url + '/user/edit', {
       openid: openid,
       name: name,
-    }, (data, headers, cookies, errMsg, statusCode) => {
+    }, (data, headers, cookies, errMsg, statusCode) => {s
       that.setData({
         nickName: name,
         showChangeNikenameWindow: false

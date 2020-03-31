@@ -6,21 +6,31 @@
 
 <scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
 	<view class="wapper">
-		<!-- <view class="row flex_row_center_spaceBetween theme-panel" data-type="basic" bindtap="gotoSetting">
+		<view class="row flex_row_center_spaceBetween theme-panel" data-type="basic" bindtap="gotoSetting">
 			<view class="title">基本信息</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="distribution" bindtap="gotoSetting">
 			<view class="warper flex_row_center_spaceBetween">
 				<view class="title">配送设置</view>
-				<view class="choose theme-font3">平台配置</view>
+				<view class="choose theme-font3" wx:if="{{delivery_platform==1}}">平台配置</view>
+				<view class="choose theme-font3" wx:if="{{delivery_platform==2}}">自主配置</view>
 			</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+		<view class="row flex_row_center_spaceBetween theme-panel" data-type="distribution">
+			<view class="warper flex_row_center_spaceBetween">
+				<view class="title">支持到店自取</view>
+				<view class="choose theme-font3">
+					<switch  wx:if="{{is_shopself==1}}" checked='true' bindchange="setShopself"></switch>
+          <switch  wx:else  bindchange="setShopself"></switch>
+				</view>
+			</view>
 		</view>
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="customer-pay" bindtap="gotoSetting">
 			<view class="title">收款设置</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
-		</view> -->
+		</view>
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="third-platform" bindtap="gotoSetting">
 			<view class="title">第三方外卖平台</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

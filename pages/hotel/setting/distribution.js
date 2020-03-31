@@ -1,19 +1,24 @@
-// pages/hotel/order/detail.js
+// pages/hotel/setting/distribution.js
+/**
+ * 配送设置页面
+ */
 const app = getApp()
 const mta = require('../../../utils/mta_analysis.js')
 const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_url = app.globalData.oss_url;
 var cache_key = app.globalData.cache_key;
+var merchant_id;
 var openid;
-var order_id; 
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    statusBarHeight: getApp().globalData.statusBarHeight,
+    delivery_platform:''
   },
 
   /**
@@ -21,45 +26,36 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //openid = options.openid;
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    console.log(user_info)
-    openid = user_info.openid;
-    order_id = options.order_id
-    utils.PostRequest(api_v_url + '/order/detail', {
-      openid: openid,
-      order_id:order_id
+    openid = options.openid;
+    merchant_id = options.merchant_id;
+    utils.PostRequest(api_v_url + '/merchant/info', {
+      merchant_id: merchant_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      var merchant_info = data.result;
       that.setData({
-        order_info: data.result,
-        markers: data.result.markers
+        delivery_platform: data.result.delivery_platform
       })
     })
   },
-  reFreshOrder:function(e){
+  platformChange:function(e){
     var that = this;
-    utils.PostRequest(api_v_url + '/order/detail', {
-      openid: openid,
-      order_id: order_id
-    }, (data, headers, cookies, errMsg, statusCode) => {
-
-      that.setData({
-        order_info: data.result,
-        markers: data.result.markers
-      })
-      app.showToast('刷新成功');
+    var delivery_platform = e.detail.value;
+    that.setData({
+      delivery_platform: delivery_platform
     })
   },
-  /**
-   * 拨打订餐电话
-   */
-  phonecallevent: function (e) {
-    var tel = e.target.dataset.tel;
-    wx.makePhoneCall({
-      phoneNumber: tel
+  setPlatform:function(e){
+    var that = this;
+    var delivery_platform = that.data.delivery_platform;
+    utils.PostRequest(api_v_url + '/merchant/setDeliveryPlatform', {
+      openid: openid,
+      delivery_platform: delivery_platform,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('保存成功');
+      wx.navigateBack({
+        delta:1
+      })
     })
-
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

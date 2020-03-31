@@ -1,30 +1,8 @@
-/* pages/user/register.wxss */
+/* pages/hotel/setting/basic.wxss */
 /**
- * 用户注册页面
+ * 基本信息设置页面
  */
 
-
-.tab-bar {
-  width: 100%;
-  height: 110rpx;
-}
-
-.tab-bar>.tab {
-  width: 200rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  font-size: 32rpx;
-  border: 3rpx solid #A18668;
-}
-
-.tab-bar>.tab.agent {
-  border-radius: 0 10rpx 10rpx 0;
-}
-
-.tab-bar>.tab.hotel {
-  border-radius: 10rpx 0 0 10rpx;
-}
 
 .panel {
   width: 100%;
@@ -134,82 +112,21 @@
   font-size: 28rpx;
 }
 
-.agent>.panel:first-child {
-  margin-top: 0;
-}
-
-.agent>.panel>.body>.valicode>.input-group>.input {
-  width: calc(100% - 130rpx);
-}
-
-.agent>.panel>.body>.valicode>.input-group>.btn {
-  width: 100rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #A18668;
-  border: 3rpx solid #A18668;
-  border-radius: 5rpx;
-  margin: 0;
-  padding: 0;
-}
-
-/* ============================ 基本信息 ============================ */
-.basic {
-  height: 600rpx;
-  margin-top: 0;
-}
-
-.basic>.body>.consumption-per-person>.input-group>.input {
-  width: calc(100% - 100rpx);
-}
-
-.basic>.body>.consumption-per-person>.input-group>.unit {
-  width: 100rpx;
-  text-align: right;
-  font-size: 28rpx;
-}
-
-.basic>.body>.city>.input-group>.input {
-  width: 45%;
-}
-
-.basic>.body>.city>.input-group>.input:last-child {
-  margin-right: -3rpx;
-}
-
-.basic>.body>.address {
-  margin-top: 10rpx;
-  height: 130rpx;
-}
-
-.basic>.body>.address>.input-group {
-  height: 100%;
-}
-
-.basic>.body>.address>.input-group>.input {
-  height: 100%;
-}
-
-/* ============================ 餐厅形象 ============================ */
-.face>.body>.shop-face>.input-group>.frame {
-  width: 100%;
-}
-
-.face>.body>.shop-face>.input-group>.frame>.explain {
-  text-align: left;
-}
-
 /* ============================ 营业时间 ============================ */
 .business-time>.body>.make-time>.input-group>.input {
   width: calc(100% - 100rpx);
 }
 
 .business-time>.body>.make-time>.input-group>.unit {
-  width: 100rpx;
+  width: 60rpx;
   text-align: right;
   font-size: 28rpx;
+}
+
+.business-time>.body>.make-time>.input-group>.fa {
+  width: 40rpx;
+  text-align: right;
+  font-size: 36rpx;
 }
 
 .business-time>.body>.datetime>.input-group>.input {
@@ -220,38 +137,19 @@
   margin-right: -3rpx;
 }
 
-/* ============================ 经营信息 ============================ */
+/* ============================ 公告 ============================ */
+.notice {
+  height: 260rpx;
+}
+
+.notice>.body>.row>.input-group>textarea.input {
+  width: 100%;
+  height: 210rpx;
+}
+
+/* ============================ 资质上传 ============================ */
 .manage {
-  height: 580rpx;
-}
-
-/* ============================ 联系人 ============================ */
-.contacts {
-  height: 320rpx;
-}
-
-.contacts>.body>.validate-code>.input-group>.input {
-  width: calc(100% - 150rpx);
-}
-
-.contacts>.body>.validate-code>.input-group>.btn-get-code {
-  width: 120rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  text-align: center;
-  margin-right: -3rpx;
-  border-radius: 5rpx;
-  font-size: 32rpx;
-}
-
-.contacts>.body>.validate-code>.input-group>.btn-get-code.enable {
-  color: #a18668;
-  border: 1px solid #a18668;
-}
-
-.contacts>.body>.validate-code>.input-group>.btn-get-code.disable {
-  color: #bebebe;
-  border: 1px solid #bebebe;
+  height: 330rpx;
 }
 
 .btn-group {
@@ -260,13 +158,14 @@
   margin-top: 20rpx;
 }
 
-.btn-group>.submit {
+.btn-group>.btn {
   width: 100%;
   height: 88rpx;
   line-height: 88rpx;
+  text-align: center;
+  border-radius: 0;
+  font-size: 32rpx;
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 0;
-  font-size: 32rpx;
 }

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "收款设置",
+  "disableScroll": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal"
+  }
+}
