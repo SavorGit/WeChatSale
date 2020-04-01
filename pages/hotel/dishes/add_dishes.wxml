@@ -2,8 +2,15 @@
 <wxs src="../../../app.wxs" module="app"></wxs>
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<form bindsubmit="addDishes">
-		<view class="goods-info flex_column_center theme7">
+	<view class="tab-bar flex_row_center_center theme7">
+		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ''}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
+		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ''}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
+	</view>
+
+
+	<!-- 外卖菜品 -->
+	<form wx:if="{{tab == 'take-out'}}" bindsubmit="addDishes">
+		<view class="panel foods-info flex_column_center theme7">
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品名</view>
 				<textarea class="input" placeholder="请输入菜品名称" name="name" maxlength="50"></textarea>
@@ -12,52 +19,50 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
-      <!-- <view class="row flex_row_flexStart_spaceBetween">
+			<!-- <view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">是否支持全国售卖</view>
 				<radio-group class="radio-group" bindchange="changeSale">
-            
           <radio value="1" checked="{{is_sale==1?true:false}}">是</radio>
           <radio value="0" checked="{{is_sale==0?true:false}}">否</radio>
         </radio-group>
-			</view> -->
+			</view> 
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">全国售卖</view>
 				<view class="input" style="border:none;">
-					<switch checked="{{is_sale==1?true:false}}"  bindchange="changeSale"/>
+					<switch checked="{{is_sale==1?true:false}}" bindchange="changeSale" />
 				</view>
-			</view>
+			</view>-->
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
-				 <view class="lable flex_column_flexStart theme-font1">
+				<view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>
 					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
 				</view>
-				<view class="wapper">
+				<view class="warpper">
 					<block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-					<view class="cell flex_column_center_center">
-						<view  class="image-waper flex_column_center_center">
-							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="1">
-								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+						<view class="cell flex_column_center_center">
+							<view class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="1">
+									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+								</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
 							</view>
-							<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
-						</view> 
-					</view>
-					<view class="cell flex_column_center_center" wx:if="{{index+1==dish_img_list.length && dish_img_list.length<6}}">
+						</view>
+						<view class="cell flex_column_center_center" wx:if="{{index+1==dish_img_list.length && dish_img_list.length<6}}">
+							<view class="image-waper flex_column_center_center">
+								<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
+							</view>
+						</view>
+					</block>
+					<view class="cell flex_column_center_center" wx:if="{{dish_img_list.length<1}}">
 						<view class="image-waper flex_column_center_center">
 							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
-					</block>
-					<view class="cell flex_column_center_center" wx:if="{{dish_img_list.length<1}}">
-						<view class="image-waper flex_column_center_center" >
-							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
-						</view>
-					</view>
 				</view>
-				
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品介绍</view>
-				<view class="wapper flex_column_center">
+				<view class="warpper flex_column_center">
 					<textarea class="input" placeholder="请输入菜品介绍" name="intro" maxlength="300"></textarea>
 					<!--
 					<view>
@@ -71,33 +76,164 @@
 					<p>详情图片</p>
 					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
 				</view>
-				<view class="wapper">
+				<view class="warpper">
 					<block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-					<view class="cell flex_column_center_center">
-						<view  class="image-waper flex_column_center_center">
-							<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="2">
-								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+						<view class="cell flex_column_center_center">
+							<view class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="2">
+									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+								</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
 							</view>
-							<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
-						</view> 
-					</view>
-					<view class="cell flex_column_center_center" wx:if="{{index+1==dish_intro_img_list.length&&dish_intro_img_list.length<6}}">
-						<view  class="image-waper flex_column_center_center"  >
-							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
 						</view>
-					</view>
+						<view class="cell flex_column_center_center" wx:if="{{index+1==dish_intro_img_list.length&&dish_intro_img_list.length<6}}">
+							<view class="image-waper flex_column_center_center">
+								<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
+							</view>
+						</view>
 					</block>
 					<view class="cell flex_column_center_center" wx:if="{{dish_intro_img_list.length<1}}">
-						<view  class="image-waper flex_column_center_center"  >
+						<view class="image-waper flex_column_center_center">
 							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
 						</view>
 					</view>
 				</view>
-				
 			</view>
 		</view>
-		
-
 		<button class="btn save theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">保存</button>
 	</form>
+
+
+	<!-- 售全国商品 -->
+	<form wx:if="{{tab == 'nationwide'}}" bindsubmit="">
+		<view class="panel goods-info flex_column_center theme7">
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">商品名称</view>
+				<input class="input" placeholder="请输入商品名称"></input>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">分类</view>
+				<picker class="input">
+					<view class="flex_row_center_spaceBetween">
+						<view>请选择</view>
+						<view class="fa fa-caret-down"></view>
+					</view>
+				</picker>
+			</view>
+			<view class="question_row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">建议零售价</view>
+				<view class="warpper flex_row_center_spaceBetween">
+					<view class="input flex_row_center_spaceBetween">
+						<input placeholder="请输入"></input>
+						<view>元</view>
+					</view>
+					<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="SuggestedRetailPrice" bindtap="openTipPopWindow"></view>
+				</view>
+			</view>
+			<view class="question_row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">包邮供货价</view>
+				<view class="warpper flex_row_center_spaceBetween">
+					<view class="input flex_row_center_spaceBetween">
+						<input placeholder="请输入"></input>
+						<view>元</view>
+					</view>
+					<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="DeliveryPriceByParcelPost" bindtap="openTipPopWindow"></view>
+				</view>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
+				<input class="input" placeholder="请输入库存量"></input>
+			</view>
+			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
+				<view class="lable flex_column_flexStart theme-font1">
+					<p>商品图</p>
+					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
+				</view>
+				<view class="warpper">
+					<block wx:for="{{dish_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+						<view class="cell flex_column_center_center">
+							<view class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="1">
+									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+								</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="1"></image>
+							</view>
+						</view>
+						<view class="cell flex_column_center_center" wx:if="{{index+1==dish_img_list.length && dish_img_list.length<6}}">
+							<view class="image-waper flex_column_center_center">
+								<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
+							</view>
+						</view>
+					</block>
+					<view class="cell flex_column_center_center" wx:if="{{dish_img_list.length<1}}">
+						<view class="image-waper flex_column_center_center">
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="1" disabled="{{upDisabled}}"></button>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="pic_row one_pic_rows flex_row_flexStart_spaceBetween">
+				<view class="lable flex_column_flexStart theme-font1">
+					<p>视频介绍</p>
+					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
+				</view>
+				<view class="warpper">
+					<view class="cell flex_column_center_center">
+						<!--
+						<view class="image-waper flex_column_center_center">
+							<view class="del-pic flex_column_flexEnd">
+								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+							</view>
+							<image mode="aspectFill" src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						</view>
+						-->
+						<view class="image-waper flex_column_center_center">
+							<button class="fa fa-plus" aria-hidden="true"></button>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">文字详情</view>
+				<view class="warpper flex_column_center">
+					<textarea class="input" placeholder="请输入"></textarea>
+				</view>
+			</view>
+			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
+				<view class="lable flex_column_flexStart theme-font1">
+					<p>图片详情</p>
+				</view>
+				<view class="warpper">
+					<block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+						<view class="cell flex_column_center_center">
+							<view class="image-waper flex_column_center_center">
+								<view class="del-pic flex_column_flexEnd" bindtap="delPic" data-keys="{{index}}" data-type="2">
+									<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
+								</view>
+								<image mode="aspectFill" src="{{oss_url}}{{bean}}" bindtap="uploadOneDishesPic" data-keys="{{index}}" data-type="2"></image>
+							</view>
+						</view>
+						<view class="cell flex_column_center_center" wx:if="{{index+1==dish_intro_img_list.length&&dish_intro_img_list.length<6}}">
+							<view class="image-waper flex_column_center_center">
+								<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
+							</view>
+						</view>
+					</block>
+					<view class="cell flex_column_center_center" wx:if="{{dish_intro_img_list.length<1}}">
+						<view class="image-waper flex_column_center_center">
+							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadDishesPic" data-type="2" disabled="{{upDisabled}}"></button>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<button class="btn save theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">保存</button>
+	</form>
+
 </scroll-view>
+
+
+<!-- 提示弹窗 -->
+<modal show="{{showTipPopWindow}}" width="600rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='{{tipTitle}}' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='关闭' confirm-color="#ffffff" confirm-background-color="#a18668" confirm-border-radius="0 0 10rpx 10rpx" cancel-text='' cancel-color='rgba(7,17,27,0.6)' cancel-background-color="unset" cancel-border-radius="0rpx" bindconfirm='closeTipPopWindow'>
+	<view wx:for="{{tipContentArray}}" wx:for-item="tipContent" wx:key="key" wx:for-index="index" style="padding:0 30rpx;font-size:28rpx;">{{tipContent}}</view>
+</modal>

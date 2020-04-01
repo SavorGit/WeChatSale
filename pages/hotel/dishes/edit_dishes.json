@@ -1,5 +1,8 @@
 {
-  "navigationBarTitleText": "编辑菜品",
+  "navigationBarTitleText": "编辑菜品/商品",
   "disableScroll": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal"
+  }
 }

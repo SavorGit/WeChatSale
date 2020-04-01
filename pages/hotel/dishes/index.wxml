@@ -5,6 +5,7 @@
 		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ' theme-font3'}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
 	</view>
 
+	<!-- 外卖菜品 -->
 	<view wx:if="{{tab == 'take-out'}}" class="tab-body take-out">
 		<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 			<view class="list flex_column_center">
@@ -35,6 +36,7 @@
 		</view>
 	</view>
 
+	<!-- 售全国商品 -->
 	<view wx:if="{{tab == 'nationwide'}}" class="tab-body nationwide">
 		<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
 			<view class="list flex_column_center">
