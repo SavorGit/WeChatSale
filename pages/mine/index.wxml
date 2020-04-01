@@ -1,6 +1,6 @@
 <!--pages/mine/index.wxml-->
 <import src="/pages/template/commons" />
-<scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true" >
+<scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 
 	<!-- 用户信息面板 -->
 	<!--
@@ -31,7 +31,7 @@
 		<view class="left"></view>
 		<view class="center flex_column_center_center">
 			<!-- <image class='head-img' src='{{avatarUrl}}' bindtap="openUserAscriptionInfomationWindow"></image> -->
-      <image class='head-img' src='{{avatarUrl}}'></image>
+			<image class='head-img' src='{{avatarUrl}}'></image>
 			<view class='nickname'>{{nickName}}</view>
 		</view>
 		<view class="right flex_row_flexStart_flexEnd" bindtap="gotoSetting">
@@ -50,10 +50,11 @@
 	<!-- 销售面板 -->
 	<view class="sale-panel">
 		<view class="wapper flex_row_center_spaceAround broadcast-panel">
-			<view class="shop">
+			<view class="shop" bindtap="">
 				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
 				<view>我的店铺</view>
 			</view>
+			<!--
 			<view class="order flex_row_center_spaceBetween" wx:if="{{is_purchase==1}}">
 				<view bindtap="saleDishes">
 					<view>{{dish_num}}</view>
@@ -81,6 +82,23 @@
 				<view bindtap="gotoOrder" data-order_status="0" data-type="0">
 					<view>{{dishorder_all_num}}</view>
 					<view>全部订单</view>
+				</view>
+			</view>
+			-->
+			<view class="order flex_row_center_spaceAround">
+				<view class="flex_column_center_center" bindtap="">
+					<view>
+						<view>15</view>
+						<view class="marker theme-button-add">10</view>
+					</view>
+					<view>外卖订单</view>
+				</view>
+				<view class="flex_column_center_center" bindtap="">
+					<view>
+						<view>100</view>
+						<view class="marker theme-button-add">88</view>
+					</view>
+					<view>商城订单</view>
 				</view>
 			</view>
 		</view>
@@ -139,15 +157,15 @@
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
-        <block wx:if="{{role_type==1}}">
-				<navigator url="/pages/mine/team_members">更多...</navigator>
-        </block>
-        <block wx:if="{{role_type==2}}">
-          <navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}">更多...</navigator>
-        </block>
-      </label>
+				<block wx:if="{{role_type==1}}">
+					<navigator url="/pages/mine/team_members">更多...</navigator>
+				</block>
+				<block wx:if="{{role_type==2}}">
+					<navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}">更多...</navigator>
+				</block>
+			</label>
 		</view>
-    <view class="list">
+		<view class="list">
 			<view class="cell add" bindtap="addStaff">
 				<label class="fa fa-plus"></label>
 			</view>
@@ -155,7 +173,7 @@
 				<image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
 			</view>
 		</view>
-  </view>
+	</view>
 	<!-- <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>

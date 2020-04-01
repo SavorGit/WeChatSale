@@ -10,19 +10,23 @@ var oss_url = app.globalData.oss_url;
 var merchant_id;
 var openid;
 var goods_id;
-let swapImageObject = { 1: null, 2: null };
+let swapImageObject = {
+  1: null,
+  2: null
+};
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dish_img_list: [],        //菜品图
-    dish_intro_img_list: [],   //菜品介绍图
+    tab: 'take-out',
+    dish_img_list: [], //菜品图
+    dish_intro_img_list: [], //菜品介绍图
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
-    is_sale:'',
+    is_sale: '',
   },
 
   /**
@@ -41,7 +45,7 @@ Page({
       var dish_intro_img_list = data.result.detail_imgs_path;
       var is_sale = goods_info.is_sale;
       that.setData({
-        is_sale:is_sale,
+        is_sale: is_sale,
         goods_info: goods_info,
         dish_img_list: dish_img_list,
         dish_intro_img_list: dish_intro_img_list,
@@ -90,9 +94,9 @@ Page({
         var index2 = filename.length;
         var timestamp = (new Date()).valueOf();
 
-        var postf = filename.substring(index1, index2);//后缀名\
-        var postf_t = filename.substring(index1, index2);//后缀名
-        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+        var postf = filename.substring(index1, index2); //后缀名\
+        var postf_t = filename.substring(index1, index2); //后缀名
+        var postf_w = filename.substring(index1 + 1, index2); //后缀名
 
         var img_url = timestamp + postf;
 
@@ -157,7 +161,9 @@ Page({
                   })
                 }, 1000);
               },
-              fail: function ({ errMsg }) {
+              fail: function ({
+                errMsg
+              }) {
                 wx.hideLoading();
                 app.showToast('图片上传失败，请重试')
                 that.setData({
@@ -165,14 +171,16 @@ Page({
                 })
               },
             });
-          }, fail: function (e) {
+          },
+          fail: function (e) {
             wx.hideLoading();
             that.setData({
               addDisabled: false
             })
           }
         })
-      }, fail: function (e) {
+      },
+      fail: function (e) {
         wx.hideLoading();
         that.setData({
           addDisabled: false
@@ -204,13 +212,13 @@ Page({
       addDisabled: true,
       upDisabled: true
     })
-    
+
     wx.chooseImage({
       count: choose_num, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;  //多张图片临时地址
+        var tempFilePaths = res.tempFilePaths; //多张图片临时地址
         var flag = tempFilePaths.length + total_pic;
         console.log(flag)
         wx.request({
@@ -229,9 +237,9 @@ Page({
               var index2 = filename.length;
               var timestamp = (new Date()).valueOf();
 
-              var postf = filename.substring(index1, index2);//后缀名
-              var postf_t = filename.substring(index1, index2);//后缀名
-              var postf_w = filename.substring(index1 + 1, index2);//后缀名
+              var postf = filename.substring(index1, index2); //后缀名
+              var postf_t = filename.substring(index1, index2); //后缀名
+              var postf_w = filename.substring(index1 + 1, index2); //后缀名
 
               var img_url = timestamp + postf;
               //console.log(img_url)
@@ -251,7 +259,8 @@ Page({
 
 
 
-      }, fail: function (e) {
+      },
+      fail: function (e) {
         wx.hideLoading();
         that.setData({
           addDisabled: false,
@@ -281,17 +290,18 @@ Page({
         sucess_action_status: "200",
         signature: signature
 
-      }, success: function (res) {
+      },
+      success: function (res) {
 
         if (type == 1) {
           var dish_img_list = that.data.dish_img_list;
           dish_img_list.push("forscreen/resource/" + img_url);
-          
+
           var end_flag = dish_img_list.length
         } else if (type == 2) {
           var dish_intro_img_list = that.data.dish_intro_img_list;
           dish_intro_img_list.push("forscreen/resource/" + img_url);
-          
+
           var end_flag = dish_intro_img_list.length
         }
 
@@ -350,7 +360,7 @@ Page({
       })
     }
   },
-  changeSale:function(e){
+  changeSale: function (e) {
     var is_sale = this.data.is_sale
     if (is_sale == 1) {
       is_sale = 0;
@@ -389,8 +399,8 @@ Page({
     }
     var dish_intro_img_list = that.data.dish_intro_img_list;
     console.log(that.data)
-    if (dish_intro_img_list.length == 0) {//如果菜品图为空
-      if (intro == '') {//如果菜品介绍为空
+    if (dish_intro_img_list.length == 0) { //如果菜品图为空
+      if (intro == '') { //如果菜品介绍为空
         app.showToast('请填写菜品介绍或者上传详情图片')
         return false;
       }
@@ -432,7 +442,7 @@ Page({
       that.setData({
         addDisabled: false,
       })
-      
+
     }, function () {
       that.setData({
         addDisabled: false,
@@ -520,7 +530,9 @@ Page({
     let self = this;
     let clickIndex = e.currentTarget.dataset.index;
     let picType = e.currentTarget.dataset.type;
-    let propetyNameProfix = "", nextClickTip = null, reclickTip = null;
+    let propetyNameProfix = "",
+      nextClickTip = null,
+      reclickTip = null;
     if (picType == 1) {
       propetyNameProfix = "dish_img";
       reclickTip = "操作错误，重新选择第一张菜品图片";
@@ -533,18 +545,72 @@ Page({
     let picObj = self.data[propetyNameProfix + clickIndex];
     if (typeof (picObj) != "string" || picObj.trim() == "") {
       swapImageObject[picType] = null;
-      wx.showToast({ icon: 'none', title: reclickTip, duration: 3000 });
+      wx.showToast({
+        icon: 'none',
+        title: reclickTip,
+        duration: 3000
+      });
       return;
     }
     if (swapImageObject[picType] == null) {
-      swapImageObject[picType] = { index: clickIndex, picObj: picObj };
-      wx.showToast({ icon: 'none', title: nextClickTip, duration: 3000 });
+      swapImageObject[picType] = {
+        index: clickIndex,
+        picObj: picObj
+      };
+      wx.showToast({
+        icon: 'none',
+        title: nextClickTip,
+        duration: 3000
+      });
       return;
     }
-    let lastImageObject = swapImageObject[picType]; swapImageObject[picType] = null;
+    let lastImageObject = swapImageObject[picType];
+    swapImageObject[picType] = null;
     let dataSrc = self.data;
     dataSrc[propetyNameProfix + lastImageObject.index] = picObj;
     dataSrc[propetyNameProfix + clickIndex] = lastImageObject.picObj;
     self.setData(dataSrc);
   },
+
+
+  // 选项卡选择
+  showTab: function (e) {
+    let self = this;
+    let tabType = e.currentTarget.dataset.tab;
+    self.setData({
+      tab: tabType
+    });
+  },
+
+  // 打开提示弹窗
+  openTipPopWindow: function (e) {
+    let self = this;
+    let tipType = e.currentTarget.dataset.type;
+    switch (tipType) {
+      case 'SuggestedRetailPrice':
+        self.setData({
+          showTipPopWindow: true,
+          tipTitle: '建议零售价',
+          tipContentArray: ['点击建议零售价时，提示“建议零售价即市场指导价，是建议卖给普通用户的价格”；']
+        });
+        break;
+      case 'DeliveryPriceByParcelPost':
+        self.setData({
+          showTipPopWindow: true,
+          tipTitle: '包邮供货价',
+          tipContentArray: ['点击包邮供货价时。提示“包邮供货价即餐厅给小热点的包邮供货价格，订单成交后，小热点会按照包邮供货价为餐厅进行结算”']
+        });
+        break;
+      default:
+        break;
+    }
+  },
+
+  // 打开提示弹窗
+  closeTipPopWindow: function (e) {
+    let self = this;
+    self.setData({
+      showTipPopWindow: false
+    });
+  }
 })

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "在售菜品",
+  "navigationBarTitleText": "在售菜品/商品",
   "disableScroll": true,
   "usingComponents": {
     "MailList": "/components/modal/MailList",
