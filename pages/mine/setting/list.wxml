@@ -22,8 +22,8 @@
 			<view class="warper flex_row_center_spaceBetween">
 				<view class="title">支持到店自取</view>
 				<view class="choose theme-font3">
-					<switch  wx:if="{{is_shopself==1}}" checked='true' bindchange="setShopself"></switch>
-          <switch  wx:else  bindchange="setShopself"></switch>
+					<switch wx:if="{{is_shopself==1}}" checked='true' bindchange="setShopself"></switch>
+					<switch wx:else bindchange="setShopself"></switch>
 				</view>
 			</view>
 		</view>
@@ -35,9 +35,11 @@
 			<view class="title">第三方外卖平台</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
+		<!--
 		<view class="row flex_row_center_spaceBetween theme-panel" data-type="agent-setting" bindtap="gotoSetting">
 			<view class="title">分销设置</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
+		-->
 	</view>
 </scroll-view>
