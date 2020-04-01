@@ -1,8 +1,8 @@
 <!--pages/hotel/dishes/index.wxml-->
 <view class='container theme-container'>
-	<view class="tab-bar flex_row_center_center theme7">
-		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ''}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
-		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ''}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
+	<view class="tab-bar flex_row_center_spaceAround theme7">
+		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ' theme-font3'}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
+		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ' theme-font3'}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
 	</view>
 
 	<view wx:if="{{tab == 'take-out'}}" class="tab-body take-out">

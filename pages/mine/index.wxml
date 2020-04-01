@@ -77,7 +77,8 @@
 				</view>
 				<view class="flex_column_center_center" bindtap="">
 					<view>
-						<view>30</view>
+						<view>100</view>
+						<view class="marker theme-button-add">88</view>
 					</view>
 					<view>商城订单</view>
 				</view>

@@ -152,7 +152,7 @@
   font-size: 20rpx;
   border-radius: 14rpx;
   margin-top: -40rpx;
-  margin-left: 70rpx;
+  margin-left: 80rpx;
 }
 
 /* ================================ 收益概况面板 ================================ */
