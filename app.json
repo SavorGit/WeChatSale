@@ -4,7 +4,6 @@
     "pages/adv/index",
     "pages/birthday/index",
     "pages/commons/relief",
-    "pages/download/index",
     "pages/goods/goods_list",
     "pages/goods/goods_detail",
     "pages/h5/index",
@@ -39,7 +38,6 @@
     "pages/launch/file/h5files_result",
     "pages/launch/picture/index",
     "pages/launch/video/index",
-    "pages/message/list",
     "pages/mine/index",
     "pages/mine/exchange",
     "pages/mine/pop_list",
@@ -54,7 +52,6 @@
     "pages/mine/select_waiter",
     "pages/mine/setting/list",
     "pages/template/commons",
-    "pages/tv_sale/mine",
     "pages/tv_sale/system",
     "pages/task/index",
     "pages/user/invite",
@@ -62,8 +59,7 @@
     "pages/user/login",
     "pages/waiter/index",
     "pages/welcome/index",
-    "pages/welcome/hotel_add",
-    "pages/logs/logs"
+    "pages/welcome/hotel_add"
   ],
   "window": {
     "backgroundTextStyle": "light",
