@@ -1,0 +1,133 @@
+<!--pages/hotel/order/goods_detail.wxml-->
+<!--
+ | 商城订单详情页面
+ |-->
+
+
+<scroll-view class='container theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
+	<view class="page-wapper">
+		<view class="input-panel delivery theme-panel">
+			<view class="head">配送信息</view>
+			<view class="body flex_column_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween border-bottom">
+					<view class="left flex_row_center_spaceBetween">
+						<view class="fa fa-truck" aria-hidden="true"></view>
+						<view class="information logistics">
+							<view class="status">运输中</view>
+							<view class="info">离开XXXX，下一站XXXXXXXXX</view>
+							<view class="datetime theme-font3">2020-04-02 09:15</view>
+						</view>
+					</view>
+					<view class="right fa fa-chevron-right theme-font2" aria-hidden="true"></view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween" style="width:100%;">
+						<view class="fa fa-map-marker theme-font5" aria-hidden="true"></view>
+						<view class="information consignee-info flex_column_flexStart_flexStart">
+							<view class="top flex_row_center_spaceBetween">
+								<view class="name one-line-overflow">张三三</view>
+								<view class="phone one-line-overflow theme-font3">13800138000</view>
+							</view>
+							<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="goods-info input-panel theme-panel">
+			<view class="head">商品信息</view>
+			<view class="body flex_column_center_spaceBetween">
+				<view class="hotel flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="name">淮扬府（安定门店）</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="center">
+						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
+						<view class="price theme-font5">￥66</view>
+					</view>
+					<view class="right flex_row_center_flexEnd">
+						<view class="count one-line-overflow">X1</view>
+					</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="center">
+						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
+						<view class="price theme-font5">￥66</view>
+					</view>
+					<view class="right flex_row_center_flexEnd">
+						<view class="count one-line-overflow">X2</view>
+					</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="center">
+						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
+						<view class="price theme-font5">￥66</view>
+					</view>
+					<view class="right flex_row_center_flexEnd">
+						<view class="count one-line-overflow">X3</view>
+					</view>
+				</view>
+			</view>
+			<view class="foot flex_row_center_spaceBetween">
+				<view>合计：6件商品</view>
+				<view>￥1280元</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">订单信息</view>
+			<view class="body flex_column_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">订单编号</view>
+					<view class="view">1234567890</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">下单时间</view>
+					<view class="view">2020-04-02 08:00</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">完成时间</view>
+					<view class="view">2020-04-02 11:00</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">订单金额</view>
+					<view class="view">￥1280元</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">支付方式</view>
+					<view class="view">微信支付</view>
+				</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">发票信息</view>
+			<view class="body flex_column_center_spaceBetween">
+				<!-- 企业 -->
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">企业名称</view>
+					<view class="view">深圳腾讯</view>
+				</view>
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">企业税号</view>
+					<view class="view">123456801</view>
+				</view>
+				<!-- 个人 -->
+				<view class="row flex_row_center_spaceBetween">
+					<view class="lable theme-font3">个人姓名</view>
+					<view class="view">张三三</view>
+				</view>
+			</view>
+		</view>
+		<view class="input-panel theme-panel">
+			<view class="head">订单备注</view>
+			<view class="body flex_column_center_spaceBetween">
+				<view class="row flex_row_center_spaceBetween" style="height:unset;">
+					<view class="view" style="width:100%;">倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>

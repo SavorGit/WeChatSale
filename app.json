@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/hotel/order/goods_tracking_number",
     "pages/index/index",
     "pages/adv/index",
     "pages/birthday/index",
@@ -14,6 +15,8 @@
     "pages/hotel/order/index",
     "pages/hotel/order/detail",
     "pages/hotel/order/agent",
+    "pages/hotel/order/goods_list",
+    "pages/hotel/order/goods_detail",
     "pages/hotel/register/index",
     "pages/hotel/platform/add",
     "pages/hotel/platform/index",

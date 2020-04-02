@@ -1,0 +1,166 @@
+/* pages/hotel/order/goods_detail.wxss */
+/**
+ * 商城订单详情页面
+ */
+
+
+.page-wapper {
+  width: 100%;
+  padding-top: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.input-panel {
+  width: 100%;
+  margin-top: 10rpx;
+  padding: 10rpx 0;
+}
+
+.input-panel>view {
+  width: calc(100% - 120rpx);
+  padding: 0 60rpx;
+}
+
+.input-panel>.head {
+  width: calc(100% - 60rpx);
+  height: 70rpx;
+  padding: 0 30rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+}
+
+.input-panel>.body>.row {
+  width: 100%;
+  height: 70rpx;
+}
+
+.input-panel>.body>.row>.lable {
+  width: 150rpx;
+  font-size: 28rpx;
+}
+
+.input-panel>.body>.row>.view {
+  width: calc(100% - 150rpx);
+  font-size: 28rpx;
+}
+
+.delivery>.body>.row {
+  height: unset;
+  padding: 10rpx 0;
+}
+
+.delivery>.body>.row>.left {
+  width: calc(100% - 70rpx);
+}
+
+.delivery>.body>.row>.right {
+  width: 60rpx;
+  text-align: right;
+}
+
+.delivery>.body>.row>.left>.fa {
+  width: 50rpx;
+  font-size: 46rpx;
+}
+
+.delivery>.body>.row>.left>.information {
+  width: calc(100% - 70rpx);
+}
+
+.delivery>.body>.row>.left>.information>.status {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.delivery>.body>.row>.left>.information>.info {
+  font-size: 28rpx;
+}
+
+.delivery>.body>.row>.left>.information>.datetime {
+  font-size: 24rpx;
+}
+
+.delivery>.body>.row>.left>.information>.top>.name {
+  font-size: 28rpx;
+}
+
+.delivery>.body>.row>.left>.information>.top>.phone {
+  font-size: 28rpx;
+}
+
+.delivery>.body>.row>.left>.information>.address {
+  font-size: 28rpx;
+}
+
+.delivery>.body>.row.border-bottom {
+  border-bottom: 3rpx solid #EDEDED;
+}
+
+.goods-info>.body {
+  width: calc(100% - 80rpx);
+  padding: 0 40rpx;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+}
+
+.goods-info>.body>.hotel {
+  width: 100%;
+  height: 90rpx;
+  padding: 20rpx 0;
+}
+
+.goods-info>.body>.hotel>.pic {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
+}
+
+.goods-info>.body>.hotel>.name {
+  width: calc(100% - 120rpx);
+  font-size: 24rpx;
+}
+
+.goods-info>.body>.row {
+  width: 100%;
+  height: 200rpx;
+}
+
+.goods-info>.body>.row>.pic {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+}
+
+.goods-info>.body>.row>.center {
+  width: calc(100% - 290rpx);
+  height: 160rpx;
+  font-size: 32rpx;
+  padding: 0 15rpx;
+}
+
+.goods-info>.body>.row>.center>view {
+  width: 100%;
+}
+
+.goods-info>.body>.row>.center>.price {
+  margin-top: 35rpx;
+}
+
+.goods-info>.body>.row>.right {
+  width: 100rpx;
+}
+
+.goods-info>.body>.row>.right>.count {
+  font-size: 32rpx;
+}
+
+.goods-info>.foot {
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+}
+
+.goods-info>.foot>view:last-child {
+  font-size: 32rpx;
+  font-weight: bold;
+}
