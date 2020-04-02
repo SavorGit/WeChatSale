@@ -8,6 +8,7 @@ var cache_key = app.globalData.cache_key;
 var merchant_id;
 var openid;
 var page = 1;
+var page_mall = 1;
 var hotel_id;
 Page({
 
@@ -27,18 +28,28 @@ Page({
     openid = options.openid;
     merchant_id = options.merchant_id;
     hotel_id = options.hotel_id;
-    //获取酒楼菜品列表
+    
+    that.getDishList(openid, merchant_id,1);      //获取酒楼菜品列表
+    that.getMerchantInfo(openid, merchant_id);    //获取商家信息
+    that.getMallGoodsList(openid,merchant_id,1);  //获取售全国商品
+  },
+  //获取酒楼菜品列表
+  getDishList: function (openid, merchant_id,page){
+    var that = this;
+    
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1,
-      hotel_id: hotel_id
+      page: page,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
       })
     })
-    //获取商家信息
+  },
+  //获取商家信息
+  getMerchantInfo: function (openid, merchant_id){
+    var that = this;
     utils.PostRequest(api_v_url + '/merchant/info', {
       openid: openid,
       merchant_id: merchant_id,
@@ -47,25 +58,34 @@ Page({
         merchant_info: data.result
       })
     })
-
-
+  },
+  //获取售全国商品
+  getMallGoodsList:function(openid,merchant_id,page){
+    utils.PostRequest(api_v_url + '/aa/bb/cc', {
+      openid: openid,
+      page: page,
+      merchant_id: merchant_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        goods_list: data.result,
+      })
+    })
   },
   /**
    * 加载更多
    */
   loadMore: function (e) {
     var that = this;
-    page += 1;
-    utils.PostRequest(api_v_url + '/dish/goodslist', {
-      openid: openid,
-      merchant_id: merchant_id,
-      page: page,
-      hotel_id: hotel_id
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        dishes_list: data.result
-      })
-    })
+    var tab = that.data.tab;
+    if (tab =='take-out'){//外卖菜品
+      var l_page = page;
+      l_page += 1;
+      that.getDishList(openid,merchant_id,l_page);
+    }else {//售全国商品
+      var l_page = page_mall;
+      l_page += 1;
+      that.getMallGoodsList(openid,merchant_id,l_page);
+    }
   },
   /**
    * 菜品置顶
@@ -87,11 +107,8 @@ Page({
           }, (data, headers, cookies, errMsg, statusCode) => {
             dishes_list[0].is_top = 0;
             top_item.is_top = 1;
-
             dishes_list.splice(index, 1);
             dishes_list.unshift(top_item);
-
-
             that.setData({
               dishes_list: dishes_list
             })
@@ -100,9 +117,6 @@ Page({
         }
       }
     })
-
-
-
   },
   /**
    * 上架下架商品
@@ -129,11 +143,6 @@ Page({
             goods_id: goods_id,
             status: status
           }, (data, headers, cookies, errMsg, statusCode) => {
-            /*var dishes_list = that.data.dishes_list;
-            dishes_list[keys].status = status;
-            that.setData({
-              dishes_list: dishes_list
-            })*/
             utils.PostRequest(api_v_url + '/dish/goodslist', {
               openid: openid,
               merchant_id: merchant_id,
@@ -144,21 +153,27 @@ Page({
                 dishes_list: data.result
               })
             })
-
             app.showToast(toast)
           })
         }
       }
     })
-
   },
   /**
-   * 新增菜品
+   * 新增菜品/新增商品
    */
   addDishes: function (e) {
-    wx.navigateTo({
-      url: '/pages/hotel/dishes/add_dishes?merchant_id=' + merchant_id + "&openid=" + openid,
-    })
+    var tab = this.data.tab;
+    if (tab =='take-out'){
+      wx.navigateTo({
+        url: '/pages/hotel/dishes/add_dishes?merchant_id=' + merchant_id + "&openid=" + openid + '&tab=take-out',
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/hotel/dishes/add_dishes?merchant_id=' + merchant_id + "&openid=" + openid +'&tab=nationwide',
+      })
+    }
+    
   },
   /**
    * 查看菜品详情
