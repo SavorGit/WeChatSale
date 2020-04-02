@@ -86,6 +86,10 @@
 			</view>
 			-->
 			<view class="order flex_row_center_spaceAround">
+				<view bindtap="gotoOrder" data-order_status="0" data-type="0">
+					<view>{{dishorder_all_num}}</view>
+					<view>全部订单</view>
+				</view>
 				<view class="flex_column_center_center" bindtap="">
 					<view>
 						<view>15</view>

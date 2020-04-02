@@ -1,0 +1,255 @@
+<!--pages/hotel/order/goods_list.wxml-->
+<!--
+ | 商城订单列表页面
+ |-->
+
+
+<view class='container theme-container'>
+	<view class="tab-bar flex_row_center_spaceAround theme-font1 theme7">
+		<view class="tab all{{tab == 'all' ? ' selected' :' theme-font3'}}" data-tab="all" bindtap="showTab">全部订单</view>
+		<view class="tab pending{{tab == 'pending' ? ' selected' :' theme-font3'}}" data-tab="pending" bindtap="showTab">待处理</view>
+		<view class="tab shipping{{tab == 'shipping' ? ' selected' :' theme-font3'}}" data-tab="shipping" bindtap="showTab">待发货</view>
+		<view class="tab completed{{tab == 'completed' ? ' selected' :' theme-font3'}}" data-tab="completed" bindtap="showTab">已完成</view>
+	</view>
+
+	<!-- 全部订单 -->
+	<scroll-view wx:if="{{tab == 'all'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_flexStart_center">
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">待处理</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<view class="btn theme-button-welcome">接单</view>
+				</view>
+			</view>
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">待发货</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<view class="btn theme-button-welcome">发货</view>
+				</view>
+			</view>
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">已派送</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<!-- <view class="btn theme-button-welcome">接单</view> -->
+				</view>
+			</view>
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">已取消</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<!-- <view class="btn theme-button-welcome">接单</view> -->
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<!-- 待处理订单 -->
+	<scroll-view wx:if="{{tab == 'pending'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_flexStart_center">
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">待处理</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<view class="btn theme-button-welcome">接单</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<!-- 待发货订单 -->
+	<scroll-view wx:if="{{tab == 'shipping'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_flexStart_center">
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">待发货</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<view class="btn theme-button-welcome">发货</view>
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+	<!-- 已完成订单 -->
+	<scroll-view wx:if="{{tab == 'completed'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_flexStart_center">
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">已派送</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<!-- <view class="btn theme-button-welcome">接单</view> -->
+				</view>
+			</view>
+			<view class="item theme-panel">
+				<view class="goods flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
+					</view>
+					<view class="right flex_column_flexEnd_spaceBetween">
+						<view class="status one-line-overflow theme-font3">已取消</view>
+						<view class="bottom flex_column_flexEnd_center">
+							<view class="price one-line-overflow">￥66</view>
+							<view class="count one-line-overflow theme-font3">共1件</view>
+						</view>
+					</view>
+				</view>
+				<view class="consignee-info flex_column_flexStart_flexStart">
+					<view class="top flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">张三三</view>
+						<view class="phone one-line-overflow">13800138000</view>
+					</view>
+					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+				</view>
+				<view class="bottom flex_row_center_spaceBetween">
+					<view class="datetime">2020-04-02 11:50</view>
+					<!-- <view class="btn theme-button-welcome">接单</view> -->
+				</view>
+			</view>
+		</view>
+	</scroll-view>
+
+</view>
