@@ -25,7 +25,6 @@
     "pages/hotel/setting/basic",
     "pages/hotel/setting/customer_pay",
     "pages/hotel/setting/distribution",
-    "pages/hotel/order/goods_tracking_number",
     "pages/purchase/index",
     "pages/purchase/auth",
     "pages/purchase/merchant/index",
