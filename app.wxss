@@ -139,6 +139,7 @@ button::before {
   height: 100%;
 }
 
+.flex_row_stretch_flexStart,
 .flex_row_flexStart,
 .flex_row_flexStart_flexStart,
 .flex_row_flexStart_flexEnd,
@@ -171,6 +172,7 @@ button::before {
 .flex_column_flexStart_center,
 .flex_column_flexStart_spaceBetween,
 .flex_column_flexStart_spaceAround,
+.flex_column_flexStart_spaceEvenly,
 .flex_column_center,
 .flex_column_center_flexStart,
 .flex_column_center_flexEnd,
@@ -190,6 +192,7 @@ button::before {
   display: flex;
 }
 
+.flex_row_stretch_flexStart,
 .flex_row_flexStart,
 .flex_row_flexStart_flexStart,
 .flex_row_flexStart_flexEnd,
@@ -225,6 +228,7 @@ button::before {
 .flex_column_flexStart_center,
 .flex_column_flexStart_spaceBetween,
 .flex_column_flexStart_spaceAround,
+.flex_column_flexStart_spaceEvenly,
 .flex_column_center,
 .flex_column_center_flexStart,
 .flex_column_center_flexEnd,
@@ -244,6 +248,10 @@ button::before {
   flex-direction: column;
 }
 
+.flex_row_stretch_flexStart {
+  align-items: stretch;
+}
+
 .flex_row_flexStart,
 .flex_row_flexStart_flexStart,
 .flex_row_flexStart_flexEnd,
@@ -259,7 +267,8 @@ button::before {
 .flex_column_flexStart_end,
 .flex_column_flexStart_center,
 .flex_column_flexStart_spaceBetween,
-.flex_column_flexStart_spaceAround {
+.flex_column_flexStart_spaceAround,
+.flex_column_flexStart_spaceEvenly {
   align-items: flex-start;
 }
 
@@ -301,6 +310,7 @@ button::before {
   align-items: flex-end;
 }
 
+.flex_row_stretch_flexStart,
 .flex_row_flexStart_flexStart,
 .flex_row_center_flexStart,
 .flex_row_flexEnd_flexStart,
@@ -362,6 +372,10 @@ button::before {
 .flex_column_center_spaceAround,
 .flex_column_flexEnd_spaceAround {
   justify-content: space-around;
+}
+
+.flex_column_flexStart_spaceEvenly {
+  justify-content: space-evenly;
 }
 
 /* ================================== 文字 ================================== */
