@@ -92,10 +92,19 @@ Page({
    */
   setTop: function (e) {
     var that = this;
+    var tab = that.data.tab;
+
     var index = e.currentTarget.dataset.keys;
     var goods_id = e.currentTarget.dataset.goods_id;
-    var dishes_list = that.data.dishes_list;
-    var top_item = dishes_list[index];
+
+    if (tab =='take-out'){
+      var dishes_list = that.data.dishes_list;
+      var top_item = dishes_list[index];
+    }else {
+      var goods_list = that.data.goods_list;
+      var top_item = goods_list[index];
+    }
+    
     wx.showModal({
       title: '提示',
       content: '确认置顶该商品?',
@@ -105,13 +114,24 @@ Page({
             goods_id: goods_id,
             openid: openid,
           }, (data, headers, cookies, errMsg, statusCode) => {
-            dishes_list[0].is_top = 0;
-            top_item.is_top = 1;
-            dishes_list.splice(index, 1);
-            dishes_list.unshift(top_item);
-            that.setData({
-              dishes_list: dishes_list
-            })
+            if (tab ='take-out'){//外卖菜品
+              dishes_list[0].is_top = 0;
+              top_item.is_top = 1;
+              dishes_list.splice(index, 1);
+              dishes_list.unshift(top_item);
+              that.setData({
+                dishes_list: dishes_list
+              })
+            }else {//售全国商品
+              goods_list[0].is_top = 0;
+              top_item.is_top = 1;
+              goods_list.splice(index,1);
+              goods_list.unshift(top_item);
+              that.setData({
+                goods_list:goods_list
+              })
+            }
+            
             app.showToast('置顶成功');
           })
         }
@@ -123,6 +143,8 @@ Page({
    */
   putawayDish: function (e) {
     var that = this;
+    var tab = that.data.tab;
+    
     var status = e.currentTarget.dataset.status;
     var goods_id = e.currentTarget.dataset.goods_id;
     var keys = e.currentTarget.dataset.keys;
@@ -143,16 +165,12 @@ Page({
             goods_id: goods_id,
             status: status
           }, (data, headers, cookies, errMsg, statusCode) => {
-            utils.PostRequest(api_v_url + '/dish/goodslist', {
-              openid: openid,
-              merchant_id: merchant_id,
-              page: page,
-              hotel_id: hotel_id
-            }, (data, headers, cookies, errMsg, statusCode) => {
-              that.setData({
-                dishes_list: data.result
-              })
-            })
+            if (tab =='take-out'){
+              that.getDishList(openid, merchant_id, page)
+            }else {
+              that.getMallGoodsList(openid, merchant_id, page_mall);
+            }
+            
             app.showToast(toast)
           })
         }
@@ -189,9 +207,11 @@ Page({
    * 编辑菜品
    */
   editDish: function (e) {
+    var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
+    var tab = that.data.tab;
     wx.navigateTo({
-      url: '/pages/hotel/dishes/edit_dishes?goods_id=' + goods_id + '&openid=' + openid,
+      url: '/pages/hotel/dishes/edit_dishes?goods_id=' + goods_id + '&openid=' + openid+'&tab='+tab,
     })
   },
   /**

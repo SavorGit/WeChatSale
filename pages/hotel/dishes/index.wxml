@@ -107,7 +107,7 @@
 		</scroll-view>
 		<view class="page-bottom flex_row_center_spaceBetween">
 			<view class="btn add-goods theme-button-welcome" bindtap="addDishes">新增商品</view>
-			<view class="btn share-shop theme-button-welcome-dark" bindtap="">分享店铺</view>
+			<view class="btn share-shop theme-button-welcome-dark" bindtap="openShareShopWindow" data-picture="{{merchant_info.img}}" data-qrcode_url="{{merchant_info.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-tips="{{merchant_info.tips}}">分享店铺</view>
 		</view>
 	</view>
 

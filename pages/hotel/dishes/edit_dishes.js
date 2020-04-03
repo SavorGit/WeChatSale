@@ -10,6 +10,7 @@ var oss_url = app.globalData.oss_url;
 var merchant_id;
 var openid;
 var goods_id;
+var tab = 'take-out';
 let swapImageObject = {
   1: null,
   2: null
@@ -23,6 +24,11 @@ Page({
     tab: 'take-out',
     dish_img_list: [], //菜品图
     dish_intro_img_list: [], //菜品介绍图
+    goods_img_list: [],  //商品图
+    goods_intro_img_list: [], //商品介绍图
+    video_img: '',   //视频图
+    goods_video_url: '', //上传商品视频
+    sale_goods_type: 0,  //售全国商品分类
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
@@ -36,25 +42,32 @@ Page({
     var that = this;
     goods_id = options.goods_id;
     openid = options.openid;
-
-    utils.PostRequest(api_v_url + '/dish/detail', {
-      goods_id: goods_id
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      var goods_info = data.result;
-      var dish_img_list = data.result.cover_imgs_path;
-      var dish_intro_img_list = data.result.detail_imgs_path;
-      var is_sale = goods_info.is_sale;
-      that.setData({
-        is_sale: is_sale,
-        goods_info: goods_info,
-        dish_img_list: dish_img_list,
-        dish_intro_img_list: dish_intro_img_list,
-      })
-    }, function () {
-      wx.navigateBack({
-        delta: 1
-      })
+    tab = options.tab;
+    that.setData({
+      tab:tab
     })
+    if(tab=='take-out'){
+      utils.PostRequest(api_v_url + '/dish/detail', {
+        goods_id: goods_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        var goods_info = data.result;
+        var dish_img_list = data.result.cover_imgs_path;
+        var dish_intro_img_list = data.result.detail_imgs_path;
+        var is_sale = goods_info.is_sale;
+        that.setData({
+          is_sale: is_sale,
+          goods_info: goods_info,
+          dish_img_list: dish_img_list,
+          dish_intro_img_list: dish_intro_img_list,
+        })
+      }, function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      })
+    }else {//全国售卖商品
+      
+    }
   },
   /**
    * 上传菜品图
@@ -68,9 +81,13 @@ Page({
     if (type == 1) {
       var total_pic = that.data.dish_img_list.length;
       //var choose_num = 6 - total_pic;
-    } else {
+    } else if (type == 2) {
       var total_pic = that.data.dish_intro_img_list.length;
       //var choose_num = 6 - total_pic;
+    } else if (type == 3) {
+      var total_pic = that.data.goods_img_list.length;
+    } else if (type == 4) {
+      var total_pic = that.data.goods_intro_img_list.length;
     }
     if (total_pic > 6) {
       app.showToast('最多上传6张照片');
@@ -151,6 +168,28 @@ Page({
                   that.setData({
                     dish_intro_img_list: dish_intro_img_list
                   })
+                } else if (type == 3) {
+                  var goods_img_list = that.data.goods_img_list;
+                  for (var i = 0; i < goods_img_list.length; i++) {
+                    if (i == keys) {
+                      goods_img_list[i] = dish_img_url;
+                      break;
+                    }
+                  }
+                  that.setData({
+                    goods_img_list: goods_img_list
+                  })
+                } else if (type == 4) {
+                  var goods_intro_img_list = that.data.goods_intro_img_list;
+                  for (var i = 0; i < goods_intro_img_list.length; i++) {
+                    if (i == keys) {
+                      goods_intro_img_list[i] = dish_img_url;
+                      break;
+                    }
+                  }
+                  that.setData({
+                    goods_intro_img_list: goods_intro_img_list
+                  })
                 }
 
                 wx.hideLoading();
@@ -194,11 +233,14 @@ Page({
 
     if (type == 1) {
       var total_pic = that.data.dish_img_list.length;
-      var choose_num = 6 - total_pic;
-    } else {
+    } else if (type == 2) {
       var total_pic = that.data.dish_intro_img_list.length;
-      var choose_num = 6 - total_pic;
+    } else if (type == 3) {
+      var total_pic = that.data.goods_img_list.length;
+    } else if (type == 4) {
+      var total_pic = that.data.goods_intro_img_list.length;
     }
+    var choose_num = 6 - total_pic;
     if (total_pic >= 6) {
       app.showToast('最多上传6张照片');
       return false;
@@ -303,6 +345,14 @@ Page({
           dish_intro_img_list.push("forscreen/resource/" + img_url);
 
           var end_flag = dish_intro_img_list.length
+        } else if (type == 3) {
+          var goods_img_list = that.data.goods_img_list;
+          goods_img_list.push("forscreen/resource/" + img_url);
+          var end_flag = goods_img_list.length
+        } else if (type == 4) {
+          var goods_intro_img_list = that.data.goods_intro_img_list;
+          goods_intro_img_list.push("forscreen/resource/" + img_url);
+          var end_flag = goods_intro_img_list.length
         }
 
         if (end_flag == flag) {
@@ -319,6 +369,26 @@ Page({
           } else if (type == 2) {
             that.setData({
               dish_intro_img_list: dish_intro_img_list
+            }, () => {
+              wx.hideLoading();
+              that.setData({
+                addDisabled: false,
+                upDisabled: false
+              })
+            })
+          } else if (type == 3) {
+            that.setData({
+              goods_img_list: goods_img_list
+            }, () => {
+              wx.hideLoading();
+              that.setData({
+                addDisabled: false,
+                upDisabled: false
+              })
+            })
+          } else if (type == 4) {
+            that.setData({
+              goods_intro_img_list: goods_intro_img_list
             }, () => {
               wx.hideLoading();
               that.setData({
@@ -357,6 +427,28 @@ Page({
       console.log(dish_intro_img_list)
       that.setData({
         dish_intro_img_list: dish_intro_img_list
+      })
+    } else if (type == 3) {
+      var goods_img_list = that.data.goods_img_list;
+      for (var i = 0; i < goods_img_list.length; i++) {
+        if (i == keys) {
+          goods_img_list.splice(keys, 1);
+          break;
+        }
+      }
+      that.setData({
+        goods_img_list: goods_img_list
+      })
+    } else if (type == 4) {
+      var goods_intro_img_list = that.data.goods_intro_img_list;
+      for (var i = 0; i < goods_intro_img_list.length; i++) {
+        if (i == keys) {
+          goods_intro_img_list.splice(keys, 1);
+          break;
+        }
+      }
+      that.setData({
+        goods_intro_img_list: goods_intro_img_list
       })
     }
   },
@@ -475,7 +567,216 @@ Page({
 
     }
   },
+  //视频上传
+  uploadVideo: function (e) {
+    var that = this;
+    wx.showLoading({
+      title: '视频上传中...',
+      mask: true
+    })
+    that.setData({
+      addDisabled: true,
+      upDisabled: true
+    })
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function (res) {
 
+        var size = res.size;
+        if (size > 52428800) {
+          app.showToast('视频不能超过50M');
+          wx.hideLoading();
+          that.setData({
+            addDisabled: false,
+            upDisabled: false
+          })
+        } else {
+          //console.log(res);return false;
+          var video_img = res.thumbTempFilePath;
+          var filename = res.tempFilePath;
+
+          var index1 = filename.lastIndexOf(".");
+          var index2 = filename.length;
+          var timestamp = (new Date()).valueOf();
+
+          var postf = filename.substring(index1, index2); //后缀名\
+          var postf_t = filename.substring(index1, index2); //后缀名
+          var postf_w = filename.substring(index1 + 1, index2); //后缀名
+
+          var video_url = timestamp + postf;
+          wx.request({
+            url: api_url + '/Smallapp/Index/getOssParams',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            success: function (rest) {
+              var policy = rest.data.policy;
+              var signature = rest.data.signature;
+
+              wx.uploadFile({
+                url: oss_upload_url,
+                filePath: filename,
+                name: 'file',
+                header: {
+                  'Content-Type': 'image/' + postf_w
+                },
+                formData: {
+                  Bucket: "redian-produce",
+                  name: video_url,
+                  key: "forscreen/resource/" + video_url,
+                  policy: policy,
+                  OSSAccessKeyId: app.globalData.oss_access_key_id,
+                  sucess_action_status: "200",
+                  signature: signature
+
+                }, success: function (res) {
+                  var goods_video_url = "forscreen/resource/" + video_url;
+                  console.log(goods_video_url)
+                  that.setData({
+                    video_img: video_img,
+                    goods_video_url: goods_video_url
+                  })
+                  wx.hideLoading();
+                  that.setData({
+                    addDisabled: false,
+                    upDisabled: false
+                  })
+                }, fail: function (e) {
+                  wx.hideLoading();
+                  that.setData({
+                    addDisabled: false,
+                    upDisabled: false
+                  })
+                }
+              })
+            }, fail: function (res) {
+              wx.hideLoading();
+              that.setData({
+                addDisabled: false,
+                upDisabled: false
+              })
+            }
+          })
+        }
+      }, fail: function (res) {
+        wx.hideLoading();
+        that.setData({
+          addDisabled: false,
+          upDisabled: false
+        })
+      }
+    })
+  },
+  delVideo: function (e) {
+    this.setData({
+      video_img: '',
+      goods_video_url: ''
+    })
+  },
+  //修改售全国商品
+  editMallGoods: function (e) {
+    var that = this;
+    var name = e.detail.value.name;
+    var sale_goods_type = that.data.sale_goods_type;
+    var retail_price = e.detail.value.retail_price;
+    var sale_price = e.detail.value.sale_price;
+    var inventory = e.detail.value.inventory;
+
+    var goods_img_list = that.data.goods_img_list;
+    var video_url = that.data.video_url;
+    var introduce = e.detail.value.introduce;
+    var goods_intro_img_list = e.detail.value.goods_intro_img_list;
+    if (name == '') {
+      app.showToast('请输入商品名称');
+      return false;
+    }
+    if (sale_goods_type == 0) {
+      app.showToast('请选择商品分类');
+      return false;
+    }
+    if (retail_price == '') {
+      app.showToast('请输入零售价');
+      return false;
+    } else {
+      if (retail_price <= 0) {
+        app.showToast('零售价不能小于1');
+        return false;
+      }
+    }
+    if (sale_price == '') {
+      app.showToast('请输入供货价');
+      return false;
+    } else {
+      if (sale_price <= 0) {
+        app.showToast('供货价不能小于1');
+        return false;
+      }
+    }
+    if (inventory == '') {
+      app.showToast('请输入库存');
+      return false;
+    } else {
+      if (inventory <= 0) {
+        app.showToast('库存不能小于1');
+        return false;
+      }
+    }
+    if (goods_img_list.length == 0) {
+      app.showToast('请上传商品图')
+      return false;
+    }
+    if (introduce == '') {
+      app.showToast('请输入文字详情');
+      return false;
+    }
+    if (goods_intro_img_list.length == 0) {
+      app.showToast('请上传详情图片');
+      return false;
+    }
+    var imgs = '';
+    var space = '';
+    for (var i = 0; i < goods_img_list.length; i++) {
+      imgs += space + goods_img_list[i];
+      space = ',';
+    }
+    var intro_imgs = '';
+    space = '';
+    for (var i = 0; i < goods_intro_img_list.length; i++) {
+      intro_imgs += space + goods_intro_img_list[i];
+      space = ',';
+    }
+
+
+    that.setData({
+      addDisabled: true,
+    })
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      name: name,
+      sale_goods_type: sale_goods_type,
+      retail_price: retail_price,
+      sale_price: sale_price,
+      inventory: inventory,
+      imgs: imgs,
+      video_url: video_url,
+      introduce: introduce,
+      intro_imgs: intro_imgs
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('添加成功')
+      wx.navigateBack({
+        delta: 1
+      })
+      that.setData({
+        addDisabled: false,
+      })
+
+    }, function () {
+      that.setData({
+        addDisabled: false,
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -591,14 +892,14 @@ Page({
         self.setData({
           showTipPopWindow: true,
           tipTitle: '建议零售价',
-          tipContentArray: ['点击建议零售价时，提示“建议零售价即市场指导价，是建议卖给普通用户的价格”；']
+          tipContentArray: ['建议零售价即市场指导价，是建议卖给普通用户的价格']
         });
         break;
       case 'DeliveryPriceByParcelPost':
         self.setData({
           showTipPopWindow: true,
           tipTitle: '包邮供货价',
-          tipContentArray: ['点击包邮供货价时。提示“包邮供货价即餐厅给小热点的包邮供货价格，订单成交后，小热点会按照包邮供货价为餐厅进行结算”']
+          tipContentArray: ['包邮供货价即餐厅给小热点的包邮供货价格，订单成交后，小热点会按照包邮供货价为餐厅进行结算']
         });
         break;
       default:
