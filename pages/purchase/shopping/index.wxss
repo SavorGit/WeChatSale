@@ -16,7 +16,8 @@
 }
 
 .search-panel>.search-bar {
-  width: calc(100% - 130rpx);
+  width: 100%;
+  /* width: calc(100% - 130rpx); */
   height: 50rpx;
   border-radius: 24rpx;
   padding: 0 20rpx;
@@ -33,6 +34,7 @@
   font-size: 28rpx;
 }
 
+/*
 .search-panel>.shopping-car-bar {
   width: 70rpx;
   height: 100%;
@@ -52,6 +54,7 @@
   font-size: 20rpx;
   display: inline-block;
 }
+*/
 
 .list-pnale {
   width: 100%;

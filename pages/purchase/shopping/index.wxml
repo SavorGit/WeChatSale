@@ -11,10 +11,12 @@
 				<view class="fa fa-search" aria-hidden="true"></view>
 				<input class="search" placeholder="搜索商品"></input>
 			</view>
+			<!--
 			<view class="shopping-car-bar flex_column_flexStart_flexStart">
 				<view class="fa fa-shopping-cart" aria-hidden="true"></view>
 				<view class="marker theme-rad-panel">88</view>
 			</view>
+			-->
 		</view>
 		<view class="list-pnale">
 			<scroll-view class="tab-bar theme-panel" scroll-x="true" scroll-with-animation="true">
