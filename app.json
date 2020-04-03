@@ -16,6 +16,8 @@
     "pages/hotel/order/agent",
     "pages/hotel/order/goods_list",
     "pages/hotel/order/goods_detail",
+    "pages/hotel/order/goods_tracking_number",
+    "pages/hotel/order/goods_logistics_info",
     "pages/hotel/register/index",
     "pages/hotel/platform/add",
     "pages/hotel/platform/index",
