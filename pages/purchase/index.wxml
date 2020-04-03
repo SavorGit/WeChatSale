@@ -5,19 +5,40 @@
 <import src="/pages/template/commons" />
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="profit-panel theme-panel">
+		<view class="title-bar flex_row_center_spaceBetween">
+			<view class="title">收益</view>
+			<view class="link flex_row_center_flexEnd" bindtap="">
+				<view class="content">收益明细</view>
+				<view class="fa fa-chevron-right" aria-hidden="true"></view>
+			</view>
+		</view>
+		<view class="body flex_row_center_spaceBetween">
+			<view class="profit one-line-overflow theme-font5">30000.11</view>
+			<view class="right flex_column_center_spaceAround">
+				<view class="btn one-line-overflow">提现</view>
+				<view class="withdrawable one-line-overflow theme-font3">可提现：2000.98</view>
+			</view>
+		</view>
+		<view class="tip one-line-overflow theme-font3">每日12:00计算前一天收益，订单成交7天后可进行提现</view>
+	</view>
 	<view class="list flex_column_center_spaceAround">
+		<!--
 		<view class="item flex_column_center_center panel-color-foods" data-page="foods" bindtap="gotoPage">
 			<view class="fa fa-shopping-cart" aria-hidden="true"></view>
 			<view class="name">购买美食</view>
 		</view>
+		-->
 		<view class="item flex_column_center_center panel-color-share" data-page="share" bindtap="gotoPage">
 			<view class="fa fa-share-alt-square" aria-hidden="true"></view>
 			<view class="name">选品分享</view>
 		</view>
+		<!--
 		<view class="item flex_column_center_center panel-color-order" data-page="order" bindtap="gotoPage">
 			<view class="fa fa-bars" aria-hidden="true"></view>
 			<view class="name">我的订单</view>
 		</view>
+		-->
 		<view class="item flex_column_center_center panel-color-recod" data-page="recod" bindtap="gotoPage">
 			<view class="fa fa-newspaper-o" aria-hidden="true"></view>
 			<view class="name">选品记录</view>

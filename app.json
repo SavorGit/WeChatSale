@@ -27,6 +27,8 @@
     "pages/hotel/setting/distribution",
     "pages/purchase/index",
     "pages/purchase/auth",
+    "pages/purchase/shopping/index",
+    "pages/purchase/shopping/profit-detail",
     "pages/purchase/merchant/index",
     "pages/purchase/merchant/detail",
     "pages/purchase/dishes/detail",

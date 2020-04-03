@@ -4,9 +4,77 @@
  */
 
 
+.profit-panel {
+  width: calc(100% - 50rpx);
+  height: 250rpx;
+  padding: 20rpx 20rpx 20rpx 30rpx;
+}
+
+.profit-panel>.title-bar {
+  width: 100%;
+  height: 70rpx;
+}
+
+.profit-panel>.title-bar>.title {
+  font-size: 32rpx;
+}
+
+.profit-panel>.title-bar>.link>.content {
+  font-size: 28rpx;
+}
+
+.profit-panel>.title-bar>.link>.fa {
+  padding-top: 5rpx;
+  margin-left: 5rpx;
+  font-size: 28rpx;
+}
+
+.profit-panel>.body {
+  width: calc(100% - 30rpx);
+  height: calc(100% - 130rpx);
+  padding-left: 30rpx;
+}
+
+.profit-panel>.body>.profit {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.profit-panel>.body>.right {
+  height: 100%;
+}
+
+.profit-panel>.body>.right>.btn {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 3rpx solid #6BB0EC;
+  color: #6BB0EC;
+  border-radius: 19rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.profit-panel>.body>.right>.withdrawable {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+}
+
+.profit-panel>.tip {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
 .list {
   width: 100%;
-  height: 100%;
+  height: 590rpx;
+  padding-top: 50rpx;
 }
 
 .item {

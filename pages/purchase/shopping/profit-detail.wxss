@@ -1,0 +1,62 @@
+/* pages/purchase/shopping/profit-detail.wxss */
+/**
+ * 收益明细页面
+ */
+
+
+.page {
+  width: 100%;
+}
+
+.date-panel {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.title-bar {
+  height: 60rpx;
+  padding: 10rpx 30rpx;
+}
+
+.title-bar>.title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.list {
+  padding: 20rpx 30rpx;
+}
+
+.item {
+  width: 100%;
+  padding: 20rpx 0;
+}
+
+.item>.pic {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.item>.right {
+  width: calc(100% - 140rpx);
+  height: 120rpx;
+}
+
+.item>.right>.top {
+  width: 100%;
+}
+
+.item>.right>.top>.user-name {
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.item>.right>.top>.content {
+  width: calc(100% - 140rpx);
+  font-size: 28rpx;
+}
+
+.item>.right>.profit {
+  font-size: 32rpx;
+}
