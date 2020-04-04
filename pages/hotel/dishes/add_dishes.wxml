@@ -101,9 +101,9 @@
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">分类</view>
-				<picker class="input">
+				<picker class="input" range="{{sale_goods_type_arr}}" bindchange="selectGoodsType">
 					<view class="flex_row_center_spaceBetween">
-						<view>请选择</view>
+						<view>{{sale_goods_type_arr[sale_goods_type_index]}}</view>
 						<view class="fa fa-caret-down"></view>
 					</view>
 				</picker>

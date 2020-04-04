@@ -63,14 +63,14 @@
 					<view>{{dishorder_all_num}}</view>
 					<view>全部订单</view>
 				</view>
-				<view class="flex_column_center_center" bindtap="">
+				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="3">
 					<view>
 						<view>15</view>
 						<view class="marker theme-button-add">10</view>
 					</view>
 					<view>外卖订单</view>
 				</view>
-				<view class="flex_column_center_center" bindtap="">
+				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="5">
 					<view>
 						<view>100</view>
 						<view class="marker theme-button-add">88</view>

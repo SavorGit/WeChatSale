@@ -27,6 +27,9 @@ Page({
     video_img:'',   //视频图
     goods_video_url:'', //上传商品视频
     sale_goods_type:0,
+    sale_goods_type_index:0,
+    sale_goods_type_arr:[],
+    sale_goods_type_obj:[],
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
@@ -37,11 +40,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     openid = options.openid;
     merchant_id = options.hotel_id;
     var tab = options.tab;
     this.setData({
       tab:tab,
+    })
+    //获取分类
+    utils.PostRequest(api_v_url + '/category/categorylist', {
+     
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        sale_goods_type_arr: data.result.category_name_list,
+        sale_goods_type_obj: data.result.category_list,
+      })
+    })
+  },
+  //选择分类
+  selectGoodsType:function(e){
+    var sale_goods_type_index = e.detail.value;
+    this.setData({
+      sale_goods_type_index:sale_goods_type_index
     })
   },
   /**
@@ -483,7 +503,7 @@ Page({
       name: name,
       openid: openid,
       price: price,
-
+      type:21,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
       wx.navigateBack({
@@ -640,20 +660,20 @@ Page({
   addMallGoods:function(e){
     var that = this;
     var name = e.detail.value.name;
-    var sale_goods_type = that.data.sale_goods_type;
+    var sale_goods_index = that.data.sale_goods_type_index;
     var retail_price = e.detail.value.retail_price;
     var sale_price = e.detail.value.sale_price;
     var inventory = e.detail.value.inventory;
 
     var goods_img_list = that.data.goods_img_list;
-    var video_url = that.data.video_url;
+    var goods_video_url = that.data.goods_video_url;
     var introduce = e.detail.value.introduce;
-    var goods_intro_img_list = e.detail.value.goods_intro_img_list;
+    var goods_intro_img_list = that.data.goods_intro_img_list;
     if(name==''){
       app.showToast('请输入商品名称');
       return false;
     }
-    if (sale_goods_type==0){
+    if (sale_goods_index==0){
       app.showToast('请选择商品分类');
       return false;
     }
@@ -684,8 +704,13 @@ Page({
         return false;
       }
     }
+    
     if(goods_img_list.length==0){
       app.showToast('请上传商品图')
+      return false;
+    }
+    if (goods_video_url==''){
+      app.showToast('请上传视频介绍');
       return false;
     }
     if(introduce==''){
@@ -696,6 +721,8 @@ Page({
       app.showToast('请上传详情图片');
       return false;
     }
+    var sale_goods_type_obj = that.data.sale_goods_type_obj;
+    var category_id = sale_goods_type_obj[sale_goods_index].id;
     var imgs = '';
     var space = '';
     for (var i = 0; i < goods_img_list.length; i++) {
@@ -708,21 +735,22 @@ Page({
       intro_imgs += space + goods_intro_img_list[i];
       space = ',';
     }
-
-
     that.setData({
       addDisabled: true,
     })
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      name: name,
-      sale_goods_type: sale_goods_type,
-      retail_price: retail_price,
-      sale_price: sale_price,
-      inventory: inventory,
+    utils.PostRequest(api_v_url + '/dish/addDish', {
+      
+      amount: inventory,
+      category_id: category_id,
       imgs: imgs,
-      video_url:video_url,
-      introduce: introduce,
-      intro_imgs: intro_imgs
+      detail_imgs: intro_imgs,
+      intro: introduce,
+      name: name,
+      openid,openid,
+      price: retail_price,
+      supply_price: sale_price,
+      type:22,
+      video_path: goods_video_url,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
       wx.navigateBack({

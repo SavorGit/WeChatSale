@@ -636,8 +636,13 @@ Page({
     if (typeof (merchant_id)=='undefined'){
       return false;
     }else {
+      if(type==3){
+        var url = '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
+      }else {
+        var url = '/pages/hotel/order/goods_list?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
+      }
       wx.navigateTo({
-        url: '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status +'&type='+type,
+        url: url,
       })
     }
     

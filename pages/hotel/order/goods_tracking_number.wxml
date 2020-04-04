@@ -6,120 +6,57 @@
 
 <view class='container flex_column_center_flexStart theme-container' style='height: calc(100vh - 46px - {{statusBarHeight}}px);'>
 	<view class="input-panel flex_column_center_flexStart">
-		<view class="btn scan flex_column_center_center theme-panel">
+		<view class="btn scan flex_column_center_center theme-panel" bindtap="scarnCode">
 			<view class="fa fa-barcode" aria-hidden="true"></view>
 			<view class="tip">扫码识别快递单号</view>
 		</view>
 		<view class="btn type theme-font7" bindtap="openInputCodePopWindow">手动输入</view>
 	</view>
-	<view class="search-page flex_column_center_flexStart theme-panel">
+	<view class="search-page flex_column_center_flexStart theme-panel" wx:if="{{company_list.length>0}}">
 		<view class="title-bar">
 			<view class="title">单号识别结果</view>
 		</view>
 		<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
-			<radio-group class="list">
-				<view class="item flex_row_center_spaceBetween">
+			<radio-group class="list" bindchange="selectExCompany">
+				<view class="item flex_row_center_spaceBetween" wx:for="{{company_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="left">
-						<radio checked="true"></radio>
+						<radio value="{{bean.comcode}}" wx:if="{{company_list.length==1}}" checked="true"></radio>
 					</view>
 					<view class="right">
-						<view class="name">韵达快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
+						<view class="name">{{bean.name}}</view>
+						<view class="id">{{enumber}}</view>
 					</view>
 				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">顺丰快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">韵达快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">顺丰快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">韵达快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">顺丰快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">韵达快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">顺丰快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">韵达快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<view class="left">
-						<radio></radio>
-					</view>
-					<view class="right">
-						<view class="name">顺丰快递</view>
-						<view class="id">XXXXXXXXXXXXXXXXX</view>
-					</view>
-				</view>
+				
 			</radio-group>
 		</scroll-view>
 	</view>
-	<view class="bottom">
+	<view class="bottom" bindtap="addExpressnum">
 		<view class="btn theme-button-welcome">保存</view>
 	</view>
 </view>
 
 
 <!-- 手动输入弹窗 -->
-<modal show="{{showInputCodePopWindow}}" width="690rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='请输入快递单号' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='保存' confirm-color="#FFFFFF" confirm-background-color="#A18668" confirm-border-radius="0rpx" cancel-text='取消' cancel-color='rgba(7,17,27,0.6)' cancel-background-color="#DEDEDE" cancel-border-radius="0rpx" bindconfirm=''>
+<!-- <modal show="{{showInputCodePopWindow}}" width="690rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='请输入快递单号' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='保存' confirm-color="#FFFFFF" confirm-background-color="#A18668" confirm-border-radius="0rpx" cancel-text='取消' cancel-color='rgba(7,17,27,0.6)' cancel-background-color="#DEDEDE" cancel-border-radius="0rpx" bindconfirm=''>
 	<view class="full_width full_height flex_column_center_center">
 		<input placeholder="请输入" style="width:500rpx;padding:5rpx;border:3rpx solid #BEBEBE;font-size:28rpx"></input>
 	</view>
+</modal> -->
+<modal show="{{showInputCodePopWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+	<form bindsubmit="setEnumber">
+		<view class="change-nikename-window flex_column_center theme7">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="fa fa-lg" aria-hidden="true"></view>
+				<view>请输入快递单号</view>
+				<view class="fa fa-close fa-lg" aria-hidden="true" bindtap="closeChangeNikenameWindow"></view>
+			</view>
+			<view class="body-panel flex_column_center_spaceAround">
+				<view>
+					<input placeholder="请输入" name="input_enumber" value="{{input_enumber}}"></input>
+				</view>
+				<button class="btn-submit theme-button-welcome" form-type="submit">保存</button>
+			</view>
+		</view>
+	</form>
 </modal>

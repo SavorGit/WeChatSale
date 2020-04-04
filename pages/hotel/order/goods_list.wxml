@@ -64,7 +64,7 @@
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
 					<view class="datetime">2020-04-02 11:50</view>
-					<view class="btn theme-button-welcome">发货</view>
+					<view class="btn theme-button-welcome" bindtap="onShip">发货</view>
 				</view>
 			</view>
 			<view class="item theme-panel">

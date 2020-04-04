@@ -106,7 +106,7 @@
 
 
 	<!-- 售全国商品 -->
-	<form wx:if="{{tab == 'nationwide'}}" bindsubmit="">
+	<form wx:if="{{tab == 'nationwide'}}" bindsubmit="editMallGoods">
 		<view class="panel goods-info flex_column_center theme7">
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">商品名称</view>
@@ -114,9 +114,9 @@
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">分类</view>
-				<picker class="input">
+				<picker class="input" range="{{sale_goods_type_arr}}" bindchange="selectGoodsType">
 					<view class="flex_row_center_spaceBetween">
-						<view>请选择</view>
+						<view>{{sale_goods_type_arr[sale_goods_type_index]}}</view>
 						<view class="fa fa-caret-down"></view>
 					</view>
 				</picker>
@@ -125,7 +125,7 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">建议零售价</view>
 				<view class="warpper flex_row_center_spaceBetween">
 					<view class="input flex_row_center_spaceBetween">
-						<input placeholder="请输入" type='digit' name='retail_price' bindinput='setTotalCount'></input>
+						<input placeholder="请输入" type='digit' name='retail_price' bindinput='setTotalCount' value="{{goods_info.price}}"></input>
 						<view>元</view>
 					</view>
 					<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="SuggestedRetailPrice" bindtap="openTipPopWindow"></view>
@@ -135,7 +135,7 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">包邮供货价</view>
 				<view class="warpper flex_row_center_spaceBetween">
 					<view class="input flex_row_center_spaceBetween">
-						<input placeholder="请输入" type='digit' name='sale_price' bindinput='setTotalCount'></input>
+						<input placeholder="请输入" type='digit' name='sale_price' bindinput='setTotalCount' value="{{goods_info.supply_price}}"></input>
 						<view>元</view>
 					</view>
 					<view class="fa fa-question-circle theme-font7" aria-hidden="true" data-type="DeliveryPriceByParcelPost" bindtap="openTipPopWindow"></view>
@@ -143,7 +143,7 @@
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
-				<input class="input" placeholder="请输入库存量" type="number" maxlength="4" ></input>
+				<input class="input" placeholder="请输入库存量" type="number" maxlength="4"  value="{{goods_info.amount}}" name='inventory'></input>
 			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
@@ -196,7 +196,7 @@
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">文字详情</view>
 				<view class="warpper flex_column_center">
-					<textarea name='introduce' maxlength="300" class="input" placeholder="请输入"></textarea>
+					<textarea name='introduce' maxlength="300" class="input" placeholder="请输入" value="{{goods_info.intro}}"></textarea>
 				</view>
 			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
