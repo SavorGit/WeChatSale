@@ -1,0 +1,74 @@
+<!--pages/purchase/shopping/index.wxml-->
+<!--
+ | 商品首页
+ |-->
+
+
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="page">
+		<view class="search-panel flex_row_center_spaceBetween theme-panel">
+			<view class="search-bar flex_row_center_spaceBetween">
+				<view class="fa fa-search" aria-hidden="true"></view>
+				<input class="search" placeholder="搜索商品"></input>
+			</view>
+			<!--
+			<view class="shopping-car-bar flex_column_flexStart_flexStart">
+				<view class="fa fa-shopping-cart" aria-hidden="true"></view>
+				<view class="marker theme-rad-panel">88</view>
+			</view>
+			-->
+		</view>
+		<view class="list-pnale">
+			<scroll-view class="tab-bar theme-panel" scroll-x="true" scroll-with-animation="true">
+				<view class="tab-list">
+					<view class="tab selected">全部</view>
+					<view class="tab">伴手礼</view>
+				</view>
+			</scroll-view>
+			<scroll-view class="tab-body" scroll-y="true" scroll-with-animation="true">
+				<view class="list">
+					<view class="item theme-panel">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="bottom">
+							<view class="name two-line-overflow">大董 年货礼盒限量款2400g 烤鸭糕点年糕组合</view>
+							<view class="bottom flex_row_center_spaceBetween">
+								<view class="price theme-font5">￥528</view>
+								<view class="fa fa-download theme-font5" aria-hidden="true"></view>
+							</view>
+						</view>
+					</view>
+					<view class="item theme-panel">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="bottom">
+							<view class="name two-line-overflow">大董 年货礼盒限量款2400g 烤鸭糕点年糕组合</view>
+							<view class="bottom flex_row_center_spaceBetween">
+								<view class="price theme-font5">￥528</view>
+								<view class="fa fa-download theme-font5" aria-hidden="true"></view>
+							</view>
+						</view>
+					</view>
+					<view class="item theme-panel">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="bottom">
+							<view class="name two-line-overflow">大董 年货礼盒限量款2400g 烤鸭糕点年糕组合</view>
+							<view class="bottom flex_row_center_spaceBetween">
+								<view class="price theme-font5">￥528</view>
+								<view class="fa fa-download theme-font5" aria-hidden="true"></view>
+							</view>
+						</view>
+					</view>
+					<view class="item theme-panel">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						<view class="bottom">
+							<view class="name two-line-overflow">大董 年货礼盒限量款2400g 烤鸭糕点年糕组合</view>
+							<view class="bottom flex_row_center_spaceBetween">
+								<view class="price theme-font5">￥528</view>
+								<view class="fa fa-download theme-font5" aria-hidden="true"></view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+</scroll-view>

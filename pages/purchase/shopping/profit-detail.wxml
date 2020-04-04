@@ -1,0 +1,117 @@
+<!--pages/purchase/shopping/profit-detail.wxml-->
+<!--
+ | 收益明细页面
+ |-->
+
+
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+	<view class="page">
+
+		<!-- 昨天 -->
+		<view class="date-panel theme-panel">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="title">昨天</view>
+			</view>
+			<view class="list">
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 昨天 -->
+		<view class="date-panel theme-panel">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="title">前天</view>
+			</view>
+			<view class="list">
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 大前天 -->
+		<view class="date-panel theme-panel">
+			<view class="title-bar flex_row_center_spaceBetween">
+				<view class="title">2020-04-01</view>
+			</view>
+			<view class="list">
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+				<view class="item flex_row_center_spaceBetween">
+					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+					<view class="right flex_column_flexStart_spaceAround">
+						<view class="top flex_row_center_spaceBetween">
+							<view class="user-name one-line-overflow">张三三</view>
+							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+						</view>
+						<view class="profit theme-font5">+12</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
