@@ -15,14 +15,27 @@ Page({
    */
   data: {
     showWXAuthLogin:false,
+    income_fee:0,
+    withdraw_fee:0,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
+
+    utils.PostRequest(api_v_url + '/user/center', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        income_fee: data.result.income_fee,
+        withdraw_fee: data.result.withdraw_fee,
+      })
+    });
   },
   closeAuth: function () {
     var that = this;
@@ -30,6 +43,23 @@ Page({
       showWXAuthLogin: false,
     })
     
+  },
+  withdraw:function(e){
+    var that = this;
+    var money = that.data.withdraw_fee;
+    if(money<=0){
+      app.showToast('暂时无可提现的收益');
+      return false;
+    }
+    utils.PostRequest(api_v_url + '/Withdraw/income', {
+      money:money,
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        income_fee: data.result.income_fee,
+        withdraw_fee: data.result.withdraw_fee,
+      })
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -107,7 +137,7 @@ Page({
           break;
         case 'share':
           wx.navigateTo({
-            url: '/pages/purchase/share/index?openid=' + openid,
+            url: '/pages/purchase/shopping/index?openid=' + openid,
             success: function (res) {
               wx.hideLoading();
             }

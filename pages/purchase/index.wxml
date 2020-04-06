@@ -14,13 +14,13 @@
 			</view>
 		</view>
 		<view class="body flex_row_center_spaceBetween">
-			<view class="profit one-line-overflow theme-font5">30000.11</view>
+			<view class="profit one-line-overflow theme-font5">{{income_fee}}</view>
 			<view class="right flex_column_center_spaceAround">
-				<view class="btn one-line-overflow">提现</view>
-				<view class="withdrawable one-line-overflow theme-font3">可提现：2000.98</view>
+				<view class="btn one-line-overflow" bindtap="withdraw">提现</view>
+				<view class="withdrawable one-line-overflow theme-font3">可提现：{{withdraw_fee}}</view>
 			</view>
 		</view>
-		<view class="tip one-line-overflow theme-font3">每日12:00计算前一天收益，订单成交7天后可进行提现</view>
+		<view class="tip one-line-overflow theme-font3">订单成交7天后可进行提现,单日单次提现最大5000元，超出部分请于次日提取</view>
 	</view>
 	<view class="list flex_column_center_spaceAround">
 		<!--
