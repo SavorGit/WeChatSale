@@ -47,7 +47,7 @@
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
 					<view class="datetime">{{bean.add_time}}</view>
-					<view class="btn theme-button-welcome" wx:if="{{bean.status==51}}" bindtap="" data-order_id="{{bean.order_id}}">接单</view>
+					<view class="btn theme-button-welcome" wx:if="{{bean.status==51}}" bindtap="orderReceive" data-order_id="{{bean.order_id}}" data-keys="{{index}}" data-order_status="0">接单</view>
           <view class="btn theme-button-welcome" wx:if="{{bean.status==52}}" bindtap="onShip" data-order_id="{{bean.order_id}}">发货</view>
 
         </view>
@@ -90,7 +90,7 @@
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
 					<view class="datetime">{{bean.add_time}}</view>
-					<view class="btn theme-button-welcome" bindtap="" data-order_id="{{bean.order_id}}">接单</view>
+					<view class="btn theme-button-welcome" bindtap="orderReceive" data-order_id="{{bean.order_id}}" data-keys="{{index}}" data-order_status="1">接单</view>
 				</view>
 			</view>
 		</view>

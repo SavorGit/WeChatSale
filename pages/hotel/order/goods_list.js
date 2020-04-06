@@ -90,13 +90,61 @@ Page({
   },
   //接单
   orderReceive:function(e){
-    
+    var that = this;
+    var order_id = e.currentTarget.dataset.order_id;
+    var keys = e.currentTarget.dataset.keys;
+
+    var order_status = that.data.order_status
+    //var user_info = wx.getStorageSync(cache_key + 'userinfo');
+
+    wx.showModal({
+      title: '提示',
+      content: '确认接单',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/order/orderReceive', {
+            action: 1,
+            openid: openid,
+            order_id: order_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            app.showToast('操作成功');
+            if (order_status == 0) {//全部订单
+              //全部订单改状态
+              var all_order_list = that.data.all_order_list;
+              order_list[keys].status = 52;
+              order_list[keys].status_str = '待发货';
+              //待处理更新列表
+              that.getOrderList(openid, merchant_id, 1, page_dealing);
+
+              //待发货更新列表
+              that.getOrderList(openid, merchant_id, 2, page_ship);
+            }else if(order_status==1){//待处理
+              var deal_order_list = that.data.deal_order_list;
+              //删除待处理订单列表
+              deal_order_list.splice(keys, 1)
+              //更新全部订单列表
+              that.getOrderList(openid, merchant_id, 0, page_all);
+              //代发货更新列表
+              that.getOrderList(openid, merchant_id, 2, page_ship);
+            }
+          })
+        }
+      }
+    })
+
   },
   //发货
   onShip:function(e){
     var order_id = e.currentTarget.dataset.order_id;
     wx.navigateTo({
       url: '/pages/hotel/order/goods_tracking_number?order_id'+order_id,
+    })
+  },
+  gotoOrderDetail:function(e){
+    var order_id = e.currentTarget.dataset.order_id;
+    var order_id = e.currentTarget.dataset.order_id;
+    wx.navigateTo({
+      url: '/pages/hotel/order/goods_detail?openid=' + openid + '&order_id=' + order_id,
     })
   },
   /**

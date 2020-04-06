@@ -36,6 +36,13 @@ Page({
       })
     })
   },
+  gotoDishDetail: function (e) {
+    console.log(e)
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/hotel/dishes/detail?goods_id=' + goods_id,
+    })
+  },
   //查看物流信息
   viewExpress:function(e){
     var order_id = e.currentTarget.dataset.order_id;
