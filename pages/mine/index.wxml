@@ -107,7 +107,7 @@
 	</view>
 
 	<!-- 订单列表面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoOrder" data-order_status="0">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoOrder" data-order_status="0" data-type="5">
 		<view class="full_width full_height flex_row_center_spaceBetween">
 			<view>订单列表</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

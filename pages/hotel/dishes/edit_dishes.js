@@ -87,7 +87,7 @@ Page({
           var goods_img_list = data.result.cover_imgs_path;
           var goods_intro_img_list = data.result.detail_imgs_path;
           //var is_sale = goods_info.is_sale;
-          var video_url = data.result.video_url;
+          var video_img = data.result.video_img;
           var goods_video_url = data.result.video_path;
           var category_id = data.result.category_id;
           var sale_goods_type_index = 0;
@@ -99,7 +99,7 @@ Page({
           }
           that.setData({
             sale_goods_type_index: sale_goods_type_index,
-            video_img: video_url,
+            video_img: video_img,
             goods_video_url: goods_video_url,
             goods_info: goods_info,
             goods_img_list: goods_img_list,

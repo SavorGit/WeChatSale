@@ -10,7 +10,7 @@
 			<view class="head">配送信息</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween border-bottom">
-					<view class="left flex_row_center_spaceBetween">
+					<view class="left flex_row_center_spaceBetween" bindtap="viewExpress" data-order_id="{{bean.order_id}}">
 						<view class="fa fa-truck" aria-hidden="true"></view>
 						<view class="information logistics">
 							<view class="status">运输中</view>
@@ -25,10 +25,10 @@
 						<view class="fa fa-map-marker theme-font5" aria-hidden="true"></view>
 						<view class="information consignee-info flex_column_flexStart_flexStart">
 							<view class="top flex_row_center_spaceBetween">
-								<view class="name one-line-overflow">张三三</view>
-								<view class="phone one-line-overflow theme-font3">13800138000</view>
+								<view class="name one-line-overflow">{{order_info.contact}}</view>
+								<view class="phone one-line-overflow theme-font3">{{order_info.phone}}</view>
 							</view>
-							<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+							<view class="address two-line-overflow">{{order_info.address}}</view>
 						</view>
 					</view>
 				</view>
@@ -38,43 +38,25 @@
 			<view class="head">商品信息</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="hotel flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="name">淮扬府（安定门店）</view>
+					<image class="pic" mode="aspectFill" src="{{order_info.merchant.img}}"></image>
+					<view class="name">{{order_info.merchant.name}}</view>
 				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="center">
-						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
-						<view class="price theme-font5">￥66</view>
+				<view class="row flex_row_center_spaceBetween" wx:for="{{order_info.goods}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+					<image class="pic" mode="aspectFill" src="{{bean.img}}" bindtap="gotoDishDetail" data-goods_id="{{bean.id}}"></image>
+					<view class="center" bindtap="gotoDishDetail" data-goods_id="{{bean.id}}">
+						<view class="name two-line-overflow">{{bean.goods_name}}</view>
+						<view class="price theme-font5">￥{{bean.price}}</view>
 					</view>
 					<view class="right flex_row_center_flexEnd">
-						<view class="count one-line-overflow">X1</view>
+						<view class="count one-line-overflow">X{{bean.amount}}</view>
 					</view>
 				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="center">
-						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
-						<view class="price theme-font5">￥66</view>
-					</view>
-					<view class="right flex_row_center_flexEnd">
-						<view class="count one-line-overflow">X2</view>
-					</view>
-				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="center">
-						<view class="name two-line-overflow">麻辣小龙虾一份（大份），38只，限量供应</view>
-						<view class="price theme-font5">￥66</view>
-					</view>
-					<view class="right flex_row_center_flexEnd">
-						<view class="count one-line-overflow">X3</view>
-					</view>
-				</view>
+				
+				
 			</view>
 			<view class="foot flex_row_center_spaceBetween">
-				<view>合计：6件商品</view>
-				<view>￥1280元</view>
+				<view>合计：{{order_info.amount}}件商品</view>
+				<view>￥{{order_info.total_fee}}元</view>
 			</view>
 		</view>
 		<view class="input-panel theme-panel">
@@ -82,19 +64,19 @@
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">订单编号</view>
-					<view class="view">1234567890</view>
+					<view class="view">{{order_info.order_id}}</view>
 				</view>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">下单时间</view>
-					<view class="view">2020-04-02 08:00</view>
+					<view class="view">{{order_info.add_time}}</view>
 				</view>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">完成时间</view>
-					<view class="view">2020-04-02 11:00</view>
+					<view class="view">{{order_info.finish_time}}</view>
 				</view>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">订单金额</view>
-					<view class="view">￥1280元</view>
+					<view class="view">￥{{order_info.total_fee}}元</view>
 				</view>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="lable theme-font3">支付方式</view>
@@ -106,26 +88,30 @@
 			<view class="head">发票信息</view>
 			<view class="body flex_column_center_spaceBetween">
 				<!-- 企业 -->
-				<view class="row flex_row_center_spaceBetween">
-					<view class="lable theme-font3">企业名称</view>
-					<view class="view">深圳腾讯</view>
-				</view>
-				<view class="row flex_row_center_spaceBetween">
-					<view class="lable theme-font3">企业税号</view>
-					<view class="view">123456801</view>
-				</view>
-				<!-- 个人 -->
-				<view class="row flex_row_center_spaceBetween">
-					<view class="lable theme-font3">个人姓名</view>
-					<view class="view">张三三</view>
-				</view>
+				<block wx:if="{{order_info.invoice.title_type==1}}">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">企业名称</view>
+						<view class="view">{{order_info.invoice.company}}</view>
+					</view>
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">企业税号</view>
+						<view class="view">{{order_info.invoice.credit_code}}</view>
+					</view>
+				</block>
+				<block wx:elif="{{order_info.invoice.title_type==2}}">
+					<!-- 个人 -->
+					<view class="row flex_row_center_spaceBetween">
+						<view class="lable theme-font3">个人姓名</view>
+						<view class="view">{{order_info.invoice.company}}</view>
+					</view>
+				</block>
 			</view>
 		</view>
 		<view class="input-panel theme-panel">
 			<view class="head">订单备注</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween" style="height:unset;">
-					<view class="view" style="width:100%;">倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽倍儿爽</view>
+					<view class="view" style="width:100%;">{{order_info.remark}}</view>
 				</view>
 			</view>
 		</view>

@@ -51,62 +51,17 @@
               <view class="status theme-font5" wx:if="{{bean.flag==3}}">审核不通过 </view>
 						</view>
 						<view class="btn-group flex_row_center_spaceBetween">
-						<view class="btn on-line" wx:if="{{bean.status==1}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="2">已上架</view>
-								<view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
-								<view class="btn theme-button-welcome" wx:if="{{bean.is_top==0 && bean.status==1}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
-								<view class="btn theme-button-welcome" wx:if="{{bean.is_top==1 && bean.status==1}}">已置顶</view>
+            <block wx:if="{{bean.flag==2}}">
+						    <view class="btn on-line" wx:if="{{bean.status==1}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="2">已上架</view>
+						    <view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
+								<view class="btn theme-button-welcome" wx:if="{{bean.is_top==0}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
+								<view class="btn theme-button-welcome" wx:if="{{bean.is_top==1}}">已置顶</view>
+              </block>
 							<view class="btn theme-button-welcome-dark" bindtap="editDish" data-keys="{{index}}" data-goods_id="{{bean.id}}">编辑</view>
-							<view class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}" data-goods_id="{{bean.id}}">分享</view>
+							<view wx:if="{{bean.flag==2}}" class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}" data-goods_id="{{bean.id}}">分享</view>
 						</view>
 					</view>
 				</view>
-				<!-- <view class="row flex_row_center_spaceBetween theme7">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="info flex_column_flexStart_spaceBetween">
-						<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜</view>
-						<view class="flex_row_center_spaceBetween">
-							<view class="price">￥168</view>
-							<view class="status theme-font5">审核未通过</view>
-						</view>
-						<view class="btn-group flex_row_center_spaceBetween">
-							<view class="btn theme-button-welcome">置顶</view>
-							<view class="btn off-line">已下架</view>
-							<view class="btn theme-button-welcome-dark">编辑</view>
-							<view class="btn share-goods theme-button-welcome-dark">分享</view>
-						</view>
-					</view>
-				</view>
-				<view class="row flex_row_center_spaceBetween theme7">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="info flex_column_flexStart_spaceBetween">
-						<view class="name two-line-overflow">云南特色菌锅，含12种菌类</view>
-						<view class="flex_row_center_spaceBetween">
-							<view class="price">￥168</view>
-						</view>
-						<view class="btn-group flex_row_center_spaceBetween">
-							<view class="btn theme-button-welcome">置顶</view>
-							<view class="btn off-line">已下架</view>
-							<view class="btn theme-button-welcome-dark">编辑</view>
-							<view class="btn share-goods theme-button-welcome-dark">分享</view>
-						</view>
-					</view>
-				</view>
-				<view class="row flex_row_center_spaceBetween theme7">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="info flex_column_flexStart_spaceBetween">
-						<view class="name two-line-overflow">云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜云南特色菌锅，含12种菌类8种鲜菜</view>
-						<view class="flex_row_center_spaceBetween">
-							<view class="price">￥168</view>
-							<view class="status theme-font5">已下架</view>
-						</view>
-						<view class="btn-group flex_row_center_spaceBetween">
-							<view class="btn theme-button-welcome">置顶</view>
-							<view class="btn off-line">已下架</view>
-							<view class="btn theme-button-welcome-dark">编辑</view>
-							<view class="btn share-goods theme-button-welcome-dark">分享</view>
-						</view>
-					</view>
-				</view> -->
 			</view>
 		</scroll-view>
 		<view class="page-bottom flex_row_center_spaceBetween">

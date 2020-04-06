@@ -2,8 +2,14 @@
 /**
  * 商城订单详情页面
  */
-
-
+const app = getApp()
+const mta = require('../../../utils/mta_analysis.js')
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var order_id; 
 Page({
 
   /**
@@ -17,9 +23,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    order_id = options.order_id
+    utils.PostRequest(api_v_url + '/order/detail', {
+      openid: openid,
+      order_id: order_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        order_info: data.result,
+      })
+    })
   },
-
+  //查看物流信息
+  viewExpress:function(e){
+    var order_id = e.currentTarget.dataset.order_id;
+    wx.navigateTo({
+      url: '/pages/hotel/order/goods_logistics_info?order_id='+order_id+'&openid='+openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

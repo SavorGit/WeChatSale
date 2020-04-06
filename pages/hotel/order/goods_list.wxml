@@ -15,113 +15,42 @@
 	<!-- 全部订单 -->
 	<scroll-view wx:if="{{tab == 'all'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
-			<view class="item theme-panel">
+			<view class="item theme-panel" wx:for="{{all_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					<view class="left flex_row_center_spaceBetween" wx:if="{{bean.goods.length==1}}" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}">
+						<image class="pic" mode="aspectFill" src="{{bean.goods[0].img}}"></image>
+						<view class="name three-line-overflow">{{bean.goods[0].name}}</view>
 					</view>
+
+          <view class="left flex_row_center_spaceBetween" wx:else>
+						<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+            <image wx:if="{{idx<4}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+            </block>
+						
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}"></view>
+				  </view>
+
 					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">待处理</view>
+						<view class="status one-line-overflow theme-font3">{{bean.status_str}}</view>
 						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
+							<view class="price one-line-overflow">￥{{bean.total_fee}}</view>
+							<view class="count one-line-overflow theme-font3">共{{bean.amount}}件</view>
 						</view>
 					</view>
 				</view>
 				<view class="consignee-info flex_column_flexStart_flexStart">
 					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
+						<view class="name one-line-overflow">{{bean.contact}}</view>
+						<view class="phone one-line-overflow">{{bean.phone}}</view>
 					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+					<view class="address two-line-overflow">{{bean.address}}</view>
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<view class="btn theme-button-welcome">接单</view>
-				</view>
-			</view>
-			<view class="item theme-panel">
-				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
-					</view>
-					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">待发货</view>
-						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
-						</view>
-					</view>
-				</view>
-				<view class="consignee-info flex_column_flexStart_flexStart">
-					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
-					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
-				</view>
-				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<view class="btn theme-button-welcome" bindtap="onShip">发货</view>
-				</view>
-			</view>
-			<view class="item theme-panel">
-				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
-					</view>
-					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">已派送</view>
-						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
-						</view>
-					</view>
-				</view>
-				<view class="consignee-info flex_column_flexStart_flexStart">
-					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
-					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
-				</view>
-				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<!-- <view class="btn theme-button-welcome">接单</view> -->
-				</view>
-			</view>
-			<view class="item theme-panel">
-				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
-					</view>
-					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">已取消</view>
-						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
-						</view>
-					</view>
-				</view>
-				<view class="consignee-info flex_column_flexStart_flexStart">
-					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
-					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
-				</view>
-				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<!-- <view class="btn theme-button-welcome">接单</view> -->
-				</view>
+					<view class="datetime">{{bean.add_time}}</view>
+					<view class="btn theme-button-welcome" wx:if="{{bean.status==51}}" bindtap="" data-order_id="{{bean.order_id}}">接单</view>
+          <view class="btn theme-button-welcome" wx:if="{{bean.status==52}}" bindtap="onShip" data-order_id="{{bean.order_id}}">发货</view>
+
+        </view>
 			</view>
 		</view>
 	</scroll-view>
@@ -129,30 +58,39 @@
 	<!-- 待处理订单 -->
 	<scroll-view wx:if="{{tab == 'pending'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
-			<view class="item theme-panel">
+			<view class="item theme-panel" wx:for="{{deal_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					<view class="left flex_row_center_spaceBetween" wx:if="{{bean.goods.length==1}}" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}">
+						<image class="pic" mode="aspectFill" src="{{bean.goods[0].img}}"></image>
+						<view class="name three-line-overflow">{{bean.goods[0].name}}</view>
 					</view>
+
+          <view class="left flex_row_center_spaceBetween" wx:else>
+						<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+            <image wx:if="{{idx<4}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+            </block>
+						
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}"></view>
+				  </view>
+
 					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">待处理</view>
+						<view class="status one-line-overflow theme-font3">{{bean.status_str}}</view>
 						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
+							<view class="price one-line-overflow">￥{{bean.total_fee}}</view>
+							<view class="count one-line-overflow theme-font3">共{{bean.amount}}件</view>
 						</view>
 					</view>
 				</view>
 				<view class="consignee-info flex_column_flexStart_flexStart">
 					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
+						<view class="name one-line-overflow">{{bean.contact}}</view>
+						<view class="phone one-line-overflow">{{bean.phone}}</view>
 					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+					<view class="address two-line-overflow">{{bean.address}}</view>
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<view class="btn theme-button-welcome">接单</view>
+					<view class="datetime">{{bean.add_time}}</view>
+					<view class="btn theme-button-welcome" bindtap="" data-order_id="{{bean.order_id}}">接单</view>
 				</view>
 			</view>
 		</view>
@@ -161,30 +99,38 @@
 	<!-- 待发货订单 -->
 	<scroll-view wx:if="{{tab == 'shipping'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
-			<view class="item theme-panel">
+			<view class="item theme-panel" wx:for="{{ship_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="name three-line-overflow">麻辣小龙虾一（大份），38只</view>
+					<view class="left flex_row_center_spaceBetween" wx:if="{{bean.goods.length==1}}" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}">
+						<image class="pic" mode="aspectFill" src="{{bean.goods[0].img}}"></image>
+						<view class="name three-line-overflow">{{bean.goods[0].name}}</view>
 					</view>
+
+          <view class="left flex_row_center_spaceBetween" wx:else>
+						<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+            <image wx:if="{{idx<4}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+            </block>
+						
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}"></view>
+				  </view>
 					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">待发货</view>
+						<view class="status one-line-overflow theme-font3">{{bean.status_str}}</view>
 						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
+							<view class="price one-line-overflow">￥{{bean.total_fee}}</view>
+							<view class="count one-line-overflow theme-font3">共{{bean.amount}}件</view>
 						</view>
 					</view>
 				</view>
 				<view class="consignee-info flex_column_flexStart_flexStart">
 					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
+						<view class="name one-line-overflow">{{bean.contact}}</view>
+						<view class="phone one-line-overflow">{{bean.phone}}</view>
 					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+					<view class="address two-line-overflow">{{bean.address}}</view>
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<view class="btn theme-button-welcome">发货</view>
+					<view class="datetime">{{bean.add_time}}</view>
+					<view class="btn theme-button-welcome" bindtap="onShip" data-order_id="{{bean.order_id}}">发货</view>
 				</view>
 			</view>
 		</view>
@@ -193,60 +139,37 @@
 	<!-- 已完成订单 -->
 	<scroll-view wx:if="{{tab == 'completed'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
-			<view class="item theme-panel">
+			<view class="item theme-panel" wx:for="{{complete_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
+					<view class="left flex_row_center_spaceBetween" wx:if="{{bean.goods.length==1}}" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}">
+						<image class="pic" mode="aspectFill" src="{{bean.goods[0].img}}"></image>
+						<view class="name three-line-overflow">{{bean.goods[0].name}}</view>
 					</view>
+
+          <view class="left flex_row_center_spaceBetween" wx:else>
+						<block wx:for="{{bean.goods}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+            <image wx:if="{{idx<4}}" class="pic" mode="aspectFill" src="{{item.img}}"></image>
+            </block>
+						
+						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true" bindtap="gotoOrderDetail" data-order_id="{{bean.order_id}}"></view>
+				  </view>
 					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">已派送</view>
+						<view class="status one-line-overflow theme-font3">{{bean.status_str}}</view>
 						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
+							<view class="price one-line-overflow">￥{{bean.total_fee}}</view>
+							<view class="count one-line-overflow theme-font3">共{{bean.amount}}件</view>
 						</view>
 					</view>
 				</view>
 				<view class="consignee-info flex_column_flexStart_flexStart">
 					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
+						<view class="name one-line-overflow">{{bean.contact}}</view>
+						<view class="phone one-line-overflow">{{bean.phone}}</view>
 					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
+					<view class="address two-line-overflow">{{bean.address}}</view>
 				</view>
 				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<!-- <view class="btn theme-button-welcome">接单</view> -->
-				</view>
-			</view>
-			<view class="item theme-panel">
-				<view class="goods flex_row_center_spaceBetween">
-					<view class="left flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-						<view class="fa fa-chevron-circle-right fa-lg theme-font3" aria-hidden="true"></view>
-					</view>
-					<view class="right flex_column_flexEnd_spaceBetween">
-						<view class="status one-line-overflow theme-font3">已取消</view>
-						<view class="bottom flex_column_flexEnd_center">
-							<view class="price one-line-overflow">￥66</view>
-							<view class="count one-line-overflow theme-font3">共1件</view>
-						</view>
-					</view>
-				</view>
-				<view class="consignee-info flex_column_flexStart_flexStart">
-					<view class="top flex_row_center_spaceBetween">
-						<view class="name one-line-overflow">张三三</view>
-						<view class="phone one-line-overflow">13800138000</view>
-					</view>
-					<view class="address two-line-overflow">北京市朝阳XXXXXXXXXXXXXXXXXXXXXX</view>
-				</view>
-				<view class="bottom flex_row_center_spaceBetween">
-					<view class="datetime">2020-04-02 11:50</view>
-					<!-- <view class="btn theme-button-welcome">接单</view> -->
+					<view class="datetime">{{bean.add_time}}</view>
 				</view>
 			</view>
 		</view>
