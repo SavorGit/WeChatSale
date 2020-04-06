@@ -61,6 +61,11 @@ Page({
       })
     });
   },
+  gotoIncomerecord:function(e){
+    wx.navigateTo({
+      url: '/pages/purchase/shopping/profit-detail?openid='+openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

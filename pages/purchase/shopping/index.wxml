@@ -4,7 +4,7 @@
  |-->
 
 
-<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<view class="page">
 		<view class="search-panel flex_row_center_spaceBetween theme-panel">
 			<view class="search-bar flex_row_center_spaceBetween">
@@ -24,7 +24,7 @@
 				<view class="tab-list">
           <block wx:for="{{category_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
 					<view wx:if="{{category_id==bean.id}}" class="tab selected">{{bean.name}}</view>
-          <view wx:else class="tab ">{{bean.name}}</view>
+          <view wx:else class="tab " bindtap="selectCate" data-category_id="{{bean.id}}">{{bean.name}}</view>
 					</block>
           
 				</view>
@@ -32,13 +32,13 @@
 			<scroll-view class="tab-body" scroll-y="true" scroll-with-animation="true">
 				<view class="list">
 					<view class="item theme-panel" wx:for="{{goods_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-						<view class="top flex_column_flexStart_flexStart">
+						<view class="top flex_column_flexStart_flexStart" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">
 							<image class="pic" mode="aspectFill" src="{{bean.img_url}}"></image>
 						</view>
 						<view class="bottom">
-							<view class="name two-line-overflow">{{bean.name}}</view>
+							<view class="name two-line-overflow" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">{{bean.name}}</view>
 							<view class="bottom flex_row_center_spaceBetween">
-								<view class="left flex_row_center_flexStart">
+								<view class="left flex_row_center_flexStart" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">
 									<view class="price theme-font5">￥<text>{{bean.price}}</text></view>
 									<view class="price market theme-font3">￥{{bean.line_price}}</view>
 								</view>

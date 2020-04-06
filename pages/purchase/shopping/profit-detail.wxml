@@ -4,114 +4,27 @@
  |-->
 
 
-<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<view class="page">
 
 		<!-- 昨天 -->
-		<view class="date-panel theme-panel">
+		<view class="date-panel theme-panel"  wx:for="{{income_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
 			<view class="title-bar flex_row_center_spaceBetween">
-				<view class="title">昨天</view>
+				<view class="title">{{bean.date_str}}</view>
 			</view>
 			<view class="list">
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+				<view class="item flex_row_center_spaceBetween" wx:for="{{bean.datas}}" wx:key="kk" wx:for-item="item" wx:for-index="idx">
+					<image class="pic" mode="aspectFill" src="{{item.avatarUrl}}"></image>
 					<view class="right flex_column_flexStart_spaceAround">
 						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
+							<view class="user-name one-line-overflow">{{item.nickName}}</view>
+							<view class="content one-line-overflow">购买了“{{item.goods_name}}“</view>
 						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
+						<view class="profit theme-font5">+{{item.income_fee}}</view>
 					</view>
 				</view>
 			</view>
 		</view>
 
-		<!-- 昨天 -->
-		<view class="date-panel theme-panel">
-			<view class="title-bar flex_row_center_spaceBetween">
-				<view class="title">前天</view>
-			</view>
-			<view class="list">
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<!-- 大前天 -->
-		<view class="date-panel theme-panel">
-			<view class="title-bar flex_row_center_spaceBetween">
-				<view class="title">2020-04-01</view>
-			</view>
-			<view class="list">
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-				<view class="item flex_row_center_spaceBetween">
-					<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-					<view class="right flex_column_flexStart_spaceAround">
-						<view class="top flex_row_center_spaceBetween">
-							<view class="user-name one-line-overflow">张三三</view>
-							<view class="content one-line-overflow">购买了“XXXXXXXXXXXXXXXXXXXXX“</view>
-						</view>
-						<view class="profit theme-font5">+12</view>
-					</view>
-				</view>
-			</view>
-		</view>
 	</view>
 </scroll-view>

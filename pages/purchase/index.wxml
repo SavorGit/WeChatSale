@@ -8,7 +8,7 @@
 	<view class="profit-panel theme-panel">
 		<view class="title-bar flex_row_center_spaceBetween">
 			<view class="title">收益</view>
-			<view class="link flex_row_center_flexEnd" bindtap="">
+			<view class="link flex_row_center_flexEnd" bindtap="gotoIncomerecord">
 				<view class="content">收益明细</view>
 				<view class="fa fa-chevron-right" aria-hidden="true"></view>
 			</view>

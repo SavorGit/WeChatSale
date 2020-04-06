@@ -69,6 +69,13 @@ Page({
     page +=1;
     that.getGoodsList(keywords,page);
   },
+  gotoGoodsDetail: function (e) {
+    var that = this;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id + '&openid=' + openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

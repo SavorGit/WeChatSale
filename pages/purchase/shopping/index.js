@@ -49,8 +49,15 @@ Page({
     var that = this;
     utils.PostRequest(api_v_url + '/category/categorylist', {
     }, (data, headers, cookies, errMsg, statusCode) => {
+      var category_list = data.result.category_list
+      var page_arr = that.data.page_arr;
+      for(var i=0;i<category_list.length;i++){
+        var id = category_list[i].id;
+        page_arr[id] = 1;
+      }
       that.setData({
-        category_list: data.result.category_list,
+        page_arr: page_arr,
+        category_list: category_list,
       })
     });
   },
@@ -77,7 +84,45 @@ Page({
       }
     })
   },
-
+  selectCate:function(e){
+    var that = this;
+    var category_id = e.currentTarget.dataset.category_id;
+    that.setData({
+      category_id: category_id
+    })
+    var page_arr = that.data.page_arr;
+    var select_page = 1;
+    for (let index in page_arr) { 
+      if(category_id==index){
+        select_page = page_arr[index];
+      }
+    }
+    that.getGoodsList(category_id,select_page);
+  },
+  loadMore:function(e){
+    var that = this;
+    var category_id = that.data.category_id;
+    var page_arr = that.data.page_arr;
+    var select_page = 1;
+    for(let index in page_arr){
+      if(index==category_id){
+        select_page = page_arr[index]+1;
+        page_arr[index] +=1;
+        break;
+      }
+    }
+    that.setData({
+      page_arr: page_arr,
+    })
+    that.getGoodsList(category_id,select_page)
+  },
+  gotoGoodsDetail:function(e){
+    var that = this;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id + '&openid=' + openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

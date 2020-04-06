@@ -2,7 +2,12 @@
 /**
  * 收益明细页面
  */
-
+const utils = require('../../../utils/util.js')
+var mta = require('../../../utils/mta_analysis.js')
+const app = getApp()
+var api_v_url = app.globalData.api_v_url;
+var openid; //用户openid
+var page = 1; 
 
 Page({
 
@@ -17,9 +22,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    openid = options.openid;
   },
-
+  getIncomeList:function(page){
+    var that = this;
+    utils.PostRequest(api_v_url + '/purchase/incomerecord', {
+      openid: openid,
+      page: page
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        income_list: data.result.datalist,
+      })
+    });
+  },
+  loadMore:function(e){
+    var that = this;
+    page +=1;
+    that.getIncomeList(page);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
