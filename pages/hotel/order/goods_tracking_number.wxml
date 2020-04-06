@@ -27,9 +27,10 @@
 						<view class="id">{{enumber}}</view>
 					</view>
 				</view>
-				
 			</radio-group>
 		</scroll-view>
+	</view>
+	<view class="search-page flex_column_center_flexStart" wx:else>
 	</view>
 	<view class="bottom" bindtap="addExpressnum">
 		<view class="btn theme-button-welcome">保存</view>
