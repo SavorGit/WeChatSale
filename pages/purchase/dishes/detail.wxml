@@ -23,9 +23,9 @@
 				<view class="name two-line-overflow">{{merchant.name}}</view>
 				<view class="one-line-overflow theme-font7">共发布了{{merchant.num}}个菜品</view>
 			</view>
-			<view class="btn-group flex_column_center_flexEnd" bindtap="gotoHotelDetail" data-merchant_id="{{merchant.merchant_id}}">
+			<!-- <view class="btn-group flex_column_center_flexEnd" bindtap="gotoHotelDetail" data-merchant_id="{{merchant.merchant_id}}">
 				<view class="btn theme-font7">进入</view>
-			</view>
+			</view> -->
 		</view>
 		<view class="goods-detail theme-panel">
 			<view class="title">详情</view>
@@ -39,8 +39,8 @@
 			</view>
 		</view>
 	</scroll-view>
-	<view wx:if="{{is_share==0}}" class="btn-buy flex_column_center_center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>
-</view>
+	<!-- <view wx:if="{{is_share==0}}" class="btn-buy flex_column_center_center theme-button-buy" bindtap="gotoPlaceOrder" data-goods_id="{{goods_info.goods_id}}" data-openid="{{openid}}" data-amount="{{amount}}">下单</view>-->
+</view> 
 
 <!-- 更改订单商品窗口 -->
 <view wx:if="{{showChangeOrderGoodsPopWindow}}" class="change-order-goods-window">
