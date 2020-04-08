@@ -8,9 +8,9 @@
 	<view class="page">
 		<view class="search-panel flex_row_center_spaceBetween theme-panel">
 			<view class="search-bar flex_row_center_spaceBetween">
-				
-				<input class="search theme-font3" placeholder="搜索商品" value="{{keywords}}" bindinput="inputSearch" ></input>
-        <view class="fa fa-search theme-font3" aria-hidden="true" bindtap="searchGoods"></view>
+				<view class="fa fa-search theme-font3" aria-hidden="true" ></view>
+				<input confirm-type="search" class="search theme-font3" placeholder="搜索商品" value="{{keywords}}" bindinput="inputSearch" ></input>
+        
 			</view>
 			<!--
 			<view class="shopping-car-bar flex_column_flexStart_flexStart">
@@ -40,7 +40,7 @@
 							<view class="bottom flex_row_center_spaceBetween">
 								<view class="left flex_row_center_flexStart" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">
 									<view class="price theme-font5">￥<text>{{bean.price}}</text></view>
-									<view class="price market theme-font3">￥{{bean.line_price}}</view>
+									<view class="price market theme-font3" wx:if="{{bean.line_price>0}}">￥{{bean.line_price}}</view>
 								</view>
 								<view class="right flex_row_center_flexEnd">
 									<view class="fa fa-download theme-font5" aria-hidden="true"></view>
