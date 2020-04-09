@@ -1,0 +1,70 @@
+<!--pages/purchase/shopping/goods_detail.wxml-->
+<!--
+ | 商品详情页面
+ |-->
+
+
+<view class='container flex_column_center_flexStart theme-container'>
+	<scroll-view class='scroll-view' scroll-y="true" scroll-with-animation="true">
+
+		<!-- 商品简介面板 -->
+		<view class="goods-smple-info flex_column_center_flexStart theme-panel">
+			<view class="top flex_column_center_flexStart">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="bottom flex_row_center_spaceBetween">
+				<view class="left flex_column_flexStart_spaceBetween">
+					<view class="name two-line-overflow">【十人套餐】8荤6素超值员工餐</view>
+					<view class="bottom flex_row_center_flexStart">
+						<view class="price theme-font5">￥<text class="one-line-overflow">198</text></view>
+						<view class="price market one-line-overflow theme-font3">￥298</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 商铺面板 -->
+		<view class="shop-panel flex_row_center_flexStart theme-panel">
+			<view class="left">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+			</view>
+			<view class="center flex_column_flexStart_spaceAround">
+				<view class="name two-line-overflow">花家怡园（世茂店）</view>
+				<!-- <view class="info theme-font3 one-line-overflow">共发布了10件菜品</view> -->
+			</view>
+		</view>
+
+		<!-- 商品介绍面板 -->
+		<view class="information-panel theme-panel">
+			<view class="title-bar">
+				<view class="title theme-font3">商品介绍</view>
+			</view>
+			<view class="panel-body">
+				<view class="panel">
+					<view class="title-bar">
+						<view class="title">商品视频</view>
+					</view>
+					<view class="body">
+						<video class="video"></video>
+					</view>
+				</view>
+				<view class="panel info">
+					<view class="title-bar">
+						<view class="title">商品详情</view>
+					</view>
+					<view class="body flex_column_center_flexStart">
+						<view class="text">1.XXXXXXX 2.XXXXXXX 3.XXXXXXX 4.XXXXXXXXXXXXXXXXXXXXX</view>
+						<view class="pics flex_column_center_flexStart">
+							<image class="pic" mode="widthFix" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+							<image class="pic" mode="widthFix" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+	</scroll-view>
+	<view class="page-bottom flex_row_center_spaceBetween theme-panel">
+		<view class="btn theme-button-red">生成海报</view>
+	</view>
+</view>

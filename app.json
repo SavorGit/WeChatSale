@@ -27,6 +27,7 @@
     "pages/purchase/index",
     "pages/purchase/auth",
     "pages/purchase/shopping/index",
+    "pages/purchase/shopping/goods_detail",
     "pages/purchase/shopping/search_result",
     "pages/purchase/shopping/profit-detail",
     "pages/purchase/dishes/detail",
