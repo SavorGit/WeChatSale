@@ -43,6 +43,7 @@ Page({
     var that = this;
     utils.PostRequest(api_v_url + '/dish/detail', {
       goods_id: goods_id,
+      openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => that.setData({
       goods_info: data.result,
       merchant: data.result.merchant
