@@ -737,7 +737,7 @@ const createCanvasContext = (canvasContext) => {
     }
     this.fillText(lineString, _left, top);
     // this.fillText(lineString, left + 115 - this.measureText(lineString).width / 2, top);
-    return this.__drawMultiLineText(str.substring(lineWordCount), fontSize, left, top, canvasWidth, lineHeight, isCenter, ++lineNo, lineCount);
+    return this.__drawMultiLineText(str.substring(lineString.length), fontSize, left, top, canvasWidth, lineHeight, isCenter, ++lineNo, lineCount);
   };
   /**
    * 以矩形剪切图片。
@@ -855,12 +855,51 @@ const createCanvasContext = (canvasContext) => {
        */
       ctx.beginPath();
       ctx.moveTo(dx + radius, dy);
-      ctx.arcTo(dx + dWidth, dy, dx + dWidth, dy + radius, radius); // draw right side and bottom right corner 
-      ctx.arcTo(dx + dWidth, dy + dHeight, dx + dWidth - radius, dy + dHeight, radius); // draw bottom and bottom left corner 
-      ctx.arcTo(dx, dy + dHeight, dx, dy + dHeight - radius, radius); // draw left and top left corner 
-      ctx.arcTo(dx, dy, dx + radius, dy, radius);
+      ctx.arcTo(dx + dWidth, dy, dx + dWidth, dy + radius, radius); // draw top side and top-right corner 
+      ctx.arcTo(dx + dWidth, dy + dHeight, dx + dWidth - radius, dy + dHeight, radius); // draw right side and bottom-right corner 
+      ctx.arcTo(dx, dy + dHeight, dx, dy + dHeight - radius, radius); // draw bottom side and bottom-left corner 
+      ctx.arcTo(dx, dy, dx + radius, dy, radius); // draw left side and top-left corner 
       ctx.clip();
     }
+    ctx.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
+    ctx.restore();
+  };
+  /**
+   * 以圆角矩形剪切图片。
+   * 等比缩放图片，以短边显示全。
+   * 
+   * @param imageResource   所要绘制的图片资源（网络图片要通过 getImageInfo / downloadFile 先下载）
+   * @param dx              imageResource的左上角在目标 canvas 上 x 轴的位置
+   * @param dy              imageResource的左上角在目标 canvas 上 y 轴的位置
+   * @param dWidth          在目标画布上绘制imageResource的宽度，允许对绘制的imageResource进行缩放
+   * @param dHeight         在目标画布上绘制imageResource的高度，允许对绘制的imageResource进行缩放
+   * @param radius          圆角的半径。相对于缩放后。
+   */
+  canvasContext.drawImageRoundedRectAllCorner = function (imageResource, dx, dy, dWidth, dHeight, topLeftCorner, topRightCorner, bottomRightCorner, bottomLeftCorner) {
+    let ctx = this;
+    ctx.save();
+    // console.log('utils.createCanvasContext.drawImageArc', imageResource, dx, dy, dWidth, dHeight);
+    let __objectPictureWidth = imageResource.width, __objectPictureHeight = imageResource.height, __pictureWidth = 0, __pictureHeight = 0;
+    let __pictureWidthRatio = __objectPictureWidth / dWidth, __pictureHeightRatio = __objectPictureHeight / dHeight, __x = 0, __y = 0;
+    let __r = null;
+    if (__pictureWidthRatio > __pictureHeightRatio) {
+      __pictureWidth = dWidth * __pictureHeightRatio;
+      __pictureHeight = __objectPictureHeight;
+      __x = __objectPictureWidth / 2 - __pictureWidth / 2; __y = 0;
+    } else {
+      __pictureWidth = __objectPictureWidth;
+      __pictureHeight = dHeight * __pictureWidthRatio;
+      __x = 0; __y = __objectPictureHeight / 2 - __pictureHeight / 2;
+    }
+    // if (typeof (radius) == 'number') {
+    ctx.beginPath();
+    ctx.moveTo(dx + topLeftCorner, dy);
+    ctx.arcTo(dx + dWidth, dy, dx + dWidth, dy + topRightCorner, topRightCorner); // draw top side and top-right corner 
+    ctx.arcTo(dx + dWidth, dy + dHeight, dx + dWidth - bottomRightCorner, dy + dHeight, bottomRightCorner); // draw right side and bottom-right corner 
+    ctx.arcTo(dx, dy + dHeight, dx, dy + dHeight - bottomLeftCorner, bottomLeftCorner); // draw bottom side and bottom-left corner 
+    ctx.arcTo(dx, dy, dx + topLeftCorner, dy, topLeftCorner); // draw left side and top-left corner 
+    ctx.clip();
+    // }
     ctx.drawImage(imageResource.path, __x, __y, __pictureWidth, __pictureHeight, dx, dy, dWidth, dHeight);
     ctx.restore();
   };
@@ -877,12 +916,12 @@ const createCanvasContext = (canvasContext) => {
    */
   canvasContext.drawRoundedRect = function (x, y, width, height, radius, fill, stroke) {
     let ctx = this;
-    ctx.save(); ctx.beginPath(); // draw top and top right corner 
+    ctx.save(); ctx.beginPath();
     ctx.moveTo(x + radius, y);
-    ctx.arcTo(x + width, y, x + width, y + radius, radius); // draw right side and bottom right corner 
-    ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius); // draw bottom and bottom left corner 
-    ctx.arcTo(x, y + height, x, y + height - radius, radius); // draw left and top left corner 
-    ctx.arcTo(x, y, x + radius, y, radius);
+    ctx.arcTo(x + width, y, x + width, y + radius, radius); // draw top side and top-right corner 
+    ctx.arcTo(x + width, y + height, x + width - radius, y + height, radius); // draw right side and bottom-right corner 
+    ctx.arcTo(x, y + height, x, y + height - radius, radius); // draw bottom side and bottom-left corner 
+    ctx.arcTo(x, y, x + radius, y, radius);// draw left side and top-left corner 
     if (fill) { ctx.fill(); }
     if (stroke) { ctx.stroke(); }
     ctx.restore();
