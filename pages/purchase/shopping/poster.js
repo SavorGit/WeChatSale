@@ -2,10 +2,12 @@
 /**
  * 商城 - 生成海报页面
  */
-
-
-let app = getApp();
-let utils = require('../../../utils/util.js');
+const utils = require('../../../utils/util.js')
+var mta = require('../../../utils/mta_analysis.js')
+const app = getApp()
+var api_v_url = app.globalData.api_v_url;
+var openid; //用户openid
+var goods_id; 
 Page({
 
   /**
@@ -19,6 +21,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    openid = options.openid;
+    goods_id = options.goods_id;
+    
+    
     let self = this;
     let testData = {
       canvasId: 'sharePoster',// 画布标识
@@ -42,6 +48,13 @@ Page({
         }
       },
       success: function () {
+        //生成海报日志
+        utils.PostRequest(api_v_url + '/purchase/generatePoster', {
+          openid: openid,
+          poster: '[{ "id":'+ goods_id+', "price":'+ testData.page.promotePrice.value+'}]',
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          
+        });
         wx.showToast({
           icon: 'none',
           title: '海报生成成功',
@@ -64,7 +77,23 @@ Page({
         });
       }
     };
-    self.drawPosterPicture(self, testData);
+
+    utils.PostRequest(api_v_url + '/dish/detail', {
+      goods_id: goods_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var goods_info = data.result;
+      testData.page.name = goods_info.name;
+      testData.page.pic = goods_info.cover_imgs[0];
+      testData.page.promotePrice.value = '￥'+goods_info.price;
+      testData.page.marketPrice = goods_info.supply_price;
+      //testData.page.qrCode.pic = goods_info.qrcode_url;
+      console.log(testData);
+      
+      self.drawPosterPicture(self, testData);
+    })
+
+
+    
   },
 
   /**
