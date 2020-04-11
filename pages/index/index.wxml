@@ -15,7 +15,6 @@
 			</view>
 		</picker>
 	</view>
-
 	<!-- 投屏操作面板 -->
 	<view class="launch-option-panel flex_row_center_spaceAround theme7">
 		<view bindtap="chooseImage" disabled='{{img_disable}}' data-boxmac="{{box_mac}} " data-openid="{{openid}}">

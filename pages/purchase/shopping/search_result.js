@@ -73,7 +73,14 @@ Page({
     var that = this;
     var goods_id = e.currentTarget.dataset.goods_id;
     wx.navigateTo({
-      url: '/pages/purchase/dishes/detail?goods_id=' + goods_id + '&openid=' + openid,
+      url: '/pages/purchase/shopping/goods_detail?goods_id=' + goods_id + '&openid=' + openid,
+    })
+  },
+  creatPoster: function (e) {
+    var that = this;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/purchase/shopping/poster?goods_id=' + goods_id + '&openid=' + openid,
     })
   },
   /**

@@ -123,6 +123,13 @@ Page({
       url: '/pages/purchase/shopping/goods_detail?goods_id=' + goods_id + '&openid=' + openid,
     })
   },
+  creatPoster:function(e){
+    var that = this;
+    var goods_id = e.currentTarget.dataset.goods_id;
+    wx.navigateTo({
+      url: '/pages/purchase/shopping/poster?goods_id=' + goods_id + '&openid=' + openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

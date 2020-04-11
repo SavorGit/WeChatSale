@@ -40,7 +40,7 @@
 									<view class="price theme-font5">￥<text>{{bean.price}}</text></view>
 									<view class="price market theme-font3">￥{{bean.line_price}}</view>
 								</view>
-								<view class="right flex_row_center_flexEnd">
+								<view class="right flex_row_center_flexEnd" bindtap="creatPoster"  data-goods_id="{{bean.id}}">
 									<view class="fa fa-download theme-font5" aria-hidden="true"></view>
 								</view>
 							</view>

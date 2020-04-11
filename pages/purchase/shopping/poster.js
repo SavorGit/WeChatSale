@@ -51,7 +51,7 @@ Page({
         //生成海报日志
         utils.PostRequest(api_v_url + '/purchase/generatePoster', {
           openid: openid,
-          poster: '[{ "id":'+ goods_id+', "price":'+ testData.page.promotePrice.value+'}]',
+          poster: '[{ "id":' + goods_id + ', "price":' + testData.page.posterPrice+'}]',
         }, (data, headers, cookies, errMsg, statusCode) => {
           
         });
@@ -80,13 +80,15 @@ Page({
 
     utils.PostRequest(api_v_url + '/dish/detail', {
       goods_id: goods_id,
+      openid:openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goods_info = data.result;
       testData.page.name = goods_info.name;
       testData.page.pic = goods_info.cover_imgs[0];
       testData.page.promotePrice.value = '￥'+goods_info.price;
+      testData.page.posterPrice = goods_info.price;
       testData.page.marketPrice = goods_info.supply_price;
-      //testData.page.qrCode.pic = goods_info.qrcode_url;
+      testData.page.qrCode.pic = goods_info.qrcode_url;
       console.log(testData);
       
       self.drawPosterPicture(self, testData);
