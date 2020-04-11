@@ -10,15 +10,15 @@
 			<view class="head">配送信息</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="row flex_row_center_spaceBetween border-bottom">
-					<view class="left flex_row_center_spaceBetween" bindtap="viewExpress" data-order_id="{{bean.order_id}}">
+					<view class="left flex_row_center_spaceBetween" bindtap="viewExpress" data-order_id="{{order_info.order_id}}">
 						<view class="fa fa-truck" aria-hidden="true"></view>
 						<view class="information logistics">
-							<view class="status">运输中</view>
-							<view class="info">离开XXXX，下一站XXXXXXXXX</view>
-							<view class="datetime theme-font3">2020-04-02 09:15</view>
+							<view class="status">{{express.state_str}}</view>
+							<view class="info">{{express.data[0].context}}</view>
+							<view class="datetime theme-font3">{{express.data[0].time}}</view>
 						</view>
 					</view>
-					<view class="right fa fa-chevron-right theme-font2" aria-hidden="true"></view>
+					<view class="right fa fa-chevron-right theme-font2" aria-hidden="true" bindtap="viewExpress" data-order_id="{{order_info.order_id}}"></view>
 				</view>
 				<view class="row flex_row_center_spaceBetween">
 					<view class="left flex_row_center_spaceBetween" style="width:100%;">

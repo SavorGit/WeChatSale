@@ -21,6 +21,7 @@
 				<view class="item flex_row_center_spaceBetween" wx:for="{{company_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="left">
 						<radio value="{{bean.comcode}}" wx:if="{{company_list.length==1}}" checked="true"></radio>
+            <radio value="{{bean.comcode}}" wx:else ></radio>
 					</view>
 					<view class="right">
 						<view class="name">{{bean.name}}</view>

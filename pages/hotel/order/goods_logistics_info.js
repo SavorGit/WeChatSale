@@ -23,12 +23,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     openid = options.openid;
     order_id = options.order_id;
     utils.PostRequest(api_v_url + '/express/getExpress', {
       openid: openid,
       order_id: order_id
     }, (data, headers, cookies, errMsg, statusCode) => {
+      console.log(data.result.data)
       that.setData({
         express_info: data.result,
         expres_list:data.result.data,

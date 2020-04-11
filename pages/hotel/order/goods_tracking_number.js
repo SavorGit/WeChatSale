@@ -8,7 +8,6 @@ const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
-var merchant_id;
 var openid;
 var order_id
 
@@ -29,7 +28,6 @@ Page({
    */
   onLoad: function (options) {
     openid = options.openid;
-    merchant_id = options.merchant_id;
     order_id = options.order_id;
   },
   //扫码识别快递单号

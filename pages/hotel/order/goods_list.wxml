@@ -6,14 +6,14 @@
 
 <view class='container theme-container'>
 	<view class="tab-bar flex_row_center_spaceAround theme-font1 theme7">
-		<view class="tab all{{tab == 'all' ? ' selected' :' theme-font3'}}" data-tab="all" bindtap="showTab">全部订单</view>
-		<view class="tab pending{{tab == 'pending' ? ' selected' :' theme-font3'}}" data-tab="pending" bindtap="showTab">待处理</view>
-		<view class="tab shipping{{tab == 'shipping' ? ' selected' :' theme-font3'}}" data-tab="shipping" bindtap="showTab">待发货</view>
-		<view class="tab completed{{tab == 'completed' ? ' selected' :' theme-font3'}}" data-tab="completed" bindtap="showTab">已完成</view>
+		<view class="tab all{{order_status == '0' ? ' selected' :' theme-font3'}}" data-order_status="0" bindtap="showTab">全部订单</view>
+		<view class="tab pending{{order_status == '1' ? ' selected' :' theme-font3'}}" data-order_status="1" bindtap="showTab">待处理</view>
+		<view class="tab shipping{{order_status == '3' ? ' selected' :' theme-font3'}}" data-order_status="3" bindtap="showTab">待发货</view>
+		<view class="tab completed{{order_status == '2' ? ' selected' :' theme-font3'}}" data-order_status="2" bindtap="showTab">已完成</view>
 	</view>
 
 	<!-- 全部订单 -->
-	<scroll-view wx:if="{{tab == 'all'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 0}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{all_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -56,7 +56,7 @@
 	</scroll-view>
 
 	<!-- 待处理订单 -->
-	<scroll-view wx:if="{{tab == 'pending'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 1}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{deal_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -97,7 +97,7 @@
 	</scroll-view>
 
 	<!-- 待发货订单 -->
-	<scroll-view wx:if="{{tab == 'shipping'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 3}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{ship_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -137,7 +137,7 @@
 	</scroll-view>
 
 	<!-- 已完成订单 -->
-	<scroll-view wx:if="{{tab == 'completed'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 2}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{complete_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">

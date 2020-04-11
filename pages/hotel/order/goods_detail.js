@@ -33,6 +33,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         order_info: data.result,
+        express:data.result.express
       })
     })
   },
@@ -45,6 +46,7 @@ Page({
   },
   //查看物流信息
   viewExpress:function(e){
+    console.log(e)
     var order_id = e.currentTarget.dataset.order_id;
     wx.navigateTo({
       url: '/pages/hotel/order/goods_logistics_info?order_id='+order_id+'&openid='+openid,

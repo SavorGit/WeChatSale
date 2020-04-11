@@ -11,6 +11,7 @@ var cache_key = app.globalData.cache_key;
 var merchant_id;
 var openid;
 var type;
+var order_status ;
 var page_all = 1;      //全部订单
 var page_dealing = 1;  //待处理
 var page_ship = 1;     //待发货
@@ -22,7 +23,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab: 'all'
+    order_status: '0'
   },
 
   /**
@@ -32,8 +33,13 @@ Page({
     console.log(options)
     var that = this;
     openid = options.openid
+    order_status = options.order_status
+    that.setData({
+      order_status: order_status
+    })
     merchant_id = options.merchant_id;
     type = options.type;
+
     that.getOrderList(openid,merchant_id,0,1);
     that.getOrderList(openid, merchant_id, 1, 1);
     that.getOrderList(openid, merchant_id, 2, 1);
@@ -58,11 +64,11 @@ Page({
         that.setData({
           deal_order_list: data.result.datalist
         })
-      }else if(order_status==2){
+      }else if(order_status==3){
         that.setData({
           ship_order_list: data.result.datalist
         })
-      }else if(order_status==3){
+      }else if(order_status==2){
         that.setData({
           complete_order_list: data.result.datalist
         })
@@ -82,7 +88,7 @@ Page({
     }else if(order_status==3){
       page_ship +=1;
       page = page_ship;
-    }else if (order_status == 3) {
+    }else if (order_status == 2) {
       page_complete += 1;
       page = page_complete;
     }
@@ -96,7 +102,7 @@ Page({
 
     var order_status = that.data.order_status
     //var user_info = wx.getStorageSync(cache_key + 'userinfo');
-
+    
     wx.showModal({
       title: '提示',
       content: '确认接单',
@@ -111,13 +117,14 @@ Page({
             if (order_status == 0) {//全部订单
               //全部订单改状态
               var all_order_list = that.data.all_order_list;
-              order_list[keys].status = 52;
-              order_list[keys].status_str = '待发货';
+              all_order_list[keys].status = 52;
+              all_order_list[keys].status_str = '待发货';
+              that.setData({ all_order_list: all_order_list})
               //待处理更新列表
               that.getOrderList(openid, merchant_id, 1, page_dealing);
 
               //待发货更新列表
-              that.getOrderList(openid, merchant_id, 2, page_ship);
+              that.getOrderList(openid, merchant_id, 3, page_ship);
             }else if(order_status==1){//待处理
               var deal_order_list = that.data.deal_order_list;
               //删除待处理订单列表
@@ -125,7 +132,7 @@ Page({
               //更新全部订单列表
               that.getOrderList(openid, merchant_id, 0, page_all);
               //代发货更新列表
-              that.getOrderList(openid, merchant_id, 2, page_ship);
+              that.getOrderList(openid, merchant_id, 3, page_ship);
             }
           })
         }
@@ -137,7 +144,7 @@ Page({
   onShip:function(e){
     var order_id = e.currentTarget.dataset.order_id;
     wx.navigateTo({
-      url: '/pages/hotel/order/goods_tracking_number?order_id'+order_id,
+      url: '/pages/hotel/order/goods_tracking_number?order_id='+order_id+'&openid='+openid,
     })
   },
   gotoOrderDetail:function(e){
@@ -161,8 +168,8 @@ Page({
     var that = this;
     that.getOrderList(openid, merchant_id, 0, page_all);
     that.getOrderList(openid, merchant_id, 1, page_dealing);
-    that.getOrderList(openid, merchant_id, 2, page_ship);
-    that.getOrderList(openid, merchant_id, 3, page_complete);
+    that.getOrderList(openid, merchant_id, 3, page_ship);
+    that.getOrderList(openid, merchant_id, 2, page_complete);
   },
 
   /**
@@ -204,9 +211,9 @@ Page({
   // 选项卡选择
   showTab: function (e) {
     let self = this;
-    let tabType = e.currentTarget.dataset.tab;
+    let tabType = e.currentTarget.dataset.order_status;
     self.setData({
-      tab: tabType
+      order_status: tabType
     });
   }
 })
