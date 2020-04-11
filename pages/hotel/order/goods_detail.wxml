@@ -9,7 +9,7 @@
 		<view class="input-panel delivery theme-panel">
 			<view class="head">配送信息</view>
 			<view class="body flex_column_center_spaceBetween">
-				<view class="row flex_row_center_spaceBetween border-bottom">
+				<view class="row flex_row_center_spaceBetween border-bottom" wx:if="{{is_have_express==true}}">
 					<view class="left flex_row_center_spaceBetween" bindtap="viewExpress" data-order_id="{{order_info.order_id}}">
 						<view class="fa fa-truck" aria-hidden="true"></view>
 						<view class="information logistics">
