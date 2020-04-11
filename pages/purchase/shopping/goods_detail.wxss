@@ -47,9 +47,15 @@
 }
 
 .goods-smple-info>.top,
-.goods-smple-info>.top>.pic {
+.goods-smple-info>.top>.pic,
+.goods-smple-info>.top>.pic-group {
   width: 100%;
   height: 420rpx;
+}
+
+.goods-smple-info>.top>.pic-group .pic {
+  width: 100%;
+  height: 100%;
 }
 
 .goods-smple-info>.bottom {

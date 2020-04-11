@@ -9,7 +9,7 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
-var order_id; 
+var order_id;
 
 Page({
 
@@ -33,7 +33,7 @@ Page({
       console.log(data.result.data)
       that.setData({
         express_info: data.result,
-        expres_list:data.result.data,
+        expres_list: data.result.data,
       })
     })
   },

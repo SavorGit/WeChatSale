@@ -11,10 +11,10 @@
 		<view class="goods-smple-info flex_column_center_flexStart theme-panel">
 			<view class="top flex_column_center_flexStart">
 				<swiper class="pic-group" indicator-dots="true" autoplay="true">
-				<swiper-item class="pic" wx:for="{{goods_info.cover_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-					<image mode="aspectFill" src="{{bean}}"></image>
-				</swiper-item>
-			</swiper>
+					<swiper-item wx:for="{{goods_info.cover_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+						<image class="pic" mode="aspectFill" src="{{bean}}"></image>
+					</swiper-item>
+				</swiper>
 			</view>
 			<view class="bottom flex_row_center_spaceBetween">
 				<view class="left flex_column_flexStart_spaceBetween">
@@ -58,12 +58,12 @@
 					</view>
 					<view class="body flex_column_center_flexStart">
 						<view class="text">
-              <text>{{goods_info.intro}}</text>
-            </view>
+							<text>{{goods_info.intro}}</text>
+						</view>
 						<view class="pics flex_column_center_flexStart">
 							<block wx:for="{{goods_info.detail_imgs}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-					<image class="pic" mode="widthFix" src="{{bean}}"></image>
-				</block>
+								<image class="pic" mode="widthFix" src="{{bean}}"></image>
+							</block>
 						</view>
 					</view>
 				</view>

@@ -20,7 +20,7 @@
 				<view class="withdrawable one-line-overflow theme-font3">可提现：{{withdraw_fee}}</view>
 			</view>
 		</view>
-		<view class="tip one-line-overflow theme-font3">订单成交7天后可进行提现,单日单次提现最大5000元，超出部分请于次日提取</view>
+		<view class="tip tow-line-overflow theme-font3">订单成交7天后可进行提现,单日单次提现最大5000元，超出部分请于次日提取</view>
 	</view>
 	<view class="list flex_column_center_spaceAround">
 		<!--
