@@ -132,6 +132,12 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
 				<input name='inventory' class="input" type="number" maxlength="4" placeholder="请输入库存量"></input>
 			</view>
+      <view class="row flex_row_flexStart_spaceBetween">
+				<view class="lable flex_row_center_spaceBetween theme-font1">只售本地</view>
+				<view class="input" style="border:none;">
+					<switch checked="{{is_localsale==1?true:false}}" bindchange="changeLocalSale" />
+				</view>
+			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>商品图</p>

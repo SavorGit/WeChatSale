@@ -33,7 +33,8 @@ Page({
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
-    is_sale: 1
+    is_sale: 1,
+    is_localsale:0   //全国商品只售本地
   },
 
   /**
@@ -669,6 +670,7 @@ Page({
     var goods_video_url = that.data.goods_video_url;
     var introduce = e.detail.value.introduce;
     var goods_intro_img_list = that.data.goods_intro_img_list;
+    var is_localsale = that.data.is_localsale;
     if(name==''){
       app.showToast('请输入商品名称');
       return false;
@@ -682,7 +684,7 @@ Page({
       return false;
     }else {
       if (retail_price<=0){
-        app.showToast('零售价不能小于1');
+        app.showToast('零售价不能小于0');
         return false;
       }
     }
@@ -691,9 +693,13 @@ Page({
       return false;
     } else {
       if (sale_price <= 0) {
-        app.showToast('供货价不能小于1');
+        app.showToast('供货价不能小于0');
         return false;
       }
+    }
+    if(retail_price<sale_price){
+      app.showToast('零售价不能小于包邮供货价');
+      return false;
     }
     if (inventory == '') {
       app.showToast('请输入库存');
@@ -745,6 +751,7 @@ Page({
       imgs: imgs,
       detail_imgs: intro_imgs,
       intro: introduce,
+      is_localsale: is_localsale,
       name: name,
       openid,openid,
       price: retail_price,
@@ -765,6 +772,16 @@ Page({
         addDisabled: false,
       })
     })
+  },
+  changeLocalSale:function(e){
+    var that = this;
+    var is_localsale = that.data.is_localsale
+    if(is_localsale==0){
+      is_localsale = 1;
+    } else if (is_localsale==1){
+      is_localsale = 0;
+    }
+    that.setData({ is_localsale: is_localsale})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
