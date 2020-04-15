@@ -130,7 +130,7 @@
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
-				<input name='inventory' class="input" type="number" maxlength="4" placeholder="请输入库存量"></input>
+				<input name='inventory' class="input" type="number" maxlength="3" placeholder="请输入库存量"></input>
 			</view>
       <view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">只售本地</view>

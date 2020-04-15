@@ -59,6 +59,7 @@ Page({
         income_fee: data.result.income_fee,
         withdraw_fee: data.result.withdraw_fee,
       })
+      app.showToast('申请提现成功');
     });
   },
   gotoIncomerecord:function(e){

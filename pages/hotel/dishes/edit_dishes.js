@@ -694,6 +694,7 @@ Page({
                     goods_video_url: goods_video_url
                   })
                   wx.hideLoading();
+                  app.showToast('视频上传成功')
                   that.setData({
                     addDisabled: false,
                     upDisabled: false

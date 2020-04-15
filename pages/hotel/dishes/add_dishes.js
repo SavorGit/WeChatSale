@@ -621,6 +621,7 @@ Page({
                     goods_video_url: goods_video_url
                   })
                   wx.hideLoading();
+                  app.showToast('视频上传成功')
                   that.setData({
                     addDisabled: false,
                     upDisabled: false
@@ -660,7 +661,7 @@ Page({
   //新增
   addMallGoods:function(e){
     var that = this;
-    var name = e.detail.value.name;
+    var name = e.detail.value.name.replace(/\s+/g, '');
     var sale_goods_index = that.data.sale_goods_type_index;
     var retail_price = e.detail.value.retail_price;
     var sale_price = e.detail.value.sale_price;
