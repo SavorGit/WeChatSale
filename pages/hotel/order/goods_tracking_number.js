@@ -55,6 +55,11 @@ Page({
       if (JSON.stringify(company_list) == "{}"){
         app.showToast('物流单号异常');
       }else {
+        if(company_list.length==1){
+          that.setData({
+            comcode:company_list[0].comcode
+          })
+        }
         that.setData({
           company_list: company_list,
           enumber: enumber

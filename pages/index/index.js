@@ -100,6 +100,11 @@ Page({
                   url: '/pages/hotel/register/index',
                 })
                 return false;
+              }else if(user_info.hotel_type==3){//非合作餐厅 后台开通
+                wx.reLaunch({
+                  url: '/pages/hotel/nocooper/index',
+                })
+                return false;
               }
 
               //如果已登录 并且用户角色为服务员

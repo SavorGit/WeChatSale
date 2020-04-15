@@ -34,7 +34,8 @@ Page({
     addDisabled: false,
     upDisabled: false,
     is_sale: 1,
-    is_localsale:0   //全国商品只售本地
+    is_localsale:0,   //全国商品只售本地
+    hotel_type:1,
   },
 
   /**
@@ -45,6 +46,11 @@ Page({
     openid = options.openid;
     merchant_id = options.hotel_id;
     var tab = options.tab;
+    if(typeof(options.hotel_type)!='undefined'){
+      that.setData({
+        hotel_type:options.hotel_type
+      })
+    }
     this.setData({
       tab:tab,
     })

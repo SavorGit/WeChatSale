@@ -323,13 +323,17 @@ Page({
       },
       success:function(rt){
         if(rt.data.code==10000){
-
-          if(rt.data.result.hotel_type==2){
+          if(rt.data.result.hotel_type==3){//非合作餐厅
+            wx.reLaunch({
+              url: '/pages/hotel/nocooper/index',
+            })
+            return false;
+          }else if(rt.data.result.hotel_type==2){//注册餐厅
             wx.reLaunch({
               url: '/pages/hotel/register/index',
             })
             return false;
-          }else {
+          }else {//合作餐厅
             if (rt.data.result.hotel_has_room == 1) {
               wx.reLaunch({
                 url: '/pages/index/index',

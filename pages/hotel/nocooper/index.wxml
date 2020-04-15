@@ -1,0 +1,101 @@
+<!--pages/hotel/register/index.wxml-->
+
+<view class='container theme-container'>
+	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+		<view class="wapper">
+			<view class="shop theme-panel-welcome-dark">
+				<view class="info flex_row_center_spaceBetween">
+					<view class="pic-wapper">
+						<image class="pic" mode="aspectFill" src="{{merchant_info.img}}"></image>
+						<!-- <image class="flag" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/waimai.png"></image> -->
+					</view>
+					<view class="right flex_column_flexStart_spaceBetween">
+						<view class="flex_row_flexStart_spaceBetween">
+							<view class="name one-line-overflow">{{merchant_info.name}}</view>
+							<view class="fa fa-cog" aria-hidden="true" bindtap="gotoPlatform"></view>
+						</view>
+						<view class="flex_row_center_flexStart theme-font3">
+							<view class="style">{{merchant_info.food_style}}</view>
+							<view class="price">￥{{merchant_info.avg_expense}}/人</view>
+						</view>
+						<view class="address two-line-overflow">地址：{{merchant_info.addr}}</view>
+					</view>
+				</view>
+				<view class="btn-group flex_row_center_center">
+					<button class="btn flex_row_center_center" bindtap="openShareShopWindow" data-picture="{{merchant_info.img}}" data-qrcode_url="{{merchant_info.qrgoods_url}}" data-hotel_name="{{merchant_info.name}}" data-tips="{{merchant_info.tips}}">
+						<view class="fa fa-external-link fa-lg" aria-hidden="true"></view>
+						<view>分享店铺</view>
+					</button>
+					<button class="btn flex_row_center_center">
+						<view class="fa fa-phone fa-lg" aria-hidden="true"></view>
+						<view>电话订餐:{{merchant_info.tel}}</view>
+					</button>
+				</view>
+			</view>
+			<view class="list flex_column_center">
+				<view class="row flex_row_center_spaceBetween theme7" wx:for="{{goods_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<image class="pic" mode="aspectFill" bindtap="gotoDeshDetail" data-goods_id="{{bean.id}}" src="{{bean.img_url}}"></image>
+					<view class="info flex_column_flexStart_spaceBetween">
+						<view class="name two-line-overflow">{{bean.name}}</view>
+						<view class="price theme-font5">￥{{bean.price}}</view>
+            	<view class="status theme-font5" wx:if="{{bean.flag==1}}">审核中……</view>
+              <view class="status theme-font5" wx:if="{{bean.flag==2}}">审核通过</view>
+              <view class="status theme-font5" wx:if="{{bean.flag==3}}">审核不通过 </view>
+						<view class="btn-group flex_row_center_spaceBetween">
+							<view class="btn on-line" wx:if="{{bean.status==1}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="2">已上架</view>
+							<view class="btn off-line" wx:if="{{bean.status==2}}" bindtap="putawayDish" data-keys="{{index}}" data-goods_id="{{bean.id}}" data-status="1">已下架</view>
+
+
+							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==0 && bean.status==1}}" bindtap="setTop" data-keys="{{index}}" data-goods_id="{{bean.id}}">置顶</view>
+							<view class="btn theme-button-welcome" wx:if="{{bean.is_top==1 && bean.status==1}}">已置顶</view>
+      
+							<view class="btn theme-button-welcome-dark" bindtap="editDish" data-keys="{{index}}" data-goods_id="{{bean.id}}">编辑</view>
+							<view wx:if="{{bean.flag==2}}" class="btn share-goods theme-button-welcome-dark" bindtap="openShareGoodsWindow" data-img_url="{{bean.img_url}}" data-qrCode="{{bean.qrcode_url}}" data-hotel_name="{{merchant_info.name}}" data-goods_name="{{bean.name}}" data-goods_id="{{bean.id}}">分享</view>
+						</view>
+					</view>
+				</view>
+
+
+			</view>
+		</view>
+	</scroll-view>
+	<view class="page-bottom btn-group flex_row_center_spaceBetween">
+		<view class="btn add-dishes theme-button-welcome" bindtap="addDishes">新增商品</view>
+		<view class="btn mine-order flex_row_center_center theme-button-welcome-dark" bindtap="gotoOrder">
+			<view>我的订单</view>
+			<view class="new-count theme-button-add">{{merchant_info.dishorder_process_num}}</view>
+		</view>
+	</view>
+</view>
+
+<!-- 分享菜品 -->
+<bottomModal show="{{showGoodsPopWindow}}" width="100%" height='1040rpx' padding-bottom='0' background-color='#ededed' border-radius="0" title-text='' confirm-text='' cancel-text=''>
+	<view class="share-window goods">
+		<view class="title-bar flex_row_center_spaceBetween">
+			<view class="theme-font1">菜品二维码</view>
+			<view class="fa fa-close" aria-hidden="true" bindtap="closeShareGoodsWindow"></view>
+		</view>
+		<view class="body flex_column_center">
+			<canvas canvas-id="goodsCanvas" class="share-canvas goods"></canvas>
+		</view>
+		<view class="foot">
+			<view class="btn save theme-button-welcome" bindtap="saveShareGoodsPic">保存</view>
+		</view>
+	</view>
+</bottomModal>
+
+<!-- 分享店铺 -->
+<bottomModal show="{{showShopPopWindow}}" width="100%" height='1040rpx' padding-bottom='0' background-color='#ededed' border-radius="0" title-text='' confirm-text='' cancel-text=''>
+	<view class="share-window shop">
+		<view class="title-bar flex_row_center_spaceBetween">
+			<view class="theme-font1">店铺二维码</view>
+			<view class="fa fa-close" aria-hidden="true" bindtap="closeShareShopWindow"></view>
+		</view>
+		<view class="body flex_column_center">
+			<canvas canvas-id="shopCanvas" class="share-canvas shop"></canvas>
+		</view>
+		<view class="foot">
+			<view class="btn save theme-button-welcome" bindtap="saveShareShopPic">保存</view>
+		</view>
+	</view>
+</bottomModal>

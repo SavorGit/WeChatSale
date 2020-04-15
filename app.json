@@ -24,6 +24,7 @@
     "pages/hotel/setting/basic",
     "pages/hotel/setting/customer_pay",
     "pages/hotel/setting/distribution",
+    "pages/hotel/nocooper/index",
     "pages/purchase/index",
     "pages/purchase/auth",
     "pages/purchase/shopping/goods_detail",

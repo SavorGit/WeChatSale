@@ -36,6 +36,7 @@ Page({
     upDisabled: false,
     is_sale: '',
     is_localsale:0,
+    hotel_type:1,
   },
 
   /**
@@ -46,6 +47,11 @@ Page({
     goods_id = options.goods_id;
     openid = options.openid;
     tab = options.tab;
+    if(typeof(options.hotel_type)!='undefined'){
+      that.setData({
+        hotel_type:options.hotel_type
+      })
+    }
     that.setData({
       tab:tab
     })
