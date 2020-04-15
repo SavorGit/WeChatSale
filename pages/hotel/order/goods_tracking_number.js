@@ -105,6 +105,10 @@ Page({
     var that = this;
     console.log(e)
     var input_enumber = e.detail.value.input_enumber;
+    if(input_enumber==''){
+      app.showToast('请输入快递单号');
+      return false;
+    }
     that.setData({
       showInputCodePopWindow:false,
     })
