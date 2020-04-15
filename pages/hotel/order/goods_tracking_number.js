@@ -81,7 +81,7 @@ Page({
     var enumber = that.data.enumber;
     var comcode = that.data.comcode;
     if(enumber==''){
-      app.showToast('请输入或扫描快递单');
+      app.showToast('请输入或扫描快递单号');
       return false;
     }
     if(comcode==''){

@@ -96,6 +96,7 @@ Page({
   },
   //接单
   orderReceive:function(e){
+    
     var that = this;
     var order_id = e.currentTarget.dataset.order_id;
     var keys = e.currentTarget.dataset.keys;
@@ -129,6 +130,7 @@ Page({
               var deal_order_list = that.data.deal_order_list;
               //删除待处理订单列表
               deal_order_list.splice(keys, 1)
+              that.setData({deal_order_list:deal_order_list})
               //更新全部订单列表
               that.getOrderList(openid, merchant_id, 0, page_all);
               //代发货更新列表
