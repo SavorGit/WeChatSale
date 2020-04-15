@@ -29,14 +29,15 @@ Page({
     video_img: '',   //视频图
     goods_video_url: '', //上传商品视频
     sale_goods_type_index: 0,  //售全国商品分类
-    sale_goods_type_arr:[],
-    sale_goods_type_obj:[],
+    sale_goods_type_arr: [],
+    sale_goods_type_obj: [],
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
     is_sale: '',
     is_localsale:0,
     hotel_type:1,
+
   },
 
   /**
@@ -53,9 +54,11 @@ Page({
       })
     }
     that.setData({
-      tab:tab
-    })
-    if(tab=='take-out'){
+      tab: tab
+    }, function () {
+      try { that.setNavigationBarTitle(tab); } catch (error) { console.error(error); }
+    });
+    if (tab == 'take-out') {
       utils.PostRequest(api_v_url + '/dish/detail', {
         goods_id: goods_id
       }, (data, headers, cookies, errMsg, statusCode) => {
@@ -74,7 +77,7 @@ Page({
           delta: 1
         })
       })
-    }else {//全国售卖商品
+    } else {//全国售卖商品
       //获取分类
       utils.PostRequest(api_v_url + '/category/categorylist', {
 
@@ -98,8 +101,8 @@ Page({
           var goods_video_url = data.result.video_path;
           var category_id = data.result.category_id;
           var sale_goods_type_index = 0;
-          for (var i = 0; i < sale_goods_type_obj.length;i++){
-            if (category_id == sale_goods_type_obj[i].id ){
+          for (var i = 0; i < sale_goods_type_obj.length; i++) {
+            if (category_id == sale_goods_type_obj[i].id) {
               sale_goods_type_index = i;
               break;
             }
@@ -120,7 +123,7 @@ Page({
         })
       })
 
-      
+
     }
   },
   //选择分类
@@ -586,7 +589,7 @@ Page({
       name: name,
       openid: openid,
       price: price,
-      type:21,
+      type: 21,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('编辑成功')
       wx.navigateBack({
@@ -830,7 +833,7 @@ Page({
       amount: inventory,
       category_id: category_id,
       imgs: imgs,
-      goods_id:goods_id,
+      goods_id: goods_id,
       detail_imgs: intro_imgs,
       intro: introduce,
       is_localsale: is_localsale,
@@ -968,7 +971,25 @@ Page({
     let tabType = e.currentTarget.dataset.tab;
     self.setData({
       tab: tabType
+    }, function () {
+      self.setNavigationBarTitle(tabType);
     });
+  },
+
+  setNavigationBarTitle: function (tab) {
+    let navigationBarTitle = '';
+    switch (tab) {
+      case 'take-out':
+        navigationBarTitle = '编辑菜品';
+        break;
+      case 'nationwide':
+        navigationBarTitle = '编辑商品';
+        break;
+      default:
+        navigationBarTitle = '编辑页';
+        break;
+    }
+    wx.setNavigationBarTitle({ title: navigationBarTitle });
   },
 
   // 打开提示弹窗

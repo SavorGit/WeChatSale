@@ -2,7 +2,9 @@
 <wxs src="../../../app.wxs" module="app"></wxs>
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+
 	<view class="tab-bar flex_row_center_center theme7" wx:if="{{hotel_type!=3}}">
+
 		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ''}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
 		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ''}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
 	</view>

@@ -21,17 +21,18 @@ Page({
   onLoad: function (options) {
     console.log(options)
     var that = this;
+    let tab = options.tab;
+    try { that.setNavigationBarTitle(tab); } catch (error) { console.error(error); }
     goods_id = options.goods_id
     utils.PostRequest(api_v_url + '/dish/detail', {
-      
       goods_id: goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         goods_info: data.result
       })
-    },function(){
+    }, function () {
       wx.navigateBack({
-        delta:1
+        delta: 1
       })
     })
   },
@@ -83,5 +84,21 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  setNavigationBarTitle: function (tab) {
+    let navigationBarTitle = '';
+    switch (tab) {
+      case 'take-out':
+        navigationBarTitle = '菜品详情';
+        break;
+      case 'nationwide':
+        navigationBarTitle = '商品详情';
+        break;
+      default:
+        navigationBarTitle = '详情页';
+        break;
+    }
+    wx.setNavigationBarTitle({ title: navigationBarTitle });
   }
 })

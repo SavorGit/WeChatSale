@@ -72,16 +72,26 @@
 }
 */
 
-.goods-detail {
+.panel {
   width: 100%;
   margin-top: 10rpx;
 }
 
-.goods-detail>.title {
+.panel>.title {
   width: calc(100% - 70rpx);
   height: 40rpx;
   font-size: 32rpx;
   padding: 35rpx;
+}
+
+.panel>.body {
+  width: 100%;
+  padding: 20rpx 0;
+}
+
+.goods-video>.body>.video {
+  width: 690rpx;
+  height: 400rpx;
 }
 
 .goods-detail>.detail-text,

@@ -1,11 +1,14 @@
 <!--pages/hotel/dishes/detail.wxml-->
+<wxs src="../../../app.wxs" module="app"></wxs>
+
+
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
 	<view class="goods-info theme-panel">
 		<swiper class="pic-group" indicator-dots="true" autoplay="true">
 			<swiper-item class="pic" wx:for="{{goods_info.cover_imgs}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<image mode="aspectFill" src="{{bean}}"></image>
 			</swiper-item>
-			
+
 		</swiper>
 		<view class="flex_column_flexStart_spaceAround">
 			<view class="name one-line-overflow">{{goods_info.name}}</view>
@@ -24,18 +27,21 @@
 		</view>
 	</view>
   -->
-	<view class="goods-detail theme-panel">
+	<view wx:if='{{app.typeOf(goods_info.video_url)=="string" && goods_info.video_url.length>0}}' class="goods-video panel theme-panel">
+		<view class="title">商品视频</view>
+		<view class="body flex_column_center_flexStart">
+			<video class="video" src="{{goods_info.video_url}}"></video>
+		</view>
+	</view>
+	<view class="goods-detail panel theme-panel">
 		<view class="title">详情</view>
 		<view class="detail-text">
-    <text>
-    {{goods_info.intro}}
-    </text>
-    </view>
+			<text>{{goods_info.intro}}</text>
+		</view>
 		<view class="detail-pic flex_column_center_flexStart">
-      <block wx:for="{{goods_info.detail_imgs}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-			<image class="pic" mode="widthFix" src="{{bean}}"></image>
-      </block>
-			
+			<block wx:for="{{goods_info.detail_imgs}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<image class="pic" mode="widthFix" src="{{bean}}"></image>
+			</block>
 		</view>
 	</view>
 	<!--

@@ -22,20 +22,21 @@ Page({
     tab: 'take-out',
     dish_img_list: [], //菜品图
     dish_intro_img_list: [], //菜品介绍图
-    goods_img_list:[],  //商品图
-    goods_intro_img_list:[], //商品介绍图
-    video_img:'',   //视频图
-    goods_video_url:'', //上传商品视频
-    sale_goods_type:0,
-    sale_goods_type_index:0,
-    sale_goods_type_arr:[],
-    sale_goods_type_obj:[],
+    goods_img_list: [],  //商品图
+    goods_intro_img_list: [], //商品介绍图
+    video_img: '',   //视频图
+    goods_video_url: '', //上传商品视频
+    sale_goods_type: 0,
+    sale_goods_type_index: 0,
+    sale_goods_type_arr: [],
+    sale_goods_type_obj: [],
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
     upDisabled: false,
     is_sale: 1,
     is_localsale:0,   //全国商品只售本地
     hotel_type:1,
+
   },
 
   /**
@@ -54,9 +55,10 @@ Page({
     this.setData({
       tab:tab,
     })
+
     //获取分类
     utils.PostRequest(api_v_url + '/category/categorylist', {
-     
+
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         sale_goods_type_arr: data.result.category_name_list,
@@ -65,10 +67,10 @@ Page({
     })
   },
   //选择分类
-  selectGoodsType:function(e){
+  selectGoodsType: function (e) {
     var sale_goods_type_index = e.detail.value;
     this.setData({
-      sale_goods_type_index:sale_goods_type_index
+      sale_goods_type_index: sale_goods_type_index
     })
   },
   /**
@@ -83,12 +85,12 @@ Page({
     if (type == 1) {
       var total_pic = that.data.dish_img_list.length;
       //var choose_num = 6 - total_pic;
-    } else if(type==2){
+    } else if (type == 2) {
       var total_pic = that.data.dish_intro_img_list.length;
       //var choose_num = 6 - total_pic;
-    }else if(type==3){
+    } else if (type == 3) {
       var total_pic = that.data.goods_img_list.length;
-    }else if(type==4){
+    } else if (type == 4) {
       var total_pic = that.data.goods_intro_img_list.length;
     }
     if (total_pic > 6) {
@@ -172,7 +174,7 @@ Page({
                   that.setData({
                     dish_intro_img_list: dish_intro_img_list
                   })
-                }else if(type==3){
+                } else if (type == 3) {
                   var goods_img_list = that.data.goods_img_list;
                   for (var i = 0; i < goods_img_list.length; i++) {
                     if (i == keys) {
@@ -183,7 +185,7 @@ Page({
                   that.setData({
                     goods_img_list: goods_img_list
                   })
-                }else if(type==4){
+                } else if (type == 4) {
                   var goods_intro_img_list = that.data.goods_intro_img_list;
                   for (var i = 0; i < goods_intro_img_list.length; i++) {
                     if (i == keys) {
@@ -236,11 +238,11 @@ Page({
     var type = e.currentTarget.dataset.type;
     if (type == 1) {
       var total_pic = that.data.dish_img_list.length;
-    } else if(type==2){
+    } else if (type == 2) {
       var total_pic = that.data.dish_intro_img_list.length;
-    }else if(type==3){
+    } else if (type == 3) {
       var total_pic = that.data.goods_img_list.length;
-    }else if(type==4){
+    } else if (type == 4) {
       var total_pic = that.data.goods_intro_img_list.length;
     }
     var choose_num = 6 - total_pic;
@@ -345,11 +347,11 @@ Page({
           var dish_intro_img_list = that.data.dish_intro_img_list;
           dish_intro_img_list.push("forscreen/resource/" + img_url);
           var end_flag = dish_intro_img_list.length
-        }else if(type==3){
+        } else if (type == 3) {
           var goods_img_list = that.data.goods_img_list;
           goods_img_list.push("forscreen/resource/" + img_url);
           var end_flag = goods_img_list.length
-        }else if(type==4){
+        } else if (type == 4) {
           var goods_intro_img_list = that.data.goods_intro_img_list;
           goods_intro_img_list.push("forscreen/resource/" + img_url);
           var end_flag = goods_intro_img_list.length
@@ -426,7 +428,7 @@ Page({
       that.setData({
         dish_intro_img_list: dish_intro_img_list
       })
-    }else if(type==3){
+    } else if (type == 3) {
       var goods_img_list = that.data.goods_img_list;
       for (var i = 0; i < goods_img_list.length; i++) {
         if (i == keys) {
@@ -510,7 +512,7 @@ Page({
       name: name,
       openid: openid,
       price: price,
-      type:21,
+      type: 21,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
       wx.navigateBack({
@@ -556,7 +558,7 @@ Page({
     }
   },
   //视频上传
-  uploadVideo:function(e){
+  uploadVideo: function (e) {
     var that = this;
     wx.showLoading({
       title: '视频上传中...',
@@ -573,14 +575,14 @@ Page({
       success: function (res) {
 
         var size = res.size;
-        if (size > 52428800){
+        if (size > 52428800) {
           app.showToast('视频不能超过50M');
           wx.hideLoading();
           that.setData({
             addDisabled: false,
             upDisabled: false
           })
-        }else{
+        } else {
           //console.log(res);return false;
           var video_img = res.thumbTempFilePath;
           var filename = res.tempFilePath;
@@ -619,11 +621,11 @@ Page({
                   sucess_action_status: "200",
                   signature: signature
 
-                },success: function (res) {
+                }, success: function (res) {
                   var goods_video_url = "forscreen/resource/" + video_url;
                   console.log(goods_video_url)
                   that.setData({
-                    video_img:video_img,
+                    video_img: video_img,
                     goods_video_url: goods_video_url
                   })
                   wx.hideLoading();
@@ -632,7 +634,7 @@ Page({
                     addDisabled: false,
                     upDisabled: false
                   })
-                },fail:function(e){
+                }, fail: function (e) {
                   wx.hideLoading();
                   that.setData({
                     addDisabled: false,
@@ -640,7 +642,7 @@ Page({
                   })
                 }
               })
-            },fail:function(res){
+            }, fail: function (res) {
               wx.hideLoading();
               that.setData({
                 addDisabled: false,
@@ -649,7 +651,7 @@ Page({
             }
           })
         }
-      },fail:function(res){
+      }, fail: function (res) {
         wx.hideLoading();
         that.setData({
           addDisabled: false,
@@ -658,14 +660,14 @@ Page({
       }
     })
   },
-  delVideo:function(e){
+  delVideo: function (e) {
     this.setData({
-      video_img:'',
-      goods_video_url:''
+      video_img: '',
+      goods_video_url: ''
     })
   },
   //新增
-  addMallGoods:function(e){
+  addMallGoods: function (e) {
     var that = this;
     var name = e.detail.value.name.replace(/\s+/g, '');
     var sale_goods_index = that.data.sale_goods_type_index;
@@ -678,19 +680,19 @@ Page({
     var introduce = e.detail.value.introduce;
     var goods_intro_img_list = that.data.goods_intro_img_list;
     var is_localsale = that.data.is_localsale;
-    if(name==''){
+    if (name == '') {
       app.showToast('请输入商品名称');
       return false;
     }
-    if (sale_goods_index==0){
+    if (sale_goods_index == 0) {
       app.showToast('请选择商品分类');
       return false;
     }
-    if (retail_price==''){
+    if (retail_price == '') {
       app.showToast('请输入零售价');
       return false;
-    }else {
-      if (retail_price<=0){
+    } else {
+      if (retail_price <= 0) {
         app.showToast('零售价不能小于0');
         return false;
       }
@@ -704,7 +706,7 @@ Page({
         return false;
       }
     }
-    if(retail_price<sale_price){
+    if (retail_price < sale_price) {
       app.showToast('零售价不能小于包邮供货价');
       return false;
     }
@@ -717,20 +719,20 @@ Page({
         return false;
       }
     }
-    
-    if(goods_img_list.length==0){
+
+    if (goods_img_list.length == 0) {
       app.showToast('请上传商品图')
       return false;
     }
-    if (goods_video_url==''){
+    if (goods_video_url == '') {
       app.showToast('请上传视频介绍');
       return false;
     }
-    if(introduce==''){
+    if (introduce == '') {
       app.showToast('请输入文字详情');
       return false;
     }
-    if (goods_intro_img_list.length==0){
+    if (goods_intro_img_list.length == 0) {
       app.showToast('请上传详情图片');
       return false;
     }
@@ -752,7 +754,7 @@ Page({
       addDisabled: true,
     })
     utils.PostRequest(api_v_url + '/dish/addDish', {
-      
+
       amount: inventory,
       category_id: category_id,
       imgs: imgs,
@@ -760,10 +762,10 @@ Page({
       intro: introduce,
       is_localsale: is_localsale,
       name: name,
-      openid,openid,
+      openid, openid,
       price: retail_price,
       supply_price: sale_price,
-      type:22,
+      type: 22,
       video_path: goods_video_url,
     }, (data, headers, cookies, errMsg, statusCode) => {
       app.showToast('添加成功')
@@ -773,22 +775,22 @@ Page({
       that.setData({
         addDisabled: false,
       })
-      
+
     }, function () {
       that.setData({
         addDisabled: false,
       })
     })
   },
-  changeLocalSale:function(e){
+  changeLocalSale: function (e) {
     var that = this;
     var is_localsale = that.data.is_localsale
-    if(is_localsale==0){
+    if (is_localsale == 0) {
       is_localsale = 1;
-    } else if (is_localsale==1){
+    } else if (is_localsale == 1) {
       is_localsale = 0;
     }
-    that.setData({ is_localsale: is_localsale})
+    that.setData({ is_localsale: is_localsale })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -893,7 +895,25 @@ Page({
     let tabType = e.currentTarget.dataset.tab;
     self.setData({
       tab: tabType
+    }, function () {
+      self.setNavigationBarTitle(tabType);
     });
+  },
+
+  setNavigationBarTitle: function (tab) {
+    let navigationBarTitle = '';
+    switch (tab) {
+      case 'take-out':
+        navigationBarTitle = '新增菜品';
+        break;
+      case 'nationwide':
+        navigationBarTitle = '新增商品';
+        break;
+      default:
+        navigationBarTitle = '新增页';
+        break;
+    }
+    wx.setNavigationBarTitle({ title: navigationBarTitle });
   },
 
   // 打开提示弹窗
