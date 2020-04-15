@@ -19,7 +19,7 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount'></input>
 			</view>
-			
+
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>
@@ -100,7 +100,7 @@
 				<input name="name" class="input" placeholder="请输入商品名称"></input>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
-				<view class="lable flex_row_center_spaceBetween theme-font1">分类</view>
+				<view class="lable flex_row_center_spaceBetween theme-font1">商品分类</view>
 				<picker class="input" range="{{sale_goods_type_arr}}" bindchange="selectGoodsType">
 					<view class="flex_row_center_spaceBetween">
 						<view>{{sale_goods_type_arr[sale_goods_type_index]}}</view>
@@ -132,7 +132,7 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
 				<input name='inventory' class="input" type="number" maxlength="3" placeholder="请输入库存量"></input>
 			</view>
-      <view class="row flex_row_flexStart_spaceBetween">
+			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">只售本地</view>
 				<view class="input" style="border:none;">
 					<switch checked="{{is_localsale==1?true:false}}" bindchange="changeLocalSale" />
@@ -173,14 +173,14 @@
 				</view>
 				<view class="warpper">
 					<view class="cell flex_column_center_center">
-						
+
 						<view class="image-waper flex_column_center_center" wx:if="{{video_img!=''}}">
 							<view class="del-pic flex_column_flexEnd" bindtap="delVideo">
 								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 							</view>
 							<image mode="aspectFill" src="{{video_img}}" bindtap="uploadVideo"></image>
 						</view>
-						
+
 						<view class="image-waper flex_column_center_center" wx:else>
 							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadVideo" disabled="{{upDisabled}}"></button>
 						</view>
