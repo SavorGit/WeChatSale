@@ -2,11 +2,12 @@
 <wxs src="../../../app.wxs" module="app"></wxs>
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+	<!--
 	<view class="tab-bar flex_row_center_center theme7">
 		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ''}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
 		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ''}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
 	</view>
-
+	-->
 
 	<!-- 外卖菜品 -->
 	<form wx:if="{{tab == 'take-out'}}" bindsubmit="editDishes">
@@ -110,10 +111,10 @@
 		<view class="panel goods-info flex_column_center theme7">
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">商品名称</view>
-				<input class="input"  placeholder="请输入商品名称" name="name" value="{{goods_info.name}}"></input>
+				<input class="input" placeholder="请输入商品名称" name="name" value="{{goods_info.name}}"></input>
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
-				<view class="lable flex_row_center_spaceBetween theme-font1">分类</view>
+				<view class="lable flex_row_center_spaceBetween theme-font1">商品分类</view>
 				<picker class="input" range="{{sale_goods_type_arr}}" bindchange="selectGoodsType">
 					<view class="flex_row_center_spaceBetween">
 						<view>{{sale_goods_type_arr[sale_goods_type_index]}}</view>
@@ -143,9 +144,9 @@
 			</view>
 			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">库存</view>
-				<input class="input" placeholder="请输入库存量" type="number" maxlength="3"  value="{{goods_info.amount}}" name='inventory'></input>
+				<input class="input" placeholder="请输入库存量" type="number" maxlength="3" value="{{goods_info.amount}}" name='inventory'></input>
 			</view>
-      <view class="row flex_row_flexStart_spaceBetween">
+			<view class="row flex_row_flexStart_spaceBetween">
 				<view class="lable flex_row_center_spaceBetween theme-font1">只售本地</view>
 				<view class="input" style="border:none;">
 					<switch checked="{{is_localsale==1?true:false}}" bindchange="changeLocalSale" />
@@ -192,7 +193,7 @@
 							</view>
 							<image mode="aspectFill" src="{{video_img}}" bindtap="uploadVideo"></image>
 						</view>
-						
+
 						<view class="image-waper flex_column_center_center" wx:else>
 							<button class="fa fa-plus" aria-hidden="true" bindtap="uploadVideo" disabled="{{upDisabled}}"></button>
 						</view>
