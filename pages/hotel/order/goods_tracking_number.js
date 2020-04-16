@@ -104,7 +104,7 @@ Page({
   setEnumber:function(e){
     var that = this;
     console.log(e)
-    var input_enumber = e.detail.value.input_enumber;
+    var input_enumber = e.detail.value.input_enumber.replace(/\s+/g, '');
     if(input_enumber==''){
       app.showToast('请输入快递单号');
       return false;

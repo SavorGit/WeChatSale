@@ -13,7 +13,7 @@
 	</view>
 
 	<!-- 全部订单 -->
-	<scroll-view wx:if="{{order_status == 0}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 0}}" class="tab-body" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{all_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -56,7 +56,7 @@
 	</scroll-view>
 
 	<!-- 待处理订单 -->
-	<scroll-view wx:if="{{order_status == 1}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 1}}" class="tab-body" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{deal_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -97,7 +97,7 @@
 	</scroll-view>
 
 	<!-- 待发货订单 -->
-	<scroll-view wx:if="{{order_status == 3}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 3}}" class="tab-body" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{ship_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">
@@ -137,7 +137,7 @@
 	</scroll-view>
 
 	<!-- 已完成订单 -->
-	<scroll-view wx:if="{{order_status == 2}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{order_status == 2}}" class="tab-body" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_flexStart_center">
 			<view class="item theme-panel" wx:for="{{complete_order_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view class="goods flex_row_center_spaceBetween">

@@ -52,7 +52,7 @@ Page({
     utils.PostRequest(api_v_url + '/order/orderlist', {
       openid: openid,
       merchant_id: merchant_id,
-      page: 1,
+      page: page,
       status: order_status,
       type, type
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -155,6 +155,26 @@ Page({
     wx.navigateTo({
       url: '/pages/hotel/order/goods_detail?openid=' + openid + '&order_id=' + order_id,
     })
+  },
+  loadMore:function(e){
+    var that = this;
+    var order_status = that.data.order_status;
+    if(order_status==0){
+      page_all +=1;
+      var page = page_all;
+    }else if(order_status==1){
+      page_dealing +=1;
+      var page = page_dealing;
+    }else if(order_status==2){
+      page_ship +=1;
+      var page = page_ship
+    }else if(order_status==3){
+      page_complete +=1;
+      var page = page_complete;
+    }
+    console.log(order_status)
+    console.log(page)
+    that.getOrderList(openid,merchant_id,order_status,page);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
