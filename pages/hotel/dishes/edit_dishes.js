@@ -788,7 +788,7 @@ Page({
       app.showToast('请输入库存');
       return false;
     } else {
-      var reg = new RegExp('^\d{1,3}$');
+      var reg = /^\d{1,3}$/;
       if (!reg.test(inventory)){
         app.showToast('库存请输入三位以内的整数');
         return false;
