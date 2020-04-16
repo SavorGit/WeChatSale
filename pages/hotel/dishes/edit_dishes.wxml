@@ -186,11 +186,11 @@
 				</view>
 				<view class="warpper">
 					<view class="cell flex_column_center_center">
-						<view class="image-waper flex_column_center_center" wx:if="{{video_img!=''}}">
+						<view class="image-waper flex_column_center_center" wx:if="{{goods_video_url!=''}}">
 							<view class="del-pic flex_column_flexEnd" bindtap="delVideo">
 								<view class="fa fa-times-circle theme-font7" aria-hidden="true"></view>
 							</view>
-							<image mode="aspectFill" src="{{video_img}}" bindtap="uploadVideo"></image>
+							<image mode="aspectFill" src="{{oss_url}}{{goods_video_url}}?x-oss-process=video/snapshot,t_1000,f_jpg,w_450,m_fast" bindtap="uploadVideo"></image>
 						</view>
 
 						<view class="image-waper flex_column_center_center" wx:else>

@@ -673,8 +673,8 @@ Page({
     var sale_goods_index = that.data.sale_goods_type_index;
     var retail_price = e.detail.value.retail_price;
     var sale_price = e.detail.value.sale_price;
-    var inventory = e.detail.value.inventory;
-
+    var inventory = e.detail.value.inventory.replace(/\s+/g, '');
+    
     var goods_img_list = that.data.goods_img_list;
     var goods_video_url = that.data.goods_video_url;
     var introduce = e.detail.value.introduce;
@@ -701,6 +701,8 @@ Page({
       app.showToast('请输入供货价');
       return false;
     } else {
+      
+
       if (sale_price <= 0) {
         app.showToast('供货价不能小于0');
         return false;
@@ -714,6 +716,15 @@ Page({
       app.showToast('请输入库存');
       return false;
     } else {
+     
+      var reg = new RegExp('^\d{1,3}$');
+      if (!reg.test(inventory)){
+        app.showToast('请输入三位以内的整数');
+        return false;
+      }
+
+
+
       if (inventory <= 0) {
         app.showToast('库存不能小于1');
         return false;

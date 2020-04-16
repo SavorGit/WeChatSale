@@ -743,7 +743,7 @@ Page({
   //修改售全国商品
   editMallGoods: function (e) {
     var that = this;
-    var name = e.detail.value.name;
+    var name = e.detail.value.name.replace(/\s+/g, '');
     var sale_goods_index = that.data.sale_goods_type_index;
     var retail_price = e.detail.value.retail_price;
     var sale_price = e.detail.value.sale_price;
@@ -751,7 +751,7 @@ Page({
 
     var goods_img_list = that.data.goods_img_list;
     var goods_video_url = that.data.goods_video_url;
-    var introduce = e.detail.value.introduce;
+    var introduce = e.detail.value.introduce.replace(/\s+/g, '');
     var goods_intro_img_list = that.data.goods_intro_img_list;
     var is_localsale = that.data.is_localsale;
     if (name == '') {
@@ -788,6 +788,11 @@ Page({
       app.showToast('请输入库存');
       return false;
     } else {
+      var reg = new RegExp('^\d{1,3}$');
+      if (!reg.test(inventory)){
+        app.showToast('请输入三位以内的整数');
+        return false;
+      }
       if (inventory <= 0) {
         app.showToast('库存不能小于1');
         return false;
