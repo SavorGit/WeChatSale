@@ -76,24 +76,6 @@ Page({
       
     })
   },
-  loadMore:function(e){
-    var that = this;
-    var order_status = that.data.order_status
-    if (order_status == 0) {
-      page_all += 1;
-      page = page_all;
-    } else if (order_status == 1) {
-      page_dealing += 1;
-      page = page_dealing;
-    }else if(order_status==3){
-      page_ship +=1;
-      page = page_ship;
-    }else if (order_status == 2) {
-      page_complete += 1;
-      page = page_complete;
-    }
-    that.getOrderList(openid,merchant_id,order_status,page);
-  },
   //接单
   orderReceive:function(e){
     
