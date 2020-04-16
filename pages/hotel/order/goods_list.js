@@ -12,10 +12,10 @@ var merchant_id;
 var openid;
 var type;
 var order_status ;
-var page_all = 1;      //全部订单
-var page_dealing = 1;  //待处理
-var page_ship = 1;     //待发货
-var page_complete = 1; //已完成
+var page_all ;      //全部订单
+var page_dealing ;  //待处理
+var page_ship ;    //待发货
+var page_complete  ;//已完成
 
 Page({
 
@@ -31,6 +31,10 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    page_all = 1;      //全部订单
+    page_dealing = 1;  //待处理
+    page_ship = 1;     //待发货
+    page_complete = 1; //已完成
     var that = this;
     openid = options.openid
     order_status = options.order_status
@@ -147,10 +151,10 @@ Page({
     }else if(order_status==1){
       page_dealing +=1;
       var page = page_dealing;
-    }else if(order_status==2){
+    }else if(order_status==3){
       page_ship +=1;
       var page = page_ship
-    }else if(order_status==3){
+    }else if(order_status==2){
       page_complete +=1;
       var page = page_complete;
     }
