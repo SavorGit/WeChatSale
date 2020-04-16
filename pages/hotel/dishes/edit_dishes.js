@@ -790,7 +790,7 @@ Page({
     } else {
       var reg = new RegExp('^\d{1,3}$');
       if (!reg.test(inventory)){
-        app.showToast('请输入三位以内的整数');
+        app.showToast('库存请输入三位以内的整数');
         return false;
       }
       if (inventory <= 0) {
