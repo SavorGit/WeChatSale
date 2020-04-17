@@ -7,7 +7,7 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var merchant_id;
 var openid;
-var page = 1;
+var page = 1; 
 Page({
 
   /**
