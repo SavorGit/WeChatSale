@@ -8,9 +8,8 @@
 	<view class="page">
 		<view class="search-panel flex_row_center_spaceBetween theme-panel">
 			<view class="search-bar flex_row_center_spaceBetween">
-				<view class="fa fa-search theme-font3" aria-hidden="true" ></view>
+				<view class="fa fa-search theme-font3" aria-hidden="true"></view>
 				<input confirm-type="search" class="search theme-font3" placeholder="搜索商品" value="{{keywords}}" bindinput="inputSearch" bindconfirm="searchGoods"></input>
-        
 			</view>
 			<!--
 			<view class="shopping-car-bar flex_column_flexStart_flexStart">
@@ -22,11 +21,10 @@
 		<view class="main-panel">
 			<scroll-view class="tab-bar theme-panel" scroll-x="true" scroll-with-animation="true">
 				<view class="tab-list">
-          <block wx:for="{{category_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-					<view wx:if="{{category_id==bean.id}}" class="tab selected">{{bean.name}}</view>
-          <view wx:else class="tab " bindtap="selectCate" data-category_id="{{bean.id}}">{{bean.name}}</view>
+					<block wx:for="{{category_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+						<view wx:if="{{category_id==bean.id}}" class="tab selected">{{bean.name}}</view>
+						<view wx:else class="tab " bindtap="selectCate" data-category_id="{{bean.id}}">{{bean.name}}</view>
 					</block>
-          
 				</view>
 			</scroll-view>
 			<scroll-view class="tab-body" scroll-y="true" scroll-with-animation="true">
@@ -41,14 +39,14 @@
 								<view class="left flex_row_center_flexStart" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">
 									<view class="price theme-font5">￥<text>{{bean.price}}</text></view>
 									<view class="price market theme-font3" wx:if="{{bean.line_price>0}}">￥{{bean.line_price}}</view>
+									<view class="profit theme-font" wx:if="{{bean.income_fee  && bean.income_fee.length>0}}">成交提成：￥{{bean.income_fee}}</view>
 								</view>
-								<view class="right flex_row_center_flexEnd" bindtap="creatPoster"  data-goods_id="{{bean.id}}">
+								<view class="right flex_row_center_flexEnd" bindtap="creatPoster" data-goods_id="{{bean.id}}">
 									<view class="fa fa-download theme-font5" aria-hidden="true"></view>
 								</view>
 							</view>
 						</view>
 					</view>
-					
 				</view>
 			</scroll-view>
 		</view>

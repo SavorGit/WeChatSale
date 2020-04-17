@@ -161,6 +161,12 @@
   text-decoration: line-through;
 }
 
+.main-panel>.tab-body .list>.item>.bottom>.bottom>.left>.profit {
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
 .main-panel>.tab-body .list>.item>.bottom>.bottom>.right>.fa {
   width: 40rpx;
   height: 40rpx;

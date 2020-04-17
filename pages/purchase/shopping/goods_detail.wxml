@@ -22,6 +22,7 @@
 					<view class="bottom flex_row_center_flexStart">
 						<view class="price theme-font5">￥<text class="one-line-overflow">{{goods_info.price}}</text></view>
 						<view class="price market one-line-overflow theme-font3" wx:if="{{goods_info.supply_price>0}}">￥{{goods_info.supply_price}}</view>
+						<view class="profit theme-font" wx:if="{{goods_info.income_fee  && goods_info.income_fee.length>0}}">成交提成：￥{{goods_info.income_fee}}</view>
 					</view>
 				</view>
 			</view>
