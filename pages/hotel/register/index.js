@@ -458,6 +458,13 @@ Page({
         })
       })
     }
+    utils.PostRequest(api_v_url + '/user/center', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        dishorder_process_num:data.result.dishorder_process_num
+      })
+    })
     
   },
 

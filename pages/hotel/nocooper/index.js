@@ -30,7 +30,8 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       merchant_id = data.result.merchant_id;
       that.setData({
-        merchant_id: merchant_id
+        merchant_id: merchant_id,
+        shoporder_process_num:data.result.shoporder_process_num
       })
       utils.PostRequest(api_v_url + '/merchant/info', {
         merchant_id: merchant_id,
@@ -457,7 +458,14 @@ Page({
       that.getMallGoodsList(openid,merchant_id,22,page);  //获取售全国商品
 
     }
-    
+    utils.PostRequest(api_v_url + '/user/center', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      that.setData({
+        shoporder_process_num:data.result.shoporder_process_num
+      })
+    })
   },
 
   /**
