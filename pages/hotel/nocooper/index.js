@@ -151,15 +151,17 @@ Page({
             that.setData({
               dishes_list: dishes_list
             })*/
-            utils.PostRequest(api_v_url + '/dish/goodslist', {
+			that.getMallGoodsList(openid,merchant_id,22,page);  //获取售全国商品
+            /*utils.PostRequest(api_v_url + '/dish/goodslist', {
               openid: openid,
               merchant_id: merchant_id,
               page: page,
+			  
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
                 dishes_list: data.result
               })
-            })
+            })*/
 
             app.showToast(toast)
           })
