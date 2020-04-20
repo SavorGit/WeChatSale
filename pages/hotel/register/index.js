@@ -44,6 +44,7 @@ Page({
       utils.PostRequest(api_v_url + '/dish/goodslist', {
         merchant_id: merchant_id,
         page: 1,
+        type:21
       }, (data, headers, cookies, errMsg, statusCode) => {
         that.setData({
           dishes_list: data.result
@@ -62,6 +63,7 @@ Page({
     utils.PostRequest(api_v_url + '/dish/goodslist', {
       merchant_id: merchant_id,
       page: page,
+      type:21
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         dishes_list: data.result
@@ -139,6 +141,7 @@ Page({
               openid: openid,
               merchant_id: merchant_id,
               page: page,
+              type:21
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
                 dishes_list: data.result
@@ -447,6 +450,7 @@ Page({
       utils.PostRequest(api_v_url + '/dish/goodslist', {
         merchant_id: merchant_id,
         page: page,
+        type:21
       }, (data, headers, cookies, errMsg, statusCode) => {
         that.setData({
           dishes_list: data.result

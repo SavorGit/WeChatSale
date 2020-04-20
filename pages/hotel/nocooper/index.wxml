@@ -12,7 +12,7 @@
 					<view class="right flex_column_flexStart_spaceBetween">
 						<view class="flex_row_flexStart_spaceBetween">
 							<view class="name one-line-overflow">{{merchant_info.name}}</view>
-							<view class="fa fa-cog" aria-hidden="true" bindtap="gotoPlatform"></view>
+							<!--<view class="fa fa-cog" aria-hidden="true" bindtap="gotoPlatform"></view>-->
 						</view>
 						<view class="flex_row_center_flexStart theme-font3">
 							<view class="style">{{merchant_info.food_style}}</view>
