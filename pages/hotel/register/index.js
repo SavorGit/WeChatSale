@@ -30,7 +30,8 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       merchant_id = data.result.merchant_id;
       that.setData({
-        merchant_id: merchant_id
+        merchant_id: merchant_id,
+        dishorder_process_num:data.result.dishorder_process_num
       })
       utils.PostRequest(api_v_url + '/merchant/info', {
         merchant_id: merchant_id,
