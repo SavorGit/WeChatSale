@@ -87,7 +87,7 @@ Page({
       testData.page.pic = goods_info.cover_imgs[0];
       testData.page.promotePrice.value = '￥'+goods_info.price;
       testData.page.posterPrice = goods_info.price;
-      testData.page.marketPrice = goods_info.supply_price;
+      testData.page.marketPrice = goods_info.line_price;
       testData.page.qrCode.pic = goods_info.qrcode_url;
       console.log(testData);
       
