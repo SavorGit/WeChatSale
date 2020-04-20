@@ -78,8 +78,10 @@ Page({
             dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
             merchant_id: res.data.result.merchant_id,
-            dishorder_purchase_num: res.data.result.dishorder_purchase_num,
-            dishorder_common_num: res.data.result.dishorder_common_num,
+            shoporder_all_num:res.data.result.shoporder_all_num,
+            shoporder_process_num:res.data.result.shoporder_process_num,
+            //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
+            //dishorder_common_num: res.data.result.dishorder_common_num,
             is_purchase: res.data.result.is_purchase
           })
         }

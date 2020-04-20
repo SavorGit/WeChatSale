@@ -65,15 +65,15 @@
 				</view> -->
 				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="3">
 					<view>
-						<view>15</view>
-						<view class="marker theme-button-add">10</view>
+						<view>{{dishorder_all_num}}</view>
+						<view class="marker theme-button-add" wx:if="{{dishorder_process_num>0}}">{{dishorder_process_num}}</view>
 					</view>
 					<view>外卖订单</view>
 				</view>
 				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="5">
 					<view>
-						<view>100</view>
-						<view class="marker theme-button-add">88</view>
+						<view>{{shoporder_all_num}}</view>
+						<view class="marker theme-button-add" wx:if="{{shoporder_process_num>0}}">{{shoporder_process_num}}</view>
 					</view>
 					<view>商城订单</view>
 				</view>
