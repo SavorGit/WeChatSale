@@ -59,7 +59,7 @@
 		<view class="btn add-dishes theme-button-welcome" bindtap="addDishes">新增菜品</view>
 		<view class="btn mine-order flex_row_center_center theme-button-welcome-dark" bindtap="gotoOrder">
 			<view>我的订单</view>
-			<view class="new-count theme-button-add">{{merchant_info.dishorder_process_num}}</view>
+			<view class="new-count theme-button-add" wx:if="{{merchant_info.dishorder_process_num>0}}">{{merchant_info.dishorder_process_num}}</view>
 		</view>
 	</view>
 </view>

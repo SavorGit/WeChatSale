@@ -14,7 +14,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    merchant_id:''
   },
 
   /**
@@ -422,7 +422,8 @@ Page({
       return false;
     } else {
       wx.navigateTo({
-        url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid,
+        //url: 'hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid,
+        url :'/pages/mine/setting/list?merchant_id=' + merchant_id + '&openid=' + openid,
       })
     }
   },
@@ -442,14 +443,17 @@ Page({
     var that = this;
     
     var merchant_id = that.data.merchant_id;
-    utils.PostRequest(api_v_url + '/dish/goodslist', {
-      merchant_id: merchant_id,
-      page: page,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        dishes_list: data.result
+    if(merchant_id!=''){
+      utils.PostRequest(api_v_url + '/dish/goodslist', {
+        merchant_id: merchant_id,
+        page: page,
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        that.setData({
+          dishes_list: data.result
+        })
       })
-    })
+    }
+    
   },
 
   /**
