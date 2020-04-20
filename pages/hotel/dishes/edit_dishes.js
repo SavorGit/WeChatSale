@@ -803,10 +803,10 @@ Page({
       app.showToast('请上传商品图')
       return false;
     }
-    if (goods_video_url == '') {
+    /*if (goods_video_url == '') {
       app.showToast('请上传视频介绍');
       return false;
-    }
+    }*/
     if (introduce == '') {
       app.showToast('请输入文字详情');
       return false;

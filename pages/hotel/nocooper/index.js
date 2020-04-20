@@ -76,7 +76,7 @@ Page({
     that.getMallGoodsList(openid,merchant_id,22,page);  //获取售全国商品
   },
   /**
-   * 菜品置顶
+   * 菜品置顶  
    */
   setTop: function (e) {
     var that = this;
