@@ -82,7 +82,7 @@ Page({
     var that = this;
     var index = e.currentTarget.dataset.keys;
     var goods_id = e.currentTarget.dataset.goods_id;
-    var dishes_list = that.data.dishes_list;
+    var dishes_list = that.data.goods_list;
     var top_item = dishes_list[index];
     wx.showModal({
       title: '提示',
@@ -101,7 +101,7 @@ Page({
 
 
             that.setData({
-              dishes_list: dishes_list
+              goods_list: dishes_list
             })
             app.showToast('置顶成功');
           })
