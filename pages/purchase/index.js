@@ -78,7 +78,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this;
     wx.hideHomeButton();
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+
+    utils.PostRequest(api_v_url + '/user/center', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        income_fee: data.result.income_fee,
+        withdraw_fee: data.result.withdraw_fee,
+      })
+    });
   },
 
   /**

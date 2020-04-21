@@ -24,6 +24,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     openid = options.openid;
+    that.getIncomeList(1)
   },
   getIncomeList:function(page){
     var that = this;
