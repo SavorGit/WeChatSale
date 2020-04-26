@@ -7,7 +7,7 @@ var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
 var api_v_url = app.globalData.api_v_url;
 var openid; //用户openid
-var goods_id; 
+var goods_id;
 Page({
 
   /**
@@ -23,8 +23,8 @@ Page({
   onLoad: function (options) {
     openid = options.openid;
     goods_id = options.goods_id;
-    
-    
+
+
     let self = this;
     let testData = {
       canvasId: 'sharePoster',// 画布标识
@@ -51,9 +51,9 @@ Page({
         //生成海报日志
         utils.PostRequest(api_v_url + '/purchase/generatePoster', {
           openid: openid,
-          poster: '[{ "id":' + goods_id + ', "price":' + testData.page.posterPrice+'}]',
+          poster: '[{ "id":' + goods_id + ', "price":' + testData.page.posterPrice + '}]',
         }, (data, headers, cookies, errMsg, statusCode) => {
-          
+
         });
         wx.showToast({
           icon: 'none',
@@ -80,22 +80,25 @@ Page({
 
     utils.PostRequest(api_v_url + '/dish/detail', {
       goods_id: goods_id,
-      openid:openid
+      openid: openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goods_info = data.result;
-      testData.page.name = goods_info.name;
-      testData.page.pic = goods_info.cover_imgs[0];
-      testData.page.promotePrice.value = '￥'+goods_info.price;
-      testData.page.posterPrice = goods_info.price;
-      testData.page.marketPrice = goods_info.line_price;
-      testData.page.qrCode.pic = goods_info.qrcode_url;
-      console.log(testData);
-      
-      self.drawPosterPicture(self, testData);
-    })
-
-
-    
+      if (typeof (goods_info.poster_img) == 'string' && goods_info.poster_img.trim() != '') {
+        testData.page.pic = goods_info.poster_img;
+        testData.page.qrCode.pic = goods_info.qrcode_url;
+        console.log('APISuccess', 'Poster', 'Data', testData);
+        self.drawPosterPictureV2(self, testData);
+      } else {
+        testData.page.name = goods_info.name;
+        testData.page.pic = goods_info.cover_imgs[0];
+        testData.page.promotePrice.value = '￥' + goods_info.price;
+        testData.page.posterPrice = goods_info.price;
+        testData.page.marketPrice = goods_info.line_price;
+        testData.page.qrCode.pic = goods_info.qrcode_url;
+        console.log('APISuccess', 'Poster', 'Data', testData);
+        self.drawPosterPicture(self, testData);
+      }
+    });
   },
 
   /**
@@ -151,7 +154,7 @@ Page({
   drawPosterPicture: function (pageContext, data) {
     let canvasSelf = this;
     wx.showLoading({
-      title: '加载中...',
+      title: '生成海报...',
       mask: true
     });
     try {
@@ -320,6 +323,133 @@ Page({
       fontSize = 22;
       canvasContext.drawOneLineText(data.page.power.slogan, parseInt(fontSize / pixelRatio), parseInt((powerSloganX) / pixelRatio), parseInt((powerSloganY) / pixelRatio), parseInt(powerSloganWidth / pixelRatio), parseInt(powerSloganHeight / pixelRatio), false);
 
+
+      // 统一保存
+      canvasContext.save();
+      let waitTimer = setInterval(function () {
+        if (waitCount > 0) {
+          return;
+        }
+        clearInterval(waitTimer);
+        canvasContext.restore();
+        canvasContext.draw(false, data.getTempFilePath);
+        wx.hideLoading();
+        try {
+          if (typeof (data.success) == 'function') {
+            data.success();
+          }
+        } catch (error) {
+          wx.showToast({
+            icon: 'none',
+            title: '海报已生成，记录日志失败',
+          });
+        }
+      }, 2000);
+    } catch (error) {
+      wx.hideLoading();
+      console.error(error);
+      try {
+        if (typeof (data.fail) == 'function') {
+          data.fail(error);
+        }
+      } catch (error2) {
+        wx.showToast({
+          icon: 'none',
+          title: '海报生成失败',
+        });
+      }
+    }
+  },
+
+  drawPosterPictureV2: function (pageContext, data) {
+    let canvasSelf = this;
+    wx.showLoading({
+      title: '生成海报...',
+      mask: true
+    });
+    try {
+      if (typeof (data) != 'object') {
+        wx.hideLoading({
+          complete: (res) => {
+            wx.showToast({
+              icon: 'none',
+              title: '无绘制画布'
+            });
+          }
+        });
+      }
+      if (typeof (data.page) != 'object') {
+        wx.hideLoading({
+          complete: (res) => {
+            wx.showToast({
+              icon: 'none',
+              title: '无绘制数据'
+            });
+          }
+        });
+      }
+      let systemInfo = app.SystemInfo;
+      let documentWidth = systemInfo.documentWidth;
+      let canvasWidth = 750;
+      let canvasHeight = 1333.3333333333;
+      let pixelRatio = canvasWidth / documentWidth;
+      let fontSize = 12;
+      let waitCount = 0;
+      let x = 0, y = 0, width = 0, height = 0, radius = 0;
+
+      // 设置画布高度
+      pageContext.setData({ posterPictureHeight: canvasHeight });
+
+      let canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
+
+      // 绘制商品图片
+      if (typeof (data.page.pic) != 'string' || data.page.pic.trim() == '') {
+        wx.showToast({
+          icon: 'none',
+          title: '商品颜值不佳，无法示人',
+        });
+        return;
+      }
+      let picX = x, picY = y, picWidth = canvasWidth, picHeight = canvasHeight, picRadius = radius;
+      waitCount++;
+      wx.getImageInfo({
+        src: data.page.pic, success: function (res) {
+          console.log('success', res);
+          try {
+            canvasContext.drawImageRoundedRectAllCorner(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio));
+          } catch (error) {
+            wx.showToast({
+              icon: 'none',
+              title: '商品图片[' + data.page.pic + ']渲染失败',
+            });
+          }
+        }, fail: function (a, b) {
+          wx.showToast({
+            icon: 'none',
+            title: '商品图片[' + data.page.pic + ']加载失败',
+          });
+        }, complete: function (a, b) {
+          waitCount--;
+        }
+      });
+
+      // 绘制二维码图片
+      let qrCodePicWidth = 166.6666666667, qrCodePicHeight = 166.6666666667;
+      let qrCodePicX = 104.1666666667, qrCodePicY = 1125;
+      waitCount++;
+      wx.getImageInfo({
+        src: data.page.qrCode.pic, success: function (res) {
+          try {
+            canvasContext.drawImageAspectFill(res, parseInt(qrCodePicX / pixelRatio), parseInt(qrCodePicY / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(qrCodePicHeight / pixelRatio));
+          } catch (error) {
+            wx.showToast({
+              icon: 'none',
+              title: '二维码图片[' + data.page.qrCodePic + ']加载失败',
+            });
+          }
+          waitCount--;
+        }
+      });
 
       // 统一保存
       canvasContext.save();
