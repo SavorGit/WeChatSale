@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    wx.hideShareMenu();
     var that = this;
     var link_user_info = wx.getStorageSync(cache_key + "link_box_info");
     if (typeof(link_user_info.box_mac) == 'undefined') {

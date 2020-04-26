@@ -32,6 +32,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     app.globalData.fromPage = "/pages/launch/file/h5files_result";
     console.log(options);
     var that = this;

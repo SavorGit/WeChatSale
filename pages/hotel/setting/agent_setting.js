@@ -24,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
 	  console.log('ddd')
     var that = this;
     merchant_id = options.merchant_id;

@@ -26,6 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     let that = this;
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     that.setData({

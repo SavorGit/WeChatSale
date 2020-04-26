@@ -25,6 +25,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.hideShareMenu();
     openid = options.openid;
     
     that.getCategoryList();
