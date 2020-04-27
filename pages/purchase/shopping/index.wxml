@@ -4,7 +4,7 @@
  |-->
 
 
-<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true" >
 	<view class="page">
 		<view class="search-panel flex_row_center_spaceBetween theme-panel">
 			<view class="search-bar flex_row_center_spaceBetween">
@@ -27,7 +27,7 @@
 					</block>
 				</view>
 			</scroll-view>
-			<scroll-view class="tab-body" scroll-y="true" scroll-with-animation="true">
+			<scroll-view class="tab-body" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 				<view class="list">
 					<view class="item theme-panel" wx:for="{{goods_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
 						<view class="top flex_column_flexStart_flexStart" bindtap="gotoGoodsDetail" data-goods_id="{{bean.id}}">
