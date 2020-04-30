@@ -85,13 +85,15 @@ Page({
     var that = this;
     var tab = that.data.tab;
     if (tab == 'take-out') {//外卖菜品
-      var l_page = page;
-      l_page += 1;
-      that.getDishList(openid, merchant_id, 21, l_page);
+      //var l_page = page;
+      //l_page += 1;
+      page +=1;
+      that.getDishList(openid, merchant_id, 21, page);
     } else {//售全国商品
-      var l_page = page_mall;
-      l_page += 1;
-      that.getMallGoodsList(openid, merchant_id, 22, l_page);
+      //var l_page = page_mall;
+      //l_page += 1;
+      page_mall +=1;
+      that.getMallGoodsList(openid, merchant_id, 22, page_mall);
     }
   },
   /**
