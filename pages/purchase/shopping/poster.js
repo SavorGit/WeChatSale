@@ -71,9 +71,8 @@ Page({
         wx.canvasToTempFilePath({
           canvasId: 'sharePoster',
           success: (res) => {
-            self.setData({
-              shareTempFilePath: res.tempFilePath
-            });
+            console.log('getTempFilePath', res);
+            self.setData({ shareTempFilePath: res.tempFilePath });
           }
         });
       }
@@ -354,7 +353,8 @@ Page({
         }
         clearInterval(waitTimer);
         canvasContext.restore();
-        canvasContext.draw(false, () => {setTimeout(() => { data.getTempFilePath }, 100);});
+        // canvasContext.draw(false, data.getTempFilePath);
+        canvasContext.draw(false, () => { setTimeout(() => { data.getTempFilePath(); }, 100); });
         wx.hideLoading();
         try {
           if (typeof (data.success) == 'function') {
@@ -485,7 +485,8 @@ Page({
         }
         clearInterval(waitTimer);
         canvasContext.restore();
-        canvasContext.draw(false, data.getTempFilePath);
+        // canvasContext.draw(false, data.getTempFilePath);
+        canvasContext.draw(false, () => { setTimeout(() => { data.getTempFilePath(); }, 100); });
         wx.hideLoading();
         try {
           if (typeof (data.success) == 'function') {
