@@ -204,6 +204,8 @@ Page({
       let bgRoundedRectX = __x__, bgRoundedRectY = __y__, bgRoundedRectWidth = 694, bgRoundedRectHeight = 1111;
       canvasContext.setFillStyle('#FFFFFF');
       canvasContext.drawRoundedRect(parseInt(bgRoundedRectX / pixelRatio), parseInt(bgRoundedRectY / pixelRatio), parseInt(bgRoundedRectWidth / pixelRatio), parseInt(bgRoundedRectHeight / pixelRatio), parseInt(radius / pixelRatio), true, false);
+      canvasContext.save();
+      canvasContext.restore();
 
       // 绘制商品图片
       let picX = __x__, picY = __y__, picWidth = 694, picHeight = 694;
@@ -215,6 +217,8 @@ Page({
             wx.getImageInfo({
               src: data.page.promotePic, success: function (promotePicRes) {
                 try {
+                  canvasContext.save();
+                  canvasContext.restore();
                   canvasContext.drawImageRoundedRectAllCorner(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(radius / pixelRatio), parseInt(radius / pixelRatio), 1, 1);
                   canvasContext.drawImageRoundedRect(promotePicRes, parseInt((picX + 21) / pixelRatio), parseInt((picY + 21) / pixelRatio), parseInt(222 / pixelRatio), parseInt(61 / pixelRatio), parseInt(10 / pixelRatio));
                 } catch (error) {
@@ -238,6 +242,8 @@ Page({
 
       // 促销价格
       let promotePriceLabelX = __x__ + 35, promotePriceLabelY = y + 35;
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#E82B38');
       canvasContext.setFontSize(parseInt(26 / pixelRatio));
       canvasContext.fillText(data.page.promotePrice.label, parseInt(promotePriceLabelX / pixelRatio), parseInt((promotePriceLabelY + 26 + 8) / pixelRatio));
@@ -249,6 +255,8 @@ Page({
       x += canvasContext.measureText(data.page.promotePrice.value.substring(1)).width * pixelRatio;
 
       // 市场价格
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#999999');
       canvasContext.setFontSize(parseInt(26 / pixelRatio));
       canvasContext.fillText(data.page.marketPrice, parseInt((x + 20) / pixelRatio), parseInt((y + 35 + 26 + 8) / pixelRatio));
@@ -260,9 +268,13 @@ Page({
       canvasContext.lineCap = 'round'; //线的两头圆滑
       canvasContext.stroke();
       x = __x__ + 35, y += 35 + 26;
+      canvasContext.save();
+      canvasContext.restore();
 
       // 商品名称
       let nameX = x, nameY = y + 21, nameWidth = 450, nameHeight = 60;
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#000000');
       fontSize = 50;
       canvasContext.drawMultiLineText(data.page.name, parseInt(fontSize / pixelRatio), parseInt((nameX) / pixelRatio), parseInt((nameY) / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / pixelRatio), false, 2);
@@ -273,6 +285,8 @@ Page({
       wx.getImageInfo({
         src: data.page.qrCode.pic, success: function (res) {
           try {
+            canvasContext.save();
+            canvasContext.restore();
             canvasContext.drawImageAspectFill(res, parseInt(qrCodePicX / pixelRatio), parseInt(qrCodePicY / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(qrCodePicHeight / pixelRatio));
           } catch (error) {
             wx.showToast({
@@ -285,6 +299,8 @@ Page({
       });
 
       // 二维码提示
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#999999');
       fontSize = 21;
       canvasContext.drawMultiLineText(data.page.qrCode.tip, parseInt(fontSize / pixelRatio), parseInt(qrCodePicX / pixelRatio), parseInt((qrCodePicY + qrCodePicHeight) / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(30 / pixelRatio), true);
@@ -295,6 +311,8 @@ Page({
       wx.getImageInfo({
         src: data.page.power.pic, success: function (res) {
           try {
+            canvasContext.save();
+            canvasContext.restore();
             canvasContext.drawImageAspectFill(res, parseInt(powerPicX / pixelRatio), parseInt(powerPicY / pixelRatio), parseInt(powerPicWidth / pixelRatio), parseInt(powerPicHeight / pixelRatio));
           } catch (error) {
             wx.showToast({
@@ -309,6 +327,8 @@ Page({
 
       // 服务提供者名称
       let powerNameX = x + 24, powerNameY = y - 4, powerNameWidth = 555, powerNameHeight = 30;
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#333333');
       fontSize = 26;
       // canvasContext.drawOneLineText(data.page.power.name, parseInt(fontSize / pixelRatio), parseInt((powerNameX - 0.5) / pixelRatio), parseInt((powerNameY) / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), false);
@@ -316,10 +336,11 @@ Page({
       canvasContext.drawOneLineText(data.page.power.name, parseInt(fontSize / pixelRatio), parseInt((powerNameX) / pixelRatio), parseInt((powerNameY) / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), false);
       canvasContext.drawOneLineText(data.page.power.name, parseInt(fontSize / pixelRatio), parseInt((powerNameX + 0.5) / pixelRatio), parseInt((powerNameY) / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), false);
       canvasContext.drawOneLineText(data.page.power.name, parseInt(fontSize / pixelRatio), parseInt((powerNameX) / pixelRatio), parseInt((powerNameY + 0.5) / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), false);
-      canvasContext.restore();
 
       // 服务提供者标语
       let powerSloganX = x + 24, powerSloganY = y + 26 + 10, powerSloganWidth = 555, powerSloganHeight = 30;
+      canvasContext.save();
+      canvasContext.restore();
       canvasContext.setFillStyle('#999999');
       fontSize = 22;
       canvasContext.drawOneLineText(data.page.power.slogan, parseInt(fontSize / pixelRatio), parseInt((powerSloganX) / pixelRatio), parseInt((powerSloganY) / pixelRatio), parseInt(powerSloganWidth / pixelRatio), parseInt(powerSloganHeight / pixelRatio), false);
@@ -417,6 +438,8 @@ Page({
         src: data.page.pic, success: function (res) {
           console.log('success', res);
           try {
+            canvasContext.save();
+            canvasContext.restore();
             canvasContext.drawImageRoundedRectAllCorner(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio));
           } catch (error) {
             wx.showToast({
@@ -441,6 +464,8 @@ Page({
       wx.getImageInfo({
         src: data.page.qrCode.pic, success: function (res) {
           try {
+            canvasContext.save();
+            canvasContext.restore();
             canvasContext.drawImageAspectFill(res, parseInt(qrCodePicX / pixelRatio), parseInt(qrCodePicY / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(qrCodePicHeight / pixelRatio));
           } catch (error) {
             wx.showToast({
