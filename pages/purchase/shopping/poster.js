@@ -575,13 +575,14 @@ Page({
               });
             }
           });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '图片保存失败',
+            showCancel: false,
+            mask: true
+          });
         }
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '图片保存失败',
-        //   showCancel: false,
-        //   mask: true
-        // });
       }
     });
   },
