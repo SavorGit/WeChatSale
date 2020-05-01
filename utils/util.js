@@ -710,6 +710,15 @@ const createCanvasContext = (canvasContext) => {
     let lineString = '';
     do {
       lineString = str.substring(0, lineWordCount);
+      if (lineString.length >= str.length) {
+        top += lineHeight;
+        let _left = left;
+        if (isCenter == true) {
+          _left += (canvasWidth - this.measureText(str).width) / 2;
+        }
+        this.fillText(str, _left, top);
+        return top;
+      }
       lineWordCount++;
     } while (canvasWidth - this.measureText(lineString).width > fontSize);
     while (canvasWidth < this.measureText(lineString).width) {
