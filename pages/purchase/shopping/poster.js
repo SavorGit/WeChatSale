@@ -354,7 +354,7 @@ Page({
         }
         clearInterval(waitTimer);
         canvasContext.restore();
-        canvasContext.draw(false, data.getTempFilePath);
+        canvasContext.draw(false, () => {setTimeout(() => { data.getTempFilePath }, 100);});
         wx.hideLoading();
         try {
           if (typeof (data.success) == 'function') {
