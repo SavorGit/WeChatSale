@@ -28,21 +28,21 @@ Page({
 
     let self = this;
     let testData = {
-      canvasId: 'sharePoster',// 画布标识
+      canvasId: 'sharePoster', // 画布标识
       page: {
         name: '大董 红豆蛋黄酥300g饼干蛋糕传统点心',
         pic: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg', // 商品图片。1000x1000
         promotePic: 'https://oss.littlehotspot.com/WeChat/resource/promote.png', // 促销图片。320x88
-        promotePrice: {// 促销价格
+        promotePrice: { // 促销价格
           label: '秒杀价',
           value: '￥58'
         },
         marketPrice: '￥99',
-        qrCode: {// 二维码
+        qrCode: { // 二维码
           pic: 'https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg', // 220x220
           tip: '长按扫码查看'
         },
-        power: {// 服务提供者
+        power: { // 服务提供者
           pic: 'https://oss.littlehotspot.com/WeChat/resource/favicon.png', // 100x100
           name: '小热点',
           slogan: '为高净值人群提供优质服务'
@@ -67,12 +67,14 @@ Page({
           title: '海报生成失败',
         });
       },
-      getTempFilePath: function () {// 生成图片临时地址的回调函数
+      getTempFilePath: function () { // 生成图片临时地址的回调函数
         wx.canvasToTempFilePath({
           canvasId: 'sharePoster',
           success: (res) => {
             console.log('getTempFilePath', res);
-            self.setData({ shareTempFilePath: res.tempFilePath });
+            self.setData({
+              shareTempFilePath: res.tempFilePath
+            });
           }
         });
       }
@@ -185,10 +187,15 @@ Page({
       let pixelRatio = canvasWidth / documentWidth;
       let fontSize = 12;
       let waitCount = 0;
-      let x = 0, y = 0, width = 0, height = 0;
+      let x = 0,
+        y = 0,
+        width = 0,
+        height = 0;
 
       // 设置画布高度
-      pageContext.setData({ posterPictureHeight: canvasHeight });
+      pageContext.setData({
+        posterPictureHeight: canvasHeight
+      });
 
       let canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
 
@@ -199,22 +206,32 @@ Page({
       canvasContext.setFillStyle(backgroundLinearGradient);
       canvasContext.fillRect(x, y, parseInt(canvasWidth / pixelRatio), parseInt(canvasHeight / pixelRatio));
 
-      let __x__ = 28, __y__ = 55, radius = 15;
-      let bgRoundedRectX = __x__, bgRoundedRectY = __y__, bgRoundedRectWidth = 694, bgRoundedRectHeight = 1111;
+      let __x__ = 28,
+        __y__ = 55,
+        radius = 15;
+      let bgRoundedRectX = __x__,
+        bgRoundedRectY = __y__,
+        bgRoundedRectWidth = 694,
+        bgRoundedRectHeight = 1111;
       canvasContext.setFillStyle('#FFFFFF');
       canvasContext.drawRoundedRect(parseInt(bgRoundedRectX / pixelRatio), parseInt(bgRoundedRectY / pixelRatio), parseInt(bgRoundedRectWidth / pixelRatio), parseInt(bgRoundedRectHeight / pixelRatio), parseInt(radius / pixelRatio), true, false);
       canvasContext.save();
       canvasContext.restore();
 
       // 绘制商品图片
-      let picX = __x__, picY = __y__, picWidth = 694, picHeight = 694;
+      let picX = __x__,
+        picY = __y__,
+        picWidth = 694,
+        picHeight = 694;
       waitCount++;
       wx.getImageInfo({
-        src: data.page.pic, success: function (res) {
+        src: data.page.pic,
+        success: function (res) {
           try {
             // 绘制促销图片
             wx.getImageInfo({
-              src: data.page.promotePic, success: function (promotePicRes) {
+              src: data.page.promotePic,
+              success: function (promotePicRes) {
                 try {
                   canvasContext.save();
                   canvasContext.restore();
@@ -237,10 +254,12 @@ Page({
           waitCount--;
         }
       });
-      x += picX + picWidth; y += picY + picHeight;
+      x += picX + picWidth;
+      y += picY + picHeight;
 
       // 促销价格
-      let promotePriceLabelX = __x__ + 35, promotePriceLabelY = y + 35;
+      let promotePriceLabelX = __x__ + 35,
+        promotePriceLabelY = y + 35;
       canvasContext.save();
       canvasContext.restore();
       canvasContext.setFillStyle('#E82B38');
@@ -271,7 +290,10 @@ Page({
       canvasContext.restore();
 
       // 商品名称
-      let nameX = x, nameY = y + 21, nameWidth = 450, nameHeight = 60;
+      let nameX = x,
+        nameY = y + 21,
+        nameWidth = 450,
+        nameHeight = 60;
       canvasContext.save();
       canvasContext.restore();
       canvasContext.setFillStyle('#000000');
@@ -279,10 +301,14 @@ Page({
       canvasContext.drawMultiLineText(data.page.name, parseInt(fontSize / pixelRatio), parseInt((nameX) / pixelRatio), parseInt((nameY) / pixelRatio), parseInt(nameWidth / pixelRatio), parseInt(nameHeight / pixelRatio), false, 2);
 
       // 绘制二维码图片
-      let qrCodePicX = __x__ + 35 + nameWidth + 30, qrCodePicY = picY + picHeight + 56 + 10, qrCodePicWidth = 153, qrCodePicHeight = 153;
+      let qrCodePicX = __x__ + 35 + nameWidth + 30,
+        qrCodePicY = picY + picHeight + 56 + 10,
+        qrCodePicWidth = 153,
+        qrCodePicHeight = 153;
       waitCount++;
       wx.getImageInfo({
-        src: data.page.qrCode.pic, success: function (res) {
+        src: data.page.qrCode.pic,
+        success: function (res) {
           try {
             canvasContext.save();
             canvasContext.restore();
@@ -305,10 +331,14 @@ Page({
       canvasContext.drawMultiLineText(data.page.qrCode.tip, parseInt(fontSize / pixelRatio), parseInt(qrCodePicX / pixelRatio), parseInt((qrCodePicY + qrCodePicHeight) / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(30 / pixelRatio), true);
 
       // 服务提供者图片
-      let powerPicX = __x__ + 35, powerPicY = 1040, powerPicWidth = 70, powerPicHeight = 70;
+      let powerPicX = __x__ + 35,
+        powerPicY = 1040,
+        powerPicWidth = 70,
+        powerPicHeight = 70;
       waitCount++;
       wx.getImageInfo({
-        src: data.page.power.pic, success: function (res) {
+        src: data.page.power.pic,
+        success: function (res) {
           try {
             canvasContext.save();
             canvasContext.restore();
@@ -322,10 +352,14 @@ Page({
           waitCount--;
         }
       });
-      x = powerPicX + powerPicWidth; y = powerPicY;
+      x = powerPicX + powerPicWidth;
+      y = powerPicY;
 
       // 服务提供者名称
-      let powerNameX = x + 24, powerNameY = y - 4, powerNameWidth = 555, powerNameHeight = 30;
+      let powerNameX = x + 24,
+        powerNameY = y - 4,
+        powerNameWidth = 555,
+        powerNameHeight = 30;
       canvasContext.save();
       canvasContext.restore();
       canvasContext.setFillStyle('#333333');
@@ -337,7 +371,10 @@ Page({
       canvasContext.drawOneLineText(data.page.power.name, parseInt(fontSize / pixelRatio), parseInt((powerNameX) / pixelRatio), parseInt((powerNameY + 0.5) / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), false);
 
       // 服务提供者标语
-      let powerSloganX = x + 24, powerSloganY = y + 26 + 10, powerSloganWidth = 555, powerSloganHeight = 30;
+      let powerSloganX = x + 24,
+        powerSloganY = y + 26 + 10,
+        powerSloganWidth = 555,
+        powerSloganHeight = 30;
       canvasContext.save();
       canvasContext.restore();
       canvasContext.setFillStyle('#999999');
@@ -354,7 +391,11 @@ Page({
         clearInterval(waitTimer);
         canvasContext.restore();
         // canvasContext.draw(false, data.getTempFilePath);
-        canvasContext.draw(false, () => { setTimeout(() => { data.getTempFilePath(); }, 100); });
+        canvasContext.draw(false, () => {
+          setTimeout(() => {
+            data.getTempFilePath();
+          }, 100);
+        });
         wx.hideLoading();
         try {
           if (typeof (data.success) == 'function') {
@@ -417,10 +458,16 @@ Page({
       let pixelRatio = canvasWidth / documentWidth;
       let fontSize = 12;
       let waitCount = 0;
-      let x = 0, y = 0, width = 0, height = 0, radius = 0;
+      let x = 0,
+        y = 0,
+        width = 0,
+        height = 0,
+        radius = 0;
 
       // 设置画布高度
-      pageContext.setData({ posterPictureHeight: canvasHeight });
+      pageContext.setData({
+        posterPictureHeight: canvasHeight
+      });
 
       let canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
 
@@ -432,47 +479,66 @@ Page({
         });
         return;
       }
-      let picX = x, picY = y, picWidth = canvasWidth, picHeight = canvasHeight, picRadius = radius;
+      let picX = x,
+        picY = y,
+        picWidth = canvasWidth,
+        picHeight = canvasHeight,
+        picRadius = radius;
       waitCount++;
       wx.getImageInfo({
-        src: data.page.pic, success: function (res) {
+        src: data.page.pic,
+        success: function (res) {
           console.log('success', res);
           try {
             canvasContext.save();
             canvasContext.restore();
-            canvasContext.drawImageRoundedRectAllCorner(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio));
+            // canvasContext.drawImageRoundedRectAllCorner(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / pixelRatio), parseInt(picRadius / 
+            canvasContext.drawImageAspectFill(res, parseInt(picX / pixelRatio), parseInt(picY / pixelRatio), parseInt(picWidth / pixelRatio), parseInt(picHeight / pixelRatio));
+
+            // 绘制二维码图片
+            let qrCodePicWidth = 166.6666666667,
+              qrCodePicHeight = 166.6666666667;
+            let qrCodePicX = 104.1666666667,
+              qrCodePicY = 1125;
+            waitCount++;
+            wx.getImageInfo({
+              src: data.page.qrCode.pic,
+              success: function (res) {
+                try {
+                  canvasContext.save();
+                  canvasContext.restore();
+                  canvasContext.drawImageAspectFill(res, parseInt(qrCodePicX / pixelRatio), parseInt(qrCodePicY / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(qrCodePicHeight / pixelRatio));
+                } catch (error) {
+                  wx.showToast({
+                    icon: 'none',
+                    title: '二维码图片[' + data.page.qrCodePic + ']加载失败',
+                  });
+                }
+              },
+              fail: function (a, b) {
+                wx.showToast({
+                  icon: 'none',
+                  title: '二维码图片[' + data.page.qrCodePic + ']加载失败',
+                });
+              },
+              complete: function (a, b) {
+                waitCount--;
+              }
+            });
           } catch (error) {
             wx.showToast({
               icon: 'none',
               title: '商品图片[' + data.page.pic + ']渲染失败',
             });
           }
-        }, fail: function (a, b) {
+        },
+        fail: function (a, b) {
           wx.showToast({
             icon: 'none',
             title: '商品图片[' + data.page.pic + ']加载失败',
           });
-        }, complete: function (a, b) {
-          waitCount--;
-        }
-      });
-
-      // 绘制二维码图片
-      let qrCodePicWidth = 166.6666666667, qrCodePicHeight = 166.6666666667;
-      let qrCodePicX = 104.1666666667, qrCodePicY = 1125;
-      waitCount++;
-      wx.getImageInfo({
-        src: data.page.qrCode.pic, success: function (res) {
-          try {
-            canvasContext.save();
-            canvasContext.restore();
-            canvasContext.drawImageAspectFill(res, parseInt(qrCodePicX / pixelRatio), parseInt(qrCodePicY / pixelRatio), parseInt(qrCodePicWidth / pixelRatio), parseInt(qrCodePicHeight / pixelRatio));
-          } catch (error) {
-            wx.showToast({
-              icon: 'none',
-              title: '二维码图片[' + data.page.qrCodePic + ']加载失败',
-            });
-          }
+        },
+        complete: function (a, b) {
           waitCount--;
         }
       });
@@ -486,7 +552,11 @@ Page({
         clearInterval(waitTimer);
         canvasContext.restore();
         // canvasContext.draw(false, data.getTempFilePath);
-        canvasContext.draw(false, () => { setTimeout(() => { data.getTempFilePath(); }, 100); });
+        canvasContext.draw(false, () => {
+          setTimeout(() => {
+            data.getTempFilePath();
+          }, 100);
+        });
         wx.hideLoading();
         try {
           if (typeof (data.success) == 'function') {
