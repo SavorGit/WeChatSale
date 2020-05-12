@@ -1,0 +1,102 @@
+/* pages/purchase/shopping/logistics.wxss */
+/**
+ * [分销端] 物流信息页面
+ */
+
+
+.page-wapper {
+  width: 100%;
+  padding-top: 10rpx;
+  padding-bottom: 30rpx;
+}
+
+.input-panel {
+  width: 100%;
+  margin-top: 10rpx;
+  padding: 10rpx 0;
+}
+
+.input-panel>view {
+  width: calc(100% - 120rpx);
+  padding: 0 60rpx;
+}
+
+.input-panel>.head {
+  width: calc(100% - 60rpx);
+  height: 30rpx;
+  padding: 20rpx 30rpx;
+  font-size: 32rpx;
+}
+
+.input-panel>.body>.tab-bar {
+  width: 100%;
+  height: 50rpx;
+}
+
+.input-panel>.body>.tab-bar>.tab {
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+}
+
+.input-panel>.body>.tab-bar>.tab.selected {
+  height: 45rpx;
+  line-height: 50rpx;
+  color: #F44444;
+  border-bottom: 5rpx solid #F44444;
+  background-color: unset;
+}
+
+.input-panel>.body>.tab-body {
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx;
+}
+
+.input-panel>.body>.row,
+.input-panel>.body>.tab-body>.row {
+  width: 100%;
+  height: 70rpx;
+}
+
+.input-panel>.body>.row>.lable,
+.input-panel>.body>.tab-body>.row>.lable {
+  width: 150rpx;
+  font-size: 28rpx;
+}
+
+.input-panel>.body>.row>.view,
+.input-panel>.body>.tab-body>.row>.view {
+  width: calc(100% - 150rpx);
+  font-size: 28rpx;
+}
+
+.input-panel>.body>.row>.view>.tip,
+.input-panel>.body>.tab-body>.row>.view>.tip {
+  font-size: 28rpx;
+}
+
+.input-panel>.body>.row>.view>.btn,
+.input-panel>.body>.tab-body>.row>.view>.btn {
+  font-size: 32rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: unset;
+}
+
+.input-panel.logistics>.head>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.input-panel.logistics>.head>.tip {
+  margin-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.input-panel.logistics>.body {
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx;
+}

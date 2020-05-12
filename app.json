@@ -32,6 +32,7 @@
     "pages/purchase/shopping/poster",
     "pages/purchase/shopping/profit-detail",
     "pages/purchase/shopping/search_result",
+    "pages/purchase/shopping/logistics",
     "pages/purchase/dishes/detail",
     "pages/purchase/share/log",
     "pages/launch/file/index",
@@ -79,8 +80,7 @@
     "selectedColor": "#58525C",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "电视互动",
         "iconPath": "/images/icon/999999_interact.png",

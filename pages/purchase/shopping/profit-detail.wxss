@@ -57,6 +57,22 @@
   font-size: 28rpx;
 }
 
-.item>.right>.profit {
+.item>.right>.bottom {
+  width: 100%;
+}
+
+.item>.right>.bottom>.profit {
   font-size: 32rpx;
+}
+
+.item>.right>.bottom>.btn {
+  width: 134rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
