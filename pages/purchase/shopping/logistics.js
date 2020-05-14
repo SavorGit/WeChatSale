@@ -2,8 +2,12 @@
 /**
  * [分销端] 物流信息页面
  */
-
-
+const utils = require('../../../utils/util.js')
+var mta = require('../../../utils/mta_analysis.js')
+const app = getApp()
+var api_v_url = app.globalData.api_v_url;
+var order_id;
+var openid;
 Page({
 
   /**
@@ -33,9 +37,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.hideShareMenu()
+    order_id = options.order_id;
+    openid   = options.openid;
+    that.getExprssList(openid,order_id);
   },
+  getExprssList:function(e){
+    var that = this;
+    utils.PostRequest(api_v_url + '/express/getExpressList', {
+      openid: openid,
+      order_id: order_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        logisticsList:data.result.express,
+        contact:data.result.contact,
+        phone:data.result.phone,
+        address:data.result.address
 
+      })
+    })
+  },
+  gotoExpressDetail:function(e){
+    var express_id = e.currentTarget.dataset.express_id;
+    wx.navigateTo({
+      url: '/pages/hotel/order/goods_logistics_info?order_id='+order_id+'&express_id='+express_id+'&openid='+openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

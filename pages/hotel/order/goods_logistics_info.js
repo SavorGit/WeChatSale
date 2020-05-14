@@ -10,7 +10,7 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var order_id;
-
+var express_id;
 Page({
 
   /**
@@ -35,9 +35,13 @@ Page({
       that.showToastAndNavigateBack('未知订单号');
       return;
     }
+    if(typeof(options.exress_id)!='undefined'){
+      express_id = options.express_id
+    }
     utils.PostRequest(api_v_url + '/express/getExpress', {
       openid: openid,
-      order_id: order_id
+      order_id: order_id,
+      express_id:express_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       console.log('express', data, data.result.data);
       if (typeof (data.result.data) != 'object') {

@@ -20,9 +20,9 @@
 							<view class="user-name one-line-overflow">{{item.nickName}}</view>
 							<view class="content one-line-overflow">购买了“{{item.goods_name}}“</view>
 						</view>
-						<view class="bottom flex_row_center_spaceBetween">
+						<view class="bottom flex_row_center_spaceBetween" >
 							<view class="profit theme-font5">+{{item.income_fee}}</view>
-							<view class="btn theme-button-red">物流信息</view>
+							<view class="btn theme-button-red" bindtap="viewExpress" data-express="{{bean.express}}" data-order_id="{{bean.order_id}}" wx:if="{{bean.express.length>0}}">物流信息</view>
 						</view>
 					</view>
 				</view>

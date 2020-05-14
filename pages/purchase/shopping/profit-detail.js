@@ -43,6 +43,19 @@ Page({
     page +=1;
     that.getIncomeList(page);
   },
+  viewExpress:function(e){
+    var express = e.currentTarget.dataset.express;
+    var order_id = e.currentTarget.dataset.order_id;
+    if(express.length>1){
+      wx.navigateTo({
+        url: '/pages/purchase/shopping/logistics?order_id='+order_id+'&openid='+openid,
+      })
+    }else {
+      wx.navigateTo({
+        url: '/pages/hotel/order/goods_logistics_info?order_id='+order_id+'&openid='+openid,
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

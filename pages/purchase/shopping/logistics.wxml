@@ -14,17 +14,17 @@
 			<view class="body flex_column_center_spaceBetween">
 				<view class="tab-bar flex_row_center_flexStart">
 					<block wx:for="{{logisticsList}}" wx:for-index="index" wx:for-item="logistics" wx:key="key">
-						<view class="tab{{logisticsTab==index+1?' selected':''}}" data-index="{{index}}" data-tab="{{index+1}}" bindtap="showLogisticsTab">运单{{index+1}}</view>
+						<view class="tab{{logisticsTab==index+1?' selected':''}}" data-index="{{index}}" data-tab="{{index+1}}" bindtap="showLogisticsTab">{{logistics.name}}</view>
 					</block>
 				</view>
 				<block wx:for="{{logisticsList}}" wx:for-index="index" wx:for-item="logistics" wx:key="key">
 					<view wx:if="{{logisticsTab==index+1}}" data-index="{{index}}" class="tab-body">
-						<view class="row flex_row_center_spaceBetween" style="height:unset;" bindtap="">
+						<view class="row flex_row_center_spaceBetween" style="height:unset;" bindtap="gotoExpressDetail" data-express_id="{{logistics.express_id}}">
 							<view class="fa fa-truck theme-font" style="width:50rpx;font-size:32rpx;text-align:center;" aria-hidden="true"></view>
 							<view class="view flex_column_flexStart_spaceBetween" style="width:calc(100% - 120rpx);height:unset;padding:20rpx 0;">
-								<view class="one-line-overflow">{{logistics.status}}</view>
-								<view class="two-line-overflow theme-font2">{{logistics.context}}</view>
-								<view class="one-line-overflow theme-font3">{{logistics.time}}</view>
+								<view class="one-line-overflow">{{logistics.data[0].state_str}}</view>
+								<view class="two-line-overflow theme-font2">{{logistics.data[0].context}}</view>
+								<view class="one-line-overflow theme-font3">{{logistics.data[0].time}}</view>
 							</view>
 							<view class="fa fa-chevron-right" style="width:50rpx;font-size:32rpx;text-align:center;" aria-hidden="true"></view>
 						</view>
