@@ -22,7 +22,7 @@
 						</view>
 						<view class="bottom flex_row_center_spaceBetween" >
 							<view class="profit theme-font5">+{{item.income_fee}}</view>
-							<view class="btn theme-button-red" bindtap="viewExpress" data-express="{{bean.express}}" data-order_id="{{bean.order_id}}" wx:if="{{bean.express.length>0}}">物流信息</view>
+							<view class="btn theme-button-red" bindtap="viewExpress" data-express="{{item.express}}" data-order_id="{{bean.order_id}}" wx:if="{{item.express.length>0}}">物流信息</view>
 						</view>
 					</view>
 				</view>
