@@ -59,6 +59,7 @@ Page({
     })
   },
   gotoExpressDetail:function(e){
+    console.log(e);
     var express_id = e.currentTarget.dataset.express_id;
     wx.navigateTo({
       url: '/pages/hotel/order/goods_logistics_info?order_id='+order_id+'&express_id='+express_id+'&openid='+openid,

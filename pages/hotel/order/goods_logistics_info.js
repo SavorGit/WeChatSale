@@ -35,7 +35,7 @@ Page({
       that.showToastAndNavigateBack('未知订单号');
       return;
     }
-    if(typeof(options.exress_id)!='undefined'){
+    if(typeof(options.express_id)!='undefined'){
       express_id = options.express_id
     }
     utils.PostRequest(api_v_url + '/express/getExpress', {
