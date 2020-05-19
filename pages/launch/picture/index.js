@@ -18,6 +18,8 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var oss_upload_url = app.globalData.oss_upload_url;
 var angle = 0;
+var netty_push_info ;
+var netty_push_img ;
 Page({
 
   /**
@@ -100,6 +102,8 @@ Page({
   },
   up_forscreen(e) {//多张图片投屏开始(不分享到发现)
     var that = this;
+    netty_push_info={};
+    netty_push_img = [];
     that.setData({
       is_btn_disabel: true,
       hiddens: true,
@@ -248,7 +252,15 @@ Page({
         if (res.progress == 100) {
           var res_eup_time = (new Date()).valueOf();
           
-          wx.request({
+          var netty_tmp = {};
+          netty_tmp.url = "forscreen/resource/" + timestamp + postf_t;
+          netty_tmp.filename = filename = timestamp + postf_t ;
+          netty_tmp.order    = flag;
+          netty_tmp.img_id   = timestamp;
+          netty_tmp.play_times = play_times;
+
+          netty_push_img[flag] = netty_tmp;
+          /*wx.request({
             url: api_url+'/Netty/Index/pushnetty',
             headers: {
               'Content-Type': 'application/json'
@@ -268,7 +280,30 @@ Page({
                 percent: 0
               })
             },
-          });
+          });*/
+          if (order == img_len) {
+            netty_push_info.img_list = netty_push_img;
+            netty_push_info = JSON.stringify(netty_push_info);
+            wx.request({
+              url: api_url+'/Netty/Index/pushnetty',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+              data: {
+                box_mac: box_mac,
+                msg: netty_push_info,
+              },
+              success: function (result) {
+  
+                that.setData({
+                  updateStatus: 4,
+  
+                  percent: 0
+                })
+              },
+            });
+          }
           wx.request({
             url: api_v_url+'/ForscreenLog/recordForScreenPics',
             header: {
@@ -308,6 +343,13 @@ Page({
       //var tmp_imgs = [];
       var filename_arr = [];
       var forscreen_id = (new Date()).valueOf();
+      netty_push_info.forscreen_id = forscreen_id;
+      netty_push_info.action = 44;
+      netty_push_info.resource_type = 2;
+      netty_push_info.openid = openid;
+      netty_push_info.forscreen_char = forscreen_char;
+      netty_push_info.avatarUrl = avatarUrl;
+      netty_push_info.nickName  = nickName;
       for (var i = 0; i < img_len; i++) {
         var res_sup_time = (new Date()).valueOf();
         
