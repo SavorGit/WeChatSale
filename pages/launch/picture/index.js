@@ -38,6 +38,8 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
+    netty_push_info = {}
+    netty_push_img  = []
     wx.hideShareMenu();
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
@@ -211,7 +213,7 @@ Page({
       var order = flag + 1;
       var postf_t = filename.substring(index1, index2);//后缀名
       var postf_w = filename.substring(index1 + 1, index2);//后缀名
-
+      var fg = 0;
       var upload_task = wx.uploadFile({
         url: oss_upload_url,
         filePath: img_url,
@@ -231,57 +233,15 @@ Page({
         },
 
         success: function (res) {
-
-        },
-        complete: function (es) {
-          tmp_percent[flag] = { "percent": 100 };
-          that.setData({
-            tmp_percent: tmp_percent
-          })
-        },
-        fail: function ({ errMsg }) {
-          console.log('uploadImage fail,errMsg is', errMsg)
-        },
-      });
-      upload_task.onProgressUpdate((res) => {
-        tmp_percent[flag] = { "percent": res.progress };
-        //console.log(res.progress);
-        that.setData({
-          tmp_percent: tmp_percent
-        });
-        if (res.progress == 100) {
-          var res_eup_time = (new Date()).valueOf();
-          
           var netty_tmp = {};
           netty_tmp.url = "forscreen/resource/" + timestamp + postf_t;
           netty_tmp.filename = filename = timestamp + postf_t ;
           netty_tmp.order    = flag;
           netty_tmp.img_id   = timestamp;
-          netty_tmp.play_times = play_times;
-
-          netty_push_img[flag] = netty_tmp;
-          /*wx.request({
-            url: api_url+'/Netty/Index/pushnetty',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            data: {
-              box_mac: box_mac,
-
-              msg: '{ "action": 44, "resource_type":2, "url": "forscreen/resource/' + timestamp + postf_t + '", "filename":"' + timestamp + postf_t + '","openid":"' + openid + '","img_nums":' + img_len + ',"forscreen_char":"' + forscreen_char + '","order":' + order + ',"forscreen_id":"' + forscreen_id + '","img_id":"' + timestamp + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName+'","res_sup_time":"'+res_sup_time+'","res_eup_time":"'+res_eup_time+'"}',
-
-            },
-            success: function (result) {
-
-              that.setData({
-                updateStatus: 4,
-
-                percent: 0
-              })
-            },
-          });*/
-          if (order == img_len) {
+          
+          //netty_push_img[] = netty_tmp;
+          netty_push_img.push(netty_tmp);
+          if (netty_push_img.length == img_len) {
             netty_push_info.img_list = netty_push_img;
             netty_push_info = JSON.stringify(netty_push_info);
             wx.request({
@@ -304,6 +264,27 @@ Page({
               },
             });
           }
+        },
+        complete: function (es) {
+          tmp_percent[flag] = { "percent": 100 };
+          that.setData({
+            tmp_percent: tmp_percent
+          })
+        },
+        fail: function ({ errMsg }) {
+          console.log('uploadImage fail,errMsg is', errMsg)
+        },
+      });
+      upload_task.onProgressUpdate((res) => {
+        tmp_percent[flag] = { "percent": res.progress };
+        //console.log(res.progress);
+        that.setData({
+          tmp_percent: tmp_percent
+        });
+        if (res.progress == 100) {
+          var res_eup_time = (new Date()).valueOf();
+          
+          
           wx.request({
             url: api_v_url+'/ForscreenLog/recordForScreenPics',
             header: {
@@ -350,6 +331,7 @@ Page({
       netty_push_info.forscreen_char = forscreen_char;
       netty_push_info.avatarUrl = avatarUrl;
       netty_push_info.nickName  = nickName;
+      netty_push_info.play_times = play_times
       for (var i = 0; i < img_len; i++) {
         var res_sup_time = (new Date()).valueOf();
         
