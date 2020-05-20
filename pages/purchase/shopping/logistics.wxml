@@ -9,7 +9,7 @@
 		<view class="input-panel logistics theme-panel">
 			<view class="head flex_row_flexEnd_flexStart">
 				<view class="title">配送信息</view>
-				<view class="tip theme-font3">您的订单已拆分为多个运单</view>
+				<view class="tip theme-font3" wx:if="{{logisticsList.length>1}}">您的订单已拆分为多个运单</view>
 			</view>
 			<view class="body flex_column_center_spaceBetween">
 				<view class="tab-bar flex_row_center_flexStart">
