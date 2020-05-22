@@ -340,7 +340,7 @@ Page({
         var index2 = filename.length;
         var timestamp = (new Date()).valueOf();
         postf = filename.substring(index1, index2);//后缀名
-        post_imgs[i] = { 'oss_addr': app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf, 'forscreen_url': "forscreen/resource/" + timestamp + postf, 'filename': timestamp + postf };
+        post_imgs[i] = { 'oss_addr': app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf, 'forscreen_url': "forscreen/resource/" + timestamp + postf, 'filename': timestamp + postf,'img_id':timestamp };
         filename_arr[i] = timestamp + postf;
         /*tmp_imgs[i] = { "oss_img": post_imgs[i] };
         that.setData({
@@ -368,19 +368,20 @@ Page({
     
   }, //多张图片投屏结束(不分享到发现)
   up_single_pic(res) {//指定单张图片投屏开始
+    
     var that = this;
+    var post_imgs = that.data.post_imgs;
+
     openid = res.currentTarget.dataset.openid;
     box_mac = res.currentTarget.dataset.boxmac;
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     var filename = res.currentTarget.dataset.filename;
     var choose_key = res.currentTarget.dataset.choose_key;
     var forscreen_img = 'forscreen/resource/'+filename;
+    var img_id = post_imgs[choose_key].img_id;
     that.setData({
       choose_key: choose_key
     })
-    // if (angle != 0) {
-    //   forscreen_img += '?x-oss-process=image/rotate,' + angle;
-    // }
 
     var params = {};
     params.forscreen_img = forscreen_img;
@@ -389,6 +390,7 @@ Page({
     params.forscreen_char = res.currentTarget.dataset.forscreen_char.split('\n').join('');
     params.rotate = 0;
     params.angle  = angle;
+    params.img_id = img_id;
 
 
     that.forOnePic(params);
@@ -535,6 +537,7 @@ Page({
     var nickName  = user_info.nickName;
     var is_rotate = params.is_rotate;
     var angle = params.angle;
+    var img_id = params.img_id
     if (is_rotate==1){
       utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
@@ -556,9 +559,30 @@ Page({
         })
       })
     }else {
+      var push_img = [];
+      var push_info = {};
+      var tmp_info = {};
+      tmp_info.url = forscreen_img;
+      tmp_info.filename = filename;
+      tmp_info.img_id   = img_id;
+      tmp_info.angle = angle;
+      push_img.push(tmp_info);
+
+      push_info.forscreen_id = forscreen_id;
+      push_info.action = 44;
+      push_info.resource_type = 2;
+      push_info.openid = openid;
+      push_info.forscreen_char = forscreen_char;
+      push_info.avatarUrl = avatarUrl;
+      push_info.nickName  = nickName;
+      push_info.play_times = play_times;
+      push_info.img_list = push_img;
+      push_info = JSON.stringify(push_info);
+
+
       utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
-        msg: '{"action": 42,"resource_type":1, "url": "' + forscreen_img + '", "filename":"' + filename + '","openid":"' + openid + '","forscreen_id":"' + forscreen_id + '","play_times":' + play_times + ',"avatarUrl":"' + avatarUrl + '","nickName":"' + nickName + '","forscreen_char":"' + forscreen_char + '","rotation":"' + angle+'"}',
+        msg: push_info,
       }, (data, headers, cookies, errMsg, statusCode) => {
         app.showToast('投屏成功');
         utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
