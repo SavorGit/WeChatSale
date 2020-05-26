@@ -243,6 +243,7 @@ Page({
           netty_push_img.push(netty_tmp);
           if (netty_push_img.length == img_len) {
             netty_push_info.img_list = netty_push_img;
+            netty_push_info.res_eup_time = (new Date()).valueOf();
             netty_push_info = JSON.stringify(netty_push_info);
             wx.request({
               url: api_url+'/Netty/Index/pushnetty',
@@ -332,6 +333,7 @@ Page({
       netty_push_info.avatarUrl = avatarUrl;
       netty_push_info.nickName  = nickName;
       netty_push_info.play_times = play_times
+      netty_push_info.res_sup_time = (new Date()).valueOf();
       for (var i = 0; i < img_len; i++) {
         var res_sup_time = (new Date()).valueOf();
         
