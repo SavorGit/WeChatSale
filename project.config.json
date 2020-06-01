@@ -23,7 +23,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.0",
+	"libVersion": "2.11.1",
 	"appid": "wxfc48bdfa3fcaf358",
 	"projectname": "savor_sale",
 	"debugOptions": {
