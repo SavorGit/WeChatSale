@@ -22,7 +22,7 @@ Page({
     integral_manage: false,
     integral_shop: false,
     task_manage: false,
-
+    userScore:3.7
   },
 
   /**
