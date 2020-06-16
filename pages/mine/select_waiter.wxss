@@ -22,8 +22,18 @@
 }
 
 .waiter {
-  width: 440rpx;
-  margin-left: 20rpx;
+  width: 420rpx;
+  padding: 0 20rpx;
+}
+
+.waiter>.name {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.waiter>.level {
+  width: 100%;
+  font-size: 24rpx;
 }
 
 .btn-update {
