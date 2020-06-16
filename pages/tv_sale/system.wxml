@@ -50,7 +50,7 @@
 	</scroll-view>
 
 	<!-- 活动促销面板 -->
-	<view class='sale-panel full_width'>
+	<view class='sale-panel full_width' style="height:calc(100% - {{pro_play==true && play_list.length>0 ? 280 : 120}}rpx);">
 		<view class='tab-bar flex_row_center_spaceBetween theme7'>
 			<block wx:if="{{activity_pop==true && hotel_activity==true}}">
 				<view bindtap="selectXxk" data-status="2" class='tab-title{{showPageType == 2 || showPageType == 3 ? " selected" : ""}}'>餐厅活动</view>
