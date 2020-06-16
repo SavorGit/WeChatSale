@@ -343,7 +343,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 /********************* 我的活动[添加] *********************/
 
 .sale-panel .ads-add {
-  height: 780rpx;
+  /* height: 780rpx; */
   padding-top: 35rpx;
   padding-bottom: 35rpx;
   padding-left: calc((100% - 480rpx) / 2);
@@ -420,20 +420,19 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel .ads-add .row>view>picker {
-  width: 160rpx;
+  width: 165rpx;
   height: 50rpx;
-  line-height: 50rpx;
-  padding-left: 5rpx;
+  padding: 0 5rpx;
   border: 2rpx solid #ededed;
 }
 
 .sale-panel .ads-add .row>view>picker view {
-  width: 150rpx;
+  width: 155rpx;
   height: 50rpx;
 }
 
 .sale-panel .ads-add .row>view>picker label {
-  width: 120rpx;
+  width: calc(100% - 30rpx);
   display: inline-block;
   vertical-align: middle;
   font-size: 20rpx;
@@ -447,7 +446,7 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 }
 
 .sale-panel .ads-add .row>view>label {
-  width: 45rpx;
+  width: 35rpx;
   height: 50rpx;
   line-height: 50rpx;
   display: block;
