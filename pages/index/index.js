@@ -630,7 +630,29 @@ Page({
         room_name: link_box_info.box_name
       })
     }
+
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if(typeof(hotel_id)!='undefined'){
+      
+      that.getSignBoxList(hotel_id,user_info.openid);
+    }
+
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
+  },
+  getSignBoxList:function(hotel_id,openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/user/getSigninBoxList',{
+      hotel_id : hotel_id,
+      openid:openid
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        sign_box_list : data.result
+      })
+    })
   },
   closeAuth: function() {
     var that = this;

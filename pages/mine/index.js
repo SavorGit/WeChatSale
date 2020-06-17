@@ -56,7 +56,8 @@ Page({
       task_manage: task_manage,
       integral_shop: integral_shop,
       hotel_id: hotel_id,
-      openid: openid
+      openid: openid,
+      role_id : user_info.role_id
     })
     wx.request({
       url: api_v_url + '/user/center',
@@ -685,5 +686,10 @@ Page({
         url: '/pages/hotel/order/agent?merchant_id=' + merchant_id + '&openid=' + openid,
       })
     }
+  },
+  gotoWaiterDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/waiter/index?openid='+openid,
+    })
   }
 })
