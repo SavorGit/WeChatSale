@@ -1,7 +1,7 @@
 <!--pages/mine/index.wxml-->
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
-	<view wx:if="{{is_wx_auth==3 && role_id==2}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+	<view wx:if="{{is_wx_auth==3 && role_type==2}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
 		<view class="left-2">
 			<image class='head-img' src='{{avatarUrl}}'></image>
 		</view>
@@ -22,7 +22,7 @@
 			<view class="fa fa-cog" aria-hidden="true"></view>
 		</view>
 	</view>
-	<view wx:if="{{is_wx_auth==3 && role_id==1}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+	<view wx:if="{{is_wx_auth==3 && role_type==1}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
 		<view class="left"></view>
 		<view class="center flex_column_center_center">
 			<image class='head-img' src='{{avatarUrl}}'></image>
@@ -48,37 +48,7 @@
 				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
 				<view>我的店铺</view>
 			</view>
-			<!--
-			<view class="order flex_row_center_spaceBetween" wx:if="{{is_purchase==1}}">
-				<view bindtap="saleDishes">
-					<view>{{dish_num}}</view>
-					<view>在售菜品</view>
-				</view>
-				<view bindtap="gotoPurchaseOrder" data-order_status="1" data-type="2">
-					<view>{{dishorder_purchase_num}}</view>
-					<view>分销订单</view>
-				</view>
-				<view bindtap="gotoOrder" data-order_status="0" data-type="1">
-					<view>{{dishorder_common_num}}</view>
-					<view>普通订单</view>
-				</view>
-			</view>
-
-      <view class="order flex_row_center_spaceBetween" wx:else>
-				<view bindtap="saleDishes">
-					<view>{{dish_num}}</view>
-					<view>在售菜品</view>
-				</view>
-				<view bindtap="gotoOrder" data-order_status="1" data-type="0">
-					<view>{{dishorder_process_num}}</view>
-					<view>待处理订单</view>
-				</view>
-				<view bindtap="gotoOrder" data-order_status="0" data-type="0">
-					<view>{{dishorder_all_num}}</view>
-					<view>全部订单</view>
-				</view>
-			</view>
-			-->
+			
 			<view class="order flex_row_center_spaceAround">
 				<!-- <view bindtap="gotoOrder" data-order_status="0" data-type="0">
 					<view>{{dishorder_all_num}}</view>

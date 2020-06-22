@@ -5,7 +5,7 @@
 			<view class="head-img">无</view>
 			<view class="waiter flex_column_flexStart_flexStart">
 				<view class="name one-line-overflow theme-font7">暂不指定</view>
-				<view class="level one-line-overflow theme-font7">三级</view>
+				<!-- <view class="level one-line-overflow theme-font7">三级</view> -->
 			</view>
 			<view class="btn-update theme-button-welcome" bindtap="selectWaiter" data-staff_id="0">选择</view>
 		</view>
@@ -14,7 +14,10 @@
 				<image class="head-img" src="{{bean.avatarUrl}}"></image>
 				<view class="waiter flex_column_flexStart_flexStart">
 					<view class="name one-line-overflow theme-font7">{{bean.nickName}}</view>
-					<view class="level one-line-overflow theme-font7">二级</view>
+
+					<view class="level one-line-overflow theme-font7" wx:if="{{bean.level==1}}">一级</view>
+					<view class="level one-line-overflow theme-font7" wx:if="{{bean.level==2}}">二级</view>
+					<view class="level one-line-overflow theme-font7" wx:if="{{bean.level==3}}">三级</view>
 				</view>
 				<view class="btn-update theme-button-welcome" bindtap="selectWaiter" data-staff_id="{{bean.staff_id}}">选择</view>
 			</view>

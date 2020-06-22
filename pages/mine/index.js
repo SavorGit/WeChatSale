@@ -84,7 +84,8 @@ Page({
             shoporder_process_num:res.data.result.shoporder_process_num,
             //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
             //dishorder_common_num: res.data.result.dishorder_common_num,
-            is_purchase: res.data.result.is_purchase
+            is_purchase: res.data.result.is_purchase,
+            userScore:res.data.result.score
           })
         }
       }
@@ -461,7 +462,13 @@ Page({
             dish_num: res.data.result.dish_num,
             dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
-            merchant_id: res.data.result.merchant_id
+            merchant_id: res.data.result.merchant_id,
+            shoporder_all_num:res.data.result.shoporder_all_num,
+            shoporder_process_num:res.data.result.shoporder_process_num,
+            //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
+            //dishorder_common_num: res.data.result.dishorder_common_num,
+            is_purchase: res.data.result.is_purchase,
+            userScore:res.data.result.score
           })
         }
       }
