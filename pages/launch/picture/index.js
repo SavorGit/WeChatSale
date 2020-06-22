@@ -204,7 +204,7 @@ Page({
     })
 
 
-    function uploadOssNew(policy, signature, img_url, box_mac, openid, timestamp, flag, img_len, forscreen_char, forscreen_id, res_sup_time, avatarUrl, nickName, public_text, play_times) {
+    function uploadOssNew(policy, signature, img_url, box_mac, openid, timestamp, flag, img_len, forscreen_char, forscreen_id, res_sup_time, avatarUrl, nickName, public_text, play_times,resource_size) {
 
       var filename = img_url;
       var index1 = filename.lastIndexOf(".");
@@ -239,6 +239,7 @@ Page({
           netty_tmp.filename = filename = timestamp + postf_t ;
           netty_tmp.order    = flag;
           netty_tmp.img_id   = timestamp;
+          netty_tmp.resource_size = resource_size
           
           //netty_push_img[] = netty_tmp;
           netty_push_img.push(netty_tmp);
@@ -343,13 +344,14 @@ Page({
         var index2 = filename.length;
         var timestamp = (new Date()).valueOf();
         postf = filename.substring(index1, index2);//后缀名
-        post_imgs[i] = { 'oss_addr': app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf, 'forscreen_url': "forscreen/resource/" + timestamp + postf, 'filename': timestamp + postf,'img_id':timestamp };
+        var resource_size = upimgs[i].resource_size
+        post_imgs[i] = { 'oss_addr': app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf, 'forscreen_url': "forscreen/resource/" + timestamp + postf, 'filename': timestamp + postf,'img_id':timestamp,'resource_size':resource_size };
         filename_arr[i] = timestamp + postf;
         /*tmp_imgs[i] = { "oss_img": post_imgs[i] };
         that.setData({
           tmp_imgs: tmp_imgs
         });*/
-        uploadOssNew(policy, signature, filename, box_mac, openid, timestamp, i, img_len, forscreen_char, forscreen_id, res_sup_time, avatarUrl, nickName, public_text, play_times);
+        uploadOssNew(policy, signature, filename, box_mac, openid, timestamp, i, img_len, forscreen_char, forscreen_id, res_sup_time, avatarUrl, nickName, public_text, play_times,resource_size);
       }
       that.setData({
         post_imgs: post_imgs,
@@ -382,6 +384,7 @@ Page({
     var choose_key = res.currentTarget.dataset.choose_key;
     var forscreen_img = 'forscreen/resource/'+filename;
     var img_id = post_imgs[choose_key].img_id;
+    var resource_size = post_imgs[choose_key].resource_size;
     that.setData({
       choose_key: choose_key
     })
@@ -394,6 +397,7 @@ Page({
     params.rotate = 0;
     params.angle  = angle;
     params.img_id = img_id;
+    params.resource_size = resource_size;
 
 
     that.forOnePic(params);
@@ -478,6 +482,7 @@ Page({
     var up_imgs = that.data.up_imgs;
     var play_times = e.currentTarget.dataset.play_times;
     var forscreen_char = e.currentTarget.dataset.forscreen_char;
+    var resource_size = post_imgs[0].resource_size;
     forscreen_char = forscreen_char.split('\n').join('');
 
 
@@ -515,6 +520,7 @@ Page({
           params.forscreen_char = forscreen_char;
           params.angle  = angle;
           params.is_rotate = 1;
+          params.resource_size = resource_size;
 
           that.forOnePic(params);
 
@@ -541,10 +547,11 @@ Page({
     var is_rotate = params.is_rotate;
     var angle = params.angle;
     var img_id = params.img_id
+    var resource_size = params.resource_size;
     if (is_rotate==1){
       utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
         box_mac: box_mac,
-        msg: '{"action":8,"filename":"' + filename + '","rotation":"' + angle + '","url":"' + forscreen_img + '","openid":"' + user_info.openid+'","forscreen_id":'+forscreen_id+'}',
+        msg: '{"action":8,"filename":"' + filename + '","rotation":"' + angle + '","url":"' + forscreen_img + '","openid":"' + user_info.openid+'","forscreen_id":'+forscreen_id+',"resource_size":'+resource_size+'}',
       }, (data, headers, cookies, errMsg, statusCode) => {
         app.showToast('投屏成功');
         utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
@@ -569,6 +576,7 @@ Page({
       tmp_info.filename = filename;
       tmp_info.img_id   = img_id;
       tmp_info.angle = angle;
+      tmp_info.resource_size = resource_size
       push_img.push(tmp_info);
 
       push_info.forscreen_id = forscreen_id;
