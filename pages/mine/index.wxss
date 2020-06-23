@@ -119,9 +119,14 @@
 }
 
 .user-info-panel>.center-2>view:last-child {
+  width: calc(100% - 20rpx);
   margin-top: 20rpx;
   margin-left: 14rpx;
   font-weight: 600;
+}
+
+.user-info-panel>.center-2>view:last-child>view:first-child {
+  width: 216rpx;
 }
 
 .user-info-panel>.center-2>view:last-child>view:last-child {
