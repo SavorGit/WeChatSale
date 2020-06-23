@@ -7,10 +7,10 @@
 			<view class="nickname flex_column_flexStart_center">
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
-			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button> 
-				<button class="btn-waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
-				<button class="btn-remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
+			<view class="option flex_row_center_flexEnd">
+				<button class="btn detail theme-button-welcome" bindtap="" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
+				<button class="btn remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
 		<view wx:else class="row flex_row_center_spaceBetween theme7">
@@ -18,10 +18,10 @@
 			<view class="nickname flex_column_flexStart_center">
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
-			<view class="option flex_row_center_spaceBetween">
-				<button class="btn-detail theme-button-welcome" bindtap="gotoMemberDetail" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button class="btn-waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
-				<button class="btn-remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
+			<view class="option flex_row_center_flexEnd">
+				<button class="btn detail theme-button-welcome" bindtap="gotoMemberDetail" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
+				<button class="btn waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
+				<button class="btn remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
 	</block>
