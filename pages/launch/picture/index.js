@@ -344,7 +344,8 @@ Page({
         var index2 = filename.length;
         var timestamp = (new Date()).valueOf();
         postf = filename.substring(index1, index2);//后缀名
-        var resource_size = upimgs[i].resource_size
+        var resource_size = upimgs[i].img_size
+        console.log('dddddddddddd'+resource_size)
         post_imgs[i] = { 'oss_addr': app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf, 'forscreen_url': "forscreen/resource/" + timestamp + postf, 'filename': timestamp + postf,'img_id':timestamp,'resource_size':resource_size };
         filename_arr[i] = timestamp + postf;
         /*tmp_imgs[i] = { "oss_img": post_imgs[i] };

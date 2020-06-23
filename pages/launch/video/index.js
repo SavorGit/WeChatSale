@@ -136,7 +136,7 @@ Page({
           })
         } else {
 
-          uploadVedio(video_url, box_mac, openid, res_sup_time, is_pub_hotelinfo, is_share, duration, avatarUrl, nickName, play_times);
+          uploadVedio(video_url, box_mac, openid, res_sup_time, is_pub_hotelinfo, is_share, duration, avatarUrl, nickName, play_times,resouce_size);
         }
       }
     })
