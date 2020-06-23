@@ -141,7 +141,7 @@ Page({
   gotoMemberDetail:function(e){
     var waiter_openid = e.target.dataset.openid;
     wx.navigateTo({
-      url: '/pages/mine/team_member?openid='+waiter_openid,
+      url: '/pages/mine/team_member_detail?openid='+waiter_openid,
     })
   },
   /**
