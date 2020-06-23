@@ -58,7 +58,7 @@
 }
 
 .evaluate-list-panel>.title>view {
-  width: 120rpx;
+  width: 100rpx;
   height: 65rpx;
   line-height: 70rpx;
   font-size: 34rpx;
@@ -73,7 +73,7 @@
 }
 
 .evaluate-list-panel>.title .search-wapper>view>picker {
-  width: 160rpx;
+  width: 170rpx;
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
