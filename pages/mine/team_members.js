@@ -138,6 +138,12 @@ Page({
       url: '/pages/mine/waiter_list?p_user_id=' + invite_id + '&openid=' + openid,
     })
   },
+  gotoMemberDetail:function(e){
+    var waiter_openid = e.target.dataset.openid;
+    wx.navigateTo({
+      url: '/pages/mine/team_member?openid='+waiter_openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
