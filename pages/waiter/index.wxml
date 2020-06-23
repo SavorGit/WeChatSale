@@ -19,18 +19,16 @@
 			<!-- <image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image> -->
 		</view>
 	</view>
-  
+
 	<view class="evaluate-list-panel theme7">
 		<view class="title flex_row_flexEnd_spaceBetween">
 			<view>评价</view>
 			<form bindsubmit="warterScoreList">
 				<view class="search-wapper flex_row_center_spaceBetween">
 					<view class="flex_row_center_spaceBetween theme-font2">
-						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">8888-88-88</picker>
-						<!-- <picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">{{start_date}}</picker> -->
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">{{start_date}}</picker>
 						<label>~</label>
-						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">8888-88-88</picker>
-						<!-- <picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">{{end_date}}</picker> -->
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">{{end_date}}</picker>
 					</view>
 					<input class='display_hide' name="start_date" value="{{start_date}}"></input>
 					<input class='display_hide' name="end_date" value="{{end_date}}"></input>
