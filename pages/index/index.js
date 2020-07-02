@@ -151,7 +151,7 @@ Page({
 
               //获取酒楼包间列表
               wx.request({
-                url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+                url: api_v_url + '/Stb/getBoxList',
                 header: {
                   'content-type': 'application/json'
                 },
@@ -808,7 +808,7 @@ Page({
     }else {
       //获取酒楼包间列表
       wx.request({
-        url: api_url + '/Smalldinnerapp11/Stb/getBoxList',
+        url: api_v_url + '/Stb/getBoxList',
         header: {
           'content-type': 'application/json'
         },
