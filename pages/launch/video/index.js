@@ -183,25 +183,7 @@ Page({
 
         },
         success: function (res) {
-
-        }
-      });
-      upload_task.onProgressUpdate((res) => {
-        //console.log(res);
-
-        that.setData({
-          vedio_percent: res.progress
-        });
-        if (res.progress == 100) {
           var res_eup_time = (new Date()).valueOf();
-          //console.log(res_eup_time);
-          that.setData({
-            showVedio: false,
-            oss_video_url: app.globalData.oss_url+"/forscreen/resource/" + timestamp + postf_t,
-            upload_vedio_temp: '',
-            is_view_control: true,
-            hiddens: true,
-          })
           wx.request({
             url: api_url+'/Netty/Index/pushnetty',
             headers: {
@@ -245,6 +227,25 @@ Page({
               
             }
           });
+        }
+      });
+      upload_task.onProgressUpdate((res) => {
+        //console.log(res);
+
+        that.setData({
+          vedio_percent: res.progress
+        });
+        if (res.progress == 100) {
+          
+          //console.log(res_eup_time);
+          that.setData({
+            showVedio: false,
+            oss_video_url: app.globalData.oss_url+"/forscreen/resource/" + timestamp + postf_t,
+            upload_vedio_temp: '',
+            is_view_control: true,
+            hiddens: true,
+          })
+          
         }
 
       });
