@@ -22,7 +22,7 @@ Page({
     integral_manage: false,
     integral_shop: false,
     task_manage: false,
-    userScore:3.7
+    userScore: 3.7
   },
 
   /**
@@ -36,7 +36,7 @@ Page({
     openid = user_info.openid;
     if (user_info.select_hotel_id > 0) {
       var hotel_id = user_info.select_hotel_id;
-    }else {
+    } else {
       var hotel_id = user_info.hotel_id;
     }
     var role_type = user_info.role_type;
@@ -57,7 +57,7 @@ Page({
       integral_shop: integral_shop,
       hotel_id: hotel_id,
       openid: openid,
-      role_id : user_info.role_id
+      role_id: user_info.role_id
     })
     wx.request({
       url: api_v_url + '/user/center',
@@ -80,12 +80,12 @@ Page({
             dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
             merchant_id: res.data.result.merchant_id,
-            shoporder_all_num:res.data.result.shoporder_all_num,
-            shoporder_process_num:res.data.result.shoporder_process_num,
+            shoporder_all_num: res.data.result.shoporder_all_num,
+            shoporder_process_num: res.data.result.shoporder_process_num,
             //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
             //dishorder_common_num: res.data.result.dishorder_common_num,
             is_purchase: res.data.result.is_purchase,
-            userScore:res.data.result.score
+            userScore: res.data.result.score
           })
         }
       }
@@ -110,7 +110,7 @@ Page({
         }
       }
     })
-    
+
   },
   loadMore: function (res) {
     var that = this;
@@ -374,15 +374,16 @@ Page({
     if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
-          selected: 1,
+          selected: 0,
           list: [
-
+            /*
             {
               "pagePath": "/pages/tv_sale/system",
               "text": "活动促销",
               "iconPath": "/images/icon/999999_sale.png",
               "selectedIconPath": "/images/icon/333333_sale.png"
             },
+            */
             {
               "pagePath": "/pages/mine/index",
               "text": "个人信息",
@@ -394,8 +395,7 @@ Page({
       }
     } else {
       this.getTabBar().setData({
-        selected: 2,
-
+        selected: 1,
       })
     }
     wx.request({
@@ -463,12 +463,12 @@ Page({
             dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
             merchant_id: res.data.result.merchant_id,
-            shoporder_all_num:res.data.result.shoporder_all_num,
-            shoporder_process_num:res.data.result.shoporder_process_num,
+            shoporder_all_num: res.data.result.shoporder_all_num,
+            shoporder_process_num: res.data.result.shoporder_process_num,
             //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
             //dishorder_common_num: res.data.result.dishorder_common_num,
             is_purchase: res.data.result.is_purchase,
-            userScore:res.data.result.score
+            userScore: res.data.result.score
           })
         }
       }
@@ -590,9 +590,9 @@ Page({
       mask: true
     });
     var id = e.currentTarget.dataset.id;
-    if (id == 1) {//兑换
+    if (id == 1) { //兑换
       mta.Event.stat("clickintegral", {})
-    } else if (id == 2) {//任务列表
+    } else if (id == 2) { //任务列表
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       if (user_info.hotel_id == -1) {
         var hotel_id = user_info.select_hotel_id;
@@ -624,9 +624,11 @@ Page({
   // 关闭修改昵称弹窗
   closeChangeNikenameWindow: function (e) {
     let self = this;
-    self.setData({ showChangeNikenameWindow: false });
+    self.setData({
+      showChangeNikenameWindow: false
+    });
   },
-  saleDishes:function(e){
+  saleDishes: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;
     var hotel_id = that.data.hotel_id;
@@ -637,28 +639,28 @@ Page({
         url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid + "&hotel_id=" + hotel_id,
       })
     }
-    
+
   },
-  gotoOrder:function(e){
+  gotoOrder: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
     var type = e.currentTarget.dataset.type;
-    if (typeof (merchant_id)=='undefined'){
+    if (typeof (merchant_id) == 'undefined') {
       return false;
-    }else {
-      if(type==3){
+    } else {
+      if (type == 3) {
         var url = '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
-      }else {
+      } else {
         var url = '/pages/hotel/order/goods_list?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
       }
       wx.navigateTo({
         url: url,
       })
     }
-    
+
   },
-  gotoPlatform:function(e){
+  gotoPlatform: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
@@ -666,11 +668,11 @@ Page({
       return false;
     } else {
       wx.navigateTo({
-        url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid ,
+        url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid,
       })
     }
   },
-  gotoSetting:function(e){
+  gotoSetting: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
@@ -682,7 +684,7 @@ Page({
       })
     }
   },
-  gotoPurchaseOrder:function(e){
+  gotoPurchaseOrder: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;
     var order_status = e.currentTarget.dataset.order_status
@@ -694,9 +696,9 @@ Page({
       })
     }
   },
-  gotoWaiterDetail:function(e){
+  gotoWaiterDetail: function (e) {
     wx.navigateTo({
-      url: '/pages/waiter/index?openid='+openid,
+      url: '/pages/waiter/index?openid=' + openid,
     })
   }
 })
