@@ -936,5 +936,14 @@ Page({
     wx.navigateTo({
       url: '/pages/h5/index?web_url='+web_url,
     })
+  },
+  /**
+   * 跳转帮助列表
+   */
+  gotoHelpList:function(e){
+    let self = this;
+    wx.navigateTo({
+      url: '/pages/hotel/help/list',
+    });
   }
 })

@@ -1,0 +1,16 @@
+<!--pages/hotel/help/list.wxml-->
+<!--
+ | 酒楼帮助列表页面
+ |-->
+
+
+<view class='container theme-container'>
+	<view class="list">
+		<view class="item" wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<view class="row flex_row_center_spaceBetween" data-item="{{bean}}" data-index="{{index}}" bindtap="gotoDetail">
+				<view class="title">{{bean.name}}</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
+		</view>
+	</view>
+</view>
