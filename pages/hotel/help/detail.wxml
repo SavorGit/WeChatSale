@@ -10,8 +10,8 @@
 			<view class="title">{{title}}</view>
 		</view>
 		<view class="list">
-			<view class="item flex_column_center_spaceBetween" wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-				<video class="video" src="{{bean.video}}"></video>
+			<view class="item flex_column_center_spaceBetween" wx:for="{{videoList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<video class="video" src="{{bean.url}}"></video>
 				<view class="name theme-font7">{{bean.name}}</view>
 			</view>
 		</view>

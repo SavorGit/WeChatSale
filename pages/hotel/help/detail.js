@@ -2,6 +2,9 @@
 /**
  * 酒楼帮助详情页面
  */
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var api_v_url = app.globalData.api_v_url;
 Page({
 
   /**
@@ -9,24 +12,27 @@ Page({
    */
   data: {
     title: '电视节目如何切换',
-    list: [{
-      id: 'V-001',
-      name: '切换方式一',
-      video: 'https://oss.littlehotspot.com/media/resource/1483425623425.mp4'
-    }, {
-      id: 'V-002',
-      name: '切换方式二',
-      video: 'https://oss.littlehotspot.com/media/resource/1483427733791.mp4'
-    }]
+    videoList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id);
+    var hotel_id = options.hotel_id;
+    this.getTvHelpvideos(hotel_id);
   },
+  getTvHelpvideos:function(hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url +'/hotel/tvHelpvideos',{
+      hotel_id : hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        videoList:data.result.datalist,
+      })
+    })
 
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

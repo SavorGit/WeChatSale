@@ -941,9 +941,19 @@ Page({
    * 跳转帮助列表
    */
   gotoHelpList:function(e){
-    let self = this;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if(user_info.select_hotel_id>0){
+      var hotel_id= user_info.select_hotel_id;
+    }else {
+      if(user_info.hotel_id==-1){
+        app.showToast('请先选择酒楼');
+        return false;
+      }else {
+        var hotel_id = user_info.hotel_id
+      }
+    }
     wx.navigateTo({
-      url: '/pages/hotel/help/list',
+      url: '/pages/hotel/help/list?hotel_id='+hotel_id,
     });
   }
 })

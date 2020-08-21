@@ -19,7 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var hotel_id = options.hotel_id
+    this.setData({hotel_id:hotel_id})
   },
 
   /**
@@ -78,8 +79,9 @@ Page({
     let self = this;
     let index = e.currentTarget.dataset.index;
     let bean = e.currentTarget.dataset.item;
+    let hotel_id = this.data.hotel_id;
     wx.navigateTo({
-      url: '/pages/hotel/help/detail?id=' + bean.id,
+      url: '/pages/hotel/help/detail?id=' + bean.id+'&hotel_id='+hotel_id,
     })
   }
 })
