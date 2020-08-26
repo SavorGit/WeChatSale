@@ -69,6 +69,10 @@ Page({
     var that = this;
     var start_date = e.detail.value.start_date;
     var end_date = e.detail.value.end_date;
+    if(start_date>end_date){
+      app.showToast('开始时间大于结束时间');
+      return false;
+    }
     page = 1;
     that.getCommnetList(start_date,end_date);
   },
