@@ -710,7 +710,7 @@ Page({
       var hotel_id = user_info.hotel_id;
     }
     wx.navigateTo({
-      url: '/pages/hotel/comment?hotel_id='+hotel_id+'&openid='+openid,
+      url: '/pages/hotel/comment/list?hotel_id='+hotel_id+'&openid='+openid,
     })
   }
 })
