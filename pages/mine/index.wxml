@@ -120,6 +120,13 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
+	<!-- 餐厅评价面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
+			<view>餐厅评价</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
 	<!-- 我的员工面板 -->
 	<view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>

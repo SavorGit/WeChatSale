@@ -24,11 +24,11 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.3",
+	"libVersion": "2.12.2",
 	"appid": "wxfc48bdfa3fcaf358",
 	"projectname": "savor_sale",
 	"debugOptions": {

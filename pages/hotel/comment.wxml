@@ -1,0 +1,85 @@
+<!--pages/waiter/index.wxml-->
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+	<view class="user-info-panel flex_row_center_flexStart theme7">
+		<image class="head" src="{{hotel_logo}}" ></image>
+		<view class="flex_row_flexStart_spaceBetween">
+			<view class="flex_column_flexStart_center">
+				<view bindtap="openChangeNikenameWindow">{{hotel_name}}</view>
+				<view class="flex_row_center star-color">
+					<view class="flex_row_center_spaceBetween">
+						<view class="fa {{comment_avg_score >= 0.5 && comment_avg_score < 1 ? 'fa-star-half-o' : comment_avg_score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{comment_avg_score >= 1.5 && comment_avg_score < 2 ? 'fa-star-half-o' : comment_avg_score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{comment_avg_score >= 2.5 && comment_avg_score < 3 ? 'fa-star-half-o' : comment_avg_score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{comment_avg_score >= 3.5 && comment_avg_score < 4 ? 'fa-star-half-o' : comment_avg_score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{comment_avg_score >= 4.5 && comment_avg_score < 5 ? 'fa-star-half-o' : comment_avg_score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					</view>
+					<view>{{comment_avg_score}}</view>
+				</view>
+			</view>
+			<!-- <image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image> -->
+		</view>
+	</view>
+
+	<view class="evaluate-list-panel theme7">
+		<view class="title flex_row_flexEnd_spaceBetween">
+			<view>评价</view>
+			<form bindsubmit="searchCommentList">
+				<view class="search-wapper flex_row_center_spaceBetween">
+					<view class="flex_row_center_spaceBetween theme-font2">
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">{{start_date}}</picker>
+						<label>~</label>
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">{{end_date}}</picker>
+					</view>
+					<input class='display_hide' name="start_date" value="{{start_date}}"></input>
+					<input class='display_hide' name="end_date" value="{{end_date}}"></input>
+					<button class="theme-button-welcome" form-type="submit">查询</button>
+				</view>
+			</form>
+		</view>
+		<view class="body">
+			<view class="tip theme-font3">为您找到{{comment_total}}条评价，平均服务评分{{comment_avg_score}}</view>
+			<view class="list">
+				<block wx:for="{{comment_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<view class="row flex_row_flexStart" wx:if="{{index+1==comment_list.length}}">
+						<image src="{{bean.avatarUrl}}"></image>
+						<view class="flex_column_flexStart">
+							<view class="user-info flex_column_flexStart_flexEnd">
+								<view class="nikename">{{bean.nickName}}</view>
+								<view class="flex_row_center_spaceBetween star-color">
+									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								</view>
+							</view>
+							<view class="comment two-line-overflow">{{bean.content}}</view>
+							<view class="datetime theme-font2">{{bean.time}}</view>
+							<view class="address theme-font2">{{bean.room_name}}</view>
+						</view>
+					</view>
+
+
+					<view class="row flex_row_flexStart bottom-line" wx:else>
+						<image src="{{bean.avatarUrl}}"></image>
+						<view class="flex_column_flexStart">
+							<view class="user-info flex_column_flexStart_flexEnd">
+								<view class="nikename">{{bean.nickName}}</view>
+								<view class="flex_row_center_spaceBetween star-color">
+									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+								</view>
+							</view>
+							<view class="comment two-line-overflow">{{bean.content}}</view>
+							<view class="datetime theme-font2">{{bean.time}}</view>
+							<view class="address theme-font2">{{bean.room_name}}</view>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+	</view>
+</scroll-view>
