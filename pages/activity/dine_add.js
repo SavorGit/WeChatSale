@@ -45,6 +45,9 @@ Page({
     multiArray: [years, months, days, hours, minutes],
     multiIndex: [0, 9, 16, 10],
     choose_year: '',
+    award_img:'', //奖品图片
+    award_open_time:'',//开奖时间 
+    add_button_disable:false,
   },
 
   /**
@@ -139,6 +142,111 @@ Page({
     };
     data.multiIndex[e.detail.column] = e.detail.value;
     this.setData(data);
+  },
+  addActivityPic:function(){
+    var that = this;
+    var base_info = that.data.base_info;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        //console.log(res);
+        var tmp_file = res.tempFilePaths[0];
+        var index1 = tmp_file.lastIndexOf(".");
+        var index2 = tmp_file.length;
+        var postf_t = tmp_file.substring(index1, index2); //后缀名
+        var postf_w = tmp_file.substring(index1 + 1, index2); //后缀名
+        var timestamp = (new Date()).valueOf();
+        var oss_key = "forscreen/resource/" + timestamp + postf_t;
+        wx.request({
+          url: api_url + '/Smallapp/Index/getOssParams',
+          success: function (res) {
+            var policy = res.data.policy;
+            var signature = res.data.signature;
+            wx.uploadFile({
+              url: oss_upload_url,
+              filePath: tmp_file,
+              name: 'file',
+              header: {
+                'Content-Type': 'image/' + postf_w
+              },
+              formData: {
+                Bucket: app.globalData.oss_bucket,
+                name: tmp_file,
+                key: oss_key,
+                policy: policy,
+                OSSAccessKeyId: oss_access_key_id,
+                sucess_action_status: "200",
+                signature: signature
+              },
+              success: function (res) {
+                that.setData({img_url:oss_key})
+              },
+              fail: function ({
+                errMsg
+              }) {
+                wx.showToast({
+                  title: '上传图片失败,请重试',
+                  icon: 'none',
+                  duration: 2000,
+                })
+              },
+            });
+          }
+        })
+        
+      },
+      fail(res) { //取消选择照片
+       
+      }
+    })
+  },
+  addActivity:function(e){
+    var that = this;
+    var activity_name = e.detail.activity_name.replace.replace(/\s+/g, '');
+    var award_name    = e.detail.award_name.replace(/\s+/g, '');
+    var award_img     = this.data.award_img;
+    var award_open_time = this.data.award_open_time;
+
+    if(activity_name==''){
+      app.showToast('请填写活动名称');
+      return false;
+    }
+    if(award_name==''){
+      app.showToast('请填写奖品名称');
+      return false;
+    }
+    if(award_img==''){
+      app.showToast('请上传奖品图片');
+      return false;
+    }
+    if(award_open_time==''){
+      app.showToast('请选择开奖时间');
+      return false;
+    }
+    that.setData({add_button_disable:true});
+    utils.PostRequest(api_v_url + '/aa/bb/', {
+      hotel_id: hotel_id,
+      openid:openid,
+      activity_name : activity_name,
+      award_name:award_name,
+      award_img:award_img,
+      award_open_time:award_open_time,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({add_button_disable:false})
+      wx.showToast({
+        title: '添加成功',
+        icon:'success',
+        duration:2000,
+        mask:true,
+        success:function(){
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

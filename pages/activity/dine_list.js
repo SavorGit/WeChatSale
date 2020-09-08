@@ -19,9 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    page = 1;
     hotel_id = options.hotel_id;
     openid   = options.openid;
-    page = 1;
     this.getActivityList();
   },
   getActivityList:function(page = 1){
@@ -36,11 +36,32 @@ Page({
       })
     })
   },
+  //添加活动
+  addActivity:function(e){
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/activity/dine_add?hotel_id'+hotel_id+'&openid='+openid,
+    })
+  },
+  //分页加载
   loadMore:function(e){
     page +=1;
     this.getActivityList(page);
   },
-
+  //取消活动
+  cancelActivity:function(e){
+    var that = this;
+    var activity_id = e.currentTarget.dataset.activity_id;
+    var keys = e.currentTarget.dataset.keys;
+    utils.PostRequest(api_v_url + '/aa/bb/', {
+      hotel_id: hotel_id,
+      openid:openid,
+      activity_id : activity_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      activity_list[keys].status = "??";
+      that.setData({activity_list:activity_list})
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -52,7 +73,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getActivityList(page);
   },
 
   /**
