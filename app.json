@@ -64,7 +64,10 @@
     "pages/user/login",
     "pages/waiter/index",
     "pages/welcome/index",
-    "pages/welcome/hotel_add"
+    "pages/welcome/hotel_add",
+    "pages/activity/dine_list",
+    "pages/activity/dine_add",
+    "pages/activity/dine_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
