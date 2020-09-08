@@ -712,5 +712,17 @@ Page({
     wx.navigateTo({
       url: '/pages/hotel/comment/list?hotel_id='+hotel_id+'&openid='+openid,
     })
+  },
+  hotelActivity:function(){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    if (user_info.select_hotel_id > 0) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    wx.navigateTo({
+      url: '/pages/activity/dine_list?hotel_id='+hotel_id+'&openid='+openid,
+    })
   }
 })
