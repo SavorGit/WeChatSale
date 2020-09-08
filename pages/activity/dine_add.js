@@ -57,6 +57,14 @@ Page({
     this.setData({
       choose_year: this.data.multiArray[0][0]
     })
+    this.getConfig();
+  },
+  getConfig:function(){
+    var that= this;
+    utils.PostRequest(api_v_url + '/aa/bb/', {
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({multiIndex:data.result.multiIndex,img_info:data.result.img_info})
+    })
   },
   //获取时间日期
   bindMultiPickerChange: function(e) {
