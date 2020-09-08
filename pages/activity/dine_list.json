@@ -1,3 +1,5 @@
 {
+  "navigationBarTitleText": "餐厅活动列表",
+  "disableScroll": true,
   "usingComponents": {}
 }

@@ -1,2 +1,62 @@
 <!--pages/activity/dine_list.wxml-->
-<text>pages/activity/dine_list.wxml</text>
+<!--
+  - 餐厅活动列表
+  -->
+
+
+<view class='container flex_column_center_flexStart theme-container'>
+	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+		<view class="list flex_column_center_flexStart">
+
+			<view class="item flex_column_center_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="name one-line-overflow">xxxxxx活动</view>
+					<view class="status theme-font7">进行中</view>
+					<view class="option flex_row_center_flexEnd">
+					</view>
+				</view>
+			</view>
+
+			<view class="item flex_column_center_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="name one-line-overflow">xxxxxx活动</view>
+					<view class="status theme-font7">待开始</view>
+					<view class="option flex_row_center_flexEnd">
+						<view class="btn cancel theme-button-welcome">取消</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="item flex_column_center_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="name one-line-overflow">xxxxxx活动</view>
+					<view class="status theme-font3">已结束</view>
+					<view class="option flex_row_center_flexEnd">
+					</view>
+				</view>
+			</view>
+
+			<view class="item flex_column_center_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="name one-line-overflow">xxxxxx活动</view>
+					<view class="status theme-font3">已取消</view>
+					<view class="option flex_row_center_flexEnd">
+					</view>
+				</view>
+			</view>
+
+			<view class="item flex_column_center_flexStart">
+				<view class="row flex_row_center_spaceBetween">
+					<view class="name one-line-overflow">xxxxxx活动</view>
+					<view class="status theme-font3">已结束</view>
+					<view class="option flex_row_center_flexEnd">
+					</view>
+				</view>
+			</view>
+
+		</view>
+	</scroll-view>
+	<view class="page-foot flex_column_center_flexStart">
+		<view class="btn add theme-button-welcome">添加活动</view>
+	</view>
+</view>

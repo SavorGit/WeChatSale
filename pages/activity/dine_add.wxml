@@ -1,4 +1,58 @@
 <!--pages/activity/dine_add.wxml-->
-<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-    <input value='{{time}}' placeholder='选择时间'/>
-  </picker>
+<!--
+  - 新增餐厅活动
+  -->
+
+
+<view class='container flex_column_center_flexStart theme-container'>
+	<form>
+		<view class="page">
+			<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+				<view class="wrapper">
+					<view class="row text flex_row_center_flexStart">
+						<view class="label">活动名称</view>
+						<view class="value">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row text flex_row_center_flexStart">
+						<view class="label">奖品名称</view>
+						<view class="value">
+							<input class="input" placeholder="请输入"></input>
+						</view>
+					</view>
+					<view class="row pic flex_row_flexStart_flexStart">
+						<view class="label">奖品图片</view>
+						<view class="value flex_column_flexStart_spaceBetween">
+							<view class="input">
+								<!-- <view class="btn add">+</view> -->
+								<view class="show flex_column_flexStart">
+									<view class="del-pic flex_column_flexEnd">
+										<view class="btn del fa fa-times-circle theme-font7" aria-hidden="true"></view>
+									</view>
+									<image class="pic" mode="aspectFill" src="http://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+								</view>
+							</view>
+							<view class="tip theme-font3">注：请上传横屏图片，避免裁切后不完整</view>
+						</view>
+					</view>
+					<view class="row picker flex_row_flexStart_flexStart">
+						<view class="label">开奖时间</view>
+						<view class="value flex_column_flexStart_spaceBetween">
+							<view class="picker flex_row_center_spaceBetween">
+								<picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+									<input class="show" value='{{time}}' placeholder='选择时间' />
+								</picker>
+								<view class="icon fa fa-calendar" aria-hidden="true"></view>
+							</view>
+							<view class="tip theme-font3">注：在开奖1小时前，电视开始播放活动信息</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+			<view class="foot">
+				<view class="btn save theme-button-welcome">保存</view>
+			</view>
+		</view>
+	</form>
+</view>

@@ -189,14 +189,20 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   color: #58525c;
 }
 
-.theme-panel {
-  color: #333;
-  background-color: #fff;
+.theme-window,
+.theme-panel,
+.theme-page,
+.theme-button-white,
+.theme-navigation {
+  color: #333333;
+  background-color: #FFFFFF;
 }
 
-.theme-panel-dark {
-  color: #fff;
-  background-color: #333;
+
+.theme-panel-dark,
+.theme-button-dark {
+  color: #FFFFFF;
+  background-color: #333333;
 }
 
 .theme-panel-2 {
