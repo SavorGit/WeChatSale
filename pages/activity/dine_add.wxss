@@ -171,16 +171,16 @@
 }
 
 .wrapper>.row.pic>.value>.input>.btn.add {
-  width: 366rpx;
-  height: 254rpx;
+  width: 390rpx;
+  height: 260rpx;
   line-height: 254rpx;
   text-align: center;
   font-size: 84rpx;
 }
 
 .wrapper>.row.pic>.value>.input>.show {
-  width: 370rpx;
-  height: 258rpx;
+  width: 390rpx;
+  height: 260rpx;
   border: 2rpx solid #BBBBBB;
 }
 

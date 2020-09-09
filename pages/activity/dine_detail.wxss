@@ -69,8 +69,8 @@
 }
 
 .body>.row.pic>.value>.pic {
-  width: 370rpx;
-  height: 258rpx;
+  width: 390rpx;
+  height: 260rpx;
 }
 
 .body>.row.we-chart {
