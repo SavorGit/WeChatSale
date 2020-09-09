@@ -5,7 +5,7 @@
 
 
 <view class='container flex_column_center_flexStart theme-container'>
-	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_center_flexStart">
 
 			<view class="item flex_column_center_flexStart">
@@ -21,7 +21,7 @@
 				<view class="row flex_row_center_spaceBetween">
 					<view class="name one-line-overflow">xxxxxx活动</view>
 					<view class="status theme-font7">待开始</view>
-					<view class="option flex_row_center_flexEnd">
+					<view class="option flex_row_center_flexEnd" bindtap="cancelActivity" data-activity_id="{{bean.id}}">
 						<view class="btn cancel theme-button-welcome">取消</view>
 					</view>
 				</view>
@@ -56,7 +56,7 @@
 
 		</view>
 	</scroll-view>
-	<view class="page-foot flex_column_center_flexStart">
+	<view class="page-foot flex_column_center_flexStart" bindtap="addActivity">
 		<view class="btn add theme-button-welcome">添加活动</view>
 	</view>
 </view>

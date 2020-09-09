@@ -2,7 +2,12 @@
 const app = getApp()
 const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
+var api_url   = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_access_key_id = app.globalData.oss_access_key_id;
+var hotel_id;
+var openid;
 const date = new Date();
 const years = [];
 const months = [];
@@ -10,7 +15,7 @@ const days = [];
 const hours = [];
 const minutes = [];
 //获取年
-for (let i = 2020; i <= date.getFullYear() + 1; i++) {
+for (let i = 2020; i <= date.getFullYear() + 5; i++) {
   years.push("" + i);
 }
 //获取月份
@@ -57,13 +62,15 @@ Page({
     this.setData({
       choose_year: this.data.multiArray[0][0]
     })
+    openid   = options.openid;
+    hotel_id = options.hotel_id;
     this.getConfig();
   },
   getConfig:function(){
     var that= this;
     utils.PostRequest(api_v_url + '/aa/bb/', {
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({multiIndex:data.result.multiIndex,img_info:data.result.img_info})
+      that.setData({multiIndex:data.result.multiIndex,config_img_info:data.result.img_info})
     })
   },
   //获取时间日期
@@ -79,7 +86,7 @@ Page({
     const hour = this.data.multiArray[3][index[3]];
     // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
     this.setData({
-      time: year + '-' + month + '-' + day + ' ' + hour 
+      award_open_time: year + '-' + month + '-' + day + ' ' + hour +':00'
     })
     // console.log(this.data.time);
   },
@@ -154,6 +161,7 @@ Page({
   addActivityPic:function(){
     var that = this;
     var base_info = that.data.base_info;
+    var config_img_info = that.data.config_img_info
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -161,48 +169,63 @@ Page({
       success: function (res) {
         //console.log(res);
         var tmp_file = res.tempFilePaths[0];
-        var index1 = tmp_file.lastIndexOf(".");
-        var index2 = tmp_file.length;
-        var postf_t = tmp_file.substring(index1, index2); //后缀名
-        var postf_w = tmp_file.substring(index1 + 1, index2); //后缀名
-        var timestamp = (new Date()).valueOf();
-        var oss_key = "forscreen/resource/" + timestamp + postf_t;
-        wx.request({
-          url: api_url + '/Smallapp/Index/getOssParams',
-          success: function (res) {
-            var policy = res.data.policy;
-            var signature = res.data.signature;
-            wx.uploadFile({
-              url: oss_upload_url,
-              filePath: tmp_file,
-              name: 'file',
-              header: {
-                'Content-Type': 'image/' + postf_w
-              },
-              formData: {
-                Bucket: app.globalData.oss_bucket,
-                name: tmp_file,
-                key: oss_key,
-                policy: policy,
-                OSSAccessKeyId: oss_access_key_id,
-                sucess_action_status: "200",
-                signature: signature
-              },
-              success: function (res) {
-                that.setData({img_url:oss_key})
-              },
-              fail: function ({
-                errMsg
-              }) {
-                wx.showToast({
-                  title: '上传图片失败,请重试',
-                  icon: 'none',
-                  duration: 2000,
-                })
-              },
-            });
+        wx.getImageInfo({
+          src: tmp_file,
+          success (res) {
+            var width = res.width
+            var height = res.height
+            if(width<config_img_info.width || height<config_img_info.height){
+              app.showToast('图片质量太低,请重新选择');
+
+            }else {
+              var index1 = tmp_file.lastIndexOf(".");
+              var index2 = tmp_file.length;
+              var postf_t = tmp_file.substring(index1, index2); //后缀名
+              var postf_w = tmp_file.substring(index1 + 1, index2); //后缀名
+              var timestamp = (new Date()).valueOf();
+              var oss_img_url = app.globalData.oss_url + "/forscreen/resource/" + timestamp + postf_t;
+              var oss_key = "forscreen/resource/" + timestamp + postf_t;
+              wx.request({
+                url: api_url + '/Smallapp/Index/getOssParams',
+                success: function (res) {
+                  var policy = res.data.policy;
+                  var signature = res.data.signature;
+                  wx.uploadFile({
+                    url: oss_upload_url,
+                    filePath: tmp_file,
+                    name: 'file',
+                    header: {
+                      'Content-Type': 'image/' + postf_w
+                    },
+                    formData: {
+                      Bucket: app.globalData.oss_bucket,
+                      name: tmp_file,
+                      key: oss_key,
+                      policy: policy,
+                      OSSAccessKeyId: oss_access_key_id,
+                      sucess_action_status: "200",
+                      signature: signature
+                    },
+                    success: function (res) {
+                      that.setData({award_oss_img:oss_key,award_img:oss_img_url})
+                    },
+                    fail: function ({
+                      errMsg
+                    }) {
+                      wx.showToast({
+                        title: '上传图片失败,请重试',
+                        icon: 'none',
+                        duration: 2000,
+                      })
+                    },
+                  });
+                }
+              })
+            }
+            //console.log(res.width)
+            //console.log(res.height)
           }
-        })
+        })  
         
       },
       fail(res) { //取消选择照片
@@ -210,11 +233,15 @@ Page({
       }
     })
   },
+  delAwardPic:function(){
+    this.setData({award_img:''})
+  },
   addActivity:function(e){
     var that = this;
-    var activity_name = e.detail.activity_name.replace.replace(/\s+/g, '');
-    var award_name    = e.detail.award_name.replace(/\s+/g, '');
-    var award_img     = this.data.award_img;
+    console.log(e)
+    var activity_name = e.detail.value.activity_name.replace(/\s+/g, '');
+    var award_name    = e.detail.value.award_name.replace(/\s+/g, '');
+    var award_img     = this.data.award_oss_img;
     var award_open_time = this.data.award_open_time;
 
     if(activity_name==''){
