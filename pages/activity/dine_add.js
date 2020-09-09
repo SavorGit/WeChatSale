@@ -265,7 +265,7 @@ Page({
       return false;
     }
     that.setData({add_button_disable:true});
-    utils.PostRequest(api_v_url + '/aa/bb/', {
+    utils.PostRequest(api_v_url + '/activity/addActivity', {
       hotel_id: hotel_id,
       openid:openid,
       activity_name : activity_name,
