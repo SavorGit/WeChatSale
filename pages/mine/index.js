@@ -22,13 +22,15 @@ Page({
     integral_manage: false,
     integral_shop: false,
     task_manage: false,
-    userScore: 3.7
+    userScore: 3.7,
+    is_activity:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     wx.hideShareMenu();
     var that = this;
     mta.Page.init()
@@ -57,7 +59,8 @@ Page({
       integral_shop: integral_shop,
       hotel_id: hotel_id,
       openid: openid,
-      role_id: user_info.role_id
+      role_id: user_info.role_id,
+      config_info:app.globalData.config_info
     })
     wx.request({
       url: api_v_url + '/user/center',
@@ -112,6 +115,7 @@ Page({
     })
 
   },
+  
   loadMore: function (res) {
     var that = this;
     page = page + 1;

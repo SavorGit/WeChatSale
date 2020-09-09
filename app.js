@@ -285,7 +285,8 @@ App({
     common_appid: 'wxfdf0346934bb672f', 
     oss_access_key_id:'LTAI4SFjj1AsowpVFZNXOBCVqRHDs',
     oss_xz_limit:4096,     //oss旋转照片最大宽高
-    small_app_id:5
+    small_app_id:5,
+    config_info:{}
   },
   touch: new touch()
 })

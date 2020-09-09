@@ -53,12 +53,14 @@ Page({
     award_img:'', //奖品图片
     award_open_time:'',//开奖时间 
     add_button_disable:false,
+    config_img_info:{'width':500,'height':500}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       choose_year: this.data.multiArray[0][0]
     })
@@ -68,9 +70,11 @@ Page({
   },
   getConfig:function(){
     var that= this;
-    utils.PostRequest(api_v_url + '/aa/bb/', {
+    utils.PostRequest(api_v_url + '/config/getConfig', {
+      hotel_id:hotel_id,
+      openid:openid
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({multiIndex:data.result.multiIndex,config_img_info:data.result.img_info})
+      that.setData({multiIndex:data.result.activity_lottery_time})
     })
   },
   //获取时间日期
@@ -265,9 +269,9 @@ Page({
       hotel_id: hotel_id,
       openid:openid,
       activity_name : activity_name,
-      award_name:award_name,
-      award_img:award_img,
-      award_open_time:award_open_time,
+      prize:award_name,
+      image:award_img,
+      lottery_time:award_open_time,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({add_button_disable:false})
       wx.showToast({

@@ -104,7 +104,7 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view> -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" >
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity" >
 			<view>餐厅活动</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

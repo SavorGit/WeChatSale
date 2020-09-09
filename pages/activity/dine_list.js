@@ -26,13 +26,13 @@ Page({
   },
   getActivityList:function(page = 1){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb/', {
+    utils.PostRequest(api_v_url + '/activity/getActivityList', {
       hotel_id: hotel_id,
       openid:openid,
       page : page
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
-        activity_list:data.result
+        activity_list:data.result.datalist
       })
     })
   },
@@ -40,7 +40,7 @@ Page({
   addActivity:function(e){
     var that = this;
     wx.navigateTo({
-      url: '/pages/activity/dine_add?hotel_id'+hotel_id+'&openid='+openid,
+      url: '/pages/activity/dine_add?hotel_id='+hotel_id+'&openid='+openid,
     })
   },
   //分页加载
@@ -53,15 +53,25 @@ Page({
     var that = this;
     var activity_id = e.currentTarget.dataset.activity_id;
     var keys = e.currentTarget.dataset.keys;
-    utils.PostRequest(api_v_url + '/aa/bb/', {
+    var activity_list = this.data.activity_list;
+    utils.PostRequest(api_v_url + '/activity/cancel', {
       hotel_id: hotel_id,
       openid:openid,
       activity_id : activity_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      activity_list[keys].status = "??";
+      activity_list[keys].status = "3";
+      activity_list[keys].status_str = '已取消';
       that.setData({activity_list:activity_list})
     })
   },
+  //活动详情
+  gotoActivityDetail:function(e){
+    var activity_id = e.currentTarget.dataset.activity_id;
+    wx.navigateTo({
+      url: '/pages/activity/dine_detail?activity_id='+activity_id+'&hotel_id='+hotel_id+'&openid='+openid,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

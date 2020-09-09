@@ -191,6 +191,7 @@ Page({
                 hotel_id : hotel_id,
                 openid:openid
               }, (data, headers, cookies, errMsg, statusCode) => {
+                app.globalData.config_info = data.result;
                 that.setData({
                   is_have_adv: data.result.is_have_adv,
                   subscribe_status: data.result.subscribe_status
@@ -846,6 +847,7 @@ Page({
       utils.PostRequest(api_v_url +'/config/getConfig',{
         hotel_id : hotel_id
       }, (data, headers, cookies, errMsg, statusCode) => {
+        app.globalData.config_info = data.result;
         if(typeof(data.result.is_have_adv)!='undefined'){
           that.setData({
             is_have_adv:data.result.is_have_adv

@@ -7,17 +7,33 @@
 <view class='container flex_column_center_flexStart theme-container'>
 	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_center_flexStart">
+			<block wx:for="{{activity_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="item flex_column_center_flexStart">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="name one-line-overflow">{{bean.name}}</view>
 
-			<view class="item flex_column_center_flexStart">
-				<view class="row flex_row_center_spaceBetween">
-					<view class="name one-line-overflow">xxxxxx活动</view>
-					<view class="status theme-font7">进行中</view>
-					<view class="option flex_row_center_flexEnd">
+						<block wx:if="{{bean.status==0}}">
+							<view class="status theme-font7">{{bean.status_str}}</view>
+							<view class="option flex_row_center_flexEnd" bindtap="cancelActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">
+								<view class="btn cancel theme-button-welcome">取消</view>
+							</view>
+						</block>
+
+						<block wx:if="{{bean.status==1}}">
+							<view class="status theme-font7">{{bean.status_str}}</view>
+							<view class="option flex_row_center_flexEnd"></view>
+						</block>
+
+						<block wx:if="{{bean.status==2 || bean.status==3}}">
+							<view class="status theme-font3">{{bean.status_str}}</view>
+							<view class="option flex_row_center_flexEnd"></view>
+						</block>
+
+						
 					</view>
 				</view>
-			</view>
-
-			<view class="item flex_column_center_flexStart">
+			</block>
+			<!-- <view class="item flex_column_center_flexStart">
 				<view class="row flex_row_center_spaceBetween">
 					<view class="name one-line-overflow">xxxxxx活动</view>
 					<view class="status theme-font7">待开始</view>
@@ -52,7 +68,7 @@
 					<view class="option flex_row_center_flexEnd">
 					</view>
 				</view>
-			</view>
+			</view> -->
 
 		</view>
 	</scroll-view>
