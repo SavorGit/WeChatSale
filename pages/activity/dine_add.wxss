@@ -92,10 +92,32 @@
 }
 
 .wrapper>.row.picker>.value>.picker>.input {
-  width: calc(100% - 80rpx);
-  height: 56rpx;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
+  border: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  border-radius: inherit;
+  outline: none;
+  background: inherit;
+  text-align: inherit;
+  resize: none;
+}
+
+.wrapper>.row.picker>.value>.picker>.input .wrapper {
+  height: 100%;
+  padding: 0;
+}
+
+.wrapper>.row.picker>.value>.picker>.input .wrapper>.show {
+  width: calc(100% - 100rpx);
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 10rpx;
   border: 2rpx solid #BBBBBB;
   font-size: inherit;
   font-weight: inherit;
@@ -108,24 +130,7 @@
   resize: none;
 }
 
-.wrapper>.row.picker>.value>.picker>.input .show {
-  width: calc(100% - 20rpx);
-  height: 56rpx;
-  line-height: 56rpx;
-  padding: 0 10rpx;
-  font-size: inherit;
-  font-weight: inherit;
-  font-style: inherit;
-  color: inherit;
-  border: none;
-  border-radius: inherit;
-  outline: none;
-  background: inherit;
-  text-align: inherit;
-  resize: none;
-}
-
-.wrapper>.row.picker>.value>.picker>.icon {
+.wrapper>.row.picker>.value>.picker .icon {
   width: 60rpx;
   height: 60rpx;
   line-height: 60rpx;

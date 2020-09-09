@@ -41,9 +41,11 @@
 						<view class="value flex_column_flexStart_spaceBetween">
 							<view class="picker flex_row_center_spaceBetween">
 								<picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-									<input class="show" value='{{award_open_time}}' placeholder='选择时间' name="award_open_time" />
+									<view class="wrapper flex_row_center_spaceBetween">
+										<input class="show" value='{{award_open_time}}' placeholder='选择时间' name="award_open_time" />
+										<view class="icon fa fa-calendar" aria-hidden="true"></view>
+									</view>
 								</picker>
-								<view class="icon fa fa-calendar" aria-hidden="true"></view>
 							</view>
 							<view class="tip theme-font3">注：在开奖1小时前，电视开始播放活动信息</view>
 						</view>
