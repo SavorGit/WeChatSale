@@ -285,6 +285,8 @@ Page({
           })
         }
       })
+    },res=>{
+      that.setData({add_button_disable:false})
     })
   },
   /**

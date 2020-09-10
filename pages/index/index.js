@@ -639,6 +639,17 @@ Page({
     if(typeof(hotel_id)!='undefined'){
       
       that.getSignBoxList(hotel_id,user_info.openid);
+      //获取销售端配置  
+      utils.PostRequest(api_v_url +'/config/getConfig',{
+        hotel_id : hotel_id,
+        openid:user_info.openid
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        app.globalData.config_info = data.result;
+        that.setData({
+          is_have_adv: data.result.is_have_adv,
+          subscribe_status: data.result.subscribe_status
+        })
+      })
     }
 
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
