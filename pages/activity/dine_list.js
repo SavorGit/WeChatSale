@@ -12,13 +12,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    pageFresh:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     page = 1;
     hotel_id = options.hotel_id;
     openid   = options.openid;
@@ -83,14 +84,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getActivityList(page);
+    if(this.data.pageFresh){
+      this.getActivityList(page);
+    }
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      pageFresh:true
+    })
   },
 
   /**

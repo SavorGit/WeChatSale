@@ -19,6 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     hotel_id = options.hotel_id;
     openid   = options.openid;
     activity_id = options.activity_id;
