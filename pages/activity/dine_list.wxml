@@ -12,12 +12,7 @@
 					<view class="row flex_row_center_spaceBetween">
 						<view class="name one-line-overflow">{{bean.name}}</view>
 
-						<block wx:if="{{bean.status==0}}" >
-							<view class="status theme-font7">{{bean.status_str}}</view>
-							<view class="option flex_row_center_flexEnd" bindtap="cancelActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">
-								<view class="btn cancel theme-button-welcome">取消</view>
-							</view>
-						</block>
+						
 
 						<block wx:if="{{bean.status==1}}" >
 							<view class="status theme-font7">{{bean.status_str}}</view>
@@ -32,6 +27,13 @@
 						
 					</view>
 				</view>
+
+				<block wx:if="{{bean.status==0}}" >
+							<view class="status theme-font7">{{bean.status_str}}</view>
+							<view class="option flex_row_center_flexEnd" bindtap="cancelActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">
+								<view class="btn cancel theme-button-welcome">取消</view>
+							</view>
+						</block>
 			</block>
 			<!-- <view class="item flex_column_center_flexStart">
 				<view class="row flex_row_center_spaceBetween">
