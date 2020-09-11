@@ -39,6 +39,7 @@
 
 .list>.item>.row>.option {
   width: calc(60% - 100rpx);
+  height: 100%;
 }
 
 .list>.item>.row>.option>.btn {

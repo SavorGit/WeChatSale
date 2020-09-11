@@ -7,7 +7,20 @@
 <view class='container flex_column_center_flexStart theme-container'>
 	<scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<view class="list flex_column_center_flexStart">
-			<block wx:for="{{activity_list}}"  wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<block wx:for="{{activity_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="item flex_column_center_flexStart">
+					<view class="row flex_row_center_spaceBetween">
+						<view class="name one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.name}}</view>
+						<view wx:if="{{bean.status==2 || bean.status==3}}" class="status theme-font3" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
+						<view wx:if="{{bean.status==0 || bean.status==1}}" class="status theme-font7" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
+						<view wx:if="{{bean.status==0}}" class="option flex_row_center_flexEnd">
+							<view class="btn cancel theme-button-welcome" bindtap="cancelActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">取消</view>
+						</view>
+						<view wx:else class="option flex_row_center_flexEnd" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'></view>
+					</view>
+				</view>
+
+				<!--
 				<view class="item flex_column_center_flexStart" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>
 					<view class="row flex_row_center_spaceBetween">
 						<view class="name one-line-overflow">{{bean.name}}</view>
@@ -34,7 +47,9 @@
 								<view class="btn cancel theme-button-welcome">取消</view>
 							</view>
 						</block>
+			-->
 			</block>
+
 			<!-- <view class="item flex_column_center_flexStart">
 				<view class="row flex_row_center_spaceBetween">
 					<view class="name one-line-overflow">xxxxxx活动</view>
