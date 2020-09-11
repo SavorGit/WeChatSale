@@ -14,11 +14,14 @@ const months = [];
 const days = [];
 const hours = [];
 const minutes = [];
+var myDate = new Date();
+var tYear = myDate.getFullYear();
 //获取年
-for (let i = 2020; i <= date.getFullYear() + 5; i++) {
+for (let i = tYear; i <= date.getFullYear() + 5; i++) {
   years.push("" + i);
 }
 //获取月份
+
 for (let i = 1; i <= 12; i++) {
   if (i < 10) {
     i = "0" + i;
