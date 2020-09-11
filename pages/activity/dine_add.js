@@ -51,6 +51,7 @@ Page({
     multiIndex: [0, 9, 16, 10],
     choose_year: '',
     award_img:'', //奖品图片
+    award_oss_img:'',
     award_open_time:'',//开奖时间 
     add_button_disable:false,
     config_img_info:{'width':500,'height':500}
@@ -238,7 +239,7 @@ Page({
     })
   },
   delAwardPic:function(){
-    this.setData({award_img:''})
+    this.setData({award_img:'',award_oss_img:''})
   },
   addActivity:function(e){
     var that = this;
@@ -256,6 +257,7 @@ Page({
       app.showToast('请填写奖品名称');
       return false;
     }
+    console.log(award_img+'ddddd');
     if(award_img==''){
       app.showToast('请上传奖品图片');
       return false;
