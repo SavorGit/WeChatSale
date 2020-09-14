@@ -203,8 +203,8 @@
 }
 
 .wrapper>.row.pic>.value>.input>.show>.pic {
-  width: 370rpx;
-  height: 258rpx;
+  width: 386rpx;
+  height: 256rpx;
 }
 
 .wrapper>.row.pic>.value>.tip {
