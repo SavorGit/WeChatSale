@@ -40,7 +40,7 @@ for (let i = 0; i < 24; i++) {
   if (i < 10) {
     i = "0" + i;
   }
-  hours.push("" + i);
+  hours.push("" + i+':00');
 }
 
 Page({
@@ -94,7 +94,7 @@ Page({
     const hour = this.data.multiArray[3][index[3]];
     // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
     this.setData({
-      award_open_time: year + '-' + month + '-' + day + ' ' + hour +':00'
+      award_open_time: year + '-' + month + '-' + day + ' ' + hour 
     })
     // console.log(this.data.time);
   },

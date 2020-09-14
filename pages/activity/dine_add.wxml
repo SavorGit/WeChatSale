@@ -42,7 +42,7 @@
 							<view class="picker flex_row_center_spaceBetween">
 								<picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
 									<view class="wrapper flex_row_center_spaceBetween">
-										<input class="show" value='{{award_open_time}}' placeholder='选择时间' name="award_open_time" />
+										<input class="show" value='{{award_open_time}}' placeholder='选择时间' name="award_open_time" disabled='true' />
 										<view class="icon fa fa-calendar" aria-hidden="true"></view>
 									</view>
 								</picker>
