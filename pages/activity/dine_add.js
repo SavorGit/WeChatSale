@@ -50,7 +50,7 @@ Page({
    */
   data: {
     time: '',
-    multiArray: [years, months, days, hours, minutes],
+    multiArray: [years, months, days, hours],
     multiIndex: [0, 9, 16, 10],
     choose_year: '',
     award_img:'', //奖品图片
