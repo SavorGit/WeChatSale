@@ -181,7 +181,7 @@
 .wrapper>.row.pic>.value>.input>.show {
   width: 390rpx;
   height: 260rpx;
-  border: 2rpx solid #BBBBBB;
+  /* border: 2rpx solid #BBBBBB; */
 }
 
 .wrapper>.row.pic>.value>.input>.show>.del-pic {

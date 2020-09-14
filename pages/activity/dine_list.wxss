@@ -26,19 +26,20 @@
 }
 
 .list>.item>.row>.name {
-  width: 40%;
-  font-size: 40rpx;
+  width: 45%;
+  font-size: 32rpx;
   font-weight: 400;
 }
 
 .list>.item>.row>.status {
   width: 100rpx;
+  padding-left: 20rpx;
   font-size: 28rpx;
   font-weight: 400;
 }
 
 .list>.item>.row>.option {
-  width: calc(60% - 100rpx);
+  width: calc(55% - 120rpx);
   height: 100%;
 }
 
