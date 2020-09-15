@@ -12,13 +12,13 @@
 					<view class="row text flex_row_center_flexStart">
 						<view class="label">活动名称</view>
 						<view class="value">
-							<input class="input" placeholder="请输入" maxlength="20" name="activity_name"></input>
+							<input class="input" placeholder="请输入" maxlength="10" name="activity_name"></input>
 						</view>
 					</view>
 					<view class="row text flex_row_center_flexStart">
 						<view class="label">奖品名称</view>
 						<view class="value">
-							<input class="input" placeholder="请输入" maxlength="20" name="award_name"></input>
+							<input class="input" placeholder="请输入" maxlength="10" name="award_name"></input>
 						</view>
 					</view>
 					<view class="row pic flex_row_flexStart_flexStart">
