@@ -14,9 +14,9 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     var that = this;
-    var web_url = options.web_url;
+    var h5_url = options.h5_url;
     that.setData({
-      web_url:web_url
+      h5_url:h5_url
     })
   },
 

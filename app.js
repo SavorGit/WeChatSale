@@ -210,6 +210,7 @@ App({
 
             that.globalData.openid = res.data.result.openid;
             that.globalData.session_key = res.data.result.session_key;
+            that.globalData.Official_article_url = res.data.result.official_account_article_url
             if (that.openidCallback) {
               that.openidCallback(res.data.result.openid);
             }
@@ -280,6 +281,8 @@ App({
     api_v_url: 'https://mobile.littlehotspot.com/smallsale20',
     oss_upload_url: 'https://image.littlehotspot.com',
     oss_url: 'https://oss.littlehotspot.com',
+    Official_account_url:'https://mobile.littlehotspot.com/h5/official/getuserinfo/p/',
+    Official_article_url:'',
     oss_bucket:'redian-produce',
     cache_key: 'savor:sale:',
     common_appid: 'wxfdf0346934bb672f', 
