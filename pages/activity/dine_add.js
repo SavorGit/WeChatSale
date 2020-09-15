@@ -8,15 +8,11 @@ var oss_upload_url = app.globalData.oss_upload_url;
 var oss_access_key_id = app.globalData.oss_access_key_id;
 var hotel_id;
 var openid;
-const date = new Date();
-const years = [];
-const months = [];
-const days = [];
+
+const days = ['今天','明天','后天'];
 const hours = [];
-const minutes = [];
-var myDate = new Date();
-var tYear = myDate.getFullYear();
-//获取年
+
+/*//获取年
 for (let i = tYear; i <= date.getFullYear() + 5; i++) {
   years.push("" + i);
 }
@@ -34,14 +30,8 @@ for (let i = 1; i <= 31; i++) {
     i = "0" + i;
   }
   days.push("" + i);
-}
-//获取小时
-for (let i = 0; i < 24; i++) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  hours.push("" + i+':00');
-}
+}*/
+
 
 Page({
 
@@ -50,14 +40,17 @@ Page({
    */
   data: {
     time: '',
-    multiArray: [years, months, days, hours],
-    multiIndex: [0, 9, 16, 10],
-    choose_year: '',
+    multiArray: [days, hours],
+    multiIndex: [0, 0],
+    //choose_year: '',
     award_img:'', //奖品图片
     award_oss_img:'',
     award_open_time:'',//开奖时间 
     add_button_disable:false,
-    config_img_info:{'width':500,'height':500}
+    config_img_info:{'width':500,'height':500},
+    choose_day:'',
+    choose_hour:'',
+    is_select_open_time:0,
   },
 
   /**
@@ -65,9 +58,14 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
-    this.setData({
-      choose_year: this.data.multiArray[0][0]
-    })
+    //获取小时
+    for (let i = 0; i < 24; i++) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      hours.push("" + i+':00');
+    }
+    
     openid   = options.openid;
     hotel_id = options.hotel_id;
     this.getConfig();
@@ -78,93 +76,58 @@ Page({
       hotel_id:hotel_id,
       openid:openid
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({multiIndex:data.result.activity_lottery_time})
+      
+      var config_hour_index = data.result.activity_lottery_time[1];
+      var today_hours = hours.slice(config_hour_index);
+      var multiArray = that.data.multiArray;
+      multiArray[1] = today_hours
+      that.setData({multiArray:multiArray,activity_lottery_time:data.result.activity_lottery_time})
+      
+      //that.setData({multiIndex:data.result.activity_lottery_time})
     })
   },
   //获取时间日期
   bindMultiPickerChange: function(e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log(e)
+    var choose_day_index = e.detail.value[0];
+    var choose_hour_index = e.detail.value[1];
+    var multiArray = this.data.multiArray;
+    var day = multiArray[0][choose_day_index];
+    var hour = multiArray[1][choose_hour_index];
+
     this.setData({
-      multiIndex: e.detail.value
+      award_open_time:day + ' ' + hour ,
+      choose_day :choose_day_index,
+      choose_hour:hour,
+      is_select_open_time:1
     })
-    const index = this.data.multiIndex;
-    const year = this.data.multiArray[0][index[0]];
-    const month = this.data.multiArray[1][index[1]];
-    const day = this.data.multiArray[2][index[2]];
-    const hour = this.data.multiArray[3][index[3]];
-    // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
-    this.setData({
-      award_open_time: year + '-' + month + '-' + day + ' ' + hour 
-    })
-    // console.log(this.data.time);
+    
   },
   //监听picker的滚动事件
   bindMultiPickerColumnChange: function(e) {
     //获取年份
-    if (e.detail.column == 0) {
-      let choose_year = this.data.multiArray[e.detail.column][e.detail.value];
-      console.log(choose_year);
-      this.setData({
-        choose_year
-      })
-    }
-    //console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    if (e.detail.column == 1) {
-      let num = parseInt(this.data.multiArray[e.detail.column][e.detail.value]);
-      let temp = [];
-      if (num == 1 || num == 3 || num == 5 || num == 7 || num == 8 || num == 10 || num == 12) { //判断31天的月份
-        for (let i = 1; i <= 31; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
-        });
-      } else if (num == 4 || num == 6 || num == 9 || num == 11) { //判断30天的月份
-        for (let i = 1; i <= 30; i++) {
-          if (i < 10) {
-            i = "0" + i;
-          }
-          temp.push("" + i);
-        }
-        this.setData({
-          ['multiArray[2]']: temp
-        });
-      } else if (num == 2) { //判断2月份天数
-        let year = parseInt(this.data.choose_year);
-        console.log(year);
-        if (((year % 400 == 0) || (year % 100 != 0)) && (year % 4 == 0)) {
-          for (let i = 1; i <= 29; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        } else {
-          for (let i = 1; i <= 28; i++) {
-            if (i < 10) {
-              i = "0" + i;
-            }
-            temp.push("" + i);
-          }
-          this.setData({
-            ['multiArray[2]']: temp
-          });
-        }
+    var column = e.detail.column
+    var multiArray = this.data.multiArray;
+    if(column==0){//选择天
+      var choose_day = e.detail.value;
+      if(choose_day==0){
+        var activity_lottery_time = this.data.activity_lottery_time;
+        var config_hour_index = activity_lottery_time[1];
+        console.log(hours)
+        var today_hours = hours.slice(config_hour_index);
+        
+        
+        multiArray[1] = today_hours
+      }else {
+        console.log(multiArray)
+        multiArray[1] = hours;
+        
       }
-      console.log(this.data.multiArray[2]);
+      this.setData({multiArray:multiArray})
+    }else if(column ==1){//选择小时
+
     }
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    this.setData(data);
+    
   },
   addActivityPic:function(){
     var that = this;
@@ -250,8 +213,10 @@ Page({
     var activity_name = e.detail.value.activity_name.replace(/\s+/g, '');
     var award_name    = e.detail.value.award_name.replace(/\s+/g, '');
     var award_img     = this.data.award_oss_img;
-    var award_open_time = this.data.award_open_time;
-
+    var choose_day = this.data.choose_day;
+    var choose_hour = this.data.choose_hour;
+    var is_select_open_time =  that.data.is_select_open_time;
+    console.log(this.data)
     if(activity_name==''){
       app.showToast('请填写活动名称');
       return false;
@@ -265,7 +230,7 @@ Page({
       app.showToast('请上传奖品图片');
       return false;
     }
-    if(award_open_time==''){
+    if(is_select_open_time==0){
       app.showToast('请选择开奖时间');
       return false;
     }
@@ -276,7 +241,8 @@ Page({
       activity_name : activity_name,
       prize:award_name,
       image:award_img,
-      lottery_time:award_open_time,
+      lottery_day:choose_day,
+      lottery_hour:choose_hour,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({add_button_disable:false})
       wx.showToast({
