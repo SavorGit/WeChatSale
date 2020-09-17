@@ -87,7 +87,18 @@ Page({
                 data: rts,
               })
             }else{
-              
+              var subscribe_status = res.data.result.userinfo.subscribe_status;
+              if(subscribe_status==1){
+                wx.reLaunch({
+                  url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
+                })
+                return false;
+              }else if(subscribe_status == 2){
+                wx.reLaunch({
+                  url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
+                })
+                return false;
+              }
               wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: res.data.result.userinfo,
@@ -195,16 +206,7 @@ Page({
                   is_have_adv: data.result.is_have_adv,
                   subscribe_status: data.result.subscribe_status
                 })
-                var subscribe_status = data.result.subscribe_status;
-                if(subscribe_status==1){
-                  wx.reLaunch({
-                    url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
-                  })
-                }else if(subscribe_status == 2){
-                  wx.reLaunch({
-                    url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
-                  })
-                }
+                
                 
               })
               

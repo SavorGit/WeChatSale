@@ -450,27 +450,8 @@ Page({
               font_id: base_info.word_type.type
             }, (data, headers, cookies, errMsg, statusCode) => {
               var forscreen_id = (new Date()).valueOf();
-              utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
-                forscreen_id: forscreen_id,
-                openid: openid,
-                box_mac: play_box_mac,
-                action: 41,
-                mobile_brand: app.globalData.mobile_brand,
-                mobile_model: app.globalData.mobile_model,
-                forscreen_char: base_info.word_info.welcome_word,
-                public_text: '',
-                imgs: '["' + forscreen_url + '"]',
-                resource_id: forscreen_id,
-                res_sup_time: 0,
-                res_eup_time: 0,
-                resource_size: 0,
-                is_pub_hotelinfo: 0,
-                is_share: 0,
-                small_app_id: app.globalData.small_app_id,
-
-              }, (data, headers, cookies, errMsg, statusCode) => {
-
-              })
+              
+              
               wx.redirectTo({
                 url: '/pages/welcome/index',
                 success: function (e) {
@@ -481,6 +462,60 @@ Page({
 
               })
               app.showToast('新建欢迎词成功', 2000, 'success', true);
+
+
+
+              var box_list = that.data.box_list;
+              if(play_box_mac == 2){
+                for(let i in box_list){
+                  if(box_list[i].box_mac !='' && box_list[i].box_mac!=2){
+                    utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+                      forscreen_id: forscreen_id,
+                      openid: openid,
+                      box_mac: box_list[i].box_mac,
+                      action: 41,
+                      mobile_brand: app.globalData.mobile_brand,
+                      mobile_model: app.globalData.mobile_model,
+                      forscreen_char: base_info.word_info.welcome_word,
+                      public_text: '',
+                      imgs: '["' + forscreen_url + '"]',
+                      resource_id: forscreen_id,
+                      res_sup_time: 0,
+                      res_eup_time: 0,
+                      resource_size: 0,
+                      is_pub_hotelinfo: 0,
+                      is_share: 0,
+                      small_app_id: app.globalData.small_app_id,
+      
+                    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+                    })
+                  }
+                  
+                }
+              }else {
+                utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+                  forscreen_id: forscreen_id,
+                  openid: openid,
+                  box_mac: play_box_mac,
+                  action: 41,
+                  mobile_brand: app.globalData.mobile_brand,
+                  mobile_model: app.globalData.mobile_model,
+                  forscreen_char: base_info.word_info.welcome_word,
+                  public_text: '',
+                  imgs: '["' + forscreen_url + '"]',
+                  resource_id: forscreen_id,
+                  res_sup_time: 0,
+                  res_eup_time: 0,
+                  resource_size: 0,
+                  is_pub_hotelinfo: 0,
+                  is_share: 0,
+                  small_app_id: app.globalData.small_app_id,
+  
+                }, (data, headers, cookies, errMsg, statusCode) => {
+  
+                })
+              }
               mta.Event.stat('welcomeComplete', {
                 'completestatus': 1,
                 'imgtype': base_info.img_info.is_choose_img,
