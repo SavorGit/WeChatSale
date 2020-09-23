@@ -87,7 +87,18 @@ Page({
                 data: rts,
               })
             }else{
-              
+              var subscribe_status = res.data.result.userinfo.subscribe_status;
+              if(subscribe_status==1){
+                wx.reLaunch({
+                  url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
+                })
+                return false;
+              }else if(subscribe_status == 2){
+                wx.reLaunch({
+                  url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
+                })
+                return false;
+              }
               wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: res.data.result.userinfo,
@@ -196,6 +207,8 @@ Page({
                   is_have_adv: data.result.is_have_adv,
                   subscribe_status: data.result.subscribe_status
                 })
+                
+                
               })
               
             } else {
@@ -640,18 +653,29 @@ Page({
       
       that.getSignBoxList(hotel_id,user_info.openid);
       //获取销售端配置  
-      utils.PostRequest(api_v_url +'/config/getConfig',{
-        hotel_id : hotel_id,
-        openid:user_info.openid
-      }, (data, headers, cookies, errMsg, statusCode) => {
-        app.globalData.config_info = data.result;
-        that.setData({
-          is_have_adv: data.result.is_have_adv,
-          subscribe_status: data.result.subscribe_status
-        })
-      })
-    }
 
+		utils.PostRequest(api_v_url +'/config/getConfig',{
+		  hotel_id : hotel_id,
+		  openid:openid
+		}, (data, headers, cookies, errMsg, statusCode) => {
+		  that.setData({
+			is_have_adv: data.result.is_have_adv,
+			subscribe_status: data.result.subscribe_status
+		  })
+		  var subscribe_status = data.result.subscribe_status;
+		  if(subscribe_status==1){
+			wx.reLaunch({
+			  url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
+			})
+		  }else if(subscribe_status==2){
+			wx.reLaunch({
+			  url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
+			})
+		  }
+		  
+		})
+    }
+    
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   getSignBoxList:function(hotel_id,openid){
@@ -941,13 +965,6 @@ Page({
     }
     wx.navigateTo({
       url: '/pages/mine/assign_waiter?openid='+openid+'&hotel_id='+hotel_id,
-    })
-  },
-  gotoPublic:function(e){
-    var openid = e.currentTarget.dataset.openid;
-    var web_url = app.globalData.api_url +'/h5/subscribe/mp/p/'+openid;
-    wx.navigateTo({
-      url: '/pages/h5/index?web_url='+web_url,
     })
   },
   /**
