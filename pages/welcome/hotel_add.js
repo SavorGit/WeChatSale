@@ -486,6 +486,7 @@ Page({
                       is_pub_hotelinfo: 0,
                       is_share: 0,
                       small_app_id: app.globalData.small_app_id,
+                      create_time:play_date+' '+timing
       
                     }, (data, headers, cookies, errMsg, statusCode) => {
       
@@ -511,7 +512,7 @@ Page({
                   is_pub_hotelinfo: 0,
                   is_share: 0,
                   small_app_id: app.globalData.small_app_id,
-  
+                  create_time:play_date+' '+timing
                 }, (data, headers, cookies, errMsg, statusCode) => {
   
                 })
