@@ -32,7 +32,7 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.13.0",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "debugOptions": {
