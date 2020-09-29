@@ -1,1 +1,13 @@
 /* pages/waiter/signin.wxss */
+@import '/pages/index/index.wxss';
+
+.set_top_box-panel {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.set_top_box-panel>.scroll-view {
+  width: 100%;
+  padding-bottom: 0;
+}
