@@ -68,7 +68,8 @@
     "pages/activity/dine_list",
     "pages/activity/dine_add",
     "pages/activity/dine_detail",
-    "pages/waiter/home"
+    "pages/waiter/home",
+    "pages/waiter/signin"
   ],
   "window": {
     "backgroundTextStyle": "light",
