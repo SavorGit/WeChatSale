@@ -67,12 +67,12 @@
 		</view>
 	</view>
 	<!-- 餐厅评价面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
+	<!-- <view class="promotion-goods-manage-panel theme7 theme-font2">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
 			<view>餐厅评价</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
-	</view>
+	</view> -->
 </scroll-view>
 
 <!-- 微信授权 -->

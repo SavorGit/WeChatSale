@@ -30,7 +30,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.hideHomeButton();
     wx.hideShareMenu();
     var that = this;
     mta.Page.init()
@@ -94,168 +94,11 @@ Page({
       }
     })
 
-    //我的员工
-    wx.request({
-      url: api_v_url + '/user/employeelist',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-        page: 1,
-        pagesize: 5
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            staff_list: res.data.result.datalist
-          })
-        }
-      }
-    })
-
   },
   
-  loadMore: function (res) {
-    var that = this;
-    page = page + 1;
-    wx.showLoading({
-      title: '加载中，请稍后',
-    })
-    wx.request({
-      url: api_v_url + '/user/integralrecord',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-        page: page,
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            integral_list: res.data.result.datalist
-          })
-          wx.hideLoading()
-        }
-      }
-    })
-    setTimeout(function () {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加载失败，请重试',
-        icon: 'none',
-        duration: 2000,
-      })
-    }, 5000)
-  },
   exchange: function (res) {
     wx.navigateTo({
       url: '/pages/mine/exchange',
-    })
-  },
-  addStaff: function (e) {
-    var that = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-
-    wx.request({
-      url: api_v_url + '/user/invite',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: user_info.openid,
-
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            showAddTeamMemberPage: true,
-            qrcode_url: res.data.result.qrcode_url,
-            qrcode: res.data.result.qrcode,
-          })
-        } else {
-          wx.showToast({
-            title: '参数异常，请重试!',
-            icon: 'none',
-            duration: 2000,
-          })
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '网络异常，请重试!',
-          icon: 'none',
-          duration: 2000,
-        })
-      },
-      complete: function (res) {
-        //数据埋点-点击添加员工
-        mta.Event.stat('clickAddStaff', {
-          'openid': user_info.openid
-        })
-      }
-    })
-
-  },
-  freshQrcode: function (e) {
-    var that = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    wx.request({
-      url: api_v_url + '/user/invite',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: user_info.openid,
-
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-
-            qrcode_url: res.data.result.qrcode_url,
-            qrcode: res.data.result.qrcode,
-          })
-        } else {
-          wx.showToast({
-            title: '参数异常，请重试!',
-            icon: 'none',
-            duration: 2000,
-          })
-        }
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '网络异常，请重试!',
-          icon: 'none',
-          duration: 2000,
-        })
-      },
-      complete: function (res) {
-        //数据埋点-点击刷新邀请码
-        mta.Event.stat('clickFreshQrcode', {
-          'openid': user_info.openid
-        })
-      }
-    })
-  },
-  closeAddStaff: function (e) {
-    var that = this;
-    that.setData({
-      showAddTeamMemberPage: false,
-    })
-    //数据埋点-关闭员工添加员工弹窗
-    mta.Event.stat("clickcloseaddstaff", {})
-  },
-  userLogin: function (res) {
-    var that = this;
-    that.setData({
-      showWXAuthLogin: true,
-    })
-    //数据埋点-个人信息页面点击登录
-    mta.Event.stat('clickUserLogin', {
-      'openid': openid
     })
   },
   onGetUserInfo: function (res) {
@@ -335,10 +178,7 @@ Page({
           })
         }
       })
-      //数据埋点-用户确认授权
-      mta.Event.stat('userConfirmAuth', {
-        'openid': openid
-      })
+     
     } else {
       wx.request({
         url: api_v_url + '/User/refuseRegister',
@@ -356,10 +196,7 @@ Page({
           });
         }
       })
-      //数据埋点-用户拒绝授权
-      mta.Event.stat('userRefuseAuth', {
-        'openid': openid
-      })
+      
     }
   },
   /**
@@ -375,33 +212,7 @@ Page({
   onShow: function () {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if (user_info.hotel_has_room == 0) {
-      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0,
-          list: [
-            /*
-            {
-              "pagePath": "/pages/tv_sale/system",
-              "text": "活动促销",
-              "iconPath": "/images/icon/999999_sale.png",
-              "selectedIconPath": "/images/icon/333333_sale.png"
-            },
-            */
-            {
-              "pagePath": "/pages/mine/index",
-              "text": "个人信息",
-              "iconPath": "/images/icon/999999_mine.png",
-              "selectedIconPath": "/images/icon/333333_mine.png"
-            }
-          ]
-        })
-      }
-    } else {
-      this.getTabBar().setData({
-        selected: 1,
-      })
-    }
+    
     wx.request({
       url: api_v_url + '/User/isRegister',
       header: {
@@ -477,10 +288,7 @@ Page({
         }
       }
     })
-    //数据埋点-进入个人信息页面
-    mta.Event.stat('showUserIndex', {
-      'openid': user_info.openid
-    })
+    
     this.onLoad()
   },
   closeAuth: function () {
@@ -488,10 +296,7 @@ Page({
     that.setData({
       showWXAuthLogin: false,
     })
-    //数据埋点-个人信息页面关闭取消授权登陆
-    mta.Event.stat('userCloseAuth', {
-      'openid': openid
-    })
+    
   },
   integralList: function (e) {
     //数据埋点-点击收益明细
@@ -499,34 +304,8 @@ Page({
       'openid': openid
     })
   },
-  popActivityList: function (e) {
-    //数据埋点-点击活动商品管理
-
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    if (user_info.hotel_id == -1) {
-      var hotel_id = user_info.select_hotel_id;
-    } else {
-      var hotel_id = user_info.hotel_id;
-    }
-    if (typeof (hotel_id) == 'undefined') {
-      app.showToast('请您选择酒楼');
-    } else {
-      wx.navigateTo({
-        url: '/pages/mine/pop_list',
-      })
-    }
-
-    mta.Event.stat('clickActivityGoodsList', {
-      'openid': openid
-    })
-  },
-  staffList: function (e) {
-    //数据埋点-点击移除员工
-    mta.Event.stat('clickRemoveStaff', {
-      'openid': openid,
-      'inviteid': invite_id
-    })
-  },
+  
+  
   goRelief: function (res) {
     //数据埋点-点击免责声明
     mta.Event.stat('userClickRelief', {
@@ -561,31 +340,7 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function (e) {
-    var qrcode = e.target.dataset.qrcode;
-    var userinfo = wx.getStorageSync(cache_key + 'userinfo');
-    var title = "邀请您使用小热点销售端";
-    var img_url = 'http://oss.littlehotspot.com/media/resource/GyXmE3jRNh.jpg';
-    if (e.from === 'button') {
-      //数据埋点-点击邀请员工
-      mta.Event.stat('clickInviteStaff', {
-        'openid': userinfo.openid
-      })
-      // 转发成功
-      // 来自页面内转发按钮
-      return {
-        title: title,
-        path: '/pages/user/invite?q=' + qrcode,
-        imageUrl: img_url,
-        success: function (res) {
-
-        }
-      }
-    }
-  },
+  
   showLoadingOnClick: function (e) {
 
     wx.showLoading({
@@ -614,92 +369,6 @@ Page({
     }
 
   },
-
-  // 打开用户归属信息窗口
-  openUserAscriptionInfomationWindow: function (e) {
-    let self = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    self.setData({
-      showUserAscriptionInfomationWindow: true,
-      userInfo: user_info
-    });
-  },
-
-  // 关闭修改昵称弹窗
-  closeChangeNikenameWindow: function (e) {
-    let self = this;
-    self.setData({
-      showChangeNikenameWindow: false
-    });
-  },
-  saleDishes: function (e) {
-    var that = this;
-    var merchant_id = that.data.merchant_id;
-    var hotel_id = that.data.hotel_id;
-    if (typeof (merchant_id) == 'undefined') {
-      return false;
-    } else {
-      wx.navigateTo({
-        url: '/pages/hotel/dishes/index?merchant_id=' + merchant_id + '&openid=' + openid + "&hotel_id=" + hotel_id,
-      })
-    }
-
-  },
-  gotoOrder: function (e) {
-    var that = this;
-    var merchant_id = that.data.merchant_id;
-    var order_status = e.currentTarget.dataset.order_status
-    var type = e.currentTarget.dataset.type;
-    if (typeof (merchant_id) == 'undefined') {
-      return false;
-    } else {
-      if (type == 3) {
-        var url = '/pages/hotel/order/index?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
-      } else {
-        var url = '/pages/hotel/order/goods_list?merchant_id=' + merchant_id + '&openid=' + openid + '&order_status=' + order_status + '&type=' + type
-      }
-      wx.navigateTo({
-        url: url,
-      })
-    }
-
-  },
-  gotoPlatform: function (e) {
-    var that = this;
-    var merchant_id = that.data.merchant_id;
-    var order_status = e.currentTarget.dataset.order_status
-    if (typeof (merchant_id) == 'undefined') {
-      return false;
-    } else {
-      wx.navigateTo({
-        url: '/pages/hotel/platform/index?merchant_id=' + merchant_id + '&openid=' + openid,
-      })
-    }
-  },
-  gotoSetting: function (e) {
-    var that = this;
-    var merchant_id = that.data.merchant_id;
-    var order_status = e.currentTarget.dataset.order_status
-    if (typeof (merchant_id) == 'undefined') {
-      return false;
-    } else {
-      wx.navigateTo({
-        url: '/pages/mine/setting/list?merchant_id=' + merchant_id + '&openid=' + openid,
-      })
-    }
-  },
-  gotoPurchaseOrder: function (e) {
-    var that = this;
-    var merchant_id = that.data.merchant_id;
-    var order_status = e.currentTarget.dataset.order_status
-    if (typeof (merchant_id) == 'undefined') {
-      return false;
-    } else {
-      wx.navigateTo({
-        url: '/pages/hotel/order/agent?merchant_id=' + merchant_id + '&openid=' + openid,
-      })
-    }
-  },
   gotoWaiterDetail: function (e) {
     wx.navigateTo({
       url: '/pages/waiter/index?openid=' + openid,
@@ -717,16 +386,5 @@ Page({
       url: '/pages/hotel/comment/list?hotel_id='+hotel_id+'&openid='+openid,
     })
   },
-  hotelActivity:function(){
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    openid = user_info.openid;
-    if (user_info.select_hotel_id > 0) {
-      var hotel_id = user_info.select_hotel_id;
-    } else {
-      var hotel_id = user_info.hotel_id;
-    }
-    wx.navigateTo({
-      url: '/pages/activity/dine_list?hotel_id='+hotel_id+'&openid='+openid,
-    })
-  }
+  
 })
