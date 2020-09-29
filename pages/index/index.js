@@ -122,7 +122,7 @@ Page({
               if (user_info.role_type==3){
                 //跳转到服务员登陆页面
                 wx.reLaunch({
-                  url: '/pages/waiter/index',
+                  url: '/pages/waiter/home',
                 })
                 return false;
               }

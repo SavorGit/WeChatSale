@@ -67,7 +67,8 @@
     "pages/welcome/hotel_add",
     "pages/activity/dine_list",
     "pages/activity/dine_add",
-    "pages/activity/dine_detail"
+    "pages/activity/dine_detail",
+    "pages/waiter/home"
   ],
   "window": {
     "backgroundTextStyle": "light",
