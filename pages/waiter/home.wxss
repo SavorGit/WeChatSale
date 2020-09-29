@@ -1,1 +1,342 @@
 /* pages/waiter/home.wxss */
+
+.container {
+  justify-content: start;
+  font-size: 24rpx;
+}
+
+.navigator-hover {
+  background: unset;
+  opacity: 1;
+}
+
+/* ================================ 用户信息面板 ================================ */
+.user-info-panel {
+  height: 175rpx;
+}
+
+.user-info-panel>view {
+  width: 33.3333%;
+  height: 100%;
+}
+
+.user-info-panel>.center>.head-img,
+.user-info-panel>.left-2>.head-img {
+  width: 125rpx;
+  height: 125rpx;
+  border-radius: 50%;
+}
+
+.user-info-panel>.center>.nickname {
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-info-panel>.center>.nickname.btn {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #ededed;
+  text-align: center;
+}
+
+.user-info-panel>.right>.fa,
+.user-info-panel>.right-2>.fa {
+  margin-top: 20rpx;
+  margin-right: 50rpx;
+  font-size: 60rpx;
+}
+
+.user-info-panel>.left-2 {
+  width: 130rpx;
+  padding-left: 50rpx;
+  padding-right: 20rpx;
+}
+
+.user-info-panel>.center-2 {
+  width: calc(100% - 330rpx);
+}
+
+.user-info-panel>.center-2 {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+}
+
+.user-info-panel>.center-2>view:last-child {
+  width: calc(100% - 20rpx);
+  margin-top: 20rpx;
+  margin-left: 14rpx;
+  font-weight: 600;
+}
+
+.user-info-panel>.center-2>view:last-child>view:first-child {
+  width: 216rpx;
+}
+
+.user-info-panel>.center-2>view:last-child>view:last-child {
+  margin-left: 20rpx;
+}
+
+.user-info-panel>.right-2 {
+  width: 130rpx;
+}
+
+/* ================================ 销售面板 ================================ */
+.sale-panel {
+  width: 100%;
+  height: 150rpx;
+  margin-top: -75rpx;
+}
+
+.sale-panel>.wapper {
+  width: calc(100% - 100rpx);
+  height: 100%;
+  margin: 0 50rpx;
+  border-radius: 10rpx;
+}
+
+.sale-panel>.wapper>.shop {
+  width: 160rpx;
+  text-align: center;
+}
+
+.sale-panel>.wapper>.shop>.fa {
+  font-size: 36rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale-panel>.wapper>.order {
+  width: calc(100% - 165rpx);
+  border-left: 5rpx solid rgba(255, 255, 255, 0.3);
+}
+
+.sale-panel>.wapper>.order>view {
+  width: 160rpx;
+  height: 80rpx;
+  text-align: center;
+}
+
+.sale-panel>.wapper>.order>view>view:first-child {
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 34rpx;
+}
+
+.sale-panel>.wapper>.order>view>view:first-child>.marker {
+  min-width: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0 5rpx;
+  text-align: center;
+  font-size: 20rpx;
+  border-radius: 14rpx;
+  margin-top: -40rpx;
+  margin-left: 80rpx;
+}
+
+/* ================================ 收益概况面板 ================================ */
+
+.profit-profile-panel {
+  margin-top: 10rpx;
+  height: 380rpx;
+}
+
+.profit-profile-panel>.top {
+  height: 70rpx;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profit-profile-panel>.top>.title {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+}
+
+.profit-profile-panel>.top>.title {
+  font-size: 24rpx;
+}
+
+.profit-profile-panel>.info {
+  height: 70rpx;
+  padding-left: 30rpx;
+  padding-right: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profit-profile-panel>.info>label {
+  width: calc(100% - 120rpx);
+  font-size: 60rpx;
+  display: inline-block;
+}
+
+.profit-profile-panel>.info>.btn-exchange::after {
+  border: unset;
+}
+
+.profit-profile-panel>.info>.btn-exchange {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0 10rpx;
+  padding: 0;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  border: 2rpx solid #ededed;
+  background-color: #fff;
+  text-align: center;
+}
+
+.profit-profile-panel>.month {
+  height: calc(100% - 200rpx);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.profit-profile-panel>.month>.block {
+  width: 248rpx;
+  height: 120rpx;
+  margin: 0 15rpx;
+  padding: 20rpx 30rpx;
+  background-color: rgb(235, 104, 119);
+  border-radius: 10rpx;
+}
+
+.profit-profile-panel>.month>.block>.title {
+  height: 30rpx;
+  font-size: 24rpx;
+}
+
+.profit-profile-panel>.month>.block>.integral {
+  height: calc(100% - 30rpx);
+  font-size: 36rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profit-profile-panel>.integral-tip {
+  height: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+}
+
+/* ================================ 活动商品管理面板 ================================ */
+
+.promotion-goods-manage-panel {
+  height: 100rpx;
+  padding: 0 30rpx;
+  border-top: 2rpx solid #ededed;
+}
+
+.promotion-goods-manage-panel>navigator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ================================ 用户信息面板 ================================ */
+
+.team-members-panel {
+  margin-top: 10rpx;
+  height: 170rpx;
+}
+
+.team-members-panel>.title {
+  padding: 20rpx 30rpx 0 30rpx;
+  height: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-members-panel>.list {
+  height: calc(100% - 70rpx);
+  padding: 0 30rpx 20rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: start;
+}
+
+.team-members-panel>.list>.cell {
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+}
+
+.team-members-panel>.list>.cell>image {
+  border-radius: 50%;
+}
+
+.team-members-panel>.list>.add {
+  border: 1rpx dashed #bfbfbf;
+  color: #999;
+  border-radius: 50%;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ================================= 修改昵称弹窗 ================================= */
+.change-nikename-window {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.change-nikename-window>.title-bar {
+  width: calc(100% - 60rpx);
+  height: 100rpx;
+  margin: 0 30rpx;
+  font-size: 30rpx;
+  font-weight: bolder;
+  border-bottom: 1px solid #ededed;
+}
+
+.change-nikename-window>.body-panel {
+  width: 100%;
+  height: calc(100% - 100rpx - 2px);
+}
+
+.change-nikename-window>.body-panel>view:first-child {
+  height: 200rpx;
+}
+
+.change-nikename-window>.body-panel>view:first-child>input {
+  width: 300rpx;
+  height: 50rpx;
+  margin-top: 50rpx;
+  border: 1px solid #999;
+}
+
+.change-nikename-window>.body-panel>.btn-submit {
+  width: 200rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 5rpx;
+}

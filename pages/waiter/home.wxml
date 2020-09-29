@@ -1,2 +1,79 @@
 <!--pages/waiter/home.wxml-->
-<text>pages/waiter/home.wxml</text>
+<import src="/pages/template/commons" />
+<scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
+	<view class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+		<view class="left-2">
+			<image class='head-img' src='{{avatarUrl}}'></image>
+		</view>
+		<view class="center-2 flex_column_flexStart_flexStart">
+			<view class='nickname'>{{nickName}}</view>
+			<view class="flex_row_center" bindtap="gotoWaiterDetail">
+				<view class="flex_row_center_spaceBetween star-color">
+					<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{userScore >= 2.5 && userScore < 3 ? 'fa-star-half-o' : userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{userScore >= 3.5 && userScore < 4 ? 'fa-star-half-o' : userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="fa {{userScore >= 4.5 && userScore < 5 ? 'fa-star-half-o' : userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+				</view>
+				<view>服务评分：{{userScore}}</view>
+			</view>
+		</view>
+		<view class="right-2 flex_row_flexStart_flexEnd"></view>
+	</view>
+	<view wx:if="{{is_wx_auth !=3}}" class='user-info-panel full_width flex_row_center_center theme7'>
+		<view class="left"></view>
+		<view class="center flex_column_center_center">
+			<image class='head-img' src='http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default_user_head.png'></image>
+			<view bindtap="userLogin" class='nickname theme-font5 btn'>登录</view>
+		</view>
+		<view class="right"></view>
+	</view>
+
+	<!-- 收益概况面板 -->
+	<view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
+		<view class='top theme-font2'>
+			<view class='title'>积分收益（分）</view>
+			<navigator bindtap="integralList" class='more' url="/pages/mine/integral_list">收益明细 ></navigator>
+		</view>
+		<view class='info'>
+			<label class='theme-font5'>{{integral}}</label>
+			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">兑换</navigator>
+		</view>
+		<view class="month">
+			<view class="block theme-font4">
+				<view class="title">本月预估积分收益</view>
+				<view class="integral">{{month_integral}}</view>
+			</view>
+			<view class="block theme-font4">
+				<view class="title">下月预估积分收益</view>
+				<view class="integral">{{next_month_integral}}</view>
+			</view>
+		</view>
+		<view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换</view>
+	</view>
+
+	<!-- 订单列表面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween">
+			<view>包间签到</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
+	<!-- 任务列表 套用【活动商品管理面板】样式-->
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="showLoadingOnClick" data-id="2">
+			<view>任务列表</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
+	<!-- 餐厅评价面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
+			<view>餐厅评价</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
+</scroll-view>
+
+<!-- 微信授权 -->
+<template is="wxAuthLogin" data='{{show: showWXAuthLogin,wifi_mac:wifi_mac,wifi_name:wifi_name,wifi_password:use_wifi_password,intranet_ip:intranet_ip,openid:openid}}' />
