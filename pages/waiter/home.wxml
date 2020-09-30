@@ -53,7 +53,7 @@
 	</view>
 
 	<!-- 订单列表面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="boxSignin">
 		<view class="full_width full_height flex_row_center_spaceBetween">
 			<view>包间签到</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>

@@ -386,5 +386,12 @@ Page({
       url: '/pages/hotel/comment/list?hotel_id='+hotel_id+'&openid='+openid,
     })
   },
-  
+  boxSignin:function(e){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    var hotel_id = user_info.hotel_id;
+    wx.navigateTo({
+      url: '/pages/waiter/signin?openid=' + openid+'&hotel_id='+hotel_id,
+    })
+  }
 })
