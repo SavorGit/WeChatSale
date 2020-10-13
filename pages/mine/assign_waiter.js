@@ -25,7 +25,7 @@ Page({
     openid = options.openid;
     hotel_id = options.hotel_id;
 
-    //获取员工保健列表
+    //获取员工包间列表
     utils.PostRequest(api_v_url + '/staff/getStaffRoomList', {
       openid: openid,
       hotel_id: hotel_id,
