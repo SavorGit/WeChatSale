@@ -415,6 +415,9 @@ Page({
           app.showToast('请选择播放时间');
           return false;
         }
+      }else if(play_type==1){
+        play_date = '';
+        timing    = '';
       }
       if (play_box_mac.toString() == '') {
         app.showToast('请选择包间电视');
