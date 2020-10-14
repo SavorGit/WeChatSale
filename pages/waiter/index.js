@@ -76,6 +76,13 @@ Page({
     var that = this;
     var start_date = e.detail.value.start_date;
     var end_date = e.detail.value.end_date;
+    var int_start_date = start_date.replace(/-/g,'');
+    var int_end_date = end_date.replace(/-/g,'');
+    
+    if(int_start_date>int_end_date){
+      app.showToast('请选择正确的时间段');
+      return false;
+    }
     utils.PostRequest(api_v_url + '/comment/commentlist', {
       openid: openid,
       start_date: start_date,
