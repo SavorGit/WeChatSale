@@ -28,7 +28,7 @@ Page({
     
     utils.PostRequest(api_v_url + '/staff/stafflist', {
       openid: openid,
-      hotel_id:hotel_id,
+      hotel_id:0,
       page: 1
     }, (data, headers, cookies, errMsg, statusCode) => {
       is_scangoods = data.result.user.is_scangoods
