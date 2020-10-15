@@ -312,6 +312,16 @@ Page({
       'openid': openid
     })
   },
+  userLogin: function (res) {
+    var that = this;
+    that.setData({
+      showWXAuthLogin: true,
+    })
+    //数据埋点-个人信息页面点击登录
+    mta.Event.stat('clickUserLogin', {
+      'openid': openid
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
