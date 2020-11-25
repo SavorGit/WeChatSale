@@ -149,7 +149,7 @@ Page({
                     var role_type = res.data.result.role_type;
                     if(role_type==3){
                       wx.reLaunch({
-                        url: '/pages/waiter/index',
+                        url: '/pages/waiter/home',
                       })
                     }else{
                       wx.reLaunch({
@@ -273,7 +273,7 @@ Page({
           if(user_info.hotel_has_room==1){
             if(user_info.role_type==3){
               wx.reLaunch({
-                url: '/pages/waiter/index',
+                url: '/pages/waiter/home',
               })
             }else {
               wx.reLaunch({
