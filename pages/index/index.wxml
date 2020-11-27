@@ -82,7 +82,7 @@
 		</view>
 	</view>
 
-	
+
 	<!-- <navigator url="/pages/user/register">test</navigator>  -->
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
@@ -154,3 +154,27 @@
 
 <!-- 酒楼列表弹窗 -->
 <MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
+
+
+<!-- 消息弹窗 -->
+<modal show="{{showMessageWindow}}" width="630rpx" height='400rpx' border-radius="10rpx" background-color='unset' title-text='' confirm-text='' ccancel-text='' cancel-text=''>
+	<view class="message-window theme-window">
+		<view class="head">
+			<view class="title-bar flex_row_center_center">
+				<view class="text theme-font1">新消息</view>
+			</view>
+			<view class="option-bar flex_row_center_flexEnd">
+				<image class="btn close" mode="aspectFill" src="/images/icon/58525C_close.png"></image>
+			</view>
+		</view>
+		<view class="body flex_column_center">
+			<scroll-view class="content-group" scroll-y="true" scroll-with-animation="true">
+				<view class="text theme-font1">您有3条新的客人评价</view>
+				<view class="text theme-font1">您被客人打赏了1次</view>
+			</scroll-view>
+			<view class="btn-group flex_row_center_center">
+				<view class="btn lookup theme-button-red">查看</view>
+			</view>
+		</view>
+	</view>
+</modal>
