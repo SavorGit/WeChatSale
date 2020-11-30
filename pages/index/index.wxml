@@ -172,7 +172,7 @@
 				<view class="text theme-font1">您有3条新的客人评价</view>
 				<view class="text theme-font1">您被客人打赏了1次</view>
 			</scroll-view>
-			<view class="btn-group flex_row_center_center">
+			<view class="btn-group flex_row_center_center" bindtap="viewComment">
 				<view class="btn lookup theme-button-red">查看</view>
 			</view>
 		</view>

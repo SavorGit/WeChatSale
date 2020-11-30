@@ -38,7 +38,9 @@ Page({
     showControlWindow:false,
     exchangerecord:[],//兑换记录
     is_have_adv:0,
-    subscribe_status:3  //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
+    subscribe_status:3, //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
+    comment_info:{'is_prompt':true,'comment_num':0,'reward_num':0},//是否有评价(弹窗)
+    showMessageWindow:true
   },
 
   onLoad: function(res) {
@@ -51,6 +53,7 @@ Page({
       openid = app.globalData.openid;
       //注册用户
       is_login(openid);
+      that.isComment(openid);
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -60,6 +63,7 @@ Page({
           openid = openid;
           //注册用户
           is_login(openid);
+          that.isComment(openid);
         }
       }
     }
@@ -246,6 +250,19 @@ Page({
     }
     
 
+  },
+  isComment:function(openid){
+    var that = this;
+    // utils.PostRequest(api_v_url + '/comment/prompt', {
+    //   openid: openid,
+    // }, (data, headers, cookies, errMsg, statusCode) => {
+    //   that.setData({comment_info:data.result})
+    // })
+  },
+  viewComment:function(e){
+    wx.navigateTo({
+      url: '/pages/waiter/index',
+    })
   },
   //选择包间开始
   bindPickerChange: function(e) {
