@@ -40,6 +40,7 @@ Page({
     is_have_adv:0,
     subscribe_status:3, //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
     comment_info:{'is_prompt':true,'comment_num':0,'reward_num':0},//是否有评价(弹窗)
+    showMessageWindow:false,
   },
 
   onLoad: function(res) {

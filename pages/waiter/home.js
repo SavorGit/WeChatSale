@@ -1,6 +1,7 @@
 // pages/waiter/home.js
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -23,7 +24,8 @@ Page({
     integral_shop: false,
     task_manage: false,
     userScore: 3.7,
-    is_activity:0
+    is_activity:0,
+    showMessageWindow:false
   },
 
   /**
@@ -36,6 +38,7 @@ Page({
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
+    that.isComment(openid);
     if (user_info.select_hotel_id > 0) {
       var hotel_id = user_info.select_hotel_id;
     } else {
@@ -95,7 +98,27 @@ Page({
     })
 
   },
-  
+  isComment:function(openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/comment/prompt', {
+       openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(data.result.is_prompt==1){
+        var showMessageWindow = true;
+      }else {
+        var showMessageWindow = false;
+      }
+      that.setData({comment_info:data.result,showMessageWindow:showMessageWindow})
+     })
+  },
+  closeComment:function(e){
+    this.setData({showMessageWindow:false})
+  },
+  viewComment:function(e){
+    wx.navigateTo({
+      url: '/pages/waiter/index',
+    })
+  },
   exchange: function (res) {
     wx.navigateTo({
       url: '/pages/mine/exchange',
