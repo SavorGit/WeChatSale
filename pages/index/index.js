@@ -53,7 +53,7 @@ Page({
       openid = app.globalData.openid;
       //注册用户
       is_login(openid);
-      that.isComment(openid);
+      //that.isComment(openid);
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -63,7 +63,7 @@ Page({
           openid = openid;
           //注册用户
           is_login(openid);
-          that.isComment(openid);
+          //that.isComment(openid);
         }
       }
     }
@@ -131,6 +131,7 @@ Page({
                 return false;
               }
             }
+            that.isComment(openid);
             //判断权限
             var tv_forscreen = app.in_array('tv_forscreen',user_info.service);
             var room_signin = app.in_array('room_signin', user_info.service);

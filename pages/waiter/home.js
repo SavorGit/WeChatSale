@@ -38,7 +38,7 @@ Page({
     mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
-    that.isComment(openid);
+    
     if (user_info.select_hotel_id > 0) {
       var hotel_id = user_info.select_hotel_id;
     } else {
@@ -311,8 +311,8 @@ Page({
         }
       }
     })
-    
-    this.onLoad()
+    that.isComment(openid);
+    //this.onLoad()
   },
   closeAuth: function () {
     var that = this;

@@ -67,7 +67,7 @@
 									</view>
 								</block>
 							</view>
-							<view class="tag two-line-overflow theme-font5">服务不好、环境不好</view>
+							<view class="tag two-line-overflow theme-font5">{{bean.label}}</view>
 							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
 							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
 							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
@@ -98,7 +98,7 @@
 									</view>
 								</block>
 							</view>
-							<view class="tag two-line-overflow theme-font5">服务不好、环境不好</view>
+							<view class="tag two-line-overflow theme-font5">{{bean.label}}</view>
 							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
 							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
 							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
