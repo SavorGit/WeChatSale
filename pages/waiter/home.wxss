@@ -1,2 +1,70 @@
 /* pages/waiter/home.wxss */
 @import '/pages/mine/index.wxss';
+
+
+
+.message-window {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.message-window>.head {
+  width: 100%;
+  height: 100rpx;
+}
+
+.message-window>.head>.title-bar {
+  width: calc(100% - 50rpx);
+  height: calc(100% - 20rpx);
+  padding: 10rpx 25rpx;
+}
+
+.message-window>.head>.title-bar>.text {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.message-window>.head>.option-bar {
+  width: calc(100% - 50rpx);
+  height: calc(100% - 20rpx);
+  padding: 10rpx 25rpx;
+  margin-top: -100rpx;
+}
+
+.message-window>.head>.option-bar>.btn {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.message-window>.body {
+  width: 100%;
+  height: calc(100% - 100rpx);
+}
+
+.message-window>.body>.content-group {
+  width: calc(100% - 70rpx);
+  height: calc(100% - 180rpx);
+  padding: 10rpx 35rpx;
+}
+
+.message-window>.body>.content-group .text {
+  font-size: 28rpx;
+}
+
+.message-window>.body>.btn-group {
+  width: 100%;
+  height: 160rpx;
+}
+
+.message-window>.body>.btn-group>.btn {
+  width: 374rpx;
+  height: 78rpx;
+  line-height: 78rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 36rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

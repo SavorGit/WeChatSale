@@ -30,14 +30,17 @@
 }
 
 .user-info-panel>view>view>view:first-child {
-  font-size: 34rpx;
-  font-weight: 600;
+  /* font-size: 34rpx;
+  font-weight: 600; */
+  width: 100%;
+  font-size: 48rpx;
+  font-weight: 700;
 }
 
-.user-info-panel>view>view>view:last-child {
+/* .user-info-panel>view>view>view:last-child {
   margin-top: 30rpx;
   font-size: 28rpx;
-}
+} */
 
 .user-info-panel>view>view>view:last-child>view:first-child {
   width: 216rpx;
@@ -140,9 +143,31 @@
   margin-bottom: 14rpx;
 }
 
-.evaluate-list-panel>.body>.list>.row>view>.user-info>view:last-child {
+.evaluate-list-panel>.body>.list>.row>view>.user-info>.star-group {
   width: 160rpx;
   font-size: 24rpx;
+}
+
+.evaluate-list-panel>.body>.list>.row>view>.user-info>.satisfaction {
+  width: 100%;
+  font-size: 24rpx;
+}
+
+.evaluate-list-panel>.body>.list>.row>view>.user-info>.satisfaction>.icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.evaluate-list-panel>.body>.list>.row>view>.user-info>.satisfaction>.label {
+  width: calc(100% - 45rpx);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.evaluate-list-panel>.body>.list>.row>view>.tag {
+  width: 546rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
 }
 
 .evaluate-list-panel>.body>.list>.row>view>.comment {
@@ -159,7 +184,7 @@
 
 .evaluate-list-panel>.body>.list>.row>view>.address {
   width: 100%;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   font-size: 24rpx;
 }
 
