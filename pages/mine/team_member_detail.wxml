@@ -5,6 +5,7 @@
 		<view class="flex_row_flexStart_spaceBetween">
 			<view class="flex_column_flexStart_center">
 				<view bindtap="openChangeNikenameWindow">{{nickName}}</view>
+				<!-- 20201130
 				<view class="flex_row_center star-color">
 					<view class="flex_row_center_spaceBetween">
 						<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -15,6 +16,7 @@
 					</view>
 					<view>{{userScore}}</view>
 				</view>
+				-->
 			</view>
 			<!--
 			<image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image>
@@ -47,17 +49,28 @@
 						<view class="flex_column_flexStart">
 							<view class="user-info flex_column_flexStart_flexEnd">
 								<view class="nikename">{{bean.nickName}}</view>
-								<view class="flex_row_center_spaceBetween star-color">
-									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								</view>
+								<block wx:if="{{bean.satisfaction==0}}">
+									<view class="star-group flex_row_center_spaceBetween star-color">
+										<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									</view>
+								</block>
+								<block wx:else>
+									<view class="satisfaction flex_row_center_spaceBetween">
+										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
+										<view class="label one-line-overflow theme-font5">{{bean.satisfaction_name}}</view>
+									</view>
+								</block>
 							</view>
-							<view class="comment two-line-overflow">{{bean.content}}</view>
-							<view class="datetime theme-font2">{{bean.time}}</view>
-							<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
+							<view class="tag two-line-overflow theme-font5">服务不好、环境不好</view>
+							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
+							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
+							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 						</view>
 					</view>
 
@@ -67,17 +80,28 @@
 						<view class="flex_column_flexStart">
 							<view class="user-info flex_column_flexStart_flexEnd">
 								<view class="nikename">{{bean.nickName}}</view>
-								<view class="flex_row_center_spaceBetween star-color">
-									<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-									<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-								</view>
+								<block wx:if="{{bean.satisfaction==0}}">
+									<view class="star-group flex_row_center_spaceBetween star-color">
+										<view class="fa {{bean.score >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+										<view class="fa {{bean.score >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+									</view>
+								</block>
+								<block wx:else>
+									<view class="satisfaction flex_row_center_spaceBetween">
+										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
+										<view class="label one-line-overflow theme-font5">{{bean.satisfaction_name}}</view>
+									</view>
+								</block>
 							</view>
-							<view class="comment two-line-overflow">{{bean.content}}</view>
-							<view class="datetime theme-font2">{{bean.time}}</view>
-							<view class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
+							<view class="tag two-line-overflow theme-font5">服务不好、环境不好</view>
+							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
+							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
+							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
 						</view>
 					</view>
 				</block>
@@ -119,8 +143,8 @@
 				<view>
 					<input placeholder="请输入新的昵称" name="nickname"></input>
 				</view>
-        <input class='display_hide' name="staff_openid" value="{{user_info.openid}}"> </input>
-				<button class="btn-submit theme-button-welcome" form-type="submit"    bindtap="editNickname">保存</button>
+				<input class='display_hide' name="staff_openid" value="{{user_info.openid}}"> </input>
+				<button class="btn-submit theme-button-welcome" form-type="submit" bindtap="editNickname">保存</button>
 			</view>
 		</view>
 	</form>
