@@ -163,14 +163,14 @@
 			<view class="title-bar flex_row_center_center">
 				<view class="text theme-font1">新消息</view>
 			</view>
-			<view class="option-bar flex_row_center_flexEnd">
+			<view class="option-bar flex_row_center_flexEnd" bindtap="closeComment">
 				<image class="btn close" mode="aspectFill" src="/images/icon/58525C_close.png"></image>
 			</view>
 		</view>
 		<view class="body flex_column_center">
 			<scroll-view class="content-group" scroll-y="true" scroll-with-animation="true">
-				<view class="text theme-font1">您有3条新的客人评价</view>
-				<view class="text theme-font1">您被客人打赏了1次</view>
+				<view class="text theme-font1">您有{{comment_info.comment_num}}条新的客人评价</view>
+				<view class="text theme-font1">您被客人打赏了{{comment_info.reward_num}}次</view>
 			</scroll-view>
 			<view class="btn-group flex_row_center_center" bindtap="viewComment">
 				<view class="btn lookup theme-button-red">查看</view>
