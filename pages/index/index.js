@@ -53,7 +53,6 @@ Page({
       openid = app.globalData.openid;
       //注册用户
       is_login(openid);
-      //that.isComment(openid);
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -63,7 +62,6 @@ Page({
           openid = openid;
           //注册用户
           is_login(openid);
-          //that.isComment(openid);
         }
       }
     }
@@ -701,7 +699,9 @@ Page({
 		  
 		})
     }
-    
+    if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
+      that.isComment(user_info.openid);
+    }
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   getSignBoxList:function(hotel_id,openid){
