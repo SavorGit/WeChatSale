@@ -261,7 +261,7 @@ Page({
         var showMessageWindow = false;
       }
       that.setData({comment_info:data.result,showMessageWindow:showMessageWindow})
-     })
+     },res=>{},{isShowLoading:false})
   },
   closeComment:function(e){
     this.setData({showMessageWindow:false})
@@ -697,7 +697,7 @@ Page({
 			})
 		  }
 		  
-		})
+		},res=>{},{isShowLoading:false})
     }
     if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
       that.isComment(user_info.openid);
@@ -713,7 +713,7 @@ Page({
       that.setData({
         sign_box_list : data.result
       })
-    })
+    },res=>{},{isShowLoading:false})
   },
   closeAuth: function() {
     var that = this;
