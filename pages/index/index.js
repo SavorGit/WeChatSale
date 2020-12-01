@@ -139,7 +139,7 @@ Page({
               tv_forscreen: tv_forscreen,
               room_signin: room_signin
             })
-            utils.PostRequest(api_url +'/Smallsale14/withdraw/exchangerecord',{
+            utils.PostRequest(api_v_url +'/withdraw/exchangerecord',{
               hotel_id : hotel_id
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
