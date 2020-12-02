@@ -1,5 +1,6 @@
 <!--pages/mine/team_member_detail.wxml-->
-<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true"
+	bindscrolltolower="loadMore">
 	<view class="user-info-panel flex_row_center_flexStart theme7">
 		<image class="head" src="{{avatarUrl}}" bindtap="editAvatar" data-staff_openid="{{user_info.openid}}"></image>
 		<view class="flex_row_flexStart_spaceBetween">
@@ -30,9 +31,11 @@
 			<form bindsubmit="warterScoreList">
 				<view class="search-wapper flex_row_center_spaceBetween">
 					<view class="flex_row_center_spaceBetween theme-font2">
-						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">{{start_date}}</picker>
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="1">
+							{{start_date}}</picker>
 						<label>~</label>
-						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">{{end_date}}</picker>
+						<picker mode="date" bindchange="bindDateChange" start="2019-01-01" end="2022-12-31" data-date_type="2">
+							{{end_date}}</picker>
 					</view>
 					<input class='display_hide' name="start_date" value="{{start_date}}"></input>
 					<input class='display_hide' name="end_date" value="{{end_date}}"></input>
@@ -60,17 +63,21 @@
 								</block>
 								<block wx:else>
 									<view class="satisfaction flex_row_center_spaceBetween">
-										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
-										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
-										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
 										<view class="label one-line-overflow theme-font5">{{bean.satisfaction_name}}</view>
 									</view>
 								</block>
 							</view>
 							<view class="tag two-line-overflow theme-font5">{{bean.label}}</view>
-							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
+							<view wx:if="{{bean.content!=''}}" class="comment">{{bean.content}}</view>
 							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
-							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
+							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}
+							</view>
 						</view>
 					</view>
 
@@ -91,17 +98,21 @@
 								</block>
 								<block wx:else>
 									<view class="satisfaction flex_row_center_spaceBetween">
-										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
-										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
-										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==1}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/frown_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==2}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/meh_selected.png"></image>
+										<image wx:if="{{bean.satisfaction==3}}" class="icon" mode="aspectFill"
+											src="https://oss.littlehotspot.com/WeChat/MiniProgram/images/icon/smile_selected.png"></image>
 										<view class="label one-line-overflow theme-font5">{{bean.satisfaction_name}}</view>
 									</view>
 								</block>
 							</view>
 							<view class="tag two-line-overflow theme-font5">{{bean.label}}</view>
-							<view wx:if="{{bean.content!=''}}" class="comment two-line-overflow">{{bean.content}}</view>
+							<view wx:if="{{bean.content!=''}}" class="comment">{{bean.content}}</view>
 							<view wx:if="{{bean.time!=''}}" class="datetime theme-font2">{{bean.time}}</view>
-							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}</view>
+							<view wx:if="{{bean.room_name!=''}}" class="address theme-font2">{{bean.hotel_name}}- {{bean.room_name}}
+							</view>
 						</view>
 					</view>
 				</block>
@@ -131,7 +142,8 @@
 </modal>
 -->
 <!-- 修改昵称弹窗 -->
-<modal show="{{showChangeNikenameWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{showChangeNikenameWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset'
+	title-text='' confirm-text='' cancel-text=''>
 	<form bindsubmit="editNickname">
 		<view class="change-nikename-window flex_column_center theme7">
 			<view class="title-bar flex_row_center_spaceBetween">

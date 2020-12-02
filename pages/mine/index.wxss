@@ -126,11 +126,13 @@
 }
 
 .user-info-panel>.center-2>view:last-child>view:first-child {
-  width: 216rpx;
+  width: 180rpx;
+  font-size: 24rpx;
 }
 
 .user-info-panel>.center-2>view:last-child>view:last-child {
   margin-left: 20rpx;
+  font-size: 28rpx;
 }
 
 .user-info-panel>.right-2 {

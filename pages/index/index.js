@@ -699,9 +699,9 @@ Page({
 		  
 		},res=>{},{isShowLoading:false})
     }
-    if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
-      that.isComment(user_info.openid);
-    }
+    // if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
+    //   that.isComment(user_info.openid);
+    // }
     mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   getSignBoxList:function(hotel_id,openid){

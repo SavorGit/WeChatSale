@@ -112,11 +112,9 @@
 }
 
 .evaluate-list-panel>.body>.list>.row {
-  width: 100%;
-  height: 300rpx;
-  padding-left: 60rpx;
-  padding-right: 50rpx;
-  padding-top: 32rpx;
+  width: calc(100% - 110rpx);
+  /* height: 300rpx; */
+  padding: 32rpx 50rpx 20rpx 60rpx;
 }
 
 .evaluate-list-panel>.body>.list>.row>image {
