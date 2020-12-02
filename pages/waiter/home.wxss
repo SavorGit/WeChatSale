@@ -49,6 +49,7 @@
 }
 
 .message-window>.body>.content-group .text {
+  text-align: center;
   font-size: 28rpx;
 }
 

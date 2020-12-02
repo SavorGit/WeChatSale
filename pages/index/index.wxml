@@ -173,7 +173,7 @@
 				<view class="text theme-font1">您被客人打赏了{{comment_info.reward_num}}次</view>
 			</scroll-view>
 			<view class="btn-group flex_row_center_center" bindtap="viewComment">
-				<view class="btn lookup theme-button-red">查看</view>
+				<view class="btn lookup theme-button-welcome">查看</view>
 			</view>
 		</view>
 	</view>
