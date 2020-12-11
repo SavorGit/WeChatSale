@@ -1,2 +1,58 @@
 <!--pages/reward/allot.wxml-->
-<text>pages/reward/allot.wxml</text>
+<wxs src="../../app.wxs" module="app"></wxs>
+<!--
+  -- 为员工分配收益页面
+  -->
+<view wx:if="{{app.isArray(staff_list) && staff_list.length > 0}}" class="container theme-container">
+	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true">
+		<block wx:for="{{staff_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<view class="row flex_row_center_center {{index + 1 == staff_list.length ? '' : 'line'}} theme7">
+				<view class="detail flex_column_flexStart_flexEnd">
+					<view class="info flex_row_center_flexStart theme-font1">
+						<image class="head" mode="aspectFill" src="{{bean.head}}"></image>
+						<view class="name one-line-overflow">{{bean.name}}</view>
+					</view>
+				</view>
+				<view class="right flex_row_center_flexEnd theme-font5">
+					<view class="btn dispose theme-button-welcome" data-index="{{index}}" bindlongtap="dispose">分配</view>
+				</view>
+			</view>
+		</block>
+	</scroll-view>
+</view>
+<view wx:else class="container flex_column_center_center theme-container">
+	<view class="theme-font3">暂无职员</view>
+</view>
+
+<!-- 分配收益弹窗 -->
+<modal show="{{showDisposeProfitWindow}}" width="710rpx" height='630rpx' border-radius="10rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
+	<form>
+		<view class="window dispose-profit">
+			<view class="head">
+				<view class="title-bar flex_row_center_center">
+					<view class="title theme-font1">分配</view>
+				</view>
+				<view class="option-bar flex_row_center_flexEnd">
+					<view class="btn close">X</view>
+				</view>
+			</view>
+			<view class="body">
+				<view class="staff flex_row_center_flexStart">
+					<image class="head" mode="aspectFill" src="{{staff.head}}"></image>
+					<view class="name one-line-overflow">{{staff.name}}</view>
+				</view>
+				<view class="block entry flex_column_flexStart_flexStart line">
+					<input class="input" placeholder="请输入要分配的金额"></input>
+					<view class="tip theme-font5">餐厅剩余3000元可用</view>
+				</view>
+				<view class="block entry flex_column_flexStart_flexStart">
+					<input class="input" placeholder="请输入要分配的积分"></input>
+					<view class="tip theme-font5">餐厅剩余3000积分可用</view>
+				</view>
+				<view class="block option flex_row_center_center">
+					<view class="btn ok theme-button-welcome">确定</view>
+				</view>
+			</view>
+		</view>
+	</form>
+</modal>

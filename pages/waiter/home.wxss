@@ -2,6 +2,9 @@
 @import '/pages/mine/index.wxss';
 
 
+.profit-profile-panel {
+  height: 80rpx;
+}
 
 .message-window {
   width: 100%;

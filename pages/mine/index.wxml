@@ -41,19 +41,14 @@
 		<view class="right"></view>
 	</view>
 
-	<!-- 销售面板 -->
+	<!-- 销售面板 
 	<view class="sale-panel">
 		<view class="wapper flex_row_center_spaceAround broadcast-panel">
 			<view class="shop" bindtap="saleDishes">
 				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
 				<view>我的店铺</view>
 			</view>
-			
 			<view class="order flex_row_center_spaceAround">
-				<!-- <view bindtap="gotoOrder" data-order_status="0" data-type="0">
-					<view>{{dishorder_all_num}}</view>
-					<view>全部订单</view>
-				</view> -->
 				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="3">
 					<view>
 						<view>{{dishorder_all_num}}</view>
@@ -71,8 +66,9 @@
 			</view>
 		</view>
 	</view>
+	-->
 
-	<!-- 收益概况面板 -->
+	<!-- 积分收益概况面板 -->
 	<view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
 		<view class='top theme-font2'>
 			<view class='title'>积分收益（分）</view>
@@ -80,10 +76,9 @@
 		</view>
 		<view class='info'>
 			<label class='theme-font5'>{{integral}}</label>
-			<!-- <button class='btn-exchange theme-font5' bindtap="exchange" wx:if="{{is_open_integral==1}}">兑换</button> -->
-			<!-- <button class='theme-font'>转赠</button> -->
 			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">兑换</navigator>
 		</view>
+		<!--
 		<view class="month">
 			<view class="block theme-font4">
 				<view class="title">本月预估积分收益</view>
@@ -95,6 +90,35 @@
 			</view>
 		</view>
 		<view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换</view>
+		-->
+	</view>
+
+	<!-- 餐厅收益概况面板 -->
+	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
+		<view class='top theme-font2'>
+			<view class='title'>餐厅收益</view>
+			<navigator bindtap="integralList" class='more' url="/pages/mine/integral_list">分配明细 ></navigator>
+		</view>
+		<view class="month">
+			<view class="block theme-font4">
+				<view class="title flex_row_center_spaceBetween">
+					<view>客人打赏</view>
+					<view>></view>
+				</view>
+				<view class="integral">{{month_integral}}元</view>
+			</view>
+			<view class="block theme-font4">
+				<view class="title flex_row_center_spaceBetween">
+					<view>积分奖励</view>
+					<view>></view>
+				</view>
+				<view class="integral">{{next_month_integral}}分</view>
+			</view>
+		</view>
+		<view class='info'>
+			<label class='theme-font5'> </label>
+			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">分配</navigator>
+		</view>
 	</view>
 
 	<!-- 订单列表面板 -->
@@ -105,7 +129,7 @@
 		</view>
 	</view> -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity" >
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity">
 			<view>餐厅活动</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>

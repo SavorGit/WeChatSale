@@ -1,2 +1,36 @@
 <!--pages/reward/allot_detail.wxml-->
-<text>pages/reward/allot_detail.wxml</text>
+<wxs src="../../app.wxs" module="app"></wxs>
+<!--
+  -- 为员工收益明细页面
+  -->
+<view class="container theme-container">
+	<view class="top-bar flex_row_center_flexStart theme-font1 theme7">
+		<picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
+			<label>{{integralTypeNameArr[integralTypeIndex]}}</label>
+			<label class="fa fa-caret-down" aria-hidden="true"></label>
+		</picker>
+		<picker class="date" bindchange="bindDatePickerChange" value="{{integralDateIndex}}" range="{{integralDateNameArr}}">
+			<label>{{integralDateNameArr[integralDateIndex]}}</label>
+			<label class="fa fa-caret-down" aria-hidden="true"></label>
+		</picker>
+	</view>
+	<scroll-view wx:if="{{app.isArray(profit_list) && profit_list.length > 0}}" class="scroll" scroll-y="true" scroll-with-animation="true">
+		<block wx:for="{{profit_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<view class="row flex_row_center_center {{index + 1 == profit_list.length ? '' : 'line'}} theme7">
+				<view class="left flex_column_flexStart_center">
+					<image class="head" mode="aspectFill" src="{{bean.head}}"></image>
+				</view>
+				<view class="center flex_column_flexStart_center">
+					<view class="name one-line-overflow">{{bean.name}}</view>
+					<view class="date-time one-line-overflow theme-font3">{{bean.dateTime}}</view>
+				</view>
+				<view class="right flex_column_flexStart_center">
+					<view class="profit one-line-overflow theme-font5">{{bean.profit}}</view>
+				</view>
+			</view>
+		</block>
+	</scroll-view>
+	<view wx:else class="scroll flex_column_center_center">
+		<view class="theme-font3">暂无收益</view>
+	</view>
+</view>

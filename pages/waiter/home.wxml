@@ -35,6 +35,7 @@
 			<view class='title'>积分收益（分）</view>
 			<navigator bindtap="integralList" class='more' url="/pages/mine/integral_list">收益明细 ></navigator>
 		</view>
+		<!--
 		<view class='info'>
 			<label class='theme-font5'>{{integral}}</label>
 			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">兑换</navigator>
@@ -50,6 +51,7 @@
 			</view>
 		</view>
 		<view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换</view>
+		-->
 	</view>
 
 	<!-- 订单列表面板 -->

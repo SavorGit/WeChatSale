@@ -1,11 +1,35 @@
 // pages/reward/allot_detail.js
+
+/**
+ * 为员工收益明细页面
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    statusBarHeight: getApp().globalData.statusBarHeight,
+    integralTypeNameArr: ['全部'],
+    integralTypeIndex: 0,
+    integralDateNameArr: ['2020年12月'],
+    integralDateIndex: 0,
+    profit_list: [
+      {
+        id: '001',
+        name: '张三',
+        head: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
+        dateTime: '2020.12.01  9:00',
+        profit: '+100分'
+      },
+      {
+        id: '001',
+        name: '张大',
+        head: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
+        dateTime: '2020.12.01  9:00',
+        profit: '+1元'
+      }
+    ]
   },
 
   /**

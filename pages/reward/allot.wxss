@@ -1,1 +1,172 @@
 /* pages/reward/allot.wxss */
+
+/**
+ * 为员工分配收益页面
+ */
+
+.scroll {
+  width: 100%;
+  height: calc(100% - 70rpx);
+  margin-top: 10rpx;
+}
+
+.scroll .row {
+  width: calc(100% - 60rpx);
+  height: 120rpx;
+  padding: 0 30rpx;
+}
+
+.scroll .row.line {
+  border-bottom: 1rpx solid #ededed;
+}
+
+.scroll .row>.detail {
+  width: calc(100% - 168rpx);
+  height: calc(100% - 30rpx);
+}
+
+.scroll .row>.detail>.info {
+  width: 100%;
+  height: 100%;
+  font-size: 28rpx;
+}
+
+.scroll .row>.detail>.info>.head {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.scroll .row>.detail>.info>.name {
+  width: calc(100% - 110rpx);
+  padding-left: 20rpx;
+}
+
+.scroll .row>.right {
+  width: 168rpx;
+  font-size: 48rpx;
+  text-align: right;
+}
+
+.scroll .row>.right>.btn {
+  width: 100rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* ========================================== 分配收益弹窗 ========================================== */
+.window {
+  width: 100%;
+  height: 100%;
+}
+
+.window>.head {
+  width: 100%;
+  height: 100rpx;
+}
+
+.window>.head>.title-bar {
+  width: calc(100% - 60rpx);
+  height: 80rpx;
+  margin: 10rpx 30rpx 7rpx;
+  border-bottom: 3rpx solid #BEBEBE;
+}
+
+.window>.head>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.window>.head>.option-bar {
+  width: calc(100% - 20rpx);
+  height: 80rpx;
+  padding: 10rpx;
+  margin-top: -100rpx;
+}
+
+.window>.head>.option-bar>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 3rpx solid #ededed;
+  border-radius: 50%;
+  font-size: 42rpx;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.window>.body {
+  width: 100%;
+  height: calc(100% - 100rpx);
+}
+
+.window>.body>.staff {
+  width: calc(100% - 70rpx);
+  height: 100rpx;
+  padding: 10rpx 35rpx;
+}
+
+.window>.body>.staff>.head {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.window>.body>.staff>.name {
+  width: calc(100% - 110rpx);
+  padding-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.window>.body>.block {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.window>.body>.entry {
+  width: calc(100% - 170rpx);
+  padding: 20rpx 0 10rpx;
+  margin-left: 140rpx;
+  margin-right: 30rpx;
+}
+
+.window>.body>.entry.line {
+  border-bottom: 3rpx dashed #BEBEBE;
+}
+
+.window>.body>.entry>.input {
+  width: calc(100% - 56rpx);
+  height: 34rpx;
+  padding: 5rpx 10rpx;
+  font-size: 28rpx;
+  border: 3rpx solid #BEBEBE;
+}
+
+.window>.body>.entry>.tip {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}
+
+.window>.body>.option {
+  height: 100rpx;
+}
+
+.window>.body>.option>.btn {
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
