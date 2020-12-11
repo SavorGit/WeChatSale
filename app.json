@@ -69,7 +69,9 @@
     "pages/activity/dine_add",
     "pages/activity/dine_detail",
     "pages/waiter/home",
-    "pages/waiter/signin"
+    "pages/waiter/signin",
+    "pages/reward/allot",
+    "pages/reward/allot_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
