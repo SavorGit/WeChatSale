@@ -405,10 +405,83 @@
 }
 
 .box-time-page>.set-panel>.box {
-  height: 130rpx;
+  width: 100%;
+  height: 400rpx;
+  padding: 0;
+  border: 0;
 }
 
-.box-time-page>.set-panel>.box>picker {
+.box-time-page>.set-panel>.box>.title-bar {
+  width: calc(100% - 70rpx);
+  height: 40rpx;
+  padding: 10rpx 15rpx 10rpx 55rpx;
+}
+
+.box-time-page>.set-panel>.box>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.box-time-page>.set-panel>.box>.body {
+  width: 100%;
+  height: calc(100% - 60rpx);
+}
+
+.box-time-page>.set-panel>.box>.body .choosed {
+  width: 100%;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.block {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin: 10rpx;
+  box-sizing: border-box;
+  border-radius: 5rpx;
+  vertical-align: middle;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.box {
+  border: 3rpx solid #A18668;
+  color: #A18668;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.block>view>.label {
+  font-size: 28rpx;
+  padding-right: 20rpx;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.block>view>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 48rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.add {
+  border: 3rpx dashed #A18668;
+  color: #A18668;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.add>view>.icon {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 40rpx;
+  padding-right: 20rpx;
+  border: 0;
+  margin: 0;
+}
+
+.box-time-page>.set-panel>.box>.body .choosed>.add>view>.label {
+  font-size: 28rpx;
+  padding-right: 0;
+}
+
+/* .box-time-page>.set-panel>.box>picker {
   width: 330rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -421,7 +494,7 @@
 .box-time-page>.set-panel>.box>picker image {
   width: 40rpx;
   height: 40rpx;
-}
+} */
 
 /* .choose-music-page > .set-panel .wapper > view.selected > view > image {
   background-color: #a18668;
@@ -440,3 +513,97 @@
 .choose-music-page > .space-panel {
   max-height: calc(100% - 530rpx);
 } */
+
+
+
+
+
+/* ========================================== 选择包间列表弹窗 ========================================== */
+.window {
+  width: 100%;
+  height: 100%;
+}
+
+.window>.head {
+  width: 100%;
+  height: 100rpx;
+}
+
+.window>.head>.title-bar {
+  width: calc(100% - 60rpx);
+  height: calc(100% - 20rpx);
+  margin: 10rpx 30rpx 7rpx;
+  border-bottom: 3rpx solid #BEBEBE;
+}
+
+.window>.head>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.window>.head>.option-bar {
+  width: calc(100% - 20rpx);
+  height: 80rpx;
+  padding: 10rpx;
+  margin-top: -100rpx;
+}
+
+.window>.head>.option-bar>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 3rpx solid #ededed;
+  border-radius: 50%;
+  font-size: 42rpx;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.window>.body {
+  width: 100%;
+  height: calc(100% - 240rpx);
+}
+
+.window>.body .list {
+  width: calc(100% - 20rpx);
+  padding: 20rpx 30rpx;
+}
+
+.window>.body .list>.item {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.window>.body .list>.item>label {
+  padding-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.window>.foot {
+  width: 100%;
+  height: 140rpx;
+}
+
+.window>.foot>.row {
+  width: calc(100% - 60rpx);
+  height: calc(100% - 20rpx);
+  margin: 7rpx 30rpx 10rpx;
+  border-top: 3rpx dashed #BEBEBE;
+}
+
+.window>.foot>.row>.checkbox {
+  font-size: 28rpx;
+}
+
+.window>.foot>.row>.btn {
+  width: 400rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 5rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}

@@ -237,14 +237,88 @@
 					</view>
 				</radio-group>
 			</view>
-			<view class="box flex_column_flexStart_center theme7">
-				<view>播放包间</view>
+			<view class="box flex_column_flexStart_flex_start theme7">
+				<view class="title-bar flex_row_center_flexStart">
+					<view class="title">播放包间</view>
+				</view>
+				<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
+					<view class="choosed">
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block box">
+							<view class="flex_row_center_center">
+								<view class="label">VIP 1</view>
+								<view class="btn del theme-font5">X</view>
+							</view>
+						</view>
+						<view class="block add">
+							<view class="flex_row_center_center">
+								<view class="icon">+</view>
+								<view class="label">添加包间</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+				<!--
 				<picker class="theme-font3" range="{{objectBoxArray}}" value="{{boxIndex}}" bindchange="selectRoom">
 					<view class="flex_row_center_spaceBetween">
 						<view>{{objectBoxArray[boxIndex]}}</view>
 						<image src="/images/icon/A18668_down_horn.png"></image>
 					</view>
 				</picker>
+				-->
 			</view>
 		</view>
 		<view class="page-foot flex_row_center_flexEnd theme7" style="padding-bottom:{{SystemInfo.screenBottomSpace}}px;">
@@ -255,3 +329,32 @@
 	</view>
 </form>
 <!-- 设置包间时间【第四步】开始 -->
+
+<!-- 选择包间列表弹窗 -->
+<modal show="{{showBoxListWindow}}" width="710rpx" height='650rpx' border-radius="10rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
+	<view class="window box-list">
+		<view class="head">
+			<view class="title-bar flex_row_center_center">
+				<view class="title">选择包间</view>
+			</view>
+			<view class="option-bar flex_row_center_flexEnd">
+				<view class="btn close">X</view>
+			</view>
+		</view>
+		<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
+			<checkbox-group class="list">
+				<checkbox class="item" wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<label>{{bean}}</label>
+				</checkbox>
+			</checkbox-group>
+		</scroll-view>
+		<view class="foot flex_column_flexStart_center">
+			<view class="row flex_row_center_spaceAround">
+				<view class="checkbox">
+					<checkbox>全选</checkbox>
+				</view>
+				<view class="btn ok theme-button-welcome">确定</view>
+			</view>
+		</view>
+	</view>
+</modal>
