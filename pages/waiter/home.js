@@ -17,7 +17,6 @@ Page({
     SystemInfo: app.SystemInfo,
     nickName: '匿名用户',
     integral: 0,
-    is_open_integral: 0,
     goods_manage: false,
     staff_manage: false,
     integral_manage: false,
@@ -79,18 +78,13 @@ Page({
             avatarUrl: res.data.result.avatarUrl,
             nickName: res.data.result.nickName,
             integral: res.data.result.integral,
-            is_open_integral: res.data.result.is_open_integral,
-            month_integral: res.data.result.month_integral,
-            next_month_integral: res.data.result.next_month_integral,
-            dish_num: res.data.result.dish_num,
-            dishorder_all_num: res.data.result.dishorder_all_num,
+            
             dishorder_process_num: res.data.result.dishorder_process_num,
             merchant_id: res.data.result.merchant_id,
-            shoporder_all_num: res.data.result.shoporder_all_num,
             shoporder_process_num: res.data.result.shoporder_process_num,
             //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
             //dishorder_common_num: res.data.result.dishorder_common_num,
-            is_purchase: res.data.result.is_purchase,
+  
             userScore: res.data.result.score
           })
         }
@@ -294,18 +288,9 @@ Page({
             avatarUrl: res.data.result.avatarUrl,
             nickName: res.data.result.nickName,
             integral: res.data.result.integral,
-            is_open_integral: res.data.result.is_open_integral,
-            month_integral: res.data.result.month_integral,
-            next_month_integral: res.data.result.next_month_integral,
-            dish_num: res.data.result.dish_num,
-            dishorder_all_num: res.data.result.dishorder_all_num,
             dishorder_process_num: res.data.result.dishorder_process_num,
             merchant_id: res.data.result.merchant_id,
-            shoporder_all_num: res.data.result.shoporder_all_num,
             shoporder_process_num: res.data.result.shoporder_process_num,
-            //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
-            //dishorder_common_num: res.data.result.dishorder_common_num,
-            is_purchase: res.data.result.is_purchase,
             userScore: res.data.result.score
           })
         }

@@ -29,30 +29,3 @@
 		<view class="nodata-msg full_width full_height flex_column_center_center">名下暂无员工~</view>
 	</view>
 </scroll-view>
-<!-- <view class="container theme-container">
-	<scroll-view class='full_width full_height' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-		<block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-			<view wx:if="{{index + 1 != staff_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
-				<image class="header-img" src="{{bean.avatarUrl}}"></image>
-				<view class="nickname">
-					<label class="full_width">{{bean.nickName}}</label>
-				</view>
-				<view class="option flex_row_center_spaceBetween">
-					<button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
-				</view>
-			</view>
-			<view wx:else class="row flex_row_center_spaceBetween theme7">
-				<image class="header-img" src="{{bean.avatarUrl}}"></image>
-				<view class="nickname">
-					<label class="full_width">{{bean.nickName}}</label>
-				</view>
-				<view class="option flex_row_center_spaceBetween">
-					<button class="btn-remove" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
-				</view>
-			</view>
-		</block>
-		<view wx:if="{{staff_list.length < 1}}" class="row">
-			<view class="nodata-msg full_width full_height">名下暂无员工~</view>
-		</view>
-	</scroll-view>
-</view> -->

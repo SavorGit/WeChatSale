@@ -1,4 +1,5 @@
-// pages/reward/allot_detail.js
+// pages/reward/integral_detail.js
+//积分明细
 const app = getApp()
 const utils = require('../../utils/util.js')
 var mta = require('../../utils/mta_analysis.js')
@@ -6,10 +7,6 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var page;
-/**
- * 分配明细
- */
-
 Page({
 
   /**
@@ -17,17 +14,10 @@ Page({
    */
   data: {
     statusBarHeight: getApp().globalData.statusBarHeight,
-    integralTypeObjectArr:[],
-    integralTypeNameArr:[],
-    integralTypeIndex:0,
-    
     integralDateObjectArr: [],
     integralDateNameArr: [],
     integralDateIndex: 0,
-
-    profit_list: [
-      
-    ]
+    profit_list: []
   },
 
   /**
@@ -42,56 +32,25 @@ Page({
     utils.PostRequest(api_v_url + '/user/assigntypes', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      var idate = data.result.date_list[data.result.date_key].id;
       that.setData({
-        integralTypeObjectArr:data.result.type_list,
-        integralTypeNameArr:data.result.type_name_list,
-
         integralDateObjectArr:data.result.date_list,
         integralDateNameArr:data.result.date_name_list,
         integralDateIndex: data.result.date_key,
-        idate:data.result.date_list[data.result.date_key].id,
-        type:0,
+        idate:idate,
       })
-      var idate = data.result.date_list[data.result.date_key].id;
-      that.getAllotList(idate,0,openid,page);
-
     })
-    
-
-    
+    that.getIntegralList(idate,openid,page);
   },
-  getAllotList:function(idate,type,openid,page){
+  getIntegralList:function(idate,openid,page=1){
     var that = this;
-    utils.PostRequest(api_v_url + '/user/assignrecord', {
+    utils.PostRequest(api_v_url + '/user/rewardmoneyrecord', {
+      idate:idate,
       openid: openid,
-      idate: idate,
       page:page,
-      type:type,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        profit_list:data.result.datalist
-      })
+      that.setData({profit_list:data.result.datalist})
     })
-  }, 
-  //选择类型
-  bindTypePickerChange:function(e){
-    var that = this;
-    page =1
-    //var box_list = that.data.objectCityArray;
-    var picTypeIndex = e.detail.value //切换之后城市key
-    var integralTypeIndex = that.data.integralTypeIndex; //切换之前城市key
-
-    if (picTypeIndex != integralTypeIndex) {
-      that.setData({
-        integralTypeIndex: picTypeIndex,
-      })
-      var type = that.data.integralTypeObjectArr[picTypeIndex].id;
-      that.setData({
-        type:type
-      })
-      var idate = that.data.idate;
-      that.getAllotList(idate,openid,page,type);
-    }
   },
   //选择时间
   bindDatePickerChange:function(e){
@@ -106,14 +65,13 @@ Page({
       })
       var idate = that.data.integralDateObjectArr[picDateIndex].id;
       var type = that.data.type;
-      that.getAllotList(idate,type,openid,type);
+      that.getIntegralList(idate,type,openid,type);
     }
   },
   loadMore:function(e){
     page +=1;
-    var idate = this.data.idate;
-    var type  = this.data.type;
-    this.getAllotList(idate,type,openid,page);
+    var idate = this.data.idate
+    that.getIntegralList(idate,openid,page);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,13 +1,14 @@
 <!--pages/mine/index.wxml-->
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
-	<view wx:if="{{is_wx_auth==3 && role_type==2}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+	<view wx:if="{{is_wx_auth==3 }}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
 		<view class="left-2">
 			<image class='head-img' src='{{avatarUrl}}'></image>
 		</view>
 		<view class="center-2 flex_column_flexStart_flexStart">
 			<view class='nickname'>{{nickName}}</view>
-			<view class="flex_row_center" bindtap="gotoWaiterDetail">
+			<view class="flex_row_center"  bindtap="{{role_type==1?'hotelComment':'gotoWaiterDetail'}}" >
+			
 				<view class="flex_row_center_spaceBetween star-color">
 					<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 					<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -22,16 +23,7 @@
 			<view class="fa fa-cog" aria-hidden="true"></view>
 		</view>
 	</view>
-	<view wx:if="{{is_wx_auth==3 && role_type==1}}" class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
-		<view class="left"></view>
-		<view class="center flex_column_center_center">
-			<image class='head-img' src='{{avatarUrl}}'></image>
-			<view class='nickname'>{{nickName}}</view>
-		</view>
-		<view class="right flex_row_flexStart_flexEnd" bindtap="gotoSetting">
-			<view class="fa fa-cog" aria-hidden="true"></view>
-		</view>
-	</view>
+	
 	<view wx:if="{{is_wx_auth !=3}}" class='user-info-panel full_width flex_row_center_center theme7'>
 		<view class="left"></view>
 		<view class="center flex_column_center_center">
@@ -41,32 +33,7 @@
 		<view class="right"></view>
 	</view>
 
-	<!-- 销售面板 
-	<view class="sale-panel">
-		<view class="wapper flex_row_center_spaceAround broadcast-panel">
-			<view class="shop" bindtap="saleDishes">
-				<view class="fa fa-coffee fa-lg" aria-hidden="true"></view>
-				<view>我的店铺</view>
-			</view>
-			<view class="order flex_row_center_spaceAround">
-				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="3">
-					<view>
-						<view>{{dishorder_all_num}}</view>
-						<view class="marker theme-button-add" wx:if="{{dishorder_process_num>0}}">{{dishorder_process_num}}</view>
-					</view>
-					<view>外卖订单</view>
-				</view>
-				<view class="flex_column_center_center" bindtap="gotoOrder" data-order_status="0" data-type="5">
-					<view>
-						<view>{{shoporder_all_num}}</view>
-						<view class="marker theme-button-add" wx:if="{{shoporder_process_num>0}}">{{shoporder_process_num}}</view>
-					</view>
-					<view>商城订单</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	-->
+	
 
 	<!-- 积分收益概况面板 -->
 	<view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
@@ -78,56 +45,38 @@
 			<label class='theme-font5'>{{integral}}</label>
 			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">兑换</navigator>
 		</view>
-		<!--
-		<view class="month">
-			<view class="block theme-font4">
-				<view class="title">本月预估积分收益</view>
-				<view class="integral">{{month_integral}}</view>
-			</view>
-			<view class="block theme-font4">
-				<view class="title">下月预估积分收益</view>
-				<view class="integral">{{next_month_integral}}</view>
-			</view>
-		</view>
-		<view class="integral-tip theme-font3">每月30日结算上个月的订单收益，结算即可兑换</view>
-		-->
+		
 	</view>
 
 	<!-- 餐厅收益概况面板 -->
-	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
+	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && role_type==1}}">
 		<view class='top theme-font2'>
 			<view class='title'>餐厅收益</view>
-			<navigator bindtap="integralList" class='more' url="/pages/mine/integral_list">分配明细 ></navigator>
+			<navigator bindtap="integralList" class='more' url="/pages/reward/allot_detail?merchant_id={{merchant_id}}">分配明细 ></navigator>
 		</view>
 		<view class="month">
-			<view class="block theme-font4">
+			<view class="block theme-font4" bindtap="gotoPayDetail">
 				<view class="title flex_row_center_spaceBetween">
 					<view>客人打赏</view>
 					<view>></view>
 				</view>
-				<view class="integral">{{month_integral}}元</view>
+				<view class="integral">{{reward_money}}元</view>
 			</view>
-			<view class="block theme-font4">
+			<view class="block theme-font4" bindtap="gotoIntegralDetail">
 				<view class="title flex_row_center_spaceBetween">
 					<view>积分奖励</view>
 					<view>></view>
 				</view>
-				<view class="integral">{{next_month_integral}}分</view>
+				<view class="integral">{{reward_integral}}分</view>
 			</view>
 		</view>
 		<view class='info'>
 			<label class='theme-font5'> </label>
-			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">分配</navigator>
+			<navigator  class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}&reward_integral={{reward_integral}}&reward_money={{reward_money}}">分配</navigator>
 		</view>
 	</view>
 
-	<!-- 订单列表面板 -->
-	<!-- <view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoOrder" data-order_status="0" data-type="5">
-		<view class="full_width full_height flex_row_center_spaceBetween">
-			<view>订单列表</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
-		</view>
-	</view> -->
+	
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity">
 			<view>餐厅活动</view>
@@ -150,7 +99,7 @@
 		</view>
 	</view>
 	<!-- 餐厅评价面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{role_type==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
 			<view>餐厅评价</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
@@ -178,40 +127,7 @@
 			</view>
 		</view>
 	</view>
-	<!-- <view class="team-members-panel full_width theme7" wx:if="{{role_type==1 && staff_manage==true}}">
-		<view class='title theme-font2'>
-			<label>我的员工</label>
-			<label wx:if="{{staff_list.length>0}}">
-				<navigator url="/pages/mine/team_members">更多...</navigator>
-			</label>
-		</view>
-		<view class="list">
-			<view class="cell add" bindtap="addStaff">
-				<label class="fa fa-plus"></label>
-			</view>
-			<view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-				<image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
-			</view>
-		</view>
-	</view> -->
-
-	<!-- 收益详情面板 
-  <view class='profit-details-panel full_width theme7'>
-    <view class='title theme-font2'>收益明细</view>
-    <view class='row' wx:for="{{integral_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-      <view class='record'>
-        <view class='cause full_width'>
-          <view class='where'>{{bean.room_name}}</view>
-          <view class='clause'>{{bean.content}}</view>
-        </view>
-        <view class='date-time full_width theme-font3'>{{bean.add_time}}</view>
-      </view>
-      <view class='profit theme-font5'>{{bean.integral}}</view>
-    </view>
-    <view wx:if="{{integral_list.length < 1}}" class='row'>
-      <view class="nodata-msg full_width full_height">暂无收益明细~</view>
-    </view>
-  </view>-->
+	
 </scroll-view>
 
 <!-- 添加员工页面 -->
@@ -245,10 +161,7 @@
 				<!-- <text selectable='true'>{{userInfo.select_hotel_id}} --- {{userInfo.select_hotel_name}}</text> -->
 				<text selectable='true'>{{userInfo.select_hotel_name}}</text>
 			</view>
-			<!-- <view>
-        <label>微信标识 : </label>
-        <text selectable='true'>{{userInfo.openid}}</text>
-      </view> -->
+			
 		</view>
 	</view>
 </modal>

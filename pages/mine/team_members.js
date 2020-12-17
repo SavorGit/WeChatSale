@@ -1,6 +1,7 @@
 // pages/mine/team_members.js
 const app = getApp()
 var mta = require('../../utils/mta_analysis.js')
+const utils = require('../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -23,58 +24,25 @@ Page({
     var that = this;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     openid = userinfo.openid;
-    wx.request({
-      url: api_v_url +'/user/employeelist',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: userinfo.openid,
-        page:1,
-        pagesize:20,
-      },
-      success:function(res){
-        that.setData({
-          staff_list: res.data.result.datalist
-        })
-      }
+    this.getEmployeeList(openid,1)
+  },
+  getEmployeeList:function(openid,page){
+    var that = this;
+    utils.PostRequest(api_v_url + '/user/employeelist', {
+      openid: openid,
+      page:page,
+      pagesize:20,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        staff_list: data.result.datalist
+      })
     })
-    
   },
   loadMore: function (res) {
-    var that = this;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     page = page + 1;
-    wx.showLoading({
-      title: '加载中，请稍后',
-    })
-    wx.request({
-      url: api_v_url + '/user/employeelist',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: userinfo.openid,
-        page: page,
-        pagesize: 20,
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            staff_list: res.data.result.datalist
-          })
-          wx.hideLoading()
-        }
-      }
-    })
-    setTimeout(function () {
-      wx.hideLoading()
-      wx.showToast({
-        title: '加载失败，请重试',
-        icon: 'none',
-        duration: 2000,
-      })
-    }, 5000)
+    this.getEmployeeList(userinfo.openid,page)
+    
   },
   removeStaff:function(e){
     var that  =  this;

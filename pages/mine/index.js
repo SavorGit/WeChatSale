@@ -1,10 +1,9 @@
 // pages/mine/index.js
 const app = getApp()
+const utils = require('../../utils/util.js')
 var mta = require('../../utils/mta_analysis.js')
-var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
-var box_mac;
 var openid;
 var page = 1;
 Page({
@@ -16,7 +15,6 @@ Page({
     SystemInfo: app.SystemInfo,
     nickName: '匿名用户',
     integral: 0,
-    is_open_integral: 0,
     goods_manage: false,
     staff_manage: false,
     integral_manage: false,
@@ -62,58 +60,42 @@ Page({
       role_id: user_info.role_id,
       config_info:app.globalData.config_info
     })
-    wx.request({
-      url: api_v_url + '/user/center',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            avatarUrl: res.data.result.avatarUrl,
-            nickName: res.data.result.nickName,
-            integral: res.data.result.integral,
-            is_open_integral: res.data.result.is_open_integral,
-            month_integral: res.data.result.month_integral,
-            next_month_integral: res.data.result.next_month_integral,
-            dish_num: res.data.result.dish_num,
-            dishorder_all_num: res.data.result.dishorder_all_num,
-            dishorder_process_num: res.data.result.dishorder_process_num,
-            merchant_id: res.data.result.merchant_id,
-            shoporder_all_num: res.data.result.shoporder_all_num,
-            shoporder_process_num: res.data.result.shoporder_process_num,
-            //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
-            //dishorder_common_num: res.data.result.dishorder_common_num,
-            is_purchase: res.data.result.is_purchase,
-            userScore: res.data.result.score
-          })
-        }
-      }
-    })
+    
 
-    //我的员工
-    wx.request({
-      url: api_v_url + '/user/employeelist',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
+    
+    
+
+  },
+  //我的员工
+  getMyStaffList:function(openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/user/employeelist', {
+      openid: openid,
         page: 1,
         pagesize: 5
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            staff_list: res.data.result.datalist
-          })
-        }
-      }
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        staff_list: data.result.datalist
+      })
     })
-
+  },
+  getUserCenter:function(openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/user/center', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        avatarUrl: data.result.avatarUrl,
+        nickName: data.result.nickName,
+        integral: data.result.integral,
+        dishorder_process_num: data.result.dishorder_process_num,
+        merchant_id:data.result.merchant_id,
+        shoporder_process_num: data.result.shoporder_process_num,
+        userScore: data.result.score,
+        reward_integral:data.result.reward_integral,
+        reward_money:data.result.reward_money
+      })
+    })
   },
   
   loadMore: function (res) {
@@ -446,42 +428,12 @@ Page({
         }
       }
     })
-    wx.request({
-      url: api_v_url + '/user/center',
-      header: {
-        'content-type': 'application/json'
-      },
-      data: {
-        openid: openid,
-      },
-      success: function (res) {
-        if (res.data.code == 10000) {
-          that.setData({
-            avatarUrl: res.data.result.avatarUrl,
-            nickName: res.data.result.nickName,
-            integral: res.data.result.integral,
-            is_open_integral: res.data.result.is_open_integral,
-            month_integral: res.data.result.month_integral,
-            next_month_integral: res.data.result.next_month_integral,
-            dish_num: res.data.result.dish_num,
-            dishorder_all_num: res.data.result.dishorder_all_num,
-            dishorder_process_num: res.data.result.dishorder_process_num,
-            merchant_id: res.data.result.merchant_id,
-            shoporder_all_num: res.data.result.shoporder_all_num,
-            shoporder_process_num: res.data.result.shoporder_process_num,
-            //dishorder_purchase_num: res.data.result.dishorder_purchase_num,
-            //dishorder_common_num: res.data.result.dishorder_common_num,
-            is_purchase: res.data.result.is_purchase,
-            userScore: res.data.result.score
-          })
-        }
-      }
-    })
+    that.getUserCenter(openid)
+    that.getMyStaffList(openid);
     //数据埋点-进入个人信息页面
     mta.Event.stat('showUserIndex', {
       'openid': user_info.openid
     })
-    this.onLoad()
   },
   closeAuth: function () {
     var that = this;
@@ -727,6 +679,18 @@ Page({
     }
     wx.navigateTo({
       url: '/pages/activity/dine_list?hotel_id='+hotel_id+'&openid='+openid,
+    })
+  },
+  //客人打赏详情
+  gotoPayDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/reward/pay_detail',
+    })
+  },
+  //积分奖励详情
+  gotoIntegralDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/reward/integral_detail',
     })
   }
 })

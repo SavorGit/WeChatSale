@@ -14,23 +14,23 @@
 			<label class="fa fa-caret-down" aria-hidden="true"></label>
 		</picker>
 	</view>
-	<scroll-view wx:if="{{app.isArray(profit_list) && profit_list.length > 0}}" class="scroll" scroll-y="true" scroll-with-animation="true">
+	<scroll-view wx:if="{{app.isArray(profit_list) && profit_list.length > 0}}" class="scroll" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 		<block wx:for="{{profit_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 			<view class="row flex_row_center_center {{index + 1 == profit_list.length ? '' : 'line'}} theme7">
 				<view class="left flex_column_flexStart_center">
-					<image class="head" mode="aspectFill" src="{{bean.head}}"></image>
+					<image class="head" mode="aspectFill" src="{{bean.avatarUrl}}"></image>
 				</view>
 				<view class="center flex_column_flexStart_center">
-					<view class="name one-line-overflow">{{bean.name}}</view>
-					<view class="date-time one-line-overflow theme-font3">{{bean.dateTime}}</view>
+					<view class="name one-line-overflow">{{bean.nickName}}</view>
+					<view class="date-time one-line-overflow theme-font3">{{bean.add_time}}</view>
 				</view>
 				<view class="right flex_column_flexStart_center">
-					<view class="profit one-line-overflow theme-font5">{{bean.profit}}</view>
+					<view class="profit one-line-overflow theme-font5">{{bean.integral}}</view>
 				</view>
 			</view>
 		</block>
 	</scroll-view>
 	<view wx:else class="scroll flex_column_center_center">
-		<view class="theme-font3">暂无收益</view>
+		<view class="theme-font3">暂无分配明细</view>
 	</view>
 </view>

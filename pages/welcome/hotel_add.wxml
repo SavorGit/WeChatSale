@@ -243,67 +243,16 @@
 				</view>
 				<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
 					<view class="choosed">
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
+						<block wx:for="{{box_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+							<view class="block box" wx:if="{{bean.is_select==true}}">
+								<view class="flex_row_center_center">
+									<view class="label">{{bean.name}}</view>
+									<view class="btn del theme-font5" bindtap="deleteRoom" data-keys="{{index}}">X</view>
+								</view>
 							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block box">
-							<view class="flex_row_center_center">
-								<view class="label">VIP 1</view>
-								<view class="btn del theme-font5">X</view>
-							</view>
-						</view>
-						<view class="block add">
+						</block>
+						
+						<view class="block add" bindtap="openBoxWind" data-open_type="1">
 							<view class="flex_row_center_center">
 								<view class="icon">+</view>
 								<view class="label">添加包间</view>
@@ -332,28 +281,33 @@
 
 <!-- 选择包间列表弹窗 -->
 <modal show="{{showBoxListWindow}}" width="710rpx" height='650rpx' border-radius="10rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
+	
 	<view class="window box-list">
 		<view class="head">
 			<view class="title-bar flex_row_center_center">
 				<view class="title">选择包间</view>
-			</view>
-			<view class="option-bar flex_row_center_flexEnd">
+			</view> 
+			<view class="option-bar flex_row_center_flexEnd" bindtap="openBoxWind" data-open_type="2">
 				<view class="btn close">X</view>
 			</view>
 		</view>
 		<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
-			<checkbox-group class="list">
-				<checkbox class="item" wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-					<label>{{bean}}</label>
-				</checkbox>
+			<checkbox-group class="list" bindchange="selectMultRoom">
+				<block wx:for="{{tmp_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+					<checkbox class="item"  value="{{bean.id}}" checked="{{bean.is_select}}">
+						<label>{{bean.name}}</label>
+					</checkbox>
+				</block>
 			</checkbox-group>
 		</scroll-view>
 		<view class="foot flex_column_flexStart_center">
 			<view class="row flex_row_center_spaceAround">
 				<view class="checkbox">
-					<checkbox>全选</checkbox>
+					<checkbox-group bindchange="selectAllRoom">
+						<checkbox checked="{{is_all_selected==1?true:false}}" value="1">全选</checkbox>
+					</checkbox-group>
 				</view>
-				<view class="btn ok theme-button-welcome">确定</view>
+				<view class="btn ok theme-button-welcome" bindtap="confirmSelectMultRoom">确定</view>
 			</view>
 		</view>
 	</view>

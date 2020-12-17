@@ -74,6 +74,7 @@ Page({
     boxIndex: 0,
     start_date: app.getNowFormatDate(),
     wordtype_index: 0,
+    is_all_selected :0,
   },
 
   /**
@@ -404,7 +405,19 @@ Page({
       var play_type = base_info.play_info.play_type;
       var play_date = base_info.play_info.play_date;
       var timing = base_info.play_info.timing;
-      var play_box_mac = base_info.play_info.box_mac;
+      //var play_box_mac = base_info.play_info.box_mac;
+
+      var box_list = that.data.box_list;
+      var is_all_selected = that.data.is_all_selected;
+      var play_box_mac = '';
+      var space = '';
+      for(let i in box_list){
+        if(box_list[i].is_select==true){
+          play_box_mac +=space+box_list[i].box_mac;
+          space = ',';
+        }
+      }
+      console.log(is_all_selected);
       console.log(play_box_mac);
       if (play_type == 2) { //1、立即播放 2、定时播放
         if (play_date == '') {
@@ -450,7 +463,8 @@ Page({
               timing: timing,
               wordsize_id: base_info.word_size_info.word_size_id,
               hotel_id: hotel_id,
-              font_id: base_info.word_type.type
+              font_id: base_info.word_type.type,
+              is_allbox:is_all_selected
             }, (data, headers, cookies, errMsg, statusCode) => {
               var forscreen_id = (new Date()).valueOf();
               
@@ -763,6 +777,79 @@ Page({
       boxIndex: boxIndex,
       base_info: base_info,
     })
+  },
+  /**
+   * 打开选择播放包间弹窗
+   */
+  openBoxWind:function(e){
+    var that = this;
+    console.log(e);
+    var open_type = e.currentTarget.dataset.open_type;
+    if(open_type==1){
+      var box_list = this.data.box_list;
+      that.setData({showBoxListWindow:true,tmp_box_list:box_list})
+    }else {
+      that.setData({showBoxListWindow:false})
+    }
+    
+  },
+  selectMultRoom:function(e){
+    console.log(e);
+    var select_arr = e.detail.value;
+    var tmp_box_list = this.data.tmp_box_list;
+    var is_all_selected = this.data.is_all_selected;
+    for(let i in tmp_box_list){
+      tmp_box_list[i].is_select = false;
+      for(let j in select_arr){
+        if(select_arr[j]== tmp_box_list[i].id){
+          tmp_box_list[i].is_select = true;
+          
+        }
+      }
+    }
+    var is_all_selected = 0;
+    if(select_arr.length==tmp_box_list.length){
+      is_all_selected = 1;
+    }
+    console.log(is_all_selected)
+    this.setData({
+      tmp_box_list:tmp_box_list,
+      is_all_selected:is_all_selected
+    })
+  },
+  //全选、反选包间
+  selectAllRoom:function(e){
+    var tmp_box_list = this.data.tmp_box_list;
+    var all_arr = e.detail.value;
+    var is_all_selected= 0;
+    if(all_arr.length>0){
+      is_all_selected=  1;
+      for(let i in tmp_box_list){
+        tmp_box_list[i].is_select = true;
+      }
+    }else {
+      is_all_selected = 0;
+      for(let i in tmp_box_list){
+        tmp_box_list[i].is_select = false;
+      }
+    }
+    this.setData({is_all_selected:is_all_selected,tmp_box_list:tmp_box_list})
+  },
+  //删除某个选中包间
+  deleteRoom:function(e){
+    var that = this;
+    var box_list = that.data.box_list;
+    var keys = e.currentTarget.dataset.keys;
+    
+    box_list[keys].is_select = false;
+    that.setData({box_list:box_list,is_all_selected:0})
+    
+  },
+  //选择包间点击确定
+  confirmSelectMultRoom:function(e){
+    var tmp_box_list = this.data.tmp_box_list;
+    console.log(tmp_box_list)
+    this.setData({box_list:tmp_box_list,showBoxListWindow:false})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,12 @@
 // pages/reward/allot.js
-
+const app = getApp()
+const utils = require('../../utils/util.js')
+var mta = require('../../utils/mta_analysis.js')
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid ;
+var hotel_id;
+var page;
 /**
  * 为员工分配收益页面
  */
@@ -10,32 +17,140 @@ Page({
    */
   data: {
     statusBarHeight: getApp().globalData.statusBarHeight,
-    staff_list: [
-      {
-        id: '001',
-        name: '张三',
-        head: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg'
-      },
-      {
-        id: '001',
-        name: '张大',
-        head: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg'
-      }
-    ],
-    staff: {
-      id: '001',
-      name: '张大',
-      head: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg'
-    }
+    staff_list: [],
+    showDisposeProfitWindow:false,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ showDisposeProfitWindow: true });
-  },
 
+
+
+    wx.hideShareMenu();
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    hotel_id = user_info.hotel_id;
+    page = 1;
+    var reward_integral = options.reward_integral;
+    var reward_money = options.reward_money
+    that.setData({reward_integral:reward_integral,reward_money:reward_money})
+    that.getStaffList(openid,hotel_id);
+    that.getAssigninfo(openid);
+
+  },
+  /**
+   * 获取可分配的金额和积分
+   */
+  getAssigninfo:function(openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/staff/getAssigninfo', {
+      openid: openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({reward_money:data.result.money,reward_integral:data.result.integral})
+    })
+  },
+  /**
+   * 获取酒楼员工列表
+   */
+  getStaffList:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/staff/stafflist', {
+      openid: openid,
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({
+        staff_list : data.result.datalist
+      })
+    })
+  },
+  /**
+   * 分配窗口打开/关闭
+   */
+  openAllotWind(e){
+    console.log(e);
+    var that = this;
+    var open_type = e.target.dataset.open_type;
+    if(open_type==1){//打开分派弹窗
+      var staff_list = that.data.staff_list;
+      var index = e.target.dataset.index;
+      var staff_info = staff_list[index];
+      that.setData({
+        showDisposeProfitWindow:true,
+        staff_info:staff_info
+      })
+    }else{//关闭分配弹窗
+      that.setData({
+        showDisposeProfitWindow:false,
+      })
+    }
+    
+    
+  },
+  /**
+   * 分配金额以及积分
+   */
+  allotReward:function(e){
+    console.log(e)
+    var that = this;
+    var staff_openid = e.detail.value.staff_openid;
+    var allot_reward_money = e.detail.value.allot_reward_money;
+    var allot_reward_integral = e.detail.value.allot_reward_integral;
+
+    var reward_money = this.data.reward_money;
+    var reward_integral = this.data.reward_integral;
+
+    if(allot_reward_money!=''){
+      if(!app.isInteger(allot_reward_money)){
+        app.showToast('金额请输入整数');
+        return false;
+      }
+      if(allot_reward_money>reward_money){
+        app.showToast('输入金额不能大于可分配金额');
+        return false;
+      }
+      
+    }
+    if( allot_reward_integral!=''){
+      if(!app.isInteger(allot_reward_integral)){
+        app.showToast('积分请输入整数');
+        return false;
+      }
+      if(allot_reward_integral>reward_integral){
+        app.showToast('输入积分不可大于可分配积分');
+        return false;
+      }
+    }
+    if(allot_reward_money=='' && allot_reward_integral==''){
+      app.showToast('请填写金额或者积分');
+      return false;
+    }
+    wx.showModal({
+      title: '确定要完成分配吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/staff/assignMoney', {
+            openid: openid,
+            staff_openid:staff_openid,
+            money:allot_reward_money,
+            integral:allot_reward_integral
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            app.showToast('分配成功');
+            that.setData({
+              showDisposeProfitWindow:false,
+              reward_integral:data.result.integral ,
+              reward_money:data.result.money
+            })
+          })
+        }
+      }
+    })
+    
+  },
+ 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

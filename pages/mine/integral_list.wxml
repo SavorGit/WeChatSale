@@ -12,7 +12,7 @@
     </picker>
     <!-- <view class="integral theme-font5">获得1234积分</view> -->
   </view>
-  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}">
+  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}" bindscrolltolower="loadMore">
     <block wx:for="{{integral_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view class="{{index + 1 == integral_list.length ? 'row theme7' : 'row line theme7'}}">
         <view class="detail">

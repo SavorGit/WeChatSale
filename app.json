@@ -71,7 +71,10 @@
     "pages/waiter/home",
     "pages/waiter/signin",
     "pages/reward/allot",
-    "pages/reward/allot_detail"
+    "pages/reward/allot_detail",
+    "pages/reward/pay_detail",
+    "pages/reward/integral_detail"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

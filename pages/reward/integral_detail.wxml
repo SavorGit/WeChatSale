@@ -1,0 +1,33 @@
+<!--pages/reward/allot_detail.wxml-->
+<wxs src="../../app.wxs" module="app"></wxs>
+<!--
+  -- 为员工收益明细页面
+  -->
+<view class="container theme-container">
+	<view class="top-bar flex_row_center_flexStart theme-font1 theme7">
+		
+		<picker class="date" bindchange="bindDatePickerChange" value="{{integralDateIndex}}" range="{{integralDateNameArr}}">
+			<label>{{integralDateNameArr[integralDateIndex]}}</label>
+			<label class="fa fa-caret-down" aria-hidden="true"></label>
+		</picker>
+	</view>
+	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}" bindscrolltolower="loadMore">
+    <block wx:for="{{profile_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+      <view class="{{index + 1 == integral_list.length ? 'row theme7' : 'row line theme7'}}">
+        <view class="detail">
+          <view class="info theme-font1">
+            <view class="room">{{bean.room_name}}</view>
+            
+            <view class="cause">{{bean.content}}</view>
+          </view>
+          <view class="dateTime theme-font3">{{bean.add_time}}</view>
+        </view>
+        
+        <view  class="integral theme-font5" style="font-size:28rpx;">{{bean.money}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<view wx:if="{{profile_list.length == 0}}" class="container theme-container" style="justify-content:center;">
+  <view class="theme-font3">暂无积分奖励</view>
+</view>

@@ -67,7 +67,7 @@ Page({
     }
 
     function is_login(openid) {
-
+      console.log('dddddddddddddd')
       wx.request({
         url: api_v_url + '/User/isRegister',
         header: {
@@ -316,37 +316,12 @@ Page({
           duration: 2000
         });
       } else {
-        wx.request({
-          url: api_v_url + '/user/checkuser',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: "POST",
-          data: {
-            mobile: mobile,
-            openid: user_info.openid
-          },
-          success: function(res) {
-            if (res.data.code == 10000) {
-              wx.navigateTo({
-                url: '/pages/launch/picture/index',
-              })
-            } else {
-              wx.showToast({
-                title: '邀请码已失效',
-                icon: 'none',
-                duration: 2000
-              });
-              wx.removeStorageSync(cache_key + "userinfo");
-              wx.navigateTo({
-                url: '/pages/user/login',
-              })
-            }
-          },complete:function(res){
-            //数据埋点-点击图片上电视
-            mta.Event.stat('clickForImg', { 'openid': user_info.openid })
-          }
+        wx.navigateTo({
+          url: '/pages/launch/picture/index',
         })
+        //数据埋点-点击图片上电视
+        mta.Event.stat('clickForImg', { 'openid': user_info.openid })
+        
       }
     }
   },
@@ -368,37 +343,13 @@ Page({
           duration: 2000
         });
       } else {
-        wx.request({
-          url: api_v_url + '/user/checkuser',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: "POST",
-          data: {
-            mobile: mobile,
-            openid: user_info.openid,
-          },
-          success: function(res) {
-            if (res.data.code == 10000) {
-              wx.navigateTo({
-                url: '/pages/launch/video/index',
-              })
-            } else {
-              wx.showToast({
-                title: '邀请码已失效',
-                icon: 'none',
-                duration: 2000
-              });
-              wx.removeStorageSync(cache_key + "userinfo");
-              wx.navigateTo({
-                url: '/pages/user/login',
-              })
-            }
-          },complete:function(res){
-            //数据埋点-点击视频上电视
-            mta.Event.stat('clickForVideo', { 'openid': user_info.openid })
-          }
+
+        wx.navigateTo({
+          url: '/pages/launch/video/index',
         })
+        //数据埋点-点击视频上电视
+        mta.Event.stat('clickForVideo', { 'openid': user_info.openid })
+        
       }
     }
 
