@@ -35,9 +35,9 @@ Page({
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     page = 1;
-    var reward_integral = options.reward_integral;
+    /*var reward_integral = options.reward_integral;
     var reward_money = options.reward_money
-    that.setData({reward_integral:reward_integral,reward_money:reward_money})
+    that.setData({reward_integral:reward_integral,reward_money:reward_money})*/
     that.getStaffList(openid,hotel_id);
     that.getAssigninfo(openid);
 
@@ -71,7 +71,6 @@ Page({
    * 分配窗口打开/关闭
    */
   openAllotWind(e){
-    console.log(e);
     var that = this;
     var open_type = e.target.dataset.open_type;
     if(open_type==1){//打开分派弹窗
@@ -80,7 +79,9 @@ Page({
       var staff_info = staff_list[index];
       that.setData({
         showDisposeProfitWindow:true,
-        staff_info:staff_info
+        staff_info:staff_info,
+        input_reward_integral:'',
+        input_reward_money:'',
       })
     }else{//关闭分配弹窗
       that.setData({
@@ -94,9 +95,8 @@ Page({
    * 分配金额以及积分
    */
   allotReward:function(e){
-    console.log(e)
     var that = this;
-    var staff_openid = e.detail.value.staff_openid;
+    var staff_id = e.detail.value.staff_id;
     var allot_reward_money = e.detail.value.allot_reward_money;
     var allot_reward_integral = e.detail.value.allot_reward_integral;
 
@@ -120,7 +120,7 @@ Page({
         return false;
       }
       if(allot_reward_integral>reward_integral){
-        app.showToast('输入积分不可大于可分配积分');
+        app.showToast('输入积分不能大于可分配积分');
         return false;
       }
     }
@@ -134,7 +134,7 @@ Page({
         if (res.confirm) {
           utils.PostRequest(api_v_url + '/staff/assignMoney', {
             openid: openid,
-            staff_openid:staff_openid,
+            staff_id:staff_id,
             money:allot_reward_money,
             integral:allot_reward_integral
           }, (data, headers, cookies, errMsg, statusCode) => {

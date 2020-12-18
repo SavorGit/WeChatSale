@@ -72,7 +72,7 @@
 		</view>
 		<view class='info'>
 			<label class='theme-font5'> </label>
-			<navigator  class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}&reward_integral={{reward_integral}}&reward_money={{reward_money}}">分配</navigator>
+			<navigator  class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}">分配</navigator>
 		</view>
 	</view>
 

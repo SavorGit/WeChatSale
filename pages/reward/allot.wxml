@@ -42,14 +42,14 @@
 					<view class="name one-line-overflow">{{staff_info.nickName}}</view>
 				</view>
 				<view class="block entry flex_column_flexStart_flexStart line">
-					<input class="input" placeholder="请输入要分配的金额" name="allot_reward_money" type="number" disabled="{{reward_money>0?false:true}}"></input>
+					<input class="input" placeholder="请输入要分配的金额" name="allot_reward_money" type="number" disabled="{{reward_money>0?false:true}}" value="{{input_reward_money}}" maxlength='5'></input>
 					<view class="tip theme-font5">餐厅剩余{{reward_money}}元可用</view>
 				</view>
 				<view class="block entry flex_column_flexStart_flexStart">
-					<input class="input" placeholder="请输入要分配的积分" name="allot_reward_integral" type="number" disabled="{{reward_integral>0?false:true}}"></input>
+					<input class="input" placeholder="请输入要分配的积分" name="allot_reward_integral" type="number" disabled="{{reward_integral>0?false:true}}" value="{{input_reward_integral}}" maxlength='5'>></input>
 					<view class="tip theme-font5">餐厅剩余{{reward_integral}}积分可用</view>
 				</view>
-				<input class='display_hide' name="staff_info" value="{{staff_info}}" ></input>
+				<input class='display_hide' name="staff_id" value="{{staff_info.staff_id}}" ></input>
 				<view class="block option flex_row_center_center">
 					<button class="btn ok theme-button-welcome" form-type="submit">确定</button>
 				</view>

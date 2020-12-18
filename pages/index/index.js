@@ -67,7 +67,6 @@ Page({
     }
 
     function is_login(openid) {
-      console.log('dddddddddddddd')
       wx.request({
         url: api_v_url + '/User/isRegister',
         header: {
@@ -433,7 +432,6 @@ Page({
           duration: 2000
         });
       } else {
-        console.log('dddd');
         that.setData({
           showMe: true,
         })

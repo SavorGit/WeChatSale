@@ -90,7 +90,7 @@ Page({
         type:type
       })
       var idate = that.data.idate;
-      that.getAllotList(idate,openid,page,type);
+      that.getAllotList(idate,type,openid,page);
     }
   },
   //选择时间
@@ -106,7 +106,7 @@ Page({
       })
       var idate = that.data.integralDateObjectArr[picDateIndex].id;
       var type = that.data.type;
-      that.getAllotList(idate,type,openid,type);
+      that.getAllotList(idate,type,openid,page);
     }
   },
   loadMore:function(e){

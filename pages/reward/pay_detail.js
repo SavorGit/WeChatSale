@@ -39,8 +39,9 @@ Page({
         integralDateIndex: data.result.date_key,
         idate:idate,
       })
+      that.getIntegralList(idate,openid,page);
     })
-    that.getIntegralList(idate,openid,page);
+    
   },
   getIntegralList:function(idate,openid,page=1){
     var that = this;
@@ -49,7 +50,7 @@ Page({
       openid: openid,
       page:page,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({profit_list:data.result.datalist})
+      that.setData({profile_list:data.result.datalist})
     })
   },
   //选择时间
@@ -64,14 +65,13 @@ Page({
         integralDateIndex: picDateIndex,
       })
       var idate = that.data.integralDateObjectArr[picDateIndex].id;
-      var type = that.data.type;
-      that.getIntegralList(idate,type,openid,type);
+      that.getIntegralList(idate,openid,page);
     }
   },
   loadMore:function(e){
     page +=1;
     var idate = this.data.idate
-    that.getIntegralList(idate,openid,page);
+    this.getIntegralList(idate,openid,page);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

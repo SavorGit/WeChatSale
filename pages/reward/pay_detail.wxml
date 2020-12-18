@@ -11,7 +11,7 @@
 			<label class="fa fa-caret-down" aria-hidden="true"></label>
 		</picker>
 	</view>
-	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}" bindscrolltolower="loadMore">
+	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{profile_list.length > 0}}" bindscrolltolower="loadMore">
     <block wx:for="{{profile_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view class="{{index + 1 == integral_list.length ? 'row theme7' : 'row line theme7'}}">
         <view class="detail">
@@ -27,7 +27,10 @@
       </view>
     </block>
   </scroll-view>
+  <view wx:if="{{profile_list.length == 0}}" class="container theme-container" style="justify-content:center;">
+    <view class="theme-font3">暂无打赏</view>
+  </view> 
 </view>
-<view wx:if="{{profile_list.length == 0}}" class="container theme-container" style="justify-content:center;">
-  <view class="theme-font3">暂无打赏</view>
-</view>
+
+
+
