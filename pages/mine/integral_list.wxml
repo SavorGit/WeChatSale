@@ -1,36 +1,37 @@
 <!--pages/mine/integral_list.wxml-->
 <wxs src="../../app.wxs" module="app"></wxs>
 <view class="container theme-container">
-  <view class="top-bar theme-font1 theme7">
-    <picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
-      <label>{{integralTypeNameArr[integralTypeIndex]}}</label>
-      <label class="fa fa-caret-down" aria-hidden="true"></label>
-    </picker>
-    <picker class="date" bindchange="bindDatePickerChange" value="{{integralDateIndex}}" range="{{integralDateNameArr}}">
-      <label>{{integralDateNameArr[integralDateIndex]}}</label>
-      <label class="fa fa-caret-down" aria-hidden="true"></label>
-    </picker>
-    <!-- <view class="integral theme-font5">获得1234积分</view> -->
-  </view>
-  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}" bindscrolltolower="loadMore">
-    <block wx:for="{{integral_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-      <view class="{{index + 1 == integral_list.length ? 'row theme7' : 'row line theme7'}}">
-        <view class="detail">
-          <view class="info theme-font1">
-            <view class="room">{{bean.room_name}}</view>
-            <!--
+	<view class="top-bar theme-font1 theme7">
+		<picker class="type" bindchange="bindTypePickerChange" value="{{integralTypeIndex}}" range="{{integralTypeNameArr}}">
+			<label>{{integralTypeNameArr[integralTypeIndex]}}</label>
+			<label class="fa fa-caret-down" aria-hidden="true"></label>
+		</picker>
+		<picker class="date" bindchange="bindDatePickerChange" value="{{integralDateIndex}}" range="{{integralDateNameArr}}">
+			<label>{{integralDateNameArr[integralDateIndex]}}</label>
+			<label class="fa fa-caret-down" aria-hidden="true"></label>
+		</picker>
+		<!-- <view class="integral theme-font5">获得1234积分</view> -->
+	</view>
+	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" wx:if="{{integral_list.length > 0}}" bindscrolltolower="loadMore">
+		<block wx:for="{{integral_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+			<view class="{{index + 1 == integral_list.length ? 'row theme7' : 'row line theme7'}}">
+				<view class="detail">
+					<view class="info theme-font1">
+						<view class="room">{{bean.room_name}}</view>
+						<!--
             <view class="room">{{app.typeOf(bean.room_name) == 'string' && app.trim(bean.room_name) != '' ? bean.room_name : '------'}}</view>
             -->
-            <view class="cause">{{bean.content}}</view>
-          </view>
-          <view class="dateTime theme-font3">{{bean.add_time}}</view>
-        </view>
-        <view wx:if="{{app.isNumber(bean.integral)}}" class="integral theme-font5">{{bean.type == 4 ? bean.integral : app.signedNumber(bean.integral)}}</view>
-        <view wx:else class="integral theme-font5" style="font-size:28rpx;">{{bean.integral}}</view>
-      </view>
-    </block>
-  </scroll-view>
+						<view class="cause">{{bean.content}}</view>
+					</view>
+					<view class="dateTime theme-font3">{{bean.add_time}}</view>
+				</view>
+				<view wx:if="{{app.isNumber(bean.integral)}}" class="integral theme-font5">{{bean.type == 4 ? bean.integral : app.signedNumber(bean.integral)}}</view>
+				<view wx:else class="integral theme-font5">{{bean.integral}}</view>
+				<!-- <view wx:else class="integral theme-font5" style="font-size:28rpx;">{{bean.integral}}</view> -->
+			</view>
+		</block>
+	</scroll-view>
 </view>
 <view wx:if="{{integral_list.length == 0}}" class="container theme-container" style="justify-content:center;">
-  <view class="theme-font3">暂无积分收益</view>
+	<view class="theme-font3">暂无积分收益</view>
 </view>
