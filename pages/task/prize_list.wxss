@@ -1,1 +1,286 @@
 /* pages/task/prize_list.wxss */
+
+/**
+ * 奖品任务列表
+ */
+.wrapper {
+  width: 100vw;
+  padding: 10rpx 0;
+}
+
+.panel {
+  width: 100%;
+  padding: 5rpx 0;
+}
+
+.panel>.body {
+  width: calc(100% - 60rpx);
+  padding: 5rpx 30rpx;
+}
+
+.panel.title>.body {
+  width: 100%;
+  padding: 0;
+}
+
+.panel.title>.body>.pic {
+  width: 750rpx;
+  height: 669rpx;
+}
+
+.panel.in-progress>.body>.card {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+}
+
+.panel.in-progress>.body>.card>.top-bar {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 10rpx 20rpx 5rpx;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.panel.in-progress>.body>.card>.top-bar>.animation {
+  width: 60%;
+  height: 50rpx;
+  font-size: 12rpx;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  animation-name: pulse;
+}
+
+.panel.in-progress>.body>.card>.top-bar>.animation>.status {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.panel.in-progress>.body>.card>.middle {
+  width: calc(100% - 40rpx);
+  height: 240rpx;
+  padding: 5rpx 20rpx 10rpx;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.panel.in-progress>.body>.card>.middle>.left {
+  width: 200rpx;
+  height: 100%;
+}
+
+.panel.in-progress>.body>.card>.middle>.left>.pic {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.panel.in-progress>.body>.card>.middle>.right {
+  width: calc(100% - 200rpx);
+  height: 100%;
+}
+
+.panel.in-progress>.body>.card>.middle>.right>.row {
+  width: 100%;
+  padding: 5rpx 0;
+}
+
+.panel.in-progress>.body>.card>.middle>.right>.row>.tip {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel.in-progress>.body>.card>.middle>.right>.row>progress {
+  width: 90%;
+}
+
+.panel.in-progress>.body>.card>.middle>.right>.row>.datetime {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.panel.in-progress>.body>.card>.middle>.right>.row>.btn {
+  width: 256rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+  font-size: 28rpx;
+  border-radius: 34rpx;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.panel.tasks>.body>.list {
+  width: 100%;
+}
+
+.panel.tasks>.body>.list>.card {
+  width: calc(50% - 22rpx);
+  margin-top: 20rpx;
+  margin-left: 40rpx;
+  border-radius: 10rpx;
+  display: inline-flex;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+}
+
+.panel.tasks>.body>.list>.card:nth-child(-n + 2) {
+  margin-top: 0;
+}
+
+.panel.tasks>.body>.list>.card:nth-child(2n + 1) {
+  margin-left: 0;
+}
+
+.panel.tasks>.body>.list>.card>.top {
+  width: 100%;
+  height: 50rpx;
+}
+
+.panel.tasks>.body>.list>.card>.top>.saled {
+  width: calc(100% - 80rpx);
+  height: 100%;
+  margin: 0 40rpx;
+  border-radius: 0 0 10rpx 10rpx;
+  font-size: 28rpx;
+}
+
+.panel.tasks>.body>.list>.card>.middle {
+  padding-bottom: 20rpx;
+}
+
+.panel.tasks>.body>.list>.card>.middle>.pic {
+  width: 170rpx;
+  height: 100rpx;
+  padding: 35rpx 0;
+}
+
+.panel.tasks>.body>.list>.card>.middle>.money {
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+
+.panel.tasks>.body>.list>.card>.middle>.btn {
+  width: 256rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+  font-size: 28rpx;
+  border-radius: 34rpx;
+  border: 0;
+  margin: 10rpx 0;
+  padding: 0;
+}
+
+.panel.tasks>.body>.list>.card>.middle>.expiry-date {
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.window {
+  width: 100%;
+  height: 100%;
+}
+
+.window>.option-bar {
+  width: calc(100% - 20rpx);
+  height: 60rpx;
+  padding: 10rpx;
+}
+
+.window>.option-bar>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 60rpx;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.window>.title-bar {
+  width: calc(100% - 40rpx);
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+}
+
+.window>.title-bar>.title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.window>.body {
+  width: 100%;
+  height: calc(100% - 200rpx);
+}
+
+.window>.body .document {
+  width: calc(100% - 40rpx);
+  padding: 10rpx 20rpx;
+}
+
+.window.claim>.body .document>.list {
+  width: 100%;
+}
+
+.window.claim>.body .document>.list>.item {
+  padding: 20rpx 10rpx;
+  border-bottom: 3rpx dashed #BBBBBB;
+}
+
+.window.claim>.body .document>.list>.item:last-child {
+  border-bottom: unset;
+}
+
+.window.claim>.body .document>.list>.item>.name {
+  width: calc(100% - 390rpx);
+  font-size: 40rpx;
+}
+
+.window.claim>.body .document>.list>.item>.times {
+  width: 160rpx;
+  font-size: 28rpx;
+}
+
+.window.claim>.body .document>.list>.item>.btn-group {
+  width: 230rpx;
+  height: 70rpx;
+}
+
+.window.claim>.body .document>.list>.item>.btn-group>.btn {
+  width: 222rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.window.claim>.body .document>.list>.item>.btn-group>.pic {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.window.claim>.body .document>.list>.item>.btn-group>.tip {
+  margin-left: 50rpx;
+  font-size: 28rpx;
+}

@@ -1,4 +1,8 @@
 // pages/task/prize_list.js
+
+/**
+ * 奖品任务列表
+ */
 Page({
 
   /**
@@ -12,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ showClaimWindow: true })
   },
 
   /**

@@ -1,4 +1,8 @@
 // pages/task/prize_detail.js
+
+/**
+ * 奖品任务详情
+ */
 Page({
 
   /**

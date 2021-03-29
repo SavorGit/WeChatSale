@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#F44444",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#EEEEEE",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
 }

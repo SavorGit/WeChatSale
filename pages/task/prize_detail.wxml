@@ -1,2 +1,7 @@
 <!--pages/task/prize_detail.wxml-->
-<text>pages/task/prize_detail.wxml</text>
+
+<!--
+  -- 奖品任务详情
+  -->
+<scroll-view class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+</scroll-view>

@@ -1,2 +1,335 @@
 <!--pages/task/prize_list.wxml-->
-<text>pages/task/prize_list.wxml</text>
+
+<!--
+  -- 奖品任务列表
+  -->
+<scroll-view class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+	<view class="wrapper">
+		<view class="panel title">
+			<view class="body">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
+			</view>
+		</view>
+		<view class="panel tasks">
+			<view class="body">
+				<view class="list">
+
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-gold">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+
+<!-- 已选择页面 -->
+<scroll-view wx:if="{{choosed}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+	<view class="wrapper">
+		<view class="panel title">
+			<view class="body">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
+			</view>
+		</view>
+		<view class="panel in-progress">
+			<view class="body flex_column_center_flexStart">
+				<view class="card">
+					<view class="top-bar flex_row_center_center theme-block-orange2">
+						<view class="animation flex_row_center_spaceAround">
+							<view class="dot fa fa-circle" aria-hidden="true"></view>
+							<view class="dot fa fa-circle fa-lg" aria-hidden="true"></view>
+							<view class="dot fa fa-circle fa-2x" aria-hidden="true"></view>
+							<view class="status">进行中</view>
+							<view class="dot fa fa-circle fa-2x" aria-hidden="true"></view>
+							<view class="dot fa fa-circle fa-lg" aria-hidden="true"></view>
+							<view class="dot fa fa-circle" aria-hidden="true"></view>
+						</view>
+					</view>
+					<view class="middle flex_row_flexStart_flexStart theme-block-white">
+						<view class="left flex_column_center_center">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						</view>
+						<view class="right flex_column_center_spaceAround">
+							<view class="row flex_row_center_center">
+								<view class="tip theme-font1 one-line-overflow">已完成99.9%，马上就能领取</view>
+							</view>
+							<view class="row flex_row_center_center">
+								<progress percent="80" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
+							</view>
+							<view class="row flex_row_center_center">
+								<view class="datetime theme-font3 one-line-overflow">截止至2020.2.25 10:00:00</view>
+							</view>
+							<view class="row flex_row_center_center">
+								<view class="btn theme-button-red">继续领取</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="panel tasks">
+			<view class="body">
+				<view class="list">
+
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+						</view>
+					</view>
+					<view class="card flex_column_center_flexStart theme-block-white">
+						<view class="top">
+							<view class="saled flex_row_center_center one-line-overflow theme-block-orange2">已送出2345份</view>
+						</view>
+						<view class="middle flex_column_center_spaceAround">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
+							<view class="btn theme-button-disable">立即领取</view>
+							<view class="expiry-date flex_column_center_center">
+								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+
+
+<!-- 认领收益弹窗 -->
+<modal show="{{showClaimWindow}}" width="95%" height='80%' border-radius="20rpx" background-color='#FFFFFF' title-text='' confirm-text='' cancel-text=''>
+	<view class="window claim flex_column_flexStart_flexStart">
+		<view class="option-bar flex_row_center_flexEnd">
+			<view class="btn close fa fa-times theme-font1" aria-hidden="true"></view>
+		</view>
+		<view class="title-bar flex_row_center_center">
+			<view class="title theme-font-F44444">昨天产生的收益有一部分没人认领哦～</view>
+		</view>
+		<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
+			<view class="document">
+				<view class="list">
+
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip1</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip2</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font3 one-line-overflow">vip3</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="tip theme-font1">已认领</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip4</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip5</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip6</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip7</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+</modal>
