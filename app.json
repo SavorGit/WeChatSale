@@ -59,6 +59,8 @@
     "pages/template/commons",
     "pages/tv_sale/system",
     "pages/task/index",
+    "pages/task/prize_list",
+    "pages/task/prize_detail",
     "pages/user/invite",
     "pages/user/register",
     "pages/user/login",
