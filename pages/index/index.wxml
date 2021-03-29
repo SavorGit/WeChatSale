@@ -191,12 +191,12 @@
 			<view class="title"></view>
 		</view>
 		<view class="option-bar flex_row_center_flexEnd">
-			<view class="btn close fa fa-times-circle theme-font-F9DE59" aria-hidden="true"></view>
+			<view class="btn close fa fa-times theme-font-FFFFFF" aria-hidden="true"></view>
 		</view>
 		<view class="body flex_column_center_center">
 			<view class="page flex_column_center_flex_start">
 				<view class="top flex_row_center_center">
-					<image class="icon" mode="aspectFit" src="/images/icon/333333_sale.png"></image>
+					<image class="icon" mode="aspectFit" src="/images/icon/F9DE59_money.png"></image>
 				</view>
 				<view class="middle flex_column_center_center">
 					<view class="row flex_row_center_center">
