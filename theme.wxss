@@ -115,6 +115,22 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   background-color: #999;
 }
 
+.theme-button-orange,
+.theme-orange-panel {
+  color: #FFFFFF;
+  background-color: #F68855;
+}
+
+.theme-button-orange2 {
+  color: #FFFFFF;
+  background-color: #FFAA2C;
+}
+
+.theme-button-gold {
+  background-color: rgb(249, 222, 89);
+  color: rgb(144, 128, 52);
+}
+
 .theme-button-welcome,
 .broadcast-panel,
 .selected {
@@ -187,6 +203,34 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .theme-font8 {
   color: #58525c;
+}
+
+.theme-font-FFFFFF {
+  color: #FFFFFF;
+}
+
+.theme-font-000000 {
+  color: #000000;
+}
+
+.theme-font-666666 {
+  color: #666666;
+}
+
+.theme-font-999999 {
+  color: #999999;
+}
+
+.theme-font-FFAA2C {
+  color: #FFAA2C;
+}
+
+.theme-font-F9DE59 {
+  color: #F9DE59;
+}
+
+.theme-font-F8C809 {
+  color: #F8C809;
 }
 
 .theme-window,

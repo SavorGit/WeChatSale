@@ -44,6 +44,7 @@ Page({
   },
 
   onLoad: function(res) {
+    this.setData({showSurpriseWindow:true})
     var that = this;
     mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
