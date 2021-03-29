@@ -82,8 +82,13 @@
 		</view>
 	</view>
 
+	<!-- 中部横幅 -->
+	<view class="central_banner-panel">
+		<view class="btn flex_row_center_center" bindtap="">
+			<image class="bg" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+		</view>
+	</view>
 
-	<!-- <navigator url="/pages/user/register">test</navigator>  -->
 	<!-- 机顶盒列表 -->
 	<view class="set_top_box-panel theme7">
 		<!-- <view class="title theme-font4">包间签到赚积分</view> -->
@@ -176,5 +181,37 @@
 				<view class="btn lookup theme-button-welcome">查看</view>
 			</view>
 		</view>
+	</view>
+</modal>
+
+<!-- 收益提示弹窗 -->
+<modal show="{{showSurpriseWindow}}" width="690rpx" height='656rpx' border-radius="20rpx" background-color='#F44444' title-text='' confirm-text='' cancel-text=''>
+	<view class="window surprise flex_column_flexStart_flexStart">
+		<view class="title-bar flex_row_center_flexStart">
+			<view class="title"></view>
+		</view>
+		<view class="option-bar flex_row_center_flexEnd">
+			<view class="btn close fa fa-times-circle theme-font-F9DE59" aria-hidden="true"></view>
+		</view>
+		<view class="body flex_column_center_center">
+			<view class="page flex_column_center_flex_start">
+				<view class="top flex_row_center_center">
+					<image class="icon" mode="aspectFit" src="/images/icon/333333_sale.png"></image>
+				</view>
+				<view class="middle flex_column_center_center">
+					<view class="row flex_row_center_center">
+						<view class="tip theme-font-FFFFFF">您有一个红包待领取</view>
+					</view>
+					<view class="row flex_row_flexEnd_center">
+						<view class="money theme-font-F9DE59">500元</view>
+						<view class="adorn theme-font-FFFFFF">最高</view>
+					</view>
+				</view>
+				<view class="bottom flex_row_center_center">
+					<view class="btn flex_row_center_center theme-button-gold">立即领取</view>
+				</view>
+			</view>
+		</view>
+		<view class="status-bar"></view>
 	</view>
 </modal>

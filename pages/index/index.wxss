@@ -179,6 +179,26 @@ page {
   height: 86px;
 }
 
+.central_banner-panel {
+  width: 100%;
+  height: 200rpx;
+  margin-top: 10rpx;
+}
+
+.central_banner-panel>.btn {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: unset;
+}
+
+.central_banner-panel>.btn>.bg {
+  width: 100%;
+  height: 100%;
+}
+
 .set_top_box-panel {
   width: 100%;
   /* height: calc(100% - 646rpx); */
@@ -405,220 +425,107 @@ page {
 }
 
 
-/* ============================================ 旧版本 1.4.0 ============================================ 
-
-.hotel-choose-panel {
+.window {
   width: 100%;
-  height: 50rpx;
+  height: 100%;
 }
 
-.hotel-choose-panel > .choosed-hotel {
-  height: 50rpx;
-  font-size: 28rpx;
-  text-align: center;
+.window>.title-bar {
+  width: calc(100% - 40rpx);
+  height: 70rpx;
+  padding: 10rpx 20rpx;
 }
 
-.box-link {
-  height: 128rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 28rpx;
-}
-
-.box-link > .full_width {
-  text-align: center;
-}
-
-.box-link > .full_width > .info {
-  min-width: 50rpx;
-  max-width: calc(100% - 90rpx);
-  display: inline-block;
-  vertical-align: middle;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: right;
-}
-
-.box-link > .full_width > .btn-choose {
-  width: 60rpx;
-  margin-left: 30rpx;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: left;
-}
-
-.box-link image {
-  width: 40rpx;
-  height: 40rpx;
-  margin: 8rpx;
-  padding: 10rpx;
-  border-radius: 50%;
-  background-color: #666;
-}
-
-.main-function-panel {
-  margin-top: 10rpx;
-}
-
-.main-function-panel > button::after {
-  border: 1rpx 0;
-  border-radius: unset;
-  background-color: unset;
-}
-
-.main-function-panel > button {
-  height: 120rpx;
-  border: unset;
-  line-height: unset;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  margin: 0;
-  padding: 0 120rpx;
-  box-sizing: border-box;
-  font-size: unset;
-  text-align: unset;
-  text-decoration: unset;
-  border-radius: 0rpx;
-  -webkit-tap-highlight-color: unset;
-  overflow: hidden;
-  background-color: unset;
-}
-
-.main-function-panel > button > .icon {
-  width: 80rpx;
-  height: 80rpx;
-}
-
-.main-function-panel > button > .title {
-  width: calc(100% - 110rpx);
-  text-align: center;
+.window>.title-bar>.title {
+  min-width: 3rpx;
   font-size: 32rpx;
+  font-weight: bold;
 }
 
-.main-function-panel > button > .fold {
-  width: 30rpx;
-  height: 30rpx;
+.window>.option-bar {
+  width: calc(100% - 20rpx);
+  height: 70rpx;
+  padding: 10rpx;
+  margin-top: -90rpx;
 }
 
-.box-operate-panel {
-  height: 80rpx;
-  margin-top: 10rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.box-operate-panel > button {
-  width: 150rpx;
-  height: 46rpx;
-  line-height: 46rpx;
-  margin: unset;
-  padding: unset;
-  border: unset;
-  font-size: 24rpx;
-}
-
-.box-panel {
-  height: calc(100% - 638rpx);
-  margin-top: 10rpx;
-}
-
-.box-panel > .title {
+.window>.option-bar>.btn {
+  width: 60rpx;
   height: 60rpx;
   line-height: 60rpx;
   text-align: center;
-  font-size: 24rpx;
+  font-size: 60rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-.box-panel > .scroll {
-  height: calc(100% - 60rpx);
+.window>.body {
+  width: 100%;
+  height: calc(100% - 120rpx);
 }
 
-.box-panel > .scroll  .weui-grids {
-  width: 650rpx;
-  padding: 0 calc((100% - 650rpx) / 2);
+.window>.status-bar {
+  width: 100%;
+  height: 10rpx;
 }
 
-.box-panel > .scroll  .weui-grids > .weui-grid {
-  width: 162rpx;
-  height: 170rpx;
-  padding: 10rpx;
-  font-size: 24rpx;
-}
-
-.box-panel > .scroll  .weui-grids > .weui-grid > .box {
-  width: 132rpx;
-  height: 140rpx;
+.window.surprise>.body>.page {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
   padding: 5rpx;
-  background-color: #f3f2f2;
-  border-radius: 5rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light {
-  width: 86rpx;
-  height: 86rpx;
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.window.surprise>.body>.page>.top {
+  width: 100%;
+  height: 150rpx;
 }
 
-.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > image,
-.box-panel > .scroll  .weui-grids > .weui-grid > .box > .light > view {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.window.surprise>.body>.page>.top>.icon {
+  width: 136rpx;
+  height: 136rpx;
 }
 
-.box-panel > .scroll  .weui-grids > .weui-grid > .box > .name {
-  width: 122rpx;
-  height: 30rpx;
+.window.surprise>.body>.page>.middle {
+  width: 100%;
+  height: calc(100% - 270rpx);
+}
+
+.window.surprise>.body>.page>.middle>.row {
+  width: 100%;
+}
+
+.window.surprise>.body>.page>.middle>.row>.tip {
+  font-size: 40rpx;
+  font-weight: 400;
+}
+
+.window.surprise>.body>.page>.middle>.row>.money {
+  font-size: 72rpx;
+  font-weight: 700;
+}
+
+.window.surprise>.body>.page>.middle>.row>.adorn {
+  font-size: 28rpx;
+  font-weight: 400;
+  padding-left: 10rpx;
+  padding-bottom: 14rpx;
+}
+
+.window.surprise>.body>.page>.bottom {
+  width: 100%;
+  height: 120rpx;
+}
+
+.window.surprise>.body>.page>.bottom>.btn {
+  width: 398rpx;
+  height: 98rpx;
+  line-height: 98rpx;
   text-align: center;
-  overflow: hidden;
-  /* display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; *
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-
-.green-light {
-  background-color: rgba(28, 190, 182, 0.46);
-}
-
-.green-light > view {
-  background-color: #fff;
-}
-
-.red-light {
-  background-color: rgba(235, 104, 119, 0.46);
-}
-
-.red-light > view {
-  background-color: #fff;
-}
-
-.grey-light {
-  background-color: rgba(153, 153, 153, 0.46);
-}
-
-.grey-light > view {
-  background-color: #fff;
-}
-*/
