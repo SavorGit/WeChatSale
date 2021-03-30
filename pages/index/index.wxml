@@ -83,8 +83,8 @@
 	</view>
 
 	<!-- 中部横幅 -->
-	<view class="central_banner-panel">
-		<view class="btn flex_row_center_center" bindtap="">
+	<view class="central_banner-panel" wx:if="{{isview_task_prize_list}}">
+		<view class="btn flex_row_center_center" bindtap="gotoTaskPrizeList">
 			<image class="bg" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 		</view>
 	</view>
@@ -190,7 +190,7 @@
 		<view class="title-bar flex_row_center_flexStart">
 			<view class="title"></view>
 		</view>
-		<view class="option-bar flex_row_center_flexEnd">
+		<view class="option-bar flex_row_center_flexEnd" bindtap="closeSurprise">
 			<view class="btn close fa fa-times theme-font-FFFFFF" aria-hidden="true"></view>
 		</view>
 		<view class="body flex_column_center_center">
@@ -207,7 +207,7 @@
 						<view class="adorn theme-font-FFFFFF">最高</view>
 					</view>
 				</view>
-				<view class="bottom flex_row_center_center">
+				<view class="bottom flex_row_center_center" bindtap="gotoTaskPrizeList">
 					<view class="btn flex_row_center_center theme-button-gold">立即领取</view>
 				</view>
 			</view>

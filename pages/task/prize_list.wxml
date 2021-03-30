@@ -3,7 +3,7 @@
 <!--
   -- 奖品任务列表
   -->
-<scroll-view class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+<scroll-view wx:if="{{choosed==false}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
 	<view class="wrapper">
 		<view class="panel title">
 			<view class="body">
@@ -112,7 +112,7 @@
 </scroll-view>
 
 <!-- 已选择页面 -->
-<scroll-view wx:if="{{choosed}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+<scroll-view wx:else class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
 	<view class="wrapper">
 		<view class="panel title">
 			<view class="body">
@@ -142,13 +142,13 @@
 								<view class="tip theme-font1 one-line-overflow">已完成99.9%，马上就能领取</view>
 							</view>
 							<view class="row flex_row_center_center">
-								<progress percent="80" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
+								<progress percent="90" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
 							</view>
 							<view class="row flex_row_center_center">
 								<view class="datetime theme-font3 one-line-overflow">截止至2020.2.25 10:00:00</view>
 							</view>
 							<view class="row flex_row_center_center">
-								<view class="btn theme-button-red">继续领取</view>
+								<view class="btn theme-button-red" bindtap="gotoPrizeDetail">继续领取</view>
 							</view>
 						</view>
 					</view>
@@ -327,7 +327,62 @@
 							<view class="btn get theme-button-red">认领收益</view>
 						</view>
 					</view>
-
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
+					<view class="item flex_row_center_spaceBetween">
+						<view class="name theme-font1 one-line-overflow">vip8</view>
+						<view class="times theme-font-F44444 one-line-overflow">3次</view>
+						<view class="btn-group flex_row_center_flexEnd">
+							<view class="btn get theme-button-red">认领收益</view>
+						</view>
+					</view>
 				</view>
 			</view>
 		</scroll-view>

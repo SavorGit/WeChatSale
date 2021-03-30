@@ -41,6 +41,7 @@ Page({
     subscribe_status:3, //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
     comment_info:{'is_prompt':true,'comment_num':0,'reward_num':0},//是否有评价(弹窗)
     showMessageWindow:false,
+    isview_task_prize_list:true
   },
 
   onLoad: function(res) {
@@ -128,6 +129,10 @@ Page({
                 })
                 return false;
               }
+              if(user_info.hotel_id!=-1){
+                that.isPopPrizeWind(openid,hotel_id);
+              }
+              
             }
             that.isComment(openid);
             //判断权限
@@ -608,7 +613,7 @@ Page({
     that.setData({
       user_info: user_info
     })
-    
+    var openid = user_info.openid;
     //获取链接的盒子
     var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
     if (link_box_info!='') {
@@ -622,33 +627,39 @@ Page({
       var hotel_id = user_info.select_hotel_id;
     } else {
       var hotel_id = user_info.hotel_id;
+      if(typeof(hotel_id)!='undefined'){
+        that.isPopPrizeWind(openid,hotel_id);
+      }
+      
     }
     if(typeof(hotel_id)!='undefined'){
       
       that.getSignBoxList(hotel_id,user_info.openid);
       //获取销售端配置  
 
-		utils.PostRequest(api_v_url +'/config/getConfig',{
-		  hotel_id : hotel_id,
-		  openid:openid
-		}, (data, headers, cookies, errMsg, statusCode) => {
-		  that.setData({
-			is_have_adv: data.result.is_have_adv,
-			subscribe_status: data.result.subscribe_status
-		  })
-		  var subscribe_status = data.result.subscribe_status;
-		  if(subscribe_status==1){
-			wx.reLaunch({
-			  url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
-			})
-		  }else if(subscribe_status==2){
-			wx.reLaunch({
-			  url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
-			})
-		  }
-		  
-		},res=>{},{isShowLoading:false})
+      utils.PostRequest(api_v_url +'/config/getConfig',{
+        hotel_id : hotel_id,
+        openid:openid
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        that.setData({
+        is_have_adv: data.result.is_have_adv,
+        subscribe_status: data.result.subscribe_status
+        })
+        var subscribe_status = data.result.subscribe_status;
+        if(subscribe_status==1){
+        wx.reLaunch({
+          url: '/pages/h5/index?h5_url='+app.globalData.Official_account_url+openid,
+        })
+        }else if(subscribe_status==2){
+        wx.reLaunch({
+          url: '/pages/h5/index?h5_url='+app.globalData.Official_article_url,
+        })
+        }
+        
+      },res=>{},{isShowLoading:false})
+      
     }
+    
     // if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
     //   that.isComment(user_info.openid);
     // }
@@ -961,5 +972,45 @@ Page({
     wx.navigateTo({
       url: '/pages/hotel/help/list?hotel_id='+hotel_id,
     });
+  },
+  //是否弹出领取红包窗口
+  isPopPrizeWind:function(openid,hotel_id){
+    console.log('ooooo:'+openid)
+    utils.PostRequest(api_v_url +'/aa/bb',{
+      openid : openid,
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      //是否弹窗
+      //弹窗信息
+    })
+  },
+  //关闭领取红包弹窗
+  closeSurprise:function(){
+    this.setData({showSurpriseWindow:false})
+    var openid = this.data.openid;
+    utils.PostRequest(api_v_url +'/aa/bb',{
+      openid : openid
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+    },{},{isShowLoading:false})
+  },
+  //点击领取礼物
+  gotoTaskPrizeList:function(e){
+    var openid = this.data.openid;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if(user_info.select_hotel_id>0){
+      var hotel_id= user_info.select_hotel_id;
+    }else {
+      if(user_info.hotel_id==-1){
+        app.showToast('请先选择酒楼');
+        return false;
+      }else {
+        var hotel_id = user_info.hotel_id
+      }
+    }
+    wx.navigateTo({
+      url: '/pages/task/prize_list?openid='+openid+'&hotel_id='+hotel_id,
+    })
+    this.setData({showSurpriseWindow:false})
   }
 })
