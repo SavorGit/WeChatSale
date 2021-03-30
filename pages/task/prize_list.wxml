@@ -3,6 +3,7 @@
 <!--
   -- 奖品任务列表
   -->
+<!-- 未选择任务页面 -->
 <scroll-view wx:if="{{choosed==false}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
 	<view class="wrapper">
 		<view class="panel title">
@@ -21,7 +22,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
 								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
 								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
@@ -35,7 +36,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 						</view>
 					</view>
 					<view class="card flex_column_center_flexStart theme-block-white">
@@ -45,7 +46,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
 								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
 								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
@@ -59,7 +60,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
 								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
 								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
@@ -73,7 +74,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
 								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
 								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
@@ -87,7 +88,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 						</view>
 					</view>
 					<view class="card flex_column_center_flexStart theme-block-white">
@@ -97,7 +98,7 @@
 						<view class="middle flex_column_center_spaceAround">
 							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 							<view class="money theme-font1 one-line-overflow">50元现金红包</view>
-							<view class="btn theme-button-gold">立即领取</view>
+							<view class="btn theme-button-gold" bindtap="gotoPrizeDetail">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
 								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
 								<view class="value theme-font1 one-line-overflow">2021.03.23 9:00</view>
@@ -111,7 +112,7 @@
 	</view>
 </scroll-view>
 
-<!-- 已选择页面 -->
+<!-- 已选择任务页面 -->
 <scroll-view wx:else class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
 	<view class="wrapper">
 		<view class="panel title">
@@ -123,7 +124,7 @@
 			<view class="body flex_column_center_flexStart">
 				<view class="card">
 					<view class="top-bar flex_row_center_center theme-block-orange2">
-						<view class="animation flex_row_center_spaceAround">
+						<view class="content flex_row_center_spaceAround animated pulse">
 							<view class="dot fa fa-circle" aria-hidden="true"></view>
 							<view class="dot fa fa-circle fa-lg" aria-hidden="true"></view>
 							<view class="dot fa fa-circle fa-2x" aria-hidden="true"></view>

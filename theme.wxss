@@ -123,6 +123,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 }
 
 .theme-block-orange2,
+.theme-panel-orange2,
 .theme-button-orange2 {
   color: #FFFFFF;
   background-color: #FFAA2C;

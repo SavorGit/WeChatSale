@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    tab: 0,
+    taskStatus: 0
   },
 
   /**
@@ -66,5 +67,15 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  // 选项卡选择
+  showTab: function (e) {
+    let self = this;
+    let tabType = e.currentTarget.dataset.tab;
+    self.setData({
+      tab: tabType
+    }, function () {
+    });
+  },
 })

@@ -1,0 +1,52 @@
+/* pages/task/prize.wxss */
+
+/**
+ * 奖品任务
+ */
+.wrapper {
+  width: 100vw;
+  padding: 10rpx 0;
+}
+
+.panel {
+  width: 100%;
+  padding: 5rpx 0;
+}
+
+.panel>.body {
+  width: calc(100% - 60rpx);
+  padding: 5rpx 30rpx;
+}
+
+.panel.title>.body {
+  width: 100%;
+  padding: 0;
+}
+
+.panel.title>.body>.pic {
+  width: 750rpx;
+  height: 669rpx;
+}
+
+.pulse {
+  animation-name: pulse;
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

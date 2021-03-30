@@ -3,5 +3,415 @@
 <!--
   -- 奖品任务详情
   -->
-<scroll-view class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+<!-- 正在进行中的任务页面 -->
+<scroll-view wx:if="{{taskStatus==0}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+	<view class="wrapper">
+		<view class="panel title">
+			<view class="body">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
+			</view>
+		</view>
+		<view class="panel broadcast color">
+			<view class="body">
+				<view class="list">
+					<view class="item flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="panel in-progress">
+			<view class="body">
+				<view class="card">
+					<view class="middle theme-block-white">
+						<view class="row flex_row_center_center">
+							<image class="pic animated pulse" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="name theme-font7 one-line-overflow">500元现金红包</view>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="tip theme-font1 one-line-overflow">已到手480，加油哦～</view>
+						</view>
+						<view class="row flex_row_flexEnd_center">
+							<view class="money label theme-font1 one-line-overflow">仅差</view>
+							<view class="money lack theme-font-F44444 one-line-overflow animated pulse">20元</view>
+						</view>
+						<view class="row flex_row_center_center">
+							<progress percent="80" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="datetime theme-font3 one-line-overflow">截止至2020.2.25 10:00:00</view>
+						</view>
+					</view>
+					<view class="bottom flex_row_center_center color">
+						<view class="msg">已送出2345份</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="panel tabs">
+			<view class="body">
+				<view class="card">
+					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
+						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>
+						<view class="tab flex_row_center_center{{tab=='1'?' selected':''}}" data-tab="1" bindtap="showTab">任务记录</view>
+						<view class="tab flex_row_center_center{{tab=='2'?' selected':''}}" data-tab="2" bindtap="showTab">认领记录</view>
+						<view class="tab flex_row_center_center{{tab=='3'?' selected':''}}" data-tab="3" bindtap="showTab">完成记录</view>
+					</view>
+					<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part top flex_row_center_center">
+								<view class="tip block color flex_row_center_center one-line-overflow">绑定包间后即可完成以下任务获得奖励哦～</view>
+							</view>
+							<view class="part middle flex_column_center_flexStart">
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人扫码关注公众号</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人对您进行点评</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人扫码进行投屏</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+							</view>
+							<view class="part bottom flex_row_center_center">
+								<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月30日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
+										<view class="times one-line-overflow">8次</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月29日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月28日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='2'}}" class="tab-body claim theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月30日</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 1</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
+											<view class="times one-line-overflow">8次</view>
+										</view>
+									</view>
+								</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 2</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月28日</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 2</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='3'}}" class="tab-body done theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="list flex_column_center_flexStart">
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月30日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月20日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月10日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+</scroll-view>
+
+
+
+<!-- 已经完成的任务页面 -->
+<scroll-view wx:if="{{taskStatus==1}}" class="container theme-container-red" scroll-y="true" scroll-with-animation="true">
+	<view class="wrapper">
+		<view class="panel title">
+			<view class="body">
+				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
+			</view>
+		</view>
+		<view class="panel broadcast color">
+			<view class="body">
+				<view class="list">
+					<view class="item flex_row_center_spaceBetween">
+						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="panel in-progress">
+			<view class="body">
+				<view class="card">
+					<view class="middle theme-block-white">
+						<view class="row flex_row_center_center">
+							<image class="pic animated pulse" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="name theme-font7 one-line-overflow">500元现金红包</view>
+						</view>
+						<view class="row flex_row_flexEnd_center">
+							<view class="percent theme-font-F44444 one-line-overflow animated pulse">100%</view>
+						</view>
+						<view class="row flex_row_center_center">
+							<progress percent="100" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="datetime theme-font3 one-line-overflow">截止至2020.2.25 10:00:00</view>
+						</view>
+						<view class="row flex_row_center_center">
+							<view class="btn flex_row_center_center theme-button-red">立即领取</view>
+						</view>
+					</view>
+					<view class="bottom flex_row_center_center color">
+						<view class="msg">已送出2345份</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="panel tabs">
+			<view class="body">
+				<view class="card">
+					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
+						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>
+						<view class="tab flex_row_center_center{{tab=='1'?' selected':''}}" data-tab="1" bindtap="showTab">任务记录</view>
+						<view class="tab flex_row_center_center{{tab=='2'?' selected':''}}" data-tab="2" bindtap="showTab">认领记录</view>
+						<view class="tab flex_row_center_center{{tab=='3'?' selected':''}}" data-tab="3" bindtap="showTab">完成记录</view>
+					</view>
+					<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part top flex_row_center_center">
+								<view class="tip block color flex_row_center_center one-line-overflow">绑定包间后即可完成以下任务获得奖励哦～</view>
+							</view>
+							<view class="part middle flex_column_center_flexStart">
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人扫码关注公众号</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人对您进行点评</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+								<view class="row flex_row_center_spaceBetween">
+									<view class="title theme-font1 one-line-overflow">邀请客人扫码进行投屏</view>
+									<view class="rate theme-font1 one-line-overflow">0/10</view>
+								</view>
+							</view>
+							<view class="part bottom flex_row_center_center">
+								<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月30日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
+										<view class="times one-line-overflow">8次</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月29日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月28日</view>
+								<view class="list flex_column_center_flexStart">
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+										<view class="times one-line-overflow">5次</view>
+									</view>
+									<view class="item flex_row_center_spaceBetween">
+										<view class="title one-line-overflow">邀请客人对您进行点评</view>
+										<view class="times one-line-overflow">3次</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='2'}}" class="tab-body claim theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月30日</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 1</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
+											<view class="times one-line-overflow">8次</view>
+										</view>
+									</view>
+								</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 2</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class="part">
+								<view class="date theme-font1 one-line-overflow">3月28日</view>
+								<view class="box">
+									<view class="name theme-font-F44444 one-line-overflow">VIP 2</view>
+									<view class="list flex_column_center_flexStart">
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人扫码关注公众号</view>
+											<view class="times one-line-overflow">5次</view>
+										</view>
+										<view class="item flex_row_center_spaceBetween">
+											<view class="title one-line-overflow">邀请客人对您进行点评</view>
+											<view class="times one-line-overflow">3次</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+					<scroll-view wx:if="{{tab=='3'}}" class="tab-body done theme-block-white" scroll-y="true" scroll-with-animation="true">
+						<view class="wrapper">
+							<view class="list flex_column_center_flexStart">
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月30日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月20日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+								<view class="item flex_row_center_spaceBetween">
+									<view class="date one-line-overflow">2021年3月10日</view>
+									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
+								</view>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</view>
+		</view>
+
+	</view>
 </scroll-view>
