@@ -190,8 +190,8 @@
 		<view class="title-bar flex_row_center_flexStart">
 			<view class="title"></view>
 		</view>
-		<view class="option-bar flex_row_center_flexEnd" bindtap="closeSurprise">
-			<view class="btn close fa fa-times theme-font-FFFFFF" aria-hidden="true"></view>
+		<view class="option-bar flex_row_center_flexEnd">
+			<image class="btn" mode="aspectFit" src="/images/icon/FFFFFF_close.png" bindtap="closeSurprise"></image>
 		</view>
 		<view class="body flex_column_center_center">
 			<view class="page flex_column_center_flex_start">
@@ -203,8 +203,9 @@
 						<view class="tip theme-font-FFFFFF">您有一个红包待领取</view>
 					</view>
 					<view class="row flex_row_flexEnd_center">
+						<view class="block-a adorn theme-font-FFFFFF"></view>
 						<view class="money theme-font-F9DE59">500元</view>
-						<view class="adorn theme-font-FFFFFF">最高</view>
+						<view class="block-a adorn theme-font-FFFFFF">最高</view>
 					</view>
 				</view>
 				<view class="bottom flex_row_center_center" bindtap="gotoTaskPrizeList">

@@ -262,7 +262,7 @@
 <modal show="{{showClaimWindow}}" width="95%" height='80%' border-radius="20rpx" background-color='#FFFFFF' title-text='' confirm-text='' cancel-text=''>
 	<view class="window claim flex_column_flexStart_flexStart">
 		<view class="option-bar flex_row_center_flexEnd">
-			<view class="btn close fa fa-times theme-font1" aria-hidden="true"></view>
+			<image class="btn" mode="aspectFit" src="/images/icon/666666_close.png" bindtap="closePopIncome"></image>
 		</view>
 		<view class="title-bar flex_row_center_center">
 			<view class="title theme-font-F44444">昨天产生的收益有一部分没人认领哦～</view>

@@ -450,13 +450,13 @@ page {
 }
 
 .window>.option-bar>.btn {
-  width: 60rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   text-align: center;
   font-size: 60rpx;
+  padding: 10rpx;
   margin: 0;
-  padding: 0;
   border: 0;
 }
 
@@ -506,6 +506,8 @@ page {
 }
 
 .window.surprise>.body>.page>.middle>.row>.adorn {
+  width: 60rpx;
+  min-height: 3rpx;
   font-size: 28rpx;
   font-weight: 400;
   padding-left: 10rpx;
@@ -522,7 +524,7 @@ page {
   height: 98rpx;
   line-height: 98rpx;
   text-align: center;
-  font-size: 28rpx;
+  font-size: 32rpx;
   border-radius: 10rpx;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
   margin: 0;
