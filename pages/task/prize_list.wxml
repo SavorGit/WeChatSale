@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<view class="panel tasks">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="list">
 
 					<view class="card flex_column_center_flexStart theme-block-white">
@@ -157,7 +157,7 @@
 			</view>
 		</view>
 		<view class="panel tasks">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="list">
 
 					<view class="card flex_column_center_flexStart theme-block-white">

@@ -11,9 +11,9 @@
 				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
 			</view>
 		</view>
-		<view class="panel broadcast color">
-			<view class="body">
-				<view class="list">
+		<view class="panel broadcast">
+			<view class="body flex_column_center_flexStart">
+				<view class="list color">
 					<view class="item flex_row_center_spaceBetween">
 						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
@@ -22,7 +22,7 @@
 			</view>
 		</view>
 		<view class="panel in-progress">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="card">
 					<view class="middle theme-block-white">
 						<view class="row flex_row_center_center">
@@ -52,7 +52,7 @@
 			</view>
 		</view>
 		<view class="panel tabs">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="card">
 					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
 						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>
@@ -219,9 +219,9 @@
 				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/task/prize_list/Top_Pic.png"></image>
 			</view>
 		</view>
-		<view class="panel broadcast color">
-			<view class="body">
-				<view class="list">
+		<view class="panel broadcast">
+			<view class="body flex_column_center_flexStart">
+				<view class="list color">
 					<view class="item flex_row_center_spaceBetween">
 						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
 						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
@@ -230,7 +230,7 @@
 			</view>
 		</view>
 		<view class="panel in-progress">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="card">
 					<view class="middle theme-block-white">
 						<view class="row flex_row_center_center">
@@ -259,7 +259,7 @@
 			</view>
 		</view>
 		<view class="panel tabs">
-			<view class="body">
+			<view class="body flex_column_center_flexStart">
 				<view class="card">
 					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
 						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>

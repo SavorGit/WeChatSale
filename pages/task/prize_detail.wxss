@@ -4,9 +4,9 @@
 /**
  * 奖品任务详情
  */
-.panel.broadcast.color {
-  color: rgb(16, 16, 16);
-  background-color: rgb(249, 222, 89);
+.panel.broadcast>.body {
+  width: 100%;
+  padding: 0;
 }
 
 .panel.broadcast>.body>.list {
@@ -15,9 +15,15 @@
   padding: 7rpx 0;
 }
 
+.panel.broadcast>.body>.list.color {
+  color: rgb(16, 16, 16);
+  background-color: rgb(249, 222, 89);
+}
+
 .panel.broadcast>.body>.list>.item {
-  width: 100%;
+  width: calc(100% - 60rpx);
   height: 100%;
+  padding: 0 30rpx;
 }
 
 .panel.broadcast>.body>.list>.item>.pic {
@@ -33,6 +39,7 @@
 .panel.in-progress {
   width: 100%;
   margin-top: 20rpx;
+  z-index: 2;
 }
 
 .panel.in-progress>.body>.card {
