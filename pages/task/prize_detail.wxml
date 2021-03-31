@@ -87,9 +87,9 @@
 									<view class="rate theme-font1 one-line-overflow">0/10</view>
 								</view>
 							</view>
-							<view class="part bottom flex_row_center_center">
+							<!-- <view class="part bottom flex_row_center_center">
 								<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
-							</view>
+							</view> -->
 						</view>
 					</scroll-view>
 					<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true">

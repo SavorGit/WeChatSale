@@ -992,9 +992,18 @@ Page({
         var hotel_id = user_info.hotel_id
       }
     }
-    wx.navigateTo({
-      url: '/pages/task/prize_list?openid='+openid+'&hotel_id='+hotel_id,
-    })
-    this.setData({showSurpriseWindow:false})
+
+    if (user_info.is_wx_auth != 3) {
+      this.setData({
+        showWXAuthLogin: true,
+
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/task/prize_list?openid='+openid+'&hotel_id='+hotel_id,
+      })
+      this.setData({showSurpriseWindow:false})
+    }
+   
   }
 })
