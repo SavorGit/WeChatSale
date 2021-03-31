@@ -20,18 +20,18 @@
   background-color: rgb(249, 222, 89);
 }
 
-.panel.broadcast>.body>.list>.item {
+.panel.broadcast>.body>.list .item {
   width: calc(100% - 60rpx);
   height: 100%;
   padding: 0 30rpx;
 }
 
-.panel.broadcast>.body>.list>.item>.pic {
+.panel.broadcast>.body>.list .item>.pic {
   width: 108rpx;
   height: 98rpx;
 }
 
-.panel.broadcast>.body>.list>.item>.msg {
+.panel.broadcast>.body>.list .item>.msg {
   width: calc(100% - 130rpx);
   font-size: 28rpx;
 }

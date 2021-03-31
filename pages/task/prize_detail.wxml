@@ -13,12 +13,20 @@
 		</view>
 		<view class="panel broadcast">
 			<view class="body flex_column_center_flexStart">
-				<view class="list color">
-					<view class="item flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
-						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
-					</view>
-				</view>
+				<swiper class="list color" autoplay="true" interval="5000" duration="500" circular="true">
+					<swiper-item>
+						<view class="item flex_row_center_spaceBetween">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
+						</view>
+					</swiper-item>
+					<swiper-item>
+						<view class="item flex_row_center_spaceBetween">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="msg three-line-overflow theme-font1">xxxx领取了1元现金红包～</view>
+						</view>
+					</swiper-item>
+				</swiper>
 			</view>
 		</view>
 		<view class="panel in-progress">
@@ -221,12 +229,20 @@
 		</view>
 		<view class="panel broadcast">
 			<view class="body flex_column_center_flexStart">
-				<view class="list color">
-					<view class="item flex_row_center_spaceBetween">
-						<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
-						<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
-					</view>
-				</view>
+				<swiper class="list color" autoplay="true" interval="5000" duration="500" circular="true">
+					<swiper-item>
+						<view class="item flex_row_center_spaceBetween">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="msg three-line-overflow theme-font1">xxxxxx领取了xxxx元现金红包～</view>
+						</view>
+					</swiper-item>
+					<swiper-item>
+						<view class="item flex_row_center_spaceBetween">
+							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+							<view class="msg three-line-overflow theme-font1">xxxx领取了1元现金红包～</view>
+						</view>
+					</swiper-item>
+				</swiper>
 			</view>
 		</view>
 		<view class="panel in-progress">
