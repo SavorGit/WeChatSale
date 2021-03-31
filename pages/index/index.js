@@ -129,9 +129,7 @@ Page({
                 })
                 return false;
               }
-              if(user_info.hotel_id!=-1){
-                that.isPopPrizeWind(openid,hotel_id);
-              }
+              
               
             }
             that.isComment(openid);
@@ -627,10 +625,6 @@ Page({
       var hotel_id = user_info.select_hotel_id;
     } else {
       var hotel_id = user_info.hotel_id;
-      if(typeof(hotel_id)!='undefined'){
-        that.isPopPrizeWind(openid,hotel_id);
-      }
-      
     }
     if(typeof(hotel_id)!='undefined'){
       
@@ -973,17 +967,7 @@ Page({
       url: '/pages/hotel/help/list?hotel_id='+hotel_id,
     });
   },
-  //是否弹出领取红包窗口
-  isPopPrizeWind:function(openid,hotel_id){
-    console.log('ooooo:'+openid)
-    utils.PostRequest(api_v_url +'/aa/bb',{
-      openid : openid,
-      hotel_id:hotel_id
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      //是否弹窗
-      //弹窗信息
-    })
-  },
+  
   //关闭领取红包弹窗
   closeSurprise:function(){
     this.setData({showSurpriseWindow:false})
