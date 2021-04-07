@@ -41,11 +41,10 @@ Page({
     subscribe_status:3, //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
     comment_info:{'is_prompt':true,'comment_num':0,'reward_num':0},//是否有评价(弹窗)
     showMessageWindow:false,
-    isview_task_prize_list:true
+    money_task_img:''
   },
 
   onLoad: function(res) {
-    this.setData({showSurpriseWindow:true})
     var that = this;
     mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
@@ -206,12 +205,15 @@ Page({
               //获取销售端配置  
               utils.PostRequest(api_v_url +'/config/getConfig',{
                 hotel_id : hotel_id,
-                openid:openid
+                openid:openid,
+                action:'onload'
               }, (data, headers, cookies, errMsg, statusCode) => {
                 app.globalData.config_info = data.result;
                 that.setData({
                   is_have_adv: data.result.is_have_adv,
-                  subscribe_status: data.result.subscribe_status
+                  subscribe_status: data.result.subscribe_status,
+                  showSurpriseWindow:data.result.is_open_money_task,
+                  money_task_img:data.result.money_task_img
                 })
                 
                 

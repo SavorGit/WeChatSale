@@ -83,9 +83,9 @@
 	</view>
 
 	<!-- 中部横幅 -->
-	<view class="central_banner-panel" wx:if="{{isview_task_prize_list}}">
+	<view class="central_banner-panel" wx:if="{{money_task_img!=''}}">
 		<view class="btn flex_row_center_center" bindtap="gotoTaskPrizeList">
-			<image class="bg" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
+			<image class="bg" mode="aspectFill" src="{{money_task_img}}"></image>
 		</view>
 	</view>
 
