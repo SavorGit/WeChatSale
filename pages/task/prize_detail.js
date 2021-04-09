@@ -113,7 +113,8 @@ Page({
     utils.PostRequest(api_v_url + '/record/taskprocess', {
       openid:openid,
       hotel_id:hotel_id,
-      page:page
+      page:page,
+      task_id:task_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var task_log = data.result.datalist;
       that.setData({task_log:task_log})
@@ -125,6 +126,7 @@ Page({
     utils.PostRequest(api_v_url + '/record/taskclaim', {
       openid:openid,
       hotel_id:hotel_id,
+      task_id:task_id,
       page:page
     }, (data, headers, cookies, errMsg, statusCode) => {
       var claim_log_list = data.result.datalist;
