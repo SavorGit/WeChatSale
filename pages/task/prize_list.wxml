@@ -24,8 +24,8 @@
 							<view class="money theme-font1 one-line-overflow">{{bean.name}}</view>
 							<view class="btn theme-button-gold" bindtap="choosePrize" data-task_id="{{bean.task_id}}">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
-								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
-								<view class="value theme-font1 one-line-overflow">{{bean.end_time}}</view>
+								<view class="label theme-font3 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font3 one-line-overflow">{{bean.end_time}}</view>
 							</view>
 						</view>
 					</view>
@@ -69,7 +69,7 @@
 								<view class="tip theme-font1 one-line-overflow" wx:if="{{task_info.status==2}}">已完成{{task_info.percent}}%，您可立即领取</view>
 							</view>
 							<view class="row flex_row_center_center">
-								<progress percent="{{task_info.percent}}" activeColor="#F44444" backgroundColor="#BBBBBB" stroke-width="26rpx" border-radius="12rpx"></progress>
+								<progress percent="{{task_info.percent}}" activeColor="#F44444" backgroundColor="#EDEDED" stroke-width="26rpx" border-radius="12rpx"></progress>
 							</view>
 							<view class="row flex_row_center_center">
 								<view class="datetime theme-font3 one-line-overflow">截止至{{task_info.end_time}}</view>
@@ -96,8 +96,8 @@
 							<view class="money theme-font1 one-line-overflow">{{bean.name}}</view>
 							<view class="btn theme-button-disable">立即领取</view>
 							<view class="expiry-date flex_column_center_center">
-								<view class="label theme-font1 one-line-overflow">活动截止日期</view>
-								<view class="value theme-font1 one-line-overflow">{{bean.end_time}}</view>
+								<view class="label theme-font3 one-line-overflow">活动截止日期</view>
+								<view class="value theme-font3 one-line-overflow">{{bean.end_time}}</view>
 							</view>
 						</view>
 					</view>

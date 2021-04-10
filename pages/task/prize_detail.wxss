@@ -17,7 +17,7 @@
 
 .panel.broadcast>.body>.list.color {
   color: rgb(16, 16, 16);
-  background-color: rgb(249, 222, 89);
+  background-color: rgba(249, 222, 89, 0.95);
 }
 
 .panel.broadcast>.body>.list .item {
@@ -29,6 +29,7 @@
 .panel.broadcast>.body>.list .item>.pic {
   width: 108rpx;
   height: 98rpx;
+  border-radius: 10rpx;
 }
 
 .panel.broadcast>.body>.list .item>.msg {
@@ -50,7 +51,7 @@
 
 .panel.in-progress>.body>.card>.middle {
   width: 100%;
-  padding: 30rpx 0 70rpx;
+  padding: 50rpx 0;
   border: none;
   border-radius: 10rpx 10rpx 0 0;
 }
@@ -123,8 +124,9 @@
 }
 
 .panel.in-progress>.body>.card>.bottom.color {
-  background-color: rgb(249, 166, 200);
-  color: rgba(255, 255, 255, 1);
+  /* background-color: rgb(249, 166, 200); */
+  background-color: rgba(249, 222, 89, 0.95);
+  color: #333333;
 }
 
 .panel.in-progress>.body>.card>.bottom>.msg {
@@ -152,7 +154,7 @@
 .panel.tabs>.body>.card>.tab-bar>.tab {
   width: calc(25% - 3rpx);
   height: 100%;
-  border-right: 3rpx solid #FFFFFF;
+  border-right: 3rpx solid rgba(255, 255, 255, 0.6);
   font-size: 28rpx;
   font-weight: 400;
 }
@@ -183,25 +185,38 @@
   padding: 20rpx;
 }
 
-.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.tip {
-  font-size: 28rpx;
-  font-weight: 400;
-}
-
-.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.tip.block {
+.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.block {
   width: 572rpx;
-  height: 114rpx;
-  border-radius: 60rpx;
+  height: 140rpx;
+  border-radius: 20rpx;
 }
 
-.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.tip.color {
+.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.block.color {
   color: rgb(255, 68, 68);
   background-color: rgba(255, 68, 68, 0.1);
 }
 
+.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.block>.tip {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.top>.block>.btn {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: 400;
+  border-radius: 25rpx;
+  border: 0;
+  margin: 15rpx 0 0;
+  padding: 0;
+}
+
 .panel.tabs>.body>.card>.tab-body.strategy .wrapper>.part.middle>.row {
   width: calc(100% - 20rpx);
-  padding: 20rpx 10rpx;
+  padding: 30rpx 10rpx;
   border-bottom: 3rpx dashed #BBBBBB;
 }
 
