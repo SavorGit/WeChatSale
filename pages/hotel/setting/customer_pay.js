@@ -59,42 +59,43 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
-    if (res.detail.errMsg == 'getUserInfo:ok') {
-      wx.getUserInfo({
-        success(rets) {
-          var avatarUrl = rets.userInfo.avatarUrl;
-          var nickName = rets.userInfo.nickName;
+    //if (res.detail.errMsg == 'getUserInfo:ok') {
+    wx.getUserProfile({
+      desc:'获取用户头像',
+      success(rets) {
+        var avatarUrl = rets.userInfo.avatarUrl;
+        var nickName = rets.userInfo.nickName;
 
-          utils.PostRequest(api_v_url + '/User/registerCom', {
-            'openid': openid,
-            'avatarUrl': avatarUrl,
-            'nickName': nickName,
-            'gender': rets.userInfo.gender,
-            'session_key': app.globalData.session_key,
-            'iv': rets.iv,
-            'encryptedData': rets.encryptedData
+        utils.PostRequest(api_v_url + '/User/registerCom', {
+          'openid': openid,
+          'avatarUrl': avatarUrl,
+          'nickName': nickName,
+          'gender': rets.userInfo.gender,
+          'session_key': app.globalData.session_key,
+          'iv': rets.iv,
+          'encryptedData': rets.encryptedData
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          utils.PostRequest(api_v_url + '/merchant/setPayee', {
+            openid: openid,
+            payee_openid: openid,
           }, (data, headers, cookies, errMsg, statusCode) => {
-            utils.PostRequest(api_v_url + '/merchant/setPayee', {
-              openid: openid,
-              payee_openid: openid,
-            }, (data, headers, cookies, errMsg, statusCode) => {
-              var pay_info = { "status": 1, "avatarUrl": avatarUrl, "nickName": nickName};
-             
-              that.setData({
-                is_set:1,
-                showWXAuthLogin:false,
-                pay_info: pay_info
-              })
+            var pay_info = { "status": 1, "avatarUrl": avatarUrl, "nickName": nickName};
+            
+            that.setData({
+              is_set:1,
+              showWXAuthLogin:false,
+              pay_info: pay_info
             })
           })
-          
+        })
+        
 
-          
-          
-        }
-      })
+        
+        
+      }
+    })
       
-    } 
+    //} 
   },
   closeAuth: function () {
     var that = this;

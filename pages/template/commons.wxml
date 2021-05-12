@@ -22,7 +22,7 @@
       </view>
       <view class='wxAuthLogin-bottom'>
         <button class='savor-btn theme-button-dark' bindtap="closeAuth">暂不登陆</button>
-        <button class='savor-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信授权登录</button>
+        <button class='savor-btn'  bindtap="onGetUserInfo">微信授权登录</button>
       </view>
     </view>
   </modal>
@@ -48,7 +48,7 @@
         </label>
       </view>
       <view class='wxAuthLogin-bottom'>
-        <button class='savor-btn' open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信授权登录</button>
+        <button class='savor-btn'  bindtap="onGetUserInfo">微信授权登录</button>
       </view>
     </view>
   </modal>

@@ -110,102 +110,98 @@ Page({
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
     
+    wx.getUserProfile({
+      desc:'获取用户头像',
+      success(rets) {
+        wx.request({
+          url: api_v_url + '/User/registerCom',
+          data: {
+            'openid': openid,
+            'avatarUrl': rets.userInfo.avatarUrl,
+            'nickName': rets.userInfo.nickName,
+            'gender': rets.userInfo.gender,
+            'session_key': app.globalData.session_key,
+            'iv': rets.iv,
+            'encryptedData': rets.encryptedData
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            if (res.data.code == 10000) {
+              that.setData({
+                showWXAuthLogin: false,
 
-    if (res.detail.errMsg == 'getUserInfo:ok') {
-
-      wx.getUserInfo({
-        success(rets) {
-          wx.request({
-            url: api_v_url + '/User/registerCom',
-            data: {
-              'openid': openid,
-              'avatarUrl': rets.userInfo.avatarUrl,
-              'nickName': rets.userInfo.nickName,
-              'gender': rets.userInfo.gender,
-              'session_key': app.globalData.session_key,
-              'iv': rets.iv,
-              'encryptedData': rets.encryptedData
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function (res) {
-              if (res.data.code == 10000) {
+              })
+              wx.setStorage({
+                key: cache_key + 'userinfo',
+                data: res.data.result,
+              });
+              if (res.data.result.mobile==''){
                 that.setData({
-                  showWXAuthLogin: false,
-
+                  showRegister:true,
+                  is_get_sms_code:0
                 })
-                wx.setStorage({
-                  key: cache_key + 'userinfo',
-                  data: res.data.result,
-                });
-                if (res.data.result.mobile==''){
-                  that.setData({
-                    showRegister:true,
-                    is_get_sms_code:0
-                  })
-                }else {
-                  if (res.data.result.hotel_has_room == 1) {
-                    var role_type = res.data.result.role_type;
-                    if(role_type==3){
-                      wx.reLaunch({
-                        url: '/pages/waiter/home',
-                      })
-                    }else{
-                      wx.reLaunch({
-                        url: '/pages/index/index',
-                      })
-                    }
-                    
-                  } else {
+              }else {
+                if (res.data.result.hotel_has_room == 1) {
+                  var role_type = res.data.result.role_type;
+                  if(role_type==3){
                     wx.reLaunch({
-                      url: '/pages/tv_sale/system',
+                      url: '/pages/waiter/home',
+                    })
+                  }else{
+                    wx.reLaunch({
+                      url: '/pages/index/index',
                     })
                   }
+                  
+                } else {
+                  wx.reLaunch({
+                    url: '/pages/tv_sale/system',
+                  })
                 }
-              } else {
-                wx.showToast({
-                  title: '微信授权登陆失败，请重试',
-                  icon: 'none',
-                  duration: 2000
-                });
-                wx.reLaunch({
-                  url: '/pages/user/login',
-                })
               }
-            },
-            fail: function (res) {
+            } else {
               wx.showToast({
-                title: '微信登陆失败，请重试',
+                title: '微信授权登陆失败，请重试',
                 icon: 'none',
                 duration: 2000
               });
+              wx.reLaunch({
+                url: '/pages/user/login',
+              })
             }
-          })
-        }
-      })
-      //数据埋点-邀请页面确认授权
-      mta.Event.stat('inviteConfirmAuth', { 'openid': openid })
-    } else {
-      wx.request({
-        url: api_v_url + '/User/refuseRegister',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          openid: openid
-        },
-        success: function () {
-          user_info.is_wx_auth = 1;
-          wx.setStorage({
-            key: cache_key + 'userinfo',
-            data: user_info,
-          });
-        }
-      })
-      //数据埋点-邀请页面拒绝授权
-      mta.Event.stat('inviteRefuseAuth', { 'openid': openid })
-    }
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '微信登陆失败，请重试',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        })
+      },fail:function(){
+        wx.request({
+          url: api_v_url + '/User/refuseRegister',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            openid: openid
+          },
+          success: function () {
+            user_info.is_wx_auth = 1;
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: user_info,
+            });
+          }
+        })
+      }
+
+    })
+
+    
   },
   closeAuth: function () {
     var that = this;

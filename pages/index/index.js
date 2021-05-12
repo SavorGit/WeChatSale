@@ -686,94 +686,90 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
-    if (res.detail.errMsg == 'getUserInfo:ok') {
+    wx.getUserProfile({
+      desc:'获取用户头像',
+      success(rets) {
+        wx.request({
+          url: api_v_url + '/User/registerCom',
+          data: {
+            'openid': openid,
+            'avatarUrl': rets.userInfo.avatarUrl,
+            'nickName': rets.userInfo.nickName,
+            'gender': rets.userInfo.gender,
+            'session_key': app.globalData.session_key,
+            'iv': rets.iv,
+            'encryptedData': rets.encryptedData
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function(res) {
+            if (res.data.code == 10000) {
+              that.setData({
+                showWXAuthLogin: false,
 
-      wx.getUserInfo({
-        success(rets) {
-          wx.request({
-            url: api_v_url + '/User/registerCom',
-            data: {
-              'openid': openid,
-              'avatarUrl': rets.userInfo.avatarUrl,
-              'nickName': rets.userInfo.nickName,
-              'gender': rets.userInfo.gender,
-              'session_key': app.globalData.session_key,
-              'iv': rets.iv,
-              'encryptedData': rets.encryptedData
-            },
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(res) {
-              if (res.data.code == 10000) {
-                that.setData({
-                  showWXAuthLogin: false,
+              })
+              var mobile = res.data.result.mobile;
+              if (mobile != '') {
+                //res.data.result.is_login = 1;
 
-                })
-                var mobile = res.data.result.mobile;
-                if (mobile != '') {
-                  //res.data.result.is_login = 1;
-
-                  wx.setStorage({
-                    key: cache_key + 'userinfo',
-                    data: res.data.result,
-                  });
-                  /*wx.reLaunch({
-                    url: '/pages/index/index',
-                  })*/
-                } else {
-                  wx.setStorage({
-                    key: cache_key + 'userinfo',
-                    data: res.data.result,
-                  });
-                }
-
-
-
-              } else {
-                wx.showToast({
-                  title: '微信授权登陆失败，请重试',
-                  icon: 'none',
-                  duration: 2000
+                wx.setStorage({
+                  key: cache_key + 'userinfo',
+                  data: res.data.result,
                 });
                 /*wx.reLaunch({
                   url: '/pages/index/index',
                 })*/
+              } else {
+                wx.setStorage({
+                  key: cache_key + 'userinfo',
+                  data: res.data.result,
+                });
               }
 
-            },
-            fail: function(res) {
+
+
+            } else {
               wx.showToast({
-                title: '微信登陆失败，请重试',
+                title: '微信授权登陆失败，请重试',
                 icon: 'none',
                 duration: 2000
               });
+              /*wx.reLaunch({
+                url: '/pages/index/index',
+              })*/
             }
-          })
-        }
-      })
-      //数据埋点-用户确认授权
-      mta.Event.stat('indexConfirmAuth', { 'openid': openid })
-    } else {
-      wx.request({
-        url: api_v_url + '/User/refuseRegister',
-        header: {
-          'content-type': 'application/json'
-        },
-        data: {
-          openid: openid
-        },
-        success: function() {
-          user_info.is_wx_auth = 1;
-          wx.setStorage({
-            key: cache_key + 'userinfo',
-            data: user_info,
-          });
-        }
-      })
-      //数据埋点-用户确认授权
-      mta.Event.stat('indexRefuseAuth', { 'openid': openid })
-    }
+
+          },
+          fail: function(res) {
+            wx.showToast({
+              title: '微信登陆失败，请重试',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        })
+      },fail:function(){
+        wx.request({
+          url: api_v_url + '/User/refuseRegister',
+          header: {
+            'content-type': 'application/json'
+          },
+          data: {
+            openid: openid
+          },
+          success: function() {
+            user_info.is_wx_auth = 1;
+            wx.setStorage({
+              key: cache_key + 'userinfo',
+              data: user_info,
+            });
+          }
+        })
+      }
+    })
+
+    
   },
   
   showMailListPage: function(e) {
