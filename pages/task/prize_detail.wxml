@@ -15,17 +15,11 @@
 			<view class="body flex_column_center_flexStart">
 				<swiper class="list color" autoplay="true" interval="5000" duration="500" circular="true">
 					<swiper-item wx:for="{{change_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-						<view class="item flex_row_center_spaceBetween" >
+						<view class="item flex_row_center_spaceBetween">
 							<image class="pic" mode="aspectFill" src="{{bean.avatar_url}}"></image>
 							<view class="msg three-line-overflow theme-font1">{{bean.content}}</view>
 						</view>
 					</swiper-item>
-					<!-- <swiper-item>
-						<view class="item flex_row_center_spaceBetween">
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
-							<view class="msg three-line-overflow theme-font1">xxxx领取了1元现金红包～</view>
-						</view>
-					</swiper-item> -->
 				</swiper>
 			</view>
 		</view>
@@ -62,96 +56,6 @@
 		<view class="panel tabs">
 			<view class="body flex_column_center_flexStart">
 				<template is="tabsCard" data="{{tab: tab,task_info: task_info, task_log: task_log, claim_log_list: claim_log_list, complete_log_list: complete_log_list}}" />
-				<!--
-				<view class="card">
-					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
-						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>
-						<view class="tab flex_row_center_center{{tab=='1'?' selected':''}}" data-tab="1" bindtap="showTab">任务记录</view>
-						<view class="tab flex_row_center_center{{tab=='2'?' selected':''}}" data-tab="2" bindtap="showTab">认领记录</view>
-						<view class="tab flex_row_center_center{{tab=='3'?' selected':''}}" data-tab="3" bindtap="showTab">完成记录</view>
-					</view>
-					<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
-						<view class="wrapper">
-							<view class="part top flex_row_center_center" bindtap="gotoAssignWater" wx:if="{{task_info.is_bind_room==0}}">
-								<view class="tip block color flex_row_center_center one-line-overflow" >绑定包间后即可完成以下任务获得奖励哦～</view>
-							</view>
-							<view class="part middle flex_column_center_flexStart">
-								<view class="row flex_row_center_spaceBetween" wx:for="{{task_info.content}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-									<view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
-									<view class="rate theme-font1 one-line-overflow">{{bean.finish_num}}/{{bean.num}}</view>
-								</view>
-								!-- <view class="row flex_row_center_spaceBetween">
-									<view class="title theme-font1 one-line-overflow">邀请客人对您进行点评</view>
-									<view class="rate theme-font1 one-line-overflow">0/10</view>
-								</view>
-								<view class="row flex_row_center_spaceBetween">
-									<view class="title theme-font1 one-line-overflow">邀请客人扫码进行投屏</view>
-									<view class="rate theme-font1 one-line-overflow">0/10</view>
-								</view> --
-							</view>
-							!-- <view class="part bottom flex_row_center_center">
-								<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
-							</view> --
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							<view class="part"   wx:for="{{task_log}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-								<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
-								<view class="list flex_column_center_flexStart">
-									<view class="item flex_row_center_spaceBetween" wx:for="{{bean.content}}" wx:for-item="logs" wx:key="lk" >
-										<view class="title one-line-overflow">{{logs.name}}</view>
-										<view class="times one-line-overflow">{{logs.num}}次</view>
-									</view>
-									!-- <view class="item flex_row_center_spaceBetween">
-										<view class="title one-line-overflow">邀请客人对您进行点评</view>
-										<view class="times one-line-overflow">3次</view>
-									</view>
-									<view class="item flex_row_center_spaceBetween">
-										<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
-										<view class="times one-line-overflow">8次</view>
-									</view> --
-								</view>
-							</view>
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='2'}}" class="tab-body claim theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							
-							<view class="part" wx:for="{{claim_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-								<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
-								<view class="box" wx:for="{{bean.list}}" wx:for-item="b_box" wx:key="kk" wx:for-index="idx">
-									<view class="name theme-font-F44444 one-line-overflow">{{b_box.box_name}}</view>
-									<view class="list flex_column_center_flexStart">
-										<view class="item flex_row_center_spaceBetween" wx:for="{{b_box.content}}" wx:for-item="c_list" wx:key="dk" >
-											<view class="title one-line-overflow">{{c_list.name}}</view>
-											<view class="times one-line-overflow">{{c_list.num}}次</view>
-										</view>
-									</view>
-								</view>
-							</view> 
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='3'}}" class="tab-body done theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							<view class="list flex_column_center_flexStart">
-								<view class="item flex_row_center_spaceBetween" wx:for="{{complete_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" >
-									<view class="date one-line-overflow">{{bean.date_str}}</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+{{bean.money}}</view>
-								</view>
-								!-- <view class="item flex_row_center_spaceBetween">
-									<view class="date one-line-overflow">2021年3月20日</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-								</view>
-								<view class="item flex_row_center_spaceBetween">
-									<view class="date one-line-overflow">2021年3月10日</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-								</view> --
-							</view>
-						</view>
-					</scroll-view>
-				</view>
-				-->
 			</view>
 		</view>
 
@@ -171,18 +75,12 @@
 		<view class="panel broadcast" wx:if="{{change_list.length>0}}">
 			<view class="body flex_column_center_flexStart">
 				<swiper class="list color" autoplay="true" interval="5000" duration="500" circular="true">
-					<swiper-item wx:for="{{change_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index"> 
-						<view class="item flex_row_center_spaceBetween" >
+					<swiper-item wx:for="{{change_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+						<view class="item flex_row_center_spaceBetween">
 							<image class="pic" mode="aspectFill" src="{{bean.avatar_url}}"></image>
 							<view class="msg three-line-overflow theme-font1">{{bean.content}}</view>
 						</view>
 					</swiper-item>
-					<!-- <swiper-item>
-						<view class="item flex_row_center_spaceBetween">
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
-							<view class="msg three-line-overflow theme-font1">xxxx领取了1元现金红包～</view>
-						</view>
-					</swiper-item> -->
 				</swiper>
 			</view>
 		</view>
@@ -218,96 +116,6 @@
 		<view class="panel tabs">
 			<view class="body flex_column_center_flexStart">
 				<template is="tabsCard" data="{{tab: tab,task_info: task_info, task_log: task_log, claim_log_list: claim_log_list, complete_log_list: complete_log_list}}" />
-				<!--
-				<view class="card">
-					<view class="tab-bar flex_row_center_spaceBetween theme-block-orange2">
-						<view class="tab flex_row_center_center{{tab=='0'?' selected':''}}" data-tab="0" bindtap="showTab">任务攻略</view>
-						<view class="tab flex_row_center_center{{tab=='1'?' selected':''}}" data-tab="1" bindtap="showTab">任务记录</view>
-						<view class="tab flex_row_center_center{{tab=='2'?' selected':''}}" data-tab="2" bindtap="showTab">认领记录</view>
-						<view class="tab flex_row_center_center{{tab=='3'?' selected':''}}" data-tab="3" bindtap="showTab">完成记录</view>
-					</view>
-					<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
-						<view class="wrapper">
-							<view class="part top flex_row_center_center" bindtap="gotoAssignWater" wx:if="{{task_info.is_bind_room==0}}">
-								<view class="tip block color flex_row_center_center one-line-overflow">绑定包间后即可完成以下任务获得奖励哦～</view>
-							</view>
-							<view class="part middle flex_column_center_flexStart">
-								<view class="row flex_row_center_spaceBetween" wx:for="{{task_info.content}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-									<view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
-									<view class="rate theme-font1 one-line-overflow">{{bean.finish_num}}/{{bean.num}}</view>
-								</view>
-								!-- <view class="row flex_row_center_spaceBetween">
-									<view class="title theme-font1 one-line-overflow">邀请客人对您进行点评</view>
-									<view class="rate theme-font1 one-line-overflow">0/10</view>
-								</view>
-								<view class="row flex_row_center_spaceBetween">
-									<view class="title theme-font1 one-line-overflow">邀请客人扫码进行投屏</view>
-									<view class="rate theme-font1 one-line-overflow">0/10</view>
-								</view> --
-							</view>
-							!-- <view class="part bottom flex_row_center_center">
-								<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
-							</view> --
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							<view class="part"   wx:for="{{task_log}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-								<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
-								<view class="list flex_column_center_flexStart">
-									<view class="item flex_row_center_spaceBetween" wx:for="{{bean.content}}" wx:for-item="logs" wx:key="lk" >
-										<view class="title one-line-overflow">{{log.name}}</view>
-										<view class="times one-line-overflow">{{log.num}}次</view>
-									</view>
-									!-- <view class="item flex_row_center_spaceBetween">
-										<view class="title one-line-overflow">邀请客人对您进行点评</view>
-										<view class="times one-line-overflow">3次</view>
-									</view>
-									<view class="item flex_row_center_spaceBetween">
-										<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
-										<view class="times one-line-overflow">8次</view>
-									</view> --
-								</view>
-							</view>
-							
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='2'}}" class="tab-body claim theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							<view class="part" wx:for="{{claim_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-								<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
-								<view class="box" wx:for="{{bean.list}}" wx:for-item="b_box" wx:key="kk" wx:for-index="idx">
-									<view class="name theme-font-F44444 one-line-overflow">{{b_box.box_name}}</view>
-									<view class="list flex_column_center_flexStart">
-										<view class="item flex_row_center_spaceBetween" wx:for="{{b_box.content}}" wx:for-item="c_list" wx:key="dk" >
-											<view class="title one-line-overflow">{{c_list.name}}</view>
-											<view class="times one-line-overflow">{{c_list.num}}次</view>
-										</view>
-									</view>
-								</view>
-							</view> 
-						</view>
-					</scroll-view>
-					<scroll-view wx:if="{{tab=='3'}}" class="tab-body done theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
-						<view class="wrapper">
-							<view class="list flex_column_center_flexStart">
-								<view class="item flex_row_center_spaceBetween" wx:for="{{complete_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" >
-									<view class="date one-line-overflow">{{bean.date_str}}</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+{{bean.money}}</view>
-								</view>
-								!-- <view class="item flex_row_center_spaceBetween">
-									<view class="date one-line-overflow">2021年3月20日</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-								</view>
-								<view class="item flex_row_center_spaceBetween">
-									<view class="date one-line-overflow">2021年3月10日</view>
-									<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-								</view> --
-							</view>
-						</view>
-					</scroll-view>
-				</view>
-				-->
 			</view>
 		</view>
 
@@ -325,86 +133,66 @@
 		</view>
 		<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
 			<view class="wrapper">
-				<view class="part top flex_row_center_center" bindtap="gotoAssignWater" wx:if="{{task_info.is_bind_room==0}}">
-					<view class="block color flex_column_center_center" >
+				<view class="part top flex_row_center_center" bindtap="gotoAssignWater">
+					<view class="block color flex_column_center_center">
 						<view class="tip flex_row_center_center one-line-overflow">绑定包间后即可完成以下任务获得奖励哦～</view>
 						<view class="btn bang theme-button-red">立即绑定</view>
 					</view>
 				</view>
 				<view class="part middle flex_column_center_flexStart">
-					<view class="row flex_row_center_spaceBetween" wx:for="{{task_info.content}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-						<view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
-						<view class="rate theme-font1 one-line-overflow">{{bean.finish_num}}/{{bean.num}}</view>
-					</view>
-					<!-- <view class="row flex_row_center_spaceBetween">
-						<view class="title theme-font1 one-line-overflow">邀请客人对您进行点评</view>
-						<view class="rate theme-font1 one-line-overflow">0/10</view>
-					</view>
-					<view class="row flex_row_center_spaceBetween">
-						<view class="title theme-font1 one-line-overflow">邀请客人扫码进行投屏</view>
-						<view class="rate theme-font1 one-line-overflow">0/10</view>
-					</view> -->
+					<block wx:for="{{task_info.content}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+						<view class="row btn flex_row_center_flexStart">
+							<view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
+							<view class="rate theme-font1 one-line-overflow">{{bean.finish_num}}/{{bean.num}}</view>
+							<view wx:if="{{index==0}}" class="btn theme-button-red">发起抽奖</view>
+						</view>
+					</block>
 				</view>
-				<!-- <view class="part bottom flex_row_center_center">
+				<!--
+				<view class="part bottom flex_row_center_center">
 					<view class="tip theme-font-FFAA2C">任务每日8:00、16:00</view>
-				</view> -->
+				</view>
+				-->
 			</view>
 		</scroll-view>
 		<scroll-view wx:if="{{tab=='1'}}" class="tab-body record theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 			<view class="wrapper">
-				<view class="part"   wx:for="{{task_log}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+				<view class="part" wx:for="{{task_log}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
 					<view class="list flex_column_center_flexStart">
-						<view class="item flex_row_center_spaceBetween" wx:for="{{bean.content}}" wx:for-item="logs" wx:key="lk" >
+						<view class="item flex_row_center_spaceBetween" wx:for="{{bean.content}}" wx:for-item="logs" wx:key="lk">
 							<view class="title one-line-overflow">{{logs.name}}</view>
 							<view class="times one-line-overflow">{{logs.num}}次</view>
 						</view>
-						<!-- <view class="item flex_row_center_spaceBetween">
-							<view class="title one-line-overflow">邀请客人对您进行点评</view>
-							<view class="times one-line-overflow">3次</view>
-						</view>
-						<view class="item flex_row_center_spaceBetween">
-							<view class="title one-line-overflow">邀请客人扫码进行投屏</view>
-							<view class="times one-line-overflow">8次</view>
-						</view> -->
 					</view>
 				</view>
 			</view>
 		</scroll-view>
 		<scroll-view wx:if="{{tab=='2'}}" class="tab-body claim theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 			<view class="wrapper">
-				
 				<view class="part" wx:for="{{claim_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 					<view class="date theme-font1 one-line-overflow">{{bean.date_str}}</view>
 					<view class="box" wx:for="{{bean.list}}" wx:for-item="b_box" wx:key="kk" wx:for-index="idx">
 						<view class="name theme-font-F44444 one-line-overflow">{{b_box.box_name}}</view>
 						<view class="list flex_column_center_flexStart">
-							<view class="item flex_row_center_spaceBetween" wx:for="{{b_box.content}}" wx:for-item="c_list" wx:key="dk" >
+							<view class="item flex_row_center_spaceBetween" wx:for="{{b_box.content}}" wx:for-item="c_list" wx:key="dk">
 								<view class="title one-line-overflow">{{c_list.name}}</view>
 								<view class="times one-line-overflow">{{c_list.num}}次</view>
 							</view>
 						</view>
 					</view>
-				</view> 
+				</view>
 			</view>
 		</scroll-view>
 		<scroll-view wx:if="{{tab=='3'}}" class="tab-body done theme-block-white" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 			<view class="wrapper">
 				<view class="list flex_column_center_flexStart">
-					<view class="item flex_row_center_spaceBetween" wx:for="{{complete_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" >
+					<view class="item flex_row_center_spaceBetween" wx:for="{{complete_log_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 						<view class="date one-line-overflow">{{bean.date_str}}</view>
 						<view class="profit theme-font-F44444 one-line-overflow">+{{bean.money}}</view>
 					</view>
-					<!-- <view class="item flex_row_center_spaceBetween">
-						<view class="date one-line-overflow">2021年3月20日</view>
-						<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-					</view>
-					<view class="item flex_row_center_spaceBetween">
-						<view class="date one-line-overflow">2021年3月10日</view>
-						<view class="profit theme-font-F44444 one-line-overflow">+500</view>
-					</view> -->
 				</view>
 			</view>
 		</scroll-view>
 	</view>
-</template> 
+</template>

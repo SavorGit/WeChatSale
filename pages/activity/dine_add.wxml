@@ -47,8 +47,23 @@
 									</view>
 								</picker>
 							</view>
-							<view class="tip theme-font3">注：在开奖1小时前，电视开始播放活动信息</view>
+							<!-- <view class="tip theme-font3">注：在开奖1小时前，电视开始播放活动信息</view> -->
 						</view>
+					</view>
+					<view class="row redio flex_row_flexStart_flexStart">
+						<view class="label">开奖等待时间</view>
+						<view class="value flex_column_flexStart_spaceBetween">
+							<radio-group class="group">
+								<radio class="input">5分钟</radio>
+								<radio class="input">10分钟</radio>
+								<radio class="input">20分钟</radio>
+								<radio class="input">30分钟</radio>
+								<radio class="input">60分钟</radio>
+							</radio-group>
+						</view>
+					</view>
+					<view class="row tips flex_column_center_flexStart">
+						<view class="line theme-font5">活动发起后，需经过选择的等待时间才能开始抽奖</view>
 					</view>
 				</view>
 			</scroll-view>
