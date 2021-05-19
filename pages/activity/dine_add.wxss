@@ -148,10 +148,6 @@
   text-decoration: none;
 }
 
-.wrapper>.row.redio {
-  height: 100rpx;
-}
-
 .wrapper>.row.redio>.value {
   height: 100%;
   font-weight: 400;
@@ -162,7 +158,7 @@
 }
 
 .wrapper>.row.redio>.value>.group>.input {
-  width: 130rpx;
+  width: 140rpx;
   padding: 5rpx 20rpx;
 }
 
