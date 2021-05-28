@@ -970,11 +970,11 @@ Page({
   closeSurprise:function(){
     this.setData({showSurpriseWindow:false})
     var openid = this.data.openid;
-    utils.PostRequest(api_v_url +'/aa/bb',{
+    /*utils.PostRequest(api_v_url +'/aa/bb',{
       openid : openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       
-    },{},{isShowLoading:false})
+    },{},{isShowLoading:false})*/
   },
   //点击领取礼物
   gotoTaskPrizeList:function(e){

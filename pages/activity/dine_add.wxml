@@ -37,7 +37,7 @@
 						</view>
 					</view>
 					<view class="row picker flex_row_flexStart_flexStart">
-						<view class="label">开奖时间</view>
+						<view class="label">发起时间</view>
 						<view class="value flex_column_flexStart_spaceBetween">
 							<view class="picker flex_row_center_spaceBetween">
 								<picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
@@ -53,12 +53,16 @@
 					<view class="row redio flex_row_flexStart_flexStart">
 						<view class="label">开奖等待时间</view>
 						<view class="value flex_column_flexStart_spaceBetween">
-							<radio-group class="group">
-								<radio class="input">5分钟</radio>
-								<radio class="input">10分钟</radio>
+							<radio-group class="group" bindchange="changeWaitTime">
+								<block wx:for="{{activity_wait_time}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+									<radio class="input" value="{{bean.value}}" checked="{{bean.is_select}}">{{bean.name}}</radio>
+								</block>
+								<!-- <radio class="input">10分钟</radio>
 								<radio class="input">20分钟</radio>
-								<radio class="input">30分钟</radio>
-								<radio class="input">60分钟</radio>
+								<radio class="input" checked="true">30分钟</radio>
+								<radio class="input">40分钟</radio>
+								<radio class="input">50分钟</radio>
+								<radio class="input">60分钟</radio> -->
 							</radio-group>
 						</view>
 					</view>

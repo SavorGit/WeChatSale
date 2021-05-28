@@ -210,4 +210,9 @@ Page({
     }, function () {
     });
   },
+  startLottery:function(e){
+    wx.navigateTo({
+      url: '/pages/activity/dine_add?openid='+openid+'&hotel_id='+hotel_id,
+    })
+  }
 })

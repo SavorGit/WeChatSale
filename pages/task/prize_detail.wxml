@@ -133,7 +133,7 @@
 		</view>
 		<scroll-view wx:if="{{tab=='0'}}" class="tab-body strategy theme-block-white" scroll-y="true" scroll-with-animation="true">
 			<view class="wrapper">
-				<view class="part top flex_row_center_center" bindtap="gotoAssignWater">
+				<view class="part top flex_row_center_center" bindtap="gotoAssignWater" wx:if="{{task_info.is_bind_room==0}}">
 					<view class="block color flex_column_center_center">
 						<view class="tip flex_row_center_center one-line-overflow">绑定包间后即可完成以下任务获得奖励哦～</view>
 						<view class="btn bang theme-button-red">立即绑定</view>
@@ -144,7 +144,7 @@
 						<view class="row btn flex_row_center_flexStart">
 							<view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
 							<view class="rate theme-font1 one-line-overflow">{{bean.finish_num}}/{{bean.num}}</view>
-							<view wx:if="{{index==0}}" class="btn theme-button-red">发起抽奖</view>
+							<view wx:if="{{bean.type=='lottery' && bean.num!=bean.finish_num}}" class="btn theme-button-red" bindtap="startLottery">发起抽奖</view>
 						</view>
 					</block>
 				</view>
