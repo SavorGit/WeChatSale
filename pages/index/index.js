@@ -12,6 +12,7 @@ var box_mac;
 var forscreen_type;
 var common_appid = app.globalData.common_appid;
 var sign_box_list; //签到包间
+var uma = app.globalData.uma
 Page({
   data: {
     SystemInfo: app.SystemInfo,
@@ -47,7 +48,6 @@ Page({
 
   onLoad: function(res) {
     var that = this;
-    uma.trackEvent('testone',{})
     mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
@@ -68,6 +68,7 @@ Page({
         }
       }
     }
+    uma.trackEvent('tv_interact_gotopage',{})
 
     function is_login(openid) {
       wx.request({
@@ -299,7 +300,7 @@ Page({
     }
     //数据埋点-点击选择包间
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    mta.Event.stat('changeRoom', { 'openid': user_info.openid })
+    uma.trackEvent('tv_interact_changeroom',{'open_id':user_info.openid})
   }, //选择包间结束
 
 
@@ -327,7 +328,7 @@ Page({
           url: '/pages/launch/picture/index',
         })
         //数据埋点-点击图片上电视
-        mta.Event.stat('clickForImg', { 'openid': user_info.openid })
+        uma.trackEvent('tv_interact_clickforimg',{'open_id':user_info.openid})
         
       }
     }
@@ -355,7 +356,7 @@ Page({
           url: '/pages/launch/video/index',
         })
         //数据埋点-点击视频上电视
-        mta.Event.stat('clickForVideo', { 'openid': user_info.openid })
+        uma.trackEvent('tv_interact_clickforvideo',{'open_id':user_info.openid})
         
       }
     }
@@ -386,7 +387,7 @@ Page({
       {
           complete:function(res){
             //数据埋点-首页点击退出投屏
-            mta.Event.stat('indexExitForscreen', { 'openid': openid, 'boxmac': box_mac })
+            uma.trackEvent('control_click_exit_forscreen',{'open_id':openid,'box_mac':box_mac})
           }
       })
       
@@ -412,9 +413,9 @@ Page({
           var openid = user_info.openid;
           //数据埋点-点击音量增减
           if (change_type == 2) {
-            mta.Event.stat('indexVoicePlus', { 'boxmac': box_mac, 'openid': openid })
+            uma.trackEvent('control_click_voice',{'open_id':openid,'box_mac':box_mac,'status':1})
           } else if (change_type == 1) {
-            mta.Event.stat('indexVoiceDecrease', { 'boxmac': box_mac, 'openid': openid })
+            uma.trackEvent('control_click_voice',{'open_id':openid,'box_mac':box_mac,'status':2})
           }
         }
       });
@@ -422,7 +423,6 @@ Page({
   },
   
   gotoForFile:function(e){
-    //app.showToast('敬请期待');
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     if (user_info.is_wx_auth != 3) {
@@ -445,7 +445,7 @@ Page({
         })
       }
     }
-    mta.Event.stat("clickforfile", {})
+    uma.trackEvent('tv_interact_clickforfile',{'open_id':user_info.openid})
   },
   //微信好友文件
   wxFriendfiles: function(e) {
@@ -552,7 +552,7 @@ Page({
                 duration: 2000
               })
               //数据埋点-点击包间签到
-              mta.Event.stat('indexRoomSign', { 'boxmac': box_mac,'openid':openid })
+              uma.trackEvent('tv_interact_click_signroom',{'open_id':openid,'box_mac': box_mac})
             } else {
               for (var i = 0; i < sign_box_list.length; i++) {
                 if (keys == i) {
@@ -792,7 +792,7 @@ Page({
       },complete:function(res){
         //数据埋点-点击选择酒楼
         var user_info = wx.getStorageSync(cache_key+'userinfo');
-        mta.Event.stat('changeHotel', { 'openid': user_info.openid })
+        uma.trackEvent('tv_interact_changehotel',{'open_id':user_info.openid})
       }
     }); 
   },
@@ -891,7 +891,7 @@ Page({
         url: '/pages/welcome/index',
       })
     }
-    mta.Event.stat("clickwelcome", {})
+    uma.trackEvent('tv_interact_clickwelcome',{'open_id':user_info.openid})
   },
   goToHappy:function(e){
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
@@ -902,8 +902,9 @@ Page({
       wx.navigateTo({
         url: '/pages/birthday/index',
       })
-    } 
-    mta.Event.stat("clickhappybirthday", {})
+    }
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    uma.trackEvent('tv_interact_clickhappy',{'open_id':user_info.openid})
   },
   /**
    * 控制弹窗弹开/关闭
@@ -912,16 +913,16 @@ Page({
     var that = this ;
     var is_show = e.currentTarget.dataset.is_show;
     if(is_show==1){
+      uma.trackEvent('control_operation_panel',{'open_id':app.globalData.openid,'status':1})
       var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');
       if(link_box_info==''){
         app.showToast('请先选择包间电视');
         return false;
       }
-      mta.Event.stat('clickControl', { 'status': 1 })
       is_show = true;
     }else {
       is_show = false;
-      mta.Event.stat('clickControl', { 'status': 0 })
+      uma.trackEvent('control_operation_panel',{'open_id':app.globalData.openid,'status':2})
     }
     that.setData({
       showControlWindow: is_show
