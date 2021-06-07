@@ -3,6 +3,7 @@
 const app = getApp()
 const utils = require('../../utils/util.js')
 var mta = require('../../utils/mta_analysis.js')
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -46,6 +47,7 @@ Page({
 
   onLoad: function(res) {
     var that = this;
+    uma.trackEvent('testone',{})
     mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
