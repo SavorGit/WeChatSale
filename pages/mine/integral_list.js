@@ -8,6 +8,7 @@ var openid;
 var page = 1;
 var integral_type = 0;
 var integral_date = 0;
+var uma = app.globalData.uma;
 Page({
 
   /**
