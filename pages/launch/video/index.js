@@ -1,6 +1,6 @@
 // pages/launch/video/index.js
 const app = getApp();
-var mta = require('../../../utils/mta_analysis.js')
+var uma = app.globalData.uma;
 var openid;
 var box_mac;
 var res_sup_time ;
@@ -70,17 +70,18 @@ Page({
           video_size: res.size,
           is_forscreen: 1
         })
-        mta.Event.stat('forVideoChooseVideo', { 'status': 1 })
+        uma.trackEvent('forscreen_forvideo_choosevideo',{'open_id':openid,'box_mac':box_mac,'status':1,'is_rechoose':0})
       },
       fail: function (e) {
         wx.navigateBack({
           delta: 1,
         })
-        mta.Event.stat('forVideoChooseVideo', { 'status': 0 })
+        uma.trackEvent('forscreen_forvideo_choosevideo',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':0})
       }
     })
     
 
+    uma.trackEvent('forscreen_forvideo_onshowpage',{'open_id':openid,'box_mac':box_mac});
   },
   forscreen_video: function (res) {
     var that = this;
@@ -117,7 +118,7 @@ Page({
 
         var is_forscreen = res.data.result.is_forscreen;
         if (is_forscreen == 1) {
-          mta.Event.stat("popbreakwindow", {})
+          uma.trackEvent('break_popbreakwindow',{'open_id':openid,'box_mac':box_mac})
           wx.showModal({
             title: '确认要打断投屏',
             content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -125,12 +126,12 @@ Page({
               if (res.confirm) {
 
                 uploadVedio(video_url, box_mac, openid, res_sup_time, is_pub_hotelinfo, is_share, duration, avatarUrl, nickName, play_times,resouce_size);
-                mta.Event.stat("confirmpopbreakwindow", {})
+                uma.trackEvent('break_confirbreak',{'open_id':openid,'box_mac':box_mac,'status':1})
               } else {
                 that.setData({
                   is_btn_disabel:false,
                 })
-                mta.Event.stat("canclepopbreakwindow", {})
+                uma.trackEvent('break_confirbreak',{'open_id':openid,'box_mac':box_mac,'status':0})
               }
             }
           })
@@ -263,7 +264,7 @@ Page({
     }
     
     //数据埋点-点击投屏
-    mta.Event.stat('forVideoClickForscreen', { 'openid': openid,'boxmac':box_mac })  
+    uma.trackEvent('forscreen_forvideo_clickforscreen',{'open_id':openid,'box_mac':box_mac}) 
   },
   playTimesChange: function (res) {
     var that = this;
@@ -272,7 +273,7 @@ Page({
       play_times: play_times
     })
     //数据埋点-切换播放时间
-    mta.Event.stat('forVideoChangeForTime', { 'timetype': play_times })
+    uma.trackEvent('forscreen_forvideo_changefortime',{'open_id':openid,'box_mac':box_mac,'timethype':play_times})
   },
   //重新选择视频
   chooseVedio(e) {
@@ -305,9 +306,9 @@ Page({
           video_size: res.size,
           is_forscreen: 1
         })
-        mta.Event.stat('forVideoRechooseVideo', { 'openid': openid, 'boxmac': box_mac, 'status': 1 })
+        uma.trackEvent('forscreen_forvideo_choosevideo',{'open_id':openid,'box_mac':box_mac,'status':1,'is_rechoose':1})
       },fail:function(res){
-        mta.Event.stat('forVideoRechooseVideo', { 'openid': openid, 'boxmac': box_mac, 'status': 0 })
+        uma.trackEvent('forscreen_forvideo_choosevideo',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':1})
       }
     })
     
@@ -349,12 +350,11 @@ Page({
     })
     
     //数据埋点-退出投屏
-    mta.Event.stat('forVideoExitForscreen', { 'openid': openid,'boxmac':box_mac })
+    uma.trackEvent('forscreen_forvideo_exitforscreen',{'open_id':openid,'box_mac':box_mac})
   },
   goRelief:function(res){
     //数据埋点-视频投屏点击免责声明
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    mta.Event.stat('forVideoClickRelief', { 'openid': user_info.openid })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

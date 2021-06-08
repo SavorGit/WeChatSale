@@ -1,7 +1,7 @@
 // pages/birthday/index.js
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -50,6 +50,7 @@ Page({
         })
       });
     }
+    uma.trackEvent('birthday_onshowpage',{'open_id':openid,'box_mac':box_mac})
   },
   /**
    * 点播生日歌
@@ -87,7 +88,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
 
       }, res => { }, { isShowLoading: false })
-    mta.Event.stat("demanhappy", {})
+    uma.trackEvent('birthday_demanhappy',{'open_id':openid,'box_mac':box_mac})
   },
 
   /**

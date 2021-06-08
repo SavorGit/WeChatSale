@@ -1,7 +1,7 @@
 // pages/welcome/hotel_add.js
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -154,7 +154,7 @@ Page({
         box_list: data.result.box_list
       })
     })
-
+    uma.trackEvent('welcome_onshowadd',{'open_id':openid,'hotel_id':hotel_id,'step':this.data.base_info.step});
     // wx.createAudioContext('music').play();
   },
   /**
@@ -165,7 +165,7 @@ Page({
     var base_info = that.data.base_info;
     var category_id = e.currentTarget.dataset.category_id;
     //welType = type;
-    //console.log(category_id);
+    console.log(category_id);
     if (category_id != 0) {
       utils.PostRequest(api_v_url + '/welcome/imglist', {
         category_id: category_id
@@ -176,15 +176,13 @@ Page({
           base_info: base_info
         })
       });
-      mta.Event.stat('switchBackImg', {
-        'categoryid': category_id
-      })
     } else {
       base_info.type = 0;
       that.setData({
         base_info: base_info,
       })
     }
+    uma.trackEvent('welcome_switchimgcategory',{'open_id':openid,'hotel_id':hotel_id,step:base_info.step,'category_id':category_id})
   },
   /**
    * 第一步：相册选择照片
@@ -242,6 +240,7 @@ Page({
                 that.setData({
                   base_info: base_info
                 })
+                uma.trackEvent('welcome_choosephoneimage',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step,'status':true})
               },
               fail: function ({
                 errMsg
@@ -251,21 +250,19 @@ Page({
                   icon: 'none',
                   duration: 2000,
                 })
+                uma.trackEvent('welcome_choosephoneimage',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step,'status':false})
               },
             });
           }
         })
-        mta.Event.stat('chooseWelcomeImage', {
-          'choosestatus': 1
-        })
+        
       },
       fail(res) { //取消选择照片
         console.log(res);
-        mta.Event.stat('chooseWelcomeImage', {
-          'choosestatus': 0
-        })
+        uma.trackEvent('welcome_choosephoneimage',{'open_id':openid,'hotel_id':hotel_id,'status':false})
       }
     })
+
   },
   /**
    * 第一步：旋转自主上传图片
@@ -324,7 +321,7 @@ Page({
     that.setData({
       base_info: base_info,
     })
-    //mta.Event.stat('selectBackImg', { 'imgid': id })
+    uma.trackEvent('welcome_selectdefaultimg',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step,'imgid':id})
   },
   /**
    * 下一步
@@ -369,7 +366,7 @@ Page({
           })
         }
       }
-
+      
     } else if (base_info.step == 1) { //添加文字结束
       var content = base_info.word_info.welcome_word;
       var wordsize_id = base_info.word_info.word_size_id;
@@ -379,6 +376,9 @@ Page({
         app.showToast('请输入欢迎词');
         return false;
       }*/
+      if(content!=''){
+        uma.trackEvent('welcome_inputwords',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step})
+      }
       if (wordsize_id == '') {
         app.showToast('请选择字号');
         return false;
@@ -536,37 +536,28 @@ Page({
   
                 })
               }
-              mta.Event.stat('welcomeComplete', {
-                'completestatus': 1,
-                'imgtype': base_info.img_info.is_choose_img,
-                'musicid': base_info.music_info.music_id,
-                'playtype': base_info.play_info.play_type,
-                'wordcolorid': base_info.word_color_info.color_id,
-                'wordsizeid': base_info.word_size_info.word_size_id
-              })
+              uma.trackEvent('welcome_completeonshowlist',{'open_id':openid,'hotel_id':hotel_id})
             }, res => {
               that.setData({
                 completeBtn: false,
               })
               app.showToast('新建欢迎词失败');
-              mta.Event.stat('welcomeComplete', {
-                'completestatus': 0,
-                'imgtype': base_info.img_info.is_choose_img,
-                'musicid': base_info.music_info.music_id,
-                'playtype': base_info.play_info.play_type,
-                'wordcolorid': base_info.word_color_info.color_id,
-                'wordsizeid': base_info.word_size_info.word_size_id
-              })
+              
             })
+
+            uma.trackEvent('welcome_popconfirmwind',{'open_id':openid,'hotel_id':hotel_id,'step':rec_step,'statue':1})
+          }else{
+            uma.trackEvent('welcome_popconfirmwind',{'open_id':openid,'hotel_id':hotel_id,'step':rec_step,'statue':0})
           }
+
+          
         }
       })
 
     }
     if (rec_step < 3) {
-      mta.Event.stat('clickNextOption', {
-        'step': rec_step
-      })
+      
+      uma.trackEvent('welcome_clicknetoption',{'open_id':openid,'hotel_id':hotel_id,'step':rec_step})
     }
 
   },
@@ -593,9 +584,8 @@ Page({
         base_info: base_info
       })
     }
-    mta.Event.stat('clickLastOption', {
-      'step': rec_step
-    })
+    
+    uma.trackEvent('welcome_clicklastoption',{'open_id':openid,'hotel_id':hotel_id,'step':rec_step})
   },
 
   /**
@@ -610,7 +600,6 @@ Page({
     that.setData({
       base_info: base_info
     })
-
   },
   /**
    * 第二步：选择字体大小
@@ -626,7 +615,7 @@ Page({
     that.setData({
       base_info: base_info
     })
-    //mta.Event.stat('selectWordSize', { 'wordsizeid': id })
+    uma.trackEvent('welcome_selectwordsize',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step})
   },
   /**
    * 第二步
@@ -650,6 +639,7 @@ Page({
       base_info: base_info,
       wordtype_index: index
     })
+    uma.trackEvent('welcome_selectwordtype',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step})
   },
   /**
    * 第二步：选择字体颜色
@@ -666,7 +656,7 @@ Page({
     that.setData({
       base_info: base_info
     })
-    //mta.Event.stat('selectWordColor', { 'colorid': id })
+    uma.trackEvent('welcome_selectwordcolor',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step})
   },
   /**
    * 第三步：选中音乐
@@ -690,7 +680,7 @@ Page({
     that.setData({
       base_info: base_info
     })
-    //mta.Event.stat('selectMusic', { 'musicid': id })
+    uma.trackEvent('welcome_selectmusic',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step,'music_id':id})
   },
   /**
    * 第三步：播放/暂停音乐
@@ -699,6 +689,7 @@ Page({
     var that = this;
     var index = e.currentTarget.dataset.index;
     var status = e.currentTarget.dataset.status;
+    var id = e.currentTarget.dataset.id;
 
     if (status == 1) { //播放音乐
       var oss_addr = e.currentTarget.dataset.oss_addr;
@@ -716,9 +707,8 @@ Page({
       //innerAudioContext.pause();
       wx.createAudioContext('music').pause();
     }
-    mta.Event.stat('changeMusicPlayStatus', {
-      'status': status
-    })
+    
+    uma.trackEvent('welcome_changemusicplaystatus',{'open_id':openid,'hotel_id':hotel_id,'step':this.data.base_info.step,'music_id':id,'status': status})
   },
   /**
    * 第四部：设置播放类型
@@ -732,6 +722,7 @@ Page({
     that.setData({
       base_info: base_info,
     })
+    uma.trackEvent('welcome_swichplaytype',{'open_id':openid,'hotel_id':hotel_id,'step':base_info.step,'play_type':play_type})
   },
   /**
    * 第四部：选择日期

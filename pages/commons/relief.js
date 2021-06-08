@@ -1,4 +1,6 @@
 // pages/commons/relief.js
+const app = getApp()
+var uma = app.globalData.uma;
 Page({
 
   /**
@@ -13,6 +15,9 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
+    let pageStack = getCurrentPages();//当前页面栈
+    var from_page = pageStack[pageStack.length - 2].route;
+    uma.trackEvent('relief-clickrelief',{'open_id':app.globalData.openid,'from_page':from_page})
   },
 
   /**

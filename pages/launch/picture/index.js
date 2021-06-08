@@ -1,7 +1,7 @@
 // pages/launch/picture/index.js
 const app = getApp();
 const utils = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
+var uma = app.globalData.uma;
 var img_lenth = 0;
 var openid;
 var box_mac;
@@ -83,16 +83,16 @@ Page({
           is_btn_disabel: false,
 
         })
-        mta.Event.stat('forImgChooseImg', { 'status': 1 })
+        uma.trackEvent('forscreen_forimg_chooseimg',{'open_id':openid,'box_mac':box_mac,'status':1,'img_num':img_len,'is_rechoose':0})
       },
       fail: function (e) {
         wx.navigateBack({
           delta: 1,
         })
-        mta.Event.stat('forImgChooseImg', { 'status': 0 })
+        uma.trackEvent('forscreen_forimg_chooseimg',{'open_id':openid,'box_mac':box_mac,'status':0,'img_num':0,'is_rechoose':0})
       }
     })
-     
+    uma.trackEvent('forscreen_forimg_onpageshow',{'open_id':openid,'box_mac':box_mac})
   },
   playTimesChange:function(res){
     var that = this;
@@ -101,7 +101,8 @@ Page({
       play_times:play_times
     })
     //数据埋点-切换播放时间
-    mta.Event.stat('forImgChangeForTime', { 'timetype': play_times })
+    uma.trackEvent('forscreen_forimg_changefortime',{'open_id':openid,'box_mac':box_mac,'timetype': play_times})
+
   },
   up_forscreen(e) {//多张图片投屏开始(不分享到发现)
     var that = this;
@@ -156,7 +157,7 @@ Page({
 
         var is_forscreen = res.data.result.is_forscreen;
         if (is_forscreen == 1) {
-          mta.Event.stat("popbreakwindow", {})
+          uma.trackEvent('popbreakwindow',{'open_id':openid,'box_mac':box_mac})
           wx.showModal({
             title: '确认要打断投屏',
             content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -176,12 +177,12 @@ Page({
                     
                   }
                 });
-                mta.Event.stat("confirmpopbreakwindow", {})
+                uma.trackEvent('break_confirbreak',{'open_id':openid,'box_mac':box_mac,'status':1})
               } else {
                 that.setData({
                   is_btn_disabel:false,
                 })
-                mta.Event.stat("canclepopbreakwindow", {})
+                uma.trackEvent('break_confirbreak',{'open_id':openid,'box_mac':box_mac,'status':0})
               }
             }
           })
@@ -370,7 +371,9 @@ Page({
     }else {
       var is_forscreen_char = 0;
     }
-    mta.Event.stat('forImgClickForscreen', { 'openid': user_info.openid, 'boxmac': box_mac, 'imglength': upimgs.length, 'forscreenchar': is_forscreen_char, 'play_times': play_times })
+
+
+    uma.trackEvent('forscreen_forimg_clickforscreen',{'open_id':openid,'box_mac':box_mac,'img_num':upimgs.length,'forscreenchar':is_forscreen_char,'play_times':play_times})
     
   }, //多张图片投屏结束(不分享到发现)
   up_single_pic(res) {//指定单张图片投屏开始
@@ -405,7 +408,7 @@ Page({
 
     
     //数据埋点-单张图片投屏
-    mta.Event.stat('forImgSingle', { 'openid': openid, 'boxmac': box_mac })
+    uma.trackEvent('forscreen_forimg_forimgsingle',{'open_id':openid,'box_mac':box_mac})
     
   },//指定单张图片投屏结束
   chooseImage(res) {//重新选择照片开始
@@ -439,9 +442,9 @@ Page({
           is_btn_disabel: false,
           forscreen_char: ''
         })
-        mta.Event.stat('forImgRechooseImg', { 'openid': openid, 'boxmac': box_mac, 'status': 1 })
+        uma.trackEvent('forscreen_forimg_chooseimg',{'open_id':openid,'box_mac':box_mac,'status':1,'img_num':img_len,'is_rechoose':1})
       },fail:function(res){
-        mta.Event.stat('forImgRechooseImg', { 'openid': openid, 'boxmac': box_mac, 'status': 1})
+        uma.trackEvent('forscreen_forimg_chooseimg',{'open_id':openid,'box_mac':box_mac,'status':0,'img_num':0,'is_rechoose':1})
       }
     })
     //数据埋点-重选图片
@@ -465,11 +468,10 @@ Page({
       });
     })
     //数据埋点-退出投屏
-    mta.Event.stat('forImgExitForscreen', { 'openid': openid,'boxmac':box_mac })
+    uma.trackEvent('forscreen_forimg_exitforscreen',{'open_id':openid,'box_mac':box_mac})
   },//退出投屏结束
   goRelief:function(res){
     //数据埋点-跳转到免责声明
-    mta.Event.stat('forImgClickRelief', { 'openid': openid })
   },
   /**
    * 旋转图片
@@ -505,6 +507,7 @@ Page({
         if (height > app.globalData.oss_xz_limit || width > app.globalData.oss_xz_limit) {
           app.showToast('图片宽高过大,不可旋转');
           angle -=90;
+          uma.trackEvent('forscreen_forimg_rotateimg',{'open_id':openid,'box_mac':box_mac,'status':0})
         }else {
 
           up_imgs[0].img_url = oss_addr + '?x-oss-process=image/rotate,' + angle;
@@ -524,15 +527,15 @@ Page({
           params.resource_size = resource_size;
 
           that.forOnePic(params);
-
+          uma.trackEvent('forscreen_forimg_rotateimg',{'open_id':openid,'box_mac':box_mac,'status':1})
         }
       },fail:function(res){
         wx.hideLoading();
         app.showToast('旋转失败');
+        uma.trackEvent('forscreen_forimg_rotateimg',{'open_id':openid,'box_mac':box_mac,'status':0})
       }
     })
     
-    mta.Event.stat("rotateimg", {})
 
   },
   forOnePic:function(params){

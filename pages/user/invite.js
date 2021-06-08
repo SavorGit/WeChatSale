@@ -1,6 +1,6 @@
 // pages/user/invite.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key; 
@@ -109,7 +109,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
-    
+    uma.trackEvent('clickonwxauth',{'open_id':openid})
     wx.getUserProfile({
       desc:'获取用户头像',
       success(rets) {
@@ -180,6 +180,7 @@ Page({
             });
           }
         })
+        uma.trackEvent('wxauthsucess',{'open_id':openid})
       },fail:function(){
         wx.request({
           url: api_v_url + '/User/refuseRegister',
@@ -197,11 +198,9 @@ Page({
             });
           }
         })
+        uma.trackEvent('refusewxauth',{'open_id':openid})
       }
-
     })
-
-    
   },
   closeAuth: function () {
     var that = this;
@@ -211,13 +210,15 @@ Page({
     //数据埋点-邀请页面关闭授权
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
-    mta.Event.stat('inviteCloseAuth', { 'openid': openid })
+    uma.trackEvent('closewxauth',{'open_id':openid})
+
   },
   goRelief:function(res){
+    console.log('ddddd')
     //数据埋点-点击免责声明
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var openid = user_info.openid;
-    mta.Event.stat('inviteClickRelief', { 'openid': openid })
+    
   },
   bindMobile: function (e) {
     
@@ -297,7 +298,7 @@ Page({
       },complete:function(res){
         wx.hideLoading()
         //数据埋点-邀请页面绑定手机号
-        mta.Event.stat('inviteBindMobile', { 'openid': openid,'mobile':mobile })
+        uma.trackEvent('invite_bindmobile',{'open_id':openid,'mobile':mobile})
       }
     })
   },
@@ -369,7 +370,7 @@ Page({
         }
       }, complete: function (res) {
         //数据埋点-邀请页面发送手机验证码
-        mta.Event.stat('inviteSendVerifyCode', { 'openid': openid, 'mobile': mobile })
+        uma.trackEvent('invite_sendverifycode',{'open_id':openid,'mobile':mobile})
       }
     })
   },

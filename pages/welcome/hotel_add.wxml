@@ -170,8 +170,8 @@
 						<view class="flex_row_center_spaceBetween">
 							<view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
 							<block wx:if="{{bean.id !=0}}">
-								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
-								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0" data-id="{{bean.id}}" ></image>
+								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}" data-id="{{bean.id}}"></image>
 							</block>
 							<!-- <image src="/images/icon/58525C_play.png"></image> -->
 						</view>
@@ -181,8 +181,8 @@
 						<view class="flex_row_center_spaceBetween">
 							<view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
 							<block wx:if="{{bean.id !=0}}">
-								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0"></image>
-								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}"></image>
+								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0" data-id="{{bean.id}}"></image>
+								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}" data-id="{{bean.id}}"></image>
 							</block>
 
 							<!-- <image src="/images/icon/58525C_play.png"></image> -->

@@ -1,7 +1,7 @@
 // pages/welcome/index.js
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var hotel_id;
@@ -65,10 +65,13 @@ Page({
             })
             app.showToast('操作成功');
           });
+          uma.trackEvent('welcome_clickstopwelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':1})
+        }else{
+          uma.trackEvent('welcome_clickstopwelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':0})
         }
       }
     })
-    mta.Event.stat("clickstopwelcome", {})
+    
   },
   
   /**
@@ -95,10 +98,12 @@ Page({
             })
             app.showToast('操作成功');
           });
+          uma.trackEvent('welcome_clickstartwelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':1})
+        }else {
+          uma.trackEvent('welcome_clickstartwelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':0})
         }
       }
     })
-    mta.Event.stat("clickplaywelcome", {})
   },
   /**
    * 删除
@@ -125,6 +130,9 @@ Page({
             })
             app.showToast('删除成功');
           });
+          uma.trackEvent('welcome_clickdeletewelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':1})
+        }else{
+          uma.trackEvent('welcome_clickdeletewelcome',{'open_id':openid,'hotel_id':hotel_id,'welcome_id':id,'status':0})
         }
       }
     })
@@ -140,7 +148,7 @@ Page({
     wx.redirectTo({
       url: '/pages/welcome/hotel_add',
     })
-    mta.Event.stat("clickcreatewelcome", {})
+    uma.trackEvent('welcome_clickcreate',{'open_id':openid,'hotel_id':hotel_id})
   },
   /**
    * 分页加载列表
@@ -170,7 +178,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    uma.trackEvent('welcome_onshowlist',{'open_id':openid,'hotel_id':hotel_id})
   },
 
   /**
