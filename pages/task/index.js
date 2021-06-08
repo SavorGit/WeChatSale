@@ -4,10 +4,10 @@
  */
 
 const utils = require('../../utils/util.js');
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 const api_v_url = app.globalData.api_v_url;
 const cache_key = app.globalData.cache_key;
+var uma = app.globalData.uma;
 
 Page({
 
@@ -32,6 +32,7 @@ Page({
     that.setData({
       userInfo: userInfo
     })
+    uma.trackEvent('withdraw_gotopage',{'open_id':userInfo.openid})
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
@@ -140,7 +141,7 @@ Page({
       taskDetailWindowShow: true,
       openTaskInWindow: that.data.taskList[taskListIndex]
     });
-    mta.Event.stat("viewtaskdetail", {})
+    uma.trackEvent('mytask_task_detail',{'open_id':app.globalData.openid,'task_id':e.currentTarget.dataset.taskId})
   },
 
   /**

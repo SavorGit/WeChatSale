@@ -3,11 +3,10 @@
  * 积分提现
  */
 const util = require('../../utils/util.js');
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
 const api_url = app.globalData.api_url;
 const cache_key = app.globalData.cache_key;
-
+var uma = app.globalData.uma
 Page({
 
   /**
@@ -27,6 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    uma.trackEvent('withdraw_gotopage',{'open_id':app.globalData.openid})
     wx.hideShareMenu();
     let that = this;
     wx.showLoading({
@@ -100,6 +100,9 @@ Page({
     let goodsListIndex = e.currentTarget.dataset.index;
     let goods = that.data.goodsList[goodsListIndex];
     let goodsConsume = parseInt(goods.integral);
+    
+    uma.trackEvent('withdraw_click_exchange_money',{'open_id':app.globalData.openid,'money_goods_id':goods.id})
+
     if (that.data.userIntegral < goodsConsume) {
       that.setData({
         notEnoughIntegralWindowShow: true
@@ -110,7 +113,6 @@ Page({
       confirmExchangeGoodsWindowShow: true,
       openGoodsInWindow: that.data.goodsList[goodsListIndex]
     });
-    mta.Event.stat("clickexchangegoods", {})
   },
 
   /**
