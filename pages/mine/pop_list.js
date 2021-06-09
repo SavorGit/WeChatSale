@@ -1,9 +1,9 @@
 // pages/mine/pop_list.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
+var uma = app.globalData.uma;
 var openid;
 var page = 1;
 Page({
@@ -23,6 +23,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
+    uma.trackEvent('mine_pop_list_gotopage',{'open_id':openid})
     var hotel_id = user_info.hotel_id;
     if(user_info.hotel_id==-1){
       var hotel_id = user_info.select_hotel_id;
@@ -128,7 +129,7 @@ Page({
         }
       }
     })
-    mta.Event.stat("addactivitygoods", {})
+    uma.trackEvent('mine_pop_list_addactivitygoods',{'open_id':openid,'hotel_id':hotel_id,'goods_id':goods_id})
     
   },
   removePop:function(e){
@@ -173,7 +174,7 @@ Page({
         }
       }
     })
-    mta.Event.stat("delactivitygoods", {})
+    uma.trackEvent('mine_pop_list_delactivitygoods',{'open_id':openid,'hotel_id':hotel_id,'goods_id':goods_id})
   },
   
   /**

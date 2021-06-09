@@ -1,6 +1,5 @@
 // pages/mine/integral_list.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -34,7 +33,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
-    
+    uma.trackEvent('mine_integral_list_gotopage',{'open_id':user_info.openid})
     wx.request({
       url: api_v_url +'/user/integraltypes',
       header: {
@@ -150,7 +149,7 @@ Page({
           wx.hideLoading()
         }
       })
-      mta.Event.stat('changeIntegralType', { 'integraltype': integral_type })
+      uma.trackEvent('mine_integral_list_switch_type',{'open_id':openid,'type':that.data.integralTypeObjectArr[picTypeIndex].name})
     }
     
   },
@@ -190,7 +189,7 @@ Page({
           wx.hideLoading()
         }
       })
-      mta.Event.stat("changeintegraldate", {})
+      uma.trackEvent('mine_integral_list_switch_date',{'open_id':openid,'date':integral_date})
     }
   },
   /**
