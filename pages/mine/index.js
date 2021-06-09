@@ -1,7 +1,6 @@
 // pages/mine/index.js
 const app = getApp()
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -31,7 +30,6 @@ Page({
     
     wx.hideShareMenu();
     var that = this;
-    mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     if (user_info.select_hotel_id > 0) {
@@ -39,6 +37,7 @@ Page({
     } else {
       var hotel_id = user_info.hotel_id;
     }
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
     var goods_manage = app.in_array('goods_manage', user_info.service);
@@ -139,7 +138,8 @@ Page({
   addStaff: function (e) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-
+    //数据埋点-点击添加员工
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickAddStaff', {'open_id':openid}));
     wx.request({
       url: api_v_url + '/user/invite',
       header: {
@@ -147,7 +147,6 @@ Page({
       },
       data: {
         openid: user_info.openid,
-
       },
       success: function (res) {
         if (res.data.code == 10000) {
@@ -170,12 +169,6 @@ Page({
           icon: 'none',
           duration: 2000,
         })
-      },
-      complete: function (res) {
-        //数据埋点-点击添加员工
-        mta.Event.stat('clickAddStaff', {
-          'openid': user_info.openid
-        })
       }
     })
 
@@ -183,6 +176,8 @@ Page({
   freshQrcode: function (e) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
+    //数据埋点-点击刷新邀请码
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickFreshQrcode', {'open_id':openid}));
     wx.request({
       url: api_v_url + '/user/invite',
       header: {
@@ -213,12 +208,6 @@ Page({
           icon: 'none',
           duration: 2000,
         })
-      },
-      complete: function (res) {
-        //数据埋点-点击刷新邀请码
-        mta.Event.stat('clickFreshQrcode', {
-          'openid': user_info.openid
-        })
       }
     })
   },
@@ -228,7 +217,7 @@ Page({
       showAddTeamMemberPage: false,
     })
     //数据埋点-关闭员工添加员工弹窗
-    mta.Event.stat("clickcloseaddstaff", {})
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickCloseAddStaffWindown', {'open_id':openid}));
   },
   userLogin: function (res) {
     var that = this;
@@ -236,9 +225,7 @@ Page({
       showWXAuthLogin: true,
     })
     //数据埋点-个人信息页面点击登录
-    mta.Event.stat('clickUserLogin', {
-      'openid': openid
-    })
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickUserLogin', {'open_id':openid}));
   },
   onGetUserInfo: function (res) {
     var that = this;
@@ -421,9 +408,7 @@ Page({
     that.getUserCenter(openid)
     that.getMyStaffList(openid);
     //数据埋点-进入个人信息页面
-    mta.Event.stat('showUserIndex', {
-      'openid': user_info.openid
-    })
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
   },
   closeAuth: function () {
     var that = this;
@@ -437,13 +422,11 @@ Page({
   },
   integralList: function (e) {
     //数据埋点-点击收益明细
-    mta.Event.stat('clickIntegralList', {
-      'openid': openid
-    })
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickIntegralList', {'open_id':openid}));
   },
   popActivityList: function (e) {
     //数据埋点-点击活动商品管理
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickActivityGoodsList', {'open_id':openid}));
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     if (user_info.hotel_id == -1) {
       var hotel_id = user_info.select_hotel_id;
@@ -457,10 +440,6 @@ Page({
         url: '/pages/mine/pop_list',
       })
     }
-
-    mta.Event.stat('clickActivityGoodsList', {
-      'openid': openid
-    })
   },
   staffList: function (e) {
     //数据埋点-点击移除员工
@@ -479,14 +458,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
   },
 
   /**
@@ -509,13 +488,11 @@ Page({
   onShareAppMessage: function (e) {
     var qrcode = e.target.dataset.qrcode;
     var userinfo = wx.getStorageSync(cache_key + 'userinfo');
+    //数据埋点-点击邀请员工
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickShareButton', {'open_id':openid}));
     var title = "邀请您使用小热点销售端";
     var img_url = 'http://oss.littlehotspot.com/media/resource/GyXmE3jRNh.jpg';
     if (e.from === 'button') {
-      //数据埋点-点击邀请员工
-      mta.Event.stat('clickInviteStaff', {
-        'openid': userinfo.openid
-      })
       // 转发成功
       // 来自页面内转发按钮
       return {
@@ -537,7 +514,7 @@ Page({
     });
     var id = e.currentTarget.dataset.id;
     if (id == 1) { //兑换
-      mta.Event.stat("clickintegral", {})
+      utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickIntegral', {'open_id':openid}));
     } else if (id == 2) { //任务列表
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       if (user_info.hotel_id == -1) {
@@ -552,7 +529,7 @@ Page({
           url: '/pages/task/index',
         })
       }
-      mta.Event.stat("clicktask", {})
+      utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickTaskList', {'open_id':openid}));
     }
 
   },
@@ -682,5 +659,10 @@ Page({
     wx.navigateTo({
       url: '/pages/reward/integral_detail',
     })
+  },
+  gotoWaiterList:function(e){
+    let self = this;
+    let roleType = e.currentTarget.dataset.role_type;
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickGotoWaiterList', {'open_id':openid,'role_type':roleType}));
   }
 })

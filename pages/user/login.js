@@ -1,6 +1,6 @@
 // pages/user/login.js
-var mta = require('../../utils/mta_analysis.js')
 const app = getApp()
+let utils = require('../../utils/util.js')
 var openid;
 var sms_time_djs;
 var api_url = app.globalData.api_url;
@@ -50,6 +50,8 @@ Page({
       }
 
     }
+    //数据埋点-进入登录页面
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
     
     //判断用户是否注册
     function userRegister(openid){
@@ -84,8 +86,6 @@ Page({
             }
           }
         })
-        //数据埋点-进入登录页面
-        mta.Event.stat('showLogin', { 'openid': openid })
       }
       
     }
@@ -226,6 +226,8 @@ Page({
       });
       return;
     }
+    //数据埋点-获取手机验证码
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_clickSendSmsCode', {'open_id':openid,'mobile': mobile,'code':invite_code}));
     wx.request({
       url: api_v_url+'/sms/sendverifyCode',
       header: {
@@ -269,9 +271,6 @@ Page({
             duration: 2000
           });
         }
-      },complete:function(res){
-        //数据埋点-获取手机验证码
-        mta.Event.stat('sendSmsCode', { 'mobile': mobile,'openid':app.globalData.openid,'code':invite_code })
       }
     })
   },
@@ -309,6 +308,8 @@ Page({
       });
       return;
     }
+    //数据埋点-用户登录
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_clickDoLogin', {'open_id':openid,'mobile':mobile,'code': invite_code}));
     wx.request({
       url: api_v_url+'/login/login',
       header: {
@@ -361,9 +362,6 @@ Page({
             duration: 2000
           });
         }
-      },complete:function(res){
-        //数据埋点-用户登录
-        mta.Event.stat('doLogin', { 'openid': openid,'mobile':mobile,'code': invite_code})
       }
     })
   },
@@ -383,6 +381,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
     wx.hideHomeButton();
   },
 
@@ -390,14 +389,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
   },
 
   /**

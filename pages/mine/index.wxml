@@ -7,8 +7,8 @@
 		</view>
 		<view class="center-2 flex_column_flexStart_flexStart">
 			<view class='nickname'>{{nickName}}</view>
-			<view class="flex_row_center"  bindtap="{{role_type==1?'hotelComment':'gotoWaiterDetail'}}" >
-			
+			<view class="flex_row_center" bindtap="{{role_type==1?'hotelComment':'gotoWaiterDetail'}}">
+
 				<view class="flex_row_center_spaceBetween star-color">
 					<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
 					<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -23,7 +23,7 @@
 			<view class="fa fa-cog" aria-hidden="true"></view>
 		</view>
 	</view>
-	
+
 	<view wx:if="{{is_wx_auth !=3}}" class='user-info-panel full_width flex_row_center_center theme7'>
 		<view class="left"></view>
 		<view class="center flex_column_center_center">
@@ -33,7 +33,7 @@
 		<view class="right"></view>
 	</view>
 
-	
+
 
 	<!-- 积分收益概况面板 -->
 	<view class='profit-profile-panel full_width theme7' wx:if="{{integral_manage==true}}">
@@ -45,7 +45,7 @@
 			<label class='theme-font5'>{{integral}}</label>
 			<navigator wx:if="{{integral_shop==true}}" class='btn-exchange theme-font5' url="/pages/mine/withdraw" bindtap="showLoadingOnClick" data-id="1">兑换</navigator>
 		</view>
-		
+
 	</view>
 
 	<!-- 餐厅收益概况面板 -->
@@ -72,11 +72,11 @@
 		</view>
 		<view class='info'>
 			<label class='theme-font5'> </label>
-			<navigator  class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}">分配</navigator>
+			<navigator class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}">分配</navigator>
 		</view>
 	</view>
 
-	
+
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity">
 			<view>餐厅活动</view>
@@ -111,10 +111,10 @@
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
 				<block wx:if="{{role_type==1}}">
-					<navigator url="/pages/mine/team_members">更多...</navigator>
+					<navigator url="/pages/mine/team_members" data-role_type="{{role_type}}" bindtap="gotoWaiterList">更多...</navigator>
 				</block>
 				<block wx:if="{{role_type==2}}">
-					<navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}">更多...</navigator>
+					<navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}" data-role_type="{{role_type}}" bindtap="gotoWaiterList">更多...</navigator>
 				</block>
 			</label>
 		</view>
@@ -127,7 +127,7 @@
 			</view>
 		</view>
 	</view>
-	
+
 </scroll-view>
 
 <!-- 添加员工页面 -->
@@ -161,7 +161,7 @@
 				<!-- <text selectable='true'>{{userInfo.select_hotel_id}} --- {{userInfo.select_hotel_name}}</text> -->
 				<text selectable='true'>{{userInfo.select_hotel_name}}</text>
 			</view>
-			
+
 		</view>
 	</view>
 </modal>

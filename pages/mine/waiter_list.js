@@ -1,6 +1,5 @@
 // pages/mine/waiter_list.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
 const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -50,8 +49,8 @@ Page({
     var openid = e.currentTarget.dataset.openid;
     var index = e.currentTarget.dataset.keys;
     var waiter_list = e.currentTarget.dataset.waiter_list;
+    utils.tryCatch(getApp().globalData.uma.trackEvent('waiterList_clickRemoveWaiter', {'open_id':getApp().globalData.openid,'remove_openid':openid}));
     
-
 
     utils.PostRequest(api_v_url + '/user/removeEmployee', {
       invite_id: invite_id,

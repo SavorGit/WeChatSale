@@ -23,6 +23,7 @@ Page({
     page = 1;
     hotel_id = options.hotel_id;
     openid   = options.openid;
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
     this.getActivityList();
   },
   getActivityList:function(page = 1){
@@ -40,6 +41,7 @@ Page({
   //添加活动
   addActivity:function(e){
     var that = this;
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_clickAddActivity', {'open_id':openid}));
     wx.navigateTo({
       url: '/pages/activity/dine_add?hotel_id='+hotel_id+'&openid='+openid,
     })
@@ -87,7 +89,7 @@ Page({
     if(this.data.pageFresh){
       this.getActivityList(page);
     }
-    
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
   },
 
   /**
@@ -97,13 +99,14 @@ Page({
     this.setData({
       pageFresh:true
     })
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
   },
 
   /**
