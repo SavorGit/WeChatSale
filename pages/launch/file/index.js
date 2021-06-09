@@ -1,5 +1,4 @@
 const util = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
@@ -850,7 +849,6 @@ Page({
       showControl: true,
       qrcode_img: qrcode_url
     })
-    mta.Event.stat('openControl', { 'linktype': app.globalData.link_type })
   },
   //关闭遥控
   closeControl: function (e) {
@@ -858,7 +856,6 @@ Page({
     that.setData({
       showControl: false,
     })
-    mta.Event.stat("closecontrol", {})
   },
   //遥控退出投屏
   exitForscreen: function (e) {

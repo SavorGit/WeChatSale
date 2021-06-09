@@ -1,6 +1,5 @@
 // pages/user/register.js
 const app = getApp()
-const mta = require('../../utils/mta_analysis.js')
 const utils = require('../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;

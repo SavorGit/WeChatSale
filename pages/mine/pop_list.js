@@ -1,6 +1,5 @@
 // pages/mine/pop_list.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -128,7 +127,6 @@ Page({
         }
       }
     })
-    mta.Event.stat("addactivitygoods", {})
     
   },
   removePop:function(e){
@@ -173,7 +171,6 @@ Page({
         }
       }
     })
-    mta.Event.stat("delactivitygoods", {})
   },
   
   /**

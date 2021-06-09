@@ -1,6 +1,5 @@
 // pages/mine/assign_waiter.js
 const app = getApp()
-const mta = require('../../utils/mta_analysis.js')
 const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;

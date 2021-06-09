@@ -3,7 +3,6 @@
 //获取应用实例
 const app = getApp()
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
@@ -83,7 +82,6 @@ Page({
                 duration: 2000
               })
               //数据埋点-点击包间签到
-              mta.Event.stat('indexRoomSign', { 'boxmac': box_mac, 'openid': openid })
             } else {
               for (var i = 0; i < sign_box_list.length; i++) {
                 if (keys == i) {

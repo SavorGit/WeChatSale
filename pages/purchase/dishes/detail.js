@@ -6,7 +6,6 @@
 
 const app = getApp()
 const utils = require('../../../utils/util.js')
-const mta = require('../../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var cache_key = app.globalData.cache_key;
 var goods_id;
@@ -100,14 +99,9 @@ Page({
           self.closeChangeOrderGoodsWindow(e);
         }
       })
-      mta.Event.stat('dishDetailPlaceOrder', { 'openid': openid, 'goodsid': goods_id });
     } else {
       self.openChangeOrderGoodsWindow(e);
     }
-    // wx.navigateTo({
-    //   url: '/pages/hotel/order/account?goods_id=' + goods_id + "&openid=" + openid + '&order_type=1&merchant_name=' + this.data.merchant.name + '&merchant_id=' + this.data.merchant.merchant_id,
-    // })
-    // mta.Event.stat('dishDetailPlaceOrder', { 'openid': openid, 'goodsid': goods_id })
   },
   cutNum: function (e) {
     var amount = this.data.amount;
