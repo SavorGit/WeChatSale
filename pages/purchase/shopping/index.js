@@ -3,7 +3,6 @@
  * 商品首页
  */
 const utils = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
 var api_v_url = app.globalData.api_v_url;
 var openid; //用户openid

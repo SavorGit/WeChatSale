@@ -1,7 +1,7 @@
 // pages/forscreen/forfile/h5files_result.js
 const util = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var openid;
@@ -456,7 +456,7 @@ Page({
       })
     }
 
-
+    uma.trackEvent('forscreen_forphonefile_changepic',{'open_id':openid,'box_mac':box_mac,'type':action})
 
   }, 500),//呼大码结束,
   /**
@@ -510,6 +510,7 @@ Page({
         });
       },
     })
+    uma.trackEvent('forscreen_forphonefile_appointpic',{'open_id':openid,'box_mac':box_mac})
   },
   //重选文件
   reChooseFile: function (e) {
@@ -517,6 +518,7 @@ Page({
     wx.navigateBack({
       delta:1
     })
+    uma.trackEvent('forscreen_forphonefile_rechoose',{'open_id':openid,'box_mac':box_mac})
    
   },
   //退出投屏
@@ -553,6 +555,7 @@ Page({
         })
       }
     })
+    uma.trackEvent('forscreen_forphonefile_exitforscreen',{'open_id':openid,'box_mac':box_mac})
   },
   //遥控呼大码
   callQrCode: util.throttle(function (e) {
@@ -569,7 +572,6 @@ Page({
       showControl: true,
       qrcode_img: qrcode_url
     })
-    mta.Event.stat('openControl', { 'linktype': app.globalData.link_type })
   },
   //关闭遥控
   closeControl: function (e) {
@@ -577,7 +579,6 @@ Page({
     that.setData({
       showControl: false,
     })
-    mta.Event.stat("closecontrol", {})
   },
   //遥控退出投屏
   exitForscreen: function (e) {

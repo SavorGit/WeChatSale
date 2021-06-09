@@ -1,6 +1,6 @@
 const util = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var openid;
@@ -82,6 +82,7 @@ Page({
                 icon: 'none',
                 duration: 2000
               });
+              uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':0})
             } else {//如果文件未超过设置的最大值
                wx.request({
                 url: api_url + '/Smallapp/Index/getOssParams',
@@ -94,12 +95,14 @@ Page({
                   uploadOssFile(policy, signature, file_path,openid,box_mac,file_name,file_size,polling_time,that);
                 }
               });
+              uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':1,'is_rechoose':0})
             }
 
           }, fail: function (res) {
             wx.navigateBack({
               delta: 1,
             })
+            uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':0})
           }
         });
       }
@@ -334,6 +337,7 @@ Page({
         
       
     }
+    uma.trackEvent('forscreen_forfile_onshowpage',{'open_id':openid,'box_mac':box_mac})
   },//onload结束
   
   /**
@@ -433,7 +437,7 @@ Page({
       })
     }
 
-    
+    uma.trackEvent('forscreen_forfile_changepic',{'open_id':openid,'box_mac':box_mac,'type':action})
     
   }, 500),//呼大码结束,
   /**
@@ -486,6 +490,7 @@ Page({
         });
       },
     })
+    uma.trackEvent('forscreen_forfile_appointpic',{'open_id':openid,'box_mac':box_mac})
   },
   //重选文件
   reChooseFile:function(e){
@@ -531,6 +536,7 @@ Page({
                 icon: 'none',
                 duration: 2000
               });
+              uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':1})
             } else {//如果文件未超过设置的最大值
               wx.request({
                 url: api_url + '/Smallapp/Index/getOssParams',
@@ -543,12 +549,14 @@ Page({
                   uploadOssFile(policy, signature, file_path, openid, box_mac, file_name, file_size, polling_time, that);
                 }
               });
+              uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':1,'is_rechoose':1})
             }
 
           }, fail: function (res) {
             that.setData({
               hiddens: true,
             })
+            uma.trackEvent('forscreen_forfile_choosefile',{'open_id':openid,'box_mac':box_mac,'status':0,'is_rechoose':1})
           }
         });
       }
@@ -824,6 +832,7 @@ Page({
         })
       }
     })
+    uma.trackEvent('forscreen_forfile_exitforscreen',{'open_id':openid,'box_mac':box_mac})
   },
   //遥控呼大码
   callQrCode: util.throttle(function (e) {
@@ -840,7 +849,6 @@ Page({
       showControl: true,
       qrcode_img: qrcode_url
     })
-    mta.Event.stat('openControl', { 'linktype': app.globalData.link_type })
   },
   //关闭遥控
   closeControl: function (e) {
@@ -848,7 +856,6 @@ Page({
     that.setData({
       showControl: false,
     })
-    mta.Event.stat("closecontrol", {})
   },
   //遥控退出投屏
   exitForscreen: function (e) {

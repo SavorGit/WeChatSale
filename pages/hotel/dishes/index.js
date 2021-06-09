@@ -1,6 +1,5 @@
 // pages/hotel/dishes/index.js
 const app = getApp()
-const mta = require('../../../utils/mta_analysis.js')
 const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -430,10 +429,7 @@ Page({
         });
       }
     });
-    mta.Event.stat('shareDishes', {
-      'openid': openid,
-      'goods_id': goods_id
-    })
+    
   },
 
   // 关闭分享菜品窗口
@@ -515,10 +511,7 @@ Page({
         });
       }
     });
-    mta.Event.stat('shareMerchant', {
-      'merchantid': merchant_id,
-      'openid': openid
-    })
+    
   },
 
   // 关闭分享店铺窗口

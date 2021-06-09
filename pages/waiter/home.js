@@ -1,6 +1,6 @@
 // pages/waiter/home.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
+var uma = app.globalData.uma;
 const utils = require('../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -34,7 +34,6 @@ Page({
     wx.hideHomeButton();
     wx.hideShareMenu();
     var that = this;
-    mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     
@@ -122,6 +121,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
+    uma.trackEvent('clickonwxauth',{'open_id':openid})
     wx.getUserProfile({
       desc:'获取用户头像',
       success(rets) {
@@ -192,6 +192,7 @@ Page({
             });
           }
         })
+        uma.trackEvent('wxauthsucess',{'open_id':openid})
       },fail:function(){
         wx.request({
           url: api_v_url + '/User/refuseRegister',
@@ -209,6 +210,7 @@ Page({
             });
           }
         })
+        uma.trackEvent('refusewxauth',{'open_id':openid})
       }
     })
 
@@ -302,21 +304,17 @@ Page({
     that.setData({
       showWXAuthLogin: false,
     })
-    
+    uma.trackEvent('clickonwxauth',{'open_id':openid})
   },
   integralList: function (e) {
     //数据埋点-点击收益明细
-    mta.Event.stat('clickIntegralList', {
-      'openid': openid
-    })
+    
   },
   
   
   goRelief: function (res) {
     //数据埋点-点击免责声明
-    mta.Event.stat('userClickRelief', {
-      'openid': openid
-    })
+    
   },
   userLogin: function (res) {
     var that = this;
@@ -324,9 +322,7 @@ Page({
       showWXAuthLogin: true,
     })
     //数据埋点-个人信息页面点击登录
-    mta.Event.stat('clickUserLogin', {
-      'openid': openid
-    })
+    
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -366,7 +362,6 @@ Page({
     });
     var id = e.currentTarget.dataset.id;
     if (id == 1) { //兑换
-      mta.Event.stat("clickintegral", {})
     } else if (id == 2) { //任务列表
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       if (user_info.hotel_id == -1) {
@@ -381,7 +376,6 @@ Page({
           url: '/pages/task/index',
         })
       }
-      mta.Event.stat("clicktask", {})
     }
 
   },

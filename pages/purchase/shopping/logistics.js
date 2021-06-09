@@ -3,7 +3,6 @@
  * [分销端] 物流信息页面
  */
 const utils = require('../../../utils/util.js')
-var mta = require('../../../utils/mta_analysis.js')
 const app = getApp()
 var api_v_url = app.globalData.api_v_url;
 var order_id;

@@ -130,7 +130,6 @@ Page({
       }
     })
     uma.trackEvent('mine_pop_list_addactivitygoods',{'open_id':openid,'hotel_id':hotel_id,'goods_id':goods_id})
-    
   },
   removePop:function(e){
     console.log(e);

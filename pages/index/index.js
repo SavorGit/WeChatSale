@@ -2,7 +2,6 @@
 //获取应用实例
 const app = getApp()
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -48,7 +47,6 @@ Page({
 
   onLoad: function(res) {
     var that = this;
-    mta.Page.init()
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
         openid: app.globalData.openid
@@ -658,10 +656,6 @@ Page({
       
     }
     
-    // if(user_info.role_type!=3 && typeof(user_info.openid)!='undefined'){
-    //   that.isComment(user_info.openid);
-    // }
-    mta.Event.stat('showIndex', { 'openid': user_info.openid })
   },
   getSignBoxList:function(hotel_id,openid){
     var that = this;
@@ -681,13 +675,14 @@ Page({
     })
     //数据埋点-首页关闭取消授权弹窗
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    mta.Event.stat('indexCloseAuth', { 'openid': user_info.openid })
+    uma.trackEvent('closewxauth',{'open_id':user_info.openid})
   },
   //微信用户授权登陆
   onGetUserInfo: function(res) {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
+    uma.trackEvent('clickonwxauth',{'open_id':openid})
     wx.getUserProfile({
       desc:'获取用户头像',
       success(rets) {
@@ -751,6 +746,7 @@ Page({
             });
           }
         })
+        uma.trackEvent('wxauthsucess',{'open_id':openid})
       },fail:function(){
         wx.request({
           url: api_v_url + '/User/refuseRegister',
@@ -768,6 +764,7 @@ Page({
             });
           }
         })
+        uma.trackEvent('refusewxauth',{'open_id':openid})
       }
     })
 
@@ -875,7 +872,6 @@ Page({
   goRelief:function(res){
     //数据埋点-首页用户点击免责声明
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    mta.Event.stat('indexClickRelief', { 'openid': user_info.openid })
   },
   goToWelcome:function(e){ 
     var user_info = wx.getStorageSync(cache_key + 'userinfo');

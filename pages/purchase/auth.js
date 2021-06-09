@@ -4,7 +4,6 @@
  */
 const app = getApp()
 const utils = require('../../utils/util.js')
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;

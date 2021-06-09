@@ -1,6 +1,5 @@
 // pages/tv_sale/system.js
 const app = getApp()
-var mta = require('../../utils/mta_analysis.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var box_mac;
@@ -114,7 +113,6 @@ Page({
     wx.hideShareMenu();
     var that = this;
     
-    mta.Page.init()
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
     var hotel_has_room = user_info.hotel_has_room;
@@ -348,7 +346,6 @@ Page({
         })
       },complete:function(res){
         //数据埋点-移除轮播内容
-        mta.Event.stat('clickDelProgram', { 'openid': openid,'hotel_id':hotel_id,'goodsid':goods_id })
       }
     })
   },
@@ -405,7 +402,6 @@ Page({
         })
       },complete:function(res){
         //数据埋点-点击电视轮播
-        mta.Event.stat('clickAddProgramPlay', { 'openid': openid,'boxmac':box_mac,'goodsid':goods_id })
       }
     })
   },
@@ -482,7 +478,6 @@ Page({
         })
       },complete:function(res){
         //数据埋点-点击大屏展示
-        mta.Event.stat('clickBoxShow', { 'openid': openid, 'boxmac': box_mac, 'goodsid': goods_id })
       }
     })
   },
@@ -617,7 +612,6 @@ Page({
         }
       })
       //数据埋点-点击餐厅活动
-      mta.Event.stat('clickHotelActivity', { 'openid': openid,'boxmac':link_box_info.box_mac })
     }
 
   },
@@ -850,7 +844,6 @@ Page({
         duration: 2000
       })
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 1, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id  })
       return false;
     }
     if (goods_name == '') {
@@ -863,7 +856,6 @@ Page({
         duration: 2000
       });
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 2, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id  })
       return false;
     }
     if (price == '') {
@@ -876,7 +868,6 @@ Page({
         duration: 2000
       });
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 3, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id  })
       return false;
     }
     if (start_time == '') {
@@ -886,7 +877,6 @@ Page({
         duration: 2000
       });
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 4, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
       return false;
     }
     if (end_time == '') {
@@ -896,7 +886,6 @@ Page({
         duration: 2000
       });
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 5, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
       return false;
     }
     var diff_date = tab(start_time, end_time);
@@ -907,7 +896,6 @@ Page({
         duration: 2000
       });
       //数据埋点-添加商品报错
-      mta.Event.stat('addMyActivityErr', { 'code': 6, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id  })
       return false;
     }
     var user_info = wx.getStorageSync(cache_key + "userinfo");
@@ -1011,7 +999,6 @@ Page({
             duration: 2000
           })
           //数据埋点-活动添加成功
-          mta.Event.stat('addActivitySucc', { 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
           my_activity_info = {};
         } else {
           wx.showToast({
@@ -1020,7 +1007,6 @@ Page({
             duration: 2000
           })
           //数据埋点-活动添加报错
-          mta.Event.stat('addMyActivityErr', { 'code': 7, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
         }
 
 
@@ -1035,7 +1021,6 @@ Page({
           duration: 2000
         })
         //数据埋点-活动添加报错
-        mta.Event.stat('addMyActivityErr', { 'code': 8, 'openid': openid, 'hotelid': hotel_id, 'goods_id': goods_id })
       },complete:function(e){
         
       }
@@ -1130,7 +1115,6 @@ Page({
 
         }
       },complete:function(res){
-        mta.Event.stat('clickEditMyActivity', { 'openid': openid, 'hotelid': hotel_id,'goodsid':goods_id })
       }
     })
   },
@@ -1472,11 +1456,7 @@ Page({
       }
     })
     //数据埋点-进入活动促销页面
-    if (this.data.showPageType==1){
-      mta.Event.stat('showActivityPop', { 'openid': openid })
-    } else if (this.data.showPageType == 3){
-      mta.Event.stat("showhotelactivity", { 'openid': openid })
-    }
+    
     
     
     //this.onLoad()
@@ -1556,7 +1536,6 @@ Page({
           })
         },complete:function(res){
           //数据埋点-点击添加到好物圈
-          mta.Event.stat('clickRecWsad', { 'openid': openid, 'goodsid': res_id})
         }
       })
     } else {
@@ -1605,7 +1584,6 @@ Page({
           })
         },complete:function(res){
           //数据埋点-促销活动分享微信好友
-          mta.Event.stat('clickSharePopGoods', { 'openid': openid, 'goodsid': goods_id })
         }
       })
       // 来自页面内转发按钮
@@ -1645,7 +1623,6 @@ Page({
       qrCode: goods_info.qrcode_url
     });
     //数据埋点-点击生成商品码
-    mta.Event.stat('clickCreateGoodsCode', { 'openid': user_info.openid,'goodsid':goods_info.goods_id })
 
   },
   closeViewGoodsCode: function(e) {
@@ -1715,7 +1692,6 @@ Page({
       share_goods_info:goods_info,
     })
     //数据埋点-点击活动商品分享
-    mta.Event.stat('clickPopShare', { 'openid': openid,'goodsid':goods_info.goods_id })
   },
   close_share: function(e) {
     var that = this;
@@ -1913,7 +1889,6 @@ Page({
         })
       },complete:function(res){
         //数据埋点-点击保存到相册
-        mta.Event.stat("clicksaveimgtoalbum", { 'openid': openid, 'goodsid': share_goods_info.goods_id})
       }
     })
   },
@@ -2010,7 +1985,6 @@ Page({
     //数据埋点-点击添加我的活动
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     var link_box_info = wx.getStorageSync(cache_key +'link_box_info');
-    mta.Event.stat('clickAddMyActivity', { 'openid': user_info.openid, 'boxmac': link_box_info.box_mac })
 
   },
   
@@ -2042,13 +2016,11 @@ Page({
       url: '/pages/index/index',
     })
     //数据埋点-活动促销页面重选酒楼
-    mta.Event.stat('popActivityRechooseHotel', { 'openid': user_info.openid })
   },
   addPopGoods:function(e){
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     var openid    = user_info.openid;
     //数据埋点-点击添加促销活动按钮
-    mta.Event.stat('clickAddPopList', { 'openid': openid })
   },
   bindMobile:function(e){
     //console.log(e)
@@ -2107,7 +2079,6 @@ Page({
         }
       },complete:function(res){
         //数据埋点-活动促销页面绑定手机号
-        mta.Event.stat('popActivityBindMobile', { 'openid': user_info.openid,'mobile':mobile })
       }
     })
   },
@@ -2177,7 +2148,6 @@ Page({
         }
       }, complete: function (res) {
         //数据埋点-促销活动页面发送手机验证码
-        mta.Event.stat('popActivitySendVerifyCode', { 'openid': openid,'mobile':mobile})
       }
     })
   },
@@ -2203,7 +2173,6 @@ Page({
     }
     //数据埋点-点击选择包间
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    mta.Event.stat('changeRoom', { 'openid': user_info.openid })
   }, //选择包间结束
   loadMoreMyAct:function(e){
     var that = this;
