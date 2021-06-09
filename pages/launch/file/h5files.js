@@ -1,6 +1,7 @@
 // pages/forscreen/forfile/h5files.js
 const util = require('../../../utils/util.js')
 const app = getApp()
+var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var openid;
 var box_mac;
@@ -52,7 +53,7 @@ Page({
         });
       }
     });
-
+    uma.trackEvent('forscreen_forphonefile_onshowpage',{'open_id':openid,'box_mac':box_mac})
   },
 
   /**
