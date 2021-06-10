@@ -1,7 +1,6 @@
 //app.js
 import touch from './utils/touch.js'
 const utils = require('./utils/util.js')
-var mta = require('./utils/mta_analysis.js')
 var uma = require('./utils/uma_analysis.js')
 App({
   umengConfig:{
@@ -158,16 +157,7 @@ App({
       }
     }
     this.globalData.oss_access_key_id = oss_access_key_id
-    mta.App.init({
-      "appID": "500699143",
-      "eventID": "500699145",
-      "autoReport": true,
-      "statParam": true,
-      "ignoreParams": [],
-      "statPullDownFresh": true,
-      "statShareApp": true,
-      "statReachBottom": true
-    });
+    
     // 获取小程序更新机制兼容
     if (wx.canIUse('getUpdateManager')) {
       const updateManager = wx.getUpdateManager()
@@ -273,7 +263,7 @@ App({
     if (pages.length) {
       currPage = pages[pages.length - 1];
     }
-    mta.Event.stat('onAppHide', { 'url': currPage.__route__ })
+    uma.trackEvent('onapphide',{'open_id':this.globalData.openid,'from_page':currPage.__route__})
   },
   in_array:function(search, array) {
     for(var i in array) {
