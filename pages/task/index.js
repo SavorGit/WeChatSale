@@ -32,7 +32,7 @@ Page({
     that.setData({
       userInfo: userInfo
     })
-    uma.trackEvent('withdraw_gotopage',{'open_id':userInfo.openid})
+    uma.trackEvent('mytask_gotopage',{'open_id':userInfo.openid})
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
