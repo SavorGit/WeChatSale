@@ -157,7 +157,7 @@ Page({
 
         var is_forscreen = res.data.result.is_forscreen;
         if (is_forscreen == 1) {
-          uma.trackEvent('popbreakwindow',{'open_id':openid,'box_mac':box_mac})
+          uma.trackEvent('break_popbreakwindow',{'open_id':openid,'box_mac':box_mac})
           wx.showModal({
             title: '确认要打断投屏',
             content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
