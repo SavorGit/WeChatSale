@@ -130,6 +130,7 @@ Page({
               } else {
                 that.setData({
                   is_btn_disabel:false,
+                  updateStatus:0
                 })
                 uma.trackEvent('break_confirbreak',{'open_id':openid,'box_mac':box_mac,'status':0})
               }
