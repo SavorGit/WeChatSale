@@ -23,7 +23,7 @@ Page({
     page = 1;
     hotel_id = options.hotel_id;
     openid   = options.openid;
-    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'lc_type':'onLoad'}));
     this.getActivityList();
   },
   getActivityList:function(page = 1){
@@ -89,7 +89,7 @@ Page({
     if(this.data.pageFresh){
       this.getActivityList(page);
     }
-    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
   },
 
   /**
@@ -99,14 +99,14 @@ Page({
     this.setData({
       pageFresh:true
     })
-    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'lc_type':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('dineList_lifeCycle', {'open_id':openid,'lc_type':'onUnload'}));
   },
 
   /**

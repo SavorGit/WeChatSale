@@ -38,7 +38,7 @@ Page({
     } else {
       var hotel_id = user_info.hotel_id;
     }
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onLoad'}));
     var role_type = user_info.role_type;
     var is_wx_auth = user_info.is_wx_auth;
     var goods_manage = app.in_array('goods_manage', user_info.service);
@@ -412,7 +412,7 @@ Page({
     that.getUserCenter(openid)
     that.getMyStaffList(openid);
     //数据埋点-进入个人信息页面
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
   },
   closeAuth: function () {
     var that = this;
@@ -456,14 +456,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onUnload'}));
   },
 
   /**

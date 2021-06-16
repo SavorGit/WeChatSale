@@ -51,7 +51,7 @@ Page({
 
     }
     //数据埋点-进入登录页面
-    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onLoad'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'lc_type':'onLoad'}));
     
     //判断用户是否注册
     function userRegister(openid){
@@ -381,7 +381,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onShow'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
     wx.hideHomeButton();
   },
 
@@ -389,14 +389,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onHide'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'lc_type':'onHide'}));
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'ctype':'onUnload'}));
+    utils.tryCatch(getApp().globalData.uma.trackEvent('userLogin_lifeCycle', {'open_id':openid,'lc_type':'onUnload'}));
   },
 
   /**
