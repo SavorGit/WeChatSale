@@ -11,7 +11,7 @@
         <view class="item flex_column_center_flexStart">
           <view class="row flex_row_center_spaceBetween">
             <view class="name one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.name}}</view>
-            <view class="room theme-font7 one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.name}}</view>
+            <view class="room theme-font7 one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.room_name}}</view>
             <view wx:if="{{bean.status==2 || bean.status==3}}" class="status theme-font3" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
             <view wx:if="{{bean.status==0 || bean.status==1}}" class="status theme-font7" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
           </view>

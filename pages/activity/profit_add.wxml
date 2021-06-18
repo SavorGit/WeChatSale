@@ -5,7 +5,7 @@
 
 
 <view class='container flex_column_center_flexStart theme-container'>
-  <form bindsubmit="addActivity">
+  <form bindsubmit="addProfite">
     <view class="page">
       <scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
         <view class="wrapper">
@@ -18,29 +18,31 @@
           <view class="row text flex_row_center_flexStart">
             <view class="label">奖品1</view>
             <view class="value">
-              <input class="input" placeholder="请输入" maxlength="10" name="activity_name"></input>
+              <input class="input" placeholder="请输入" maxlength="10" name="prize1"></input>
             </view>
           </view>
           <view class="row text flex_row_center_flexStart">
             <view class="label">奖品2</view>
             <view class="value">
-              <input class="input" placeholder="请输入" maxlength="10" name="award_name"></input>
+              <input class="input" placeholder="请输入" maxlength="10" name="prize2"></input>
             </view>
           </view>
           <view class="row textarea flex_row_flexStart_flexStart">
             <view class="label">规则</view>
             <view class="value">
-              <textarea class="input" placeholder="请输入" cols="30" rows="10"></textarea>
+              <textarea class="input" placeholder="请输入" cols="30" rows="10" maxlength="50" name="rcontent"></textarea>
             </view>
           </view>
           <view class="row picker flex_row_flexStart_flexStart">
             <view class="label">活动包间</view>
             <view class="value flex_column_flexStart_spaceBetween">
               <view class="picker flex_row_center_spaceBetween">
-                <picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                <picker class="input" range="{{objectBoxArray}}"  bindchange="selectRoom">
+                  
                   <view class="wrapper border flex_row_center_spaceBetween">
-                    <input class="show" value='{{award_open_time}}' placeholder='---请选择---' name="award_open_time" disabled='true' style="width:100%;" />
-                    <view class="icon fa fa-angle-down" aria-hidden="true"></view>
+
+                    <input class="show" value='{{select_room_name}}' placeholder='{{select_room_name}}' name="select_room_name" disabled='true' style="width:100%;" /> 
+                    <view class="icon fa fa-angle-down" aria-hidden="true"></view> 
                   </view>
                 </picker>
               </view>
