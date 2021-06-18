@@ -23,7 +23,7 @@
           <view class="label theme-font3">奖品2</view>
           <view class="value one-line-overflow">{{activity_info.prize2}}</view>
         </view>
-        <view class="row flex_row_center_flexStart text">
+        <view class="row flex_row_center_flexStart textarea">
           <view class="label theme-font3">规则</view>
           <view class="value">{{activity_info.rule_content}}</view>
         </view>
