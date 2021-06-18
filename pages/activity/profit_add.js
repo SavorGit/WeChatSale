@@ -79,34 +79,40 @@ Page({
       app.showToast('请选择活动包间');
       return false;
     }
+    wx.showModal({
+      title: '确定要完成保存吗？',
+      //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
+      success: function (res) {
+        if (res.confirm) {
+          that.setData({add_button_disable:true});
+          utils.PostRequest(api_v_url + '/activity/addJuactivity', {
+            hotel_id: hotel_id,
+            openid,openid,
+            activity_name:activity_name,
+            box_mac:select_box_mac,
+            prize1:prize1,
+            prize2:prize2,
+            rcontent:rcontent
 
-    that.setData({add_button_disable:true});
-    utils.PostRequest(api_v_url + '/activity/addJuactivity', {
-      hotel_id: hotel_id,
-      openid,openid,
-      activity_name:activity_name,
-      box_mac:select_box_mac,
-      prize1:prize1,
-      prize2:prize2,
-      rcontent:rcontent
-
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({add_button_disable:false})
-      wx.showToast({
-        title: '添加成功',
-        icon:'success',
-        duration:2000,
-        mask:true,
-        success:function(){
-          wx.navigateBack({
-            delta: 1,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({add_button_disable:false})
+            wx.showToast({
+              title: '添加成功',
+              icon:'success',
+              duration:2000,
+              mask:true,
+              success:function(){
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }
+            })
+          },res=>{
+            that.setData({add_button_disable:false})
           })
         }
-      })
-    },res=>{
-      that.setData({add_button_disable:false})
+      }
     })
-
   },
 
   

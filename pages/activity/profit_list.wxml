@@ -15,7 +15,7 @@
             <view wx:if="{{bean.status==2 || bean.status==3}}" class="status theme-font3" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
             <view wx:if="{{bean.status==1}}" class="status theme-font7" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
             <view wx:if="{{bean.status==0}}" class="status flex_row_center_flexEnd">
-              <view class="btn cancel theme-button-welcome" bindtap="cancelActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">开始</view>
+              <view class="btn cancel theme-button-welcome" bindtap="startActivity" data-activity_id="{{bean.activity_id}}" data-keys="{{index}}">开始</view>
             </view>
           </view>
         </view>

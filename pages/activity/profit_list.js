@@ -24,7 +24,6 @@ Page({
     page = 1;
     hotel_id = options.hotel_id;
     openid   = options.openid;
-    this.getActivityList();
   },
   getActivityList:function(page = 1){
     var that = this;
@@ -48,6 +47,36 @@ Page({
   loadMore:function(e){
     page +=1;
     this.getActivityList(page);
+  },
+  startActivity:function(e){
+    var that = this;
+    var activity_id = e.currentTarget.dataset.activity_id;
+    var keys        = e.currentTarget.dataset.keys;
+    var activity_list = this.data.activity_list;
+
+    wx.showModal({
+      title: '确定要开始吗？',
+      //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/activity/startJuactivity', {
+            hotel_id: hotel_id,
+            openid:openid,
+            activity_id : activity_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            activity_list[keys].status = "1";
+            activity_list[keys].status_str = '进行中';
+            that.setData({activity_list:activity_list})
+          })
+        }
+      }
+    })
+  },
+  gotoActivityDetail:function(e){
+    var activity_id = e.currentTarget.dataset.activity_id;
+    wx.navigateTo({
+      url: '/pages/activity/profit_detail?activity_id='+activity_id+'&hotel_id='+hotel_id+'&openid='+openid,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

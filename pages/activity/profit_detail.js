@@ -26,7 +26,7 @@ Page({
   },
   getActivityInfo:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/activity/judetail', {
       hotel_id: hotel_id,
       openid:openid,
       activity_id : activity_id
