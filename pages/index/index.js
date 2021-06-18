@@ -11,7 +11,6 @@ var box_mac;
 var forscreen_type;
 var common_appid = app.globalData.common_appid;
 var sign_box_list; //签到包间
-var uma = app.globalData.uma
 Page({
   data: {
     SystemInfo: app.SystemInfo,
