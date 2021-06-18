@@ -1,1 +1,104 @@
 /* pages/activity/profit_detail.wxss */
+/**
+ * 餐厅活动详情
+ */
+
+
+.scroll-view {
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  width: 100%;
+}
+
+.head {
+  width: 100%;
+  height: 200rpx;
+}
+
+.head>.title {
+  font-size: 72rpx;
+  font-weight: 400;
+}
+
+.body {
+  width: 100%;
+  min-height: calc(100vh - 250rpx);
+  padding-top: 50rpx;
+}
+
+.body>.row {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.body>.row>.label {
+  width: 160rpx;
+  font-weight: 400;
+  font-size: 28rpx;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
+
+.body>.row>.value {
+  width: calc(100% - 160rpx);
+}
+
+.body>.row.text {
+  height: 40rpx;
+}
+
+.body>.row.text>.value {
+  font-weight: 400;
+  font-size: 28rpx;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
+
+.body>.row.pic {
+  height: 280rpx;
+  padding: 15rpx 30rpx;
+}
+
+.body>.row.pic>.value {
+  padding: 20rpx 0;
+}
+
+.body>.row.pic>.value>.pic {
+  width: 390rpx;
+  height: 260rpx;
+}
+
+.body>.row.we-chart {
+  padding: 15rpx 30rpx;
+}
+
+.body>.row.we-chart>.value {
+  padding: 20rpx 0;
+}
+
+.body>.row.we-chart>.value>.user {
+  width: 124rpx;
+  height: 160rpx;
+}
+
+.body>.row.we-chart>.value>.user>.head-img {
+  width: 124rpx;
+  height: 124rpx;
+}
+
+.body>.row.we-chart>.value>.user>.nickname {
+  width: 100%;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-decoration: none;
+}

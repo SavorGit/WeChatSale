@@ -1,2 +1,25 @@
 <!--pages/activity/profit_list.wxml-->
-<text>pages/activity/profit_list.wxml</text>
+<!--
+  - 巨划算活动列表
+  -->
+
+
+<view class='container flex_column_center_flexStart theme-container'>
+  <scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+    <view class="list flex_column_center_flexStart">
+      <block wx:for="{{activity_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="name one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.name}}</view>
+            <view class="room theme-font7 one-line-overflow" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.name}}</view>
+            <view wx:if="{{bean.status==2 || bean.status==3}}" class="status theme-font3" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
+            <view wx:if="{{bean.status==0 || bean.status==1}}" class="status theme-font7" bindtap="gotoActivityDetail" data-activity_id='{{bean.activity_id}}'>{{bean.status_str}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="page-foot flex_column_center_flexStart" bindtap="addActivity">
+    <view class="btn add theme-button-welcome">添加活动</view>
+  </view>
+</view>

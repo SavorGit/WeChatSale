@@ -1,2 +1,59 @@
 <!--pages/activity/profit_add.wxml-->
-<text>pages/activity/profit_add.wxml</text>
+<!--
+  - 新增巨划算活动
+  -->
+
+
+<view class='container flex_column_center_flexStart theme-container'>
+  <form bindsubmit="addActivity">
+    <view class="page">
+      <scroll-view class="scroll-view" scroll-y="true" scroll-with-animation="true">
+        <view class="wrapper">
+          <view class="row text flex_row_center_flexStart">
+            <view class="label">活动名称</view>
+            <view class="value">
+              <input class="input" placeholder="请输入" maxlength="10" name="activity_name"></input>
+            </view>
+          </view>
+          <view class="row text flex_row_center_flexStart">
+            <view class="label">奖品1</view>
+            <view class="value">
+              <input class="input" placeholder="请输入" maxlength="10" name="activity_name"></input>
+            </view>
+          </view>
+          <view class="row text flex_row_center_flexStart">
+            <view class="label">奖品2</view>
+            <view class="value">
+              <input class="input" placeholder="请输入" maxlength="10" name="award_name"></input>
+            </view>
+          </view>
+          <view class="row textarea flex_row_flexStart_flexStart">
+            <view class="label">规则</view>
+            <view class="value">
+              <textarea class="input" placeholder="请输入" cols="30" rows="10"></textarea>
+            </view>
+          </view>
+          <view class="row picker flex_row_flexStart_flexStart">
+            <view class="label">活动包间</view>
+            <view class="value flex_column_flexStart_spaceBetween">
+              <view class="picker flex_row_center_spaceBetween">
+                <picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                  <view class="wrapper border flex_row_center_spaceBetween">
+                    <input class="show" value='{{award_open_time}}' placeholder='---请选择---' name="award_open_time" disabled='true' style="width:100%;" />
+                    <view class="icon fa fa-angle-down" aria-hidden="true"></view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <view class="row tips flex_column_center_flexStart">
+            <!-- <view class="line theme-font5">活动发起后，需经过选择的等待时间才能开始抽奖</view> -->
+          </view>
+        </view>
+      </scroll-view>
+      <view class="foot">
+        <button class="btn save theme-button-welcome" form-type="submit" disabled="{{add_button_disable}}">保存</button>
+      </view>
+    </view>
+  </form>
+</view>

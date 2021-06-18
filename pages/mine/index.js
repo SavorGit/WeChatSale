@@ -662,5 +662,12 @@ Page({
     let self = this;
     let roleType = e.currentTarget.dataset.role_type;
     utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickGotoWaiterList', {'open_id':openid,'role_type':roleType}));
+  },
+  gotoUrl:function(e){
+    let self = this;
+    let jumpUrl = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: jumpUrl
+    });
   }
 })
