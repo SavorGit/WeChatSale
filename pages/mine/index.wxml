@@ -98,10 +98,10 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
-	<!-- 巨划算管理面板 -->
+	<!-- 聚划算管理面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/activity/profit_list">
-			<view>巨划算管理</view>
+			<view>聚划算管理</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>

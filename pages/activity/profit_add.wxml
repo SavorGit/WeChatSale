@@ -1,6 +1,6 @@
 <!--pages/activity/profit_add.wxml-->
 <!--
-  - 新增巨划算活动
+  - 新增聚划算活动
   -->
 
 
@@ -30,7 +30,7 @@
           <view class="row textarea flex_row_flexStart_flexStart">
             <view class="label">规则</view>
             <view class="value">
-              <textarea class="input" placeholder="请输入" cols="30" rows="10" maxlength="50" name="rcontent"></textarea>
+              <textarea class="input" placeholder="请输入" placeholder="每天每个包间只可领取一次奖品" cols="30" rows="10" maxlength="50" name="rcontent"></textarea>
             </view>
           </view>
           <view class="row picker flex_row_flexStart_flexStart">
