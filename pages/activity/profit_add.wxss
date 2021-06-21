@@ -99,6 +99,19 @@
   resize: none;
 }
 
+.wrapper>.row.switch {
+  height: 60rpx;
+}
+
+.wrapper>.row.switch>.value {
+  height: 100%;
+  font-weight: 400;
+  font-size: 28rpx;
+  font-style: normal;
+  letter-spacing: 0px;
+  text-decoration: none;
+}
+
 .wrapper>.row.picker {
   height: 100rpx;
 }

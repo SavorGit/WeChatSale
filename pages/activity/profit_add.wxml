@@ -30,22 +30,29 @@
           <view class="row textarea flex_row_flexStart_flexStart">
             <view class="label">规则</view>
             <view class="value">
-              <textarea class="input" placeholder="请输入"  cols="30" rows="10" maxlength="50" name="rcontent" value="每天每个包间只可领取一次奖品"></textarea>
+              <textarea class="input" placeholder="请输入" cols="30" rows="10" maxlength="50" name="rcontent" value="每天每个包间只可领取一次奖品"></textarea>
             </view>
           </view>
           <view class="row picker flex_row_flexStart_flexStart">
             <view class="label">活动包间</view>
             <view class="value flex_column_flexStart_spaceBetween">
               <view class="picker flex_row_center_spaceBetween">
-                <picker class="input" range="{{objectBoxArray}}"  bindchange="selectRoom">
-                  
+                <picker class="input" range="{{objectBoxArray}}" bindchange="selectRoom">
+
                   <view class="wrapper border flex_row_center_spaceBetween">
 
-                    <input class="show" value='{{select_room_name}}' placeholder='{{select_room_name}}' name="select_room_name" disabled='true' style="width:100%;" /> 
-                    <view class="icon fa fa-angle-down" aria-hidden="true"></view> 
+                    <input class="show" value='{{select_room_name}}' placeholder='{{select_room_name}}' name="select_room_name" disabled='true' style="width:100%;" />
+                    <view class="icon fa fa-angle-down" aria-hidden="true"></view>
                   </view>
                 </picker>
               </view>
+            </view>
+          </view>
+          <view class="row switch flex_row_center_flexStart">
+            <view class="label">京东对比价格</view>
+            <view class="value flex_row_center_flexStart">
+              <view class="label theme-font3" style="padding:0 20rpx 0;">赖茅酒</view>
+              <switch class="input" checked="checked"></switch>
             </view>
           </view>
           <view class="row tips flex_column_center_flexStart">
