@@ -12,25 +12,25 @@
           <view class="row text flex_row_center_flexStart">
             <view class="label">活动名称</view>
             <view class="value">
-              <input class="input" placeholder="请输入" maxlength="10" name="activity_name"></input>
+              <input class="input" placeholder="请输入" maxlength="20" name="activity_name"></input>
             </view>
           </view>
           <view class="row text flex_row_center_flexStart">
             <view class="label">奖品1</view>
             <view class="value">
-              <input class="input" placeholder="请输入" maxlength="10" name="prize1"></input>
+              <input class="input" placeholder="请输入" maxlength="20" name="prize1"></input>
             </view>
           </view>
           <view class="row text flex_row_center_flexStart">
             <view class="label">奖品2</view>
             <view class="value">
-              <input class="input" placeholder="请输入" maxlength="10" name="prize2"></input>
+              <input class="input" placeholder="请输入" maxlength="20" name="prize2"></input>
             </view>
           </view>
           <view class="row textarea flex_row_flexStart_flexStart">
             <view class="label">规则</view>
             <view class="value">
-              <textarea class="input" placeholder="请输入" placeholder="每天每个包间只可领取一次奖品" cols="30" rows="10" maxlength="50" name="rcontent"></textarea>
+              <textarea class="input" placeholder="请输入"  cols="30" rows="10" maxlength="50" name="rcontent" value="每天每个包间只可领取一次奖品"></textarea>
             </view>
           </view>
           <view class="row picker flex_row_flexStart_flexStart">
