@@ -12,7 +12,8 @@ Page({
   data: {
     add_button_disable:false,
     select_room_name:'---请选择---',
-    select_box_mac:''
+    select_box_mac:'',
+    is_checked:true,
   },
 
   /**
@@ -79,6 +80,13 @@ Page({
       app.showToast('请选择活动包间');
       return false;
     }
+    var is_checked = that.data.is_checked;
+    if(is_checked){
+      var is_compareprice = 1;
+    }else {
+      var is_compareprice = 0;
+    }
+
     wx.showModal({
       title: '确定要完成保存吗？',
       //content: '当前电视正在进行投屏,继续投屏有可能打断当前投屏中的内容.',
@@ -92,7 +100,8 @@ Page({
             box_mac:select_box_mac,
             prize1:prize1,
             prize2:prize2,
-            rcontent:rcontent
+            rcontent:rcontent,
+            is_compareprice:is_compareprice
 
           }, (data, headers, cookies, errMsg, statusCode) => {
             that.setData({add_button_disable:false})
@@ -114,7 +123,11 @@ Page({
       }
     })
   },
-
+  comPrice:function(e){
+    console.log(e)
+    var is_checked = e.detail.value;
+    this.setData({is_checked:is_checked})
+  },
   
   /**
    * 生命周期函数--监听页面初次渲染完成

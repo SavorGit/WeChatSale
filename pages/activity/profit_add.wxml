@@ -52,7 +52,7 @@
             <view class="label">京东对比价格</view>
             <view class="value flex_row_center_flexStart">
               <view class="label theme-font3" style="padding:0 20rpx 0;">赖茅酒</view>
-              <switch class="input" checked="checked"></switch>
+              <switch class="input" checked="{{is_checked}}" bindchange="comPrice"></switch>
             </view>
           </view>
           <view class="row tips flex_column_center_flexStart">
