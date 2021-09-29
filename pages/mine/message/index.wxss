@@ -1,1 +1,66 @@
 /* pages/mine/message/index.wxss */
+/**
+ * 消息通知首页
+ */
+
+
+.wapper {
+  width: 100%;
+  height: 100%;
+}
+
+.item {
+  width: calc(100% - 120rpx);
+  padding: 30rpx;
+  margin: 10rpx 30rpx;
+  border-radius: 40rpx;
+  background-color: rgb(251, 244, 242);
+}
+
+.item>.top,
+.item>.main {
+  width: 100%;
+}
+
+.item>.top {
+  padding: 5rpx 0;
+}
+
+.item>.top>.title {
+  width: calc(100% - 220rpx);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.item>.top>.time {
+  width: 220rpx;
+  font-size: 28rpx;
+  text-align: right;
+}
+
+.item>.main {
+  padding: 10rpx 0;
+}
+
+.item>.main>.user {
+  width: calc(40% - 10rpx);
+}
+
+.item>.main>.user>.hader {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 3rpx solid #EFEFEF;
+}
+
+.item>.main>.user>.name {
+  width: calc(100% - 100rpx);
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6397F2;
+}
+
+.item>.main>.message {
+  width: 60%;
+  font-size: 28rpx;
+}
