@@ -56,6 +56,7 @@
     "pages/mine/assign_waiter",
     "pages/mine/select_waiter",
     "pages/mine/setting/list",
+    "pages/mine/message/index",
     "pages/template/commons",
     "pages/tv_sale/system",
     "pages/task/index",
