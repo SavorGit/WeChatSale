@@ -29,24 +29,6 @@ Page({
     hotel_id = options.hotel_id;
     page = 1;
     self.getTastewineList()
-    
-
-    /*self.setData({
-      list: [{
-        title: '品鉴酒领取通知',
-        time: '2021.9.29 11:30',
-        user_name: '张三三',
-        user_header: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
-        msg: '成功领取了品鉴酒“xxxxxxxxxxxxxxxxxx“，请及时处理。'
-      }, {
-        title: '品鉴酒领取通知',
-        time: '2021.9.29  11:20',
-        user_name: '李四四',
-        user_header: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
-        msg: '成功领取了品鉴酒“xxxxxxxxxxxxxxxxxx“，请及时处理。'
-      }]
-    });*/
-
   },
   getTastewineList:function(){
     var that = this;
