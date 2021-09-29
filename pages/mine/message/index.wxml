@@ -4,20 +4,20 @@
  |-->
 
 
-<scroll-view class='container theme-container' style='height: calc(100vh - {{46 + statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container theme-container' style='height: calc(100vh - {{46 + statusBarHeight}}px);' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
   <view class="wapper">
-    <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+    <block wx:for="{{tasteWineList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
       <view class="item flex_column_center_flexStart">
         <view class="top flex_row_center_spaceBetween">
-          <view class="title theme-font1 one-line-overflow">{{bean.title}}</view>
-          <view class="time theme-font3 one-line-overflow">{{bean.time}}</view>
+          <view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
+          <view class="time theme-font3 one-line-overflow">{{bean.add_time}}</view>
         </view>
         <view class="main flex_row_center_spaceBetween">
           <view class="user flex_row_center_spaceBetween">
-            <image class="hader" mode="aspectFill" src="{{bean.user_header}}"></image>
-            <view class="name two-line-overflow">{{bean.user_name}}</view>
+            <image class="hader" mode="aspectFill" src="{{bean.avatarUrl}}"></image>
+            <view class="name two-line-overflow">{{bean.nickName}}</view>
           </view>
-          <view class="message theme-font1">{{bean.msg}}</view>
+          <view class="message theme-font1">{{bean.content}}</view>
         </view>
       </view>
     </block>

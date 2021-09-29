@@ -7,6 +7,9 @@ const app = getApp()
 const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
+var openid ;
+var hotel_id;
+var page ;
 Page({
 
   /**
@@ -14,6 +17,7 @@ Page({
    */
   data: {
     statusBarHeight: getApp().globalData.statusBarHeight,
+    tasteWineList:[]
   },
 
   /**
@@ -21,7 +25,13 @@ Page({
    */
   onLoad: function (options) {
     let self = this;
-    self.setData({
+    openid = options.openid;
+    hotel_id = options.hotel_id;
+    page = 1;
+    self.getTastewineList()
+    
+
+    /*self.setData({
       list: [{
         title: '品鉴酒领取通知',
         time: '2021.9.29 11:30',
@@ -35,9 +45,34 @@ Page({
         user_header: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
         msg: '成功领取了品鉴酒“xxxxxxxxxxxxxxxxxx“，请及时处理。'
       }]
-    });
-  },
+    });*/
 
+  },
+  getTastewineList:function(){
+    var that = this;
+    var tasteWineList = this.data.tasteWineList;
+    utils.PostRequest(api_v_url + '/activity/tastewineGetlist', {
+      openid: openid,
+      hotel_id: hotel_id,
+      page:page
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      var ret_list = data.result.datalist;
+      if(ret_list.length>0){
+        for(let i in ret_list){
+          tasteWineList.push(ret_list[i])
+        }
+        that.setData({tasteWineList:tasteWineList})
+        
+      }else {
+        app.showToast('没有更多了...')
+      }
+    })
+  },
+  loadMore:function(){
+    page +=1;
+    this.getTastewineList();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
