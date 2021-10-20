@@ -52,7 +52,7 @@ Component({
    */
   methods: {
     //点击右侧字母导航定位触发
-    scrollToViewFn: function(e) {
+    scrollToViewFn: function (e) {
       var that = this;
       var _id = e.target.dataset.id;
       for (var i = 0; i < that.data.listMain.length; ++i) {
@@ -66,7 +66,7 @@ Component({
       }
     },
     // 页面滑动时触发
-    onPageScroll: function(e) {
+    onPageScroll: function (e) {
       this.setData({
         scroolHeight: e.detail.scrollTop
       });
@@ -81,11 +81,11 @@ Component({
       }
     },
     // 搜索框输入内容时触发
-    searchItems: function(e) {
+    searchItems: function (e) {
       let that = this;
       let listSearch = [];
       let searchKey = e.detail.value;
-      if (typeof(searchKey) == 'string' && searchKey != '') {
+      if (typeof (searchKey) == 'string' && searchKey != '') {
         if (!(that.data.listMain instanceof Array) || that.data.listMain.length < 1) {
           return;
         }
@@ -96,7 +96,7 @@ Component({
           }
           for (let bIndex = 0; bIndex < items.length; bIndex++) {
             let item = items[bIndex];
-            if (typeof(item) != 'object' || typeof(item.name) != 'string' || item.name.indexOf(searchKey) < 0) {
+            if (typeof (item) != 'object' || typeof (item.name) != 'string' || item.name.indexOf(searchKey) < 0) {
               continue;
             }
             listSearch.push(item);
@@ -113,7 +113,7 @@ Component({
       }
     },
     // 点击条目时触发
-    clickItem: function(e) {
+    clickItem: function (e) {
       let that = this;
       that.setData({
         show: false,
@@ -128,7 +128,7 @@ Component({
         }
         for (let bIndex = 0; bIndex < items.length; bIndex++) {
           let item = items[bIndex];
-          if (typeof(item) != 'object' || typeof(item.id) != 'string' || item.id != hotel.id) {
+          if (typeof (item) != 'object' || typeof (item.id) != 'string' || item.id != hotel.id) {
             continue;
           }
           bean = item;
@@ -138,7 +138,7 @@ Component({
       that.triggerEvent('onClickItem', bean);
     },
     // 点击返回按钮进触发
-    closeModal: function(e) {
+    closeModal: function (e) {
       let that = this;
       that.setData({
         show: false,
@@ -150,7 +150,7 @@ Component({
      * @para pageContext  页面对象上下文
      * @para mailListData 通讯录格式的数据
      */
-    loadingMailListData: function(pageContext, mailListData) {
+    loadingMailListData: function (pageContext, mailListData) {
       //赋值给列表值
       pageContext.setData({
         listMain: mailListData
@@ -164,7 +164,7 @@ Component({
       let number = 0;
       let lastHeight = 0;
       for (let index = 0; index < pageContext.data.listMain.length; ++index) {
-        wx.createSelectorQuery().in(pageContext).select('#inToView' + pageContext.data.listMain[index].id).boundingClientRect(function(rect) {
+        wx.createSelectorQuery().in(pageContext).select('#inToView' + pageContext.data.listMain[index].id).boundingClientRect(function (rect) {
           lastHeight = rect.height;
           number = lastHeight + number;
           let newArry = [{
@@ -177,7 +177,7 @@ Component({
           })
         }).exec();
       };
-      wx.createSelectorQuery().in(pageContext).select('#mail_list_group').boundingClientRect(function(rect) {
+      wx.createSelectorQuery().in(pageContext).select('#mail_list_group').boundingClientRect(function (rect) {
         pageContext.setData({
           inToViewSpaceHeight: rect.height - lastHeight
         })
@@ -185,19 +185,22 @@ Component({
     }
   },
   observers: {
-    'mailListData': function(mailListData) {
+    'mailListData': function (mailListData) {
       let com = this;
       // console.log('MailList.js', 'observers.mailListData', mailListData);
-      if (typeof(mailListData) == 'object' && mailListData != null) {
+      if (typeof (mailListData) == 'object' && mailListData != null) {
         com.loadingMailListData(com, mailListData);
       }
     },
-    'show': function(show) {
+    'show': function (show) {
       let com = this;
       // console.log('MailList.js', 'observers.show', show);
       // console.log('MailList.js', com, com.getTabBar());
       let customTabBar = com.getTabBar();
-      if (typeof(customTabBar) == 'object' && customTabBar != null && !(customTabBar instanceof Array)) {
+      if (typeof (customTabBar) != 'object' || customTabBar === null) {
+        return;
+      }
+      if (!(customTabBar instanceof Array)) {
         customTabBar.setData({
           showTabBar: !show
         });
@@ -212,34 +215,34 @@ Component({
   },
 
   lifetimes: {
-    attached: function() {
+    attached: function () {
       let com = this;
       // console.log('MailList.js', 'lifetimes.attached');
     },
-    detached: function() {
+    detached: function () {
       let com = this;
       // console.log('MailList.js', 'lifetimes.detached');
     },
   },
   // 以下是旧式的定义方式，可以保持对 <2.2.3 版本基础库的兼容
-  attached: function() {
+  attached: function () {
     let com = this;
     // console.log('MailList.js', 'attached');
   },
-  detached: function() {
+  detached: function () {
     let com = this;
     // console.log('MailList.js', 'detached');
   },
   pageLifetimes: {
-    show: function() {
+    show: function () {
       let com = this;
       // console.log('MailList.js', 'pageLifetimes.show');
     },
-    hide: function() {
+    hide: function () {
       let com = this;
       // console.log('MailList.js', 'pageLifetimes.hide');
     },
-    resize: function(size) {
+    resize: function (size) {
       let com = this;
       // console.log('MailList.js', 'pageLifetimes.resize');
     }
