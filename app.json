@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/user/sellindex",
     "pages/index/index",
     "pages/adv/index",
     "pages/birthday/index",
@@ -66,7 +67,6 @@
     "pages/user/register",
     "pages/user/signin",
     "pages/user/login",
-    "pages/user/sellindex",
     "pages/waiter/index",
     "pages/welcome/index",
     "pages/welcome/hotel_add",
@@ -102,6 +102,13 @@
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [{
+      "pagePath": "pages/user/sellindex",
+      "text": "酒品售卖",
+      "iconPath": "/images/icon/999999_interact.png",
+      "selectedIconPath": "/images/icon/333333_interact.png"
+      },
+      
+      {
         "pagePath": "pages/index/index",
         "text": "电视互动",
         "iconPath": "/images/icon/999999_interact.png",

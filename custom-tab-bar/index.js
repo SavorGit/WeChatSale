@@ -27,19 +27,18 @@ Component({
     backgroundColor: "#FFFFFF",
     borderStyle: "white",
     list: [{
+      "pagePath": "pages/user/sellindex",
+      "text": "酒品售卖",
+      "iconPath": "/images/icon/999999_interact.png",
+      "selectedIconPath": "/images/icon/333333_interact.png"
+      },
+      {
         pagePath: "/pages/index/index",
         text: "电视互动",
         iconPath: "/images/icon/999999_interact.png",
         selectedIconPath: "/images/icon/333333_interact.png"
       },
-      /*
-      {
-        pagePath: "/pages/tv_sale/system",
-        text: "活动促销",
-        iconPath: "/images/icon/999999_sale.png",
-        selectedIconPath: "/images/icon/333333_sale.png"
-      },
-      */
+      
       {
         pagePath: "/pages/mine/index",
         text: "个人信息",
