@@ -362,7 +362,7 @@ Page({
       }
     } else {
       this.getTabBar().setData({
-        selected: 1,
+        selected: 2,
       })
     }
     wx.request({

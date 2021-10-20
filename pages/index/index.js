@@ -602,11 +602,11 @@ Page({
   onShow: function() {
     //this.onLoad()
     var that =this;
-    /*if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 0,
+        selected: 1,
       })
-    }*/
+    }
     //数据埋点-进入电视互动页
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     that.setData({

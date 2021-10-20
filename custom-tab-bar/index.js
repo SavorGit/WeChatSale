@@ -27,23 +27,22 @@ Component({
     backgroundColor: "#FFFFFF",
     borderStyle: "white",
     list: [{
-      "pagePath": "pages/user/sellindex",
+      "pagePath": "/pages/user/sellindex",
       "text": "酒品售卖",
-      "iconPath": "/images/icon/999999_interact.png",
-      "selectedIconPath": "/images/icon/333333_interact.png"
+      "iconPath": "/images/icon/999999_sale.png",
+      "selectedIconPath": "/images/icon/333333_sale.png"
       },
       {
-        pagePath: "/pages/index/index",
-        text: "电视互动",
-        iconPath: "/images/icon/999999_interact.png",
-        selectedIconPath: "/images/icon/333333_interact.png"
+        "pagePath": "/pages/index/index",
+        "text": "电视互动",
+        "iconPath": "/images/icon/999999_interact.png",
+        "selectedIconPath": "/images/icon/333333_interact.png"
       },
-      
       {
-        pagePath: "/pages/mine/index",
-        text: "个人信息",
-        iconPath: "/images/icon/999999_mine.png",
-        selectedIconPath: "/images/icon/333333_mine.png"
+        "pagePath": "/pages/mine/index",
+        "text": "个人信息",
+        "iconPath": "/images/icon/999999_mine.png",
+        "selectedIconPath": "/images/icon/333333_mine.png"
       }
     ]
   },
@@ -57,9 +56,9 @@ Component({
    */
   methods: {
     switchTab(e) {
-      //console.log(e);
       const data = e.currentTarget.dataset
       const url = data.path
+      console.log(data.index)
       wx.switchTab({url});
       this.setData({
         selected: data.index
