@@ -1,2 +1,12 @@
 <!--pages/user/sellindex.wxml-->
-<text>pages/user/sellindex.wxml</text>
+<!--
+ | 注册用户首页 [品鉴酒]
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+  <view class="wrapper flex_column_center_center">
+    <view class="btn flex_column_center_center theme-button-welcome">领取售卖任务</view>
+    <view class="btn flex_column_center_center theme-button-welcome-dark">抢品鉴酒</view>
+  </view>
+</scroll-view>

@@ -1,4 +1,9 @@
 // pages/user/sellindex.js
+/**
+ * 注册用户首页 [品鉴酒]
+ */
+
+
 Page({
 
   /**

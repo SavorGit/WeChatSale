@@ -1,5 +1,5 @@
 {
-  "usingComponents": {
-    "MailList": "/components/modal/MailList"
-  }
+  "navigationBarTitleText": "用户注册",
+  "disableScroll": true,
+  "usingComponents": {}
 }

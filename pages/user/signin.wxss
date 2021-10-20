@@ -5,11 +5,21 @@
  */
 
 
-.panel>.body>.valicode>.input-group>.input {
+.panel.input-form {
+  height: calc(100% - 108rpx);
+  margin: 0;
+}
+
+.panel>.body>.row {
+  height: unset;
+  padding: 5rpx 40rpx;
+}
+
+.panel>.body>.row.valicode>.input-group>.input {
   width: calc(100% - 130rpx);
 }
 
-.panel>.body>.valicode>.input-group>.btn {
+.panel>.body>.row.valicode>.input-group>.btn {
   width: 100rpx;
   height: 50rpx;
   line-height: 50rpx;
@@ -22,7 +32,22 @@
   padding: 0;
 }
 
-.panel.input-form {
-  height: calc(100% - 108rpx);
-  margin: 0;
+.panel>.body>.row.word-flow>.input-group>.choose-list {
+  width: 100%;
+  height: 180rpx;
+  border: 2rpx solid #DEDEDE;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.panel>.body>.row.word-flow>.input-group>.choose-list .list {
+  width: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.panel>.body>.row.word-flow>.input-group>.choose-list .list>.item {
+  width: calc(100% - 10rpx);
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 5rpx;
+  font-size: 32rpx;
 }
