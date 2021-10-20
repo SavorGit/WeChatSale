@@ -1,1 +1,28 @@
 /* pages/user/signin.wxss */
+@import '/pages/user/register.wxss';
+/**
+ * 用户注册页面 [品鉴酒]
+ */
+
+
+.panel>.body>.valicode>.input-group>.input {
+  width: calc(100% - 130rpx);
+}
+
+.panel>.body>.valicode>.input-group>.btn {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #A18668;
+  border: 3rpx solid #A18668;
+  border-radius: 5rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.panel.input-form {
+  height: calc(100% - 108rpx);
+  margin: 0;
+}

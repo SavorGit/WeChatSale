@@ -1,4 +1,9 @@
 // pages/user/signin.js
+/**
+ * 用户注册页面 [品鉴酒]
+ */
+
+
 Page({
 
   /**
@@ -26,6 +31,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      mailListData: [{
+        id: "1",
+        region: "A",
+        items: [{
+          id: "A-MING",
+          name: "阿明"
+        }]
+      }],
+      mailListPageShow: true
+    });
 
   },
 

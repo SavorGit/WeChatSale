@@ -1,2 +1,56 @@
 <!--pages/user/signin.wxml-->
-<text>pages/user/signin.wxml</text>
+<!--
+ | 用户注册页面 [品鉴酒]
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+  <form>
+    <view class="panel input-form theme7">
+      <view class="body">
+        <view class="row flex_row_center_spaceBetween">
+          <view class="label-group flex_row_center">
+            <view class="label theme-font1">姓名</view>
+            <view class="flag theme-font5">*</view>
+          </view>
+          <view class="input-group">
+            <input class="input" placeholder="请输入" name="name" placeholder="请输入" maxlength="30" focus="{{pname_focus}}"></input>
+          </view>
+        </view>
+        <view class="row flex_row_center_spaceBetween">
+          <view class="label-group flex_row_center">
+            <view class="label theme-font1">手机号</view>
+            <view class="flag theme-font5">*</view>
+          </view>
+          <view class="input-group flex_row_center_spaceBetween">
+            <input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobilePurOnInput" focus="{{pmobile_focus}}"></input>
+          </view>
+        </view>
+        <view class="row valicode flex_row_center_spaceBetween">
+          <view class="label-group flex_row_center">
+            <view class="label theme-font1">验证码</view>
+            <view class="flag theme-font5">*</view>
+          </view>
+          <view class="input-group flex_row_center_spaceBetween">
+            <input class="input" placeholder="请输入" name='verify_code' focus="{{pverify_code_focus}}"></input>
+            <view class="btn" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
+          </view>
+        </view>
+        <view class="row flex_row_center_spaceBetween">
+          <view class="label-group flex_row_center">
+            <view class="label theme-font1">所属餐厅</view>
+          </view>
+          <view class="input-group flex_row_center_spaceBetween">
+            <input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobilePurOnInput" focus="{{pmobile_focus}}"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-group">
+      <button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">注册并登录</button>
+    </view>
+  </form>
+</scroll-view>
+
+<!-- 酒楼列表弹窗 -->
+<MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
