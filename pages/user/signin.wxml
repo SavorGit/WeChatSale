@@ -36,12 +36,21 @@
             <view class="btn" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
           </view>
         </view>
-        <view class="row flex_row_center_spaceBetween">
+        <view class="row word-flow flex_row_flexStart_spaceBetween">
           <view class="label-group flex_row_center">
             <view class="label theme-font1">所属餐厅</view>
           </view>
-          <view class="input-group flex_row_center_spaceBetween">
-            <input class="input" placeholder="请输入" disabled="true" bindtap="openHotelsList"></input>
+          <view class="input-group flex_column_center_flexStart">
+            <input class="input" placeholder="请输入"></input>
+            <scroll-view class="choose-list" scroll-y="true" scroll-with-animation="true">
+              <view class="list">
+                <view class="item">aaaaaa</view>
+                <view class="item selected">bbbb</view>
+                <view class="item">cc</view>
+                <view class="item">ee</view>
+                <view class="item">dd</view>
+              </view>
+            </scroll-view>
           </view>
         </view>
       </view>
@@ -51,6 +60,3 @@
     </view>
   </form>
 </scroll-view>
-
-<!-- 酒楼列表弹窗 -->
-<MailList show="{{mailListPageShow}}" mailList-data="{{mailListData}}" bindonClickItem="chooseHotel" />
