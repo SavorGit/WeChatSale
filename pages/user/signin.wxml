@@ -41,7 +41,7 @@
             <view class="label theme-font1">所属餐厅</view>
           </view>
           <view class="input-group flex_row_center_spaceBetween">
-            <input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobilePurOnInput" focus="{{pmobile_focus}}"></input>
+            <input class="input" placeholder="请输入" disabled="true" bindtap="openHotelsList"></input>
           </view>
         </view>
       </view>

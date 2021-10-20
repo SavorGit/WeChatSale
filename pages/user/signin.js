@@ -31,17 +31,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      mailListData: [{
-        id: "1",
-        region: "A",
-        items: [{
-          id: "A-MING",
-          name: "阿明"
-        }]
-      }],
-      mailListPageShow: true
-    });
 
   },
 
@@ -78,5 +67,23 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 打开酒楼列表选择页面
+   * @param {*} e 
+   */
+  openHotelsList: function (e) {
+    this.setData({
+      mailListData: [{
+        id: "1",
+        region: "A",
+        items: [{
+          id: "A-MING",
+          name: "阿明"
+        }]
+      }],
+      mailListPageShow: true
+    });
   }
 })
