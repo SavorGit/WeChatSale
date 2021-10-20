@@ -31,6 +31,9 @@ Page({
         selected: 0,
       })
     }
+    wx.navigateTo({
+      url: '/pages/user/signin',
+    })
   },
 
   /**
