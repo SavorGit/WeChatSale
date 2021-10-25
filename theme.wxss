@@ -136,6 +136,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 
 .theme-button-welcome,
 .theme-block,
+.theme-broadcast-panel,
 .broadcast-panel,
 .selected {
   color: #fff;
