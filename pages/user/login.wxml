@@ -24,7 +24,7 @@
 
 			<view class='login_btn flex_column_center_spaceBetween'>
 				<button form-type="submit" class='theme-button-welcome'>登录</button>
-				<!-- <button class='theme-button-add' bindtap="register" data-openid="{{openid}}">注册</button> -->
+				<button class='theme-button-add' bindtap="register" data-openid="{{openid}}">注册</button>
 			</view>
 			<!-- <navigator url="/pages/user/invite?q=5ce777dcc808816bfb479626bb481747f7035886527d0f93290448bf6bca479b">测试邀请</navigator>  -->
 		</form>

@@ -367,7 +367,7 @@ Page({
   },
   register:function(e){
     wx.navigateTo({
-      url: '/pages/user/register',
+      url: '/pages/user/signin',
     })
   },
   /**

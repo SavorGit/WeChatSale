@@ -5,7 +5,7 @@
 
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-  <form>
+  <!-- <form bindsubmit="userRegist"> -->
     <view class="panel input-form theme7">
       <view class="body">
         <view class="row flex_row_center_spaceBetween">
@@ -14,7 +14,7 @@
             <view class="flag theme-font5">*</view>
           </view>
           <view class="input-group">
-            <input class="input" placeholder="请输入" name="name" placeholder="请输入" maxlength="30" focus="{{pname_focus}}"></input>
+            <input class="input"  name="name" placeholder="请输入您的姓名" bindinput="nameOnInput" maxlength="30" focus="{{pname_focus}}"></input>
           </view>
         </view>
         <view class="row flex_row_center_spaceBetween">
@@ -23,7 +23,7 @@
             <view class="flag theme-font5">*</view>
           </view>
           <view class="input-group flex_row_center_spaceBetween">
-            <input class="input" placeholder="请输入" name='mobile' type='number' bindinput="mobilePurOnInput" focus="{{pmobile_focus}}"></input>
+            <input class="input" placeholder="请输入手机号" name='mobile' type='number' bindinput="mobileOnInput" focus="{{mobile_focus}}"></input>
           </view>
         </view>
         <view class="row valicode flex_row_center_spaceBetween">
@@ -32,23 +32,28 @@
             <view class="flag theme-font5">*</view>
           </view>
           <view class="input-group flex_row_center_spaceBetween">
-            <input class="input" placeholder="请输入" name='verify_code' focus="{{pverify_code_focus}}"></input>
-            <view class="btn" data-purmobile='{{purMobile}}' bindtap='sendPurcode'>获取</view>
+            <input class="input" placeholder="请输入手机验证码" bindinput="verifyCodeOnInput" name='verify_code' focus="{{verify_code_focus}}"></input>
+            <view class="btn" wx:if="{{is_get_sms_code==0}}" data-mobile='{{register_info.mobile}}' bindtap='getSmsCode'>获取</view>
+
+            <view wx:else class="btn-get-code disable">{{sms_time_djs}} S</view>
           </view>
         </view>
         <view class="row word-flow flex_row_flexStart_spaceBetween">
           <view class="label-group flex_row_center">
             <view class="label theme-font1">所属餐厅</view>
+            <view class="flag theme-font5">*</view>
           </view>
           <view class="input-group flex_column_center_flexStart">
-            <input class="input" placeholder="请输入"></input>
-            <scroll-view class="choose-list" scroll-y="true" scroll-with-animation="true">
+            <input class="input" name="hotel_name" placeholder="请输入餐厅名称" bindinput="searchHotel"></input>
+            <scroll-view class="choose-list" scroll-y="true" scroll-with-animation="true" wx:if="{{hotel_list.length>0}}">
               <view class="list">
-                <view class="item">aaaaaa</view>
-                <view class="item selected">bbbb</view>
+                <block wx:for="{{hotel_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+                  <view class="item" data-hotel_id="{{bean.hotel_id}}" bindtap="selectMyHotel">{{bean.name}}</view>
+                </block>
+                <!-- <view class="item selected">bbbb</view>
                 <view class="item">cc</view>
                 <view class="item">ee</view>
-                <view class="item">dd</view>
+                <view class="item">dd</view> -->
               </view>
             </scroll-view>
           </view>
@@ -56,7 +61,7 @@
       </view>
     </view>
     <view class="btn-group">
-      <button class="submit theme-button-welcome" form-type="submit" disabled="{{addDisabled}}">注册并登录</button>
+      <button class="submit theme-button-welcome" bindtap="onGetUserInfo" disabled="{{addDisabled}}">注册并登录</button>
     </view>
-  </form>
+  <!-- </form> -->
 </scroll-view>
