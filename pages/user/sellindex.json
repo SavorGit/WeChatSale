@@ -1,5 +1,10 @@
 {
   "navigationBarTitleText": "小热点-销售端",
+  "enablePullDownRefresh": false,
   "disableScroll": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "bottomModal": "/components/modal/bottomModal",
+    "zy-slider": "/components/slider/zy-slider"
+  }
 }
