@@ -8,6 +8,11 @@
 .row {
   height: 100rpx;
   padding: 20rpx 25rpx 10rpx 25rpx;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.row:last-child {
+  border-bottom: unset;
 }
 
 .row>.header-img {
@@ -70,8 +75,4 @@
 .row>.nodata-msg {
   font-size: 30rpx;
   color: #cecece;
-}
-
-.row.bottom-line {
-  border-bottom: 1rpx solid #ededed;
 }

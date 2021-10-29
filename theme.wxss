@@ -237,6 +237,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-font-F8C809 {
   color: #F8C809;
 }
+
 .theme-font-F44444 {
   color: #F44444;
 }
