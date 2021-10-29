@@ -236,6 +236,10 @@ Page({
       app.showToast('领取数量不可大于剩余数量')
       return false;
     }
+    if(send_num ==''){
+      app.showToast('请输入领取份数')
+      return false;
+    }
 
     utils.PostRequest(api_v_url + '/activity/startTastewine',{
       openid:user_info.openid,

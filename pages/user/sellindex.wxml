@@ -339,7 +339,7 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">可领取份数</view>
               <view class="value">
-                <input class="input" bindinput="bindInputTasteWineNums"  type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
+                <input class="input" bindinput="bindInputTasteWineNums" value="{{taste_wine_info.nums}}"  type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
               </view>
             </view>
             <view class="row btn-group flex_column_center_flexStart" bindtap="startTasteWineTask">
