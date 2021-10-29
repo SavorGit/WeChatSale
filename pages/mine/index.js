@@ -403,6 +403,7 @@ Page({
             })
           }
           that.setData({user_info:res.data.result.userinfo})
+          console.log(res.data.result.userinfo)
         } else {
           wx.reLaunch({
             url: '/pages/user/login',

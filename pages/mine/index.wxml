@@ -8,7 +8,7 @@
 		<view class="center-2 flex_column_flexStart_flexStart" >
 			<view class='nickname'>{{nickName}}</view>
 			<block wx:if="{{user_info.role_type!=0}}">
-			<view class="flex_row_center" bindtap="{{role_type==1?'hotelComment':'gotoWaiterDetail'}}">
+			<view class="flex_row_center" bindtap="{{user_info.role_type==1?'hotelComment':'gotoWaiterDetail'}}">
 
 				<view class="flex_row_center_spaceBetween star-color">
 					<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
@@ -53,7 +53,7 @@
 	</view>
 	<block wx:if="{{user_info.role_type!=0}}">
 	<!-- 餐厅收益概况面板 -->
-	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && role_type==1}}">
+	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && user_info.role_type==1}}">
 		<view class='top theme-font2'>
 			<view class='title'>餐厅收益</view>
 			<navigator bindtap="integralList" class='more' url="/pages/reward/allot_detail?merchant_id={{merchant_id}}">分配明细 ></navigator>
@@ -110,7 +110,7 @@
 		</view>
 	</view>
 	<!-- 餐厅评价面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{role_type==1}}">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.role_type==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
 			<view>餐厅评价</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
@@ -125,15 +125,15 @@
 		</view>
 	</view>
 	<!-- 我的员工面板 -->
-	<view class="team-members-panel full_width theme7" wx:if="{{(role_type==1 || role_type==2 ) && staff_manage==true}}">
+	<view class="team-members-panel full_width theme7" wx:if="{{(user_info.role_type==1 || user_indo.role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
-				<block wx:if="{{role_type==1}}">
+				<block wx:if="{{user_info.role_type==1}}">
 					<navigator url="/pages/mine/team_members" data-role_type="{{role_type}}" bindtap="gotoWaiterList">更多...</navigator>
 				</block>
-				<block wx:if="{{role_type==2}}">
-					<navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}" data-role_type="{{role_type}}" bindtap="gotoWaiterList">更多...</navigator>
+				<block wx:if="{{user_info.role_type==2}}">
+					<navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}" data-role_type="{{user_info.role_type}}" bindtap="gotoWaiterList">更多...</navigator>
 				</block>
 			</label>
 		</view>
