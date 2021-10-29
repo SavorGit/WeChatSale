@@ -112,6 +112,16 @@ Page({
     })
   },
   /**
+   * 设置注册用户为二级管理员
+   */
+  setRegisterUserRole:function(e){
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+    })
+  },
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {

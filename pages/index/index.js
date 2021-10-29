@@ -41,7 +41,8 @@ Page({
     subscribe_status:3, //1 未获取公众号openid 2:已获取公众号openid但未关注 3：已获取公众号openid并且已关注
     comment_info:{'is_prompt':true,'comment_num':0,'reward_num':0},//是否有评价(弹窗)
     showMessageWindow:false,
-    money_task_img:''
+    money_task_img:'',
+    hasJurisdiction:true,
   },
 
   onLoad: function(res) {
@@ -654,17 +655,9 @@ Page({
       },res=>{},{isShowLoading:false})
       var user_info = wx.getStorageSync(cache_key+'userinfo');
       if(user_info.role_type==0){
-        wx.showModal({
-          title:'销售人员无此权限',
-          showCancel:false,
-          success (res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '/pages/user/sellindex',
-              })
-            }
-          }
-        })
+        that.setData({hasJurisdiction:false})
+      }else{
+        that.setData({hasJurisdiction:true})
       }
     }
     

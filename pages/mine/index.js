@@ -402,11 +402,13 @@ Page({
               integral_shop: integral_shop
             })
           }
+          that.setData({user_info:res.data.result.userinfo})
         } else {
           wx.reLaunch({
             url: '/pages/user/login',
           })
         }
+        
       }
     })
     that.getUserCenter(openid)

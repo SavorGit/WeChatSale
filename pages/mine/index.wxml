@@ -5,8 +5,9 @@
 		<view class="left-2">
 			<image class='head-img' src='{{avatarUrl}}'></image>
 		</view>
-		<view class="center-2 flex_column_flexStart_flexStart">
+		<view class="center-2 flex_column_flexStart_flexStart" >
 			<view class='nickname'>{{nickName}}</view>
+			<block wx:if="{{user_info.role_type!=0}}">
 			<view class="flex_row_center" bindtap="{{role_type==1?'hotelComment':'gotoWaiterDetail'}}">
 
 				<view class="flex_row_center_spaceBetween star-color">
@@ -18,10 +19,13 @@
 				</view>
 				<view>服务评分：{{userScore}}</view>
 			</view>
+		</block>
 		</view>
+		<block wx:if="{{user_info.role_type!=0}}">
 		<view class="right-2 flex_row_flexStart_flexEnd" bindtap="gotoSetting">
 			<view class="fa fa-cog" aria-hidden="true"></view>
 		</view>
+		</block>
 	</view>
 
 	<view wx:if="{{is_wx_auth !=3}}" class='user-info-panel full_width flex_row_center_center theme7'>
@@ -47,7 +51,7 @@
 		</view>
 
 	</view>
-
+	<block wx:if="{{user_info.role_type!=0}}">
 	<!-- 餐厅收益概况面板 -->
 	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && role_type==1}}">
 		<view class='top theme-font2'>
@@ -112,6 +116,7 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
+	</block>
 	<!-- 餐厅评价面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{1==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="messageNotify">

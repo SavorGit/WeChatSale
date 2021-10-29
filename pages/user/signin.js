@@ -24,7 +24,16 @@ Page({
     wx.hideShareMenu();
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     openid = user_info.openid;
-
+    this.getAllHotelList();
+  },
+  getAllHotelList:function(){
+    var that = this;
+    utils.PostRequest(api_v_url + '/hotel/getMerchantHotelList', {
+      keywords: '',
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var all_hotel_list = data.result;
+      that.setData({all_hotel_list:all_hotel_list})
+    },res=>{},{isShowLoading:false})
   },
   //输入姓名
   nameOnInput:function(res){
@@ -96,9 +105,30 @@ Page({
   },
   //模糊搜索餐厅列表
   searchHotel:function(e){
-    var that = this;
     var hotel_name = e.detail.value.replace(/\s+/g, '');
-    if(hotel_name==''){
+    let self = this;
+    if (typeof (hotel_name) != 'string' || hotel_name.trim() === '') {
+      self.setData({
+        hotel_list: []
+      });
+      return;
+    }
+    let len = self.data.all_hotel_list.length;
+    let arr = [];
+    let reg = new RegExp(hotel_name);
+    for (let i = 0; i < len; i++) {
+      //如果字符串中不包含目标字符会返回-1
+      if (self.data.all_hotel_list[i].hotel_name.match(reg)) {
+        arr.push(self.data.all_hotel_list[i]);
+      }
+    }
+    self.setData({
+      hotel_list: arr
+    });
+
+    
+    
+    /*if(hotel_name==''){
       that.setData({hotel_list:[]})
     }else {
       utils.PostRequest(api_v_url + '/hotel/getMerchantHotelList', {
@@ -107,7 +137,7 @@ Page({
         var hotel_list = data.result;
         that.setData({hotel_list:hotel_list})
       },res=>{},{isShowLoading:false})
-    }
+    }*/
     
   },
   selectMyHotel:function(e){
