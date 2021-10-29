@@ -5,6 +5,7 @@
 const app = getApp()
 const utils = require('../../utils/util.js')
 var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -14,7 +15,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    taskList: [], // 任务列表数据
+    task_list:[],
+    box_list:[],
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
     openTaskInWindow: {}, // 在任务详情弹窗中打开任务
     saleDetailWindowShow: false,
@@ -32,8 +34,9 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
-    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    /*var user_info = wx.getStorageSync(cache_key+'userinfo');
     this.setData({user_info:user_info});
+    this.getRoomList(user_info.openid,user_info.hotel_id);*/
     
   },
   getRoomList:function(openid,hotel_id){
@@ -47,7 +50,7 @@ Page({
         box_name_list: data.result.box_name_list,
         box_list: data.result.box_list
       })
-    })
+    },res=>{},{isShowLoading:false})
   },
   bindBoxPickerChange:function(e){
     var box_index = e.detail.value;
@@ -113,20 +116,31 @@ Page({
     utils.PostRequest(api_v_url + '/User/isRegister',{
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      
       var hotel_id = data.result.userinfo.hotel_id;
       if(hotel_id ==0){
          wx.redirectTo({
           url: '/pages/user/login',
         })
       }else {
-        this.getRoomList(openid,hotel_id);
-        that.getTaskList(openid,hotel_id);
+        wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
+        that.setData({user_info:data.result.userinfo})
+        var task_list = that.data.task_list;
+        if(task_list.length==0){
+          that.getTaskList(openid,hotel_id);
+        }
+        var box_list = that.data.box_list;
+        if(box_list.length==0){
+          this.getRoomList(openid,hotel_id);
+        }
+        
         var loop_play_list = that.data.loop_play_list;
+        console.log(loop_play_list)
         if(loop_play_list.length==0){
           that.getLoopPlay();
         }
       }
-    })
+    },res=>{},{isShowLoading:false})
   },
   /**
    * 获取任务列表
@@ -134,6 +148,13 @@ Page({
   getTaskList:function(openid,hotel_id){
     var that = this;
 
+    var task_list = that.data.task_list;
+    console.log(task_list)
+    if(task_list.length>0){
+      var is_f = false
+    }else {
+      var is_f = true;
+    }
     utils.PostRequest(api_v_url + '/task/getTaskList',{
       openid:openid,
       hotel_id:hotel_id
@@ -147,10 +168,10 @@ Page({
    */
   getLoopPlay:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb',{
-      openid:openid,
+    utils.PostRequest(api_v_url + '/record/rolldata',{
+      openid:that.data.user_info.openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var loop_play_list = data.result;
+      var loop_play_list = data.result.datalist;
       that.setData({loop_play_list:loop_play_list});
     })
   },
@@ -192,17 +213,71 @@ Page({
       taste_wine_info:{'room_id':0,'nums':''}
     })
   },
+  
+
+
   /**
    * 播放任务的电视广告
    */
   boxShowAd:function(e){
+    var that = this;
     
+    var forscreen_id = (new Date()).valueOf();
+
+    var task_list = this.data.task_list;
+    var task_index = this.data.task_index;
+    var task_info = task_list.inprogress[task_index]
+    console.log(task_info.filename)
+    var box_list = this.data.box_list;
+    var box_index = this.data.box_index;
+    var box_mac = box_list[box_index].box_mac;
+
+
+    var netty_info = {};
+    netty_info.action = 5;
+    netty_info.url = task_info.tx_url
+    netty_info.filename = task_info.filename;
+    netty_info.openid = that.data.user_info.openid;
+    netty_info.resource_type = 2;
+    netty_info.avatarUrl = that.data.user_info.avatarUrl
+    netty_info.nickName  = that.data.user_info.nickName;
+    netty_info.forscreen_id = forscreen_id;
+    netty_info.resource_size = task_info.resource_size
+    var msg = JSON.stringify(netty_info);
+
+    utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
+      box_mac: box_mac,
+      msg: msg,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      app.showToast('点播成功,电视即将开始播放');
+      
+    });
+    var mobile_brand = app.globalData.mobile_brand;
+    var mobile_model = app.globalData.mobile_model;
+    utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+      forscreen_id: forscreen_id,
+      openid: that.data.user_info.openid,
+      box_mac: box_mac,
+      action: 58,
+      mobile_brand: mobile_brand,
+      mobile_model: mobile_model,
+      forscreen_char: '',
+      imgs: '["media/resource/' + task_info.filename + '"]',
+      small_app_id: app.globalData.small_app_id,
+      duration:task_info.duration,
+      resource_size:task_info.resource_size,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      }, res => { }, { isShowLoading: false })
+
   },
   /**
    * 检测品鉴酒活动库存并弹窗
    */
   examTasteWineTask:function(e){
     var that = this;
+    var pop_type = e.currentTarget.dataset.pop_type;
     var index = e.currentTarget.dataset.index;
     var task_list = this.data.task_list;
     var task_info = task_list.inprogress[index];
@@ -213,7 +288,7 @@ Page({
       task_id:task_info.task_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var tasteWineTask = data.result;
-      that.setData({tasteWineTask:tasteWineTask,judgeWindowShow:true})
+      that.setData({tasteWineTask:tasteWineTask,judgeWindowShow:true,pop_type:pop_type,task_index:index})
     })
   },
   /**
@@ -249,6 +324,7 @@ Page({
       task_user_id:task_user_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({judgeWindowShow:false,taste_wine_info:{'room_id':0,'nums':''},box_index:0})
+      app.showToast('活动发起成功',2000,'success');
     })
   },
   /**

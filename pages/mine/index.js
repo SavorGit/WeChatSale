@@ -77,7 +77,7 @@ Page({
       that.setData({
         staff_list: data.result.datalist
       })
-    })
+    },res=>{},{isShowLoading:false})
   },
   getUserCenter:function(openid){
     var that = this;
@@ -95,7 +95,7 @@ Page({
         reward_integral:data.result.reward_integral,
         reward_money:data.result.reward_money
       })
-    })
+    },res=>{},{isShowLoading:false})
   },
   
   loadMore: function (res) {

@@ -17,12 +17,12 @@
   <view class="wrapper flex_column_center_flexStart">
 
     <!-- 广播模块面板 -->
-    <view class="panel broadcast flex_row_center theme-broadcast-panel" wx:if="{{exchangerecord.length>0}}">
+    <view class="panel broadcast flex_row_center theme-broadcast-panel" wx:if="{{loop_play_list.length>0}}">
       <swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
-        <block wx:for="{{exchangerecord}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <block wx:for="{{loop_play_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
           <swiper-item class="flex_row_center_spaceBetween theme-font4">
-            <image class="user-head" mode="aspectFill" src="{{bean.img}}"></image>
-            <view class="tip one-line-overflow">{{bean.msg}}</view>
+            <image class="user-head" mode="aspectFill" src="{{bean.avatar_url}}"></image>
+            <view class="tip one-line-overflow">{{bean.content}}</view>
           </swiper-item>
         </block>
       </swiper>
@@ -42,7 +42,7 @@
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
                 <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="btn launch-tv flex_row_center_center theme-button3">
+                <view class="btn launch-tv flex_row_center_center theme-button3" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="2">
                   <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                   <view class="text">电视广告</view>
                 </view>
@@ -53,7 +53,7 @@
                   <view class="icon fa fa-cny"></view>
                   <view class="text">{{bean.price}}</view>
                 </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}">
+                <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
                   <view class="reward flex_column_center_center theme-font-F9DE59">
                     <view class="icon fa-stack">
                       <view class="fa fa-circle fa-stack-2x"></view>
@@ -336,14 +336,17 @@
                 </picker>
               </view>
             </view>
-            <view class="row flex_row_center_spaceBetween">
+            <view class="row flex_row_center_spaceBetween" wx:if="{{pop_type==1}}">
               <view class="label">可领取份数</view>
               <view class="value">
                 <input class="input" bindinput="bindInputTasteWineNums" value="{{taste_wine_info.nums}}"  type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
               </view>
             </view>
-            <view class="row btn-group flex_column_center_flexStart" bindtap="startTasteWineTask">
+            <view class="row btn-group flex_column_center_flexStart" bindtap="startTasteWineTask" wx:if="{{pop_type==1}}">
               <view class="btn launch flex_row_center_center theme-button-welcome">发起品鉴酒领取活动</view>
+            </view>
+            <view class="row btn-group flex_column_center_flexStart" bindtap="boxShowAd" wx:if="{{pop_type==2}}">
+              <view class="btn launch flex_row_center_center theme-button-welcome">电视播放活动广告</view>
             </view>
           </view>
         </view>

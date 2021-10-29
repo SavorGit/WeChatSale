@@ -40,7 +40,7 @@
 		</view>
 	</view>
 
-	<!-- 广播模块面板 -->
+	<!-- 广播模块面板 
 	<view class="broadcast-panel flex_row_center" wx:if="{{exchangerecord.length>0}}">
 		<image class="icon" src="/images/icon/FFFFFF_horn.png"></image>
 		<swiper class="broadcast-list" autoplay="true" interval="3000" duration="500" circular="true" vertical="true">
@@ -48,7 +48,7 @@
 				<swiper-item class="one-line-overflow theme-font4">{{baen}}</swiper-item>
 			</block>
 		</swiper>
-	</view>
+	</view>-->
 
 	<!-- 突出功能面板[无宣传片] -->
 	<view class="prominent-function-panel flex_row_center theme7" wx:if="{{is_have_adv==0}}">

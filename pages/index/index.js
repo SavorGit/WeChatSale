@@ -142,13 +142,13 @@ Page({
               tv_forscreen: tv_forscreen,
               room_signin: room_signin
             })
-            utils.PostRequest(api_v_url +'/withdraw/exchangerecord',{
+            /*(utils.PostRequest(api_v_url +'/withdraw/exchangerecord',{
               hotel_id : hotel_id
             }, (data, headers, cookies, errMsg, statusCode) => {
               that.setData({
                 exchangerecord:data.result.datalist,
               })
-            })
+            })*/
 
 
             var link_box_info = wx.getStorageSync(cache_key + 'link_box_info');

@@ -2,7 +2,8 @@
 <import src="/pages/template/commons" />
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
 	<block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-		<view wx:if="{{index + 1 != staff_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
+		
+		<view  class="row flex_row_center_spaceBetween theme7" wx:if="{{bean.level!=0}}">
 			<image class="header-img" src="{{bean.avatarUrl}}"></image>
 			<view class="nickname flex_column_flexStart_center">
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
@@ -13,28 +14,17 @@
 				<button class="btn remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
 			</view>
 		</view>
-		<view wx:else class="row flex_row_center_spaceBetween theme7">
+		<!-- v1.9.18 品鉴酒功能-->
+		<view class="row flex_row_center_spaceBetween theme7" wx:else>
 			<image class="header-img" src="{{bean.avatarUrl}}"></image>
 			<view class="nickname flex_column_flexStart_center">
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
-			<view class="option flex_row_center_flexEnd">
-				<button class="btn detail theme-button-welcome" bindtap="gotoMemberDetail" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">详情</button>
-				<button wx:if="{{bean.level!=3}}" class="btn waiter theme-button-welcome" bindtap="waiter_list" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">服务员</button>
-				<button class="btn remove theme-button-welcome" bindtap="removeStaff" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-staff_list="{{staff_list}}" data-openid="{{bean.openid}}">移除</button>
+			<view class="option flex_row_center_flexEnd" bindtap="setRegisterUserRole" data-index="{{index}}">
+				<button class="btn waiter theme-button-welcome-dark" style="width:180rpx;">添加为餐厅人员</button>
 			</view>
 		</view>
-		<!-- v1.9.18 品鉴酒功能
-		<view class="row flex_row_center_spaceBetween theme7">
-			<image class="header-img" src="{{bean.avatarUrl}}"></image>
-			<view class="nickname flex_column_flexStart_center">
-				<label class="full_width theme-font7">{{bean.nickName}}</label>
-			</view>
-			<view class="option flex_row_center_flexEnd">
-				<button class="btn waiter theme-button-welcome-dark" style="width:180rpx;">添加为服务员</button>
-			</view>
-		</view>
-		-->
+		
 	</block>
 	<view wx:if="{{staff_list.length < 1}}" class="row">
 		<view class="nodata-msg full_width full_height flex_column_center_center">名下暂无员工~</view>
