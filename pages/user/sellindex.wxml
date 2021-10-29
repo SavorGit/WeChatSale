@@ -53,23 +53,23 @@
                   <view class="icon fa fa-cny"></view>
                   <view class="text">{{bean.price}}</view>
                 </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-red">
+                <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}">
                   <view class="reward flex_column_center_center theme-font-F9DE59">
                     <view class="icon fa-stack">
                       <view class="fa fa-circle fa-stack-2x"></view>
                       <view class="fa fa-usd fa-stack-1x"></view>
                     </view>
-                    <view class="text">100分/次</view>
+                    <view class="text">{{bean.integral}}积分/次</view>
                   </view>
                   <view class="tips flex_column_center_center">
                     <view class="tip">邀请客人试饮</view>
-                    <view class="tip">剩余3次</view>
+                    <view class="tip">剩余{{bean.people_num}}次</view>
                   </view>
                 </view>
               </view>
             </view>
           </view>
-          <view class="item old flex_column_center_center" >
+          <view class="item old flex_column_center_center" wx:else>
             <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
               <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
               <view wx:else class="icon fa-stack fa-lg">
@@ -322,7 +322,7 @@
       <form>
         <view class="wrapper">
           <view class="top">
-            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            <image class="pic" mode="aspectFill" src="{{tasteWineTask.width_img}}" />
           </view>
           <view class="bottom flex_column_center_flexStart">
             <view class="row flex_row_center_spaceBetween">
@@ -339,10 +339,10 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">可领取份数</view>
               <view class="value">
-                <input class="input" bindinput="bindInputTasteWineNums"  type="number" placeholder="请输入  剩余3" />
+                <input class="input" bindinput="bindInputTasteWineNums"  type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
               </view>
             </view>
-            <view class="row btn-group flex_column_center_flexStart">
+            <view class="row btn-group flex_column_center_flexStart" bindtap="startTasteWineTask">
               <view class="btn launch flex_row_center_center theme-button-welcome">发起品鉴酒领取活动</view>
             </view>
           </view>
