@@ -29,27 +29,29 @@
     </view>
 
     <!-- 进行中任务面板 -->
-    <view class="panel progress theme-panel">
+    <view class="panel progress theme-panel" wx:if="{{task_list.inprogress.length>0}}">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">进行中任务</view>
       </view>
       <view class="body">
         <view class="list flex_column_center_flexStart">
 
-          <view class="item sale flex_column_center_center">
+          <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
+          
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 <view class="btn launch-tv flex_row_center_center theme-button3">
                   <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                   <view class="text">电视广告</view>
                 </view>
               </view>
               <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶</view>
+                <view class="name theme-font1">{{bean.task_name}}</view>
                 <view class="price flex_row_center_flexStart">
                   <view class="icon fa fa-cny"></view>
-                  <view class="text">998</view>
+                  <view class="text">{{bean.price}}</view>
                 </view>
                 <view class="btn flex_row_center_spaceBetween theme-button-red">
                   <view class="reward flex_column_center_center theme-font-F9DE59">
@@ -67,7 +69,7 @@
               </view>
             </view>
           </view>
-          <view class="item old flex_column_center_center" wx:for='{{taskList}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class="item old flex_column_center_center" >
             <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
               <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
               <view wx:else class="icon fa-stack fa-lg">
@@ -84,23 +86,25 @@
               </view>
             </view>
           </view>
+          </block>
 
         </view>
       </view>
     </view>
 
     <!-- 可领取任务面板 -->
-    <view class="panel available theme-panel">
+    <view class="panel available theme-panel"  wx:if="{{task_list.canreceive.length>0}}" >
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">可领取任务</view>
       </view>
       <view class="body">
         <view class="list flex_column_center_flexStart">
 
-          <view class="item sale flex_column_center_center">
+          <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 <view class="btn launch-tv flex_row_center_center theme-button3">
                   <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                   <view class="text">电视广告</view>
@@ -109,20 +113,21 @@
               <view class="right flex_column_flexStart_spaceBetween">
                 <view class="top flex_row_center_spaceBetween">
                   <view class="left flex_column_flexStart_spaceBetween">
-                    <view class="name">青花汾酒试饮任务</view>
-                    <view class="tip theme-font5">可收益1000积分</view>
+                    <view class="name">{{bean.task_name}}</view>
+                    <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
                   </view>
-                  <view class="right flex_row_center_flexEnd">
+                  <view class="right flex_row_center_flexEnd" bindtap="getTaskPopWind" data-index="{{index}}">
                     <view class="btn flex_column_center_center theme-button-red">领取</view>
                   </view>
                 </view>
                 <view class="bottom">
-                  <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="80" font-size="24rpx">剩余20%</progress>
+                  <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{bean.percent}}" font-size="24rpx">剩余{{bean.remain_percent}}%</progress>
                 </view>
               </view>
             </view>
           </view>
-          <view class="item old flex_column_center_center" wx:for='{{taskList}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+
+          <view class="item old flex_column_center_center" wx:else>
             <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
               <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
               <view wx:else class="icon fa-stack fa-lg">
@@ -140,13 +145,15 @@
             </view>
           </view>
 
+          </block>
+
         </view>
       </view>
     </view>
 
 
     <!-- 失效的任务面板 -->
-    <view class="panel invalid">
+    <view class="panel invalid" wx:if="{{task_list.invalid.length>0}}">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">失效任务</view>
       </view>
@@ -276,7 +283,7 @@
     <view class="title-bar flex_row_center_flexStart">
       <view class="title"></view>
     </view>
-    <view class="option-bar flex_row_center_flexEnd">
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closePopWind">
       <view class="btn close flex_column_center_center">
         <view class="icon fa fa-close"></view>
       </view>
@@ -284,15 +291,15 @@
     <scroll-view class="body" scroll-y="true" scroll-with-animation="true">
       <view class="wrapper">
         <view class="goods flex_column_center_spaceBetween">
-          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-          <view class="name one-line-overflow">赖茅酒（狗）售卖活动</view>
-          <progress class="progress" stroke-width="16rpx" border-radius="8rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="80" font-size="24rpx"></progress>
-          <view class="tip theme-font5">已有990人领取任务，仅剩10个领取名额</view>
+          <image class="pic" mode="aspectFill" src="{{task_info.img_url}}" />
+          <view class="name one-line-overflow">{{task_info.task_name}}</view>
+          <progress class="progress" stroke-width="16rpx" border-radius="8rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{task_info.percent}}" font-size="24rpx"></progress>
+          <view class="tip theme-font5">已有{{task_info.get_num}}人领取任务，仅剩{{task_info.remain_num}}个领取名额</view>
         </view>
         <view class="desc">
-          <rich-text nodes="{{saleDetailWindowDesc}}"></rich-text>
+          <rich-text nodes="{{task_info.desc}}"></rich-text>
         </view>
-        <view class="btn-group flex_column_center_center">
+        <view class="btn-group flex_column_center_center" bindtap="receiveTaskNow" data-index="{{index}}">
           <view class="btn receive flex_column_center_center theme-button-welcome-dark">立即领取</view>
         </view>
       </view>
@@ -306,7 +313,7 @@
     <view class="title-bar flex_row_center_flexStart">
       <view class="title"></view>
     </view>
-    <view class="option-bar flex_row_center_flexEnd">
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closePopWind">
       <view class="btn close flex_column_center_center">
         <view class="icon fa fa-close theme-font4"></view>
       </view>
@@ -321,9 +328,9 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">选择包间</view>
               <view class="value">
-                <picker class="input">
+                <picker class="input" bindchange="bindBoxPickerChange" value="{{box_index}}" range="{{box_name_list}}">
                   <view class="context flex_row_center_spaceBetween">
-                    <view class="text one-line-overflow">-----请选择-----</view>
+                    <view class="text one-line-overflow">{{box_name_list[box_index]}}</view>
                     <view class="icon fa fa-angle-down" aria-hidden="true"></view>
                   </view>
                 </picker>
@@ -332,7 +339,7 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">可领取份数</view>
               <view class="value">
-                <input class="input" type="text" placeholder="请输入  剩余3" />
+                <input class="input" bindinput="bindInputTasteWineNums"  type="number" placeholder="请输入  剩余3" />
               </view>
             </view>
             <view class="row btn-group flex_column_center_flexStart">

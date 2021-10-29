@@ -652,7 +652,20 @@ Page({
         }
         
       },res=>{},{isShowLoading:false})
-      
+      var user_info = wx.getStorageSync(cache_key+'userinfo');
+      if(user_info.role_type==0){
+        wx.showModal({
+          title:'销售人员无此权限',
+          showCancel:false,
+          success (res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/user/sellindex',
+              })
+            }
+          }
+        })
+      }
     }
     
   },

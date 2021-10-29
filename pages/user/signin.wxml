@@ -44,11 +44,11 @@
             <view class="flag theme-font5">*</view>
           </view>
           <view class="input-group flex_column_center_flexStart">
-            <input class="input" name="hotel_name" placeholder="请输入餐厅名称" bindinput="searchHotel"></input>
+            <input class="input" name="hotel_name" placeholder="请输入餐厅名称" value="{{register_info.hotel_name}}" bindinput="searchHotel"></input>
             <scroll-view class="choose-list" scroll-y="true" scroll-with-animation="true" wx:if="{{hotel_list.length>0}}">
               <view class="list">
                 <block wx:for="{{hotel_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
-                  <view class="item" data-hotel_id="{{bean.hotel_id}}" bindtap="selectMyHotel">{{bean.name}}</view>
+                  <view class="item" data-index="{{index}}" bindtap="selectMyHotel">{{bean.hotel_name}}</view>
                 </block>
                 <!-- <view class="item selected">bbbb</view>
                 <view class="item">cc</view>
