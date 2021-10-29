@@ -154,13 +154,13 @@
 }
 
 .panel.broadcast>.broadcast-list {
-  width: calc(100% - 110rpx);
+  width: calc(100% - 30rpx);
+  padding: 0 15rpx;
   height: 36rpx;
 }
 
 .panel.broadcast>.broadcast-list swiper-item {
-  width: calc(100% - 30rpx);
-  padding: 0 15rpx;
+  width: 100%;
   font-size: 24rpx;
 }
 
