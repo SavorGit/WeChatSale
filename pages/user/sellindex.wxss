@@ -242,13 +242,17 @@
   margin-top: 20rpx;
 }
 
+.panel.available>.body>.list>.item.sale>.task {
+  height: 220rpx;
+}
+
 .panel.available>.body>.list>.item>.task>.right>.top {
   width: 100%;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top>.left {
   width: calc(100% - 130rpx);
-  min-height: 150rpx;
+  min-height: 100rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.name,

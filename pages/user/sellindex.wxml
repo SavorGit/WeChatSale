@@ -105,10 +105,10 @@
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
                 <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="btn launch-tv flex_row_center_center theme-button3">
+                <!-- <view class="btn launch-tv flex_row_center_center theme-button3">
                   <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                   <view class="text">电视广告</view>
-                </view>
+                </view> -->
               </view>
               <view class="right flex_column_flexStart_spaceBetween">
                 <view class="top flex_row_center_spaceBetween">
