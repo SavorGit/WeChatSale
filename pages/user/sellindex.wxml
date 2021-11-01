@@ -160,20 +160,21 @@
       <view class="body">
         <view class="list flex_column_center_flexStart">
 
-          <view class="item sale flex_column_center_center">
+          
+          <view class="item sale flex_column_center_center" wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 <view class="btn launch-tv flex_row_center_center theme-button3">
                   <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                   <view class="text">电视广告</view>
                 </view>
               </view>
               <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶</view>
+                <view class="name theme-font1">{{bean.task_name}}</view>
                 <view class="price flex_row_center_flexStart">
                   <view class="icon fa fa-cny"></view>
-                  <view class="text">998</view>
+                  <view class="text">{{bean.price}}</view>
                 </view>
                 <view class="btn flex_row_center_spaceBetween theme-button-red">
                   <view class="reward flex_column_center_center theme-font-F9DE59">
@@ -181,17 +182,17 @@
                       <view class="fa fa-circle fa-stack-2x"></view>
                       <view class="fa fa-usd fa-stack-1x"></view>
                     </view>
-                    <view class="text">100分/次</view>
+                    <view class="text">{{bean.integral}}积分/次</view>
                   </view>
                   <view class="tips flex_column_center_center">
                     <view class="tip">邀请客人试饮</view>
-                    <view class="tip">剩余3次</view>
+                    <view class="tip">剩余{{bean.people_num}}次</view>
                   </view>
                 </view>
               </view>
             </view>
             <view class="cover">
-              <view class="top flex_row_center_flexEnd">
+              <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
                 <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
               </view>
               <view class="middle flex_column_center_center theme-font4">已失效</view>

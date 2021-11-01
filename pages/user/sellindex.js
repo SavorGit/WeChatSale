@@ -331,12 +331,30 @@ Page({
    * 删除失效任务
    */
   delInvalid:function(e){
-    utils.PostRequest(api_v_url + '/aa/bb',{
-      openid:openid,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-
-
+    var user_info = this.data.user_info;
+    var index = e.currentTarget.dataset.index;
+    var task_list = this.data.task_list;
+    var task_info = task_list.invalid[index];
+    wx.showModal({
+      title:'提示',
+      content:'确定要删除吗?',
+      success:function(res){
+        if(res.confirm){
+          utils.PostRequest(api_v_url + '/task/delTask',{
+            openid:user_info.openid,
+            hotel_id:user_info.hotel_id,
+            task_user_id:task_info.task_user_id
+      
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.getTaskList(user_info.openid,user_info.hotel_id)
+            app.showToast('删除成功',2000,'success')
+      
+          })
+        }
+      }
     })
+
+    
   },
   /**
    * 生命周期函数--监听页面隐藏
