@@ -195,7 +195,7 @@
               <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
                 <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
               </view>
-              <view class="middle flex_column_center_center theme-font4">已失效</view>
+              <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
               <view class="bottom"></view>
             </view>
           </view>
