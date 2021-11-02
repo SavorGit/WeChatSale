@@ -28,7 +28,7 @@ Component({
     borderStyle: "white",
     list: [{
       "pagePath": "/pages/user/sellindex",
-      "text": "酒品售卖",
+      "text": "我的任务",
       "iconPath": "/images/icon/999999_sale.png",
       "selectedIconPath": "/images/icon/333333_sale.png"
       },

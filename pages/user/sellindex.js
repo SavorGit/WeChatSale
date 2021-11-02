@@ -123,22 +123,36 @@ Page({
           url: '/pages/user/login',
         })
       }else {
-        wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
-        that.setData({user_info:data.result.userinfo})
-        var task_list = that.data.task_list;
-        if(task_list.length==0){
-          that.getTaskList(openid,hotel_id);
-        }
-        var box_list = that.data.box_list;
-        if(box_list.length==0){
-          this.getRoomList(openid,hotel_id);
+        var user_info = wx.getStorageSync(cache_key+'userinfo');
+        if(user_info.select_hotel_id>0 ){
+
+        }else {
+          wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
         }
         
-        var loop_play_list = that.data.loop_play_list;
-        console.log(loop_play_list)
-        if(loop_play_list.length==0){
-          that.getLoopPlay();
+        if(data.result.userinfo.role_type==3){
+          wx.redirectTo({
+            url: '/pages/waiter/home',
+          })
+        }else {
+          that.setData({user_info:data.result.userinfo})
+          var task_list = that.data.task_list;
+          if(task_list.length==0){
+            that.getTaskList(openid,hotel_id);
+          }
+          var box_list = that.data.box_list;
+          if(box_list.length==0){
+            this.getRoomList(openid,hotel_id);
+          }
+          
+          var loop_play_list = that.data.loop_play_list;
+          console.log(loop_play_list)
+          if(loop_play_list.length==0){
+            that.getLoopPlay();
+          }
         }
+
+        
       }
     },res=>{},{isShowLoading:false})
   },
@@ -307,15 +321,26 @@ Page({
     var task_user_id = tasteWineTask.task_user_id;
     var taste_wine_info = this.data.taste_wine_info;
     var send_num = taste_wine_info.nums;
+    var reg = /^[1-9]\d*$/;
+    if(!reg.test(send_num)){
+      app.showToast('请输入大于0的整数');
+      return false;
+    }
     if(send_num>tasteWineTask.send_num){
       app.showToast('领取数量不可大于剩余数量')
       return false;
     }
+    if(send_num==0){
+      app.showToast('领取数量不可小于1')
+      return false;
+    }
+
     if(send_num ==''){
       app.showToast('请输入领取份数')
       return false;
     }
-
+    
+    
     utils.PostRequest(api_v_url + '/activity/startTastewine',{
       openid:user_info.openid,
       hotel_id:user_info.hotel_id,

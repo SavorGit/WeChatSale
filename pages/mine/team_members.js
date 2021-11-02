@@ -23,6 +23,7 @@ Page({
     var that = this;
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     openid = userinfo.openid;
+    this.setData({userinfo:userinfo})
     this.getEmployeeList(openid,1)
   },
   getEmployeeList:function(openid,page){
@@ -119,16 +120,17 @@ Page({
     var index = e.currentTarget.dataset.index;
     var staff_list = that.data.staff_list;
     var staff_openid = staff_list[index].openid
+    var userinfo = this.data.userinfo;
     wx.showModal({
       title: '提示',
       content: '确定要设置为餐厅人员吗?',
       success:function(res){
         if (res.confirm) {
           utils.PostRequest(api_v_url + '/staff/addRestaurantStaff', {
-            openid:openid,
+            openid:userinfo.openid,
             staff_openid:staff_openid
           }, (data, headers, cookies, errMsg, statusCode) => {
-            that.getEmployeeList(openid,page)
+            that.getEmployeeList(userinfo.openid,page)
             app.showToast('设置成功',2000,'success');
           })
         }
