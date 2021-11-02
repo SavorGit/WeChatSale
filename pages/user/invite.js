@@ -151,7 +151,7 @@ Page({
                     })
                   }else{
                     wx.reLaunch({
-                      url: '/pages/index/index',
+                      url: '/pages/user/sellindex',
                     })
                   }
                   
@@ -274,7 +274,7 @@ Page({
               })
             }else {
               wx.reLaunch({
-                url: '/pages/index/index',
+                url: '/pages/user/sellindex',
               })
             }
             
