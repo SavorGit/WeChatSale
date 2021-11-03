@@ -359,6 +359,7 @@ Page({
    * 删除失效任务
    */
   delInvalid:function(e){
+    var that = this;
     var user_info = this.data.user_info;
     var index = e.currentTarget.dataset.index;
     var task_list = this.data.task_list;
