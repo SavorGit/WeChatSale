@@ -373,7 +373,7 @@
 </modal>
 
 <!-- 任务详情弹窗 [抽奖] -->
-<modal show="{{lotteryDetailWindow.show}}" width="690rpx" height='900rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{lottery_detail_window}}" width="690rpx" height='900rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
   <view class="window lottery-detail theme-window">
     <view class="title-bar flex_row_center_flexStart">
       <view class="title"></view>
@@ -390,13 +390,13 @@
       </view>
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
-          <view class="tab rule flex_row_center_center{{lotteryDetailWindow.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
+          <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
           <view class="tab prize flex_row_center_center{{lotteryDetailWindow.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab">奖品奖项</view>
         </view>
-        <scroll-view wx:if="{{lotteryDetailWindow.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
-          <rich-text nodes="{{task_info.rule}}"></rich-text>
+        <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+          <rich-text nodes="{{lottery_detail_info.rule}}"></rich-text>
         </scroll-view>
-        <scroll-view wx:if="{{lotteryDetailWindow.tab == 'prize'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+        <scroll-view wx:if="{{lottery_detail_info.tab == 'prize'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
           <rich-text nodes="{{task_info.prize}}"></rich-text>
         </scroll-view>
       </view>
@@ -456,12 +456,12 @@
 </modal>
 
 <!-- 发起品鉴酒活动弹窗 [抽奖] -->
-<modal show="{{lotteryWindowShow}}" width="634rpx" height='898rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+<modal show="{{lottery_activity_window}}" width="634rpx" height='898rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
   <view class="window lottery theme-window">
     <view class="title-bar flex_row_center_flexStart">
       <view class="title"></view>
     </view>
-    <view class="option-bar flex_row_center_flexEnd" bindtap="">
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closePopWind">
       <view class="btn close flex_column_center_center">
         <view class="icon fa fa-close theme-font4"></view>
       </view>
@@ -476,18 +476,19 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">选择包间</view>
               <view class="value" style="border:unset;">
-                <radio-group class="input flex_row_center_spaceBetween">
-                  <radio>全餐厅</radio>
-                  <radio>所有包间</radio>
+                <radio-group class="input flex_row_center_spaceBetween" bindchange="lotteryRoomChange">
+                  <radio value="1" checked="{{lottery_activity_info.room_type==1?true:false}}" >全餐厅</radio>
+                  <radio value="2" checked="{{lottery_activity_info.room_type==2?true:false}}">所有包间</radio>
                 </radio-group>
               </view>
             </view>
             <view class="row flex_row_center_spaceBetween">
               <view class="label">活动开始时间</view>
               <view class="value">
-                <picker class="input" mode="time">
+                <picker class="input" mode="multiSelector" range="{{select_time_arr}}" bindchange="activityStartTimeChange"  value="{{activityStartTimeIndex}}">
                   <view class="context flex_row_center_spaceBetween">
-                    <view class="text one-line-overflow">{{box_name_list[box_index]}}</view>
+                    <view class="text one-line-overflow" wx:if="{{lottery_activity_info.start_time==''}}">请选择时间</view>
+                    <view class="text one-line-overflow" wx:else>{{lottery_activity_info.start_time}}</view>
                     <view class="icon fa fa-calendar" aria-hidden="true"></view>
                   </view>
                 </picker>
@@ -496,9 +497,10 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">开奖时间</view>
               <view class="value">
-                <picker class="input" mode="time">
+                <picker class="input" mode="multiSelector" range="{{select_time_arr}}" bindchange="lotteryStartTimeChange" value="{{lotteryStartTimeIndex}}">
                   <view class="context flex_row_center_spaceBetween">
-                    <view class="text one-line-overflow">{{box_name_list[box_index]}}</view>
+                    <view class="text one-line-overflow" wx:if="{{lottery_activity_info.lottery_time==''}}">请选择时间</view>
+                    <view class="text one-line-overflow" wx:else>{{lottery_activity_info.lottery_time}}</view>
                     <view class="icon fa fa-calendar" aria-hidden="true"></view>
                   </view>
                 </picker>

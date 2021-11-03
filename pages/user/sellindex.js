@@ -24,7 +24,22 @@ Page({
 
     loop_play_list:[],    //走马灯数据
     taste_wine_info:{'room_id':0,'nums':''}, //发起品鉴酒活动
-    box_index:0
+    box_index:0,
+
+    
+
+    lottery_detail_window:false , //抽奖任务弹窗
+    lottery_activity_window:false,  //发起抽奖活动弹窗
+    lottery_detail_info :{tab:'rule',rule:''},
+    lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
+    activityStartTimeIndex:[0,0],
+    lotteryStartTimeIndex:[0,0],
+
+    select_time_arr:[['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],['00','10','20','30','40','50']],
+    
+
+
+
 
 
   },
@@ -34,13 +49,7 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
-    /*var user_info = wx.getStorageSync(cache_key+'userinfo');
-    this.setData({user_info:user_info});
-    this.getRoomList(user_info.openid,user_info.hotel_id);*/
-    this.setData({lotteryWindowShow:true,lotteryDetailWindow:{show:true,tab:'rule'},task_info:{
-      rule:'<div class="rich-text"><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">奖励规则：</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">1.</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">领取任务即可获得100积分奖励；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">2.</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">每位客人</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">参与</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">将</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">奖励对应</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">发起人员10积分；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;"><br></span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">活动说明：</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">第1步.您需要点击“发起餐厅抽奖活动“来发起；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">第2步.发起后您需要选择对应的活动范围、活动开始</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">时间、抽奖开始时间；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">第3步.到达活动开始时间后，活动范围内的电视将出现</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">活动参与页面，引导客人扫描电视中二维码参与；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">第4步.到达抽奖开始时间后，电视中会开始抽取幸运客</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">人，抽奖结束后需将奖品给予中奖客人；</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;"><br></span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">注：</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">参与人数需大于xx人才可以正常开奖</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">。</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;"><br></span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">活动有效时间：</span><span class="--mb--rich-text" data-boldtype="0" style="font-family:PingFangSC; font-weight:400; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">2021年10月15日--2021年11月15日</span></p></div>',
-      prize:'<div style="position: absolute; left: 0px; top: 0px; width: 176px; height: 131px;"><div class="widget rich_text hleft vtop " style="width: 176px; height: 131px; font-size: 14px; text-align: left; line-height: 0px; font-weight: normal; font-style: normal;"><div class="rich-text"><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">一等奖1人：xxxxxxxx一瓶</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">二等奖2人：xxxxx250ml</span></p><p style="line-height:0; margin-bottom:5px;"><span class="--mb--rich-text" data-boldtype="1" style="font-family:PingFangSC; font-weight:700; font-size:14px; color:rgb(16, 16, 16); font-style:normal; letter-spacing:0px; line-height:20px; text-decoration:none;">三等奖4人：xxxxx125ml</span></p></div></div></div>'
-    }});
+    
   },
   getRoomList:function(openid,hotel_id){
     var that = this;
@@ -48,7 +57,7 @@ Page({
     utils.PostRequest(api_v_url + '/room/getWelcomeBoxlist', {
       hotel_id: hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      console.log(data.result.box_name_list)
+      
       that.setData({
         box_name_list: data.result.box_name_list,
         box_list: data.result.box_list
@@ -149,7 +158,7 @@ Page({
           }
           
           var loop_play_list = that.data.loop_play_list;
-          console.log(loop_play_list)
+          
           if(loop_play_list.length==0){
             that.getLoopPlay();
           }
@@ -166,7 +175,6 @@ Page({
     var that = this;
 
     var task_list = that.data.task_list;
-    console.log(task_list)
     if(task_list.length>0){
       var is_f = false
     }else {
@@ -196,7 +204,6 @@ Page({
    * 领取任务弹窗显示详情
    */
   getTaskPopWind:function(e){
-    console.log(e)
     var index = e.currentTarget.dataset.index;
     var canreceive = this.data.task_list.canreceive;
     var task_info = canreceive[index];
@@ -227,9 +234,24 @@ Page({
       saleDetailWindowShow: false,
       judgeWindowShow: false,
       box_index:0,
-      taste_wine_info:{'room_id':0,'nums':''}
+      taste_wine_info:{'room_id':0,'nums':''},
+
+      lottery_detail_window:false , //抽奖任务弹窗
+      lottery_activity_window:false,  //发起抽奖活动弹窗
+      lottery_detail_info :{tab:'rule',rule:''},
+      lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
+      activityStartTimeIndex:[0,0],
+      lotteryStartTimeIndex:[0,0],
     })
   },
+  getLotteryPopWind:function(){
+    var index = e.currentTarget.dataset.index;
+    var canreceive = this.data.task_list.canreceive;
+    var lottery_info = canreceive[index];
+    this.setData({lottery_info:lottery_info,saleDetailWindowShow:true});
+  },
+  
+
   
 
 
@@ -244,7 +266,6 @@ Page({
     var task_list = this.data.task_list;
     var task_index = this.data.task_index;
     var task_info = task_list.inprogress[task_index]
-    console.log(task_info.filename)
     var box_list = this.data.box_list;
     var box_index = this.data.box_index;
     var box_mac = box_list[box_index].box_mac;
@@ -525,7 +546,6 @@ Page({
     })
   },
   lowValueChange: function (e) {
-    console.log(e);
     var that = this;
     var lowValue = e.detail.lowValue;
     var level1 = that.data.level1;
@@ -621,5 +641,40 @@ Page({
         show:false
       }
     });
+  },
+  lotteryRoomChange:function(e){
+    var room_type = e.detail.value;
+    var lottery_activity_info = this.data.lottery_activity_info;
+    lottery_activity_info.room_type = room_type;
+    this.setData({lottery_activity_info:lottery_activity_info})
+  },
+  activityStartTimeChange:function(e){
+    var select_time_arr = this.data.select_time_arr;
+
+    var time_h = select_time_arr[0][e.detail.value[0]];
+    var time_m = select_time_arr[1][e.detail.value[1]];
+    var activityStartTimeIndex = this.data.activityStartTimeIndex;
+    var lottery_activity_info = this.data.lottery_activity_info;
+    activityStartTimeIndex = [e.detail.value[0],e.detail.value[1]];
+    var start_time = time_h+':'+time_m;
+    lottery_activity_info.start_time = start_time;
+    this.setData({activityStartTimeIndex:activityStartTimeIndex,lottery_activity_info:lottery_activity_info})
+  },
+  lotteryStartTimeChange:function(e){
+    var select_time_arr = this.data.select_time_arr;
+    var time_h = select_time_arr[0][e.detail.value[0]];
+    var time_m = select_time_arr[1][e.detail.value[1]];
+
+
+
+    var lotteryStartTimeIndex = this.data.lotteryStartTimeIndex;
+    var lottery_activity_info = this.data.lottery_activity_info;
+    lotteryStartTimeIndex = [e.detail.value[0],e.detail.value[1]];
+    var lottery_time = time_h+':'+time_m;
+    lottery_activity_info.lottery_time = lottery_time;
+    this.setData({lottery_time:lottery_time,lottery_activity_info:lottery_activity_info})
+
+
+    
   }
 })
