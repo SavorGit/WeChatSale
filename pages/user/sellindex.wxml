@@ -37,55 +37,102 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
-          
-            <view class="task flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="btn launch-tv flex_row_center_center theme-button3" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="2">
-                  <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
-                  <view class="text">电视广告</view>
+            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="btn launch-tv flex_row_center_center theme-button3" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="2">
+                    <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
+                    <view class="text">电视广告</view>
+                  </view>
                 </view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">{{bean.task_name}}</view>
-                <view class="price flex_row_center_flexStart">
-                  <view class="icon fa fa-cny"></view>
-                  <view class="text">{{bean.price}}</view>
-                </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
-                  <view class="reward flex_column_center_center theme-font-F9DE59">
-                    <view class="icon fa-stack">
-                      <view class="fa fa-circle fa-stack-2x"></view>
-                      <view class="fa fa-usd fa-stack-1x"></view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="price flex_row_center_flexStart">
+                    <view class="icon fa fa-cny"></view>
+                    <view class="text">{{bean.price}}</view>
+                  </view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
                     </view>
-                    <view class="text">{{bean.integral}}积分/次</view>
-                  </view>
-                  <view class="tips flex_column_center_center">
-                    <view class="tip">邀请客人试饮</view>
-                    <view class="tip">剩余{{bean.people_num}}次</view>
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请客人试饮</view>
+                      <view class="tip">剩余{{bean.people_num}}次</view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
-          </view>
-          <view class="item old flex_column_center_center" wx:else>
-            <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
-              <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
-              <view wx:else class="icon fa-stack fa-lg">
-                <view class="fa fa-television fa-stack-2x"></view>
-                <view class="fa fa-tasks fa-stack-1x"></view>
-              </view>
-              <view class="info flex_column_flexStart_flexEnd">
-                <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
-                <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view>
-              </view>
-              <view class="profit-and-progress flex_column_center_center">
-                <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
-                <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+            <!--抽奖-->
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+              <view class="task lottery flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">发起餐厅抽奖活动</view>
+                      <view class="tip">2021.11.21-22:00过期</view>
+                    </view>
+                  </view>
+                </view>
               </view>
             </view>
-          </view>
+            <!--抽奖-->
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+              <view class="task lottery flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
+                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">进行中...</view>
+                      <view class="btn fa fa-pencil" style="font-size:48rpx;" aria-hidden="true"></view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="item old flex_column_center_center" wx:else>
+              <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
+                <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
+                <view wx:else class="icon fa-stack fa-lg">
+                  <view class="fa fa-television fa-stack-2x"></view>
+                  <view class="fa fa-tasks fa-stack-1x"></view>
+                </view>
+                <view class="info flex_column_flexStart_flexEnd">
+                  <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
+                  <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view>
+                </view>
+                <view class="profit-and-progress flex_column_center_center">
+                  <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
+                  <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+                </view>
+              </view>
+            </view>
           </block>
 
         </view>
@@ -93,7 +140,7 @@
     </view>
 
     <!-- 可领取任务面板 -->
-    <view class="panel available theme-panel"  wx:if="{{task_list.canreceive.length>0}}" >
+    <view class="panel available theme-panel" wx:if="{{task_list.canreceive.length>0}}">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">可领取任务</view>
       </view>
@@ -101,49 +148,66 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
-            <view class="task flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <!-- <view class="btn launch-tv flex_row_center_center theme-button3">
-                  <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
-                  <view class="text">电视广告</view>
-                </view> -->
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="top flex_row_center_spaceBetween">
-                  <view class="left flex_column_flexStart_spaceBetween">
-                    <view class="name">{{bean.task_name}}</view>
-                    <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
-                  </view>
-                  <view class="right flex_row_center_flexEnd" bindtap="getTaskPopWind" data-index="{{index}}">
-                    <view class="btn flex_column_center_center theme-button-red">领取</view>
-                  </view>
+            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="bottom">
-                  <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{bean.percent}}" font-size="24rpx">剩余{{bean.remain_percent}}%</progress>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="name">{{bean.task_name}}</view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                    </view>
+                    <view class="right flex_row_center_flexEnd" bindtap="getTaskPopWind" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-red">领取</view>
+                    </view>
+                  </view>
+                  <view class="bottom">
+                    <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{bean.percent}}" font-size="24rpx">剩余{{bean.remain_percent}}%</progress>
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
-
-          <view class="item old flex_column_center_center" wx:else>
-            <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
-              <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
-              <view wx:else class="icon fa-stack fa-lg">
-                <view class="fa fa-television fa-stack-2x"></view>
-                <view class="fa fa-tasks fa-stack-1x"></view>
-              </view>
-              <view class="info flex_column_flexStart_flexEnd">
-                <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
-                <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view>
-              </view>
-              <view class="profit-and-progress flex_column_center_center">
-                <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
-                <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+            <!--抽奖-->
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+              <view class="task lottery flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="name">{{bean.task_name}}</view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                    </view>
+                    <view class="right flex_row_center_flexEnd" bindtap="" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-welcome">领取</view>
+                    </view>
+                  </view>
+                  <view class="bottom">
+                    <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{bean.percent}}" font-size="24rpx">剩余{{bean.remain_percent}}%</progress>
+                  </view>
+                </view>
               </view>
             </view>
-          </view>
+            <view class="item old flex_column_center_center" wx:else>
+              <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
+                <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
+                <view wx:else class="icon fa-stack fa-lg">
+                  <view class="fa fa-television fa-stack-2x"></view>
+                  <view class="fa fa-tasks fa-stack-1x"></view>
+                </view>
+                <view class="info flex_column_flexStart_flexEnd">
+                  <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
+                  <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view>
+                </view>
+                <view class="profit-and-progress flex_column_center_center">
+                  <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
+                  <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+                </view>
+              </view>
+            </view>
 
           </block>
 
@@ -160,7 +224,7 @@
       <view class="body">
         <view class="list flex_column_center_flexStart">
 
-          
+
           <view class="item sale flex_column_center_center" wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <view class="task flex_row_center_spaceBetween">
               <view class="left flex_column_flexStart_spaceBetween">
@@ -308,6 +372,41 @@
   </view>
 </modal>
 
+<!-- 任务详情弹窗 [抽奖] -->
+<modal show="{{lotteryDetailWindow.show}}" width="690rpx" height='900rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+  <view class="window lottery-detail theme-window">
+    <view class="title-bar flex_row_center_flexStart">
+      <view class="title"></view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closeLotteryDetailWindow">
+      <view class="btn close flex_column_center_center">
+        <view class="icon fa fa-close"></view>
+      </view>
+    </view>
+    <view class="body">
+      <view class="goods flex_column_center_spaceBetween">
+        <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+        <view class="name one-line-overflow">冰清梅酒定时抽奖活动</view>
+      </view>
+      <view class="tab-group">
+        <view class="tab-bar flex_row_center_center">
+          <view class="tab rule flex_row_center_center{{lotteryDetailWindow.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
+          <view class="tab prize flex_row_center_center{{lotteryDetailWindow.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab">奖品奖项</view>
+        </view>
+        <scroll-view wx:if="{{lotteryDetailWindow.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+          <rich-text nodes="{{task_info.rule}}"></rich-text>
+        </scroll-view>
+        <scroll-view wx:if="{{lotteryDetailWindow.tab == 'prize'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
+          <rich-text nodes="{{task_info.prize}}"></rich-text>
+        </scroll-view>
+      </view>
+      <view class="btn-group flex_column_center_center" bindtap="receiveTaskNow" data-index="{{index}}">
+        <view class="btn receive flex_column_center_center theme-button-welcome-dark">立即领取</view>
+      </view>
+    </view>
+  </view>
+</modal>
+
 <!-- 发起品鉴酒活动弹窗 -->
 <modal show="{{judgeWindowShow}}" width="634rpx" height='898rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
   <view class="window judge theme-window">
@@ -340,7 +439,7 @@
             <view class="row flex_row_center_spaceBetween" wx:if="{{pop_type==1}}">
               <view class="label">可领取份数</view>
               <view class="value">
-                <input class="input" bindinput="bindInputTasteWineNums" value="{{taste_wine_info.nums}}"  type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
+                <input class="input" bindinput="bindInputTasteWineNums" value="{{taste_wine_info.nums}}" type="number" placeholder="请输入  剩余{{tasteWineTask.send_num}}" />
               </view>
             </view>
             <view class="row btn-group flex_column_center_flexStart" bindtap="startTasteWineTask" wx:if="{{pop_type==1}}">
@@ -348,6 +447,65 @@
             </view>
             <view class="row btn-group flex_column_center_flexStart" bindtap="boxShowAd" wx:if="{{pop_type==2}}">
               <view class="btn launch flex_row_center_center theme-button-welcome">电视播放活动广告</view>
+            </view>
+          </view>
+        </view>
+      </form>
+    </scroll-view>
+  </view>
+</modal>
+
+<!-- 发起品鉴酒活动弹窗 [抽奖] -->
+<modal show="{{lotteryWindowShow}}" width="634rpx" height='898rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+  <view class="window lottery theme-window">
+    <view class="title-bar flex_row_center_flexStart">
+      <view class="title"></view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd" bindtap="">
+      <view class="btn close flex_column_center_center">
+        <view class="icon fa fa-close theme-font4"></view>
+      </view>
+    </view>
+    <scroll-view class="body" scroll-y="true" scroll-with-animation="true">
+      <form>
+        <view class="wrapper">
+          <view class="top">
+            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          </view>
+          <view class="bottom flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="label">选择包间</view>
+              <view class="value" style="border:unset;">
+                <radio-group class="input flex_row_center_spaceBetween">
+                  <radio>全餐厅</radio>
+                  <radio>所有包间</radio>
+                </radio-group>
+              </view>
+            </view>
+            <view class="row flex_row_center_spaceBetween">
+              <view class="label">活动开始时间</view>
+              <view class="value">
+                <picker class="input" mode="time">
+                  <view class="context flex_row_center_spaceBetween">
+                    <view class="text one-line-overflow">{{box_name_list[box_index]}}</view>
+                    <view class="icon fa fa-calendar" aria-hidden="true"></view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+            <view class="row flex_row_center_spaceBetween">
+              <view class="label">开奖时间</view>
+              <view class="value">
+                <picker class="input" mode="time">
+                  <view class="context flex_row_center_spaceBetween">
+                    <view class="text one-line-overflow">{{box_name_list[box_index]}}</view>
+                    <view class="icon fa fa-calendar" aria-hidden="true"></view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+            <view class="row btn-group flex_column_center_flexStart" bindtap="">
+              <view class="btn launch flex_row_center_center theme-button-welcome">发起餐厅抽奖活动</view>
             </view>
           </view>
         </view>

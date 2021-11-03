@@ -174,6 +174,11 @@
   width: calc(100% - 46rpx);
 }
 
+
+.panel.progress>.body>.list>.item>.task.lottery {
+  height: 200rpx;
+}
+
 .panel.progress>.body>.list>.item>.task>.right>.name,
 .panel.progress>.body>.list>.item>.task>.right>.price,
 .panel.invalid>.body>.list>.item>.task>.right>.name,
@@ -317,23 +322,27 @@
 }
 
 .window.sale-detail,
+.window.lottery-detail,
 .window.judge {
   border-radius: 10rpx;
 }
 
-.window.sale-detail>.body .wrapper>.goods {
+.window.sale-detail>.body .wrapper>.goods,
+.window.lottery-detail>.body>.goods {
   width: 100%;
   height: 310rpx;
   padding: 5rpx 0;
 }
 
-.window.sale-detail>.body .wrapper>.goods>.pic {
+.window.sale-detail>.body .wrapper>.goods>.pic,
+.window.lottery-detail>.body>.goods>.pic {
   width: 180rpx;
   height: 180rpx;
   border-radius: 50%;
 }
 
-.window.sale-detail>.body .wrapper>.goods>.name {
+.window.sale-detail>.body .wrapper>.goods>.name,
+.window.lottery-detail>.body>.goods>.name {
   width: 100%;
   text-align: center;
   font-size: 36rpx;
@@ -355,12 +364,14 @@
   padding: 10rpx 0;
 }
 
-.window.sale-detail>.body .wrapper>.btn-group {
+.window.sale-detail>.body .wrapper>.btn-group,
+.window.lottery-detail>.body>.btn-group {
   width: 100%;
   padding: 10rpx 0;
 }
 
-.window.sale-detail>.body .wrapper>.btn-group>.btn {
+.window.sale-detail>.body .wrapper>.btn-group>.btn,
+.window.lottery-detail>.body>.btn-group>.btn {
   width: 604rpx;
   height: 106rpx;
   font-size: 28rpx;
@@ -370,41 +381,86 @@
   margin: 0;
 }
 
+.window.lottery-detail>.body>.goods {
+  height: 230rpx;
+}
+
+.window.lottery-detail>.body>.tab-group {
+  width: 100%;
+  height: calc(100% - 366rpx);
+}
+
+.window.lottery-detail>.body>.tab-group>.tab-bar {
+  width: 100%;
+  height: 70rpx;
+}
+
+.window.lottery-detail>.body>.tab-group>.tab-bar>.tab {
+  width: 326rpx;
+  height: 64rpx;
+  font-size: 28rpx;
+  border-width: 2rpx;
+  border-style: solid;
+  border-color: rgb(187, 187, 187);
+}
+
+.window.lottery-detail>.body>.tab-group>.tab-bar>.tab.rule {
+  border-right-width: 0;
+}
+
+.window.lottery-detail>.body>.tab-group>.tab-bar>.tab.prize {
+  border-left-width: 0;
+}
+
+.window.lottery-detail>.body>.tab-group>.tab-body {
+  width: calc(100% - 40rpx);
+  height: calc(100% - 90rpx);
+  padding: 10rpx 20rpx;
+}
+
 
 .window.judge>.option-bar,
-.window.judge>.option-bar>.btn {
+.window.judge>.option-bar>.btn,
+.window.lottery>.option-bar,
+.window.lottery>.option-bar>.btn {
   z-index: 2;
 }
 
-.window.judge>.body {
+.window.judge>.body,
+.window.lottery>.body {
   margin-top: -66rpx;
 }
 
-.window.judge>.body .wrapper {
+.window.judge>.body .wrapper,
+.window.lottery>.body .wrapper {
   width: 100%;
   padding: 0;
   margin: 0;
   border: 0;
 }
 
-.window.judge>.body .wrapper>.top {
+.window.judge>.body .wrapper>.top,
+.window.lottery>.body .wrapper>.top {
   width: 100%;
   height: 396rpx;
 }
 
-.window.judge>.body .wrapper>.top>.pic {
+.window.judge>.body .wrapper>.top>.pic,
+.window.lottery>.body .wrapper>.top>.pic {
   width: 100%;
   height: 100%;
   border-radius: 10rpx 10rpx 0 0;
   z-index: 0;
 }
 
-.window.judge>.body .wrapper>.bottom {
+.window.judge>.body .wrapper>.bottom,
+.window.lottery>.body .wrapper>.bottom {
   width: 100%;
   padding-top: 40rpx;
 }
 
-.window.judge>.body .wrapper>.bottom>.row {
+.window.judge>.body .wrapper>.bottom>.row,
+.window.lottery>.body .wrapper>.bottom>.row {
   width: calc(100% - 40rpx);
   padding: 10rpx 20rpx;
 }
@@ -414,7 +470,8 @@
   font-size: 28rpx;
 }
 
-.window.judge>.body .wrapper>.bottom>.row>.value {
+.window.judge>.body .wrapper>.bottom>.row>.value,
+.window.lottery>.body .wrapper>.bottom>.row>.value {
   width: calc(100% - 166rpx);
   height: 44rpx;
   padding: 5rpx;
@@ -422,17 +479,20 @@
   border: 3rpx solid rgb(187, 187, 187);
 }
 
-.window.judge>.body .wrapper>.bottom>.row>.value>.input {
+.window.judge>.body .wrapper>.bottom>.row>.value>.input,
+.window.lottery>.body .wrapper>.bottom>.row>.value>.input {
   width: 100%;
   height: 100%;
   font-size: 28rpx;
 }
 
-.window.judge>.body .wrapper>.bottom>.row>.value>picker.input .text {
+.window.judge>.body .wrapper>.bottom>.row>.value>picker.input .text,
+.window.lottery>.body .wrapper>.bottom>.row>.value>picker.input .text {
   width: calc(100% - 30rpx);
 }
 
-.window.judge>.body .wrapper>.bottom>.row>.value>picker.input .icon {
+.window.judge>.body .wrapper>.bottom>.row>.value>picker.input .icon,
+.window.lottery>.body .wrapper>.bottom>.row>.value>picker.input .icon {
   width: 30rpx;
   height: 30rpx;
   line-height: 30rpx;
@@ -440,11 +500,13 @@
   margin: 0;
 }
 
-.window.judge>.body .wrapper>.bottom>.row.btn-group {
+.window.judge>.body .wrapper>.bottom>.row.btn-group,
+.window.lottery>.body .wrapper>.bottom>.row.btn-group {
   padding-top: 50rpx;
 }
 
-.window.judge>.body .wrapper>.bottom>.row.btn-group>.btn {
+.window.judge>.body .wrapper>.bottom>.row.btn-group>.btn,
+.window.lottery>.body .wrapper>.bottom>.row.btn-group>.btn {
   width: 308rpx;
   height: 90rpx;
   font-size: 32rpx;
@@ -452,4 +514,13 @@
   border: 0;
   margin: 0;
   padding: 0;
+}
+
+.window.lottery>.body .wrapper>.bottom>.row>.label {
+  width: 180rpx;
+  font-size: 28rpx;
+}
+
+.window.lottery>.body .wrapper>.bottom>.row>.value {
+  width: calc(100% - 196rpx);
 }
