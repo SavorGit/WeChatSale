@@ -125,7 +125,7 @@
 		</view>
 	</view>
 	<!-- 我的员工面板 -->
-	<view class="team-members-panel full_width theme7" wx:if="{{(user_info.role_type==1 || user_indo.role_type==2 ) && staff_manage==true}}">
+	<view class="team-members-panel full_width theme7" wx:if="{{(user_info.role_type==1 || user_info.role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>
 			<label>我的员工</label>
 			<label wx:if="{{staff_list.length>0}}">
