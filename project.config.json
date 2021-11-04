@@ -39,7 +39,7 @@
     "minifyWXML": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.20.0",
+  "libVersion": "2.20.1",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "debugOptions": {
