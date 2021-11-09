@@ -30,7 +30,7 @@ Page({
 
     lottery_detail_window:false , //抽奖任务弹窗
     lottery_activity_window:false,  //发起抽奖活动弹窗
-    lottery_detail_info :{tab:'rule',rule:''},
+    lottery_detail_info :{tab:'rule',desc:''},
     lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
     activityStartTimeIndex:[0,0],
     lotteryStartTimeIndex:[0,0],
@@ -49,7 +49,6 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
-    
   },
   getRoomList:function(openid,hotel_id){
     var that = this;
@@ -229,6 +228,41 @@ Page({
       app.showToast('任务领取成功',2000,'success')
     })
   },
+  /**
+   * 领取抽奖任务弹窗详情
+   */
+  getLotteryPopWind:function(e){
+    console.log(e)
+    var index = e.currentTarget.dataset.index;
+    var canreceive = this.data.task_list.canreceive;
+    var lottery_detail_info = canreceive[index];
+    lottery_detail_info.tab = 'rule';
+    this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
+  },
+  /**
+   * 发起餐厅抽奖活动
+   */
+  startLotteryActivity:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var user_info = that.data.user_info;
+    var lottery_detail_info = that.data.lottery_detail_info;
+
+    utils.PostRequest(api_v_url + '/aa/bb',{
+      openid:user_info.openid,
+      hotel_id:user_info.hotel_id,
+      task_id:lottery_detail_info.task_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({lottery_activity_window:false})
+      that.getTaskList(user_info.openid,user_info.hotel_id)
+      app.showToast('任务领取成功',2000,'success')
+    })
+  },
+  editLotteryActivityPopWind:function(e){
+    
+  },
+  
+
   closePopWind:function(e){
     this.setData({
       saleDetailWindowShow: false,
@@ -238,18 +272,13 @@ Page({
 
       lottery_detail_window:false , //抽奖任务弹窗
       lottery_activity_window:false,  //发起抽奖活动弹窗
-      lottery_detail_info :{tab:'rule',rule:''},
+      lottery_detail_info :{tab:'rule',desc:''},
       lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
       activityStartTimeIndex:[0,0],
       lotteryStartTimeIndex:[0,0],
     })
   },
-  getLotteryPopWind:function(){
-    var index = e.currentTarget.dataset.index;
-    var canreceive = this.data.task_list.canreceive;
-    var lottery_info = canreceive[index];
-    this.setData({lottery_info:lottery_info,saleDetailWindowShow:true});
-  },
+  
   
 
   
@@ -624,24 +653,15 @@ Page({
   // 选项卡选择
   showLotteryDetailWindowTab: function (e) {
     let self = this;
+    console.log(e)
     let tabType = e.currentTarget.dataset.tab;
-    self.setData({
-      lotteryDetailWindow:{
-        show:true,
-        tab: tabType
-      }
-    }, function () {
-      // self.setNavigationBarTitle(tabType);
-    });
+    var lottery_detail_info = this.data.lottery_detail_info;
+    console.log(lottery_detail_info)
+    lottery_detail_info.tab = tabType;
+    console.log(lottery_detail_info)
+    this.setData({lottery_detail_info:lottery_detail_info})
   },
-  closeLotteryDetailWindow:function(e){
-    let self = this;
-    self.setData({
-      lotteryDetailWindow:{
-        show:false
-      }
-    });
-  },
+  
   lotteryRoomChange:function(e){
     var room_type = e.detail.value;
     var lottery_activity_info = this.data.lottery_activity_info;

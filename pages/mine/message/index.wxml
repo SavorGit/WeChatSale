@@ -20,7 +20,7 @@
           <view class="message theme-font1">{{bean.content}}</view>
         </view>
       </view>
-      <view class="item flex_column_center_flexStart">
+      <!-- <view class="item flex_column_center_flexStart">
         <view class="top flex_row_center_spaceBetween">
           <view class="title theme-font1 one-line-overflow">抽奖结果通知</view>
           <view class="time theme-font3 one-line-overflow">{{bean.add_time}}</view>
@@ -53,7 +53,7 @@
           </view>
           <view class="message theme-font1">{{bean.content}}</view>
         </view>
-      </view>
+      </view> -->
     </block>
   </view>
 </scroll-view>

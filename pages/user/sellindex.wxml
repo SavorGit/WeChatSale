@@ -170,7 +170,7 @@
               </view>
             </view>
             <!--抽奖-->
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==23}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -181,7 +181,7 @@
                       <view class="name">{{bean.task_name}}</view>
                       <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
                     </view>
-                    <view class="right flex_row_center_flexEnd" bindtap="" data-index="{{index}}">
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
@@ -378,29 +378,29 @@
     <view class="title-bar flex_row_center_flexStart">
       <view class="title"></view>
     </view>
-    <view class="option-bar flex_row_center_flexEnd" bindtap="closeLotteryDetailWindow">
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closePopWind">
       <view class="btn close flex_column_center_center">
         <view class="icon fa fa-close"></view>
       </view>
     </view>
     <view class="body">
       <view class="goods flex_column_center_spaceBetween">
-        <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-        <view class="name one-line-overflow">冰清梅酒定时抽奖活动</view>
+        <image class="pic" mode="aspectFill" src="{{lottery_detail_info.img_url}}" />
+        <view class="name one-line-overflow">{{lottery_detail_info.task_name}}</view>
       </view>
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
           <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
-          <view class="tab prize flex_row_center_center{{lotteryDetailWindow.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab">奖品奖项</view>
+          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab">奖品奖项</view>
         </view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
-          <rich-text nodes="{{lottery_detail_info.rule}}"></rich-text>
+          <rich-text nodes="{{lottery_detail_info.desc}}"></rich-text>
         </scroll-view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'prize'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
-          <rich-text nodes="{{task_info.prize}}"></rich-text>
+          <rich-text nodes="{{lottery_detail_info.prize}}"></rich-text>
         </scroll-view>
       </view>
-      <view class="btn-group flex_column_center_center" bindtap="receiveTaskNow" data-index="{{index}}">
+      <view class="btn-group flex_column_center_center" bindtap="startLotteryActivity" data-index="{{index}}">
         <view class="btn receive flex_column_center_center theme-button-welcome-dark">立即领取</view>
       </view>
     </view>
