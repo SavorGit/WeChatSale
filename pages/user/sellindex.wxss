@@ -92,7 +92,8 @@
   height: 100%;
 }
 
-.panel>.body>.list>.item.sale>.task {
+.panel>.body>.list>.item.sale>.task,
+.panel>.body>.list>.item.lottery>.task {
   width: calc(100% - 70rpx);
   height: 300rpx;
   padding: 15rpx;
@@ -219,6 +220,7 @@
   width: 2em;
   height: 2em;
   font-size: 24rpx;
+  z-index: 0;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward>.icon>.fa-usd,
@@ -247,7 +249,8 @@
   margin-top: 20rpx;
 }
 
-.panel.available>.body>.list>.item.sale>.task {
+.panel.available>.body>.list>.item.sale>.task,
+.panel.invalid>.body>.list>.item.lottery>.task {
   height: 220rpx;
 }
 
@@ -297,6 +300,7 @@
   height: 330rpx;
   margin-top: -330rpx;
   background-color: rgba(0, 0, 0, 0.26);
+  z-index: 1;
 }
 
 .panel.invalid>.body>.list>.item>.cover>.top,
@@ -319,6 +323,11 @@
   padding: 20rpx;
   font-size: 36rpx;
   font-weight: 500;
+}
+
+.panel.invalid>.body>.list>.item.lottery>.cover {
+  height: 245rpx;
+  margin-top: -245rpx;
 }
 
 .window.sale-detail,

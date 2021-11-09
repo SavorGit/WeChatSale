@@ -100,7 +100,7 @@
                 </view>
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
-                  <view class="btn flex_row_center_spaceBetween theme-button-welcome"  data-index="{{index}}" data-pop_type="1">
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
                         <view class="fa fa-circle fa-stack-2x"></view>
@@ -223,47 +223,76 @@
       </view>
       <view class="body">
         <view class="list flex_column_center_flexStart">
-
-
-          <view class="item sale flex_column_center_center" wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <view class="task flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_spaceBetween">
-                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="btn launch-tv flex_row_center_center theme-button3">
-                  <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
-                  <view class="text">电视广告</view>
+          <block wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view wx:if="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">{{bean.task_name}}</view>
-                <view class="price flex_row_center_flexStart" wx:if="{{bean.task_type!=23}}">
-                  <view class="icon fa fa-cny"></view>
-                  <view class="text" >{{bean.price}}</view>
-                </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-red">
-                  <view class="reward flex_column_center_center theme-font-F9DE59">
-                    <view class="icon fa-stack">
-                      <view class="fa fa-circle fa-stack-2x"></view>
-                      <view class="fa fa-usd fa-stack-1x"></view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
                     </view>
-                    <view class="text">{{bean.integral}}积分/次</view>
-                  </view>
-                  <view class="tips flex_column_center_center">
-                    <view class="tip">邀请客人试饮</view>
-                    <view class="tip">剩余{{bean.people_num}}次</view>
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请客人试饮</view>
+                      <view class="tip">剩余{{bean.people_num}}次</view>
+                    </view>
                   </view>
                 </view>
               </view>
-            </view>
-            <view class="cover">
-              <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
-                <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
               </view>
-              <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
-              <view class="bottom"></view>
             </view>
-          </view>
-
+            <view wx:else class="item sale flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="btn launch-tv flex_row_center_center theme-button3">
+                    <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
+                    <view class="text">电视广告</view>
+                  </view>
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="price flex_row_center_flexStart">
+                    <view class="icon fa fa-cny"></view>
+                    <view class="text">{{bean.price}}</view>
+                  </view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-red">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请客人试饮</view>
+                      <view class="tip">剩余{{bean.people_num}}次</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
+              </view>
+            </view>
+          </block>
         </view>
       </view>
     </view>
@@ -483,7 +512,7 @@
               <view class="label">选择包间</view>
               <view class="value" style="border:unset;">
                 <radio-group class="input flex_row_center_spaceBetween" bindchange="lotteryRoomChange">
-                  <radio value="1" checked="{{lottery_activity_info.activity_scope==1?true:false}}" >全餐厅</radio>
+                  <radio value="1" checked="{{lottery_activity_info.activity_scope==1?true:false}}">全餐厅</radio>
                   <radio value="2" checked="{{lottery_activity_info.activity_scope==2?true:false}}">所有包间</radio>
                 </radio-group>
               </view>
@@ -491,7 +520,7 @@
             <view class="row flex_row_center_spaceBetween">
               <view class="label">活动开始时间</view>
               <view class="value">
-                <picker class="input" mode="multiSelector" range="{{select_time_arr}}" bindchange="activityStartTimeChange"  value="{{activityStartTimeIndex}}">
+                <picker class="input" mode="multiSelector" range="{{select_time_arr}}" bindchange="activityStartTimeChange" value="{{activityStartTimeIndex}}">
                   <view class="context flex_row_center_spaceBetween">
                     <view class="text one-line-overflow" wx:if="{{lottery_activity_info.start_time==''}}">请选择时间</view>
                     <view class="text one-line-overflow" wx:else>{{lottery_activity_info.start_time}}</view>
@@ -512,7 +541,7 @@
                 </picker>
               </view>
             </view>
-            <view class="row btn-group flex_column_center_flexStart" bindtap="goHotelLotteryActivity" >
+            <view class="row btn-group flex_column_center_flexStart" bindtap="goHotelLotteryActivity">
               <view class="btn launch flex_row_center_center theme-button-welcome" wx:if="{{lottery_activity_info.lottery_edit==false}}">发起餐厅抽奖活动</view>
               <view class="btn launch flex_row_center_center theme-button-welcome" wx:if="{{lottery_activity_info.lottery_edit==true}}">编辑餐厅抽奖活动</view>
             </view>
