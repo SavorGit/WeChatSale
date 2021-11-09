@@ -31,17 +31,12 @@ Page({
     lottery_detail_window:false , //抽奖任务弹窗
     lottery_activity_window:false,  //发起抽奖活动弹窗
     lottery_detail_info :{tab:'rule',desc:''},
-    lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
+    lottery_activity_info:{activity_scope:1,start_time:'',lottery_time:'',lottery_edit:false},
     activityStartTimeIndex:[0,0],
     lotteryStartTimeIndex:[0,0],
 
-    select_time_arr:[['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],['00','10','20','30','40','50']],
+    select_time_arr:[['10','11','12','13','14','15','16','17','18','19','20','21','22','23'],['00','10','20','30','40','50']],
     
-
-
-
-
-
   },
 
   /**
@@ -240,26 +235,126 @@ Page({
     this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
   },
   /**
-   * 发起餐厅抽奖活动
+   * 领取餐厅抽奖活动
    */
   startLotteryActivity:function(e){
     var that = this;
     var index = e.currentTarget.dataset.index;
     var user_info = that.data.user_info;
     var lottery_detail_info = that.data.lottery_detail_info;
+    wx.showModal({
+      title:'提示',
+      content:'确定要领取此抽奖活动?',
+      success:function(res){
+        if(res.confirm){
+          utils.PostRequest(api_v_url + '/task/receiveTask',{
+            openid:user_info.openid,
+            hotel_id:user_info.hotel_id,
+            task_id:lottery_detail_info.task_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({lottery_detail_window:false})
+            that.getTaskList(user_info.openid,user_info.hotel_id)
+            app.showToast('任务领取成功',2000,'success')
+          })
+        }
+      }
+    })
+    
+  },
+  popStartLotterActivyt:function(e){
+    var that = this;
+    
+    var index = e.currentTarget.dataset.index;
+    console.log('aa')
+    var task_list = this.data.task_list;
+    console.log('vbv')
+    var l_info = task_list['inprogress'][index];
 
-    utils.PostRequest(api_v_url + '/aa/bb',{
-      openid:user_info.openid,
-      hotel_id:user_info.hotel_id,
-      task_id:lottery_detail_info.task_id
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({lottery_activity_window:false})
-      that.getTaskList(user_info.openid,user_info.hotel_id)
-      app.showToast('任务领取成功',2000,'success')
+    that.setData({lottery_activity_window:true,l_info:l_info})
+  },
+  goHotelLotteryActivity:function(){
+    var that  = this;
+    var user_info = this.data.user_info;
+
+    var lottery_activity_info = this.data.lottery_activity_info
+    console.log(lottery_activity_info)
+    var l_info = this.data.l_info;
+    var task_user_id = l_info.task_user_id;
+    if(lottery_activity_info.start_time==''){
+      app.showToast('请选择活动开始时间');
+      return false;
+    }
+    if(lottery_activity_info.lottery_time==''){
+      app.showToast('请选择开奖时间');
+      return false;
+    }
+    var activityStartTimeIndex = this.data.activityStartTimeIndex;
+    var lotteryStartTimeIndex = this.data.lotteryStartTimeIndex;
+    console.log(activityStartTimeIndex)
+      console.log(lotteryStartTimeIndex)
+    if(activityStartTimeIndex[0]>lotteryStartTimeIndex[0]){
+      app.showToast('开始时间应小于开奖时间');
+      return false;
+    }else if(activityStartTimeIndex[0]==lotteryStartTimeIndex[0]){
+      
+      if(activityStartTimeIndex[1]>=lotteryStartTimeIndex[1]){
+        app.showToast('开始时间应小于开奖时间');
+        return false;
+      }
+    }
+
+    if(lottery_activity_info.lottery_edit==false){
+      var url = '/activity/addhotelLottery';
+      var msg = '抽奖活动发起成功';
+      var content = "确定发起抽奖活动?";
+      var activity_id = 0;
+    }else{
+      var url = '/activity/edithotelLottery';
+      var msg = "编辑抽奖活动成功";
+      var content = "确定修改此抽奖活动?";
+      var activity_id = l_info.activity_id
+    }
+
+    wx.showModal({
+      title:'提示',
+      content:content,
+      success:function(res){
+        if(res.confirm){
+          utils.PostRequest(api_v_url +url,{
+            activity_id:activity_id,
+            openid:user_info.openid,
+            hotel_id:user_info.hotel_id,
+            task_user_id:task_user_id,
+            scope:lottery_activity_info.activity_scope,
+            start_time:lottery_activity_info.start_time,
+            lottery_time:lottery_activity_info.lottery_time,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.getTaskList(user_info.openid,user_info.hotel_id)
+            that.setData({lottery_activity_window:false,lottery_activity_info:{activity_scope:1,start_time:'',lottery_time:'',lottery_edit:false}})
+            app.showToast(msg,2000,'success');
+          })
+        }
+      }
     })
   },
+
+
+
   editLotteryActivityPopWind:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var task_list = this.data.task_list;
+    var lottery_activity_info = this.data.lottery_activity_info;
+    var select_time_arr = this.data.select_time_arr;
     
+    var l_info = task_list['inprogress'][index];
+    var activityStartTimeIndex = l_info.activity_start_time;
+    var lotteryStartTimeIndex  = l_info.activity_lottery_time
+    lottery_activity_info.lottery_time = select_time_arr[0][l_info.activity_lottery_time[0]]+':'+ select_time_arr[1][l_info.activity_lottery_time[1]]
+    lottery_activity_info.start_time   = select_time_arr[0][l_info.activity_start_time[0]]+':'+ select_time_arr[1][l_info.activity_start_time[1]]
+    lottery_activity_info.lottery_edit = true;
+    that.setData({lottery_activity_window:true,l_info:l_info,lottery_activity_info:lottery_activity_info,
+      activityStartTimeIndex:activityStartTimeIndex,lotteryStartTimeIndex:lotteryStartTimeIndex})
   },
   
 
@@ -273,7 +368,7 @@ Page({
       lottery_detail_window:false , //抽奖任务弹窗
       lottery_activity_window:false,  //发起抽奖活动弹窗
       lottery_detail_info :{tab:'rule',desc:''},
-      lottery_activity_info:{room_type:1,start_time:'',lottery_time:''},
+      lottery_activity_info:{activity_scope:1,start_time:'',lottery_time:'',lottery_edit:false},
       activityStartTimeIndex:[0,0],
       lotteryStartTimeIndex:[0,0],
     })
@@ -434,6 +529,17 @@ Page({
     })
 
     
+  },
+  previewImage: function (e) {
+    var current = e.currentTarget.dataset.src;
+    var urls = [];
+    for (var i = 0; i < 1; i++) {
+      urls[i] = current;
+    }
+    wx.previewImage({
+      current: urls[0], // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -663,9 +769,9 @@ Page({
   },
   
   lotteryRoomChange:function(e){
-    var room_type = e.detail.value;
+    var activity_scope = e.detail.value;
     var lottery_activity_info = this.data.lottery_activity_info;
-    lottery_activity_info.room_type = room_type;
+    lottery_activity_info.activity_scope = activity_scope;
     this.setData({lottery_activity_info:lottery_activity_info})
   },
   activityStartTimeChange:function(e){
@@ -692,7 +798,7 @@ Page({
     lotteryStartTimeIndex = [e.detail.value[0],e.detail.value[1]];
     var lottery_time = time_h+':'+time_m;
     lottery_activity_info.lottery_time = lottery_time;
-    this.setData({lottery_time:lottery_time,lottery_activity_info:lottery_activity_info})
+    this.setData({lottery_time:lottery_time,lottery_activity_info:lottery_activity_info,lotteryStartTimeIndex:lotteryStartTimeIndex})
 
 
     
