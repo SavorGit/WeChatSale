@@ -4,7 +4,7 @@
 
 
   <!-- ================================== 上传视频前 ================================== -->
-  <view class="full_width launch_video_page_b display_{{(updateStatus == 0) ? 'show' : 'hide'}}">
+  <view class="full_width launch_video_page_b display_{{(updateStatus == 0) ? 'show' : 'hide'}}" style="height: calc(100vh - {{SystemInfo.screenBottomSpace}}px);">
     <view class='page_top theme-panel-2'>
       <view class='full_width font_666666_26'>
         <label class="tip_top_lable">视频加载完成后，电视开始加载并自动播放</label>
@@ -87,8 +87,7 @@
       </view>
     </view>
     <view class='page_bottom'>
-      <button bindtap='forscreen_video' class="theme-button-welcome savor-btn-size uploading" form-type="submit" hover-class="none" data-box_mac='{{box_mac}}' data-openid='{{openid}}' data-video="{{upload_vedio_temp}}" data-is_pub_hotelinfo='{{is_pub_hotelinfo}}'
-        data-duration="{{duration}}" data-is_share='{{is_share}}' data-avatarUrl='{{avatarUrl}}' data-nickName='{{nickName}}' disabled='{{is_btn_disabel}}'>正在上传...</button>
+      <button bindtap='forscreen_video' class="theme-button-welcome savor-btn-size uploading" form-type="submit" hover-class="none" data-box_mac='{{box_mac}}' data-openid='{{openid}}' data-video="{{upload_vedio_temp}}" data-is_pub_hotelinfo='{{is_pub_hotelinfo}}' data-duration="{{duration}}" data-is_share='{{is_share}}' data-avatarUrl='{{avatarUrl}}' data-nickName='{{nickName}}' disabled='{{is_btn_disabel}}'>正在上传...</button>
     </view>
   </view>
 
@@ -113,8 +112,7 @@
       </view>
     </view>
     <view class='page_bottom'>
-      <button bindtap='forscreen_video' class="theme-button-welcome savor-btn-size" form-type="submit" hover-class="none" data-box_mac='{{box_mac}}' data-openid='{{openid}}' data-video="{{upload_vedio_temp}}" data-is_pub_hotelinfo='{{is_pub_hotelinfo}}' data-duration="{{duration}}"
-        data-is_share='{{is_share}}' data-avatarUrl='{{avatarUrl}}' data-nickName='{{nickName}}' disabled='{{is_btn_disabel}}'>重试</button>
+      <button bindtap='forscreen_video' class="theme-button-welcome savor-btn-size" form-type="submit" hover-class="none" data-box_mac='{{box_mac}}' data-openid='{{openid}}' data-video="{{upload_vedio_temp}}" data-is_pub_hotelinfo='{{is_pub_hotelinfo}}' data-duration="{{duration}}" data-is_share='{{is_share}}' data-avatarUrl='{{avatarUrl}}' data-nickName='{{nickName}}' disabled='{{is_btn_disabel}}'>重试</button>
     </view>
   </view>
 

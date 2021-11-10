@@ -18,6 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     play_times: 0,
     item: [],
     updateStatus:0,

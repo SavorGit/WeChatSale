@@ -4,7 +4,7 @@
 
 
   <!-- ================================== 上传图片前 ================================== -->
-  <view class="full_width launch_pic_page_b display_{{(updateStatus == 0) ? 'show' : 'hide'}}">
+  <view class="full_width launch_pic_page_b display_{{(updateStatus == 0) ? 'show' : 'hide'}}" style="height: calc(100vh - {{SystemInfo.screenBottomSpace}}px);">
     <view class="page_top theme-panel-2">
       <view class='full_width font_666666_26'>
         <label class='tip_top_lable'>图片加载成功后，选择照片，电视开始展示</label>
@@ -18,8 +18,7 @@
         <view class="weui-grids grids-frame">
           <view class="weui-grid" wx:for="{{up_imgs}}" wx:key="key" wx:for-item="img" wx:for-index="index">
             <view class="pic_show">
-              <image class="pic_show {{pic_show_cur[index]?'pic_show_cur':''}}" mode='aspectFill' bindtap='up_single_pic' data-img="{{tmp_imgs[index].oss_img}}" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-imgindex="{{index}}" data-imglen="{{img_lenth}}"
-                src="{{img.tmp_img}}"></image>
+              <image class="pic_show {{pic_show_cur[index]?'pic_show_cur':''}}" mode='aspectFill' bindtap='up_single_pic' data-img="{{tmp_imgs[index].oss_img}}" data-boxmac="{{box_mac}}" data-openid="{{openid}}" data-imgindex="{{index}}" data-imglen="{{img_lenth}}" src="{{img.tmp_img}}"></image>
               <view class='upload_success_frame' wx:if="{{tmp_percent[index].percent >= 100}}">
                 <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
               </view>
@@ -81,10 +80,8 @@
       <form bindsubmit="up_forscreen">
         <view class="one-picture" wx:for="{{up_imgs}}" wx:key="key" wx:for-item="img" wx:for-index="index">
           <view class="pic_show">
-            <image wx:if="{{choose_key==0}}" class='pic_show pic_show_cur' mode='aspectFit' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}"
-              data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
-            <image wx:else class='pic_show' mode='aspectFit' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}"
-              data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
+            <image wx:if="{{choose_key==0}}" class='pic_show pic_show_cur' mode='aspectFit' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
+            <image wx:else class='pic_show' mode='aspectFit' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[0]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}" data-choose_key="0" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
             <!--
             <view class='upload_success_frame' wx:if="{{tmp_percent[0].percent >= 100}}">
               <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
@@ -137,10 +134,8 @@
         <view class="weui-grids grids-frame">
           <view class="weui-grid" wx:for="{{up_imgs}}" wx:key="key" wx:for-item="img" wx:for-index="index">
             <view class="pic_show">
-              <image wx:if="{{choose_key==index}}" class='pic_show pic_show_cur' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}"
-                data-imglen="{{img_lenth}}" data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
-              <image wx:else class='pic_show' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}"
-                data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
+              <image wx:if="{{choose_key==index}}" class='pic_show pic_show_cur' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}" data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
+              <image wx:else class='pic_show' mode='aspectFill' bindtap='up_single_pic' data-img_url="{{img.img_url}}" data-boxmac="{{box_mac}}" data-play_times="{{play_times}}" data-filename='{{filename_arr[index]}}' data-openid="{{openid}}" data-imglen="{{img_lenth}}" data-choose_key="{{index}}" data-resouce_size="{{img.img_size}}" data-forscreen_char='{{forscreen_char}}' src="{{img.img_url}}"></image>
               <view class='upload_success_frame' wx:if="{{tmp_percent[index].percent >= 100}}">
                 <image style='margin:0 0 0 0;width:38rpx;height:38rpx;' src='/images/icon/333333_check_alt_512x512.png'></image>
               </view>

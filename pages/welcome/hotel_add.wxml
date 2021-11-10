@@ -18,7 +18,7 @@
 
 		<!-- 新建自主上传选项卡开始 wx:if="{{selfUpNew}}" -->
 		<block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==0}}">
-			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+			<view class="tab-body" style="height: calc(100vh - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
 				<view class="add-panel flex_column_center_center theme7" bindtap="chooseImage">
 					<image class="icon" src="/images/icon/A18668_pic.png"></image>
 					<view class="btn-add theme-font7">选择手机图片</view>
@@ -32,7 +32,7 @@
 
 		<!-- 自主上传回显选项卡开始 -->
 		<block wx:if="{{base_info.step==0 && base_info.type==0 && base_info.img_info.is_choose_img==1}}">
-			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+			<view class="tab-body" style="height: calc(100vh - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
 				<view class="img-panel flex_column_center_center theme7">
 					<image class="self-up-img" mode='aspectFill' src="{{base_info.img_info.choose_img_url}}"></image>
 				</view>
@@ -54,7 +54,7 @@
 
 		<!-- 模板选择选项卡开始 -->
 		<block wx:if="{{base_info.step==0 && base_info.type!=0}}">
-			<view class="tab-body" style="height: calc(100% - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
+			<view class="tab-body" style="height: calc(100vh - 180rpx - {{SystemInfo.screenBottomSpace}}px);">
 				<scroll-view class="template-panel" scroll-y="true" scroll-with-animation="true">
 					<view class="weui-grids">
 
@@ -108,7 +108,7 @@
 				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
 			</view>
 		</view>
-		<view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
+		<view class="set-panel" style="height: calc(100vh - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
 			<view class="wapper theme7">
 				<view class="words flex_row_center">
 					<view class="label">欢迎词</view>
@@ -161,7 +161,7 @@
 				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
 			</view>
 		</view>
-		<scroll-view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);" scroll-y="true" scroll-with-animation="true">
+		<scroll-view class="set-panel" style="height: calc(100vh - 550rpx - {{SystemInfo.screenBottomSpace}}px);" scroll-y="true" scroll-with-animation="true">
 			<view class="wapper theme7">
 
 				<block wx:for="{{music_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -170,7 +170,7 @@
 						<view class="flex_row_center_spaceBetween">
 							<view bindtap="selectMusic" data-id="{{bean.id}}" data-oss_addr="{{bean.oss_addr}}" data-name="{{bean.name}}">{{bean.name}}</view>
 							<block wx:if="{{bean.id !=0}}">
-								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0" data-id="{{bean.id}}" ></image>
+								<image wx:if="{{index==play_index}}" src="/images/icon/A18668_pause.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="0" data-id="{{bean.id}}"></image>
 								<image wx:else src="/images/icon/58525C_play.png" bindtap="changePlayStatus" data-index="{{index}}" data-status="1" data-oss_addr="{{bean.oss_addr}}" data-id="{{bean.id}}"></image>
 							</block>
 							<!-- <image src="/images/icon/58525C_play.png"></image> -->
@@ -210,7 +210,7 @@
 				<view class="show-text" style="font-size:{{base_info.word_size_info.word_size}}rpx;color:{{base_info.word_color_info.color}};{{base_info.word_type.type_str}};">{{base_info.word_info.welcome_word}}</view>
 			</view>
 		</view>
-		<view class="set-panel" style="height: calc(100% - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
+		<view class="set-panel" style="height: calc(100vh - 550rpx - {{SystemInfo.screenBottomSpace}}px);">
 			<view class="music flex_row_center_spaceBetween theme7" wx:if="{{base_info.music_info.music_id!=0}}">
 				<view>{{base_info.music_info.music_name}}</view>
 				<image src="/images/icon/58525C_play.png"></image>
@@ -251,7 +251,7 @@
 								</view>
 							</view>
 						</block>
-						
+
 						<view class="block add" bindtap="openBoxWind" data-open_type="1">
 							<view class="flex_row_center_center">
 								<view class="icon">+</view>
@@ -281,12 +281,12 @@
 
 <!-- 选择包间列表弹窗 -->
 <modal show="{{showBoxListWindow}}" width="710rpx" height='650rpx' border-radius="10rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
-	
+
 	<view class="window box-list">
 		<view class="head">
 			<view class="title-bar flex_row_center_center">
 				<view class="title">选择包间</view>
-			</view> 
+			</view>
 			<view class="option-bar flex_row_center_flexEnd" bindtap="openBoxWind" data-open_type="2">
 				<view class="btn close">X</view>
 			</view>
@@ -294,7 +294,7 @@
 		<scroll-view class="body" scroll-y="true" scroll-with-animation="true">
 			<checkbox-group class="list" bindchange="selectMultRoom">
 				<block wx:for="{{tmp_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-					<checkbox class="item"  value="{{bean.id}}" checked="{{bean.is_select}}">
+					<checkbox class="item" value="{{bean.id}}" checked="{{bean.is_select}}">
 						<label>{{bean.name}}</label>
 					</checkbox>
 				</block>

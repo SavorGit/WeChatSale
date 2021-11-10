@@ -26,6 +26,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     item: [],
     play_times:0,
     updateStatus:0,
