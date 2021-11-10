@@ -240,8 +240,8 @@
                       <view class="text">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_column_center_center">
-                      <view class="tip">邀请客人试饮</view>
-                      <view class="tip">剩余{{bean.people_num}}次</view>
+                      <view class="tip">发起餐厅抽奖活动</view>
+                      <view class="tip" style="font-size:24rpx;">{{bean.task_expire_time}}过期</view>
                     </view>
                   </view>
                 </view>
