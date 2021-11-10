@@ -353,6 +353,7 @@ Page({
     lottery_activity_info.lottery_time = select_time_arr[0][l_info.activity_lottery_time[0]]+':'+ select_time_arr[1][l_info.activity_lottery_time[1]]
     lottery_activity_info.start_time   = select_time_arr[0][l_info.activity_start_time[0]]+':'+ select_time_arr[1][l_info.activity_start_time[1]]
     lottery_activity_info.lottery_edit = true;
+    lottery_activity_info.activity_scope = l_info.activity_scope
     that.setData({lottery_activity_window:true,l_info:l_info,lottery_activity_info:lottery_activity_info,
       activityStartTimeIndex:activityStartTimeIndex,lotteryStartTimeIndex:lotteryStartTimeIndex})
   },
