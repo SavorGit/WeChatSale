@@ -93,6 +93,7 @@
 }
 
 .panel>.body>.list>.item.sale>.task,
+.panel>.body>.list>.item.poster>.task,
 .panel>.body>.list>.item.lottery>.task {
   width: calc(100% - 70rpx);
   height: 300rpx;
@@ -182,6 +183,7 @@
 
 .panel.progress>.body>.list>.item>.task>.right>.name,
 .panel.progress>.body>.list>.item>.task>.right>.price,
+.panel.available>.body>.list>.item>.task>.right>.top>.left>.price,
 .panel.invalid>.body>.list>.item>.task>.right>.name,
 .panel.invalid>.body>.list>.item>.task>.right>.price {
   width: 100%;
@@ -190,6 +192,7 @@
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.price>.icon,
+.panel.available>.body>.list>.item>.task>.right>.top>.left>.price>.icon,
 .panel.invalid>.body>.list>.item>.task>.right>.price>.icon {
   width: unset;
   height: unset;
@@ -244,11 +247,38 @@
   font-weight: 400;
 }
 
+.panel.progress>.body>.list>.item.poster>.task>.left>.patch {
+  width: 178rpx;
+  height: 52rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  font-size: 28rpx;
+  margin-top: -215rpx;
+  margin-left: -15rpx;
+}
+
+.panel.progress>.body>.list>.item.poster>.task>.right>.price>.btn {
+  padding-left: 10rpx;
+  font-size: 32rpx;
+}
+
+.panel.progress>.body>.list>.item.poster>.task>.right>.btn>.tips>.icon {
+  width: unset;
+  height: unset;
+  font-size: 40rpx;
+  border-radius: 0;
+  margin: 0;
+}
+
+.panel.progress>.body>.list>.item.poster>.task>.right>.btn>.tips>.tip {
+  padding-left: 20rpx;
+}
+
 .panel.available,
 .panel.invalid {
   margin-top: 20rpx;
 }
 
+.panel.progress>.body>.list>.item.poster>.task,
 .panel.available>.body>.list>.item.sale>.task,
 .panel.invalid>.body>.list>.item.lottery>.task {
   height: 220rpx;
@@ -263,6 +293,7 @@
   min-height: 100rpx;
 }
 
+.panel.available>.body>.list>.item>.task>.right>.name,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.name,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.tip {
   width: 100%;
@@ -293,6 +324,19 @@
   width: 100%;
   font-size: 24rpx;
   color: rgba(242, 159, 146, 1);
+}
+
+.panel.available>.body>.list>.item.poster>.task {
+  height: 200rpx;
+}
+
+.panel.available>.body>.list>.item.poster>.task>.left>.patch {
+  width: 178rpx;
+  height: 52rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  font-size: 28rpx;
+  margin-top: -215rpx;
+  margin-left: -15rpx;
 }
 
 .panel.invalid>.body>.list>.item>.cover {

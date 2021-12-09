@@ -101,6 +101,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-button-add,
 .theme-button-buy,
 .theme-button-red,
+.theme-block-red,
 .theme-rad-panel {
   color: #fff;
   background-color: #F44444;

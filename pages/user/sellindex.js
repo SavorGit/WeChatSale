@@ -15,6 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: app.SystemInfo,
     task_list:[],
     box_list:[],
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
@@ -803,5 +804,248 @@ Page({
 
 
     
+  },
+
+  // 打开团购售卖弹窗
+  openDrawGroupBuyPosterWindow:function(e){
+    let self = this;
+    this.setData({
+      showDrawGroupBuyPosterWindow: true
+    },function(){
+      self.drawGoodsCanvas({
+        canvasId: 'goodsCanvas', // 画布标识
+        zoomRatio: 750 / app.SystemInfo.windowWidth, // 压缩率
+        goods: {
+          name: '赖茅生肖酒（狗），53度 500ml/瓶赖茅生肖酒（狗），53度 500ml/瓶', // 商品名称
+          picture: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
+          marketPrice: '6567', // 原价
+          favorablePrice: '4567', // 优惠价
+          qrImg: 'https://mobile.littlehotspot.com/Smallapp21/index/getBoxQr?box_mac=00226D583D92&type=8' // 二维码图片
+        },
+        tipContent: '扫码即可购买（2021.12.15前有效）', // 提示信息
+        power: {
+          logo: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg', // 公司logo
+          name: '北京热点投屏科技发展有限公司' // 公司名称
+        },
+        getTempFilePath: function () { // 生成图片临时地址的回调函数
+          wx.canvasToTempFilePath({
+            canvasId: 'goodsCanvas',
+            success: (res) => {
+              self.setData({
+                shareTempFilePath: res.tempFilePath
+              });
+            }
+          });
+        }
+      });
+    });
+  },
+
+  // 关闭团购售卖弹窗
+  closeDrawGroupBuyPosterWindow:function(e){
+    let self = this;
+    this.setData({
+      showDrawGroupBuyPosterWindow: false
+    });
+  },
+
+  // 保存菜品图片到相册
+  saveShareGoodsPic: function (e) {
+    let self = this;
+    if (!this.data.shareTempFilePath) {
+      wx.showModal({
+        title: '提示',
+        content: '图片绘制中，请稍后重试',
+        showCancel: false,
+        mask: true
+      })
+    }
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.shareTempFilePath,
+      success: (res) => {
+        wx.showModal({
+          title: '提示',
+          content: '图片保存成功',
+          showCancel: false,
+          mask: true,
+          success() {
+            self.setData({
+              showGoodsPopWindow: false
+            });
+          }
+        });
+      },
+      fail: (err) => {
+        wx.showModal({
+          title: '提示',
+          content: '图片保存失败',
+          showCancel: false,
+          mask: true
+        });
+      }
+    });
+  },
+
+  
+
+  /**
+   * 绘制分享商品图片
+   * 
+   * @param {*} data 生成图片所需要的数据。
+   *                 数据结构[data]：
+   *                   {
+   *                     canvasId: '', // 画布标识
+   *                     zoomRatio: 2, // 压缩率
+   *                     goods:{
+   *                       name:'', // 商品名称
+   *                       picture:'', // 商品图片
+   *                       marketPrice:'', // 原价
+   *                       favorablePrice:'', // 优惠价
+   *                       qrImg:'' // 二维码图片
+   *                     },
+   *                     tipContent: '', // 提示信息
+   *                     power:{
+   *                       logo:'', // 公司logo
+   *                       name:'' // 公司名称
+   *                     },
+   *                     getTempFilePath: function // 生成图片临时地址的回调函数
+   *                   }
+   */
+  drawGoodsCanvas: function (data) {
+    let page = this;
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    });
+    let pixelRatio = typeof (data.zoomRatio) == 'number' ? data.zoomRatio : 2;
+    let x = 0,
+        y = 0;
+
+    const canvasContext = utils.createCanvasContext(wx.createCanvasContext(data.canvasId));
+    canvasContext.setFillStyle('#FFFFFF');
+
+    let fullWidth = 480,
+        fullHeight = 770;
+    canvasContext.fillRect(x, y, parseInt(fullWidth / pixelRatio), parseInt(fullHeight / pixelRatio));
+    wx.showLoading({
+      title: '加载商品图片...',
+      mask: true
+    });
+    wx.getImageInfo({
+      src: data.goods.picture,
+      success: function (goodsPic) {
+        let goodsPicX = 0,
+            goodsPicY = y,
+            goodsPicWidth = fullWidth,
+            goodsPicHeight = 290;
+        canvasContext.drawImageAspectFill(goodsPic, parseInt(goodsPicX / pixelRatio), parseInt(goodsPicY / pixelRatio), parseInt(goodsPicWidth / pixelRatio), parseInt(goodsPicHeight / pixelRatio));
+        y += goodsPicHeight;
+        
+        let goodsNameFontSize = 28,
+            goodsNameWidth = fullWidth - 20,
+            goodsNameHeight = 40,
+            goodsNameX = 10,
+            goodsNameY = y - (goodsNameHeight - goodsNameFontSize) / 2,
+            goodsNameIsCenter = true;
+        canvasContext.setFillStyle("#101010");
+        canvasContext.drawMultiLineText(data.goods.name, parseInt(goodsNameFontSize / pixelRatio), parseInt(goodsNameX / pixelRatio), parseInt(goodsNameY / pixelRatio), parseInt(goodsNameWidth / pixelRatio), parseInt(goodsNameHeight / pixelRatio), goodsNameIsCenter, 2) * pixelRatio;
+        y += goodsNameHeight * 2;
+        
+        let marketPriceFontSize = 24,
+            marketPriceWidth = fullWidth - 40,
+            marketPriceHeight = 30,
+            marketPriceX = 20,
+            marketPriceY = y - (marketPriceHeight - marketPriceFontSize) / 2,
+            marketPriceIsCenter = true;
+        canvasContext.setFillStyle("#999999");
+        canvasContext.drawOneLineText("原价：￥" + data.goods.marketPrice, parseInt(marketPriceFontSize / pixelRatio), parseInt(marketPriceX / pixelRatio), parseInt(marketPriceY / pixelRatio), parseInt(marketPriceWidth / pixelRatio), parseInt(marketPriceHeight / pixelRatio), marketPriceIsCenter) * pixelRatio;
+        canvasContext.setFillStyle('#999999');
+        canvasContext.fillRect(parseInt((fullWidth - 192) / 2 / pixelRatio), parseInt((marketPriceY + 20) / pixelRatio), parseInt(192 / pixelRatio), parseInt(3 / pixelRatio));
+        y += marketPriceHeight;
+        
+        let favorablePriceFontSize = 28,
+            favorablePriceWidth = fullWidth - 40,
+            favorablePriceHeight = 30,
+            favorablePriceX = 20,
+            favorablePriceY = y - (favorablePriceHeight - favorablePriceFontSize) / 2,
+            favorablePriceIsCenter = true;
+        canvasContext.setFillStyle("#F44444");
+        canvasContext.drawOneLineText("限时优惠：￥" + data.goods.favorablePrice, parseInt(favorablePriceFontSize / pixelRatio), parseInt(favorablePriceX / pixelRatio), parseInt(favorablePriceY / pixelRatio), parseInt(favorablePriceWidth / pixelRatio), parseInt(favorablePriceHeight / pixelRatio), favorablePriceIsCenter) * pixelRatio;
+        y += favorablePriceHeight + 10;
+
+        wx.showLoading({
+          title: '加载二维码图片...',
+          mask: true
+        });
+        wx.getImageInfo({
+          src: data.goods.qrImg,
+          success: function (qrImg) {
+            let qrImgWidth = 220,
+                qrImgHeight = 220,
+                qrImgX = (fullWidth - qrImgWidth) / 2,
+                qrImgY = y;
+            canvasContext.drawImageAspectFill(qrImg, parseInt(qrImgX / pixelRatio), parseInt(qrImgY / pixelRatio), parseInt(qrImgWidth / pixelRatio), parseInt(qrImgHeight / pixelRatio));
+            y += qrImgHeight + 8;
+        
+            let tipContentFontSize = 28,
+                tipContentWidth = fullWidth - 20,
+                tipContentHeight = 30,
+                tipContentX = 10,
+                tipContentY = y - (tipContentHeight - tipContentFontSize) / 2,
+                tipContentIsCenter = true;
+            canvasContext.setFillStyle("#58525C");
+            canvasContext.drawOneLineText(data.tipContent, parseInt(tipContentFontSize / pixelRatio), parseInt(tipContentX / pixelRatio), parseInt(tipContentY / pixelRatio), parseInt(tipContentWidth / pixelRatio), parseInt(tipContentHeight / pixelRatio), tipContentIsCenter) * pixelRatio;
+            y += tipContentHeight;
+
+            wx.showLoading({
+              title: '加载 LOGO 图片...',
+              mask: true
+            });
+            wx.getImageInfo({
+              src: data.power.logo,
+              success: function (logoImg) {
+                let powerBlockWidth = fullWidth,
+                    powerBlockHeight = 60,
+                    powerBlockX = 0,
+                    powerBlockY = fullHeight - powerBlockHeight;
+                canvasContext.setFillStyle('#58525C');
+                canvasContext.fillRect(parseInt(powerBlockX / pixelRatio), parseInt(powerBlockY / pixelRatio), parseInt(powerBlockWidth / pixelRatio), parseInt(powerBlockHeight / pixelRatio));
+
+                let logoImgWidth = 42,
+                    powerNameFontSize = 28,
+                    powerNameWidth = parseInt(powerNameFontSize / pixelRatio) * data.power.name.length * pixelRatio,
+                    spacing = 8;
+                    
+                let logoImgHeight = 42,
+                    logoImgX = (fullWidth - logoImgWidth - powerNameWidth - spacing) / 2,
+                    logoImgY = fullHeight - powerBlockHeight + ((powerBlockHeight - logoImgHeight) / 2) + 2,
+                    logoImgRadius = 10 / 2;
+                canvasContext.drawImageRoundedRect(logoImg, parseInt(logoImgX / pixelRatio), parseInt(logoImgY / pixelRatio), parseInt(logoImgWidth / pixelRatio), parseInt(logoImgHeight / pixelRatio), parseInt(logoImgRadius / pixelRatio));
+                x = logoImgX + logoImgWidth;
+        
+                let powerNameX = x + spacing,
+                    powerNameHeight = powerBlockHeight,
+                    powerNameY = fullHeight - powerNameHeight - (powerNameHeight - powerNameFontSize) / 2 - 2,
+                    powerNameIsCenter = false;
+                canvasContext.setFillStyle("#FFFFFF");
+                canvasContext.drawOneLineText(data.power.name, parseInt(powerNameFontSize / pixelRatio), parseInt(powerNameX / pixelRatio), parseInt(powerNameY / pixelRatio), parseInt(powerNameWidth / pixelRatio), parseInt(powerNameHeight / pixelRatio), powerNameIsCenter) * pixelRatio;
+
+                canvasContext.draw(false, data.getTempFilePath);
+                wx.hideLoading();
+              },
+              fail: function (logoImg) {
+                wx.hideLoading();
+              }
+            });
+          },
+          fail: function (qrImg) {
+            wx.hideLoading();
+          }
+        });
+      },
+      fail: function (goodsPic) {
+        wx.hideLoading();
+      }
+    });
   }
 })

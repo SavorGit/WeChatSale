@@ -135,12 +135,72 @@
             </view>
           </block>
 
+          <!-- 团购海报售卖 -->
+          <view class="item poster flex_column_center_center">
+            <view class="task lottery flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_flexStart">
+                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+              </view>
+              <view class="right flex_column_flexStart_spaceBetween">
+                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
+                <view class="price flex_row_center_flexStart theme-font-F44444">
+                  <view class="icon fa fa-cny"></view>
+                  <view class="text">设定售价</view>
+                  <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view>
+                </view>
+                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" bindtap="openDrawGroupBuyPosterWindow">
+                  <view class="reward flex_column_center_center theme-font-F9DE59">
+                    <view class="icon fa-stack">
+                      <view class="fa fa-circle fa-stack-2x"></view>
+                      <view class="fa fa-usd fa-stack-1x"></view>
+                    </view>
+                    <view class="text">积分奖励</view>
+                  </view>
+                  <view class="tips flex_row_center_center" style="height:100%;">
+                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
+                    <view class="tip flex_row_center_center">生成销售码</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="item poster flex_column_center_center">
+            <view class="task lottery flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_flexStart">
+                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+              </view>
+              <view class="right flex_column_flexStart_spaceBetween">
+                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
+                <view class="price flex_row_center_flexStart theme-font-F44444">
+                  <view class="icon fa fa-cny"></view>
+                  <view class="text">5430</view>
+                  <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view>
+                </view>
+                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" bindtap="openDrawGroupBuyPosterWindow">
+                  <view class="reward flex_column_center_center theme-font-F9DE59">
+                    <view class="icon fa-stack">
+                      <view class="fa fa-circle fa-stack-2x"></view>
+                      <view class="fa fa-usd fa-stack-1x"></view>
+                    </view>
+                    <view class="text">积分奖励</view>
+                  </view>
+                  <view class="tips flex_row_center_center" style="height:100%;">
+                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
+                    <view class="tip flex_row_center_center">生成销售码</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
         </view>
       </view>
     </view>
 
     <!-- 可领取任务面板 -->
-    <view class="panel available theme-panel" wx:if="{{task_list.canreceive.length>0}}">
+    <view wx:if="{{task_list.canreceive.length>0}}" class="panel available theme-panel">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">可领取任务</view>
       </view>
@@ -208,8 +268,32 @@
                 </view>
               </view>
             </view>
-
           </block>
+
+          <!-- 团购海报售卖 -->
+          <view class="item poster flex_column_center_center">
+            <view class="task lottery flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_flexStart">
+                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+              </view>
+              <view class="right flex_column_flexStart_spaceBetween">
+                <view class="name">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
+                <view class="top flex_row_center_spaceBetween">
+                  <view class="left flex_column_flexStart_spaceBetween">
+                    <view class="price flex_row_center_flexStart theme-font7">
+                      <view class="icon fa fa-cny"></view>
+                      <view class="text">5430</view>
+                    </view>
+                    <view class="tip theme-font5">可收益1000积分+提成</view>
+                  </view>
+                  <view class="right flex_row_center_flexEnd">
+                    <view class="btn flex_column_center_center theme-button-red">领取</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
 
         </view>
       </view>
@@ -551,3 +635,20 @@
     </scroll-view>
   </view>
 </modal>
+
+<!-- 分享酒品弹窗 -->
+<bottomModal show="{{showDrawGroupBuyPosterWindow}}" width="750rpx" height='1006rpx' background-color='rgb(244, 243, 243)' border-radius="0rpx" title-text='' padding-bottom="{{48 + SystemInfo.screenBottomSpace}}px" confirm-text='' cancel-text=''>
+  <view class="window share flex_column_center_flexStart" style="width:100%;height:100%;">
+    <view class="title-bar flex_row_center_flexStart" style="width:calc(100% - 50rpx);height:70rpx;padding:10rpx 25rpx;">
+      <view class="title theme-font1" style="font-size:32rpx;">分享酒品</view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd" style="width:calc(100% - 40rpx);height:70rpx;padding:10rpx 20rpx;margin-top:-90rpx;">
+      <image class="btn close" style="width:36rpx;height:36rpx;padding:17rpx;" mode="aspectFill" src="/images/icon/666666_close.png" bindtap="closeDrawGroupBuyPosterWindow" />
+    </view>
+    <view class="body flex_column_center_flexStart" style="width:100%;height:calc(100% - 90rpx);">
+      <canvas canvas-id="goodsCanvas" style="width:480rpx;height:calc(100% - 146rpx);"></canvas>
+      <view class="flex_row_center_center" style="width:100%;height:50rpx;font-size:28rpx;">保存图片（7天有效）到手机相册，将图片分享给您的好友～</view>
+      <view class="btn save flex_row_center_center theme-button-welcome" style="width:100%;height:96rpx;font-size:32rpx;" bindtap="saveShareGoodsPic">保存到相册</view>
+    </view>
+  </view>
+</bottomModal>
