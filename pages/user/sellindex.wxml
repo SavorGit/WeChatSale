@@ -116,6 +116,38 @@
                 </view>
               </view>
             </view>
+            <!-- 团购海报售卖 -->
+          <view class="item poster flex_column_center_center" wx:elif="{{bean.task_type==24}}">
+            <view class="task lottery flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_flexStart" bindtap="previewImage" data-src="{{bean.img_url}}">
+                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+              </view>
+              <view class="right flex_column_flexStart_spaceBetween">
+                
+                <view class="name theme-font1" bindtap="getTgTaskPopWind" data-index="{{index}}">{{bean.task_name}}</view>
+                <view class="price flex_row_center_flexStart theme-font-F44444" bindtap="getTgTaskPopWind" data-index="{{index}}">
+                  <view class="icon fa fa-cny"></view>
+                  <view class="text">{{bean.price}}</view>
+                  <!-- <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view> -->
+                </view>
+                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" >
+                  <view class="reward flex_column_center_center theme-font-F9DE59" bindtap="getTgTaskPopWind" data-index="{{index}}">
+                    <view class="icon fa-stack">
+                      <view class="fa fa-circle fa-stack-2x"></view>
+                      <view class="fa fa-usd fa-stack-1x"></view>
+                    </view>
+                    <view class="text">积分奖励</view>
+                  </view>
+                  <view class="tips flex_row_center_center" style="height:100%;" bindtap="openDrawGroupBuyPosterWindow" data-index="{{index}}">
+                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
+                    <view class="tip flex_row_center_center">生成销售码</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
                 <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -135,65 +167,8 @@
             </view>
           </block>
 
-          <!-- 团购海报售卖 -->
-          <view class="item poster flex_column_center_center">
-            <view class="task lottery flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_flexStart">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
-                <view class="price flex_row_center_flexStart theme-font-F44444">
-                  <view class="icon fa fa-cny"></view>
-                  <view class="text">设定售价</view>
-                  <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view>
-                </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" bindtap="openDrawGroupBuyPosterWindow">
-                  <view class="reward flex_column_center_center theme-font-F9DE59">
-                    <view class="icon fa-stack">
-                      <view class="fa fa-circle fa-stack-2x"></view>
-                      <view class="fa fa-usd fa-stack-1x"></view>
-                    </view>
-                    <view class="text">积分奖励</view>
-                  </view>
-                  <view class="tips flex_row_center_center" style="height:100%;">
-                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
-                    <view class="tip flex_row_center_center">生成销售码</view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class="item poster flex_column_center_center">
-            <view class="task lottery flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_flexStart">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name theme-font1">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
-                <view class="price flex_row_center_flexStart theme-font-F44444">
-                  <view class="icon fa fa-cny"></view>
-                  <view class="text">5430</view>
-                  <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view>
-                </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" bindtap="openDrawGroupBuyPosterWindow">
-                  <view class="reward flex_column_center_center theme-font-F9DE59">
-                    <view class="icon fa-stack">
-                      <view class="fa fa-circle fa-stack-2x"></view>
-                      <view class="fa fa-usd fa-stack-1x"></view>
-                    </view>
-                    <view class="text">积分奖励</view>
-                  </view>
-                  <view class="tips flex_row_center_center" style="height:100%;">
-                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
-                    <view class="tip flex_row_center_center">生成销售码</view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
+          
+          
 
         </view>
       </view>
@@ -251,6 +226,32 @@
                 </view>
               </view>
             </view>
+
+            <!-- 团购海报售卖 -->
+          <view class="item poster flex_column_center_center"  wx:elif="{{bean.task_type==24}}">
+            <view class="task lottery flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_flexStart">
+                <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+              </view>
+              <view class="right flex_column_flexStart_spaceBetween">
+                <view class="name">{{bean.task_name}}</view>
+                <view class="top flex_row_center_spaceBetween">
+                  <view class="left flex_column_flexStart_spaceBetween">
+                    <view class="price flex_row_center_flexStart theme-font7">
+                      <view class="icon fa fa-cny"></view>
+                      <view class="text">{{bean.price}}</view>
+                    </view>
+                    <view class="tip theme-font5">可收益{{bean.integral}}积分+提成</view>
+                  </view>
+                  <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                    <view class="btn flex_column_center_center theme-button-red">领取</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
                 <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -270,30 +271,7 @@
             </view>
           </block>
 
-          <!-- 团购海报售卖 -->
-          <view class="item poster flex_column_center_center">
-            <view class="task lottery flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_flexStart">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name">赖茅生肖酒（狗），53度 500ml/瓶*6</view>
-                <view class="top flex_row_center_spaceBetween">
-                  <view class="left flex_column_flexStart_spaceBetween">
-                    <view class="price flex_row_center_flexStart theme-font7">
-                      <view class="icon fa fa-cny"></view>
-                      <view class="text">5430</view>
-                    </view>
-                    <view class="tip theme-font5">可收益1000积分+提成</view>
-                  </view>
-                  <view class="right flex_row_center_flexEnd">
-                    <view class="btn flex_column_center_center theme-button-red">领取</view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
+          
 
         </view>
       </view>
@@ -504,7 +482,7 @@
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
           <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
-          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab">奖品奖项</view>
+          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24}}">奖品奖项</view>
         </view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
           <rich-text nodes="{{lottery_detail_info.desc}}"></rich-text>
@@ -635,7 +613,35 @@
     </scroll-view>
   </view>
 </modal>
-
+<!-- 团购详情-->
+<modal show="{{tgDetailWindowShow}}" width="690rpx" height='900rpx' background-color='unset' title-text='' confirm-text='' cancel-text=''>
+  <view class="window sale-detail theme-window">
+    <view class="title-bar flex_row_center_flexStart">
+      <view class="title"></view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd" bindtap="closePopWind">
+      <view class="btn close flex_column_center_center">
+        <view class="icon fa fa-close"></view>
+      </view>
+    </view>
+    <scroll-view class="body" scroll-y="true" scroll-with-animation="true">
+      <view class="wrapper">
+        <view class="goods flex_column_center_spaceBetween">
+          <image class="pic" mode="aspectFill" src="{{task_info.img_url}}" />
+          <view class="name one-line-overflow">{{task_info.task_name}}</view>
+          <!-- <progress class="progress" stroke-width="16rpx" border-radius="8rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{task_info.percent}}" font-size="24rpx"></progress>
+          <view class="tip theme-font5">已有{{task_info.get_num}}人领取任务，仅剩{{task_info.remain_num}}个领取名额</view> -->
+        </view>
+        <view class="desc">
+          <rich-text nodes="{{task_info.desc}}"></rich-text>
+        </view>
+        <view class="btn-group flex_column_center_center" bindtap="closePopWind" >
+          <view class="btn receive flex_column_center_center theme-button-welcome-dark">我知道了</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</modal>
 <!-- 分享酒品弹窗 -->
 <bottomModal show="{{showDrawGroupBuyPosterWindow}}" width="750rpx" height='1006rpx' background-color='rgb(244, 243, 243)' border-radius="0rpx" title-text='' padding-bottom="{{48 + SystemInfo.screenBottomSpace}}px" confirm-text='' cancel-text=''>
   <view class="window share flex_column_center_flexStart" style="width:100%;height:100%;">

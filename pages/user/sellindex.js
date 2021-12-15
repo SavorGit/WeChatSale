@@ -22,6 +22,7 @@ Page({
     openTaskInWindow: {}, // 在任务详情弹窗中打开任务
     saleDetailWindowShow: false,
     judgeWindowShow: false,
+    tgDetailWindowShow:false,  //团购任务详情
 
     loop_play_list:[],    //走马灯数据
     taste_wine_info:{'room_id':0,'nums':''}, //发起品鉴酒活动
@@ -204,6 +205,13 @@ Page({
     var task_info = canreceive[index];
     this.setData({task_info:task_info,saleDetailWindowShow:true});
   },
+  //进行中的团购任务详情
+  getTgTaskPopWind:function(e){
+     var index = e.currentTarget.dataset.index;
+    var inprogress = this.data.task_list.inprogress;
+    var task_info = inprogress[index];
+    this.setData({task_info:task_info,tgDetailWindowShow:true});
+  },
   /**
    * 立即领取任务
    */
@@ -243,9 +251,15 @@ Page({
     var index = e.currentTarget.dataset.index;
     var user_info = that.data.user_info;
     var lottery_detail_info = that.data.lottery_detail_info;
+    console.log(lottery_detail_info)
+    if(lottery_detail_info.task_type==24){
+      var content = '确定要领取此团购活动?'
+    }else {
+      var content = '确定要领取此抽奖活动?'
+    }
     wx.showModal({
       title:'提示',
-      content:'确定要领取此抽奖活动?',
+      content:content,
       success:function(res){
         if(res.confirm){
           utils.PostRequest(api_v_url + '/task/receiveTask',{
@@ -363,6 +377,7 @@ Page({
   closePopWind:function(e){
     this.setData({
       saleDetailWindowShow: false,
+      tgDetailWindowShow: false,
       judgeWindowShow: false,
       box_index:0,
       taste_wine_info:{'room_id':0,'nums':''},
@@ -808,37 +823,53 @@ Page({
 
   // 打开团购售卖弹窗
   openDrawGroupBuyPosterWindow:function(e){
+
     let self = this;
-    this.setData({
-      showDrawGroupBuyPosterWindow: true
-    },function(){
-      self.drawGoodsCanvas({
-        canvasId: 'goodsCanvas', // 画布标识
-        zoomRatio: 750 / app.SystemInfo.windowWidth, // 压缩率
-        goods: {
-          name: '赖茅生肖酒（狗），53度 500ml/瓶赖茅生肖酒（狗），53度 500ml/瓶', // 商品名称
-          picture: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg',
-          marketPrice: '6567', // 原价
-          favorablePrice: '4567', // 优惠价
-          qrImg: 'https://mobile.littlehotspot.com/Smallapp21/index/getBoxQr?box_mac=00226D583D92&type=8' // 二维码图片
-        },
-        tipContent: '扫码即可购买（2021.12.15前有效）', // 提示信息
-        power: {
-          logo: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg', // 公司logo
-          name: '北京热点投屏科技发展有限公司' // 公司名称
-        },
-        getTempFilePath: function () { // 生成图片临时地址的回调函数
-          wx.canvasToTempFilePath({
-            canvasId: 'goodsCanvas',
-            success: (res) => {
-              self.setData({
-                shareTempFilePath: res.tempFilePath
-              });
-            }
-          });
-        }
+    var index = e.currentTarget.dataset.index;
+    var task_list = self.data.task_list.inprogress
+    var task_info = task_list[index];
+
+    var user_info = this.data.user_info;
+
+    utils.PostRequest(api_v_url + '/salecode/info', {
+      hotel_id:user_info.hotel_id,
+      openid:user_info.openid,
+      task_user_id:task_info.task_user_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var group_info = data.result;
+
+
+      this.setData({
+        showDrawGroupBuyPosterWindow: true
+      },function(){
+        self.drawGoodsCanvas({
+          canvasId: 'goodsCanvas', // 画布标识
+          zoomRatio: 750 / app.SystemInfo.windowWidth, // 压缩率
+          goods: {
+            name: group_info.name, // 商品名称
+            picture: group_info.poster_img,
+            marketPrice: group_info.line_price, // 原价
+            favorablePrice: group_info.price, // 优惠价
+            qrImg: group_info.qrcode // 二维码图片
+          },
+          tipContent: group_info.desc, // 提示信息
+          power: {
+            logo: 'https://oss.littlehotspot.com/media/resource/btCfRRhHkn.jpg', // 公司logo
+            name: group_info.company // 公司名称
+          },
+          getTempFilePath: function () { // 生成图片临时地址的回调函数
+            wx.canvasToTempFilePath({
+              canvasId: 'goodsCanvas',
+              success: (res) => {
+                self.setData({
+                  shareTempFilePath: res.tempFilePath
+                });
+              }
+            });
+          }
+        });
       });
-    });
+    })
   },
 
   // 关闭团购售卖弹窗
