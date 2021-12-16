@@ -117,36 +117,35 @@
               </view>
             </view>
             <!-- 团购海报售卖 -->
-          <view class="item poster flex_column_center_center" wx:elif="{{bean.task_type==24}}">
-            <view class="task lottery flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_flexStart" bindtap="previewImage" data-src="{{bean.img_url}}">
-                <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                
-                <view class="name theme-font1" bindtap="getTgTaskPopWind" data-index="{{index}}">{{bean.task_name}}</view>
-                <view class="price flex_row_center_flexStart theme-font-F44444" bindtap="getTgTaskPopWind" data-index="{{index}}">
-                  <view class="icon fa fa-cny"></view>
-                  <view class="text">{{bean.price}}</view>
-                  <!-- <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view> -->
+            <view class="item poster flex_column_center_center" wx:elif="{{bean.task_type==24}}">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_flexStart" bindtap="previewImage" data-src="{{bean.img_url}}">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
                 </view>
-                <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark" >
-                  <view class="reward flex_column_center_center theme-font-F9DE59" bindtap="getTgTaskPopWind" data-index="{{index}}">
-                    <view class="icon fa-stack">
-                      <view class="fa fa-circle fa-stack-2x"></view>
-                      <view class="fa fa-usd fa-stack-1x"></view>
-                    </view>
-                    <view class="text">积分奖励</view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1" bindtap="getTgTaskPopWind" data-index="{{index}}">{{bean.task_name}}</view>
+                  <view class="price flex_row_center_flexStart theme-font-F44444" bindtap="getTgTaskPopWind" data-index="{{index}}">
+                    <view class="icon fa fa-cny"></view>
+                    <view class="text">{{bean.price}}</view>
+                    <!-- <view class="btn fa fa-pencil flex_row_center_center theme-font7" aria-hidden="true"></view> -->
                   </view>
-                  <view class="tips flex_row_center_center" style="height:100%;" bindtap="openDrawGroupBuyPosterWindow" data-index="{{index}}">
-                    <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
-                    <view class="tip flex_row_center_center">生成销售码</view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome-dark">
+                    <view class="reward flex_column_center_center theme-font-F9DE59" bindtap="getTgTaskPopWind" data-index="{{index}}">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">积分奖励</view>
+                    </view>
+                    <view class="tips flex_row_center_center" style="height:100%;" bindtap="openDrawGroupBuyPosterWindow" data-index="{{index}}">
+                      <view class="icon fa fa-qrcode flex_row_center_center" aria-hidden="true"></view>
+                      <view class="tip flex_row_center_center">生成销售码</view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
-          </view>
 
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
@@ -166,9 +165,6 @@
               </view>
             </view>
           </block>
-
-          
-          
 
         </view>
       </view>
@@ -228,29 +224,29 @@
             </view>
 
             <!-- 团购海报售卖 -->
-          <view class="item poster flex_column_center_center"  wx:elif="{{bean.task_type==24}}">
-            <view class="task lottery flex_row_center_spaceBetween">
-              <view class="left flex_column_flexStart_flexStart">
-                <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
-                <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
-              </view>
-              <view class="right flex_column_flexStart_spaceBetween">
-                <view class="name">{{bean.task_name}}</view>
-                <view class="top flex_row_center_spaceBetween">
-                  <view class="left flex_column_flexStart_spaceBetween">
-                    <view class="price flex_row_center_flexStart theme-font7">
-                      <view class="icon fa fa-cny"></view>
-                      <view class="text">{{bean.price}}</view>
+            <view class="item poster flex_column_center_center" wx:elif="{{bean.task_type==24}}">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_flexStart">
+                  <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name">{{bean.task_name}}</view>
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="price flex_row_center_flexStart theme-font7">
+                        <view class="icon fa fa-cny"></view>
+                        <view class="text">{{bean.price}}</view>
+                      </view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分+提成</view>
                     </view>
-                    <view class="tip theme-font5">可收益{{bean.integral}}积分+提成</view>
-                  </view>
-                  <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
-                    <view class="btn flex_column_center_center theme-button-red">领取</view>
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-red">领取</view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
-          </view>
 
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
@@ -270,8 +266,6 @@
               </view>
             </view>
           </block>
-
-          
 
         </view>
       </view>
@@ -316,6 +310,39 @@
                 <view class="bottom"></view>
               </view>
             </view>
+
+            <!-- 团购海报售卖 -->
+            <view wx:elif="{{bean.task_type==24}}" class="item poster flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_flexStart">
+                  <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="patch flex_row_center_center theme-block-red">团购售卖</view>
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name">{{bean.task_name}}</view>
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="price flex_row_center_flexStart theme-font7">
+                        <view class="icon fa fa-cny"></view>
+                        <view class="text">{{bean.price}}</view>
+                      </view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分+提成</view>
+                    </view>
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-red">领取</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
+              </view>
+            </view>
+
             <view wx:else class="item sale flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -354,6 +381,7 @@
                 <view class="bottom"></view>
               </view>
             </view>
+
           </block>
         </view>
       </view>
@@ -635,7 +663,7 @@
         <view class="desc">
           <rich-text nodes="{{task_info.desc}}"></rich-text>
         </view>
-        <view class="btn-group flex_column_center_center" bindtap="closePopWind" >
+        <view class="btn-group flex_column_center_center" bindtap="closePopWind">
           <view class="btn receive flex_column_center_center theme-button-welcome-dark">我知道了</view>
         </view>
       </view>

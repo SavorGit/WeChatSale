@@ -185,7 +185,8 @@
 .panel.progress>.body>.list>.item>.task>.right>.price,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.price,
 .panel.invalid>.body>.list>.item>.task>.right>.name,
-.panel.invalid>.body>.list>.item>.task>.right>.price {
+.panel.invalid>.body>.list>.item>.task>.right>.price,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.left>.price {
   width: 100%;
   font-size: 28rpx;
   font-weight: 400;
@@ -193,7 +194,8 @@
 
 .panel.progress>.body>.list>.item>.task>.right>.price>.icon,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.price>.icon,
-.panel.invalid>.body>.list>.item>.task>.right>.price>.icon {
+.panel.invalid>.body>.list>.item>.task>.right>.price>.icon,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.left>.price>.icon {
   width: unset;
   height: unset;
   margin: 0;
@@ -284,28 +286,34 @@
   height: 220rpx;
 }
 
-.panel.available>.body>.list>.item>.task>.right>.top {
+.panel.available>.body>.list>.item>.task>.right>.top,
+.panel.invalid>.body>.list>.item>.task>.right>.top {
   width: 100%;
 }
 
-.panel.available>.body>.list>.item>.task>.right>.top>.left {
+.panel.available>.body>.list>.item>.task>.right>.top>.left,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.left {
   width: calc(100% - 130rpx);
   min-height: 100rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.name,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.name,
-.panel.available>.body>.list>.item>.task>.right>.top>.left>.tip {
+.panel.available>.body>.list>.item>.task>.right>.top>.left>.tip,
+.panel.invalid>.body>.list>.item>.task>.right>.name,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.left>.tip {
   width: 100%;
   font-size: 28rpx;
   font-weight: 400;
 }
 
-.panel.available>.body>.list>.item>.task>.right>.top>.right {
+.panel.available>.body>.list>.item>.task>.right>.top>.right,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.right {
   width: 130rpx;
 }
 
-.panel.available>.body>.list>.item>.task>.right>.top>.right>.btn {
+.panel.available>.body>.list>.item>.task>.right>.top>.right>.btn,
+.panel.invalid>.body>.list>.item>.task>.right>.top>.right>.btn {
   width: 126rpx;
   height: 126rpx;
   font-size: 28rpx;
@@ -326,11 +334,13 @@
   color: rgba(242, 159, 146, 1);
 }
 
-.panel.available>.body>.list>.item.poster>.task {
+.panel.available>.body>.list>.item.poster>.task,
+.panel.invalid>.body>.list>.item.poster>.task {
   height: 200rpx;
 }
 
-.panel.available>.body>.list>.item.poster>.task>.left>.patch {
+.panel.available>.body>.list>.item.poster>.task>.left>.patch,
+.panel.invalid>.body>.list>.item.poster>.task>.left>.patch {
   width: 178rpx;
   height: 52rpx;
   border-radius: 0 10rpx 10rpx 0;
@@ -372,6 +382,11 @@
 .panel.invalid>.body>.list>.item.lottery>.cover {
   height: 245rpx;
   margin-top: -245rpx;
+}
+
+.panel.invalid>.body>.list>.item.poster>.cover {
+  height: 230rpx;
+  margin-top: -230rpx;
 }
 
 .window.sale-detail,
