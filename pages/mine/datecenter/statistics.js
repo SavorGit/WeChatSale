@@ -1,4 +1,13 @@
 // pages/mine/datecenter/statistics.js
+/**
+ * 个人信息 - 数据统计
+ */
+
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var openid;
 Page({
 
   /**

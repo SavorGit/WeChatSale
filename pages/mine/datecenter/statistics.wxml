@@ -1,2 +1,178 @@
 <!--pages/mine/datecenter/statistics.wxml-->
-<text>pages/mine/datecenter/statistics.wxml</text>
+<!--
+ | 个人信息 - 数据统计
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+  <view class="wapper flex_column_center_flexStart">
+    <!-- 开机情况 -->
+    <view class="panel power-on theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">开机情况</view>
+        <view class="datetime">数据更新至2021/11/17</view>
+      </view>
+      <view class="body">
+        <view class="tab-card">
+          <view class="tab-bar flex_row_center_flexStart theme-tab-bar">
+            <view class="tab day7 selected">近7天</view>
+            <view class="tab day15">近15天</view>
+            <view class="tab day30">近30天</view>
+          </view>
+          <!-- 选项卡内容 Start -->
+          <view class="tab-body">
+            <view class="block">
+              <view class="body">
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">版位数量：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">平均开机时长：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">7天内未开机：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">30天内未开机：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 选项卡内容 End -->
+        </view>
+      </view>
+    </view>
+
+    <!-- 使用情况 -->
+    <view class="panel used theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">使用情况</view>
+        <view class="datetime">数据更新至2021/11/17</view>
+      </view>
+      <view class="body">
+        <view class="tab-card">
+          <view class="tab-bar flex_row_center_flexStart theme-tab-bar">
+            <view class="tab day30 selected">近30天</view>
+            <view class="tab month3">近3个月</view>
+            <view class="tab month6">近6个月</view>
+          </view>
+          <!-- 选项卡内容 Start -->
+          <view class="tab-body">
+
+            <view class="block theme-block">
+              <view class="title-bar">
+                <view class="title">用户端使用情况</view>
+              </view>
+              <view class="body">
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">用户扫码人数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">用户扫码次数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween bottom-line">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">用户互动次数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">互动饭局数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">餐厅扫码人数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">餐厅扫码次数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">餐厅互动次数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">互动饭局数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="block theme-block">
+              <view class="title-bar">
+                <view class="title">销售端使用情况</view>
+              </view>
+              <view class="body">
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">互动次数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">互动饭局数：</view>
+                    <view class="value">xxx</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="block theme-block">
+              <view class="title-bar">
+                <view class="title">常用功能</view>
+              </view>
+              <view class="body">
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="sort flex_row_center_flexStart">
+                    <view class="ranking">TOP 1</view>
+                    <view class="name">照片投屏</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="sort flex_row_center_flexStart">
+                    <view class="ranking">TOP 2</view>
+                    <view class="name">视频投屏</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="sort flex_row_center_flexStart">
+                    <view class="ranking">TOP 3</view>
+                    <view class="name">生日歌点播</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="sort flex_row_center_flexStart">
+                    <view class="ranking">TOP 4</view>
+                    <view class="name">文件投屏</view>
+                  </view>
+                </view>
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="sort flex_row_center_flexStart">
+                    <view class="ranking">TOP 5</view>
+                    <view class="name">欢迎词投屏</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+          <!-- 选项卡内容 End -->
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,1 +1,149 @@
 /* pages/mine/datecenter/statistics.wxss */
+/**
+ * 个人信息 - 数据统计
+ */
+
+
+.wapper {
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  width: 100%;
+  padding: 5rpx 0;
+  margin-top: 20rpx;
+}
+
+.panel:first-child {
+  margin-top: 0;
+}
+
+.panel>.title-bar {
+  width: calc(100% - 100rpx);
+  padding: 10rpx 50rpx;
+}
+
+.panel>.title-bar>.title {
+  width: 150rpx;
+  font-weight: bolder;
+  font-size: 36rpx;
+  color: rgb(16, 16, 16);
+}
+
+.panel>.title-bar>.datetime {
+  width: calc(100% - 170rpx);
+  padding-left: 20rpx;
+  font-weight: 400;
+  font-size: 20rpx;
+  color: rgb(51, 51, 51);
+}
+
+.panel>.body {
+  width: 100%;
+  padding: 5rpx 0;
+}
+
+.tab-card {
+  width: calc(100% - 40rpx);
+  padding: 10rpx 20rpx;
+}
+
+.tab-card>.theme-tab-bar,
+.tab-card>.tab-body>.theme-block {
+  color: rgb(16, 16, 16);
+  background-color: rgba(98, 151, 242, 0.03);
+}
+
+.tab-card>.tab-bar {
+  width: calc(100% - 10rpx);
+  height: 60rpx;
+  padding: 10rpx 5rpx;
+  border-radius: 40rpx;
+}
+
+.tab-card>.tab-bar>.tab {
+  margin: 0 25rpx;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: rgb(98, 151, 242);
+  border-bottom-style: solid;
+  border-bottom-width: 5rpx;
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.tab-card>.tab-bar>.tab.selected {
+  font-weight: bold;
+  background-color: unset;
+  border-bottom-color: rgb(98, 151, 242);
+}
+
+.tab-card>.tab-body {
+  width: 100%;
+}
+
+.tab-card>.tab-body>.block {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+}
+
+.tab-card>.tab-body>.block>.title-bar {
+  width: calc(100% - 20rpx);
+  height: 60rpx;
+  padding: 5rpx 10rpx;
+}
+
+.tab-card>.tab-body>.block>.title-bar>.title {
+  font-weight: bolder;
+  font-size: 28rpx;
+  color: rgb(16, 16, 16);
+}
+
+.tab-card>.tab-body>.block>.body {
+  width: calc(100% - 20rpx);
+  padding: 5rpx 10rpx;
+}
+
+.tab-card>.tab-body>.block>.body>.row {
+  width: 100%;
+}
+
+.tab-card>.tab-body>.block>.body>.row>.property {
+  width: 50%;
+  height: 50rpx;
+}
+
+.tab-card>.tab-body>.block>.body>.row>.property>.label,
+.tab-card>.tab-body>.block>.body>.row>.property>.value {
+  font-weight: 400;
+  font-size: 28rpx;
+  color: rgb(16, 16, 16);
+}
+
+.tab-card>.tab-body>.block>.body>.row.bottom-line {
+  border-bottom-width: 3rpx;
+  border-bottom-style: dashed;
+  border-bottom-color: rgba(187, 187, 187, 1);
+}
+
+.tab-card>.tab-body>.block>.body>.row>.sort {
+  width: 100%;
+  height: 50rpx;
+}
+
+.tab-card>.tab-body>.block>.body>.row>.sort>.ranking {
+  width: 120rpx;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 28rpx;
+  color: rgba(244, 68, 68, 1);
+}
+
+.tab-card>.tab-body>.block>.body>.row>.sort>.name {
+  width: calc(100% - 120rpx);
+  font-weight: 400;
+  font-size: 28rpx;
+  color: rgb(16, 16, 16);
+}
