@@ -5,26 +5,26 @@
 		<view class="left-2">
 			<image class='head-img' src='{{avatarUrl}}'></image>
 		</view>
-		<view class="center-2 flex_column_flexStart_flexStart" >
+		<view class="center-2 flex_column_flexStart_flexStart">
 			<view class='nickname'>{{nickName}}</view>
 			<block wx:if="{{user_info.role_type!=0}}">
-			<view class="flex_row_center" bindtap="{{user_info.role_type==1?'hotelComment':'gotoWaiterDetail'}}">
+				<view class="flex_row_center" bindtap="{{user_info.role_type==1?'hotelComment':'gotoWaiterDetail'}}">
 
-				<view class="flex_row_center_spaceBetween star-color">
-					<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-					<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-					<view class="fa {{userScore >= 2.5 && userScore < 3 ? 'fa-star-half-o' : userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-					<view class="fa {{userScore >= 3.5 && userScore < 4 ? 'fa-star-half-o' : userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-					<view class="fa {{userScore >= 4.5 && userScore < 5 ? 'fa-star-half-o' : userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					<view class="flex_row_center_spaceBetween star-color">
+						<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{userScore >= 2.5 && userScore < 3 ? 'fa-star-half-o' : userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{userScore >= 3.5 && userScore < 4 ? 'fa-star-half-o' : userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+						<view class="fa {{userScore >= 4.5 && userScore < 5 ? 'fa-star-half-o' : userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
+					</view>
+					<view>服务评分：{{userScore}}</view>
 				</view>
-				<view>服务评分：{{userScore}}</view>
-			</view>
-		</block>
+			</block>
 		</view>
 		<block wx:if="{{user_info.role_type!=0}}">
-		<view class="right-2 flex_row_flexStart_flexEnd" bindtap="gotoSetting">
-			<view class="fa fa-cog" aria-hidden="true"></view>
-		</view>
+			<view class="right-2 flex_row_flexStart_flexEnd" bindtap="gotoSetting">
+				<view class="fa fa-cog" aria-hidden="true"></view>
+			</view>
 		</block>
 	</view>
 
@@ -52,72 +52,79 @@
 
 	</view>
 	<block wx:if="{{user_info.role_type!=0}}">
-	<!-- 餐厅收益概况面板 -->
-	<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && user_info.role_type==1}}">
-		<view class='top theme-font2'>
-			<view class='title'>餐厅收益</view>
-			<navigator bindtap="integralList" class='more' url="/pages/reward/allot_detail?merchant_id={{merchant_id}}">分配明细 ></navigator>
-		</view>
-		<view class="month">
-			<view class="block theme-font4" bindtap="gotoPayDetail">
-				<view class="title flex_row_center_spaceBetween">
-					<view>客人打赏</view>
-					<view>></view>
-				</view>
-				<view class="integral">{{reward_money}}元</view>
+		<!-- 餐厅收益概况面板 -->
+		<view class='hotel-profile-panel full_width theme7' wx:if="{{integral_manage==true && user_info.role_type==1}}">
+			<view class='top theme-font2'>
+				<view class='title'>餐厅收益</view>
+				<navigator bindtap="integralList" class='more' url="/pages/reward/allot_detail?merchant_id={{merchant_id}}">分配明细 ></navigator>
 			</view>
-			<view class="block theme-font4" bindtap="gotoIntegralDetail">
-				<view class="title flex_row_center_spaceBetween">
-					<view>积分奖励</view>
-					<view>></view>
+			<view class="month">
+				<view class="block theme-font4" bindtap="gotoPayDetail">
+					<view class="title flex_row_center_spaceBetween">
+						<view>客人打赏</view>
+						<view>></view>
+					</view>
+					<view class="integral">{{reward_money}}元</view>
 				</view>
-				<view class="integral">{{reward_integral}}分</view>
+				<view class="block theme-font4" bindtap="gotoIntegralDetail">
+					<view class="title flex_row_center_spaceBetween">
+						<view>积分奖励</view>
+						<view>></view>
+					</view>
+					<view class="integral">{{reward_integral}}分</view>
+				</view>
+			</view>
+			<view class='info'>
+				<label class='theme-font5'> </label>
+				<navigator class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}">分配</navigator>
 			</view>
 		</view>
-		<view class='info'>
-			<label class='theme-font5'> </label>
-			<navigator class='btn-exchange theme-font5' url="/pages/reward/allot?hotel_id={{hotel_id}}">分配</navigator>
-		</view>
-	</view>
 
 
-	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity">
-			<view>餐厅活动</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{config_info.is_activity==1}}">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelActivity">
+				<view>餐厅活动</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
 		</view>
-	</view>
-	<!-- 任务列表 套用【活动商品管理面板】样式-->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="showLoadingOnClick" data-id="2">
-			<view>任务列表</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		<!-- 任务列表 套用【活动商品管理面板】样式-->
+		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="showLoadingOnClick" data-id="2">
+				<view>任务列表</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
 		</view>
-	</view>
 
-	<!-- 活动商品管理面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{goods_manage==true}}">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="popActivityList">
-			<view>活动商品管理</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		<!-- 活动商品管理面板 -->
+		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{goods_manage==true}}">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="popActivityList">
+				<view>活动商品管理</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
 		</view>
-	</view>
-	<!-- 聚划算管理面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/activity/profit_list">
-			<view>聚划算管理</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		<!-- 聚划算管理面板 -->
+		<view class="promotion-goods-manage-panel theme7 theme-font2">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/activity/profit_list">
+				<view>聚划算管理</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
 		</view>
-	</view>
-	<!-- 餐厅评价面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.role_type==1}}">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
-			<view>餐厅评价</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		<!-- 餐厅评价面板 -->
+		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.role_type==1}}">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
+				<view>餐厅评价</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
 		</view>
-	</view>
 	</block>
-	<!-- 餐厅评价面板 -->
+	<!-- 数据统计面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween">
+			<view>数据统计</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
+	<!-- 消息通知面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{1==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="messageNotify">
 			<view>消息通知</view>
