@@ -10,14 +10,14 @@
     <view class="panel power-on theme-panel">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">开机情况</view>
-        <view class="datetime">数据更新至2021/11/17</view>
+        <view class="datetime">数据更新至{{boot_info.up_time}}</view>
       </view>
       <view class="body">
         <view class="tab-card">
           <view class="tab-bar flex_row_center_flexStart theme-tab-bar">
-            <view class="tab day7 selected">近7天</view>
-            <view class="tab day15">近15天</view>
-            <view class="tab day30">近30天</view>
+            <view class="tab day7 {{boot_type==1?'selected':''}}" bindtap="selectPowerOnInfo" data-type="1">近7天</view>
+            <view class="tab day15 {{boot_type==2?'selected':''}}" bindtap="selectPowerOnInfo" data-type="2">近15天</view>
+            <view class="tab day30 {{boot_type==3?'selected':''}}" bindtap="selectPowerOnInfo" data-type="3">近30天</view>
           </view>
           <!-- 选项卡内容 Start -->
           <view class="tab-body">
@@ -26,21 +26,21 @@
                 <view class="row flex_row_center_spaceBetween">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">版位数量：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{boot_info.box_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">平均开机时长：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{boot_info.boot_time}}</view>
                   </view>
                 </view>
-                <view class="row flex_row_center_spaceBetween">
+                <view class="row flex_row_center_spaceBetween" wx:if="{{boot_type==1}}">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">7天内未开机：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{boot_info.box_7day_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">30天内未开机：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{boot_info.box_30day_num}}</view>
                   </view>
                 </view>
               </view>
@@ -60,9 +60,9 @@
       <view class="body">
         <view class="tab-card">
           <view class="tab-bar flex_row_center_flexStart theme-tab-bar">
-            <view class="tab day30 selected">近30天</view>
-            <view class="tab month3">近3个月</view>
-            <view class="tab month6">近6个月</view>
+            <view class="tab day30 {{usage_type==1?'selected':''}}" bindtap="selectUseAppInfo" data-type="1">近30天</view>
+            <view class="tab month3 {{usage_type==2?'selected':''}}" bindtap="selectUseAppInfo" data-type="2">近3个月</view>
+            <view class="tab month6 {{usage_type==3?'selected':''}}" bindtap="selectUseAppInfo" data-type="3">近6个月</view>
           </view>
           <!-- 选项卡内容 Start -->
           <view class="tab-body">
@@ -75,41 +75,41 @@
                 <view class="row flex_row_center_spaceBetween">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">用户扫码人数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.user_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">用户扫码次数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.user_scancode_num}}</view>
                   </view>
                 </view>
                 <view class="row flex_row_center_spaceBetween bottom-line">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">用户互动次数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.user_interact_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">互动饭局数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.user_fj_num}}</view>
                   </view>
                 </view>
                 <view class="row flex_row_center_spaceBetween">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">餐厅扫码人数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.restaurant_user_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">餐厅扫码次数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.restaurant_scancode_num}}</view>
                   </view>
                 </view>
                 <view class="row flex_row_center_spaceBetween">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">餐厅互动次数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.restaurant_interact_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">互动饭局数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.restaurant_fj_num}}</view>
                   </view>
                 </view>
               </view>
@@ -122,11 +122,11 @@
                 <view class="row flex_row_center_spaceBetween">
                   <view class="property flex_row_center_flexStart">
                     <view class="label">互动次数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.sale_interact_num}}</view>
                   </view>
                   <view class="property flex_row_center_flexStart">
                     <view class="label">互动饭局数：</view>
-                    <view class="value">xxx</view>
+                    <view class="value">{{usage_info.sale_fj_num}}</view>
                   </view>
                 </view>
               </view>
@@ -136,36 +136,13 @@
                 <view class="title">常用功能</view>
               </view>
               <view class="body">
-                <view class="row flex_row_center_spaceBetween">
+                <view class="row flex_row_center_spaceBetween" wx:for="{{usage_info.common_forscreen}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
                   <view class="sort flex_row_center_flexStart">
-                    <view class="ranking">TOP 1</view>
-                    <view class="name">照片投屏</view>
+                    <view class="ranking">TOP {{index+1}}</view>
+                    <view class="name">{{bean}}</view>
                   </view>
                 </view>
-                <view class="row flex_row_center_spaceBetween">
-                  <view class="sort flex_row_center_flexStart">
-                    <view class="ranking">TOP 2</view>
-                    <view class="name">视频投屏</view>
-                  </view>
-                </view>
-                <view class="row flex_row_center_spaceBetween">
-                  <view class="sort flex_row_center_flexStart">
-                    <view class="ranking">TOP 3</view>
-                    <view class="name">生日歌点播</view>
-                  </view>
-                </view>
-                <view class="row flex_row_center_spaceBetween">
-                  <view class="sort flex_row_center_flexStart">
-                    <view class="ranking">TOP 4</view>
-                    <view class="name">文件投屏</view>
-                  </view>
-                </view>
-                <view class="row flex_row_center_spaceBetween">
-                  <view class="sort flex_row_center_flexStart">
-                    <view class="ranking">TOP 5</view>
-                    <view class="name">欢迎词投屏</view>
-                  </view>
-                </view>
+                
               </view>
             </view>
 

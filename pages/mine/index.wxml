@@ -118,8 +118,8 @@
 		</view>
 	</block>
 	<!-- 数据统计面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
-		<view class="full_width full_height flex_row_center_spaceBetween">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{is_salestat==1}}">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDataCenter">
 			<view>数据统计</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>

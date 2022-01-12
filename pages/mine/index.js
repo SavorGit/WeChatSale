@@ -21,7 +21,8 @@ Page({
     integral_shop: false,
     task_manage: false,
     userScore: 3.7,
-    is_activity:0
+    is_activity:0,
+    is_salestat:0
   },
 
   /**
@@ -93,7 +94,8 @@ Page({
         shoporder_process_num: data.result.shoporder_process_num,
         userScore: data.result.score,
         reward_integral:data.result.reward_integral,
-        reward_money:data.result.reward_money
+        reward_money:data.result.reward_money,
+        is_salestat:data.result.is_salestat
       })
     },res=>{},{isShowLoading:false})
   },
@@ -659,6 +661,18 @@ Page({
   gotoIntegralDetail:function(e){
     wx.navigateTo({
       url: '/pages/reward/integral_detail',
+    })
+  },
+  gotoDataCenter:function(e){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    if (user_info.select_hotel_id > 0) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    wx.navigateTo({
+      url: '/pages/mine/datecenter/statistics?openid='+openid+'&hotel_id='+hotel_id,
     })
   },
   gotoWaiterList:function(e){
