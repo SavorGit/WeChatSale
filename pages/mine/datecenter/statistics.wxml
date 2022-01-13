@@ -55,7 +55,7 @@
     <view class="panel used theme-panel">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">使用情况</view>
-        <view class="datetime">数据更新至2021/11/17</view>
+        <view class="datetime">数据更新至{{usage_info.up_time}}</view>
       </view>
       <view class="body">
         <view class="tab-card">
