@@ -1,2 +1,70 @@
 <!--pages/mine/turn_lottery/list.wxml-->
-<text>pages/mine/turn_lottery/list.wxml</text>
+<!--
+ | 幸运抽奖页面
+ |-->
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
+  <view class="wapper">
+    <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+      <view class="item flex_row_center_spaceBetween theme-block-white">
+        <view class="title theme-font1 one-line-overflow">{{bean.name}}</view>
+        <view class="btn launch flex_row_center_center theme-button-welcome" bindtap="setPrize" data-index="{{index}}">发起</view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<!-- 设置奖项弹窗 -->
+<modal show="{{showSetPrizeWindow}}" width="690rpx" height='656rpx' border-radius="20rpx" background-color='#FFFFFF' title-text='' confirm-text='' cancel-text=''>
+  <view class="window set-prize flex_column_flexStart_flexStart">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">发起抽奖</view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd">
+      <image class="btn" mode="aspectFit" src="/images/icon/grey_close.png" bindtap="closeSetPrizeWindow"></image>
+    </view>
+    <view class="body flex_column_center_center">
+      <form action="">
+        <view class="row show-text flex_row_center_spaceBetween">
+          <view class="label theme-font1">抽奖活动</view>
+          <view class="value theme-font3">
+            <view class="text">{{setPrize.name}}</view>
+          </view>
+        </view>
+        <view class="row picker flex_row_center_spaceBetween">
+          <view class="label theme-font1">抽奖包间</view>
+          <view class="value">
+            <picker class="input">
+              <view class="inner flex_row_center_spaceBetween">
+                <view class="context">vip1</view>
+                <view class="icon fa fa-angle-down" aria-hidden="true"></view>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="row input-text flex_row_center_spaceBetween">
+          <view class="label theme-font1">最大中奖人数</view>
+          <view class="value">
+            <input class="input" placeholder="请输入" />
+          </view>
+        </view>
+        <view class="row picker flex_row_center_spaceBetween">
+          <view class="label theme-font1">开始时间</view>
+          <view class="value">
+            <picker class="input">
+              <view class="inner flex_row_center_spaceBetween">
+                <view class="context">2022-02-22</view>
+                <view class="icon fa fa-clock-o" aria-hidden="true"></view>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="row btn-group flex_row_center_center">
+          <view class="btn launch flex_row_center_center theme-button-welcome">发起抽奖</view>
+        </view>
+      </form>
+    </view>
+    <view class="status-bar"></view>
+  </view>
+</modal>

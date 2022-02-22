@@ -1,1 +1,140 @@
 /* pages/mine/turn_lottery/list.wxss */
+/**
+ * 幸运抽奖页面
+ */
+
+
+.wapper {
+  width: 100%;
+  height: 100%;
+}
+
+.item {
+  width: calc(100% - 40rpx);
+  padding: 25rpx 20rpx;
+  border-bottom: 3rpx solid #EDEDED;
+}
+
+.item:last-child {
+  border-bottom: 0
+}
+
+.item>.title {
+  width: calc(100% - 160rpx);
+  font-size: 28rpx;
+}
+
+.item>.btn {
+  width: 160rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.window {
+  width: 100%;
+  height: 100%;
+}
+
+.window>.title-bar {
+  width: calc(100% - 40rpx);
+  height: 70rpx;
+  padding: 10rpx 20rpx;
+}
+
+.window>.title-bar>.title {
+  min-width: 3rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.window>.option-bar {
+  width: calc(100% - 20rpx);
+  height: 70rpx;
+  padding: 10rpx;
+  margin-top: -90rpx;
+}
+
+.window>.option-bar>.btn {
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 60rpx;
+  padding: 10rpx;
+  margin: 0;
+  border: 0;
+}
+
+.window>.body {
+  width: 100%;
+  height: calc(100% - 120rpx);
+}
+
+.window.set-prize>.body form {
+  width: 100%;
+}
+
+.window.set-prize>.body .row {
+  width: calc(100% - 50rpx);
+  padding: 25rpx;
+}
+
+.window.set-prize>.body .row>.label {
+  width: 200rpx;
+  font-size: 28rpx;
+}
+
+.window.set-prize>.body .row>.value {
+  width: calc(100% - 200rpx);
+}
+
+.window.set-prize>.body .row>.value>.input {
+  border-width: 3rpx;
+  border-style: solid;
+  border-color: #EDEDED;
+}
+
+.window.set-prize>.body .row.show-text>.value>.text {
+  font-size: 28rpx;
+}
+
+.window.set-prize>.body .row.input-text>.value>.input {
+  width: calc(100% - 20rpx);
+  height: 50rpx;
+  padding: 5rpx;
+  font-size: 28rpx;
+}
+
+.window.set-prize>.body .row.picker>.value>.input {
+  width: calc(100% - 20rpx);
+  height: 50rpx;
+  padding: 5rpx;
+}
+
+.window.set-prize>.body .row.picker>.value>.input .inner {
+  width: 100%;
+  height: 50rpx;
+}
+
+.window.set-prize>.body .row.picker>.value>.input .inner>.context {
+  width: calc(100% - 40rpx);
+  font-size: 28rpx;
+}
+
+.window.set-prize>.body .row.picker>.value>.input .inner>.icon {
+  font-size: 28rpx;
+}
+
+.window.set-prize>.body .row.btn-group>.btn {
+  width: 270rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}

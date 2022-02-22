@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "幸运抽奖",
+  "disableScroll": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
 }
