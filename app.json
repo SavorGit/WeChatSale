@@ -59,6 +59,7 @@
     "pages/mine/setting/list",
     "pages/mine/message/index",
     "pages/mine/datecenter/statistics",
+    "pages/mine/turn_lottery/list",
     "pages/template/commons",
     "pages/tv_sale/system",
     "pages/task/index",
