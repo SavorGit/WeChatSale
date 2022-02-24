@@ -35,9 +35,9 @@
         <view class="row picker flex_row_center_spaceBetween">
           <view class="label theme-font1">抽奖包间</view>
           <view class="value">
-            <picker class="input">
+            <picker class="input"  range="{{objectBoxArray}}" bindchange="selectRoom">
               <view class="inner flex_row_center_spaceBetween">
-                <view class="context">vip1</view>
+                <view class="context">{{lottery_config.select_room_name}}</view>
                 <view class="icon fa fa-angle-down" aria-hidden="true"></view>
               </view>
             </picker>
@@ -46,21 +46,27 @@
         <view class="row input-text flex_row_center_spaceBetween">
           <view class="label theme-font1">最大中奖人数</view>
           <view class="value">
-            <input class="input" placeholder="请输入" />
+            <input class="input" placeholder="请输入" bindinput="inputLotteryNums" />
           </view>
         </view>
         <view class="row picker flex_row_center_spaceBetween">
           <view class="label theme-font1">开始时间</view>
           <view class="value">
-            <picker class="input">
+            <!-- <picker class="input">
               <view class="inner flex_row_center_spaceBetween">
                 <view class="context">2022-02-22</view>
                 <view class="icon fa fa-clock-o" aria-hidden="true"></view>
               </view>
-            </picker>
+            </picker>  -->
+             <picker class="input" mode="multiSelector" bindchange="bindMultiPickerChange"  value="{{multiIndex}}" range="{{multiArray}}">
+									<view class="wrapper flex_row_center_spaceBetween">
+										<input class="show" value='{{lottery_config.award_open_time}}' placeholder='立即开始' name="award_open_time" disabled='true' />
+										<view class="icon fa fa-clock-o" aria-hidden="true"></view>
+									</view>
+						</picker>
           </view>
         </view>
-        <view class="row btn-group flex_row_center_center">
+        <view class="row btn-group flex_row_center_center" bindtap="startLottery">
           <view class="btn launch flex_row_center_center theme-button-welcome">发起抽奖</view>
         </view>
       </form>
