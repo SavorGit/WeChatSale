@@ -85,7 +85,9 @@ Page({
   // 关闭设置奖项弹窗
   closeSetPrizeWindow: function (e) {
     let self = this;
-    self.setData({ showSetPrizeWindow: false });
+    var lottery_config = this.data.lottery_config;
+    lottery_config.award_open_time = '';
+    self.setData({ showSetPrizeWindow: false,lottery_config:lottery_config });
   },
   //发起抽奖
   startLottery:function(e){
@@ -96,6 +98,10 @@ Page({
     var nums = lottery_config.nums;
     if(nums == ''){
       app.showToast('请输入最大中奖人数');
+      return false;
+    }
+    if(nums <=0){
+      app.showToast('请输入大于0的整数');
       return false;
     }
     if(!app.isInteger(nums)){
@@ -117,6 +123,8 @@ Page({
       syslottery_id:setPrize.syslottery_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.closeSetPrizeWindow();
+      lottery_config.award_open_time = '';
+      that.setData({lottery_config:lottery_config})
       app.showToast('发起抽成功',2000,'success')
     })
   },
