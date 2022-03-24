@@ -125,7 +125,7 @@ Page({
       that.closeSetPrizeWindow();
       lottery_config.award_open_time = '';
       that.setData({lottery_config:lottery_config})
-      app.showToast('发起抽成功',2000,'success')
+      app.showToast('发起成功',2000,'success')
     })
   },
 
