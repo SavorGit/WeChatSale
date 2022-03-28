@@ -138,6 +138,13 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
+	<!-- 发送预定信息面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="">
+			<view>发送预定信息</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
 	<!-- 我的员工面板 -->
 	<view class="team-members-panel full_width theme7" wx:if="{{(user_info.role_type==1 || user_info.role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>
