@@ -140,7 +140,7 @@
 	</view>
 	<!-- 发送预定信息面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/mine/post_book/index">
 			<view>发送预定信息</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
