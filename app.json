@@ -60,6 +60,7 @@
     "pages/mine/message/index",
     "pages/mine/datecenter/statistics",
     "pages/mine/turn_lottery/list",
+    "pages/mine/post_book/index",
     "pages/template/commons",
     "pages/tv_sale/system",
     "pages/task/index",

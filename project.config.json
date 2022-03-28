@@ -41,7 +41,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.21.3",
+  "libVersion": "2.23.2",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "debugOptions": {
