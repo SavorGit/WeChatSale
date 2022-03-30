@@ -29,7 +29,8 @@ Page({
     var that = this;
     utils.PostRequest(api_v_url + '/room/getRoomList', {
       openid: openid,
-      hotel_id:hotel_id
+      hotel_id:hotel_id,
+      type:2
     }, (data, headers, cookies, errMsg, statusCode) => {
       var book_info = that.data.book_info;
       book_info.select_room_name = data.result.box_name_list[0];
