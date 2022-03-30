@@ -693,6 +693,10 @@ Page({
     wx.navigateTo({
       url: jumpUrl+'?hotel_id='+hotel_id+'&openid='+openid,
     });
+    if(jumpUrl=='/pages/mine/post_book/index'){
+      uma.trackEvent('mine_click_postbook',{'open_id':openid,'hotel_id':hotel_id})
+    }
+    
   },
   messageNotify:function(e){
     var user_info = wx.getStorageSync(cache_key + 'userinfo');

@@ -1,5 +1,6 @@
 // pages/mine/post_book/index.js
 const app = getApp()
+var uma = app.globalData.uma;
 const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -90,6 +91,7 @@ Page({
         path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
         envVersion:'trial'
       })
+      uma.trackEvent('postbook_confirm',{'open_id':openid,'hotel_id':hotel_id})
     })
 
     
