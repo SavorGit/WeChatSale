@@ -77,21 +77,22 @@ Page({
     var box_mac = box_list[box_index].box_mac;
 
 
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/invitation/confirminfo', {
       openid: openid,
       box_mac:box_mac,
       hotel_id:hotel_id,
       book_time:book_info.book_time,
-      name:book_info.name
+      name:book_info.book_name
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      var  invitation_id = data.result.invitation_id
+      wx.navigateToMiniProgram({
+        appId: 'wxfdf0346934bb672f',
+        path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
+        envVersion:'trial'
+      })
     })
 
-    wx.navigateToMiniProgram({
-      appId: 'wxfdf0346934bb672f',
-      path:'/mall/pages/wine/post_book/index',
-      envVersion:'trial'
-    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
