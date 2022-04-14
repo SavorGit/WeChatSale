@@ -87,6 +87,15 @@
     "pages/reward/integral_detail"
 
   ],
+  "subpackages": [{
+    "root": "store",
+    "pages": [
+      "pages/index",
+      "pages/storein/index",
+      "pages/storeout/index"
+    ]
+  }
+],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#58525C",
