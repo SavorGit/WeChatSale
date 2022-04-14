@@ -92,7 +92,11 @@
     "pages": [
       "pages/index",
       "pages/storein/index",
-      "pages/storeout/index"
+      "pages/storein/selectgoods",
+      "pages/storein/scancode",
+      "pages/storeout/index",
+      "pages/storeout/selectgoods",
+      "pages/storeout/scancode"
     ]
   }
 ],
