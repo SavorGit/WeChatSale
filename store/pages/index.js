@@ -1,4 +1,7 @@
 // store/pages/index.js
+/**
+ * 库存管理 首页
+ */
 Page({
 
   /**

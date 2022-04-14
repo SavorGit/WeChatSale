@@ -1,1 +1,96 @@
 /* store/pages/index.wxss */
+/**
+ * 库存管理 首页
+ */
+.warper {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.search-bar {
+  width: calc(100% - 30rpx);
+  padding: 20rpx 15rpx;
+}
+
+.search-bar>.input-frame {
+  width: calc(100% - 60rpx);
+  padding: 5rpx;
+  border: 3rpx solid rgb(220, 220, 220);
+  border-radius: 6rpx;
+}
+
+.search-bar>.input-frame>.input {
+  width: calc(100% - 30rpx);
+  height: 50rpx;
+  font-size: 28rpx;
+}
+
+.search-bar>.input-frame>.icon {
+  font-size: 30rpx;
+}
+
+.search-bar>.btn {
+  font-size: 32rpx;
+}
+
+.row {
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.row>.btn {
+  border-radius: 10rpx;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.row>.btn>.icon {
+  padding: 10rpx 0;
+  font-size: 40rpx;
+}
+
+.row>.btn>.text {
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+
+.row>.btn.big {
+  width: 590rpx;
+  height: 266rpx;
+}
+
+.row>.btn.small {
+  width: 284rpx;
+  height: 176rpx;
+  margin-left: 20rpx;
+}
+
+.row>.btn.small:first-child {
+  margin-left: 0;
+}
+
+.row>.btn.in-db {
+  color: rgb(255, 255, 255);
+  background-color: rgb(98, 151, 242);
+}
+
+.row>.btn.out-db {
+  color: rgb(255, 255, 255);
+  background-color: rgb(184, 168, 148);
+}
+
+.row>.btn.claim {
+  color: rgb(255, 255, 255);
+  background-color: rgb(193, 147, 166);
+}
+
+.row>.btn.sign-for {
+  color: rgb(255, 255, 255);
+  background-color: rgb(193, 147, 166);
+}
+
+.row>.btn.loss-report {
+  color: rgb(255, 255, 255);
+  background-color: rgba(232, 107, 107, 0.9);
+}

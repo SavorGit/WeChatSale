@@ -1,2 +1,50 @@
 <!--store/pages/index.wxml-->
-<text>store/pages/index.wxml</text>
+<import src="/pages/template/commons" />
+<wxs src="../../app.wxs" module="app" />
+
+<!--
+  -- 库存管理 首页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="warper flex_column_center_flexStart">
+    <view class="search-bar flex_row_center_spaceBetween">
+      <view class="input-frame flex_row_center_spaceBetween" style="width: calc(100% - 16rpx);">
+        <input class="input" type="text" placeholder="请输入酒楼名称" />
+        <view class="icon fa fa-search" aria-hidden="true"></view>
+      </view>
+      <!--
+      <view class=" btn search">
+        <view class="icon fa fa-bars" aria-hidden="true"></view>
+      </view>
+      -->
+    </view>
+    <view class="row button flex_row_center_center">
+      <view class="btn big flex_column_center_center in-db">
+        <view class="icon fa fa-database" aria-hidden="true"></view>
+        <view class="text">入库</view>
+      </view>
+    </view>
+    <view class="row button flex_row_center_center">
+      <view class="btn big flex_column_center_center out-db">
+        <view class="icon fa fa-database" aria-hidden="true"></view>
+        <view class="text">出库</view>
+      </view>
+    </view>
+    <view class="row button flex_row_center_center">
+      <view class="btn small flex_column_center_center claim">
+        <view class="icon fa fa-download" aria-hidden="true"></view>
+        <view class="text">领取</view>
+      </view>
+      <view class="btn small flex_column_center_center sign-for">
+        <view class="icon fa fa-download" aria-hidden="true"></view>
+        <view class="text">到达</view>
+      </view>
+    </view>
+    <view class="row button flex_row_center_center">
+      <view class="btn big flex_column_center_center loss-report">
+        <view class="icon fa fa-low-vision" aria-hidden="true"></view>
+        <view class="text">报损</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
