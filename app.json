@@ -91,6 +91,7 @@
     "root": "store",
     "pages": [
       "pages/index",
+      "pages/hotel/hotelstore",
       "pages/storein/index",
       "pages/storein/selectgoods",
       "pages/storein/scancode",
