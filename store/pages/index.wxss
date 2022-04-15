@@ -33,6 +33,26 @@
   font-size: 32rpx;
 }
 
+.choose-list {
+  width: 100%;
+  height: 180rpx;
+  border: 2rpx solid #DEDEDE;
+  border-radius: 0 0 10rpx 10rpx;
+}
+
+.choose-list .list {
+  width: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.choose-list .list>.item {
+  width: calc(100% - 10rpx);
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 5rpx;
+  font-size: 32rpx;
+}
+
 .row {
   width: 100%;
   padding: 10rpx 0;
