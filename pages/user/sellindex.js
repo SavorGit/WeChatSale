@@ -1078,5 +1078,10 @@ Page({
         wx.hideLoading();
       }
     });
+  },
+  zyttest:function(){
+    wx.redirectTo({
+      url: '/store/pages/index',
+    })
   }
 })

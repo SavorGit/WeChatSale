@@ -41,7 +41,7 @@
     "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.23.2",
+  "libVersion": "2.23.4",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "debugOptions": {
