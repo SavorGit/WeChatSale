@@ -1,1 +1,6 @@
 /* store/pages/storeout/scancode.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 扫码出库
+ */

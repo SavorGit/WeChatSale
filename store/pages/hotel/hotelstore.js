@@ -1,11 +1,19 @@
 // store/pages/hotel/hotelstore.js
+/**
+ * 酒楼库存
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    hotelName: "花家怡园（世贸店）",
+    list: [
+      { id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", tags: ["白酒", "500ml", "瓶"], button: { catchEye: false, label: ["100"] } },
+      { id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", tags: ["白酒", "500ml", "瓶"], button: { catchEye: false, label: ["100"] } },
+      { id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", tags: ["白酒", "500ml", "瓶"], button: { catchEye: false, label: ["100"] } }
+    ],
   },
 
   /**

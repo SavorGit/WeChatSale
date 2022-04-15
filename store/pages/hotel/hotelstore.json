@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "酒楼库存",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }

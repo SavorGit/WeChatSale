@@ -1,1 +1,6 @@
 /* store/pages/storein/selectgoods.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 入库 选择商品
+ */
