@@ -76,7 +76,6 @@ Page({
     })
   },
   gotoPage:function(e){
-    console.log(e)
     var type = e.currentTarget.dataset.type;
     var page_url = '';
     switch(type){
