@@ -1,0 +1,228 @@
+/* store/pages/template/commons.wxss */
+.page,
+.page>.header,
+.page>.body,
+.page>.footer,
+.panel {
+  width: 100%;
+}
+
+.panel>.title-bar {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 10rpx 20rpx;
+}
+
+.panel>.title-bar>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.panel>.body {
+  width: calc(100% - 40rpx);
+  padding: 0 20rpx 10rpx;
+}
+
+.panel>.body>.item {
+  width: 100%;
+  padding: 20rpx 0;
+  border-top: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.panel>.body>.item:first-child {
+  border-top: unset
+}
+
+.panel>.body>.item>.row {
+  width: 100%;
+}
+
+.panel>.body>.item>.row>.left {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.body>.item>.row>.center {
+  width: calc(100% - 300rpx);
+}
+
+.panel>.body>.item>.row>.center>.name {
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.body>.item>.row>.center>.bottom,
+.panel>.body>.item>.row>.center>.tag-group {
+  width: 100%;
+}
+
+.panel>.body>.item>.row>.center>.bottom>.datetime,
+.panel>.body>.item>.row>.center>.bottom>.operator,
+.panel>.body>.item>.row>.center>.tag-group>.tag {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.panel>.body>.item>.row>.center>.bottom>.operator,
+.panel>.body>.item>.row>.center>.tag-group>.tag {
+  margin-left: 30rpx;
+}
+
+.panel>.body>.item>.row>.center>.tag-group>.tag:first-child {
+  margin-left: unset;
+}
+
+.panel>.body>.item>.row>.right {
+  width: 180rpx;
+}
+
+.panel>.body>.item>.row>.right>.btn {
+  width: 120rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  border: 0;
+  margin: 0;
+  padding: 15rpx 10rpx;
+}
+
+.panel>.body>.item>.row>.right>.btn>.quantity {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.body>.item>.row>.right>.btn>.text {
+  font-size: 24rpx;
+}
+
+.panel.bill>.title-bar>.title,
+.panel.can-del-googs>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.panel.bill>.body>.item>.row>.right {
+  width: 60rpx;
+}
+
+.panel.bill>.body>.item>.row>.right>.btn {
+  width: auto;
+  font-size: 48rpx;
+}
+
+.panel.scan>.body {
+  height: 320rpx;
+}
+
+.panel.scan>.body>.btn {
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 50%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.panel.scan>.body>.btn>.icon {
+  font-size: 112rpx;
+}
+
+.panel.scan>.body>.btn>.text {
+  font-size: 28rpx;
+}
+
+.panel>.body>.item>.row>.center {
+  width: calc(100% - 200rpx);
+}
+
+.panel>.body>.item>.row>.right {
+  width: 80rpx;
+}
+
+.panel>.body>.item>.row>.right>.btn {
+  width: 60rpx;
+  font-size: 60rpx;
+}
+
+.tab-panel>.tab-bar {
+  width: calc(100% - 40rpx);
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+}
+
+.tab-panel>.tab-bar .tab-group {
+  height: 60rpx;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.tab-panel>.tab-bar .tab-group>.tab {
+  width: 120rpx;
+  height: calc(100% - 10rpx);
+  margin-left: 30rpx;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: rgb(98, 151, 242);
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+.tab-panel>.tab-bar .tab-group>.tab:first-child {
+  margin-left: 0;
+}
+
+.tab-panel>.tab-bar .tab-group>.tab.selected {
+  font-weight: bold;
+  border-bottom-width: 5rpx;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(98, 151, 242);
+  background-color: unset;
+}
+
+
+.page>.header {
+  width: calc(100% - 40rpx);
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+}
+
+.page>.header>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.page>.main {
+  width: 100%;
+  height: calc(100% - 120rpx);
+}
+
+.page>.main .warper {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.page>.foot {
+  width: 100%;
+  height: 100rpx;
+  padding: 10rpx 0;
+}
+
+.page>.foot>.btn {
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.page.select-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}
+
+.page.scan-goods>.foot>.btn {
+  width: 220rpx;
+  height: 80rpx;
+}

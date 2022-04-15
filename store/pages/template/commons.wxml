@@ -1,0 +1,160 @@
+<!--store/pages/template/commons.wxml-->
+<wxs src="/app.wxs" module="app" />
+
+<!-- [页面] 选择库存单据 <template is="storeOrderPage" data='{{pageTitle:"请选择入库单",stores:stores,doingTitle:"",doingList:doingList,doneTitle:"已完成入库",doneList:doneList}}' />-->
+<template name="storeOrderPage">
+  <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+    <view class="page flex_column_center_flexStart">
+      <view class="header flex_row_center_start">
+        <view class="title flex_row_center_start">{{pageTitle}}</view>
+      </view>
+      <view class="body">
+        <view class="panel tab-panel">
+          <scroll-view class="tab-bar" scroll-x="true" scroll-with-animation="true">
+            <view class="tab-group">
+              <view wx:for="{{stores}}" wx:for-item="tab" wx:key="tabKey" wx:for-index="tabIndex" class='tab flex_row_center_center{{tab.selected==true?" selected":""}}'>{{tab.name}}</view>
+            </view>
+          </scroll-view>
+          <view class="tab-body">
+            <template is="billPanel" data='{{catchEye:true,list:doingList}}' />
+          </view>
+        </view>
+        <view style="width:100%;padding-top:30rpx;border-top:3rpx dashed rgba(187,187,187,1);">
+          <template is="billPanel" data='{{title:doneTitle,list:doneList}}' />
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+<!-- [页面] 商品扫码 -->
+<template name="scanGoodsPage">
+  <view class="page scan-goods container theme-main">
+    <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+      <view class="warper flex_column_center_flexStart">
+        <template is="goodsPanel" data='{{list:goodsList}}' />
+
+        <view class="panel scan flex_column_center_flexStart">
+          <view class="title-bar flex_row_center_flexStart">
+            <view class="title">{{scanTitle}}</view>
+          </view>
+          <view class="body flex_column_center_center">
+            <view class="btn flex_column_center_center theme-button-blue">
+              <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+              <view class="text">扫码</view>
+            </view>
+          </view>
+        </view>
+
+        <template is="goodsPanelCanDel" data='{{title:listTitle,title2:listTitle2,list:scanList}}' />
+      </view>
+    </scroll-view>
+    <view class="foot flex_row_center_spaceAround">
+      <view class="btn cancel flex_row_center_center theme-button-disable">{{btnCancel}}</view>
+      <view class="btn ok flex_row_center_center theme-button-blue">{{btnOk}}</view>
+    </view>
+  </view>
+</template>
+
+<!-- [页面] 选择商品 <template is="selectGoodsPage" data='{{listTitle:"请选择入库商品",goodsList:list,btnOk:"完成入库"}}' />-->
+<template name="selectGoodsPage">
+  <view class="page select-goods container theme-main">
+    <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+      <view class="warper flex_column_center_flexStart">
+        <template is="goodsPanel" data='{{title:listTitle,list:goodsList}}' />
+      </view>
+    </scroll-view>
+    <view class="foot flex_row_center_center">
+      <view class="btn ok flex_row_center_center theme-button-blue">{{btnOk}}</view>
+    </view>
+  </view>
+</template>
+
+<!-- [面板] 单据 -->
+<template name="billPanel">
+  <view class="panel bill">
+    <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
+      <view class='title {{catchEye==true?"theme-font1":"theme-font3"}}'>{{title}}</view>
+    </view>
+    <view class="body">
+      <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class='left flex_column_center_center {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.id}}</view>
+            <view class="center flex_column_center_center" style='{{bean.status!=2?"width:calc(100% - 180rpx);":"width: calc(100% - 120rpx);"}}'>
+              <view class='name {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.name}}</view>
+              <view class="bottom flex_row_center_flexStart">
+                <view class="datetime theme-font3">{{bean.datetime}}</view>
+                <view class="operator theme-font3">{{bean.operator}}</view>
+              </view>
+            </view>
+            <view wx:if='{{bean.status!=2}}' class="right flex_column_center_center">
+              <view class="btn enter">
+                <view class="icon fa fa-chevron-right" aria-hidden="true"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<!-- [面板] 商品 <template is="goodsPanel" data='{{title:listTitle,list:goodsList}}' />-->
+<template name="goodsPanel">
+  <view class="panel googs">
+    <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
+      <view class="title theme-font1">{{title}}</view>
+    </view>
+    <view class="body">
+      <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="left flex_column_center_center theme-font1">{{bean.id}}</view>
+            <view class="center flex_column_center_center" style='{{app.typeOf(bean.button)=="object"&&bean.button!=null?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
+              <view class="name theme-font1">{{bean.name}}</view>
+              <view class="tag-group flex_row_center_flexStart">
+                <view wx:for="{{bean.tags}}" wx:for-item="tag" wx:key="tagKey" wx:for-index="tagIndex" class="tag theme-font3">{{tag}}</view>
+              </view>
+            </view>
+            <view wx:if='{{app.typeOf(bean.button)=="object"&&bean.button!=null}}' class="right flex_column_center_center">
+              <view wx:if='{{app.typeOf(bean.button)=="object"&&bean.button!=null&&app.isArray(bean.button.label)}}' class='btn select flex_column_center_center {{bean.button.catchEye==true?"theme-button-blue":"theme-button-disable"}}'>
+                <view wx:for="{{bean.button.label}}" wx:for-item="lab" wx:key="labKey" wx:for-index="labIndex" class="text">{{lab}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<!-- [面板] 可以删除商品 -->
+<template name="goodsPanelCanDel">
+  <view class="panel can-del-googs">
+    <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
+      <view class="title theme-font1">{{title}}</view>
+      <view class="title theme-font3" style="margin-left:50rpx;">{{title2}}</view>
+    </view>
+    <view class="body">
+      <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="left flex_column_center_center theme-font3">{{bean.id}}</view>
+            <view class="center flex_column_center_center">
+              <view class="name theme-font3">{{bean.name}}</view>
+              <view class="tag-group flex_row_center_flexStart">
+                <view wx:for="{{bean.tags}}" wx:for-item="tag" wx:key="tagKey" wx:for-index="tagIndex" class="tag theme-font3">{{tag}}</view>
+              </view>
+            </view>
+            <view class="right flex_column_center_center">
+              <view class='btn del flex_column_center_center'>
+                <view class="icon fa fa-trash-o theme-font5" aria-hidden="true"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

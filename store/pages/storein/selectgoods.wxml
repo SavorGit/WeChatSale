@@ -1,2 +1,8 @@
 <!--store/pages/storein/selectgoods.wxml-->
-<text>store/pages/storein/selectgoods.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 入库 选择商品
+  -->
+<template is="selectGoodsPage" data='{{listTitle:"请选择入库商品",goodsList:list,btnOk:"完成入库"}}' />

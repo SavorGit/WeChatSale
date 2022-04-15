@@ -91,6 +91,7 @@
     "root": "store",
     "pages": [
       "pages/index",
+      "pages/template/commons",
       "pages/hotel/hotelstore",
       "pages/storein/index",
       "pages/storein/selectgoods",

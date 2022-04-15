@@ -1,2 +1,8 @@
 <!--store/pages/storeout/scancode.wxml-->
-<text>store/pages/storeout/scancode.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 扫码出库
+  -->
+<template is="scanGoodsPage" data='{{scanTitle:"请扫描商品唯一标识出库",goodsList:goodsList,listTitle:"已扫商品码（10/20）",scanList:scanList,btnOk:"完成出库",btnCancel:"取消出库"}}' />

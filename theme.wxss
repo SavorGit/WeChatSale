@@ -97,6 +97,11 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   background-color: #1cbeb6;
 }
 
+.theme-button-blue {
+  color: #fff;
+  background-color: #6297F2;
+}
+
 .theme-container-red,
 .theme-button-add,
 .theme-button-buy,

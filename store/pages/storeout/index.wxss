@@ -1,1 +1,10 @@
 /* store/pages/storeout/index.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 出库 首页
+ */
+.warper {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}

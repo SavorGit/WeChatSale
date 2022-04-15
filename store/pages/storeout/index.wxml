@@ -1,2 +1,8 @@
 <!--store/pages/storeout/index.wxml-->
-<text>store/pages/storeout/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 出库 首页
+  -->
+<template is="storeOrderPage" data='{{pageTitle:"请选择出库单",stores:stores,doingTitle:"",doingList:doingList,doneTitle:"已完成出库",doneList:doneList}}' />

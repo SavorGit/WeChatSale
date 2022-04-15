@@ -1,2 +1,8 @@
 <!--store/pages/storein/index.wxml-->
-<text>store/pages/storein/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 入库 首页
+  -->
+<template is="storeOrderPage" data='{{pageTitle:"请选择入库单",stores:stores,doingTitle:"",doingList:doingList,doneTitle:"已完成入库",doneList:doneList}}' />
