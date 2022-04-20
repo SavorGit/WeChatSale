@@ -5,4 +5,4 @@
 <!--
   -- 出库 选择商品
   -->
-<template is="selectGoodsPage" data='{{listTitle:"请选择出库商品",goodsList:list,btnOk:"完成出库"}}' />
+<template is="selectGoodsPage" data='{{listTitle:"请选择出库商品",goodsList:list,btnTitle:"扫码出库",btnOk:"完成出库"}}' />

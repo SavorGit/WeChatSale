@@ -2,24 +2,30 @@
 /**
  * 出库 选择商品
  */
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var stock_id;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      { id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", tags: ["白酒", "500ml", "瓶"], button: { catchEye: true, label: ["扫码出库"] } },
-      { id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", tags: ["白酒", "500ml", "瓶"], button: { catchEye: true, label: ["扫码出库"] } },
-      { id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", tags: ["白酒", "500ml", "瓶"], button: { catchEye: false, label: [100, "继续扫码"] } }
-    ],
+    list: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    openid = app.globalData.openid;
+    stock_id = options.stock_id;
   },
 
   /**
@@ -33,9 +39,46 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    utils.PostRequest(api_v_url + '/stock/getGoodsByStockid', {
+      openid: openid,
+      stock_id:stock_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var list = data.result;
+      for(let i in list){
+        list[i].viewBt = true;
+      }
+      that.setData({list:list})
+    })
   },
-
+  gotoPage:function(e){
+    var keys = e.currentTarget.dataset.keys;
+    var list = this.data.list;
+    var goods_info = list[keys];
+    
+    var params = JSON.stringify(goods_info);
+    var pageUrl = '/store/pages/storeout/scancode?stock_id='+stock_id+'&goods_info='+params;
+    wx.navigateTo({
+      url: pageUrl,
+    })
+  },
+  finishStore:function(){
+    var that = this;
+    wx.showModal({
+      title: '确定要完成出库吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/stock/finish', {
+            openid: openid,
+            stock_id:stock_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            wx.navigateBack({delta: 1})
+            app.showToast('成功完成出库');
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

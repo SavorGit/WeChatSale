@@ -12,7 +12,11 @@
         <view class="panel tab-panel">
           <scroll-view class="tab-bar" scroll-x="true" scroll-with-animation="true">
             <view class="tab-group">
-              <view wx:for="{{stores}}" wx:for-item="tab" wx:key="tabKey" wx:for-index="tabIndex" class='tab flex_row_center_center{{tab.selected==true?" selected":""}}'>{{tab.name}}</view>
+              <block wx:for="{{stores}}" wx:for-item="tab" wx:key="key" wx:for-index="index">
+                <view wx:if="{{tab.is_select==1}}"  class='tab flex_row_center_center selected'>{{tab.name}}</view>
+
+                <view wx:else  class='tab flex_row_center_center' bindtap="changeArea" data-keys="{{index}}">{{tab.name}}</view>
+              </block>
             </view>
           </scroll-view>
           <view class="tab-body">
@@ -38,7 +42,7 @@
           <view class="title-bar flex_row_center_flexStart">
             <view class="title">{{scanTitle}}</view>
           </view>
-          <view class="body flex_column_center_center">
+          <view class="body flex_column_center_center" bindtap="scanGoodsCode">
             <view class="btn flex_column_center_center theme-button-blue">
               <view class="icon fa fa-qrcode" aria-hidden="true"></view>
               <view class="text">扫码</view>
@@ -50,8 +54,8 @@
       </view>
     </scroll-view>
     <view class="foot flex_row_center_spaceAround">
-      <view class="btn cancel flex_row_center_center theme-button-disable">{{btnCancel}}</view>
-      <view class="btn ok flex_row_center_center theme-button-blue">{{btnOk}}</view>
+      <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="cansleStore">{{btnCancel}}</view>
+      <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">{{btnOk}}</view>
     </view>
   </view>
 </template>
@@ -61,10 +65,10 @@
   <view class="page select-goods container theme-main">
     <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
       <view class="warper flex_column_center_flexStart">
-        <template is="goodsPanel" data='{{title:listTitle,list:goodsList}}' />
+        <template is="goodsPanel" data='{{title:listTitle,list:goodsList,btnTitle:btnTitle}}' />
       </view>
     </scroll-view>
-    <view class="foot flex_row_center_center">
+    <view class="foot flex_row_center_center" bindtap="finishStore">
       <view class="btn ok flex_row_center_center theme-button-blue">{{btnOk}}</view>
     </view>
   </view>
@@ -78,14 +82,14 @@
     </view>
     <view class="body">
       <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view class="item flex_column_center_flexStart">
+        <view class="item flex_column_center_flexStart" bindtap="gotoPage" data-stock_id="{{bean.stock_id}}" data-status="{{bean.status}}">
           <view class="row flex_row_center_spaceBetween">
-            <view class='left flex_column_center_center {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.id}}</view>
+            <view class='left flex_column_center_center {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.stock_id}}</view>
             <view class="center flex_column_center_center" style='{{bean.status!=2?"width:calc(100% - 180rpx);":"width: calc(100% - 120rpx);"}}'>
               <view class='name {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.name}}</view>
               <view class="bottom flex_row_center_flexStart">
-                <view class="datetime theme-font3">{{bean.datetime}}</view>
-                <view class="operator theme-font3">{{bean.operator}}</view>
+                <view class="datetime theme-font3">{{bean.add_time}}</view>
+                <view class="operator theme-font3">{{bean.user_name}}</view>
               </view>
             </view>
             <view wx:if='{{bean.status!=2}}' class="right flex_column_center_center">
@@ -110,16 +114,21 @@
       <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
         <view class="item flex_column_center_flexStart">
           <view class="row flex_row_center_spaceBetween">
-            <view class="left flex_column_center_center theme-font1">{{bean.id}}</view>
+            <view class="left flex_column_center_center theme-font1">{{bean.goods_id}}</view>
             <view class="center flex_column_center_center" style='{{app.typeOf(bean.button)=="object"&&bean.button!=null?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
               <view class="name theme-font1">{{bean.name}}</view>
               <view class="tag-group flex_row_center_flexStart">
-                <view wx:for="{{bean.tags}}" wx:for-item="tag" wx:key="tagKey" wx:for-index="tagIndex" class="tag theme-font3">{{tag}}</view>
+                <view  class="tag theme-font3">{{bean.cate_name}}</view>
+                <view  class="tag theme-font3">{{bean.sepc_name}}</view>
+                <view  class="tag theme-font3">{{bean.unit_name}}</view>
               </view>
             </view>
-            <view wx:if='{{app.typeOf(bean.button)=="object"&&bean.button!=null}}' class="right flex_column_center_center">
-              <view wx:if='{{app.typeOf(bean.button)=="object"&&bean.button!=null&&app.isArray(bean.button.label)}}' class='btn select flex_column_center_center {{bean.button.catchEye==true?"theme-button-blue":"theme-button-disable"}}'>
-                <view wx:for="{{bean.button.label}}" wx:for-item="lab" wx:key="labKey" wx:for-index="labIndex" class="text">{{lab}}</view>
+            <view wx:if="{{bean.viewBt==true}}"  class="right flex_column_center_center" bindtap="gotoPage" data-keys="{{index}}">
+              <view  class='btn select flex_column_center_center theme-button-blue' wx:if="{{bean.amount==0}}">
+                <view class="text" >{{btnTitle}}</view>
+              </view>
+              <view  class='btn select flex_column_center_center theme-button-disable' wx:else>
+                <view class="text" >{{bean.amount}}继续扫码</view>
               </view>
             </view>
           </view>
@@ -140,14 +149,14 @@
       <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
         <view class="item flex_column_center_flexStart">
           <view class="row flex_row_center_spaceBetween">
-            <view class="left flex_column_center_center theme-font3">{{bean.id}}</view>
+            <view class="left flex_column_center_center theme-font3">{{list.length-index}}</view>
             <view class="center flex_column_center_center">
-              <view class="name theme-font3">{{bean.name}}</view>
+              <view class="name theme-font3">{{bean.idcode}}</view>
               <view class="tag-group flex_row_center_flexStart">
-                <view wx:for="{{bean.tags}}" wx:for-item="tag" wx:key="tagKey" wx:for-index="tagIndex" class="tag theme-font3">{{tag}}</view>
+                <view  class="tag theme-font3">{{bean.add_time}}</view>
               </view>
             </view>
-            <view class="right flex_column_center_center">
+            <view class="right flex_column_center_center" bindtap="deleteScanGoods" data-keys="{{index}}">
               <view class='btn del flex_column_center_center'>
                 <view class="icon fa fa-trash-o theme-font5" aria-hidden="true"></view>
               </view>

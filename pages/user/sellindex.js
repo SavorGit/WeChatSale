@@ -142,6 +142,10 @@ Page({
           wx.redirectTo({
             url: '/pages/waiter/home',
           })
+        }else if(data.result.userinfo.role_type==6){
+          wx.redirectTo({
+            url: '/store/pages/index',
+          })
         }else {
           that.setData({user_info:data.result.userinfo})
           var task_list = that.data.task_list;
