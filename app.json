@@ -101,7 +101,9 @@
       "pages/storeout/scancode",
       "pages/storereceive/index",
       "pages/storereceive/scancode",
-      "pages/storereceive/billinfo"
+      "pages/storereceive/billinfo",
+      "pages/goodscheck/index",
+      "pages/goodscheck/uploadbill"
     ]
   }
 ],
