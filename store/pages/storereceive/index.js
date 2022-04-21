@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function (options) {
     openid = app.globalData.openid;
-    //获取出货单
+    //获取已领取的出库单列表
     this.getStockList();
   },
   getStockList:function(){
@@ -35,10 +35,28 @@ Page({
     utils.PostRequest(api_v_url + '/aa/bb', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      
+      that.setData({list:data.result})
     })
   },
 
+  gotoPage:function(e){
+
+    var type = e.currentTarget.dataset.type;
+    var page_url = '';
+    switch(type){
+      case 'scancode':
+        page_url = '/store/pages/storereceive/scancode';
+        break;
+      case 'billinfo':
+        var stock_id = e.currentTarget.dataset.stock_id;
+        page_url = '/store/pages/storereceive/billinfo?stock_id='+stock_id;
+        break;
+    }
+    wx.navigateTo({
+      url: page_url,
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

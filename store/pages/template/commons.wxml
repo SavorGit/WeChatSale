@@ -82,7 +82,7 @@
     </view>
     <view class="body">
       <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view class="item flex_column_center_flexStart" bindtap="gotoPage" data-stock_id="{{bean.stock_id}}" data-status="{{bean.status}}">
+        <view class="item flex_column_center_flexStart" bindtap="gotoPage" data-stock_id="{{bean.stock_id}}" data-status="{{bean.status}}" data-type="billinfo">
           <view class="row flex_row_center_spaceBetween">
             <view class='left flex_column_center_center {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.stock_id}}</view>
             <view class="center flex_column_center_center" style='{{bean.status!=2?"width:calc(100% - 180rpx);":"width: calc(100% - 120rpx);"}}'>

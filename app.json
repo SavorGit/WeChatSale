@@ -103,7 +103,9 @@
       "pages/storereceive/scancode",
       "pages/storereceive/billinfo",
       "pages/goodscheck/index",
-      "pages/goodscheck/uploadbill"
+      "pages/goodscheck/uploadbill",
+      "pages/goodschargeoff/index",
+      "pages/goodschargeoff/addinfo"
     ]
   }
 ],

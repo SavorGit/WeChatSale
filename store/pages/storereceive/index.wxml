@@ -11,7 +11,7 @@
       <template is="billPanel" data='{{title:"已领取的商品（出库单）",catchEye:true,list:list,btnTitle:btnTitle}}' />
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_center">
+  <view class="foot flex_row_center_center" bindtap="gotoPage" data-type="scancode">
     <view class="btn ok flex_row_center_center theme-button-blue">领取</view>
   </view>
 </view>
