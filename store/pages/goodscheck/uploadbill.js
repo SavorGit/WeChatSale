@@ -1,11 +1,16 @@
 // store/pages/goodscheck/uploadbill.js
+/**
+ * 商品验收 上传验收单
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsList: [
+      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: false }
+    ],
   },
 
   /**

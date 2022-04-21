@@ -1,1 +1,10 @@
 /* store/pages/goodscheck/index.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 商品验收 首页
+ */
+.page.check-accept-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}
