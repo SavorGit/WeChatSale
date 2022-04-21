@@ -1,2 +1,17 @@
 <!--store/pages/storereceive/index.wxml-->
-<text>store/pages/storereceive/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 领取商品 首页
+  -->
+<view class="page receive-goods container theme-main">
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+    <view class="warper flex_column_center_flexStart">
+      <template is="billPanel" data='{{title:"已领取的商品（出库单）",catchEye:true,list:list,btnTitle:btnTitle}}' />
+    </view>
+  </scroll-view>
+  <view class="foot flex_row_center_center">
+    <view class="btn ok flex_row_center_center theme-button-blue">领取</view>
+  </view>
+</view>

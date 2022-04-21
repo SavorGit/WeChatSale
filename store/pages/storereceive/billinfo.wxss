@@ -1,1 +1,13 @@
 /* store/pages/storereceive/billinfo.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 领取商品 出库信息
+ */
+.panel.bill>.title-bar>.title {
+  font-size: 36rpx;
+}
+
+.panel.googs>.title-bar>.title {
+  font-size: 28rpx;
+}

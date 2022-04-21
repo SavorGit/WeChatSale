@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "领取商品",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }

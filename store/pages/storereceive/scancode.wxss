@@ -1,1 +1,23 @@
 /* store/pages/storereceive/scancode.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 领取商品 扫码
+ */
+
+.panel>.option-bar {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 10rpx 20rpx;
+  margin-top: -70rpx;
+}
+
+.panel>.option-bar>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.page.receive-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}

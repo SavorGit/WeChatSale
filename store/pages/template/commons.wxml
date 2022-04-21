@@ -167,3 +167,33 @@
     </view>
   </view>
 </template>
+
+<!-- [面板] 检查商品 -->
+<template name="goodsPanelForChecked">
+  <view class="panel check-googs">
+    <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
+      <view class="title theme-font1">{{title}}</view>
+      <view class="title theme-font3" style="margin-left:50rpx;">{{title2}}</view>
+    </view>
+    <view class="body">
+      <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="left flex_column_center_center theme-font3">{{bean.id}}</view>
+            <view class="center flex_column_center_center">
+              <view class="name theme-font3">{{bean.name}}</view>
+              <view class="tag-group flex_row_center_flexStart">
+                <view class="tag theme-font3">{{bean.add_time}}</view>
+              </view>
+            </view>
+            <view class="right flex_column_center_center">
+              <view class='btn chekced flex_column_center_center' style="font-size:48rpx;">
+                <view class='icon fa fa-check-circle {{bean.checked?"theme-font-53BD1D":"theme-font3"}}' aria-hidden="true"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "领取",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }

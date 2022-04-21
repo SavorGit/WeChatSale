@@ -1,11 +1,21 @@
 // store/pages/storereceive/billinfo.js
+/**
+ * 领取商品 出库信息
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsList: [
+      { goods_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true },
+      { goods_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true },
+      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true }
+    ],
+    billList: [
+      { stock_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", add_time: "2022/04/10 09:00", user_name: "陈灵玉", status: 2 }
+    ],
   },
 
   /**

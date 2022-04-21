@@ -1,1 +1,10 @@
 /* store/pages/storereceive/index.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 领取商品 首页
+ */
+.page.receive-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}
