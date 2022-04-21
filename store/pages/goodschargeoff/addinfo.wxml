@@ -1,2 +1,76 @@
 <!--store/pages/goodschargeoff/addinfo.wxml-->
-<text>store/pages/goodschargeoff/addinfo.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 核销 新增核销申请
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page flex_column_center_flexStart">
+    <view class="main">
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">请扫描商品唯一标识进行核销</view>
+        </view>
+        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+          <view class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+            <view class="text">扫码</view>
+          </view>
+        </view>
+      </view>
+
+      <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
+
+      <view class="type flex_row_center_spaceBetween">
+        <view class="label theme-font1">核销原因</view>
+        <radio-group class="value flex_row_center_spaceBetween">
+          <block wx:for="{{typeList}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
+            <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.label}}</radio>
+          </block>
+        </radio-group>
+      </view>
+
+      <view class="panel makings flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">核销资料</view>
+        </view>
+        <view class="body flex_row_center_spaceBetween">
+          <view class="evidence flex_column_center_flexStart">
+            <image wx:if="{{true}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            <view wx:else class="btn add flex_column_center_center">+</view>
+            <view class="tips flex_column_center_center">
+              <view class="tip flex_row_center_center">
+                <view class="theme-font5">*</view>
+                <view class="content">酒水小票</view>
+              </view>
+            </view>
+          </view>
+          <view class="evidence flex_column_center_flexStart">
+            <image wx:if="{{true}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            <view wx:else class="btn add flex_column_center_center">+</view>
+            <view class="tips flex_column_center_center">
+              <view class="tip flex_row_center_center">
+                <view class="theme-font5">*</view>
+                <view class="content">瓶盖照片</view>
+              </view>
+            </view>
+          </view>
+          <view class="evidence flex_column_center_flexStart">
+            <image wx:if="{{false}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            <view wx:else class="btn add flex_column_center_center">+</view>
+            <view class="tips flex_column_center_center">
+              <view class="tip flex_row_center_center">
+                <view class="content">其他</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="foot flex_row_center_spaceAround">
+      <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">提交</view>
+    </view>
+  </view>
+</scroll-view>

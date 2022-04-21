@@ -1,11 +1,24 @@
 // store/pages/goodschargeoff/addinfo.js
+/**
+ * 核销 新增核销申请
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    listTitle: "已扫商品码（2）",
+    scanList: [
+      { id: 3, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
+      { id: 2, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
+      { id: 1, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
+    ],
+    typeList: [
+      { id: 1, label: "售卖", checked: true },
+      { id: 2, label: "品鉴酒", checked: false },
+      { id: 3, label: "活动", checked: false },
+    ]
   },
 
   /**
