@@ -98,7 +98,10 @@
       "pages/storein/scancode",
       "pages/storeout/index",
       "pages/storeout/selectgoods",
-      "pages/storeout/scancode"
+      "pages/storeout/scancode",
+      "pages/storereceive/index",
+      "pages/storereceive/scancode",
+      "pages/storereceive/billinfo"
     ]
   }
 ],
