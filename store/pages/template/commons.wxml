@@ -13,9 +13,9 @@
           <scroll-view class="tab-bar" scroll-x="true" scroll-with-animation="true">
             <view class="tab-group">
               <block wx:for="{{stores}}" wx:for-item="tab" wx:key="key" wx:for-index="index">
-                <view wx:if="{{tab.is_select==1}}"  class='tab flex_row_center_center selected'>{{tab.name}}</view>
+                <view wx:if="{{tab.is_select==1}}" class='tab flex_row_center_center selected'>{{tab.name}}</view>
 
-                <view wx:else  class='tab flex_row_center_center' bindtap="changeArea" data-keys="{{index}}">{{tab.name}}</view>
+                <view wx:else class='tab flex_row_center_center' bindtap="changeArea" data-keys="{{index}}">{{tab.name}}</view>
               </block>
             </view>
           </scroll-view>
@@ -60,12 +60,12 @@
   </view>
 </template>
 
-<!-- [页面] 选择商品 <template is="selectGoodsPage" data='{{listTitle:"请选择入库商品",goodsList:list,btnOk:"完成入库"}}' />-->
+<!-- [页面] 选择商品 <template is="selectGoodsPage" data='{{listTitle:"请选择入库商品",goodsList:list,btnOk:"完成入库",btnTitle:"",labelShow:224}}' />-->
 <template name="selectGoodsPage">
   <view class="page select-goods container theme-main">
     <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
       <view class="warper flex_column_center_flexStart">
-        <template is="goodsPanel" data='{{title:listTitle,list:goodsList,btnTitle:btnTitle}}' />
+        <template is="goodsPanel" data='{{title:listTitle,list:goodsList,btnTitle:btnTitle,labelShow:labelShow}}' />
       </view>
     </scroll-view>
     <view class="foot flex_row_center_center" bindtap="finishStore">
@@ -104,7 +104,7 @@
   </view>
 </template>
 
-<!-- [面板] 商品 <template is="goodsPanel" data='{{title:listTitle,list:goodsList}}' />-->
+<!-- [面板] 商品 <template is="goodsPanel" data='{{title:listTitle,list:goodsList,btnTitle:btnTitle}}' />-->
 <template name="goodsPanel">
   <view class="panel googs">
     <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
@@ -115,20 +115,21 @@
         <view class="item flex_column_center_flexStart">
           <view class="row flex_row_center_spaceBetween">
             <view class="left flex_column_center_center theme-font1">{{bean.goods_id}}</view>
-            <view class="center flex_column_center_center" style='{{app.typeOf(bean.button)=="object"&&bean.button!=null?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
+            <view class="center flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||app.typeOf(labelShow)=="number"&&labelShow!=0?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
               <view class="name theme-font1">{{bean.name}}</view>
               <view class="tag-group flex_row_center_flexStart">
-                <view  class="tag theme-font3">{{bean.cate_name}}</view>
-                <view  class="tag theme-font3">{{bean.sepc_name}}</view>
-                <view  class="tag theme-font3">{{bean.unit_name}}</view>
+                <view class="tag theme-font3">{{bean.cate_name}}</view>
+                <view class="tag theme-font3">{{bean.sepc_name}}</view>
+                <view class="tag theme-font3">{{bean.unit_name}}</view>
               </view>
             </view>
-            <view wx:if="{{bean.viewBt==true}}"  class="right flex_column_center_center" bindtap="gotoPage" data-keys="{{index}}">
-              <view  class='btn select flex_column_center_center theme-button-blue' wx:if="{{bean.amount==0}}">
-                <view class="text" >{{btnTitle}}</view>
+            <view wx:if="{{bean.viewBt==true}}" class="right flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:180rpx;":"width:80rpx;"}}' bindtap="gotoPage" data-keys="{{index}}">
+              <view class='btn select flex_column_center_center theme-button-blue' wx:if="{{bean.amount==0}}">
+                <view class="text">{{btnTitle}}</view>
               </view>
-              <view  class='btn select flex_column_center_center theme-button-disable' wx:else>
-                <view class="text" >{{bean.amount}}继续扫码</view>
+              <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}' wx:else>
+                <view class="text">{{bean.amount}}</view>
+                <view wx:if="{{(labelShow << 2 & 128 )==128}}" class="text">继续扫码</view>
               </view>
             </view>
           </view>
@@ -153,7 +154,7 @@
             <view class="center flex_column_center_center">
               <view class="name theme-font3">{{bean.idcode}}</view>
               <view class="tag-group flex_row_center_flexStart">
-                <view  class="tag theme-font3">{{bean.add_time}}</view>
+                <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>
             </view>
             <view class="right flex_column_center_center" bindtap="deleteScanGoods" data-keys="{{index}}">

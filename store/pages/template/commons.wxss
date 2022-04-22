@@ -131,16 +131,16 @@
   font-size: 28rpx;
 }
 
-.panel>.body>.item>.row>.center {
+/* .panel>.body>.item>.row>.center {
   width: calc(100% - 200rpx);
 }
 
 .panel>.body>.item>.row>.right {
   width: 80rpx;
-}
+} */
 
 .panel>.body>.item>.row>.right>.btn {
-  width: 60rpx;
+  /* width: 60rpx; */
   font-size: 60rpx;
 }
 
