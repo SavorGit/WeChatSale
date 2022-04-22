@@ -45,7 +45,7 @@ Page({
       openid: openid,
       stock_id:stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var list = data.result;
+      var list = data.result.goods_list;
       for(let i in list){
         list[i].viewBt = true;
       }
