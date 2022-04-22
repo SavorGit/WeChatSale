@@ -91,6 +91,9 @@ Page({
       case 'check':
         page_url = '/store/pages/goodscheck/index';
         break;
+      case 'breakage':
+        page_url = '/store/pages/goodsbreakage/havecode/scancode';
+        break;
     }
     page_url +='?openid='+openid
     wx.navigateTo({

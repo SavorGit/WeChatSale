@@ -48,7 +48,7 @@
         <view class="text">到达</view>
       </view>
     </view>
-    <view class="row button flex_row_center_center">
+    <view class="row button flex_row_center_center" bindtap="gotoPage" data-type="breakage">
       <view class="btn big flex_column_center_center loss-report">
         <view class="icon fa fa-low-vision" aria-hidden="true"></view>
         <view class="text">报损</view>

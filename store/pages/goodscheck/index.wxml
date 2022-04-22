@@ -5,7 +5,7 @@
 <!--
   -- 商品验收 首页
   -->
-<view wx:if="{{true}}" class="page check-accept-goods container theme-main">
+<view wx:if="{{config_info.step==1}}" class="page check-accept-goods container theme-main">
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
     <view class="warper flex_column_center_flexStart">
       <template is="goodsPanel" data='{{list:goodsList}}' />
@@ -25,7 +25,7 @@
       <template is="goodsPanelForChecked" data='{{title:"已扫商品码（5/10）",list:scanList}}' />
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
+  <view class="foot flex_row_center_spaceAround" bindtap="changeStep">
     <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">下一步</view>
   </view>
 </view>
@@ -42,9 +42,9 @@
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">已扫商品码（10）</view>
         </view>
-        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
-          <image wx:if="{{false}}" class="pic" mode="widthFix" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-          <view wx:else class="btn flex_column_center_center theme-button-blue">
+        <view class="body flex_column_center_center" bindtap="uploadCheckBillPic">
+          <image wx:if="{{img_path !=''}}" class="pic" mode="widthFix" src="{{oss_url}}{{img_path}}" />
+          <view wx:else class="btn flex_column_center_center theme-button-blue" >
             <view class="icon fa fa-plus" aria-hidden="true"></view>
           </view>
           <view class="tip">请上传酒楼验收单照片</view>
@@ -53,7 +53,7 @@
 
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
-    <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">提交</view>
+  <view class="foot flex_row_center_spaceAround" >
+    <button class="btn ok flex_row_center_center theme-button-blue" bindtap="subGoodsCheck" disabled="{{addDisabled}}">提交</button>
   </view>
 </view>
