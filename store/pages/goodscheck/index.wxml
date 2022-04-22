@@ -5,7 +5,7 @@
 <!--
   -- 商品验收 首页
   -->
-<view class="page check-accept-goods container theme-main">
+<view wx:if="{{true}}" class="page check-accept-goods container theme-main">
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
     <view class="warper flex_column_center_flexStart">
       <template is="goodsPanel" data='{{list:goodsList}}' />
@@ -27,5 +27,33 @@
   </scroll-view>
   <view class="foot flex_row_center_spaceAround">
     <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">下一步</view>
+  </view>
+</view>
+
+<!--
+  -- 商品验收 上传验收单
+  -->
+<view wx:else class="page check-accept-goods container theme-main">
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+    <view class="warper flex_column_center_flexStart">
+      <template is="goodsPanel" data='{{list:goodsList}}' />
+
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">已扫商品码（10）</view>
+        </view>
+        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+          <image wx:if="{{false}}" class="pic" mode="widthFix" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          <view wx:else class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-plus" aria-hidden="true"></view>
+          </view>
+          <view class="tip">请上传酒楼验收单照片</view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+  <view class="foot flex_row_center_spaceAround">
+    <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">提交</view>
   </view>
 </view>
