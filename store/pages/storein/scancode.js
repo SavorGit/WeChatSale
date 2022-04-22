@@ -157,25 +157,28 @@ Page({
       
     }
 
-    wx.showModal({
-      title: '确定要完成入库吗？',
-      success: function (res) {
-        if (res.confirm) {
-
-          utils.PostRequest(api_v_url + '/stock/finishGoods', {
-            goods_codes:goods_codes,
-            openid:openid,
-            stock_detail_id:goods_info.stock_detail_id,
-            type:1
-           }, (data, headers, cookies, errMsg, statusCode) => {
-             
-             wx.navigateBack({delta: 1})
-             app.showToast('完成入库成功')
-           })
+    if(goods_codes==''){
+      wx.navigateBack({delta: 1})
+    }else{
+      wx.showModal({
+        title: '确定要完成入库吗？',
+        success: function (res) {
+          if (res.confirm) {
+  
+            utils.PostRequest(api_v_url + '/stock/finishGoods', {
+              goods_codes:goods_codes,
+              openid:openid,
+              stock_detail_id:goods_info.stock_detail_id,
+              type:1
+             }, (data, headers, cookies, errMsg, statusCode) => {
+               
+               wx.navigateBack({delta: 1})
+               app.showToast('完成入库成功')
+             })
+          }
         }
-      }
-    })
-    
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
