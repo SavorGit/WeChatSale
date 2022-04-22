@@ -36,11 +36,17 @@ Page({
   },
   getStockInfo:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/stock/getGoodsByStockid', {
       openid  : openid,
       stock_id: stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      
+      var goodsList = data.result.goods_list
+      that.setData({goodsList:goodsList})
+      var stock_info = {};
+      stock_info.stock_id = data.result.stock_id;
+      stock_info.name     = data.result.name;
+      stock_info.add_time = data.result.add_time;
+      stock_info.user_name = data.result.user_name;
     })
   },
 
