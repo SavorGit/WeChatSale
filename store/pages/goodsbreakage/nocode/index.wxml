@@ -1,2 +1,17 @@
 <!--store/pages/goodsbreakage/nocode/index.wxml-->
-<text>store/pages/goodsbreakage/nocode/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 报损 无码报损 首页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="warpper">
+    <view class="list flex_column_center_flexStart">
+      <view wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" class="item flex_row_center_spaceBetween">
+        <view class="name theme-font1">{{bean.name}}</view>
+        <view class='btn flex_column_center_center {{bean.button.enable?"theme-button-blue":"theme-button-disable"}}'>{{bean.button.label}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

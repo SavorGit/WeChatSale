@@ -1,1 +1,23 @@
 /* store/pages/goodsbreakage/nocode/scancode.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 报损 无码报损 扫码
+ */
+
+.panel>.option-bar {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 10rpx 20rpx;
+  margin-top: -70rpx;
+}
+
+.panel>.option-bar>.btn {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.page.receive-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}

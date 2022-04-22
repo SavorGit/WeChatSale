@@ -1,1 +1,31 @@
 /* store/pages/goodsbreakage/nocode/index.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 报损 无码报损 首页
+ */
+.warpper,
+.list {
+  width: 100%;
+}
+
+.item {
+  width: calc(100% - 60rpx);
+  padding: 15rpx 30rpx;
+  border-bottom: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.item>.name {
+  width: calc(100% - 150rpx);
+  font-size: 28rpx;
+}
+
+.item>.btn {
+  width: 112rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}

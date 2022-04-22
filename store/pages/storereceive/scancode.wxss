@@ -12,7 +12,7 @@
   margin-top: -70rpx;
 }
 
-.panel>.option-bar>.title {
+.panel>.option-bar>.btn {
   font-size: 36rpx;
   font-weight: bold;
 }

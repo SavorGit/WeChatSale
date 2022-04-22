@@ -32,4 +32,3 @@
     <view class="btn ok flex_row_center_center theme-button-blue">确认领取</view>
   </view>
 </view>
-<!-- <template is="scanGoodsPage" data='{{scanTitle:"请扫描商品唯一标识进行领取",goodsList:goodsList,listTitle:listTitle,scanList:scanList,btnOk:"完成出库",btnCancel:"取消出库"}}' /> -->

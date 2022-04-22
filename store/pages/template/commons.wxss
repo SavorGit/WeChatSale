@@ -133,11 +133,15 @@
 }
 
 .panel.check-googs>.body>.item>.row>.center {
-  width: calc(100% - 200rpx);
+  width: calc(100% - 240rpx);
 }
 
 .panel.check-googs>.body>.item>.row>.right {
-  width: 80rpx;
+  width: 120rpx;
+}
+
+.panel.check-googs>.body>.item>.row>.right>.btn {
+  width: auto;
 }
 
 .panel>.body>.item>.row>.right>.btn {
@@ -226,4 +230,68 @@
 .page.scan-goods>.foot>.btn {
   width: 220rpx;
   height: 80rpx;
+}
+
+.window {
+  width: 0;
+  height: 0;
+}
+
+.window>.mask {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.window .entity {
+  width: 90vw;
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+
+.window .entity>.title-bar,
+.window .entity>.win-body {
+  width: calc(100% - 50rpx);
+  padding: 10rpx 25rpx;
+}
+
+.window .entity>.title-bar {
+  height: 50rpx;
+}
+
+.window .entity>.title-bar>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.window .entity>.win-body {
+  font-size: 28rpx;
+}
+
+.window.loss-reporting-reason .entity {
+  width: 630rpx;
+}
+
+.window.loss-reporting-reason .entity>.win-body>.label {
+  padding: 10rpx 0;
+  font-size: 36rpx;
+}
+
+.window.loss-reporting-reason .entity>.win-body>.value {
+  width: 560rpx;
+  height: 200rpx;
+  padding: 10rpx 16rpx;
+  border: 3rpx solid rgb(187, 187, 187);
+  font-size: 28rpx;
+}
+
+.window.loss-reporting-reason .entity>.win-body>.btn {
+  width: 200rpx;
+  height: 60rpx;
+  padding: 10rpx 0;
+  font-size: 36rpx;
 }

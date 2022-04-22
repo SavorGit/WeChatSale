@@ -1,11 +1,18 @@
 // store/pages/goodsbreakage/nocode/goodslist.js
+/**
+ * 报损 无码报损 商品列表
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: [
+      { stock_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", user_name: "陈灵玉", status: 0 },
+      { stock_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", add_time: "2022/04/10 10:00", operauser_nametor: "陈灵玉", status: 0 },
+      { stock_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", add_time: "2022/04/10 09:00", user_name: "陈灵玉", status: 0 }
+    ],
   },
 
   /**

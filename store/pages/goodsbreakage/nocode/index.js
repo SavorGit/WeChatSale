@@ -1,11 +1,18 @@
 // store/pages/goodsbreakage/nocode/index.js
+/**
+ * 报损 无码报损 首页
+ */
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: [
+      { name: "我入库的商品", button: { enable: false, label: "报损" } },
+      { name: "我出库的商品", button: { enable: true, label: "报损" } },
+      { name: "我领取的商品", button: { enable: true, label: "报损" } }
+    ]
   },
 
   /**

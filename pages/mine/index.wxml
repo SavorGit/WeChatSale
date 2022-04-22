@@ -152,6 +152,13 @@
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
+	<!-- 库存管理面板 -->
+	<view class="promotion-goods-manage-panel theme7 theme-font2">
+		<view class="full_width full_height flex_row_center_spaceBetween">
+			<view>库存管理</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
 	<!-- 我的员工面板 -->
 	<view class="team-members-panel full_width theme7" wx:if="{{(user_info.role_type==1 || user_info.role_type==2 ) && staff_manage==true}}">
 		<view class='title theme-font2'>

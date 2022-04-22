@@ -1,2 +1,41 @@
 <!--store/pages/goodsbreakage/nocode/scancode.wxml-->
-<text>store/pages/goodsbreakage/nocode/scancode.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 报损 无码报损 扫码
+  -->
+<view class="page receive-goods container theme-main">
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+    <view class="warper flex_column_center_flexStart">
+      <template is="goodsPanel" data='{{list:goodsList}}' />
+
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">请扫描其他商品唯一标识进行排查</view>
+        </view>
+        <view class="option-bar flex_row_center_flexEnd" bindtap="gotoPage">
+          <view class="btn order flex_row_center_center">
+            <view class="icon fa fa-file-text theme-font-6297F2" aria-hidden="true"></view>
+          </view>
+        </view>
+        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+          <view class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+            <view class="text">扫码</view>
+          </view>
+        </view>
+      </view>
+
+      <template is="goodsPanelForChecked" data='{{title:"已扫商品码（5/10）",list:scanList}}' />
+    </view>
+  </scroll-view>
+  <view class="foot flex_row_center_spaceAround">
+    <view class="btn ok flex_row_center_center theme-button-blue">对未扫码商品报损</view>
+  </view>
+</view>
+
+
+
+<!-- [弹窗] 报损原因 -->
+<template is="popWindowForLossReportingReason" data='{{show:true}}' />

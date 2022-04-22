@@ -8,7 +8,7 @@
 <view class="page receive-goods container theme-main">
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
     <view class="warper flex_column_center_flexStart">
-      <template is="billPanel" data='{{title:"已领取的商品（出库单）",catchEye:true,list:list,btnTitle:btnTitle}}' />
+      <template is="billPanel" data='{{title:"已领取的商品（出库单）",catchEye:true,list:list,button: {icon:"file-text"} }}' />
     </view>
   </scroll-view>
   <view class="foot flex_row_center_center" bindtap="gotoPage" data-type="scancode">

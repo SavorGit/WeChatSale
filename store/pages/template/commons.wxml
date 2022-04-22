@@ -85,16 +85,20 @@
         <view class="item flex_column_center_flexStart" bindtap="gotoPage" data-stock_id="{{bean.stock_id}}" data-status="{{bean.status}}" data-type="billinfo">
           <view class="row flex_row_center_spaceBetween">
             <view class='left flex_column_center_center {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.stock_id}}</view>
-            <view class="center flex_column_center_center" style='{{bean.status!=2?"width:calc(100% - 180rpx);":"width: calc(100% - 120rpx);"}}'>
+            <view class="center flex_column_center_center" style='{{bean.status!=2?button.style=="btnblue"?"width:calc(100% - "+(30 * button.label.length + 140)+"rpx);":"width:calc(100% - 180rpx);":"width: calc(100% - 120rpx);"}}'>
               <view class='name {{catchEye==true?"theme-font1":"theme-font3"}}'>{{bean.name}}</view>
               <view class="bottom flex_row_center_flexStart">
                 <view class="datetime theme-font3">{{bean.add_time}}</view>
                 <view class="operator theme-font3">{{bean.user_name}}</view>
               </view>
             </view>
-            <view wx:if='{{bean.status!=2}}' class="right flex_column_center_center">
-              <view class="btn enter">
-                <view class="icon fa fa-chevron-right" aria-hidden="true"></view>
+            <view wx:if='{{bean.status!=2}}' class="right flex_column_center_center" style='{{button.style=="btnblue"?"width:"+(30 * button.label.length + 20)+"rpx;":""}}'>
+              <view wx:if='{{button.style=="btnblue"}}' class="btn enter theme-button-blue">
+                <view class="text">{{button.label}}</view>
+              </view>
+              <view wx:else class="btn enter">
+                <view wx:if='{{button.icon=="file-text"}}' class="icon fa fa-file-text theme-font-6297F2" aria-hidden="true"></view>
+                <view wx:else class="icon fa fa-chevron-right theme-font1" aria-hidden="true"></view>
               </view>
             </view>
           </view>
@@ -189,12 +193,29 @@
             </view>
             <view class="right flex_column_center_center">
               <view class='btn chekced flex_column_center_center' style="font-size:48rpx;">
-                <view class='icon fa fa-check-circle {{bean.checked?"theme-font-53BD1D":"theme-font3"}}' aria-hidden="true"></view>
+                <view wx:if="{{bean.status==3}}" class="theme-font3" style="font-size:28rpx;">已核销</view>
+                <view wx:else class='icon fa fa-check-circle {{bean.checked?"theme-font-53BD1D":"theme-font3"}}' aria-hidden="true"></view>
               </view>
             </view>
           </view>
         </view>
       </block>
+    </view>
+  </view>
+</template>
+
+
+<!-- [弹窗] 报损原因 -->
+<template name="popWindowForLossReportingReason">
+  <view wx:if="{{show}}" class="window loss-reporting-reason">
+    <view class="mask flex_column_center_center">
+      <view class="entity theme-window">
+        <view class="win-body flex_column_center_flexStart">
+          <view class="label">请输入报损原因</view>
+          <textarea class="value" name="" id="" cols="30" rows="10" placeholder="多行输入"></textarea>
+          <view class="btn submit flex_row_center_center theme-font-6297F2">提交</view>
+        </view>
+      </view>
     </view>
   </view>
 </template>

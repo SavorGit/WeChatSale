@@ -1,2 +1,12 @@
 <!--store/pages/goodsbreakage/nocode/goodslist.wxml-->
-<text>store/pages/goodsbreakage/nocode/goodslist.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 报损 无码报损 商品列表
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="warper flex_column_center_flexStart">
+    <template is="billPanel" data='{{title:"已领取的商品（出库单）",catchEye:true,list:list,button: {style:"btnblue",label:"报损"} }}' />
+  </view>
+</scroll-view>

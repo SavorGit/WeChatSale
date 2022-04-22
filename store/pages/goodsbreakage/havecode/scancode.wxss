@@ -1,1 +1,152 @@
 /* store/pages/goodsbreakage/havecode/scancode.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 报损 扫码报损
+ */
+.panel>.option-bar {
+  width: calc(100% - 40rpx);
+  height: 50rpx;
+  padding: 10rpx 20rpx;
+  margin-top: -70rpx;
+}
+
+.panel>.option-bar>.btn {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.panel>.option-bar>.btn>.text {
+  font-size: 28rpx;
+}
+
+.panel>.body>.tip {
+  padding: 20rpx 0 50rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.panel.scan>.body {
+  height: auto;
+}
+
+.list {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.item {
+  width: calc(100% - 40rpx);
+  padding: 20rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 40rpx;
+  background-color: rgba(98, 151, 242, 0.06);
+}
+
+.item:first-child {
+  margin-top: 0;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.item>.top,
+.item>.middle,
+.item>.bottom {
+  width: 100%;
+}
+
+.item>.top {
+  padding: 10rpx 0;
+}
+
+.item>.top>.status,
+.item>.top>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.item>.middle>.goods-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.item>.middle>.goods-list,
+.item>.middle>.goods-list>.goods {
+  width: 100%;
+}
+
+.item>.middle>.goods-list>.goods {
+  padding: 10rpx 0;
+  border-bottom: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.item>.middle>.goods-list>.goods>.left {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.center {
+  width: calc(100% - 120rpx);
+}
+
+.item>.middle>.goods-list>.goods>.center>.name {
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group,
+.item>.middle>.goods-list>.goods>.center>.identifying-code {
+  width: 100%;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag,
+.item>.middle>.goods-list>.goods>.center>.identifying-code {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag {
+  margin-left: 30rpx;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag:first-child {
+  margin-left: unset;
+}
+
+.item>.bottom>.node {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.item>.bottom>.line {
+  width: 100%;
+}
+
+.item>.bottom>.desc,
+.item>.bottom>.line>view {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.bottom>.line>view {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.item>.bottom>.line>view:first-child {
+  padding-left: 0;
+}
+
+.item>.bottom>.line>view:last-child {
+  padding-right: 0;
+}
+
+.page.qrcode-loss-reporting>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}

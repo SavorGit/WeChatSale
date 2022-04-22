@@ -1,1 +1,10 @@
 /* store/pages/goodsbreakage/nocode/goodslist.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 报损 无码报损 商品列表
+ */
+.page.receive-goods>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}
