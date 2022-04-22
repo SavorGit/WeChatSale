@@ -12,7 +12,7 @@
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">请扫描商品唯一标识进行领取</view>
         </view>
-        <view class="option-bar flex_row_center_flexEnd">
+        <view class="option-bar flex_row_center_flexEnd" bindtap="gotoPage">
           <view class="btn order flex_row_center_center">
             <view class="icon fa fa-file-text theme-font-6297F2" aria-hidden="true"></view>
           </view>

@@ -2,6 +2,14 @@
 /**
  * 领取商品 出库信息
  */
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var stock_id;
 Page({
 
   /**
@@ -22,7 +30,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    openid   = app.globalData.openid;
+    stock_id = options.stock_id;
+    this.getStockInfo(); 
+  },
+  getStockInfo:function(){
+    var that = this;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid  : openid,
+      stock_id: stock_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+    })
   },
 
   /**

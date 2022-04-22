@@ -34,9 +34,52 @@ Page({
    */
   onLoad: function (options) {
     openid = app.globalData.openid;
-    
-  },
 
+  },
+  scanGoodsCode:function(){
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        var code_msg = res.result;
+        //解码
+        that.goodsDecode(code_msg);
+
+      },fail:function(res){
+        app.showToast('二维码识别失败,请重试');
+      }
+    })
+  },
+  goodsDecode:function(code_msg){
+    var that = this;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid: app.globalData.openid,
+      idcode:code_msg,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+    })
+  },
+  
+  gotoPage:function(e){
+    wx.navigateTo({
+      url: '/store/pages/storereceive/billinfo',
+    })
+  },
+  confirmReceive:function(){
+    wx.showModal({
+      title: '确定要认领吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/aa/bb', {
+            openid  : openid,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
