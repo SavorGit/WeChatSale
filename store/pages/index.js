@@ -88,6 +88,9 @@ Page({
       case 'receive':
         page_url = '/store/pages/storereceive/index';
         break;
+      case 'check':
+        page_url = '/store/pages/goodscheck/index';
+        break;
     }
     page_url +='?openid='+openid
     wx.navigateTo({
