@@ -26,7 +26,8 @@ Page({
       { id: 3, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
       { id: 2, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
       { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-    ]
+    ],
+    fst_scan:1,
   },
 
   /**
@@ -53,9 +54,11 @@ Page({
   },
   goodsDecode:function(code_msg){
     var that = this;
+    var fst_scan = this.data.fst_scan;
     utils.PostRequest(api_v_url + '/aa/bb', {
       openid: app.globalData.openid,
       idcode:code_msg,
+      flag : fst_scan
     }, (data, headers, cookies, errMsg, statusCode) => {
 
     })

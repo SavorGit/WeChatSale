@@ -105,7 +105,11 @@
       "pages/goodscheck/index",
       "pages/goodscheck/uploadbill",
       "pages/goodschargeoff/index",
-      "pages/goodschargeoff/addinfo"
+      "pages/goodschargeoff/addinfo",
+      "pages/goodsbreakage/havecode/scancode",
+      "pages/goodsbreakage/nocode/index",
+      "pages/goodsbreakage/nocode/goodslist",
+      "pages/goodsbreakage/nocode/scancode"
     ]
   }
 ],

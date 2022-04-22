@@ -43,7 +43,7 @@
         <view class="icon fa fa-download" aria-hidden="true"></view>
         <view class="text">领取</view>
       </view>
-      <view class="btn small flex_column_center_center sign-for">
+      <view class="btn small flex_column_center_center sign-for" bindtap="gotoPage" data-type="check">
         <view class="icon fa fa-download" aria-hidden="true"></view>
         <view class="text">到达</view>
       </view>

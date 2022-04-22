@@ -26,7 +26,7 @@ Page({
     wx.hideHomeButton();
     wx.hideShareMenu();
     openid = app.globalData.openid;
-    //this.getAllHotelList();
+    this.getAllHotelList();
   },
   getAllHotelList:function(){
     var that = this;
