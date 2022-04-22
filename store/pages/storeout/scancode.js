@@ -173,8 +173,10 @@ Page({
     var scanList = this.data.scanList;
     var space = '';
     for(let i in scanList){
-      goods_codes += space + scanList[i].idcode;  
-      space = ','
+      if(scanList[i].status==1){
+        goods_codes += space + scanList[i].idcode;  
+        space = ','
+      }
     }
 
     wx.showModal({
