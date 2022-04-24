@@ -72,7 +72,47 @@ Page({
       idcode: code_msg,
       stock_id  : stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      if(stock_id==0){
+        that.getStockInfo(data.result.stock_id,app.globalData.openid)
+        that.setData({stock_id:data.result.stock_id});
+      }
+      var idcode = data.result.idcode;
+      
+      var scanList = data.result.goods_list;
+      if(scanList.length==0){
+        scanList = that.data.scanList;
+        var is_return = false;
+        for(let i in scanList){
+          if(scanList[i].idcode==idcode && scanList[i].checked==true){
+            is_return = true;
+          }
+        }
+        if(is_return){
+          app.showToast('该商品已扫码');
+          return false;
+        }
+      }
+      var have_scan_nums = 0;
+      for(let i in scanList){
+        if(scanList[i].idcode==idcode){
+          scanList[i].checked = true;
+        }
+        if(scanList[i].checked == true){
+          have_scan_nums ++;
+        }
+      }
+      var title = "已扫码商品("+have_scan_nums+"/"+scanList.length+")";
+      that.setData({scanList:scanList,title:title})
+    })
+  },
+  getStockInfo:function(stock_id,openid){
+    var that = this;
+    utils.PostRequest(api_v_url + '/stock/getGoodsByStockid', {
+      openid: openid,
+      stock_id  : stock_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var goodsList = data.result.goods_list;
+      that.setData({goodsList:goodsList})
     })
   },
   changeStep:function(){
