@@ -10,7 +10,7 @@
     <view class="list flex_column_center_flexStart">
       <view wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" class="item flex_row_center_spaceBetween">
         <view class="name theme-font1">{{bean.name}}</view>
-        <view class='btn flex_column_center_center {{bean.button.enable?"theme-button-blue":"theme-button-disable"}}'>{{bean.button.label}}</view>
+        <view bindtap="gotoPage" data-type="{{bean.type}}" class='btn flex_column_center_center {{bean.button.enable?"theme-button-blue":"theme-button-disable"}}'>{{bean.button.label}}</view>
       </view>
     </view>
   </view>

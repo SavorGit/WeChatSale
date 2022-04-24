@@ -26,16 +26,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     openid = app.globalData.openid;
     //获取已领取的出库单列表
-    this.getStockList();
+    
   },
   getStockList:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/stock/getReceiveOutlist', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({list:data.result})
+      var list = data.result.datalist
+      for(let i in list){
+        list[i].status= 0;
+      }
+      that.setData({list:list});
     })
   },
 
@@ -68,7 +73,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getStockList();
   },
 
   /**

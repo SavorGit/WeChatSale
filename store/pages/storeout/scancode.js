@@ -28,6 +28,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    wx.hideShareMenu();
     var goods_info = {goods_id:0,name:'',cate_name:'',sepc_name:'',unit_name:''}
 
     openid = app.globalData.openid;

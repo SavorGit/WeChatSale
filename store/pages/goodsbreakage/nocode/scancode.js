@@ -2,6 +2,14 @@
 /**
  * 报损 无码报损 扫码
  */
+const app = getApp()
+const utils = require('../../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var stock_id;
 Page({
 
   /**
@@ -24,15 +32,52 @@ Page({
       { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", status: 0, checked: false },
     ],
     fst_scan: 1,
+    popReasonWind:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
+    stock_id = options.stock_id;
+
+
 
   },
+  scanGoodsCode:function(){
+    var that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        var code_msg = res.result;
+        //解码
+        that.goodsDecode(code_msg);
 
+      },fail:function(res){
+        app.showToast('二维码识别失败,请重试');
+      }
+    })
+  },
+  goodsDecode:function(code_msg){
+    var that = this;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid:openid
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+    })
+  },
+  popReasonWind:function(){
+    this.setData({popReasonWind:true})
+  },
+  subBreakage:function(){
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid:openid
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

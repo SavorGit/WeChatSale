@@ -2,6 +2,13 @@
 /**
  * 报损 无码报损 首页
  */
+const app = getApp()
+const utils = require('../../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
 Page({
 
   /**
@@ -9,9 +16,9 @@ Page({
    */
   data: {
     list: [
-      { name: "我入库的商品", button: { enable: false, label: "报损" } },
-      { name: "我出库的商品", button: { enable: true, label: "报损" } },
-      { name: "我领取的商品", button: { enable: true, label: "报损" } }
+      { name: "我入库的商品", button: { enable: false, label: "报损" },type:1 },
+      { name: "我出库的商品", button: { enable: true, label: "报损" } ,type:2},
+      { name: "我领取的商品", button: { enable: true, label: "报损" } ,type:3}
     ]
   },
 
@@ -19,7 +26,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
+    openid = app.globalData.openid;
 
+  },
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: '/store/pages/goodsbreakage/nocode/goodslist?type='+type,
+    })
   },
 
   /**

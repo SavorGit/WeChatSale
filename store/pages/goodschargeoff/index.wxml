@@ -6,7 +6,7 @@
   -- 核销 首页
   -->
 <view class="page check-accept-goods container theme-main">
-  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
     <view class="warper flex_column_center_flexStart">
       <view class="list flex_column_center_flexStart">
         <view wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" class="item flex_column_center_flexStart">
@@ -43,7 +43,7 @@
       </view>
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
+  <view class="foot flex_row_center_spaceAround" bindtap="gotoPage">
     <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">新增核销申请</view>
   </view>
 </view>

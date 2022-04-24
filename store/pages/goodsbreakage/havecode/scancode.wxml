@@ -72,4 +72,4 @@
 
 
 <!-- [弹窗] 报损原因 -->
-<template is="popWindowForLossReportingReason" data='{{show:true}}' />
+<template is="popWindowForLossReportingReason" data='{{show:popReasonWind}}' />

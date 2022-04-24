@@ -184,9 +184,9 @@
       <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
         <view class="item flex_column_center_flexStart">
           <view class="row flex_row_center_spaceBetween">
-            <view class="left flex_column_center_center theme-font3">{{bean.id}}</view>
+            <view class="left flex_column_center_center theme-font3">{{list.length-index}}</view>
             <view class="center flex_column_center_center">
-              <view class="name theme-font3">{{bean.name}}</view>
+              <view class="name theme-font3">{{bean.idcode}}</view>
               <view class="tag-group flex_row_center_flexStart">
                 <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>

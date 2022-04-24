@@ -32,7 +32,8 @@ Page({
       { id: 2, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
       { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
     ],
-    config_info:{fst_scan:1,step:1},
+    stock_id:0,
+    config_info:{step:1},
     img_path:'',
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
@@ -42,6 +43,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     openid = app.globalData.openid;
 
 
@@ -64,11 +66,11 @@ Page({
   goodsDecode:function(code_msg){
     var that = this;
     var config_info = this.data.config_info;
-
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    var stock_id = this.data.stock_id;
+    utils.PostRequest(api_v_url + '/stock/scanCheck', {
       openid: app.globalData.openid,
       idcode: code_msg,
-      flag  : config_info.fst_scan
+      stock_id  : stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
 
     })

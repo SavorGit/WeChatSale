@@ -15,25 +15,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scanList: [
-      { id: 10, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 9, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 8, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 7, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 6, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 5, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 4, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 3, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 2, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-    ],
-    fst_scan:1,
+    scanList: [],
+    stock_id :0,
+    title:"已扫码商品(0/0)",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     openid = app.globalData.openid;
 
   },
@@ -54,30 +45,83 @@ Page({
   },
   goodsDecode:function(code_msg){
     var that = this;
-    var fst_scan = this.data.fst_scan;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    var stock_id = this.data.stock_id;
+    utils.PostRequest(api_v_url + '/stock/scanReceive', {
       openid: app.globalData.openid,
       idcode:code_msg,
-      flag : fst_scan
+      stock_id : stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      if(stock_id==0){
+        that.setData({stock_id:data.result.stock_id});
+      }
+      var idcode = data.result.idcode;
+      
+      var scanList = data.result.goods_list;
+      if(scanList.length==0){
+        scanList = that.data.scanList;
+        var is_return = false;
+        for(let i in scanList){
+          if(scanList[i].idcode==idcode && scanList[i].checked==true){
+            is_return = true;
+          }
+        }
+        if(is_return){
+          app.showToast('该商品已扫码');
+          return false;
+        }
+      }
+      var have_scan_nums = 0;
+      for(let i in scanList){
+        if(scanList[i].idcode==idcode){
+          scanList[i].checked = true;
+        }
+        if(scanList[i].checked == true){
+          have_scan_nums ++;
+        }
+      }
+      var title = "已扫码商品("+have_scan_nums+"/"+scanList.length+")";
+      that.setData({scanList:scanList,title:title})
     })
   },
   
   gotoPage:function(e){
+    var stock_id = this.data.stock_id;
     wx.navigateTo({
-      url: '/store/pages/storereceive/billinfo',
+      url: '/store/pages/storereceive/billinfo?stock_id='+stock_id,
     })
   },
   confirmReceive:function(){
+    var scanList = this.data.scanList;
+    if(scanList.length==0){
+      app.showToast('请扫商品码');
+      return false;
+    }
+    var is_return = false;
+    var goods_codes = '';
+    var space = '';
+    for(let i in scanList){
+      if(scanList[i].checked== false){
+        is_return = true;
+        break;
+      }
+      goods_codes += space + scanList[i].idcode;
+      space = ',';
+    }
+    if(is_return){
+      app.showToast('请扫完全部商品码后确认');
+      return false;
+    }
+    var stock_id = this.data.stock_id;
     wx.showModal({
       title: '确定要认领吗？',
       success: function (res) {
         if (res.confirm) {
-          utils.PostRequest(api_v_url + '/aa/bb', {
+          utils.PostRequest(api_v_url + '/stock/finishReceive', {
             openid  : openid,
+            goods_codes:goods_codes,
+            stock_id:stock_id
           }, (data, headers, cookies, errMsg, statusCode) => {
-            
+            wx.navigateBack({delta: 1})
           })
         }
       }

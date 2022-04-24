@@ -24,7 +24,7 @@
 
       <view class="type flex_row_center_spaceBetween">
         <view class="label theme-font1">核销原因</view>
-        <radio-group class="value flex_row_center_spaceBetween">
+        <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
           <block wx:for="{{typeList}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
             <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.label}}</radio>
           </block>
@@ -36,8 +36,8 @@
           <view class="title">核销资料</view>
         </view>
         <view class="body flex_row_center_spaceBetween">
-          <view class="evidence flex_column_center_flexStart">
-            <image wx:if="{{true}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="wine_receipt_img">
+            <image wx:if="{{img_list.wine_receipt_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.wine_receipt_img}}" />
             <view wx:else class="btn add flex_column_center_center">+</view>
             <view class="tips flex_column_center_center">
               <view class="tip flex_row_center_center">
@@ -46,8 +46,8 @@
               </view>
             </view>
           </view>
-          <view class="evidence flex_column_center_flexStart">
-            <image wx:if="{{true}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="bottle_cap_img">
+            <image wx:if="{{img_list.bottle_cap_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.bottle_cap_img}}" />
             <view wx:else class="btn add flex_column_center_center">+</view>
             <view class="tips flex_column_center_center">
               <view class="tip flex_row_center_center">
@@ -56,8 +56,8 @@
               </view>
             </view>
           </view>
-          <view class="evidence flex_column_center_flexStart">
-            <image wx:if="{{false}}" class="btn pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="other_img">
+            <image wx:if="{{img_list.other_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.other_img}}" />
             <view wx:else class="btn add flex_column_center_center">+</view>
             <view class="tips flex_column_center_center">
               <view class="tip flex_row_center_center">
@@ -70,7 +70,7 @@
 
     </view>
     <view class="foot flex_row_center_spaceAround">
-      <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">提交</view>
+      <button class="btn ok flex_row_center_center theme-button-blue" bindtap="subGoodsChargeoff" disabled="{{addDisabled}}">提交</button>
     </view>
   </view>
 </scroll-view>

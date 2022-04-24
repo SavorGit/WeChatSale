@@ -24,6 +24,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    wx.hideShareMenu();
     openid = app.globalData.openid;
     stock_id = options.stock_id;
   },

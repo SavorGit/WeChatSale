@@ -7,7 +7,7 @@
   -->
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="page flex_column_center_flexStart">
-    <template is="billPanel" data='{{title:"出库单（xxxxxxx）",catchEye:true,list:billList}}' />
+    <template is="billPanel" data='{{title:title,catchEye:true,list:billList}}' />
     <template is="goodsPanel" data='{{title:"出库商品",list:goodsList,btnTitle:"100"}}' />
   </view>
 </scroll-view>

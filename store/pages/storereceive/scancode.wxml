@@ -12,7 +12,7 @@
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">请扫描商品唯一标识进行领取</view>
         </view>
-        <view class="option-bar flex_row_center_flexEnd" bindtap="gotoPage">
+        <view class="option-bar flex_row_center_flexEnd" bindtap="gotoPage" wx:if="{{stock_id>0}}">
           <view class="btn order flex_row_center_center">
             <view class="icon fa fa-file-text theme-font-6297F2" aria-hidden="true"></view>
           </view>
@@ -25,10 +25,10 @@
         </view>
       </view>
 
-      <template is="goodsPanelForChecked" data='{{title:"已扫商品码（5/10）",list:scanList}}' />
+      <template is="goodsPanelForChecked" data='{{title:title,list:scanList}}' />
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
+  <view class="foot flex_row_center_spaceAround" bindtap="confirmReceive">
     <view class="btn ok flex_row_center_center theme-button-blue">确认领取</view>
   </view>
 </view>

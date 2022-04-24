@@ -16,20 +16,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsList: [
-      { goods_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true },
-      { goods_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true },
-      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: true }
-    ],
-    billList: [
-      { stock_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", add_time: "2022/04/10 09:00", user_name: "陈灵玉", status: 2 }
-    ],
+    goodsList: [],
+    billList: [],
+    title:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.hideShareMenu();
     openid   = app.globalData.openid;
     stock_id = options.stock_id;
     this.getStockInfo(); 
@@ -41,12 +37,21 @@ Page({
       stock_id: stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goodsList = data.result.goods_list
+      for(let i in goodsList){
+        goodsList[i].viewBt = true;
+      }
       that.setData({goodsList:goodsList})
       var stock_info = {};
       stock_info.stock_id = data.result.stock_id;
       stock_info.name     = data.result.name;
       stock_info.add_time = data.result.add_time;
       stock_info.user_name = data.result.user_name;
+      stock_info.status = 2
+      var billList = that.data.billList;
+      billList.push(stock_info);
+      var title = data.result.name;
+
+      that.setData({billList:billList,title:title})
     })
   },
 
