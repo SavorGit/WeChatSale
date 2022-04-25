@@ -52,7 +52,7 @@ Page({
         var listTitle = '已扫商品码（0/'+stock_amount+'）';
         that.setData({listTitle:listTitle});
       }else {
-        var listTitle = '已扫商品码（0/'+stock_amount+'）';
+        var listTitle = '已扫商品码（'+scanList.length+'/'+stock_amount+'）';
         that.setData({scanList:scanList,listTitle:listTitle,scancode_nums:scanList.length});
       }
       

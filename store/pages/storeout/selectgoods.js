@@ -65,6 +65,18 @@ Page({
   },
   finishStore:function(){
     var that = this;
+    var list = this.data.list;
+    var is_return = false;
+    for(let i in list){
+      if(list[i].amount!=list[i].stock_amount){
+        is_return = true;
+        break;
+      }
+    }
+    if(is_return==true){
+      app.showToast('出库数量不符');
+      return false;
+    }
     wx.showModal({
       title: '确定要完成出库吗？',
       success: function (res) {
@@ -74,7 +86,7 @@ Page({
             stock_id:stock_id
           }, (data, headers, cookies, errMsg, statusCode) => {
             wx.navigateBack({delta: 1})
-            app.showToast('成功完成出库');
+            app.showToast('成功完成出库',2000,'success');
           })
         }
       }
