@@ -22,7 +22,7 @@
         </view>
       </view>
 
-      <template is="goodsPanelForChecked" data='{{title:"已扫商品码（5/10）",list:scanList}}' />
+      <template is="goodsPanelForChecked" data='{{title:title,list:scanList}}' />
     </view>
   </scroll-view>
   <view class="foot flex_row_center_spaceAround" bindtap="changeStep">
@@ -40,7 +40,7 @@
 
       <view class="panel scan flex_column_center_flexStart">
         <view class="title-bar flex_row_center_flexStart">
-          <view class="title">已扫商品码（10）</view>
+          <view class="title">已扫商品码({{all_nums}})</view>
         </view>
         <view class="body flex_column_center_center" bindtap="uploadCheckBillPic">
           <image wx:if="{{img_path !=''}}" class="pic" mode="widthFix" src="{{oss_url}}{{img_path}}" />

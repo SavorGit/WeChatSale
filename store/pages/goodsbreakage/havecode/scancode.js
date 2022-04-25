@@ -15,30 +15,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scanList: [
-      { id: 10, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 9, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 8, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 7, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 6, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 5, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 4, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 3, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 2, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-    ],
     list: [
-      {
-        title: "报损商品1（xxxxxxx）", node: "领取（xxxxxxx）", goodsList: [
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
-        ], date_time: "2022/04/10 11:00", username: "陈灵玉", desc: "哪里来的"
+      /*{
+        title: "报损商品1（xxxxxxx）", type_str: "领取（xxxxxxx）", goods_info: 
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
+        , add_time: "2022/04/10 11:00", op_uname: "陈灵玉", desc: "哪里来的"
       },
       {
-        title: "报损商品2（xxxxxxx）", node: "出库（xxxxxxx）", goodsList: [
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
-        ], date_time: "2022/04/10 11:00", username: "陈灵玉", desc: "库存未知"
-      },
+        title: "报损商品2（xxxxxxx）", type_str: "出库（xxxxxxx）", goodsList: 
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", idcode: "x14w2d8w" }, add_time: "2022/04/10 11:00", op_uname: "陈灵玉", desc: "库存未知"
+      },*/
     ],
     popReasonWind:false,   //弹窗报损原因
     reason_info  :false, 
@@ -67,10 +53,29 @@ Page({
     })
   },
   goodsDecode:function(code_msg){
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid:openid
-    }, (data, headers, cookies, errMsg, statusCode) => {
+    var that = this;
+    var list = this.data.list;
 
+    utils.PostRequest(api_v_url + '/stock/scanReportedloss', {
+      openid:openid,
+      idcode:code_msg
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var result = data.result;
+      var scan_info = {};
+      var goods_info = {};
+      var goods_nums = list.length +1;
+      scan_info.title = "报损商品"+goods_nums+"("+result.idcode+")";
+      scan_info.type_str = result.type_str;
+      scan_info.add_time = result.add_time;
+      scan_info.op_uname = result.op_uname;
+      goods_info.goods_id = result.goods_id;
+      goods_info.goods_name = result.goods_name;
+      goods_info.cate_name = result.cate_name;
+      goods_info.sepc_name = result.sepc_name;
+      goods_info.unit_name = result.unit_name;
+      scan_info.goods_info = goods_info;
+      list.push(scan_info);
+      that.setData({list:list});
     })
   },
   popReasonWind:function(){
@@ -84,7 +89,7 @@ Page({
     utils.PostRequest(api_v_url + '/aa/bb', {
       openid:openid
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      
     })
   },
   gotoPage:function(){

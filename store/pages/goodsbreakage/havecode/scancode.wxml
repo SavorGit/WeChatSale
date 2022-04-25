@@ -36,25 +36,25 @@
               <view class="middle">
                 <view class="goods-title flex_row_center_flexStart theme-font1">商品信息</view>
                 <view class="goods-list flex_column_center_flexStart">
-                  <view wx:for="{{bean.goodsList}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_row_center_flexStart">
-                    <view class="left flex_column_center_center theme-font1">{{goods.id}}</view>
+                  <view  class="goods flex_row_center_flexStart">
+                    <view class="left flex_column_center_center theme-font1">{{bean.goods_info.goods_id}}</view>
                     <view class="center flex_column_center_center">
-                      <view class="name theme-font1">{{goods.name}}</view>
+                      <view class="name theme-font1">{{bean.goods_info.goods_name}}</view>
                       <view class="tag-group flex_row_center_flexStart">
-                        <view class="tag theme-font3">{{goods.cate_name}}</view>
-                        <view class="tag theme-font3">{{goods.sepc_name}}</view>
-                        <view class="tag theme-font3">{{goods.unit_name}}</view>
+                        <view class="tag theme-font3">{{bean.goods_info.cate_name}}</view>
+                        <view class="tag theme-font3">{{bean.goods_info.sepc_name}}</view>
+                        <view class="tag theme-font3">{{bean.goods_info.unit_name}}</view>
                       </view>
                     </view>
                   </view>
                 </view>
               </view>
               <view class="bottom flex_column_flexStart_flexStart">
-                <view class="node theme-font1">报损环节：{{bean.node}}</view>
+                <view class="node theme-font1">报损环节：{{bean.type_str}}</view>
                 <view class="desc theme-font3">{{bean.desc}}</view>
                 <view class="line flex_row_center_flexStart">
-                  <view class="datetime theme-font3">{{bean.date_time}}</view>
-                  <view class="username theme-font3">{{bean.username}}</view>
+                  <view class="datetime theme-font3">{{bean.add_time}}</view>
+                  <view class="username theme-font3">{{bean.op_uname}}</view>
                 </view>
               </view>
             </view>

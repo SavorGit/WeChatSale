@@ -17,26 +17,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsList: [
-      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", amount: 0, viewBt: false }
-    ],
-    scanList: [
-      { id: 10, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 9, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 8, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 7, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 6, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 5, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 4, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: true },
-      { id: 3, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 2, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 1, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-    ],
+    goodsList: [],
+    scanList: [],
     stock_id:0,
     config_info:{step:1},
     img_path:'',
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false,
+    title:'已扫商品码(0/0)',
+    all_nums:0,
+    have_scan_nums:0,
   },
 
   /**
@@ -102,7 +92,7 @@ Page({
         }
       }
       var title = "已扫码商品("+have_scan_nums+"/"+scanList.length+")";
-      that.setData({scanList:scanList,title:title})
+      that.setData({scanList:scanList,title:title,have_scan_nums:have_scan_nums,all_nums:scanList.length})
     })
   },
   getStockInfo:function(stock_id,openid){
@@ -112,10 +102,24 @@ Page({
       stock_id  : stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goodsList = data.result.goods_list;
+      for(let i in goodsList){
+        goodsList[i].viewBt = false;
+      }
       that.setData({goodsList:goodsList})
     })
   },
   changeStep:function(){
+    var all_nums = this.data.all_nums;
+    var have_scan_nums = this.data.have_scan_nums;
+    if(all_nums==0){
+      app.showToast('请扫商品码')
+      return false;
+    } 
+    if(have_scan_nums<all_nums){
+      app.showToast('请扫完所有商品码');
+      return false;
+    }
+
     var config_info = this.data.config_info;
     config_info.step = 2;
     this.setData({config_info:config_info});
@@ -214,11 +218,32 @@ Page({
   },
   subGoodsCheck:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid: openid,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-
+    var stock_id = this.data.stock_id;
+    var check_img = this.data.img_path;
+    var scanList = this.data.scanList;
+    var space = '';
+    var goods_codes = '';
+    for(let i in scanList){
+      goods_codes += space + scanList[i].idcode;
+      space = ',';
+    }
+    wx.showModal({
+      title: '确定要提交吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/stock/finishCheck', {
+            openid: openid,
+            check_img:check_img,
+            goods_codes:goods_codes,
+            stock_id:stock_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            wx.navigateBack({ delta: 1})
+            app.showToast('提交成功',2000,'success');
+          })
+        }
+      }
     })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
