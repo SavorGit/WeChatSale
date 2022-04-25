@@ -71,9 +71,11 @@ Page({
       goods_info.goods_id = result.goods_id;
       goods_info.goods_name = result.goods_name;
       goods_info.cate_name = result.cate_name;
-      goods_info.sepc_name = result.sepc_name;
+      goods_info.spec_name = result.spec_name;
       goods_info.unit_name = result.unit_name;
+      scan_info.stock_name = result.stock_name;
       scan_info.goods_info = goods_info;
+      
       list.push(scan_info);
       that.setData({list:list});
     })
