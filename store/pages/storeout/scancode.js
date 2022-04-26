@@ -76,10 +76,9 @@ Page({
              idcode:goods_info.idcode,
              type:2
             }, (data, headers, cookies, errMsg, statusCode) => {
-              var scancode_nums = that.data.scancode_nums
-              scancode_nums --;
+              
               scanList.splice(keys,1);
-              that.setData({scanList:scanList,scancode_nums:scancode_nums})
+              that.setData({scanList:scanList,scancode_nums:scanList.length})
             })
           }
         }
@@ -90,6 +89,12 @@ Page({
 
   scanGoodsCode:function(){
     var that = this;
+    var scanList = this.data.scanList;
+    var scancode_nums = this.data.scancode_nums
+    if(scanList.length==scancode_nums){
+      app.showToast('已完成扫码商品');
+      return false;
+    }
     wx.scanCode({
       onlyFromCamera: true,
       success: (res) => {
