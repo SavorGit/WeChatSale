@@ -63,13 +63,16 @@ Page({
     var keys = e.currentTarget.dataset.keys;
     var scanList = this.data.scanList;
     var goods_info = scanList[keys];
+    var goodsList = this.data.goodsList;
+    var base_goods_info = goodsList[0];
     wx.showModal({
       title: '确定要删除吗？',
       success: function (res) {
         if (res.confirm) {
           if(goods_info.status==1){
             scanList.splice(keys,1);
-            that.setData({scanList:scanList})
+            var listTitle = '已扫商品码（'+scanList.length+'/'+base_goods_info.stock_amount+'）';
+            that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
           }else {
             utils.PostRequest(api_v_url + '/stock/delGoodscode', {
              openid:openid,
@@ -78,7 +81,8 @@ Page({
             }, (data, headers, cookies, errMsg, statusCode) => {
               
               scanList.splice(keys,1);
-              that.setData({scanList:scanList,scancode_nums:scanList.length})
+              var listTitle = '已扫商品码（'+scanList.length+'/'+base_goods_info.stock_amount+'）';
+              that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
             })
           }
         }
@@ -91,7 +95,7 @@ Page({
     var that = this;
     var scanList = this.data.scanList;
     var scancode_nums = this.data.scancode_nums
-    if(scanList.length==scancode_nums){
+    if(scanList.length==scancode_nums && scanList.length!=0){
       app.showToast('已完成扫码商品');
       return false;
     }
