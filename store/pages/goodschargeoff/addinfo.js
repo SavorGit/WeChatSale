@@ -30,7 +30,8 @@ Page({
     ],
     img_list:{wine_receipt_img:'',bottle_cap_img:'',other_img:''},
     oss_url: app.globalData.oss_url + '/',
-    addDisabled: false,
+    addDisabled: false, 
+    scancode_nums:0,
   },
 
   /**
@@ -98,17 +99,19 @@ Page({
         if (res.confirm) {
           /*if(goods_info.status==1){
             scanList.splice(keys,1);
-            that.setData({scanList:scanList})
+            var listTitle = '已扫商品码（'+scanList.length+'）';
+            that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
           }else {
             utils.PostRequest(api_v_url + '/stock/delGoodscode', {
               openid:openid,
               idcode:goods_info.idcode,
               type:1
             }, (data, headers, cookies, errMsg, statusCode) => {
-              var scancode_nums = that.data.scancode_nums
-              scancode_nums --;
+              
               scanList.splice(keys,1);
-              that.setData({scanList:scanList,scancode_nums:scancode_nums})
+              var listTitle = '已扫商品码（'+scanList.length+'）';
+              that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
+              
             })
           }*/
         }

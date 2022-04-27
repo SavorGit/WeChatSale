@@ -9,34 +9,49 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
-var stock_id;
+var type;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      { stock_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", user_name: "陈灵玉", status: 0 },
-      { stock_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", add_time: "2022/04/10 10:00", operauser_nametor: "陈灵玉", status: 0 },
-      { stock_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", add_time: "2022/04/10 09:00", user_name: "陈灵玉", status: 0 }
-    ],
+    list: [],
+    title_list:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     wx.hideShareMenu();
+    type = options.type;
+    var title = '';
+    switch(type){
+      case '10':
+        title= '已入库的商品(入库单)';
+        break;
+      case '20':
+        title = '已出库的商品(出库单)';
+        break;
+      case '30':
+        title = '已领取的商品(出库单)';
+        break;
+    }
+    this.setData({title:title})
     openid = app.globalData.openid;
-    this.getGoodsList();
+    this.getStockList();
   },
-  getGoodsList:function(){
+  getStockList:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid:openid
-    }, (data, headers, cookies, errMsg, statusCode) => {
 
+    utils.PostRequest(api_v_url + '/stock/userstocklist', {
+      openid:openid,
+      type:type
+    }, (data, headers, cookies, errMsg, statusCode) => {
+        var list = data.result.data_list;
+        that.setData({list:list})
     })
   },
   gotoPage:function(e){

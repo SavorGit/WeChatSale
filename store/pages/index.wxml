@@ -25,19 +25,20 @@
         </block>
       </view>
     </scroll-view>
-
-    <view class="row button flex_row_center_center" bindtap="gotoPage" data-type="storein">
-      <view class="btn big flex_column_center_center in-db">
-        <view class="icon fa fa-database" aria-hidden="true"></view>
-        <view class="text">入库</view>
+    <block wx:if="{{is_commen_user==0}}">
+      <view class="row button flex_row_center_center" bindtap="gotoPage" data-type="storein">
+        <view class="btn big flex_column_center_center in-db">
+          <view class="icon fa fa-database" aria-hidden="true"></view>
+          <view class="text">入库</view>
+        </view>
       </view>
-    </view>
-    <view class="row button flex_row_center_center" bindtap="gotoPage" data-type="storeout">
-      <view class="btn big flex_column_center_center out-db">
-        <view class="icon fa fa-database" aria-hidden="true"></view>
-        <view class="text">出库</view>
+      <view class="row button flex_row_center_center" bindtap="gotoPage" data-type="storeout">
+        <view class="btn big flex_column_center_center out-db">
+          <view class="icon fa fa-database" aria-hidden="true"></view>
+          <view class="text">出库</view>
+        </view>
       </view>
-    </view>
+    </block>
     <view class="row button flex_row_center_center">
       <view class="btn small flex_column_center_center claim" bindtap="gotoPage" data-type="receive">
         <view class="icon fa fa-download" aria-hidden="true"></view>

@@ -64,7 +64,7 @@
 
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
+  <view class="foot flex_row_center_spaceAround" bindtap="popReasonWind">
     <view class="btn ok flex_row_center_center theme-button-blue">提交报损</view>
   </view>
 </view>

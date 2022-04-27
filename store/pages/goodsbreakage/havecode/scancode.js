@@ -15,19 +15,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [
-      /*{
-        title: "报损商品1（xxxxxxx）", type_str: "领取（xxxxxxx）", goods_info: 
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
-        , add_time: "2022/04/10 11:00", op_uname: "陈灵玉", desc: "哪里来的"
-      },
-      {
-        title: "报损商品2（xxxxxxx）", type_str: "出库（xxxxxxx）", goodsList: 
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", idcode: "x14w2d8w" }, add_time: "2022/04/10 11:00", op_uname: "陈灵玉", desc: "库存未知"
-      },*/
-    ],
+    list: [],
     popReasonWind:false,   //弹窗报损原因
-    reason_info  :false, 
+    reason_info  :'', 
   },
 
   /**
@@ -68,6 +58,7 @@ Page({
       scan_info.type_str = result.type_str;
       scan_info.add_time = result.add_time;
       scan_info.op_uname = result.op_uname;
+      scan_info.idcode   = result.idcode;
       goods_info.goods_id = result.goods_id;
       goods_info.goods_name = result.goods_name;
       goods_info.cate_name = result.cate_name;
@@ -81,6 +72,11 @@ Page({
     })
   },
   popReasonWind:function(){
+    var list  = this.data.list;
+    if(list.length==0){
+      app.showToast('请先扫报损商品码');
+      return false;
+    }
     this.setData({popReasonWind:true})
   },
   inputReason:function(e){
@@ -88,11 +84,39 @@ Page({
     this.setData({reason_info:reason_info});
   },
   subBreakage:function(){
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid:openid
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      
+    var that = this;
+    var list = this.data.list;
+    var goods_codes = '';
+    var space  = '';
+    for(let i in list){
+      goods_codes += space+list[i].idcode;
+      space = ',';
+    }
+    var reason_info = this.data.reason_info;
+    if(reason_info==''){
+      app.showToast('请填写报损原因');
+      return false;
+    }
+    console.log(openid)
+    console.log(reason_info)
+    console.log(goods_codes)
+    
+    wx.showModal({
+      title: '确定要提交吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/stock/finishReportedloss', {
+            openid:openid,
+            reason_info:reason_info,
+            goods_codes:goods_codes
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            wx.navigateBack({delta: 1});
+            app.showToast('提交成功',2000,'success');
+          })
+        }
+      }
     })
+    
   },
   gotoPage:function(){
     wx.navigateTo({

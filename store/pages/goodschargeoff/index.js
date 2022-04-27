@@ -48,7 +48,19 @@ Page({
       openid:openid,
       page:page
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      /*var off_goods_list = that.data.off_goods_list;
+      var ret_off_goods_list = data.result;
+      if(ret_off_goods_list.length>=0){
+        for(let i in ret_off_goods_list){
+          off_goods_list.push(ret_off_goods_list[i])
+        }
+        that.setData({off_goods_list:off_goods_list})
+      }else {
+        if(page>1){
+          app.showToast('没有更多了...')
+        }
+        
+      }*/
     })
   },
   loadMore:function(){

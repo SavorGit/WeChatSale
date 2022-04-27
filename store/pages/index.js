@@ -17,6 +17,7 @@ Page({
   data: {
     hotel_list:[],  //联想搜索酒楼列表
     select_hotel_name:'',
+    is_commen_user:0,
   },
 
   /**
@@ -25,6 +26,10 @@ Page({
   onLoad: function (options) {
     wx.hideHomeButton();
     wx.hideShareMenu();
+    if(typeof(options.is_commen_user)!='undefined'){
+      var is_commen_user = options.is_commen_user;
+      this.setData({is_commen_user:is_commen_user});
+    }
     openid = app.globalData.openid;
     this.getAllHotelList();
   },

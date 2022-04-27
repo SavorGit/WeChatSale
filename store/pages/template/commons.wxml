@@ -212,8 +212,8 @@
       <view class="entity theme-window">
         <view class="win-body flex_column_center_flexStart">
           <view class="label">请输入报损原因</view>
-          <textarea class="value" name="" id="" cols="30" rows="10" placeholder="多行输入"></textarea>
-          <view class="btn submit flex_row_center_center theme-font-6297F2">提交</view>
+          <textarea class="value" name="" id="" cols="30" rows="10" placeholder="多行输入" bindinput="inputReason"></textarea>
+          <view class="btn submit flex_row_center_center theme-font-6297F2" bindtap="subBreakage">提交</view>
         </view>
       </view>
     </view>
