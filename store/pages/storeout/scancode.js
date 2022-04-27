@@ -94,7 +94,9 @@ Page({
     var that = this;
     var scanList = this.data.scanList;
     var scancode_nums = this.data.scancode_nums
-    if(scanList.length==scancode_nums && scanList.length!=0){
+    var goodsList = this.data.goodsList;
+    var base_goods_info = goodsList[0];
+    if(scanList.length==base_goods_info.stock_amount){
       app.showToast('已完成扫码商品');
       return false;
     }
