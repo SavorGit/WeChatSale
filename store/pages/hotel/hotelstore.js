@@ -43,13 +43,16 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       var hotel_name = data.result.hotel_name;
       var list = data.result.goods_list;
+      var btnTitle = '';
       for(let i in list){
         list[i].amount = list[i].stock_num;
-        if(list[i].stock_num>0){
-          list[i].viewBt = true;
+        list[i].viewBt = true;
+        if(list[i].stock_num==0){
+          var btnTitle = 0;
         }
+        
       }
-      that.setData({hotel_name:hotel_name,list:list});
+      that.setData({hotel_name:hotel_name,list:list,btnTitle:btnTitle,is_gray:true});
 
     })
   },

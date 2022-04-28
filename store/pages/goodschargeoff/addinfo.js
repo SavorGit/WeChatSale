@@ -69,23 +69,7 @@ Page({
       if(goods_id==0){
         that.getWriteoffReasonByGoods(goods_info.goods_id);
       }
-      /*var goods_info = data.result;
-      var flag = 0;
-      for(let i in scanList){
-        if(goods_info.idcode== scanList[i].idcode){
-          var flag = 1;
-          break;
-        }
-      }
-      if(flag==1){
-        app.showToast('商品已扫码')
-      }else {
-        var scancode_nums = this.data.scancode_nums;
-        scancode_nums ++;
-        var listTitle = '已扫商品码('+scancode_nums+')';
-        scanList.push(goods_info);
-        that.setData({scanList:scanList,scancode_nums:scancode_nums,listTitle:listTitle});
-      }*/
+      
     })
   },
   getWriteoffReasonByGoods:function(goods_id){
@@ -286,8 +270,9 @@ Page({
       goods_codes:goods_codes,
       reason_type:reason_type
     }, (data, headers, cookies, errMsg, statusCode) => {
-      wx.navigateBack({del:1})
       app.showToast('提交成功',2000,'success');
+      wx.navigateBack({delta:1})
+      
     })
   },
   /**

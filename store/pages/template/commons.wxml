@@ -127,15 +127,26 @@
                 <view class="tag theme-font3">{{bean.unit_name}}</view>
               </view>
             </view>
-            <view wx:if="{{bean.viewBt==true}}" class="right flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:180rpx;":"width:80rpx;"}}' bindtap="gotoPage" data-keys="{{index}}">
-              <view class='btn select flex_column_center_center theme-button-blue' wx:if="{{bean.amount==0}}">
-                <view class="text">{{btnTitle}}</view>
+            <block wx:if="{{app.typeOf(is_gray)!='undefined' && is_gray==true}}">
+              <view wx:if="{{bean.viewBt==true}}" class="right flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:180rpx;":"width:80rpx;"}}' bindtap="gotoPage" data-keys="{{index}}">
+                
+                <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}' >
+                  <view class="text">{{bean.amount}}</view>
+                  
+                </view>
               </view>
-              <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}' wx:else>
-                <view class="text">{{bean.amount}}</view>
-                <view wx:if="{{(labelShow << 2 & 128 )==128}}" class="text">继续扫码</view>
+            </block>
+            <block wx:else>
+              <view wx:if="{{bean.viewBt==true}}" class="right flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:180rpx;":"width:80rpx;"}}' bindtap="gotoPage" data-keys="{{index}}">
+                <view class='btn select flex_column_center_center theme-button-blue' wx:if="{{bean.amount==0}}">
+                  <view class="text">{{btnTitle}}</view>
+                </view>
+                <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}' wx:else>
+                  <view class="text">{{bean.amount}}</view>
+                  <view wx:if="{{(labelShow << 2 & 128 )==128}}" class="text">继续扫码</view>
+                </view>
               </view>
-            </view>
+            </block>
           </view>
         </view>
       </block>
