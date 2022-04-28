@@ -107,7 +107,7 @@ Page({
         if (res.confirm) {
           utils.PostRequest(api_v_url + '/stock/finishReportedloss', {
             openid:openid,
-            reason_info:reason_info,
+            reason:reason_info,
             goods_codes:goods_codes
           }, (data, headers, cookies, errMsg, statusCode) => {
             wx.navigateBack({delta: 1});

@@ -25,8 +25,8 @@
       <view class="type flex_row_center_spaceBetween">
         <view class="label theme-font1">核销原因</view>
         <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
-          <block wx:for="{{typeList}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
-            <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.label}}</radio>
+          <block wx:for="{{reasons}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
+            <radio class="text theme-font1" value="{{type.id}}" >{{type.name}}</radio>
           </block>
         </radio-group>
       </view>
@@ -36,17 +36,19 @@
           <view class="title">核销资料</view>
         </view>
         <view class="body flex_row_center_spaceBetween">
-          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="wine_receipt_img">
-            <image wx:if="{{img_list.wine_receipt_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.wine_receipt_img}}" />
-            <view wx:else class="btn add flex_column_center_center">+</view>
-            <view class="tips flex_column_center_center">
-              <view class="tip flex_row_center_center">
-                <view class="theme-font5">*</view>
-                <view class="content">酒水小票</view>
+          <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="wine_receipt_img" data-keys="{{index}}">
+              <image wx:if="{{bean.img_url!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{bean.img_url}}" />
+              <view wx:else class="btn add flex_column_center_center">+</view>
+              <view class="tips flex_column_center_center">
+                <view class="tip flex_row_center_center">
+                  <view class="theme-font5" wx:if="{{bean.is_required=='1'}}">*</view>
+                  <view class="content">{{bean.name}}</view>
+                </view>
               </view>
             </view>
-          </view>
-          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="bottle_cap_img">
+          </block>
+          <!-- <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="bottle_cap_img">
             <image wx:if="{{img_list.bottle_cap_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.bottle_cap_img}}" />
             <view wx:else class="btn add flex_column_center_center">+</view>
             <view class="tips flex_column_center_center">
@@ -64,7 +66,7 @@
                 <view class="content">其他</view>
               </view>
             </view>
-          </view>
+          </view> -->
         </view>
       </view>
 

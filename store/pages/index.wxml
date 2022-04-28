@@ -56,5 +56,5 @@
       </view>
     </view>
   </view>
-  <navigator url="/store/pages/goodschargeoff/index">test</navigator>
+  <!-- <navigator url="/store/pages/goodschargeoff/index">test</navigator> -->
 </scroll-view>

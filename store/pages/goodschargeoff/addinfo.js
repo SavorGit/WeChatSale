@@ -17,21 +17,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listTitle: "已扫商品码（2）",
+    listTitle: "已扫商品码(0)",
     scanList: [
-      { id: 3, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
+      /*{ id: 3, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
       { id: 2, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
-      { id: 1, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },
+      { id: 1, idcode: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", add_time: "2022/04/10 11:00", checked: false },*/
     ],
-    typeList: [
-      { id: 1, label: "售卖", checked: true },
-      { id: 2, label: "品鉴酒", checked: false },
-      { id: 3, label: "活动", checked: false },
-    ],
-    img_list:{wine_receipt_img:'',bottle_cap_img:'',other_img:''},
+    
+    reasons:[],   //核销原因
+    datas:[],     //核销资料
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false, 
-    scancode_nums:0,
+    goods_id:0,
   },
 
   /**
@@ -40,7 +37,6 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
-    
   },
   scanGoodsCode:function(){
     var that = this;
@@ -59,16 +55,21 @@ Page({
   },
   goodsDecode:function(code_msg){
     var that = this;
-    var goodsList = this.data.goodsList;
-    var goods_info = goodsList[0];
-    var scanList = this.data.scanList
-    utils.PostRequest(api_v_url + '/aa/bb', {
-     
-      openid: app.globalData.openid,
+    var scanList = this.data.scanList;
+    var goods_id = this.data.goods_id;
+    utils.PostRequest(api_v_url + '/stock/scanWriteoff', {
+      openid: openid,
       idcode:code_msg,
-     
+      goods_id:goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goods_info = data.result;
+      scanList.push(goods_info);
+      var listTitle = '已扫商品码('+scanList.length+')';
+      that.setData({scanList:scanList,goods_id:goods_info.goods_id,listTitle:listTitle});
+      if(goods_id==0){
+        that.getWriteoffReasonByGoods(goods_info.goods_id);
+      }
+      /*var goods_info = data.result;
       var flag = 0;
       for(let i in scanList){
         if(goods_info.idcode== scanList[i].idcode){
@@ -84,36 +85,42 @@ Page({
         var listTitle = '已扫商品码('+scancode_nums+')';
         scanList.push(goods_info);
         that.setData({scanList:scanList,scancode_nums:scancode_nums,listTitle:listTitle});
+      }*/
+    })
+  },
+  getWriteoffReasonByGoods:function(goods_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
+      goods_id:goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var reasons = data.result.reasons;
+      var datas   = data.result.datas;
+      for(let i in reasons){
+        reasons[i].checked = false;
       }
+      that.setData({reasons:reasons,datas:datas})
     })
   },
   deleteScanGoods:function(e){
     var that = this;
     var keys = e.currentTarget.dataset.keys;
     var scanList = this.data.scanList;
-    var goods_info = scanList[keys];
 
     wx.showModal({
       title: '确定要删除吗？',
       success: function (res) {
         if (res.confirm) {
-          /*if(goods_info.status==1){
-            scanList.splice(keys,1);
-            var listTitle = '已扫商品码（'+scanList.length+'）';
-            that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
-          }else {
-            utils.PostRequest(api_v_url + '/stock/delGoodscode', {
-              openid:openid,
-              idcode:goods_info.idcode,
-              type:1
-            }, (data, headers, cookies, errMsg, statusCode) => {
-              
-              scanList.splice(keys,1);
-              var listTitle = '已扫商品码（'+scanList.length+'）';
-              that.setData({scanList:scanList,scancode_nums:scanList.length,listTitle:listTitle})
-              
-            })
-          }*/
+          scanList.splice(keys,1);
+          var listTitle = '已扫商品码（'+scanList.length+'）';
+          var goods_id = that.data.goods_id;
+          var reasons  = that.data.reasons;
+          var datas    = that.data.datas;
+          if(scanList.length==0){
+            goods_id = 0;
+            reasons  = [];
+            datas    = [];
+          }
+          that.setData({scanList:scanList,listTitle:listTitle,goods_id:goods_id,reasons:reasons,datas:datas});
         }
       }
     })
@@ -121,20 +128,20 @@ Page({
   },
   changeReason:function(e){
     var id = e.detail.value;
-    var typeList = this.data.typeList;
-    for(let i in typeList){
-      typeList[i].checked = false;
-      if(typeList[i].id== id){
-        typeList[i].checked = true;
+    var reasons = this.data.reasons;
+    for(let i in reasons){
+      reasons[i].checked = false;
+      if(reasons[i].id== id){
+        reasons[i].checked = true;
       }
     }
-    console.log(typeList)
-    this.setData({typeList:typeList})
+    this.setData({reasons:reasons})
   },
   uploadChargeoffPic: function (e) {
     var that = this;
-    var type = e.currentTarget.dataset.type;
-    var img_list = this.data.img_list;
+    var keys = e.currentTarget.dataset.keys;
+    
+    var datas = this.data.datas;
     wx.showLoading({
       title: '图片上传中...',
       mask: true
@@ -188,20 +195,11 @@ Page({
 
               success: function (res) {
                 var img_path = "forscreen/resource/" + img_url
-                switch(type){
-                  case 'wine_receipt_img':
-                    img_list.wine_receipt_img = img_path;
-                    break;
-                  case 'bottle_cap_img':
-                    img_list.bottle_cap_img = img_path;
-                    break;
-                  case 'other_img':
-                    img_list.other_img = img_path;
-                    break;
-                }
+                console.log(datas);
+                datas[keys].img_url = img_path;
 
                 that.setData({
-                  img_list:img_list
+                  datas:datas
                 })
                 wx.hideLoading();
 
@@ -236,10 +234,60 @@ Page({
   },
   subGoodsChargeoff:function(){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid: openid,
-    }, (data, headers, cookies, errMsg, statusCode) => {
+    var scanList = this.data.scanList;
+    if(scanList.length==0){
+      app.showToast('请扫核销的商品码');
+      return false;
+    }
+    var goods_codes = '';
+    var space       = '';
+    for(let i in scanList){
+      goods_codes += space + scanList[i].idcode;
+      space  = ',';
+    }
 
+    var reasons = this.data.reasons;
+    var is_return_reason = true;
+    var reason_type = 0;
+    for(let i in reasons){
+      if(reasons[i].checked==true){
+        is_return_reason = false;
+        reason_type = reasons[i].id;
+        break;
+      }
+    }
+    if(is_return_reason){
+      app.showToast('请选择核销原因');
+      return false;
+    }
+    var datas = this.data.datas;
+    var is_return_datas = false;
+    var data_imgs = '';
+    var ispace = '';
+    for(let i in datas){
+      if(datas[i].img_url =='' && datas[i].is_required==1){
+        is_return_datas = true;
+      }
+      if(datas[i].img_url!=''){
+        data_imgs += ispace + datas[i].img_url;
+        ispace = ',';
+      }
+    }
+    if(is_return_datas){
+      app.showToast('请上传核销资料');
+      return false;
+    }
+    
+    
+
+    utils.PostRequest(api_v_url + '/stock/finishWriteoff', {
+      openid: openid,
+      data_imgs:data_imgs,
+      goods_codes:goods_codes,
+      reason_type:reason_type
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      wx.navigateBack({del:1})
+      app.showToast('提交成功',2000,'success');
     })
   },
   /**

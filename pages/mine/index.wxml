@@ -111,8 +111,15 @@
 		</view>
 		<!-- 幸运抽奖面板 -->
 		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.hotel_id==-1}}">
-			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/mine/turn_lottery/list">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoStore">
 				<view>幸运抽奖</view>
+				<view class="fa fa-angle-right" aria-hidden="true"></view>
+			</view>
+		</view>
+    <!-- 库存管理 -->
+		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.hotel_id==-1}}">
+			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoStore" >
+				<view>库存管理</view>
 				<view class="fa fa-angle-right" aria-hidden="true"></view>
 			</view>
 		</view>
@@ -124,6 +131,13 @@
 			</view>
 		</view>
 	</block>
+  <!-- 商品核销-->
+	<view class="promotion-goods-manage-panel theme7 theme-font2"  bindtap="gotoUrl" data-url="/store/pages/goodschargeoff/index">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDataCenter">
+			<view>商品核销</view>
+			<view class="fa fa-angle-right" aria-hidden="true"></view>
+		</view>
+	</view>
 	<!-- 数据统计面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{is_salestat==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDataCenter">

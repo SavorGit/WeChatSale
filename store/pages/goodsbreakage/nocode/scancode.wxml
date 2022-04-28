@@ -27,10 +27,10 @@
         </view>
       </view>
 
-      <template is="goodsPanelForChecked" data='{{title:"已扫商品码（5/10）",list:scanList}}' />
+      <template is="goodsPanelForChecked" data='{{title:title,list:scanList}}' />
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround">
+  <view class="foot flex_row_center_spaceAround" bindtap="popReasonWind">
     <view class="btn ok flex_row_center_center theme-button-blue">对未扫码商品报损</view>
   </view>
 </view>

@@ -2,17 +2,28 @@
 /**
  * 酒楼库存
  */
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_url = app.globalData.oss_url;
+var openid;
+var hotel_id;
 Page({
 
   /**
    * 页面的初始数据
    */
+  
   data: {
-    hotelName: "花家怡园（世贸店）",
+    hotel_name: '',
     list: [
-      { goods_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  },
+      /*{ goods_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  },
       { goods_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  },
-      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  }
+      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  }*/
     ],
   },
 
@@ -21,6 +32,26 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
+    hotel_id = options.hotel_id;
+    this.getHotelstock();
+  },
+  getHotelstock:function(){
+    var that = this;
+    utils.PostRequest(api_v_url + '/stock/hotelstock', {
+      openid: app.globalData.openid,
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var hotel_name = data.result.hotel_name;
+      var list = data.result.goods_list;
+      for(let i in list){
+        list[i].amount = list[i].stock_num;
+        if(list[i].stock_num>0){
+          list[i].viewBt = true;
+        }
+      }
+      that.setData({hotel_name:hotel_name,list:list});
+
+    })
   },
 
   /**

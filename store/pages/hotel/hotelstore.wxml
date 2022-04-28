@@ -7,6 +7,6 @@
   -->
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="warper flex_column_center_flexStart">
-    <template is="goodsPanel" data='{{title:hotelName,list:list}}' />
+    <template is="goodsPanel" data='{{title:hotel_name,list:list}}' />
   </view>
 </scroll-view>

@@ -193,7 +193,8 @@
             </view>
             <view class="right flex_column_center_center">
               <view class='btn chekced flex_column_center_center' style="font-size:48rpx;">
-                <view wx:if="{{bean.status==3}}" class="theme-font3" style="font-size:28rpx;">已核销</view>
+                <view wx:if="{{bean.status==1}}" class="theme-font3" style="font-size:28rpx;">已核销</view>
+                <view wx:elif="{{bean.status==2}}" class="theme-font3" style="font-size:28rpx;">已报损</view>
                 <view wx:else class='icon fa fa-check-circle {{bean.checked?"theme-font-53BD1D":"theme-font3"}}' aria-hidden="true"></view>
               </view>
             </view>

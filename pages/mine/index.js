@@ -698,6 +698,11 @@ Page({
     }
     
   },
+  gotoStore:function(e){
+    wx.navigateTo({
+      url: '/store/pages/index?is_commen_user=1',
+    })
+  },
   messageNotify:function(e){
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;

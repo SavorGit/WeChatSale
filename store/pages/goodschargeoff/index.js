@@ -17,19 +17,19 @@ Page({
    */
   data: {
     list: [
-      {
-        title: "核销（售卖）", status: 0, goodsList: [
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
+      /*{
+        reason: "核销（售卖）", status_str: '待审核', goods: [
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
         ], date_time: "2022/04/10 11:00", profit: "123456元"
       },
       {
-        title: "核销（品鉴）", status: 1, goodsList: [
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
+        reason: "核销（品鉴）", status_str: '待审核', goods: [
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
+          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
         ], date_time: "2022/04/10 11:00", profit: "123积分"
-      },
+      },*/
     ]
   },
 
@@ -40,14 +40,32 @@ Page({
     wx.hideShareMenu();
     openid = app.globalData.openid;
     page = 1;
-    this.getChargeOffList();
+    
   },
   getChargeOffList:function(page){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/stock/getWriteoffList', {
       openid:openid,
       page:page
     }, (data, headers, cookies, errMsg, statusCode) => {
+      if(page ==1){
+        var list = [];
+      }else {
+        var list = that.data.list;
+      }
+      
+      var ret_list = data.result;
+      console.log(ret_list)
+      if(ret_list.length>0){
+        for(let i in ret_list){
+          list.push(ret_list[i]);
+        }
+        that.setData({list:list})
+      }else {
+        if(page>1){
+          app.showToast('没有更多了...')
+        }
+      }
       /*var off_goods_list = that.data.off_goods_list;
       var ret_off_goods_list = data.result;
       if(ret_off_goods_list.length>=0){
@@ -83,7 +101,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getChargeOffList(1);
   },
 
   /**
