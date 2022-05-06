@@ -12,7 +12,8 @@
         <view wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" class="item flex_column_center_flexStart">
           <view class="top">
            
-            <view  class="status flex_row_center_flexEnd theme-font-53BD1D">{{bean.status_str}}</view>
+            <view  class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
+            <view  class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1}}">{{bean.status_str}}</view>
             <view class="title flex_row_center_center theme-font1">核销({{bean.reason}})</view>
           </view>
           <view class="middle">
