@@ -703,6 +703,11 @@ Page({
       url: '/store/pages/index?is_commen_user=1',
     })
   },
+  gotoChargeoff:function(e){
+    wx.navigateTo({
+      url: '/store/pages/goodschargeoff/index',
+    })
+  },
   messageNotify:function(e){
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;

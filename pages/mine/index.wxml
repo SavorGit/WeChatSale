@@ -116,13 +116,7 @@
 				<view class="fa fa-angle-right" aria-hidden="true"></view>
 			</view>
 		</view>
-    <!-- 库存管理 -->
-		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.hotel_id==-1}}">
-			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoStore" >
-				<view>库存管理</view>
-				<view class="fa fa-angle-right" aria-hidden="true"></view>
-			</view>
-		</view>
+    
 		<!-- 餐厅评价面板 -->
 		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.role_type==1}}">
 			<view class="full_width full_height flex_row_center_spaceBetween" bindtap="hotelComment">
@@ -131,13 +125,7 @@
 			</view>
 		</view>
 	</block>
-  <!-- 商品核销-->
-	<view class="promotion-goods-manage-panel theme7 theme-font2"  bindtap="gotoUrl" data-url="/store/pages/goodschargeoff/index">
-		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDataCenter">
-			<view>商品核销</view>
-			<view class="fa fa-angle-right" aria-hidden="true"></view>
-		</view>
-	</view>
+  
 	<!-- 数据统计面板 -->
 	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{is_salestat==1}}">
 		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDataCenter">
@@ -160,15 +148,15 @@
 		</view>
 	</view>
 	<!-- 商品核销面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoChargeoff">
 		<view class="full_width full_height flex_row_center_spaceBetween">
 			<view>商品核销</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
 	</view>
 	<!-- 库存管理面板 -->
-	<view class="promotion-goods-manage-panel theme7 theme-font2">
-		<view class="full_width full_height flex_row_center_spaceBetween">
+	<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.hotel_id==-1}}">
+		<view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoStore">
 			<view>库存管理</view>
 			<view class="fa fa-angle-right" aria-hidden="true"></view>
 		</view>
