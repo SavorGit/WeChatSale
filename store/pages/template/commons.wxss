@@ -254,18 +254,29 @@
 }
 
 .window .entity>.title-bar,
+.window .entity>.option-bar,
 .window .entity>.win-body {
   width: calc(100% - 50rpx);
   padding: 10rpx 25rpx;
 }
 
-.window .entity>.title-bar {
+.window .entity>.title-bar,
+.window .entity>.option-bar {
   height: 50rpx;
 }
 
 .window .entity>.title-bar>.title {
   font-size: 36rpx;
   font-weight: bold;
+}
+
+.window .entity>.option-bar>.btn,
+.window .entity>.option-bar>.btn .icon {
+  width: 50rpx;
+  height: 50rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .window .entity>.win-body {

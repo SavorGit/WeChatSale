@@ -220,12 +220,17 @@
 <!-- [弹窗] 报损原因 -->
 <template name="popWindowForLossReportingReason">
   <view wx:if="{{show}}" class="window loss-reporting-reason">
-    <view class="mask flex_column_center_center" bindtap="offPopWindForLoss">
+    <view class="mask flex_column_center_center">
       <view class="entity theme-window">
+        <view class="option-bar flex_row_center_flexEnd">
+          <view class="btn close flex_column_center_center" bindtap="offPopWindForLoss">
+            <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
+          </view>
+        </view>
         <view class="win-body flex_column_center_flexStart">
           <view class="label">请输入报损原因</view>
           <textarea class="value" name="" id="" cols="30" rows="10" placeholder="多行输入" bindinput="inputReason"></textarea>
-          <view class="btn submit flex_row_center_center theme-font-6297F2" catchtap="subBreakage">提交</view>
+          <view class="btn submit flex_row_center_center theme-font-6297F2" bindtap="subBreakage">提交</view>
         </view>
       </view>
     </view>
