@@ -173,5 +173,8 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  offPopWindForLoss: function(e){
+    this.setData({popReasonWind: false});
   }
 })

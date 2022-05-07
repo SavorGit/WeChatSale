@@ -129,10 +129,10 @@
             </view>
             <block wx:if="{{app.typeOf(is_gray)!='undefined' && is_gray==true}}">
               <view wx:if="{{bean.viewBt==true}}" class="right flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:180rpx;":"width:80rpx;"}}' bindtap="gotoPage" data-keys="{{index}}">
-                
-                <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}' >
+
+                <view class='btn select flex_column_center_center theme-button-disable' style='{{app.typeOf(btnTitle)=="string"||(app.typeOf(labelShow)=="number"&&labelShow!=0)?"width:120rpx;":"width:60rpx;"}}'>
                   <view class="text">{{bean.amount}}</view>
-                  
+
                 </view>
               </view>
             </block>
@@ -220,8 +220,8 @@
 <!-- [弹窗] 报损原因 -->
 <template name="popWindowForLossReportingReason">
   <view wx:if="{{show}}" class="window loss-reporting-reason">
-    <view class="mask flex_column_center_center">
-      <view class="entity theme-window" catchtap="offPopWindForLoss">
+    <view class="mask flex_column_center_center" bindtap="offPopWindForLoss">
+      <view class="entity theme-window">
         <view class="win-body flex_column_center_flexStart">
           <view class="label">请输入报损原因</view>
           <textarea class="value" name="" id="" cols="30" rows="10" placeholder="多行输入" bindinput="inputReason"></textarea>
