@@ -18,7 +18,8 @@ Page({
     list: [
       { name: "我入库的商品", button: { enable: true, label: "报损" },type:10 },
       { name: "我出库的商品", button: { enable: true, label: "报损" } ,type:20},
-      { name: "我领取的商品", button: { enable: true, label: "报损" } ,type:30}
+      { name: "我领取的商品", button: { enable: true, label: "报损" } ,type:30},
+      { name: "我送达的商品", button: { enable: true, label: "报损" } ,type:40}
     ]
   },
 

@@ -38,6 +38,9 @@ Page({
       case '30':
         title = '已领取的商品(出库单)';
         break;
+      case '40':
+        title = '已送达的商品(出库单)';
+        break;
     }
     this.setData({title:title})
     openid = app.globalData.openid;
