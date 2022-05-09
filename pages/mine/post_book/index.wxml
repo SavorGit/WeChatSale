@@ -30,9 +30,21 @@
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">预定人数</view>
+        <view class="value">
+          <input bindinput="" type="text" class="input border flex_row_center_flexStart" placeholder="请输入预定就餐的人数" />
+        </view>
+      </view>
+      <view class="row text flex_row_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">预定人</view>
         <view class="value">
           <input bindinput="inputBookName" type="text" class="input border flex_row_center_flexStart" placeholder="请输入预定人的称呼" />
+        </view>
+      </view>
+      <view class="row text flex_row_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">预定人手机号</view>
+        <view class="value">
+          <input bindinput="" type="text" class="input border flex_row_center_flexStart" placeholder="请输入预定人的手机号码" />
         </view>
       </view>
       <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo">

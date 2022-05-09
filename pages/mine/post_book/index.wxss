@@ -15,13 +15,13 @@
 }
 
 .row>.label {
-  width: 120rpx;
+  width: 180rpx;
   height: 60rpx;
   font-size: 28rpx;
 }
 
 .row>.value {
-  width: calc(100% - 120rpx);
+  width: calc(100% - 180rpx);
   height: 60rpx;
   font-size: 28rpx;
 }
