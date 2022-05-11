@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    book_info:{'select_room_name':'--请选择包间--','box_index':0,'book_time':'','book_name':''}
+    book_info:{'select_room_name':'--请选择包间--','box_index':0,'book_time':'','book_name':'','nums':'','mobile':''}
   },
 
   /**
@@ -64,15 +64,41 @@ Page({
     this.setData({book_info:book_info})
 
   },
+  inputBookNums:function(e){
+    var nums = e.detail.value.replace(/\s+/g, '');
+    var book_info = this.data.book_info;
+    book_info.nums = nums;
+    this.setData({book_info:book_info});
+  },
+  inputBookMobile:function(e){
+    var mobile = e.detail.value.replace(/\s+/g, '');
+    var book_info = this.data.book_info;
+    book_info.mobile = mobile;
+    this.setData({book_info:book_info});
+  },
   confirmBookInfo:function(){
     var book_info = this.data.book_info;
     if(book_info.book_time==''){
       app.showToast('请输选择预定时间');
       return false;
     }
-    if(book_info.name==''){
-      app.showToast('请输选择预定人称呼');
+    console.log(book_info)
+    
+    if(book_info.nums=='' || book_info.nums<1){
+      app.showToast('请输入预定就餐的人数');
       return false;
+    }
+    if(book_info.book_name==''){
+        app.showToast('请输选择预定人称呼');
+        return false;
+      }
+    if(book_info.mobile=='' ){
+      app.showToast('请输入预定人的手机号码');
+      return false;
+    }
+    if(!app.checkMobile(book_info.mobile)){
+      app.showToast('请输入正确的手机号');
+      return false; 
     }
     var box_list = this.data.box_list;
     var box_index = book_info.box_index;    
@@ -84,7 +110,9 @@ Page({
       box_mac:box_mac,
       hotel_id:hotel_id,
       book_time:book_info.book_time,
-      name:book_info.book_name
+      name:book_info.book_name,
+      people_num:book_info.nums,
+      mobile:book_info.mobile
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       wx.navigateToMiniProgram({
