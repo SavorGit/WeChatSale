@@ -1,5 +1,5 @@
 <!--pages/adv/index.wxml-->
-<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+<scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true" >
 	<block wx:for="{{adv_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 		<view class="row flex_column_center_flexStart" >
 			<image class="cover" src="{{bean.pubdetail[0].img_url}}"></image>
