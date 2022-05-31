@@ -147,6 +147,7 @@ Page({
             url: '/store/pages/index',
           })
         }else {
+          that.isHaveStockHotel(user_info);
           that.setData({user_info:data.result.userinfo})
           var task_list = that.data.task_list;
           if(task_list.length==0){
@@ -167,6 +168,42 @@ Page({
         
       }
     },res=>{},{isShowLoading:false})
+  },
+  isHaveStockHotel:function(user_info){
+    var openid = user_info.openid;
+    if (user_info.select_hotel_id > 0) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    var is_pop_notice_wind = app.globalData.is_pop_notice_wind;
+    if(is_pop_notice_wind===0){
+      
+      utils.PostRequest(api_v_url + '/Stock/isHaveStockHotel',{
+        openid:openid,
+        hotel_id:hotel_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        var is_pop_time = data.result.is_pop_time;
+          if(is_pop_time==1 &&  app.globalData.is_pop_notice_wind==0){
+            wx.showModal({
+              title: '提示',
+              content: '请您在酒楼宣传片页面点播酒水广告',
+              confirmText:'我知道了',
+              showCancel:false,
+              success (res) {
+                if (res.confirm) {
+                  app.globalData.is_pop_notice_wind = 1;
+                  console.log('dddd')
+                } else if (res.cancel) {
+                  console.log('ssss')
+                }
+              },complete:function(){
+                app.globalData.is_pop_notice_wind = 1;
+              }
+            })
+          }
+      },res=>{},{isShowLoading:false})
+    }
   },
   /**
    * 获取任务列表

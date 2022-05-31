@@ -526,6 +526,7 @@ Page({
         data: {
           box_mac: box_mac,
           openid: openid,
+          is_sale_wine:1
         },
         success: function(res) {
           if (res.data.code == 10000) {

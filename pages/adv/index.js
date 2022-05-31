@@ -31,7 +31,7 @@ Page({
       openid:openid,
       hotel_id:hotel_id
     })  
-    utils.PostRequest(api_v_url + '/adv/getResList', {
+    utils.PostRequest(api_v_url + '/adv/getAdvList', {
       page: pageNum,
       hotel_id:hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -43,7 +43,7 @@ Page({
   loadMore:function(e){
     var that = this;
     pageNum +=1;
-    utils.PostRequest(api_v_url + '/adv/getResList', {
+    utils.PostRequest(api_v_url + '/adv/getAdvList', {
       page: pageNum,
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
