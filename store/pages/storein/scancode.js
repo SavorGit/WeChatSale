@@ -117,7 +117,8 @@ Page({
       openid: app.globalData.openid,
       idcode:code_msg,
       type:10,
-      unit_id:goods_info.unit_id
+      unit_id:goods_info.unit_id,
+      stock_detail_id:goods_info.stock_detail_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goods_info = data.result;
       var flag = 0;

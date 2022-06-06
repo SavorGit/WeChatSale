@@ -82,7 +82,8 @@ Page({
       for(let i in reasons){
         reasons[i].checked = false;
       }
-      that.setData({reasons:reasons,datas:datas})
+      //that.setData({reasons:reasons,datas:datas})
+      that.setData({reasons:reasons})
     })
   },
   deleteScanGoods:function(e){
@@ -111,6 +112,7 @@ Page({
     
   },
   changeReason:function(e){
+    var that = this;
     var id = e.detail.value;
     var reasons = this.data.reasons;
     for(let i in reasons){
@@ -119,7 +121,19 @@ Page({
         reasons[i].checked = true;
       }
     }
-    this.setData({reasons:reasons})
+    this.setData({reasons:reasons,datas:[]})
+    var goods_id = this.data.goods_id;
+    this.getAbcd(id,goods_id)
+  },
+  getAbcd:function(id,goods_id){
+    var that = this;
+    
+    utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
+      type:id,
+      goods_id:goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({datas:data.result.datas})
+    })
   },
   uploadChargeoffPic: function (e) {
     var that = this;

@@ -124,7 +124,8 @@ Page({
       openid: app.globalData.openid,
       idcode:code_msg,
       type:20,
-      unit_id:base_goods_info.unit_id
+      unit_id:base_goods_info.unit_id,
+      stock_detail_id:base_goods_info.stock_detail_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var goods_info = data.result;
       if(goods_info.is_unpacking==1){//拆箱
