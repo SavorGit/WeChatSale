@@ -284,7 +284,8 @@ Page({
       goods_codes:goods_codes,
       reason_type:reason_type
     }, (data, headers, cookies, errMsg, statusCode) => {
-      app.showToast('提交成功',2000,'success');
+      var message = data.result.message; 
+      app.showToast(message,2000,'success');
       wx.navigateBack({delta:1})
       
     })
