@@ -7,12 +7,13 @@
 
 		<!-- 选项卡头开始 -->
 		<scroll-view class="tab-head theme7" scroll-x="true" scroll-with-animation="true" wx:if="{{base_info.step==0}}">
-			<view wx:if="{{base_info.type==0}}" class="tab-item selected theme-font7">自主上传</view>
-			<view wx:if="{{base_info.type!=0}}" bindtap="switchWelType" data-category_id="0" class="tab-item theme-font8">自主上传</view>
+			
 			<block wx:for="{{categoryList}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
 				<view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:if="{{bean.id==base_info.type}}" class="tab-item selected theme-font7">{{bean.name}}</view>
 				<view bindtap="switchWelType" data-category_id="{{bean.id}}" wx:else class="tab-item theme-font8">{{bean.name}}</view>
 			</block>
+            <view wx:if="{{base_info.type==0}}" class="tab-item selected theme-font7">自主上传</view>
+			<view wx:if="{{base_info.type!=0}}" bindtap="switchWelType" data-category_id="0" class="tab-item theme-font8">自主上传</view>
 		</scroll-view>
 		<!-- 选项卡头结束 -->
 

@@ -83,6 +83,7 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     var that = this;
+    var base_info = that.data.base_info;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     if (user_info.hotel_id == -1) {
@@ -95,6 +96,8 @@ Page({
 
     }, (data, headers, cookies, errMsg, statusCode) => {
       //console.log(data.result.category_list);
+      var category_list = data.result.category_list;
+      base_info.type = category_list[0].id
       that.setData({
         categoryList: data.result.category_list
       })
