@@ -101,6 +101,15 @@ Page({
       that.setData({
         categoryList: data.result.category_list
       })
+      utils.PostRequest(api_v_url + '/welcome/imglist', {
+        category_id: category_list[0].id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+         //base_info.type = category_id;
+        that.setData({
+          imglist: data.result,
+          //base_info: base_info
+        })
+      });
     });
     /**
      * 获取配置
