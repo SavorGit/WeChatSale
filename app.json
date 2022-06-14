@@ -108,7 +108,8 @@
       "pages/goodsbreakage/havecode/scancode",
       "pages/goodsbreakage/nocode/index",
       "pages/goodsbreakage/nocode/goodslist",
-      "pages/goodsbreakage/nocode/scancode"
+      "pages/goodsbreakage/nocode/scancode",
+      "pages/goodsbreakage/replace/index"
     ]
   }
 ],
