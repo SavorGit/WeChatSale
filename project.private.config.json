@@ -4,5 +4,25 @@
   "projectname": "WeChatSale",
   "setting": {
     "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "报损",
+          "pathName": "store/pages/goodsbreakage/havecode/scancode",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "二维码替换",
+          "pathName": "store/pages/goodsbreakage/replace/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }

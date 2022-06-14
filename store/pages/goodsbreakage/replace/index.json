@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "二维码替换",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }

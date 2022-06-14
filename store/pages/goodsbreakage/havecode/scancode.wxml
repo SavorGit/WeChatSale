@@ -12,8 +12,11 @@
         <view class="title-bar flex_row_center_flexStart">
           <view class="title"> </view>
         </view>
-        <view class="option-bar flex_row_center_flexEnd" bindtap="gotoPage">
-          <view class="btn order flex_row_center_center">
+        <view class="option-bar flex_row_center_spaceBetween">
+          <view class="btn qrcode-replace flex_row_center_center" bindtap="">
+            <view class="text theme-font-6297F2">二维码替换</view>
+          </view>
+          <view class="btn order flex_row_center_center" bindtap="gotoPage">
             <view class="text theme-font-6297F2">无码报损</view>
           </view>
         </view>
@@ -36,7 +39,7 @@
               <view class="middle">
                 <view class="goods-title flex_row_center_flexStart theme-font1">商品信息</view>
                 <view class="goods-list flex_column_center_flexStart">
-                  <view  class="goods flex_row_center_flexStart">
+                  <view class="goods flex_row_center_flexStart">
                     <view class="left flex_column_center_center theme-font1">{{bean.goods_info.goods_id}}</view>
                     <view class="center flex_column_center_center">
                       <view class="name theme-font1">{{bean.goods_info.goods_name}}</view>

@@ -1,2 +1,105 @@
 <!--store/pages/goodsbreakage/replace/index.wxml-->
-<text>store/pages/goodsbreakage/replace/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 报损 二维码替换
+  -->
+<view class="page qrcode-loss-reporting container theme-main">
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+    <view class="warper flex_column_center_flexStart">
+      <view class="frame old-code">
+        <view wx:if="{{false}}" class="panel scan flex_column_center_flexStart">
+          <view class="title-bar flex_row_center_flexStart">
+            <view class="title"></view>
+          </view>
+          <view class="body flex_column_center_center" bindtap="">
+            <view class="btn flex_column_center_center theme-button-blue">
+              <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+              <view class="text">扫码</view>
+            </view>
+            <view class="tip theme-font1">请扫描商品当前唯一标识码</view>
+          </view>
+        </view>
+
+        <view wx:else class="panel">
+          <view class="body">
+            <view class="list flex_column_center_flexStart">
+              <view class="item flex_column_center_flexStart">
+                <view class="option-bar flex_row_center_flexEnd">
+                  <view class="btn del flex_column_center_center">
+                    <view class="icon fa fa-trash-o theme-font-6297F2" aria-hidden="true"></view>
+                  </view>
+                </view>
+                <view class="top">
+                  <view class="title flex_row_center_center theme-font1">当前商品（xxxxxxx）</view>
+                </view>
+                <view class="middle">
+                  <view class="goods-title flex_row_center_flexStart theme-font1">商品信息</view>
+                  <view class="goods-list flex_column_center_flexStart">
+                    <view class="goods flex_row_center_flexStart">
+                      <view class="left flex_column_center_center theme-font1">123</view>
+                      <view class="center flex_column_center_center">
+                        <view class="name theme-font1">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                        <view class="tag-group flex_row_center_flexStart">
+                          <view class="tag theme-font3">白酒</view>
+                          <view class="tag theme-font3">500ml</view>
+                          <view class="tag theme-font3">瓶</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="bottom flex_column_flexStart_flexStart">
+                  <view class="node theme-font1">报损环节：出库（xxxxxxx）</view>
+                  <view class="desc theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                  <view class="line flex_row_center_flexStart">
+                    <view class="datetime theme-font3">2022/04/10 11:00</view>
+                    <view class="username theme-font3">陈灵玉</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="frame new-code">
+        <view wx:if="{{false}}" class="panel scan flex_column_center_flexStart">
+          <view class="title-bar flex_row_center_flexStart">
+            <view class="title"></view>
+          </view>
+          <view class="body flex_column_center_center" bindtap="">
+            <view class="btn flex_column_center_center theme-button-blue">
+              <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+              <view class="text">扫码</view>
+            </view>
+            <view class="tip theme-font1">请扫描新的唯一标识码</view>
+          </view>
+        </view>
+
+        <view wx:else class="panel">
+          <view class="body">
+            <view class="list flex_column_center_flexStart">
+              <view class="item flex_column_center_flexStart">
+                <view class="top">
+                  <view class="title flex_row_center_center theme-font1">二维码信息</view>
+                </view>
+                <view class="middle">
+                  <view class="flex_row_center_center theme-font1">xxxxxxxxxxxxxxxxxxxx</view>
+                </view>
+                <view class="bottom flex_row_center_center">
+                  <view class="btn rescan flex_column_center_center theme-font-6297F2">重新扫码</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+  <view class="foot flex_row_center_spaceAround" bindtap="">
+    <view class="btn ok flex_row_center_center theme-button-blue">确定替换</view>
+  </view>
+</view>

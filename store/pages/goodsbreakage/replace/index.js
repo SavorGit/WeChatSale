@@ -1,4 +1,7 @@
 // store/pages/goodsbreakage/replace/index.js
+/**
+ * 报损 二维码替换
+ */
 Page({
 
   /**
