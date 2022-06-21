@@ -9,11 +9,11 @@
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
     <view class="warper flex_column_center_flexStart">
       <view class="frame old-code">
-        <view wx:if="{{false}}" class="panel scan flex_column_center_flexStart">
+        <view wx:if="{{goods_info.goods_id==0}}" class="panel scan flex_column_center_flexStart">
           <view class="title-bar flex_row_center_flexStart">
             <view class="title"></view>
           </view>
-          <view class="body flex_column_center_center" bindtap="">
+          <view class="body flex_column_center_center" bindtap="scanGoodsCode">
             <view class="btn flex_column_center_center theme-button-blue">
               <view class="icon fa fa-qrcode" aria-hidden="true"></view>
               <view class="text">扫码</view>
@@ -27,35 +27,35 @@
             <view class="list flex_column_center_flexStart">
               <view class="item flex_column_center_flexStart">
                 <view class="option-bar flex_row_center_flexEnd">
-                  <view class="btn del flex_column_center_center">
+                  <view class="btn del flex_column_center_center" bindtap="delGoodsInfo" data-type="original">
                     <view class="icon fa fa-trash-o theme-font-6297F2" aria-hidden="true"></view>
                   </view>
                 </view>
                 <view class="top">
-                  <view class="title flex_row_center_center theme-font1">当前商品（xxxxxxx）</view>
+                  <view class="title flex_row_center_center theme-font1">当前商品（{{goods_info.idcode}}）</view>
                 </view>
                 <view class="middle">
                   <view class="goods-title flex_row_center_flexStart theme-font1">商品信息</view>
                   <view class="goods-list flex_column_center_flexStart">
                     <view class="goods flex_row_center_flexStart">
-                      <view class="left flex_column_center_center theme-font1">123</view>
+                      <view class="left flex_column_center_center theme-font1">{{goods_info.goods_id}}</view>
                       <view class="center flex_column_center_center">
-                        <view class="name theme-font1">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                        <view class="name theme-font1">{{goods_info.goods_name}}</view>
                         <view class="tag-group flex_row_center_flexStart">
-                          <view class="tag theme-font3">白酒</view>
-                          <view class="tag theme-font3">500ml</view>
-                          <view class="tag theme-font3">瓶</view>
+                          <view class="tag theme-font3">{{goods_info.cate_name}}</view>
+                          <view class="tag theme-font3">{{goods_info.spec_name}}</view>
+                          <view class="tag theme-font3">{{goods_info.unit_name}}</view>
                         </view>
                       </view>
                     </view>
                   </view>
                 </view>
                 <view class="bottom flex_column_flexStart_flexStart">
-                  <view class="node theme-font1">报损环节：出库（xxxxxxx）</view>
-                  <view class="desc theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                  <view class="node theme-font1">报损环节：出库</view>
+                  <view class="desc theme-font3">{{goods_info.stock_name}}</view>
                   <view class="line flex_row_center_flexStart">
-                    <view class="datetime theme-font3">2022/04/10 11:00</view>
-                    <view class="username theme-font3">陈灵玉</view>
+                    <view class="datetime theme-font3">{{goods_info.add_time}}</view>
+                    <view class="username theme-font3">{{goods_info.op_uname}}</view>
                   </view>
                 </view>
               </view>
@@ -65,11 +65,11 @@
       </view>
 
       <view class="frame new-code">
-        <view wx:if="{{false}}" class="panel scan flex_column_center_flexStart">
+        <view wx:if="{{code_info.code==''}}" class="panel scan flex_column_center_flexStart">
           <view class="title-bar flex_row_center_flexStart">
             <view class="title"></view>
           </view>
-          <view class="body flex_column_center_center" bindtap="">
+          <view class="body flex_column_center_center" bindtap="scanReGoodsCode">
             <view class="btn flex_column_center_center theme-button-blue">
               <view class="icon fa fa-qrcode" aria-hidden="true"></view>
               <view class="text">扫码</view>
@@ -86,9 +86,9 @@
                   <view class="title flex_row_center_center theme-font1">二维码信息</view>
                 </view>
                 <view class="middle">
-                  <view class="flex_row_center_center theme-font1">xxxxxxxxxxxxxxxxxxxx</view>
+                  <view class="flex_row_center_center theme-font1">{{code_info.code}}</view>
                 </view>
-                <view class="bottom flex_row_center_center">
+                <view class="bottom flex_row_center_center" bindtap="delGoodsInfo" data-type="replace">
                   <view class="btn rescan flex_column_center_center theme-font-6297F2">重新扫码</view>
                 </view>
               </view>
@@ -99,7 +99,7 @@
 
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround" bindtap="">
+  <view class="foot flex_row_center_spaceAround" bindtap="confirmReplace">
     <view class="btn ok flex_row_center_center theme-button-blue">确定替换</view>
   </view>
 </view>

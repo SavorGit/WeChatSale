@@ -13,10 +13,10 @@
           <view class="title"> </view>
         </view>
         <view class="option-bar flex_row_center_spaceBetween">
-          <view class="btn qrcode-replace flex_row_center_center" bindtap="">
+          <view class="btn qrcode-replace flex_row_center_center" bindtap="gotoPage" data-type="replace">
             <view class="text theme-font-6297F2">二维码替换</view>
           </view>
-          <view class="btn order flex_row_center_center" bindtap="gotoPage">
+          <view class="btn order flex_row_center_center" bindtap="gotoPage" data-type="nocode">
             <view class="text theme-font-6297F2">无码报损</view>
           </view>
         </view>

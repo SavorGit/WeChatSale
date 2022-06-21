@@ -179,7 +179,7 @@ Page({
     var is_pop_notice_wind = app.globalData.is_pop_notice_wind;
     if(is_pop_notice_wind===0){
       
-      utils.PostRequest(api_v_url + '/Stock/isHaveStockHotel',{
+      utils.PostRequest(api_v_url + '/stock/isHaveStockHotel',{
         openid:openid,
         hotel_id:hotel_id
       }, (data, headers, cookies, errMsg, statusCode) => {

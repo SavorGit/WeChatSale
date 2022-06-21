@@ -118,9 +118,18 @@ Page({
     })
     
   },
-  gotoPage:function(){
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    var url = '';
+    switch(type){
+        case 'replace':
+            url = '/store/pages/goodsbreakage/replace/index';
+            break;
+        case 'nocode':
+            url = '/store/pages/goodsbreakage/nocode/index';
+    }
     wx.navigateTo({
-      url: '/store/pages/goodsbreakage/nocode/index',
+      url: url,
     })
   },
   offPopWindForLoss:function(){
