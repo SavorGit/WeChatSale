@@ -4,7 +4,7 @@
   -->
 
 
-<view class='container flex_column_center_flexStart theme-container'>
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
   <form action="" class="form">
     <view class="page">
       <view class="row picker flex_row_center_flexStart">
@@ -47,9 +47,46 @@
           <input bindinput="inputBookMobile" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定人的手机号码" />
         </view>
       </view>
+      <view class="row text flex_row_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">餐厅联系电话</view>
+        <view class="value">
+          <input bindinput="" type="number" class="input border flex_row_center_flexStart" placeholder="请输入餐厅的联系电话" />
+        </view>
+      </view>
+      <view class="row mould flex_column_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">邀请函模板</view>
+        <radio-group class="value flex_row_center_spaceBetween">
+          <view class="mould flex_column_center_center">
+            <label for="mould_1">
+              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            </label>
+            <radio class="radio" id="mould_1"></radio>
+          </view>
+          <view class="mould flex_column_center_center">
+            <label for="mould_2">
+              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            </label>
+            <radio class="radio" id="mould_2"></radio>
+          </view>
+          <view class="mould flex_column_center_center">
+            <label for="mould_3">
+              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            </label>
+            <radio class="radio" id="mould_3"></radio>
+          </view>
+          <!--
+          -->
+          <view class="mould flex_column_center_center">
+            <label for="mould_4">
+              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            </label>
+            <radio class="radio" id="mould_4"></radio>
+          </view>
+        </radio-group>
+      </view>
       <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo">
         <view class="btn submit flex_row_center_center theme-button-dark">确定预定信息</view>
       </view>
     </view>
   </form>
-</view>
+</scroll-view>

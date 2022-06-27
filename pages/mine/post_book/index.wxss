@@ -101,6 +101,20 @@
   font-size: 28rpx;
 }
 
+.row.mould>.label,
+.row.mould>.value {
+  width: 100%;
+}
+
+.row.mould>.value {
+  height: auto;
+}
+
+.row.mould>.value .mould>label>.pic {
+  width: 150rpx;
+  height: 321rpx;
+}
+
 .row.full-button>.btn {
   width: 100%;
   height: 110rpx;
