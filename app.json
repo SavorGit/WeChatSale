@@ -11,6 +11,7 @@
     "pages/hotel/dishes/index",
     "pages/hotel/dishes/add_dishes",
     "pages/hotel/dishes/edit_dishes",
+    "pages/hotel/dishmenu/index",
     "pages/hotel/dishes/detail",
     "pages/hotel/order/index",
     "pages/hotel/order/detail",
