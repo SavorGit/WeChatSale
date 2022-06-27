@@ -1,4 +1,17 @@
 // pages/hotel/dishmenu/index.js
+/**
+ * 菜品管理
+ */
+
+
+const app = getApp()
+var uma = app.globalData.uma;
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var hotel_id;
 Page({
 
   /**

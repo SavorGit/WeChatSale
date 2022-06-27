@@ -21,6 +21,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "菜品管理",
+          "pathName": "pages/hotel/dishmenu/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
