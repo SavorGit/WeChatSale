@@ -109,7 +109,7 @@ Page({
   confirmBookInfo:function(){
     var book_info = this.data.book_info;
     if(book_info.book_time==''){
-      app.showToast('请输选择预定时间');
+      app.showToast('请选择预定时间');
       return false;
     }
     
@@ -118,7 +118,7 @@ Page({
       return false;
     }
     if(book_info.book_name==''){
-        app.showToast('请输选择预定人称呼');
+        app.showToast('请输入预定人称呼');
         return false;
       }
     if(book_info.mobile=='' ){
