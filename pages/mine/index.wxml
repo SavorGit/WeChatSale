@@ -163,7 +163,7 @@
   </view>
   <!-- 菜品管理面板 -->
   <view class="promotion-goods-manage-panel theme7 theme-font2">
-    <view class="full_width full_height flex_row_center_spaceBetween">
+    <view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoDishMenu">
       <view>菜品管理</view>
       <view class="fa fa-angle-right" aria-hidden="true"></view>
     </view>

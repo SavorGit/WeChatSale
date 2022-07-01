@@ -5,10 +5,23 @@
 
 
 <!-- 列表页 -->
-<scroll-view class='container page list flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container page list flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
   <view class="list flex_column_center_flexStart">
 
-    <view class="item flex_row_center_spaceBetween theme-block-white">
+    <view class="item flex_row_center_spaceBetween theme-block-white" wx:for="{{dish_menu_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+      <view class="left flex_row_center_flexStart">
+        <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+      </view>
+      <view class="rigth flex_column_center_flexStart">
+        <view class="top flex_row_center_spaceAround">
+          <view class="name one-line-overflow">{{bean.name}}</view>
+          <view class="btn edit flex_row_center_center theme-button-welcome" bindtap="popEditWind" data-keys="0">修改</view>
+        </view>
+        <view class="synopsis two-line-overflow">{{bean.intro}}</view>
+      </view>
+    </view>
+
+    <!-- <view class="item flex_row_center_spaceBetween theme-block-white">
       <view class="left flex_row_center_flexStart">
         <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
       </view>
@@ -199,28 +212,16 @@
         </view>
         <view class="synopsis two-line-overflow">xxx xx xx xx xx xx xx xxx xxx xx xx xx xx xxx xx x xx xx x x xx x x xxx x</view>
       </view>
-    </view>
-    <view class="item flex_row_center_spaceBetween theme-block-white">
-      <view class="left flex_row_center_flexStart">
-        <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-      </view>
-      <view class="rigth flex_column_center_flexStart">
-        <view class="top flex_row_center_spaceAround">
-          <view class="name one-line-overflow">xxxxxxxxxx</view>
-          <view class="btn edit flex_row_center_center theme-button-welcome">修改</view>
-        </view>
-        <view class="synopsis two-line-overflow">xxx xx xx xx xx xx xx xxx xxx xx xx xx xx xxx xx x xx xx x x xx x x xxx x</view>
-      </view>
-    </view>
+    </view> -->
 
   </view>
 </scroll-view>
 
 <!-- 修改弹窗 -->
-<view class="window edit flex_column_center_flexStart">
+<view class="window edit flex_column_center_flexStart" wx:if="{{popEidtWinds}}">
   <view class="mask flex_column_center_center">
     <view class="window flex_column_center_flexStart theme-window">
-      <view class="option-bar flex_row_center_flexEnd">
+      <view class="option-bar flex_row_center_flexEnd" bindtap="closeEditWind">
         <view class="btn close flex_column_center_center">
           <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
         </view>
@@ -230,23 +231,23 @@
       </view>
       <view class="window-body flex_column_center_flexStart">
         <view class="row pic flex_column_center_flexStart">
-          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-          <view class="btn reselect flex_row_center_center theme-button-white">重新选择</view>
+          <image class="pic" mode="aspectFill" src="{{edit_dish_menu.img_url}}" />
+          <view class="btn reselect flex_row_center_center theme-button-white" bindtap="editImage">重新选择</view>
         </view>
         <view class="row text flex_row_center_spaceAround">
           <view class="label">标题</view>
           <view class="value">
-            <input class="input" type="text" />
+            <input bindinput="inputTitle" class="input" value="{{edit_dish_menu.name}}" type="text" />
           </view>
         </view>
         <view class="row textarea flex_row_center_spaceAround">
           <view class="label">简介</view>
           <view class="value">
-            <textarea class="input"></textarea>
+            <textarea bindinput="inputDesc" class="input" value="{{edit_dish_menu.intro}}"></textarea>
           </view>
         </view>
-        <view class="row btn-group flex_row_center_center">
-          <view class="btn save flex_row_center_center theme-button-welcome">保存</view>
+        <view class="row btn-group flex_row_center_center" >
+          <button class="btn save flex_row_center_center theme-button-welcome" disabled="{{btn_disable}}" bindtap="editDishMenu">保存</button>
         </view>
 
       </view>

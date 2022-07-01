@@ -13,7 +13,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    book_info:{'select_room_name':'--请选择包间--','box_index':0,'book_time':'','book_name':'','nums':'','mobile':''}
+    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','template_id':0},
+    themes_list:[]
   },
 
   /**
@@ -24,29 +25,40 @@ Page({
     openid = options.openid;
     hotel_id = options.hotel_id;
     this.getRoomlist(openid,hotel_id);
+    this.getThemes(openid,hotel_id);
   },
   getRoomlist:function(openid,hotel_id){
     var that = this;
-    utils.PostRequest(api_v_url + '/room/getRoomList', {
-      openid: openid,
+    utils.PostRequest(api_v_url + '/room/getRooms', {
       hotel_id:hotel_id,
-      type:2
+      
     }, (data, headers, cookies, errMsg, statusCode) => {
       var book_info = that.data.book_info;
-      book_info.select_room_name = data.result.box_name_list[0];
+      book_info.select_room_name = data.result.room_name_list[0];
 
       that.setData({
-        objectBoxArray: data.result.box_name_list,
-        box_list: data.result.box_list,
+        objectBoxArray: data.result.room_name_list,
+        box_list: data.result.room_list,
         book_info:book_info
       })
     })
+  },
+  getThemes:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/invitation/themes', {
+      hotel_id:hotel_id,
+      openid:openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var themes_list = data.result.datalist;
+      that.setData({themes_list:themes_list})
+    })
+    
   },
   selectRoom:function(e){
     var keys = e.detail.value;
     var objectBoxArray = this.data.objectBoxArray;
     var book_info = this.data.book_info;
-    book_info.box_index = keys;
+    book_info.room_index = keys;
     book_info.select_room_name = objectBoxArray[keys];
     this.setData({book_info:book_info})
   },
@@ -76,13 +88,30 @@ Page({
     book_info.mobile = mobile;
     this.setData({book_info:book_info});
   },
+  inputHotelContract:function(e){
+    var hotel_contract = e.detail.value.replace(/\s+/g, '');
+    var book_info = this.data.book_info;
+    book_info.hotel_contract = hotel_contract;
+    this.setData({book_info:book_info});
+  },
+  inputHotelTel:function(e){
+    var hotel_tel = e.detail.value.replace(/\s+/g, '');
+    var book_info = this.data.book_info;
+    book_info.hotel_tel = hotel_tel;
+    this.setData({book_info:book_info});
+  },
+  selectTemplate:function(e){
+    var template_id = e.detail.value;
+    var book_info = this.data.book_info;
+    book_info.template_id = template_id;
+    this.setData({book_info:book_info});
+  },
   confirmBookInfo:function(){
     var book_info = this.data.book_info;
     if(book_info.book_time==''){
       app.showToast('请输选择预定时间');
       return false;
     }
-    console.log(book_info)
     
     if(book_info.nums=='' || book_info.nums<1){
       app.showToast('请输入预定就餐的人数');
@@ -100,25 +129,32 @@ Page({
       app.showToast('请输入正确的手机号');
       return false; 
     }
+    if(book_info.template_id==0){
+      app.showToast('请选择邀请函模板');
+      return false;
+    }
+    console.log(book_info)
     var box_list = this.data.box_list;
-    var box_index = book_info.box_index;    
-    var box_mac = box_list[box_index].box_mac;
-
-
+    var room_index = book_info.room_index;    
+    var room_id = box_list[room_index].id;
+    
     utils.PostRequest(api_v_url + '/invitation/confirminfo', {
       openid: openid,
-      box_mac:box_mac,
+      room_id:room_id,
       hotel_id:hotel_id,
       book_time:book_info.book_time,
       name:book_info.book_name,
       people_num:book_info.nums,
-      mobile:book_info.mobile
+      mobile:book_info.mobile,
+      contact_name: book_info.hotel_contract,
+      contact_mobile:book_info.hotel_tel,
+      theme_id:book_info.template_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       wx.navigateToMiniProgram({
         appId: 'wxfdf0346934bb672f',
         path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
-        //envVersion:'trial'
+        envVersion:'trial'
       })
       uma.trackEvent('postbook_confirm',{'open_id':openid,'hotel_id':hotel_id})
     })
