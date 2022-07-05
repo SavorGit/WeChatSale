@@ -15,7 +15,7 @@
       <view class="rigth flex_column_center_flexStart">
         <view class="top flex_row_center_spaceAround">
           <view class="name one-line-overflow">{{bean.name}}</view>
-          <view class="btn edit flex_row_center_center theme-button-welcome" bindtap="popEditWind" data-keys="0">修改</view>
+          <view class="btn edit flex_row_center_center theme-button-welcome" bindtap="popEditWind" data-keys="{{index}}">修改</view>
         </view>
         <view class="synopsis two-line-overflow">{{bean.intro}}</view>
       </view>
