@@ -2,6 +2,7 @@
   "usingComponents": {
     "MailList": "/components/modal/MailList",
     "modal": "/components/modal/modal",
-    "bottomModal": "/components/modal/bottomModal"
+    "bottomModal": "/components/modal/bottomModal",
+    "a-picker": "/components/pickers/a-pcker"
   }
 }
