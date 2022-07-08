@@ -6,7 +6,7 @@
             <view class="top-text top-left-color" hover-class="top-left-color-hover" catchtap="esc">取消</view>
             <view class="top-text top-right-color" hover-class="top-right-color-hover" catchtap="ok">确定</view>
         </view>
-        <picker-view style="width:100%;height:400rpx;" value="{{value}}" bindchange="onChangePickerView" catchtap="onClickPickerView">
+        <picker-view style="width:100%;height:500rpx;" value="{{value}}" bindchange="onChangePickerView" catchtap="onClickPickerView">
             <picker-view-column>
                 <view wx:for="{{range}}" wx:key="key" style="line-height:50px;text-align:center;" class="item">{{item}}</view>
             </picker-view-column>
