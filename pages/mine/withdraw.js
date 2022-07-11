@@ -5,6 +5,7 @@
 const util = require('../../utils/util.js');
 const app = getApp()
 const api_url = app.globalData.api_url;
+const api_v_url = app.globalData.api_v_url;
 const cache_key = app.globalData.cache_key;
 var uma = app.globalData.uma
 Page({
@@ -148,7 +149,7 @@ Page({
       hotel_id: userInfo.hotel_id,
       openid: userInfo.openid
     };
-    util.PostRequest(api_url + '/Smallsale14/withdraw/wxchange', requestData, function(data, headers, cookies, errMsg, httpCode) {
+    util.PostRequest(api_v_url + '/withdraw/wxchange', requestData, function(data, headers, cookies, errMsg, httpCode) {
       // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode);
       // console.log('confirmExchangeGoods', 'success', this, data, headers, cookies, errMsg, httpCode, arguments);
       if (typeof(data) != 'object' || typeof(data.result) != 'object') {
@@ -191,7 +192,7 @@ Page({
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
     let that = this;
-    util.PostRequest(api_url + '/Smallsale14/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
+    util.PostRequest(api_v_url + '/withdraw/getMoneyList', requestData, function(data, headers, cookies, errMsg, httpCode) {
       if (typeof(data) != 'object' || typeof(data.result) != 'object') {
         wx.showToast({
           title: "服务器返回数据错误！请用联系管理员。",
