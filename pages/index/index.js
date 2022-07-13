@@ -922,6 +922,13 @@ Page({
         return false;
       }
       is_show = true;
+    }else if(is_show==2){
+      is_show = false;
+      let propertyKey = e.currentTarget.dataset.p_key;
+      let propertyVal = e.currentTarget.dataset.p_value;
+      let setData = {showControlWindow:false};
+      setData[propertyKey] = propertyVal;
+      that.setData(setData);
     }else {
       is_show = false;
       uma.trackEvent('control_operation_panel',{'open_id':app.globalData.openid,'status':2})
