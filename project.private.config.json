@@ -42,6 +42,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "核销 [首页]",
+          "pathName": "store/pages/goodschargeoff/index",
+          "query": "openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
