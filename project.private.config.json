@@ -35,6 +35,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "新增核销申请-优惠券",
+          "pathName": "store/pages/couponbreakage/havecode/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

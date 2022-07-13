@@ -1,1 +1,60 @@
 /* store/pages/couponbreakage/havecode/index.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 新增核销申请-优惠券
+ */
+.panel.makings>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.panel.makings>.body>.evidence {
+  width: 33.33333333333333333333%;
+}
+
+.panel.makings>.body>.evidence>.btn {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+}
+
+.panel.makings>.body>.evidence>.btn.add {
+  width: 214rpx;
+  height: 214rpx;
+  font-size: 48rpx;
+  color: rgb(187, 187, 187);
+  border: 3rpx dashed rgb(187, 187, 187);
+}
+
+.panel.makings>.body>.evidence>.tips {
+  width: 100%;
+}
+
+.panel.makings>.body>.evidence>.tips>.tip {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.page>.main>.type {
+  width: calc(100% - 60rpx);
+  padding: 20rpx 10rpx;
+  margin: 20rpx;
+  border-top: 3rpx dashed rgba(187, 187, 187, 1);
+  border-bottom: 3rpx dashed rgba(187, 187, 187, 1);
+}
+
+.page>.main>.type>.label {
+  width: 150rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.page>.main>.type>.value {
+  width: calc(100% - 150rpx);
+  font-size: 32rpx;
+}
+
+.page>.foot>.btn {
+  width: 548rpx;
+  height: 80rpx;
+}

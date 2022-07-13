@@ -1,2 +1,50 @@
 <!--store/pages/couponbreakage/havecode/index.wxml-->
-<text>store/pages/couponbreakage/havecode/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 新增核销申请-优惠券
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page flex_column_center_flexStart">
+    <view class="main">
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">请扫描优惠券二维码进行核销</view>
+        </view>
+        <view class="body flex_column_center_center">
+          <view class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+            <view class="text">扫码</view>
+          </view>
+        </view>
+      </view>
+
+      <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
+
+      <view wx:if="{{false}}" class="panel makings flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">核销资料</view>
+        </view>
+        <view class="body flex_row_center_spaceBetween">
+          <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="evidence flex_column_center_flexStart">
+              <image wx:if="{{bean.img_url!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{bean.img_url}}" />
+              <view wx:else class="btn add flex_column_center_center">+</view>
+              <view class="tips flex_column_center_center">
+                <view class="tip flex_row_center_center">
+                  <view class="theme-font5" wx:if="{{bean.is_required=='1'}}">*</view>
+                  <view class="content">{{bean.name}}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+    </view>
+    <view class="foot flex_row_center_spaceAround">
+      <button class="btn ok flex_row_center_center theme-button-blue">提交</button>
+    </view>
+  </view>
+</scroll-view>
