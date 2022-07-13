@@ -28,6 +28,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "售酒抽奖",
+          "pathName": "store/pages/activity/winesale/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
