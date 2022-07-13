@@ -14,8 +14,15 @@
 }
 
 .panel>.title-bar>.title {
-  font-size: 36rpx;
   font-weight: bold;
+}
+
+.panel>.title-bar>.title.big {
+  font-size: 36rpx;
+}
+
+.panel>.title-bar>.title.small {
+  font-size: 28rpx;
 }
 
 .panel>.body {

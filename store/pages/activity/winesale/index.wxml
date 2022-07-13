@@ -1,2 +1,72 @@
 <!--store/pages/activity/winesale/index.wxml-->
-<text>store/pages/activity/winesale/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 售酒抽奖
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="warper flex_column_center_flexStart">
+
+    <view class="panel tips flex_column_center_flexStart">
+      <view class="body flex_column_center_center">
+        <view wx:for="{{tipList}}" wx:key="key" wx:for-item="tip" wx:for-index="index" class="tip theme-font5">{{tip}}</view>
+      </view>
+    </view>
+
+    <view class="flex_column_center_flexStart" style="width:calc(100% - 70rpx);margin:0 10rpx;padding:20rpx 25rpx;border-radius:40rpx;background:rgba(98,151,242,0.1);">
+      <view class="flex_row_center_center" style="padding:10rpx 0;">
+        <view class="theme-font1" style="font-size:36rpx;font-weight:bold;">扫码商品（xxxxxxx）</view>
+      </view>
+      <view class="flex_column_center_flexStart" style="width:100%;">
+        <template is="goodsPanel" data='{{title:"商品信息",smallTitle:true,list:list,btnTitle:btnTitle}}' />
+      </view>
+    </view>
+
+    <view class="panel choose-box flex_column_center_flexStart" style="padding-top:50rpx;">
+      <view class="title-bar flex_row_center_center">
+        <view class="title small">请选择发起抽奖的餐厅</view>
+      </view>
+      <view class="body flex_column_center_center">
+        <a-picker class='box flex_row_center_center theme-font1'>
+          <view class='show-content flex_row_center_spaceBetween'>
+            <view class='choosed-box one-line-overflow'>VIP1</view>
+            <view class="icon fa fa-angle-down" aria-hidden="true"></view>
+          </view>
+        </a-picker>
+      </view>
+    </view>
+
+    <view class="panel button flex_column_center_flexStart" style="padding-top:50rpx;">
+      <view class="body flex_column_center_center">
+        <view class="btn launch flex_row_center_center theme-button-blue">发起抽奖</view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>
+
+<view wx:if="{{true}}" class="window luck-draw">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center">
+          <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title flex_row_center_center theme-font1">售酒抽奖活动</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="qr flex_column_center_flexStart">
+          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg" />
+          <view class="label theme-font1">抽奖码</view>
+        </view>
+        <view class="tip-group flex_column_center_flexStart">
+          <view class="tip flex_column_center_flexStart theme-font5">如使用请向食客提供此码进行抽奖</view>
+          <view class="tip flex_column_center_flexStart theme-font5">或提醒食客扫描电视二维码进行抽奖</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
