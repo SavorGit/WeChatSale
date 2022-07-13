@@ -110,7 +110,9 @@
       "pages/goodsbreakage/nocode/index",
       "pages/goodsbreakage/nocode/goodslist",
       "pages/goodsbreakage/nocode/scancode",
-      "pages/goodsbreakage/replace/index"
+      "pages/goodsbreakage/replace/index",
+      "pages/activity/winesale/index",
+      "pages/couponbreakage/havecode/index"
     ]
   }
 ],
