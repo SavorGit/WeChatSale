@@ -37,6 +37,9 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    if(typeof(options.code_msg)!='undefined'){
+      this.goodsDecode(options.code_msg);
+    }
   },
   scanGoodsCode:function(){
     var that = this;
