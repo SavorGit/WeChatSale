@@ -80,12 +80,70 @@
   font-weight: 400;
 }
 
+.item>.middle>.coupon {
+  width: 670rpx;
+  height: 172.2857142857143rpx;
+  margin: 20rpx 0;
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/index/coupon.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% auto;
+}
+
+.item>.middle>.coupon>.left {
+  width: 160rpx;
+  height: calc(100% - 20rpx);
+  padding: 10rpx 20rpx 10rpx 10rpx;
+}
+
+.item>.middle>.coupon>.left>.top {
+  width: 100%;
+}
+
+.item>.middle>.coupon>.left>.top>.value {
+  /* width: calc(100% - 40rpx); */
+  text-align: right;
+  font-size: 56rpx;
+}
+
+.item>.middle>.coupon>.left>.top>.unit {
+  width: 40rpx;
+  text-align: right;
+  font-size: 32rpx;
+}
+
+.item>.middle>.coupon>.left>.bottom {
+  width: 100%;
+}
+
+.item>.middle>.coupon>.left>.bottom>.text {
+  width: 100%;
+  font-size: 32rpx;
+}
+
+.item>.middle>.coupon>.right {
+  width: calc(100% - 180rpx);
+  height: calc(100% - 20rpx);
+  padding: 10rpx 10rpx 10rpx 20rpx;
+}
+
+.item>.middle>.coupon>.right>view {
+  width: 100%;
+  padding: 5rpx 0;
+  font-size: 32rpx;
+}
+
 .item>.middle>.goods-list>.goods>.center>.tag-group>.tag {
   margin-left: 30rpx;
 }
 
 .item>.middle>.goods-list>.goods>.center>.tag-group>.tag:first-child {
   margin-left: unset;
+}
+
+
+.item>.bottom {
+  height: 70rpx;
 }
 
 .item>.bottom>.datetime {
@@ -103,7 +161,25 @@
   font-weight: bold;
 }
 
-.page.check-accept-goods>.foot>.btn {
-  width: 548rpx;
+.item>.bottom>.button-group>.btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item>.bottom>.button-group>.btn.write-off {
+  width: 208rpx;
+  height: 64rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.page.check-accept-goods>.foot>.btn.ok {
+  width: 516rpx;
+  height: 80rpx;
+}
+
+.page.check-accept-goods>.foot>.btn.write-off {
+  width: 208rpx;
   height: 80rpx;
 }

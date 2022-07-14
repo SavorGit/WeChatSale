@@ -9,44 +9,92 @@
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
     <view class="warper flex_column_center_flexStart">
       <view class="list flex_column_center_flexStart">
-        <view wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" class="item flex_column_center_flexStart">
-          <view class="top">
-           
-            <view  class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
-            <view  class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1}}">{{bean.status_str}}</view>
-            <view  class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
-            
-            <view class="title flex_row_center_center theme-font1">核销({{bean.reason}})</view>
-          </view>
-          <view class="middle">
-            <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
-            <view class="goods-list flex_column_center_flexStart">
-              <view wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_row_center_flexStart">
-                <view class="left flex_column_center_center theme-font1">{{goods.goods_id}}</view>
-                <view class="center flex_column_center_center">
-                  <view class="name theme-font1">{{goods.goods_name}}</view>
-                  <view class="tag-group flex_row_center_flexStart">
-                    <view class="tag theme-font3">{{goods.cate_name}}</view>
-                    <view class="tag theme-font3">{{goods.spec_name}}</view>
-                    <view class="tag theme-font3">{{goods.unit_name}}</view>
+        <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view wx:if="{{index==0}}" class="item coupon flex_column_center_flexStart">
+            <view class="top">
+              <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
+              <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1}}">{{bean.status_str}}</view>
+              <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
+              <view class="title flex_row_center_center theme-font1">核销({{bean.reason}})</view>
+            </view>
+            <view class="middle">
+              <view class="coupon flex_row_center_spaceBetween">
+                <view class="left flex_column_center_center">
+                  <view class="top flex_row_flexEnd_center">
+                    <view class="value theme-font-FFFFFF">20</view>
+                    <view class="unit theme-font-FFFFFF">元</view>
                   </view>
-                  <view class="identifying-code theme-font3">唯一标识：{{goods.idcode}}</view>
+                  <view class="bottom">
+                    <view class="text one-line-overflow theme-font-FFFFFF">满200可用</view>
+                  </view>
+                </view>
+                <view class="right flex_column_center_center">
+                  <view class="hotel one-line-overflow theme-font1">花家怡园（世贸店）</view>
+                  <view class="explain one-line-overflow theme-font1">部分活动酒水</view>
+                  <view class="validity-date one-line-overflow theme-font3">有效期至2020-12-12</view>
+                </view>
+              </view>
+              <view class="goods-title flex_row_center_flexStart theme-font1">优惠券来源（售酒抽奖）</view>
+              <view class="goods-list flex_column_center_flexStart">
+                <view wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_row_center_flexStart">
+                  <view class="left flex_column_center_center theme-font1">{{goods.goods_id}}</view>
+                  <view class="center flex_column_center_center">
+                    <view class="name theme-font1">{{goods.goods_name}}</view>
+                    <view class="tag-group flex_row_center_flexStart">
+                      <view class="tag theme-font3">{{goods.cate_name}}</view>
+                      <view class="tag theme-font3">{{goods.spec_name}}</view>
+                      <view class="tag theme-font3">{{goods.unit_name}}</view>
+                    </view>
+                    <view class="identifying-code theme-font3">唯一标识：{{goods.idcode}}</view>
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
-          <view class="bottom flex_row_center_spaceBetween">
-            <view class="datetime theme-font3">{{bean.add_time}}</view>
-            <view class="profit flex_row_center_spaceBetween">
-              <!-- <view class="label theme-font3">预计收益</view>
-              <view class="value theme-font5">{{bean.profit}}</view> -->
+            <view class="bottom flex_row_center_spaceBetween">
+              <view class="datetime theme-font3">{{bean.add_time}}</view>
             </view>
           </view>
-        </view>
+          <view wx:else class="item flex_column_center_flexStart">
+            <view class="top">
+              <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
+              <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1}}">{{bean.status_str}}</view>
+              <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
+              <view class="title flex_row_center_center theme-font1">核销({{bean.reason}})</view>
+            </view>
+            <view class="middle">
+              <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
+              <view class="goods-list flex_column_center_flexStart">
+                <view wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_row_center_flexStart">
+                  <view class="left flex_column_center_center theme-font1">{{goods.goods_id}}</view>
+                  <view class="center flex_column_center_center">
+                    <view class="name theme-font1">{{goods.goods_name}}</view>
+                    <view class="tag-group flex_row_center_flexStart">
+                      <view class="tag theme-font3">{{goods.cate_name}}</view>
+                      <view class="tag theme-font3">{{goods.spec_name}}</view>
+                      <view class="tag theme-font3">{{goods.unit_name}}</view>
+                    </view>
+                    <view class="identifying-code theme-font3">唯一标识：{{goods.idcode}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="bottom flex_row_center_spaceBetween">
+              <view class="datetime theme-font3">{{bean.add_time}}</view>
+              <view class="profit flex_row_center_spaceBetween">
+                <!-- <view class="label theme-font3">预计收益</view>
+              <view class="value theme-font5">{{bean.profit}}</view> -->
+              </view>
+              <view class="button-group flex_row_center_flexEnd">
+                <view class="btn write-off flex_row_center_center theme-button-dark">前往核销</view>
+              </view>
+            </view>
+          </view>
+        </block>
       </view>
     </view>
   </scroll-view>
   <view class="foot flex_row_center_spaceAround" bindtap="gotoPage">
     <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">新增核销申请</view>
+    <view class="btn write-off flex_row_center_center theme-button-dark" bindtap="">优惠券核销</view>
   </view>
 </view>
