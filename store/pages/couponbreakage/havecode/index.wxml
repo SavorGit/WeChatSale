@@ -12,7 +12,7 @@
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">请扫描优惠券二维码进行核销</view>
         </view>
-        <view class="body flex_column_center_center">
+        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
           <view class="btn flex_column_center_center theme-button-blue">
             <view class="icon fa fa-qrcode" aria-hidden="true"></view>
             <view class="text">扫码</view>
@@ -22,7 +22,7 @@
 
       <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
 
-      <view wx:if="{{false}}" class="panel makings flex_column_center_flexStart">
+      <!-- <view wx:if="{{false}}" class="panel makings flex_column_center_flexStart">
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">核销资料</view>
         </view>
@@ -40,11 +40,11 @@
             </view>
           </block>
         </view>
-      </view>
+      </view> -->
 
     </view>
     <view class="foot flex_row_center_spaceAround">
-      <button class="btn ok flex_row_center_center theme-button-blue">提交</button>
+      <button bindtap="submitCoupon" class="btn ok flex_row_center_center theme-button-blue">提交</button>
     </view>
   </view>
 </scroll-view>

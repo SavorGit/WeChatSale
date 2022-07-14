@@ -16,7 +16,7 @@
 
     <view class="flex_column_center_flexStart" style="width:calc(100% - 70rpx);margin:0 10rpx;padding:20rpx 25rpx;border-radius:40rpx;background:rgba(98,151,242,0.1);">
       <view class="flex_row_center_center" style="padding:10rpx 0;">
-        <view class="theme-font1" style="font-size:36rpx;font-weight:bold;">扫码商品（xxxxxxx）</view>
+        <view class="theme-font1" style="font-size:36rpx;font-weight:bold;">扫码商品（{{code_msg}}）</view>
       </view>
       <view class="flex_column_center_flexStart" style="width:100%;">
         <template is="goodsPanel" data='{{title:"商品信息",smallTitle:true,list:list,btnTitle:btnTitle}}' />
@@ -28,9 +28,9 @@
         <view class="title small">请选择发起抽奖的餐厅</view>
       </view>
       <view class="body flex_column_center_center">
-        <a-picker class='box flex_row_center_center theme-font1'>
+        <a-picker class='box flex_row_center_center theme-font1' range="{{objectBoxArray}}" bindchange="selectRoom">
           <view class='show-content flex_row_center_spaceBetween'>
-            <view class='choosed-box one-line-overflow'>VIP1</view>
+            <view class='choosed-box one-line-overflow'>{{objectBoxArray[box_index]}}</view>
             <view class="icon fa fa-angle-down" aria-hidden="true"></view>
           </view>
         </a-picker>
@@ -38,19 +38,22 @@
     </view>
 
     <view class="panel button flex_column_center_flexStart" style="padding-top:50rpx;">
-      <view class="body flex_column_center_center">
+      <view class="body flex_column_center_center" bindtap="startLottery" wx:if="{{pageConfig.isNotHaveStartLottery}}">
         <view class="btn launch flex_row_center_center theme-button-blue">发起抽奖</view>
+      </view>
+      <view class="body flex_column_center_center" bindtap="startLottery" wx:else>
+        <view class="btn launch flex_row_center_center theme-button-blue">查看抽奖码</view>
       </view>
     </view>
 
   </view>
 </scroll-view>
 
-<view wx:if="{{true}}" class="window luck-draw">
+<view wx:if="{{pageConfig.popLotteryWind}}" class="window luck-draw">
   <view class="mask flex_column_center_center">
     <view class="entity theme-window">
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn close flex_column_center_center">
+        <view class="btn close flex_column_center_center" bindtap="closeLotteryWind">
           <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
         </view>
       </view>

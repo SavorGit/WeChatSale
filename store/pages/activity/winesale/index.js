@@ -10,6 +10,8 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
+var hotel_id;
+var code_msg;
 Page({
 
   /**
@@ -24,16 +26,72 @@ Page({
       cate_name: '白酒',
       sepc_name: '500ml',
       unit_name: '瓶'
-    }]
+    }],
+    pageConfig:{popLotteryWind:false,isNotHaveStartLottery:true},
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-console.log(app.SystemInfo)
+    wx.hideShareMenu();
+    openid = app.globalData.openid;
+    code_msg = options.code_msg;
+    hotel_id = options.hotel_id;
+    this.goodsDecode(code_msg);
+    this.getRoomlist(openid,hotel_id);
+    this.setData({code_msg:code_msg});
   },
+  goodsDecode:function(code_msg){
+    var that = this;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid: openid,
+      idcode:code_msg,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      
+    })
+  },
+  getRoomlist:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/room/getRoomList', {
+      openid: openid,
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      //var lottery_config = that.data.lottery_config;
+      //lottery_config.select_room_name = data.result.box_name_list[0];
 
+      that.setData({
+        objectBoxArray: data.result.box_name_list,
+        box_list: data.result.box_list,
+        box_index:data.result.box_index
+        //lottery_config:lottery_config
+      })
+    })
+  },
+  selectRoom:function(e){
+    var keys = e.detail.value;
+    this.setData({box_index:keys})
+  },
+  startLottery:function(){
+    var that = this;
+    var pageConfig = this.data.pageConfig;
+   
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid: openid,
+      idcode:code_msg,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      pageConfig.isNotHaveStartLottery = false;
+      pageConfig.popLotteryWind        = true;
+      that.setData({pageConfig:pageConfig});
+    })
+  },
+  closeLotteryWind:function(){
+    var pageConfig = this.data.pageConfig;
+    pageConfig.popLotteryWind = false;
+    this.setData({pageConfig:pageConfig});
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

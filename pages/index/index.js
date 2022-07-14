@@ -968,20 +968,31 @@ Page({
     var that = this;
     var type = e.currentTarget.dataset.type;
     var url = '';
-    
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if(user_info.select_hotel_id>0){
+      var hotel_id= user_info.select_hotel_id;
+    }else {
+      if(user_info.hotel_id==-1){
+        app.showToast('请先选择酒楼');
+        return false;
+      }else {
+        var hotel_id = user_info.hotel_id
+      }
+    }
+
     wx.scanCode({
       onlyFromCamera: true,
       success: (res) => {
         var code_msg = res.result;
         switch(type){
           case 'goods':
-            url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg;
+            url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg+'&hotel_id='+hotel_id;
             break;
           case 'coupon':
-            url ="/store/pages/couponbreakage/havecode/index?code_msg="+code_msg;
+            url ="/store/pages/couponbreakage/havecode/index?code_msg="+code_msg+'&hotel_id='+hotel_id;
             break;
           case 'lottery':
-            url = '/store/pages/activity/winesale/index?code_msg='+code_msg;
+            url = '/store/pages/activity/winesale/index?code_msg='+code_msg+'&hotel_id='+hotel_id;
             break;
         }
         wx.navigateTo({
