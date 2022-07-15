@@ -47,7 +47,7 @@
       <view class='title theme-font7'>控制</view>
     </view>
     <view bindtap="switchShowControl" data-is_show="2" data-p_key="showQRChoosePopWindow" data-p_value="true">
-      <image class='icon' src='/images/icon/7B98F6_pointer.png'></image>
+      <image class='icon' src='/images/icon/EDCD4B_scan.png'></image>
       <view class='title theme-font7'>扫码</view>
     </view>
   </view>
