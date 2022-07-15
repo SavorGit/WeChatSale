@@ -93,8 +93,8 @@
       </view>
     </view>
   </scroll-view>
-  <view class="foot flex_row_center_spaceAround" bindtap="gotoPage">
-    <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">新增核销申请</view>
-    <view class="btn write-off flex_row_center_center theme-button-dark" bindtap="">优惠券核销</view>
+  <view class="foot flex_row_center_spaceAround" >
+    <view class="btn ok flex_row_center_center theme-button-blue" bindtap="gotoPage" data-type="goods">新增核销申请</view>
+    <view class="btn write-off flex_row_center_center theme-button-dark" bindtap="gotoPage" data-type="coupon">优惠券核销</view>
   </view>
 </view>

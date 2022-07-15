@@ -55,7 +55,6 @@ Page({
       }
       
       var ret_list = data.result;
-      console.log(ret_list)
       if(ret_list.length>0){
         for(let i in ret_list){
           list.push(ret_list[i]);
@@ -85,9 +84,20 @@ Page({
     page ++;
     this.getChargeOffList(page);
   },
-  gotoPage:function(){
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    var url = '';
+    switch(type){
+      case 'goods':
+        url = '/store/pages/goodschargeoff/addinfo';
+        break;
+      case 'coupon':
+        
+        url = '/store/pages/couponbreakage/havecode/index';
+        break;
+    }
     wx.navigateTo({
-      url: '/store/pages/goodschargeoff/addinfo',
+      url: url,
     })
   },
   /**
