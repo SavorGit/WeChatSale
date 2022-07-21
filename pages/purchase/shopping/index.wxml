@@ -11,12 +11,7 @@
 				<view class="fa fa-search theme-font3" aria-hidden="true"></view>
 				<input confirm-type="search" class="search theme-font3" placeholder="搜索商品" value="{{keywords}}" bindinput="inputSearch" bindconfirm="searchGoods"></input>
 			</view>
-			<!--
-			<view class="shopping-car-bar flex_column_flexStart_flexStart">
-				<view class="fa fa-shopping-cart" aria-hidden="true"></view>
-				<view class="marker theme-rad-panel">88</view>
-			</view>
-			-->
+			
 		</view>
 		<view class="main-panel">
 			<scroll-view class="tab-bar theme-panel" scroll-x="true" scroll-with-animation="true">

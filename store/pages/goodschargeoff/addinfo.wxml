@@ -48,25 +48,7 @@
               </view>
             </view>
           </block>
-          <!-- <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="bottle_cap_img">
-            <image wx:if="{{img_list.bottle_cap_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.bottle_cap_img}}" />
-            <view wx:else class="btn add flex_column_center_center">+</view>
-            <view class="tips flex_column_center_center">
-              <view class="tip flex_row_center_center">
-                <view class="theme-font5">*</view>
-                <view class="content">瓶盖照片</view>
-              </view>
-            </view>
-          </view>
-          <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="other_img">
-            <image wx:if="{{img_list.other_img!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{img_list.other_img}}" />
-            <view wx:else class="btn add flex_column_center_center">+</view>
-            <view class="tips flex_column_center_center">
-              <view class="tip flex_row_center_center">
-                <view class="content">其他</view>
-              </view>
-            </view>
-          </view> -->
+          
         </view>
       </view>
 

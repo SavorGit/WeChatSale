@@ -9,16 +9,7 @@
 	<!-- 外层pages -->
 	<view class='pages'>
 		<block wx:if="{{express_info.state!=''}}">
-			<!-- 头部[详细] 
-      <view class='head flex_row_center_spaceBetween'>
-        <image class='head_img' mode="aspectFill" src='https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg'></image>
-        <view class='tabulate flex_column_flexStart_spaceBetween'>
-          <label class='head_name theme-font2'>物流状态：<text class="theme-font1">在途</text> </label>
-          <label class='head_title theme-font2'>物流公司：<text class="theme-font1">圆通</text></label>
-          <label class='head_tel_name theme-font2'>快递单号: <text class="theme-font1">V030344422</text></label>
-        </view>
-      </view>
-      -->
+			
 			<!-- 头部[简约] -->
 			<view class='head flex_row_center_center'>
 				<view class="simple-icon fa fa-truck" aria-hidden="true"></view>

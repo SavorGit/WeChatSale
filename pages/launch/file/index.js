@@ -592,18 +592,7 @@ Page({
           dealFile(oss_file_path, file_name, file_size, polling_time, timestamp, res_eup_time, that);
         }
       });
-      /*var res_eup_time = (new Date()).valueOf();
-      upload_task.onProgressUpdate((res) => {
-
-
-        if (res.progress == 100) {
-          sleep(3000);
-          //1、处理文件接口
-          var res_eup_time = (new Date()).valueOf();
-          dealFile(oss_file_path, file_name, file_size, polling_time, timestamp, res_eup_time, that);
-        }
-
-      });*/
+      
 
     }
     function dealFile(oss_file_path, file_name, file_size, polling_time, res_sup_time, res_eup_time, that) {

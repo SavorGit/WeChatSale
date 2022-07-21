@@ -9,8 +9,7 @@
 			<image src="{{bean}}"></image>
 			</block>
       
-      <!-- <image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-			<image src="http://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image> -->
+     
 		</view>
 	</view>
 </scroll-view>

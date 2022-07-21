@@ -20,26 +20,6 @@ Page({
   data: {
     listTitle: '已扫优惠券（0）',
     scanList:[],
-    /*scanList: [{
-      idcode: 'aaaaaaaaaaaaaaaaaaaaaaaaa',
-      add_time: '2022/04/10 11:00:50'
-    }, {
-      idcode: 'bbbbbbbbbbbbbbbbbbbbb',
-      add_time: '2022/04/10 11:00:40'
-    }],
-    datas: [{
-      img_url: '',
-      is_required: 1,
-      name: '酒水小票'
-    }, {
-      img_url: '',
-      is_required: 1,
-      name: '瓶盖照片'
-    }, {
-      img_url: '',
-      is_required: 1,
-      name: '其他'
-    }]*/
   },
 
   /**
@@ -140,8 +120,10 @@ Page({
             hotel_id:hotel_id,
             qrcontent:scanList[0].qrcode
           }, (data, headers, cookies, errMsg, statusCode) => {
+            
             wx.navigateBack({delta: 1});
-            app.showToast('提交成功',2000,'success');
+            app.showToast('提交成功',3000,'success');
+            
           })
         }
       }

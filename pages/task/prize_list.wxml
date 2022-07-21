@@ -134,21 +134,7 @@
 						</view>
 					</view>
 					
-					<!-- <view class="item flex_row_center_spaceBetween">
-						<view class="name theme-font3 one-line-overflow">vip3</view>
-						<view class="times theme-font-F44444 one-line-overflow">3次</view>
-						<view class="btn-group flex_row_center_flexEnd">
-							<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg"></image>
-							<view class="tip theme-font1">已认领</view>
-						</view>
-					</view>
-					<view class="item flex_row_center_spaceBetween">
-						<view class="name theme-font1 one-line-overflow">vip8</view>
-						<view class="times theme-font-F44444 one-line-overflow">3次</view>
-						<view class="btn-group flex_row_center_flexEnd">
-							<view class="btn get theme-button-red">认领收益</view>
-						</view>
-					</view> -->
+					
 				</view>
 			</view>
 		</scroll-view>

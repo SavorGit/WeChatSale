@@ -88,26 +88,7 @@
             <radio class="radio" id="mould_{{index+1}}" value="{{bean.id}}"></radio>
           </view>
 
-          <!--<view class="mould flex_column_center_center">
-            <label for="mould_2">
-              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-            </label>
-            <radio class="radio" id="mould_2" value="2"></radio>
-          </view>
-          <view class="mould flex_column_center_center">
-            <label for="mould_3">
-              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-            </label>
-            <radio class="radio" id="mould_3" value="3"></radio>
-          </view>
           
-          
-          <view class="mould flex_column_center_center">
-            <label for="mould_4">
-              <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-            </label>
-            <radio class="radio" id="mould_4" value="4"></radio>
-          </view>-->
         </radio-group>
       </view>
       <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo">

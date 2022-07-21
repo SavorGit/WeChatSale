@@ -132,11 +132,7 @@ Page({
             goods_id: goods_id,
             status: status
           }, (data, headers, cookies, errMsg, statusCode) => {
-            /*var dishes_list = that.data.dishes_list;
-            dishes_list[keys].status = status;
-            that.setData({
-              dishes_list: dishes_list
-            })*/
+            
             utils.PostRequest(api_v_url + '/dish/goodslist', {
               openid: openid,
               merchant_id: merchant_id,

@@ -148,12 +148,7 @@ Page({
 
     this.setData({lottery_config:lottery_config,multiIndex:multiIndex})
 
-    /*this.setData({
-      award_open_time: hour +':'+minute,
-      choose_hour:hour,
-      choose_minute:minute,
-      is_select_open_time:1
-    })*/
+    
     
   },
   /**

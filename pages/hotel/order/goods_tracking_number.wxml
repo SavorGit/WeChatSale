@@ -39,12 +39,7 @@
 </view>
 
 
-<!-- 手动输入弹窗 -->
-<!-- <modal show="{{showInputCodePopWindow}}" width="690rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='请输入快递单号' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='保存' confirm-color="#FFFFFF" confirm-background-color="#A18668" confirm-border-radius="0rpx" cancel-text='取消' cancel-color='rgba(7,17,27,0.6)' cancel-background-color="#DEDEDE" cancel-border-radius="0rpx" bindconfirm=''>
-	<view class="full_width full_height flex_column_center_center">
-		<input placeholder="请输入" style="width:500rpx;padding:5rpx;border:3rpx solid #BEBEBE;font-size:28rpx"></input>
-	</view>
-</modal> -->
+
 <modal show="{{showInputCodePopWindow}}" width="690rpx" height='400rpx' border-radius="" background-color='unset' title-text='' confirm-text='' cancel-text=''>
 	<form bindsubmit="setEnumber">
 		<view class="change-nikename-window flex_column_center theme7">

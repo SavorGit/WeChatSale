@@ -2,11 +2,7 @@
 <wxs src="../../../app.wxs" module="app"></wxs>
 
 <scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true">
-	<!-- <view class="tab-bar flex_row_center_center theme7" wx:if="{{hotel_type!=3}}">
-
-		<view class="tab take-out{{tab == 'take-out' ? ' selected' : ''}}" data-tab="take-out" bindtap="showTab">外卖菜品</view>
-		<view class="tab nationwide{{tab == 'nationwide' ? ' selected' : ''}}" data-tab="nationwide" bindtap="showTab">售全国商品</view>
-	</view> -->
+	
 
 	<!-- 外卖菜品 -->
 	<form wx:if="{{tab == 'take-out'}}" bindsubmit="editDishes">
@@ -19,19 +15,7 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">价格</view>
 				<input class="input" type='digit' placeholder="请输入菜品价格" name='price' bindinput='setTotalCount' value="{{goods_info.price}}"></input>
 			</view>
-			<!-- <view class="row flex_row_flexStart_spaceBetween">
-				<view class="lable flex_row_center_spaceBetween theme-font1">是否支持全国售卖</view>
-				<radio-group class="radio-group" bindchange="changeSale">
-					<radio value="1" checked="{{is_sale==1?true:false}}">是</radio>
-					<radio value="0" checked="{{is_sale==0?true:false}}">否</radio>
-				</radio-group>
-			</view> 
-			<view class="row flex_row_flexStart_spaceBetween">
-				<view class="lable flex_row_center_spaceBetween theme-font1">全国售卖</view>
-				<view class="input" style="border:none;">
-					<switch checked="{{is_sale==1?true:false}}" bindchange="changeSale" />
-				</view>
-			</view>-->
+			
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>菜品图</p>
@@ -64,17 +48,13 @@
 				<view class="lable flex_row_center_spaceBetween theme-font1">菜品介绍</view>
 				<view class="warpper flex_column_center">
 					<textarea class="input" placeholder="请输入菜品介绍" name="intro" maxlength="300" value="{{goods_info.intro}}"></textarea>
-					<!--
-					<view>
-						<view class="fa fa-camera theme-font7" aria-hidden="true"></view>
-					</view>
-					-->
+					
 				</view>
 			</view>
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>详情图片</p>
-					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
+					
 				</view>
 				<view class="warpper">
 					<block wx:for="{{dish_intro_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -154,7 +134,7 @@
 			<view class="pic_row two_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>商品图</p>
-					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
+					
 				</view>
 				<view class="warpper">
 					<block wx:for="{{goods_img_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -182,7 +162,7 @@
 			<view class="pic_row one_pic_rows flex_row_flexStart_spaceBetween">
 				<view class="lable flex_column_flexStart theme-font1">
 					<p>视频介绍</p>
-					<!-- <p style="font-size:24rpx">(长按对调图片位置)</p> -->
+					
 				</view>
 				<view class="warpper">
 					<view class="cell flex_column_center_center">

@@ -12,11 +12,6 @@
         <input class="input" bindinput="searchHotel" value="{{select_hotel_name}}" type="text" placeholder="请输入酒楼名称" />
         <view class="icon fa fa-search" aria-hidden="true"></view>
       </view>
-      <!--
-      <view class=" btn search">
-        <view class="icon fa fa-bars" aria-hidden="true"></view>
-      </view>
-      -->
     </view>
     <scroll-view class="choose-list" scroll-y="true" scroll-with-animation="true" wx:if="{{hotel_list.length>0}}">
       <view class="list">

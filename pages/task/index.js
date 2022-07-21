@@ -160,18 +160,7 @@ Page({
   setShareBenefit: function (e) {
     var that = this;
 
-    /*that.setData({
-      taskDetailWindowShow: false,
-      setTaskBenefitWindowShow: true,
-      level1: 10,
-      level2: 70,
-      level3: 20
-    }, function () {
-      this.selectComponent('#setTaskBenefitSlider').redraw({
-        minValue: this.data.level1,
-        maxValue: this.data.level1 + this.data.level2
-      });
-    });*/
+    
 
     var task_id = e.currentTarget.dataset.task_id;
 

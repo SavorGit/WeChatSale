@@ -22,26 +22,6 @@
 
       <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
 
-      <!-- <view wx:if="{{false}}" class="panel makings flex_column_center_flexStart">
-        <view class="title-bar flex_row_center_flexStart">
-          <view class="title">核销资料</view>
-        </view>
-        <view class="body flex_row_center_spaceBetween">
-          <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <view class="evidence flex_column_center_flexStart">
-              <image wx:if="{{bean.img_url!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{bean.img_url}}" />
-              <view wx:else class="btn add flex_column_center_center">+</view>
-              <view class="tips flex_column_center_center">
-                <view class="tip flex_row_center_center">
-                  <view class="theme-font5" wx:if="{{bean.is_required=='1'}}">*</view>
-                  <view class="content">{{bean.name}}</view>
-                </view>
-              </view>
-            </view>
-          </block>
-        </view>
-      </view> -->
-
     </view>
     <view class="foot flex_row_center_spaceAround">
       <button bindtap="submitCoupon" class="btn ok flex_row_center_center theme-button-blue">提交</button>

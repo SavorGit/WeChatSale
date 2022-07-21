@@ -32,11 +32,7 @@ Page({
       order_id: order_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var express = data.result.express;
-      /*if (JSON.stringify(express)=='{}'){
-        var is_have_express = false;
-      }else {
-        var is_have_express = true;
-      }*/
+      
       if(express.length>0){
         var is_have_express = true;
       }else {

@@ -100,70 +100,7 @@ Page({
   //监听picker的滚动事件
   bindMultiPickerColumnChange: function(e) {
     //获取年份
-    /*var column = e.detail.column
-    var multiArray = this.data.multiArray;
-    console.log(e)
-    if(column==0){//选择天
-      var choose_day = e.detail.value;
-      this.setData({change_day_index:choose_day})
-      if(choose_day==0){
-        var activity_lottery_time = this.data.activity_lottery_time;
-        
-        var config_hour_index = activity_lottery_time[1];
-        var today_hours = hours.slice(config_hour_index);
-
-        var change_hour_index = this.data.change_hour_index
-        multiArray[1] = today_hours
-        console.log(change_hour_index)
-        if(typeof(change_hour_index)=='undefined'){
-          change_hour_index = 0
-        }
-        if(change_hour_index !=0){
-
-        }else {
-          var config_minute_index = activity_lottery_time[2];
-          config_minute_index = 3;/////////////
-          var today_minute = minutes.slice(config_minute_index)
-          
-          
-          multiArray[2] = today_minute
-        }
-        
-        
-
-
-
-
-      }else {
-        //console.log(multiArray)
-        multiArray[1] = hours;
-        multiArray[2] = minutes;
-        
-      }
-      
-    }else if(column ==1){//选择小时
-      //console.log(this.data)
-      var choose_hour = e.detail.value;
-      this.setData({change_hour_index:choose_hour})
-      if(choose_hour==0){
-        var change_day_index = this.data.change_day_index;
-        if(typeof(change_day_index)=='undefined'){
-          change_day_index = 0
-        }
-        if(change_day_index!=0){
-
-        }else {
-          var activity_lottery_time = this.data.activity_lottery_time;
-          var config_minute_index = activity_lottery_time[2];
-          config_minute_index = 3;/////////////
-          var today_minute = minutes.slice(config_minute_index)
-          multiArray[2] = today_minute
-        }
-      }else {
-        multiArray[2] = minutes;
-      }
-    }
-    this.setData({multiArray:multiArray})*/
+    
   },
   addActivityPic:function(){
     var that = this;
@@ -229,8 +166,6 @@ Page({
                 }
               })
             }
-            //console.log(res.width)
-            //console.log(res.height)
           }
         })  
         

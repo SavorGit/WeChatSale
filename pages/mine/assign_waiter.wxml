@@ -9,25 +9,6 @@
       <view class="btn-update theme-button-welcome" wx:else bindtap="assign_waiter" data-room_id="{{bean.room_id}}">指定</view>
 		</view>
     </block>
-		<!-- <view class="row flex_row_center theme7">
-			<view class="room one-line-overflow">VIP2</view>
-			<view class="waiter one-line-overflow theme-font7">张三三</view>
-			<view class="btn-update theme-button-welcome">重选</view>
-		</view>
-		<view class="row flex_row_center theme7">
-			<view class="room one-line-overflow">VIP3</view>
-			<view class="waiter one-line-overflow theme-font7">张三三</view>
-			<view class="btn-update theme-button-welcome">重选</view>
-		</view>
-		<view class="row flex_row_center theme7">
-			<view class="room one-line-overflow">VIP4</view>
-			<view class="waiter one-line-overflow theme-font7"></view>
-			<view class="btn-update theme-button-welcome">指定</view>
-		</view>
-		<view class="row flex_row_center theme7">
-			<view class="room one-line-overflow">VIP5</view>
-			<view class="waiter one-line-overflow theme-font7">张三三</view>
-			<view class="btn-update theme-button-welcome">重选</view>
-		</view> -->
+		
 	</view>
 </scroll-view>

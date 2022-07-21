@@ -41,7 +41,7 @@
       <view class="body flex_column_center_center" bindtap="startLottery" wx:if="{{pageConfig.isNotHaveStartLottery}}">
         <view class="btn launch flex_row_center_center theme-button-blue">发起抽奖</view>
       </view>
-      <view class="body flex_column_center_center" bindtap="startLottery" wx:else>
+      <view class="body flex_column_center_center" bindtap="viewtLottery" wx:else>
         <view class="btn launch flex_row_center_center theme-button-blue">查看抽奖码</view>
       </view>
     </view>

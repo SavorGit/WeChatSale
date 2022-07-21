@@ -6,18 +6,7 @@
 		<view class="flex_row_flexStart_spaceBetween">
 			<view class="flex_column_flexStart_center">
 				<view bindtap="openChangeNikenameWindow">{{nickName}}</view>
-				<!-- 20201130
-				<view class="flex_row_center star-color">
-					<view class="flex_row_center_spaceBetween">
-						<view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-						<view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-						<view class="fa {{userScore >= 2.5 && userScore < 3 ? 'fa-star-half-o' : userScore >= 3 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-						<view class="fa {{userScore >= 3.5 && userScore < 4 ? 'fa-star-half-o' : userScore >= 4 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-						<view class="fa {{userScore >= 4.5 && userScore < 5 ? 'fa-star-half-o' : userScore >= 5 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
-					</view>
-					<view>{{userScore}}</view>
-				</view>
-				-->
+				
 			</view>
 			<!-- <image src="/images/icon/A18668_shield_key.png" bindtap="openPurviewManageWindow"></image> -->
 		</view>

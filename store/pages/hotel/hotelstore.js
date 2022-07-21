@@ -20,11 +20,7 @@ Page({
   
   data: {
     hotel_name: '',
-    list: [
-      /*{ goods_id: 122, name: "啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  },
-      { goods_id: 121, name: "恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩恩", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  },
-      { goods_id: 120, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name:"500ml", unit_name:"瓶",  viewBt: true, amount: 100  }*/
-    ],
+    list: [],
   },
 
   /**

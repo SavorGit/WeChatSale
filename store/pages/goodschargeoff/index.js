@@ -10,27 +10,15 @@ var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
 var page;
+var c_page;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      /*{
-        reason: "核销（售卖）", status_str: '待审核', goods: [
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
-        ], date_time: "2022/04/10 11:00", profit: "123456元"
-      },
-      {
-        reason: "核销（品鉴）", status_str: '待审核', goods: [
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" },
-          { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
-        ], date_time: "2022/04/10 11:00", profit: "123积分"
-      },*/
-    ],
+    list: [],
+    coupon_list:[],
     tab:'goods'
   },
 
@@ -40,7 +28,8 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
-    page = 1;
+    page   = 1;
+    c_page = 1;
     
   },
   getChargeOffList:function(page){
@@ -66,37 +55,77 @@ Page({
           app.showToast('没有更多了...')
         }
       }
-      /*var off_goods_list = that.data.off_goods_list;
-      var ret_off_goods_list = data.result;
-      if(ret_off_goods_list.length>=0){
-        for(let i in ret_off_goods_list){
-          off_goods_list.push(ret_off_goods_list[i])
+      
+    })
+  },
+  getCouponList:function(page){
+    var that = this;
+    utils.PostRequest(api_v_url + '/coupon/getWriteoffList', {
+      openid:openid,
+      page:page
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(page= 1){
+        var coupon_list = [];
+      }else{
+        var coupon_list = that.data.coupon_list;
+      }
+      var ret_list = data.result;
+      if(ret_list.length>0){
+        for(let i in ret_list){
+          coupon_list.push(ret_list[i]);
         }
-        that.setData({off_goods_list:off_goods_list})
+        that.setData({coupon_list:coupon_list});
       }else {
         if(page>1){
           app.showToast('没有更多了...')
         }
-        
-      }*/
+      }
     })
   },
   loadMore:function(){
-    page ++;
-    this.getChargeOffList(page);
+    var tab = this.data.tab;
+    if(tab=='goods'){
+      page ++;
+      this.getChargeOffList(page);
+    }else {
+      c_page ++;
+      this.getCouponList(c_page);
+    }
+    
   },
   gotoPage:function(e){
     var type = e.currentTarget.dataset.type;
     var url = '';
+    if(type=='coupon'){
+      var user_info = wx.getStorageSync(cache_key + 'userinfo');
+      if (user_info.hotel_id == -1) {
+        var hotel_id = user_info.select_hotel_id;
+      } else {
+        var hotel_id = user_info.hotel_id;
+      }
+      if(typeof(hotel_id)=='undefined'){
+        app.showToast('请您先选择酒楼');
+        return false;
+      }
+    }else if(type=='addinfo'){//商品资料未添加
+      var keys = e.currentTarget.dataset.keys;
+      var list = this.data.list;
+      var code_msg = list[keys].goods[0].idcode;
+
+    }
+
     switch(type){
       case 'goods':
         url = '/store/pages/goodschargeoff/addinfo';
         break;
       case 'coupon':
-        
-        url = '/store/pages/couponbreakage/havecode/index';
+        url = '/store/pages/couponbreakage/havecode/index?hotel_id='+hotel_id;
+        break;
+      case 'addinfo':
+        url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg;
         break;
     }
+    console.log(url)
     wx.navigateTo({
       url: url,
     })
@@ -113,6 +142,7 @@ Page({
    */
   onShow: function () {
     this.getChargeOffList(1);
+    this.getCouponList(1);
   },
 
   /**

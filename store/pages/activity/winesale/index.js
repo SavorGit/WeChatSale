@@ -20,14 +20,6 @@ Page({
   data: {
     tipList: ['请问是否卖出以下商品？', '如确认无误可发起抽奖！'],
     list:[],
-    /*list: [{
-      stock_id: 123,
-      goods_id: 456,
-      name: '测试一下下',
-      cate_name: '白酒',
-      sepc_name: '500ml',
-      unit_name: '瓶'
-    }],*/
     pageConfig:{popLotteryWind:false,isNotHaveStartLottery:true},
 
   },
@@ -63,14 +55,10 @@ Page({
       openid: openid,
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      //var lottery_config = that.data.lottery_config;
-      //lottery_config.select_room_name = data.result.box_name_list[0];
-
       that.setData({
         objectBoxArray: data.result.room_name_list,
         box_list: data.result.room_list,
         box_index:data.result.room_index
-        //lottery_config:lottery_config
       })
       
     })
@@ -90,7 +78,7 @@ Page({
     utils.PostRequest(api_v_url + '/lottery/startSellwineLottery', {
       openid: openid,
       hotel_id:hotel_id,
-      goods_codes:code_msg,
+      idcode:code_msg,
       room_id:room_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var lottery_info = data.result;
@@ -102,6 +90,11 @@ Page({
   closeLotteryWind:function(){
     var pageConfig = this.data.pageConfig;
     pageConfig.popLotteryWind = false;
+    this.setData({pageConfig:pageConfig});
+  },
+  viewtLottery:function(){
+    var pageConfig = this.data.pageConfig;
+    pageConfig.popLotteryWind = true;
     this.setData({pageConfig:pageConfig});
   },
   /**

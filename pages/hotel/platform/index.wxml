@@ -7,14 +7,7 @@
 				<image class="pic" mode="aspectFit" src="{{bean.img_url}}"></image>
 				<view class="name one-line-overflow theme-panel">{{bean.name}}</view>
 			</view>
-			<!-- <view class="row flex_column_center_center">
-				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-				<view class="name one-line-overflow theme-panel">饿了么</view>
-			</view>
-			<view class="row flex_column_center_center">
-				<image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/MiniProgram/LaunchScreen/source/images/imgs/default.jpeg"></image>
-				<view class="name one-line-overflow theme-panel">XXXXXXXXXX</view>
-			</view> -->
+			
 		</view>
 	</scroll-view>
 	<view class="page-bottom" bindtap="gotoAddPlatform">
