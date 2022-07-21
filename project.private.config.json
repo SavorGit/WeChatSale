@@ -3,7 +3,7 @@
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "WeChatSale",
   "setting": {
-    "compileHotReLoad": true
+    "compileHotReLoad": false
   },
   "condition": {
     "miniprogram": {
@@ -46,7 +46,7 @@
         {
           "name": "核销 [首页]",
           "pathName": "store/pages/goodschargeoff/index",
-          "query": "openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "query": "openid=o9GS-4rsswUGLnO5fuCvYgr3jkQY",
           "launchMode": "default",
           "scene": null
         }

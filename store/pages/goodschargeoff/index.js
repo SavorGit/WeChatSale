@@ -30,7 +30,8 @@ Page({
           { goods_id: 123, name: "哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦哦", cate_name: "白酒", sepc_name: "500ml", unit_name: "瓶", code: "x14w2d8w" }
         ], date_time: "2022/04/10 11:00", profit: "123积分"
       },*/
-    ]
+    ],
+    tab:'goods'
   },
 
   /**
@@ -147,5 +148,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  // 选项卡选择
+  showTab: function (e) {
+    let self = this;
+    let tabType = e.currentTarget.dataset.tab;
+    self.setData({tab: tabType}, function () {
+    });
   }
 })
