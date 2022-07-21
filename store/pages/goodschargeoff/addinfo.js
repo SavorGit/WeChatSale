@@ -65,13 +65,26 @@ Page({
       idcode:code_msg,
       goods_id:goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
+      var flag  = 0;
       var goods_info = data.result;
-      scanList.push(goods_info);
-      var listTitle = '已扫商品码('+scanList.length+')';
-      that.setData({scanList:scanList,goods_id:goods_info.goods_id,listTitle:listTitle});
-      if(goods_id==0){
-        that.getWriteoffReasonByGoods(goods_info.goods_id);
+      for(let i in scanList){
+        if(scanList[i].idcode==goods_info.idcode){
+          flag = 1;
+          break;
+        }
       }
+      if(flag == 0){
+        scanList.push(goods_info);
+        var listTitle = '已扫商品码('+scanList.length+')';
+        that.setData({scanList:scanList,goods_id:goods_info.goods_id,listTitle:listTitle});
+        if(goods_id==0){
+          that.getWriteoffReasonByGoods(goods_info.goods_id);
+        }
+      }else {
+        app.showToast('请勿重复扫码');
+      }
+      
+      
       
     })
   },

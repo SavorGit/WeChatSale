@@ -28,12 +28,12 @@
         <view class="title small">请选择发起抽奖的餐厅</view>
       </view>
       <view class="body flex_column_center_center">
-        <a-picker class='box flex_row_center_center theme-font1' range="{{objectBoxArray}}" bindchange="selectRoom">
+        <picker class='box flex_row_center_center theme-font1' range="{{objectBoxArray}}" bindchange="selectRoom">
           <view class='show-content flex_row_center_spaceBetween'>
             <view class='choosed-box one-line-overflow'>{{objectBoxArray[box_index]}}</view>
             <view class="icon fa fa-angle-down" aria-hidden="true"></view>
           </view>
-        </a-picker>
+        </picker>
       </view>
     </view>
 
@@ -62,7 +62,7 @@
       </view>
       <view class="win-body flex_column_center_flexStart">
         <view class="qr flex_column_center_flexStart">
-          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg" />
+          <image class="pic" mode="aspectFill" src="{{lottery_info.qrcode_url}}" />
           <view class="label theme-font1">抽奖码</view>
         </view>
         <view class="tip-group flex_column_center_flexStart">

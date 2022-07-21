@@ -10,6 +10,8 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
+var hotel_id;
+var code_msg;
 Page({
 
   /**
@@ -17,7 +19,8 @@ Page({
    */
   data: {
     listTitle: '已扫优惠券（0）',
-    scanList: [{
+    scanList:[],
+    /*scanList: [{
       idcode: 'aaaaaaaaaaaaaaaaaaaaaaaaa',
       add_time: '2022/04/10 11:00:50'
     }, {
@@ -36,7 +39,7 @@ Page({
       img_url: '',
       is_required: 1,
       name: '其他'
-    }]
+    }]*/
   },
 
   /**
@@ -45,6 +48,8 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    hotel_id = options.hotel_id;
+    code_msg = options.code_msg;
     if(typeof(options.code_msg)!='undefined'){
       this.goodsDecode(options.code_msg)
     }
@@ -72,13 +77,34 @@ Page({
   goodsDecode:function(code_msg){
     var that = this;
     var scanList = this.data.scanList;
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid: openid,
-      idcode:code_msg,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      
-      
-    })
+    if(scanList.length>0){
+      app.showToast('每次只能核销一个优惠券');
+    }else {
+      utils.PostRequest(api_v_url + '/coupon/scancode', {
+        openid: openid,
+        qrcontent:code_msg,
+        hotel_id:hotel_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        var coupon_info = data.result;
+        coupon_info.idcode = coupon_info.name;
+        var flag  = 0;
+        for(let i in scanList){
+          if(scanList[i].qrcode==coupon_info.qrcode){
+            flag = 1;
+            break;
+          }
+        }
+        if(flag == 0){
+          scanList.push(coupon_info);
+          var listTitle = '已扫优惠券('+scanList.length+')';
+          that.setData({scanList:scanList,listTitle:listTitle});
+        }else {
+          app.showToast('请勿重复扫码');
+        }
+        
+      })
+    }
+    
   },
   deleteScanGoods:function(e){
     var that = this;
@@ -109,8 +135,10 @@ Page({
       title: '确定要提交吗？',
       success: function (res) {
         if (res.confirm) {
-          utils.PostRequest(api_v_url + '/aa/bb', {
+          utils.PostRequest(api_v_url + '/coupon/writeoff', {
             openid: openid,
+            hotel_id:hotel_id,
+            qrcontent:scanList[0].qrcode
           }, (data, headers, cookies, errMsg, statusCode) => {
             wx.navigateBack({delta: 1});
             app.showToast('提交成功',2000,'success');

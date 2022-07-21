@@ -19,14 +19,15 @@ Page({
    */
   data: {
     tipList: ['请问是否卖出以下商品？', '如确认无误可发起抽奖！'],
-    list: [{
+    list:[],
+    /*list: [{
       stock_id: 123,
       goods_id: 456,
       name: '测试一下下',
       cate_name: '白酒',
       sepc_name: '500ml',
       unit_name: '瓶'
-    }],
+    }],*/
     pageConfig:{popLotteryWind:false,isNotHaveStartLottery:true},
 
   },
@@ -45,17 +46,20 @@ Page({
   },
   goodsDecode:function(code_msg){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    var list  = this.data.list;
+    utils.PostRequest(api_v_url + '/lottery/scanGoodsCode', {
       openid: openid,
       idcode:code_msg,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      
+      var goods_info  = data.result;
+      list.push(goods_info);
+      that.setData({list:list})
       
     })
   },
   getRoomlist:function(openid,hotel_id){
     var that = this;
-    utils.PostRequest(api_v_url + '/room/getRoomList', {
+    utils.PostRequest(api_v_url + '/room/getRooms', {
       openid: openid,
       hotel_id:hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -63,28 +67,36 @@ Page({
       //lottery_config.select_room_name = data.result.box_name_list[0];
 
       that.setData({
-        objectBoxArray: data.result.box_name_list,
-        box_list: data.result.box_list,
-        box_index:data.result.box_index
+        objectBoxArray: data.result.room_name_list,
+        box_list: data.result.room_list,
+        box_index:data.result.room_index
         //lottery_config:lottery_config
       })
+      
     })
   },
   selectRoom:function(e){
+    console.log(e)
     var keys = e.detail.value;
+    console.log(keys[0]);
     this.setData({box_index:keys})
   },
   startLottery:function(){
     var that = this;
     var pageConfig = this.data.pageConfig;
-   
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    var room_list = this.data.box_list;
+    var box_index = this.data.box_index;
+    var room_id = room_list[box_index].id
+    utils.PostRequest(api_v_url + '/lottery/startSellwineLottery', {
       openid: openid,
-      idcode:code_msg,
+      hotel_id:hotel_id,
+      goods_codes:code_msg,
+      room_id:room_id
     }, (data, headers, cookies, errMsg, statusCode) => {
+      var lottery_info = data.result;
       pageConfig.isNotHaveStartLottery = false;
       pageConfig.popLotteryWind        = true;
-      that.setData({pageConfig:pageConfig});
+      that.setData({pageConfig:pageConfig,lottery_info:lottery_info});
     })
   },
   closeLotteryWind:function(){
