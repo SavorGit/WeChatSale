@@ -20,8 +20,10 @@
 }
 
 .panel.choose-box>.body>.box .show-content {
-  width: calc(100% - 10rpx);
-  height: calc(100% - 10rpx);
+  width: 472rpx;
+  height: 50rpx;
+  /* width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx); */
   padding: 5rpx;
 }
 
