@@ -21,7 +21,8 @@
                 <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1 ||bean.status==4}}">{{bean.status_str}}</view>
                 <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
                 
-                <view class="title flex_row_center_center theme-font1">核销({{bean.reason}})</view>
+                <view class="title flex_row_center_center theme-font1" wx:if="{{bean.reason!=''}}">核销({{bean.reason}})</view>
+                <view class="title flex_row_center_center theme-font1" wx:else>核销</view>
               </view>
               <view class="middle">
                 <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
