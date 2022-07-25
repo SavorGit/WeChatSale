@@ -11,6 +11,7 @@
       <view class="tab-bar flex_row_center_spaceAround">
         <view class="tab goods{{tab=='goods'?' selected':''}} theme-font1" bindtap="showTab" data-tab="goods">商品核销</view>
         <view class="tab coupon{{tab=='coupon'?' selected':''}} theme-font1" bindtap="showTab" data-tab="coupon">优惠券核销</view>
+        <view class="tab coupon{{tab=='entity'?' selected':''}} theme-font1" bindtap="showTab" data-tab="entity">实物奖品核销</view>
       </view>
       <scroll-view wx:if="{{tab=='goods'}}" class="tab-body goods flex_column_center_flexStart" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
         <view class="list flex_column_center_flexStart">
@@ -20,7 +21,7 @@
                 <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
                 <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1 ||bean.status==4}}">{{bean.status_str}}</view>
                 <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
-                
+
                 <view class="title flex_row_center_center theme-font1" wx:if="{{bean.reason!=''}}">核销({{bean.reason}})</view>
                 <view class="title flex_row_center_center theme-font1" wx:else>核销</view>
               </view>
@@ -60,8 +61,8 @@
           <block wx:for="{{coupon_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <view class="item coupon flex_column_center_flexStart">
               <view class="top">
-                <view class="status flex_row_center_flexEnd theme-font-53BD1D" >{{bean.status_str}}</view>
-                
+                <view class="status flex_row_center_flexEnd theme-font-53BD1D">{{bean.status_str}}</view>
+
                 <view class="title flex_row_center_center theme-font1">核销(优惠券)</view>
               </view>
               <view class="middle">
@@ -93,6 +94,49 @@
                         <view class="tag theme-font3">{{bean.unit_name}}</view>
                       </view>
                       <view class="identifying-code theme-font3">唯一标识：{{bean.idcode}}</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="bottom flex_row_center_spaceBetween">
+                <view class="datetime theme-font3">{{bean.add_time}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+      <scroll-view wx:if="{{tab=='entity'}}" class="tab-body entity flex_column_center_flexStart" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
+        <view class="list flex_column_center_flexStart">
+          <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <view class="item flex_column_center_flexStart">
+              <view class="top">
+                <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
+                <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1 ||bean.status==4}}">{{bean.status_str}}</view>
+                <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view>
+
+                <view class="title flex_row_center_center theme-font1">核销(实物奖品)</view>
+              </view>
+              <view class="middle">
+                <view class="goods-title flex_row_center_flexStart theme-font1">奖品来源（售酒抽奖）</view>
+                <view class="goods-list flex_column_center_flexStart">
+                  <view wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_column_center_flexStart">
+                    <view class="row text flex_row_center_spaceBetween">
+                      <view class="property flex_row_center_spaceBetween">
+                        <view class="label theme-font3">中奖时间</view>
+                        <view class="value theme-font1">xxxxxx</view>
+                      </view>
+                    </view>
+                    <view class="row text flex_row_center_spaceBetween">
+                      <view class="property flex_row_center_spaceBetween">
+                        <view class="label theme-font3">奖品名称</view>
+                        <view class="value theme-font1">xxxxxx</view>
+                      </view>
+                    </view>
+                    <view class="row pic flex_row_center_spaceBetween">
+                      <view class="property flex_row_flexStart_flexStart">
+                        <view class="label theme-font3">奖品图片</view>
+                        <image class="value" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                      </view>
                     </view>
                   </view>
                 </view>
