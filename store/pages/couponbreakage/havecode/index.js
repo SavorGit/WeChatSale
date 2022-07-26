@@ -121,8 +121,10 @@ Page({
             qrcontent:scanList[0].qrcode
           }, (data, headers, cookies, errMsg, statusCode) => {
             
-            wx.navigateBack({delta: 1});
-            app.showToast('提交成功',3000,'success');
+            app.showToast(data.result.message,2000,'success');
+            setTimeout(function () {
+                wx.navigateBack({delta: 1})
+              }, 2000);
             
           })
         }
