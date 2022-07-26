@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "新增核销申请",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }
