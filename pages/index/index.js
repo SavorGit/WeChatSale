@@ -1015,7 +1015,7 @@ Page({
 
         
       },fail:function(res){
-        app.showToast('二维码识别失败,请重试');
+        //app.showToast('二维码识别失败,请重试');
       }
     })
   },
