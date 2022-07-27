@@ -1,2 +1,30 @@
 <!--store/pages/phyprizechargeoff/index.wxml-->
-<text>store/pages/phyprizechargeoff/index.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 新增核销申请-实物奖品
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page flex_column_center_flexStart">
+    <view class="main">
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">请扫描实物奖品唯一标识进行核销</view>
+        </view>
+        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+          <view class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+            <view class="text">扫码</view>
+          </view>
+        </view>
+      </view>
+
+      <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
+
+    </view>
+    <view class="foot flex_row_center_spaceAround">
+      <button bindtap="submitCoupon" class="btn ok flex_row_center_center theme-button-blue">提交</button>
+    </view>
+  </view>
+</scroll-view>
