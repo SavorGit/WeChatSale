@@ -25,7 +25,7 @@
 
     <view class="panel choose-box flex_column_center_flexStart" style="padding-top:50rpx;">
       <view class="title-bar flex_row_center_center">
-        <view class="title small">请选择发起抽奖的餐厅</view>
+        <view class="title small">请选择发起抽奖的包间</view>
       </view>
       <view class="body flex_column_center_center">
         <picker class='box flex_row_center_center theme-font1' range="{{objectBoxArray}}" bindchange="selectRoom">

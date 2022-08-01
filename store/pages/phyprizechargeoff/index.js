@@ -18,20 +18,121 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listTitle: '已扫核销码（1）',
-    scanList: [{
-      idcode: 'XXXXXXXXXXXXXXXXXXXXXXXXXX',
-      add_time: '2022/04/10 11:00:40'
-    }],
+    listTitle: '已扫核销码（0）',
+    scanList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.hideShareMenu();
+    console.log(options)
+    openid = app.globalData.openid;
+    hotel_id = options.hotel_id;
+    code_msg = options.code_msg;
+    if(typeof(options.code_msg)!='undefined'){
+      this.goodsDecode(options.code_msg)
+    }
   },
+  scanGoodsCode:function(){
+    var that = this;
+    var scanList = this.data.scanList;
+    if(scanList.length>0){
+      app.showToast('优惠券每次只能核销一个');
+      return false;
+    }
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        var code_msg = res.result;
+        //解码
+        that.goodsDecode(code_msg);
 
+      },fail:function(res){
+        app.showToast('二维码识别失败,请重试');
+      }
+    })
+  },
+  goodsDecode:function(code_msg){
+    var that = this;
+    var scanList = this.data.scanList;
+    if(scanList.length>0){
+      app.showToast('每次只能核销一个优惠券');
+    }else {
+      utils.PostRequest(api_v_url + '/activityApply/scancode', {
+        openid: openid,
+        qrcontent:code_msg,
+        hotel_id:hotel_id
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        var prize_info = data.result;
+        prize_info.idcode = prize_info.name;
+        var flag  = 0;
+        for(let i in scanList){
+          if(scanList[i].qrcode==prize_info.qrcode){
+            flag = 1;
+            break;
+          }
+        }
+        if(flag == 0){
+          scanList.push(prize_info);
+          var listTitle = '已扫核销码('+scanList.length+')';
+          that.setData({scanList:scanList,listTitle:listTitle});
+        }else {
+          app.showToast('请勿重复扫码');
+        }
+        
+      })
+    }
+    
+  },
+  deleteScanGoods:function(e){
+    var that = this;
+    var keys = e.currentTarget.dataset.keys;
+    var scanList = this.data.scanList;
+
+    wx.showModal({
+      title: '确定要删除吗？',
+      success: function (res) {
+        if (res.confirm) {
+          scanList.splice(keys,1);
+          var listTitle = '已扫核销码（'+scanList.length+'）';
+          
+          
+          that.setData({scanList:scanList,listTitle:listTitle});
+        }
+      }
+    })
+    
+  },
+  submitPhyprize:function(){
+    var scanList = this.data.scanList;
+    if(scanList.length==0){
+      app.showToast('请扫描实物奖品二维码进行核销');
+      return false;
+    }
+    wx.showModal({
+      title: '确定要提交吗？',
+      success: function (res) {
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/activityApply/writeoff', {
+            openid: openid,
+            hotel_id:hotel_id,
+            qrcontent:scanList[0].qrcode
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            
+            app.showToast(data.result.message,2000,'success');
+            setTimeout(function () {
+                wx.navigateBack({delta: 1})
+              }, 2000);
+            
+          })
+        }
+      }
+    })
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

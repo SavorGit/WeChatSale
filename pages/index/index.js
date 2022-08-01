@@ -1002,6 +1002,9 @@ Page({
             case '3':
               url = '/store/pages/activity/winesale/index?code_msg='+code_msg+'&hotel_id='+hotel_id;
               break;
+            case '4':
+              url = '/store/pages/phyprizechargeoff/index?code_msg='+code_msg+'&hotel_id='+hotel_id;
+              break;
           }
           wx.navigateTo({
             url: url,

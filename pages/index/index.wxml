@@ -203,6 +203,9 @@
     <view style="width:100%;border-top:1rpx solid rgba(7,17,27,0.1);" bindtap="scanCode" data-type="2">
       <button class="button_none" style="margin:0;padding:0;border:0;border-radius:0;">优惠券核销</button>
     </view>
+    <!-- <view style="width:100%;border-top:1rpx solid rgba(7,17,27,0.1);" bindtap="scanCode" data-type="4">
+      <button class="button_none" style="margin:0;padding:0;border:0;border-radius:0;">实物奖品核销</button>
+    </view> -->
     <view style="width:100%;border-top:1rpx solid rgba(7,17,27,0.1);border-bottom:10rpx solid rgba(7,17,27,0.05);" bindtap="scanCode" data-type="3">
       <button class="button_none" style="margin:0;padding:0;border:0;border-radius:0;">发起售酒抽奖</button>
     </view>

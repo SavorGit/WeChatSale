@@ -24,7 +24,7 @@
 
     </view>
     <view class="foot flex_row_center_spaceAround">
-      <button bindtap="submitCoupon" class="btn ok flex_row_center_center theme-button-blue">提交</button>
+      <button bindtap="submitPhyprize" class="btn ok flex_row_center_center theme-button-blue">提交</button>
     </view>
   </view>
 </scroll-view>
