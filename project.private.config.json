@@ -56,6 +56,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "个人基本信息",
+          "pathName": "pages/hotel/setting/personalinfo",
+          "query": "merchant_id=3&openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,3 +1,5 @@
 {
+  "navigationBarTitleText": "个人基本信息",
+  "disableScroll": true,
   "usingComponents": {}
 }

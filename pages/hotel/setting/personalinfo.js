@@ -1,11 +1,22 @@
 // pages/hotel/setting/personalinfo.js
+/**
+ * 个人基本信息页面
+ */
+
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var merchant_id;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    SystemInfo: app.SystemInfo
   },
 
   /**

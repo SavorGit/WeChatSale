@@ -1,2 +1,53 @@
 <!--pages/hotel/setting/personalinfo.wxml-->
-<text>pages/hotel/setting/personalinfo.wxml</text>
+<!--
+ | 个人基本信息页面
+ |-->
+
+
+<view class='container page theme-container' style='height:calc(100vh - {{SystemInfo.screenBottomSpace}}px);'>
+  <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+    <view class="scroll-view-warpper">
+      <view class="panel flex_column_center_flexStart theme-panel">
+        <view class="p-body flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="property flex_row_center_flexStart">
+              <view class="label">头像</view>
+              <view class="value">
+                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/hotel/setting/personalinfo/user_head_default.png" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="panel flex_column_center_flexStart theme-panel" style="margin-top:20rpx;">
+        <view class="p-body flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="property flex_row_center_flexStart">
+              <view class="label">名称</view>
+              <view class="value">
+                <view class="frame">
+                  <input class="input" type="text" placeholder="请输入" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="row flex_row_center_spaceBetween">
+            <view class="property flex_row_center_flexStart">
+              <view class="label">手机号</view>
+              <view class="value">
+                <view class="frame">
+                  <input class="input" type="text" placeholder="请输入" />
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="foot flex_column_center_flexStart">
+    <view class="button-group flex_row_center_center">
+      <view class="btn save flex_row_center_center theme-button-welcome-dark">保存</view>
+    </view>
+  </view>
+</view>
