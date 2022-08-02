@@ -154,7 +154,7 @@ Page({
       wx.navigateToMiniProgram({
         appId: 'wxfdf0346934bb672f',
         path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
-        envVersion:'trial'
+        //envVersion:'trial'
       })
       uma.trackEvent('postbook_confirm',{'open_id':openid,'hotel_id':hotel_id})
     })
