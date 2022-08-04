@@ -54,7 +54,6 @@ Page({
     })
   },
   onChooseAvatar:function(e){
-    console.log(e)
     var policy = this.data.policy;
     var signature = this.data.signature;
     var avatarUrl = e.detail.avatarUrl;
@@ -102,7 +101,6 @@ Page({
 
         var avatarUrl = app.globalData.oss_url+"/forscreen/resource/" + img_url
         userinfo.avatarUrl = avatarUrl
-        console.log(userinfo)
         that.setData({userinfo:userinfo})
         
         wx.hideLoading();
@@ -142,10 +140,8 @@ Page({
       mobile:mobile
     }, (data, headers, cookies, errMsg, statusCode) => {
         app.showToast('修改成功',2000,'success');
-        console.log(cache_key+'userinfo')
         var cache_userinfo = wx.getStorageSync(cache_key+'userinfo');
-        if(cache_userinfo!=''){
-            console.log(cache_userinfo)
+        if(cache_userinfo!='' && cache_userinfo.openid==userinfo.openid){
             cache_userinfo.avatarUrl = userinfo.avatarUrl;
             cache_userinfo.nickName  = name;
             cache_userinfo.mobile    = mobile;
@@ -165,8 +161,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    var cache_userinfo = wx.getStorageSync(cache_key+'userinfo');
-    console.log(cache_userinfo)
+    
   },
 
   /**
