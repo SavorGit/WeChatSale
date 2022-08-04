@@ -4,6 +4,12 @@
  */
 
 
+button,
+button:active,
+button:focus {
+  background-color: unset;
+}
+
 .page {
   width: 100vw;
   height: 100vh;

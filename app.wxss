@@ -51,6 +51,10 @@ button::before {
   background-color: unset;
 }
 
+.button-hover {
+  background-color: unset;
+}
+
 .wx-switch-input {
   width: 80rpx !important;
   height: 36rpx !important;
