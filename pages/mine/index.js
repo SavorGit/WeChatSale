@@ -70,10 +70,18 @@ Page({
   //我的员工
   getMyStaffList:function(openid){
     var that = this;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    
+    if (user_info.select_hotel_id > 0) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
     utils.PostRequest(api_v_url + '/user/employeelist', {
       openid: openid,
         page: 1,
-        pagesize: 5
+        pagesize: 5,
+        hotel_id:hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({
         staff_list: data.result.datalist
