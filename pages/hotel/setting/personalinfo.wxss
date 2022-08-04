@@ -54,6 +54,9 @@
 
 .main .scroll-view-warpper>.panel>.p-body>.row>.property>.value {
   width: calc(100% - 150rpx);
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .main .scroll-view-warpper>.panel>.p-body>.row>.property>.value>.frame {
