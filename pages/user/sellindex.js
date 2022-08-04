@@ -132,6 +132,7 @@ Page({
         })
       }else {
         var user_info = wx.getStorageSync(cache_key+'userinfo');
+        console.log(user_info)
         if(user_info.select_hotel_id>0 ){
 
         }else {
@@ -147,7 +148,12 @@ Page({
             url: '/store/pages/index',
           })
         }else {
-          that.isHaveStockHotel(user_info);
+          if(user_info==''){
+            that.isHaveStockHotel(data.result.userinfo);
+          }else {
+            that.isHaveStockHotel(user_info);
+          }
+          
           that.setData({user_info:data.result.userinfo})
           var task_list = that.data.task_list;
           if(task_list.length==0){

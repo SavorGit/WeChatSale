@@ -182,6 +182,20 @@ Page({
           }
         });
         break;
+      case 'personalinfo':
+        wx.navigateTo({
+          url: '/pages/hotel/setting/personalinfo?merchant_id=' + merchant_id + '&openid=' + openid,
+          success: function (res) {
+            wx.hideLoading();
+          },
+          fail: function (res) {
+            wx.showToast({
+              icon: 'none',
+              title: '跳转失败！',
+            });
+          }
+        });
+        break;
       default:
         wx.showToast({
           icon: 'none',

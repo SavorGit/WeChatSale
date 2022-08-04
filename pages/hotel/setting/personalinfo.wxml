@@ -5,6 +5,7 @@
 
 
 <view class='container page theme-container' style='height:calc(100vh - {{SystemInfo.screenBottomSpace}}px);'>
+  <form bindsubmit="editUserinfo">
   <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
     <view class="scroll-view-warpper">
       <view class="panel flex_column_center_flexStart theme-panel">
@@ -12,9 +13,9 @@
           <view class="row flex_row_center_spaceBetween">
             <view class="property flex_row_center_flexStart">
               <view class="label">头像</view>
-              <view class="value">
-                <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/WeChatSale/pages/hotel/setting/personalinfo/user_head_default.png" />
-              </view>
+              <button open-type="chooseAvatar" class="value" bind:chooseavatar="onChooseAvatar">
+                <image class="pic" mode="aspectFill" src="{{userinfo.avatarUrl}}" />
+              </button>
             </view>
           </view>
         </view>
@@ -26,7 +27,7 @@
               <view class="label">名称</view>
               <view class="value">
                 <view class="frame">
-                  <input class="input" type="text" placeholder="请输入" />
+                  <input name="name"  value="{{userinfo.nickName}}" type="nickname" class="input"  placeholder="请输入" />
                 </view>
               </view>
             </view>
@@ -36,7 +37,7 @@
               <view class="label">手机号</view>
               <view class="value">
                 <view class="frame">
-                  <input class="input" type="text" placeholder="请输入" />
+                  <input name="mobile" value="{{userinfo.mobile}}"  class="input" type="number" placeholder="请输入" />
                 </view>
               </view>
             </view>
@@ -47,7 +48,8 @@
   </scroll-view>
   <view class="foot flex_column_center_flexStart">
     <view class="button-group flex_row_center_center">
-      <view class="btn save flex_row_center_center theme-button-welcome-dark">保存</view>
+      <button form-type="submit" disabled="{{addDisabled}}" class="btn save flex_row_center_center theme-button-welcome-dark">保存</button>
     </view>
   </view>
+  </form>
 </view>

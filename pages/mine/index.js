@@ -732,5 +732,13 @@ Page({
     wx.navigateTo({
       url: '/pages/hotel/dishmenu/index?hotel_id='+hotel_id+'&openid='+openid+"&merchant_id="+merchant_id,
     })
+  },
+  gotoPersonalInfo:function(){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+
+    wx.navigateTo({
+      url: '/pages/hotel/setting/personalinfo?openid='+openid,
+    })
   }
 })
