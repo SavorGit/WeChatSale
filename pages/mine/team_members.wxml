@@ -4,12 +4,11 @@
 	<block wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
 		
 		<view  class="row flex_row_center_spaceBetween theme7" wx:if="{{bean.level!=0}}">
-			<block bindtap="editUserInfo" data-openid="{{bean.openid}}">
+			
             <image class="header-img" src="{{bean.avatarUrl}}" bindtap="editUserInfo" data-openid="{{bean.openid}}"></image>
-			<view class="nickname flex_column_flexStart_center">
+			<view class="nickname flex_column_flexStart_center" bindtap="editUserInfo" data-openid="{{bean.openid}}">
 				<label class="full_width theme-font7">{{bean.nickName}}</label>
 			</view>
-            </block>
             <view class="option flex_row_center_flexEnd" wx:if="{{userinfo.select_hotel_id>0}}">
             
             </view>
