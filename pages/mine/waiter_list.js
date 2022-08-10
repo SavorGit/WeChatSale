@@ -107,6 +107,12 @@ Page({
       app.showToast('保存成功');
     })
   },
+  editUserInfo:function(e){
+    var openid = e.currentTarget.dataset.openid;
+    wx.navigateTo({
+      url: '/pages/hotel/setting/personalinfo?openid='+openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

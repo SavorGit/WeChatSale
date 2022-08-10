@@ -13,10 +13,12 @@
 	</view>
 	<block wx:for="{{waiter_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
 		<view wx:if="{{index + 1 != waiter_list.length}}" class="row flex_row_center_spaceBetween theme7 bottom-line">
-			<image class="header-img" src="{{bean.avatarUrl}}"></image>
-			<view class="nickname flex_column_flexStart_center">
-				<label class="full_width theme-font7">{{bean.nickName}}</label>
-			</view>
+            <block bindtap="editUserInfo" data-openid="{{bean.openid}}">
+                <image class="header-img" src="{{bean.avatarUrl}}"></image>
+                <view class="nickname flex_column_flexStart_center">
+                    <label class="full_width theme-font7">{{bean.nickName}}</label>
+                </view>
+            </block>
 			<view class="option flex_row_center_spaceBetween">
 				<button class="btn-detail theme-button-welcome" bindtap="waiter_detail"  data-openid="{{bean.openid}}">详情</button>
 				<button class="btn-remove theme-button-welcome" bindtap="remove_waiter" data-keys="{{index}}" data-invite_id="{{bean.invite_id}}" data-waiter_list="{{waiter_list}}" data-openid="{{bean.openid}}">移除</button>
