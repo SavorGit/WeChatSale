@@ -37,7 +37,7 @@
                 <view class="label">手机号</view>
                 <view class="value">
                   <view class="frame">
-                    <input name="mobile" value="{{userinfo.mobile}}" class="input" type="number" placeholder="请输入" />
+                    <input disabled="{{mobile_disabled}}" name="mobile" value="{{userinfo.mobile}}" class="input" type="number" placeholder="请输入" />
                   </view>
                 </view>
               </view>

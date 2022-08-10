@@ -72,21 +72,34 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     
-    if (user_info.select_hotel_id > 0) {
-      var hotel_id = user_info.select_hotel_id;
+    if ( typeof(user_info.select_hotel_id) && user_info.select_hotel_id > 0) {
+        var hotel_id = user_info.select_hotel_id;
+
+      
+        utils.PostRequest(api_v_url + '/staff/hotelstafflist', {
+            openid: openid,
+            page: 1,
+            pagesize: 5,
+            hotel_id:hotel_id,
+        }, (data, headers, cookies, errMsg, statusCode) => {
+        that.setData({
+            staff_list: data.result.datalist
+        })
+        },res=>{},{isShowLoading:false})
+
     } else {
-      var hotel_id = user_info.hotel_id;
+        utils.PostRequest(api_v_url + '/user/employeelist', {
+            openid: openid,
+              page: 1,
+              pagesize: 5,
+              hotel_id:hotel_id,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({
+              staff_list: data.result.datalist
+            })
+          },res=>{},{isShowLoading:false})
     }
-    utils.PostRequest(api_v_url + '/user/employeelist', {
-      openid: openid,
-        page: 1,
-        pagesize: 5,
-        hotel_id:hotel_id,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        staff_list: data.result.datalist
-      })
-    },res=>{},{isShowLoading:false})
+    
   },
   getUserCenter:function(openid){
     var that = this;
@@ -748,5 +761,11 @@ Page({
     wx.navigateTo({
       url: '/pages/hotel/setting/personalinfo?openid='+openid,
     })
+  },
+  editUserInfo:function(e){
+      var openid = e.currentTarget.dataset.openid;
+      wx.navigateTo({
+        url: '/pages/hotel/setting/personalinfo?openid='+openid,
+      })
   }
 })

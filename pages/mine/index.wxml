@@ -173,10 +173,10 @@
     <view class='title theme-font2'>
       <label>我的员工</label>
       <label wx:if="{{staff_list.length>0}}">
-        <block wx:if="{{user_info.role_type==1}}">
+        <block wx:if="{{user_info.role_type==1 || user_info.select_hotel_id>0}}">
           <navigator url="/pages/mine/team_members" data-role_type="{{role_type}}" bindtap="gotoWaiterList">更多...</navigator>
         </block>
-        <block wx:if="{{user_info.role_type==2}}">
+        <block wx:elif="{{user_info.role_type==2}}">
           <navigator url="/pages/mine/waiter_list?openid={{openid}}&hotel_id={{hotel_id}}" data-role_type="{{user_info.role_type}}" bindtap="gotoWaiterList">更多...</navigator>
         </block>
       </label>
@@ -186,7 +186,7 @@
         <label class="fa fa-plus"></label>
       </view>
       <view class="cell" wx:for="{{staff_list}}" wx:key="keys" wx:index="index" wx:for-item="bean">
-        <image class="full_width full_height" src="{{bean.avatarUrl}}"></image>
+        <image class="full_width full_height" src="{{bean.avatarUrl}}" bindtap="editUserInfo" data-openid="{{bean.openid}}"></image>
       </view>
     </view>
   </view>

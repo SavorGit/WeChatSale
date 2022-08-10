@@ -18,6 +18,7 @@ Page({
   data: {
     SystemInfo: app.SystemInfo,
     addDisabled:false,
+    mobile_disabled:false,
   },
 
   /**
@@ -28,6 +29,10 @@ Page({
     wx.hideShareMenu();
     openid = options.openid;
     this.isRegister(openid);
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if(user_info.openid != openid){
+        this.setData({mobile_disabled:true})
+    }
     this.getOssParams();
   },
   isRegister:function(){

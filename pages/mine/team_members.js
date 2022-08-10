@@ -24,19 +24,37 @@ Page({
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
     openid = userinfo.openid;
     this.setData({userinfo:userinfo})
-    this.getEmployeeList(openid,1)
+    
   },
   getEmployeeList:function(openid,page){
     var that = this;
-    utils.PostRequest(api_v_url + '/user/employeelist', {
-      openid: openid,
-      page:page,
-      pagesize:20,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({
-        staff_list: data.result.datalist
-      })
-    })
+
+    var userinfo = wx.getStorageSync(cache_key+'userinfo');
+    if( typeof(userinfo.select_hotel_id)!='undefined' && userinfo.select_hotel_id>0){
+
+        var hotel_id = userinfo.select_hotel_id;
+        utils.PostRequest(api_v_url + '/staff/hotelstafflist', {
+            openid: openid,
+            page:page,
+            hotel_id:hotel_id,
+            pagesize:20,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({
+              staff_list: data.result.datalist
+            })
+        })
+    }else {
+        utils.PostRequest(api_v_url + '/user/employeelist', {
+            openid: openid,
+            page:page,
+            pagesize:20,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({
+              staff_list: data.result.datalist
+            })
+        })
+    }
+    
   },
   loadMore: function (res) {
     var userinfo = wx.getStorageSync(cache_key+'userinfo');
@@ -139,6 +157,12 @@ Page({
 
     
   },
+  editUserInfo:function(e){
+    var openid = e.currentTarget.dataset.openid;
+    wx.navigateTo({
+      url: '/pages/hotel/setting/personalinfo?openid='+openid,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -150,6 +174,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getEmployeeList(openid,1)
   },
 
   /**
