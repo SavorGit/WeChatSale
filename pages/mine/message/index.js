@@ -33,7 +33,7 @@ Page({
   getTastewineList:function(){
     var that = this;
     var tasteWineList = this.data.tasteWineList;
-    utils.PostRequest(api_v_url + '/activity/tastewineGetlist', {
+    utils.PostRequest(api_v_url + '/message/datalist', {
       openid: openid,
       hotel_id: hotel_id,
       page:page
