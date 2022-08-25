@@ -133,6 +133,23 @@
             </view>
             <view class="block theme-block">
               <view class="title-bar">
+                <view class="title">邀请函使用情况</view>
+              </view>
+              <view class="body">
+                <view class="row flex_row_center_spaceBetween">
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">打开次数：</view>
+                    <view class="value">{{usage_info.invite_open_num}}</view>
+                  </view>
+                  <view class="property flex_row_center_flexStart">
+                    <view class="label">发送次数：</view>
+                    <view class="value">{{usage_info.send_invite_nums}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="block theme-block">
+              <view class="title-bar">
                 <view class="title">常用功能</view>
               </view>
               <view class="body">
