@@ -4,56 +4,76 @@
   -- 为员工分配收益页面
   -->
 <view wx:if="{{app.isArray(staff_list) && staff_list.length > 0}}" class="container theme-container">
-	<scroll-view class="scroll" scroll-y="true" scroll-with-animation="true" >
-		<block wx:for="{{staff_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-			<view class="row flex_row_center_center {{index + 1 == staff_list.length ? '' : 'line'}} theme7">
-				<view class="detail flex_column_flexStart_flexEnd">
-					<view class="info flex_row_center_flexStart theme-font1">
-						<image class="head" mode="aspectFill" src="{{bean.avatarUrl}}"></image>
-						<view class="name one-line-overflow">{{bean.nickName}}</view>
-					</view>
-				</view>
-				<view class="right flex_row_center_flexEnd theme-font5">
-					<view class="btn dispose theme-button-welcome" data-index="{{index}}" bindtap="openAllotWind" data-open_type="1">分配</view>
-				</view>
-			</view>
-		</block>
-	</scroll-view>
+  <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true">
+    <view class="scroll-doc flex_column_center_flexStart theme7">
+      <view class="panel integral flex_row_center_spaceBetween">
+        <view class="part flex_column_center_flexStart theme-button-red">
+          <view class="top flex_row_center_spaceBetween">
+            <view class="name">冻结积分</view>
+            <view class="icon fa fa-angle-right" aria-hidden="true"></view>
+          </view>
+          <view class="number">88888</view>
+        </view>
+        <view class="part flex_column_center_flexStart theme-button-red">
+          <view class="top flex_row_center_spaceBetween">
+            <view class="name">可用积分</view>
+            <view class="icon fa fa-angle-right" aria-hidden="true"></view>
+          </view>
+          <view class="number">88888</view>
+        </view>
+      </view>
+      <view class="list flex_column_center_flexStart">
+        <block wx:for="{{staff_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+          <view class="row flex_row_center_center {{index + 1 == staff_list.length ? '' : 'line'}} theme7">
+            <view class="detail flex_column_flexStart_flexEnd">
+              <view class="info flex_row_center_flexStart theme-font1">
+                <image class="head" mode="aspectFill" src="{{bean.avatarUrl}}"></image>
+                <view class="name one-line-overflow">{{bean.nickName}}</view>
+              </view>
+            </view>
+            <view class="right flex_row_center_flexEnd theme-font5">
+              <view class="btn dispose theme-button-welcome" data-index="{{index}}" bindtap="openAllotWind" data-open_type="1">分配</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
 </view>
 <view wx:else class="container flex_column_center_center theme-container">
-	<view class="theme-font3">暂无职员</view>
+  <view class="theme-font3">暂无职员</view>
 </view>
 
 <!-- 分配收益弹窗 -->
 <modal show="{{showDisposeProfitWindow}}" width="710rpx" height='630rpx' border-radius="10rpx" background-color='#ffffff' title-text='' confirm-text='' cancel-text=''>
-	<form bindsubmit="allotReward">
-		<view class="window dispose-profit">
-			<view class="head">
-				<view class="title-bar flex_row_center_center">
-					<view class="title theme-font1">分配</view>
-				</view>
-				<view class="option-bar flex_row_center_flexEnd" bindtap="openAllotWind" data-open_type="2">
-					<view class="btn close">X</view>
-				</view>
-			</view>
-			<view class="body">
-				<view class="staff flex_row_center_flexStart">
-					<image class="head" mode="aspectFill" src="{{staff_info.avatarUrl}}"></image>
-					<view class="name one-line-overflow">{{staff_info.nickName}}</view>
-				</view>
-				<view class="block entry flex_column_flexStart_flexStart line">
-					<input class="input" placeholder="请输入要分配的金额" name="allot_reward_money" type="number" disabled="{{reward_money>0?false:true}}" value="{{input_reward_money}}" maxlength='5'></input>
-					<view class="tip theme-font5">餐厅剩余{{reward_money}}元可用</view>
-				</view>
-				<view class="block entry flex_column_flexStart_flexStart">
-					<input class="input" placeholder="请输入要分配的积分" name="allot_reward_integral" type="number" disabled="{{reward_integral>0?false:true}}" value="{{input_reward_integral}}" maxlength='5'>></input>
-					<view class="tip theme-font5">餐厅剩余{{reward_integral}}积分可用</view>
-				</view>
-				<input class='display_hide' name="staff_id" value="{{staff_info.staff_id}}" ></input>
-				<view class="block option flex_row_center_center">
-					<button class="btn ok theme-button-welcome" form-type="submit">确定</button>
-				</view>
-			</view>
-		</view>
-	</form>
+  <form bindsubmit="allotReward">
+    <view class="window dispose-profit">
+      <view class="head">
+        <view class="title-bar flex_row_center_center">
+          <view class="title theme-font1">分配</view>
+        </view>
+        <view class="option-bar flex_row_center_flexEnd" bindtap="openAllotWind" data-open_type="2">
+          <view class="btn close">X</view>
+        </view>
+      </view>
+      <view class="body">
+        <view class="staff flex_row_center_flexStart">
+          <image class="head" mode="aspectFill" src="{{staff_info.avatarUrl}}"></image>
+          <view class="name one-line-overflow">{{staff_info.nickName}}</view>
+        </view>
+        <view class="block entry flex_column_flexStart_flexStart line">
+          <input class="input" placeholder="请输入要分配的金额" name="allot_reward_money" type="number" disabled="{{reward_money>0?false:true}}" value="{{input_reward_money}}" maxlength='5'></input>
+          <view class="tip theme-font5">餐厅剩余{{reward_money}}元可用</view>
+        </view>
+        <view class="block entry flex_column_flexStart_flexStart">
+          <input class="input" placeholder="请输入要分配的积分" name="allot_reward_integral" type="number" disabled="{{reward_integral>0?false:true}}" value="{{input_reward_integral}}" maxlength='5'>></input>
+          <view class="tip theme-font5">餐厅剩余{{reward_integral}}积分可用</view>
+        </view>
+        <input class='display_hide' name="staff_id" value="{{staff_info.staff_id}}"></input>
+        <view class="block option flex_row_center_center">
+          <button class="btn ok theme-button-welcome" form-type="submit">确定</button>
+        </view>
+      </view>
+    </view>
+  </form>
 </modal>

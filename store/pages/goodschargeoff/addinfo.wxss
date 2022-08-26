@@ -35,6 +35,32 @@
   font-weight: 400;
 }
 
+.panel.makings>.body>.goods {
+  width: 240rpx;
+  height: 200rpx;
+}
+
+.panel.makings>.body>.goods>.pic {
+  width: 240rpx;
+  height: 160rpx;
+}
+
+.panel.makings>.body>.goods>.name {
+  width: 100%;
+  font-size: 24rpx;
+}
+
+.panel.makings>.body>.tip-group {
+  width: calc(100% - 245rpx);
+  height: 200rpx;
+}
+
+.panel.makings>.body>.tip-group>.tip {
+  width: 100%;
+  line-height: 30rpx;
+  font-size: 28rpx;
+}
+
 .page>.main>.type {
   width: calc(100% - 60rpx);
   padding: 20rpx 10rpx;

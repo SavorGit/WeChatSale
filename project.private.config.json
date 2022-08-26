@@ -63,6 +63,27 @@
           "query": "merchant_id=3&openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "新增核销申请",
+          "pathName": "store/pages/goodschargeoff/addinfo",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "积分提现",
+          "pathName": "pages/mine/withdraw",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "分配收益",
+          "pathName": "pages/reward/allot",
+          "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

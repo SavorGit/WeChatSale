@@ -7,18 +7,26 @@
   height: 190rpx;
 }
 
-.integral-panel > .title {
+.integral-panel>.part {
+  width: calc(50% - 10rpx);
+}
+
+.integral-panel>.part>.title {
   height: 50rpx;
   line-height: 50rpx;
   font-size: 28rpx;
   font-weight: 900;
 }
 
-.integral-panel > .integral {
+.integral-panel>.part>.integral {
   height: 65rpx;
   line-height: 65rpx;
   font-size: 60rpx;
   font-weight: 900;
+}
+
+.integral-panel>.part>.btn.lookup {
+  font-size: 28rpx;
 }
 
 .goods-panel {
@@ -27,8 +35,12 @@
   padding: 0 20rpx 30rpx 20rpx;
 }
 
-.weui-grids, .weui-grids::before, .weui-grids::after, .weui-grid,
-.weui-grid::before, .weui-grid::after {
+.weui-grids,
+.weui-grids::before,
+.weui-grids::after,
+.weui-grid,
+.weui-grid::before,
+.weui-grid::after {
   position: unset;
 }
 
@@ -36,15 +48,15 @@
   height: 145rpx;
 }
 
-.goods-panel > .title-bar {
+.goods-panel>.title-bar {
   height: 100rpx;
 }
 
-.goods-panel > .title-bar > .icon {
+.goods-panel>.title-bar>.icon {
   color: #67c213;
 }
 
-.goods-panel > .title-bar > .title {
+.goods-panel>.title-bar>.title {
   margin-left: 20rpx;
   font-size: 32rpx;
   font-weight: 600;
@@ -57,7 +69,7 @@
   z-index: 2;
 }
 
-.goods-panel .flag-bar > .flag {
+.goods-panel .flag-bar>.flag {
   width: 100rpx;
   height: 100%;
   line-height: 100%;
@@ -73,13 +85,13 @@
   z-index: 1;
 }
 
-.goods-panel .goods > .face-value {
+.goods-panel .goods>.face-value {
   height: 50rpx;
   padding-top: 10rpx;
   font-size: 36rpx;
 }
 
-.goods-panel .goods > .consume {
+.goods-panel .goods>.consume {
   height: 30rpx;
   font-size: 24rpx;
 }
@@ -90,16 +102,16 @@
   font-size: 32rpx;
 }
 
-.desc-panel > .title {
+.desc-panel>.title {
   height: 60rpx;
   line-height: 60rpx;
   font-weight: 600;
 }
 
-.desc-panel > .content {
+.desc-panel>.content {
   font-size: 24rpx;
 }
 
-.desc-panel > .content > view {
+.desc-panel>.content>view {
   text-indent: 48rpx;
 }
