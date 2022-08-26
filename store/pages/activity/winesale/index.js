@@ -47,7 +47,12 @@ Page({
       list.push(goods_info);
       that.setData({list:list})
       
-    })
+    },function(){
+        wx.navigateBack({
+          delta: 1
+        })
+      
+    });
   },
   getRoomlist:function(openid,hotel_id){
     var that = this;
