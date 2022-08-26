@@ -84,6 +84,13 @@
           "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "冻结明细页面",
+          "pathName": "pages/mine/integral/freeze",
+          "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,1 +1,326 @@
 /* pages/mine/integral/freeze.wxss */
+/* @import "/store/pages/template/commons.wxss"; */
+
+/**
+ * 冻结明细页面
+ */
+.page {
+  width: 100%;
+}
+
+.page>.main {
+  width: 100%;
+  height: calc(100% - 120rpx);
+}
+
+.window {
+  width: 0;
+  height: 0;
+}
+
+.window>.mask {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.window .entity {
+  width: 90vw;
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+
+.window .entity>.title-bar,
+.window .entity>.option-bar,
+.window .entity>.win-body {
+  width: calc(100% - 50rpx);
+  padding: 10rpx 25rpx;
+}
+
+.window .entity>.title-bar,
+.window .entity>.option-bar {
+  height: 50rpx;
+}
+
+.window .entity>.title-bar>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.window .entity>.option-bar>.btn,
+.window .entity>.option-bar>.btn .icon {
+  width: 50rpx;
+  height: 50rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.window .entity>.win-body {
+  font-size: 28rpx;
+}
+
+.list {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.item {
+  width: calc(100% - 40rpx);
+  padding: 20rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 40rpx;
+  background-color: rgba(98, 151, 242, 0.06);
+}
+
+.item:first-child {
+  margin-top: 0;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.item>.top,
+.item>.middle,
+.item>.bottom {
+  width: 100%;
+}
+
+.item>.top>view {
+  width: 100%;
+  height: 60rpx;
+}
+
+.item>.top>view>.btn.material,
+.item>.top>view>.status {
+  width: 200rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.item>.top>view>.user {
+  width: calc(100% - 200rpx);
+}
+
+.item>.top>view>.user>.head {
+  width: 60rpx;
+}
+
+.item>.top>view>.user>.head>.pic {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.item>.top>view>.user>.name {
+  width: calc(100% - 70rpx);
+  font-size: 28rpx;
+}
+
+.item>.top>view>.title {
+  width: calc(100% - 400rpx);
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.item>.middle>.goods-title {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.item>.middle>.goods-list,
+.item>.middle>.goods-list>.goods {
+  width: 100%;
+}
+
+.item>.middle>.goods-list>.goods {
+  padding: 10rpx 0;
+  border-bottom: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.item>.middle>.goods-list>.goods>.left {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.center {
+  width: calc(100% - 120rpx);
+}
+
+.item>.middle>.goods-list>.goods>.center>.name {
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group,
+.item>.middle>.goods-list>.goods>.center>.identifying-code {
+  width: 100%;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag,
+.item>.middle>.goods-list>.goods>.center>.identifying-code {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.row {
+  width: calc(100% - 40rpx);
+  padding: 10rpx 20rpx;
+}
+
+.item>.middle>.goods-list>.goods>.row>.property {
+  width: 100%;
+}
+
+.item>.middle>.goods-list>.goods>.row>.property>.label {
+  width: 120rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.row>.property>.value {
+  width: calc(100% - 120rpx);
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.item>.middle>.goods-list>.goods>.row.pic>.property>.value {
+  width: 276rpx;
+  height: 180rpx;
+}
+
+.item>.middle>.coupon {
+  width: 670rpx;
+  height: 172.2857142857143rpx;
+  margin: 20rpx 0;
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/index/coupon.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% auto;
+}
+
+.item>.middle>.coupon>.left {
+  width: 160rpx;
+  height: calc(100% - 20rpx);
+  padding: 10rpx 20rpx 10rpx 10rpx;
+}
+
+.item>.middle>.coupon>.left>.top {
+  width: 100%;
+}
+
+.item>.middle>.coupon>.left>.top>.value {
+  /* width: calc(100% - 40rpx); */
+  text-align: right;
+  font-size: 56rpx;
+}
+
+.item>.middle>.coupon>.left>.top>.unit {
+  width: 40rpx;
+  text-align: right;
+  font-size: 32rpx;
+}
+
+.item>.middle>.coupon>.left>.bottom {
+  width: 100%;
+}
+
+.item>.middle>.coupon>.left>.bottom>.text {
+  width: 100%;
+  font-size: 32rpx;
+}
+
+.item>.middle>.coupon>.right {
+  width: calc(100% - 180rpx);
+  height: calc(100% - 20rpx);
+  padding: 10rpx 10rpx 10rpx 20rpx;
+}
+
+.item>.middle>.coupon>.right>view {
+  width: 100%;
+  padding: 5rpx 0;
+  font-size: 32rpx;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag {
+  margin-left: 30rpx;
+}
+
+.item>.middle>.goods-list>.goods>.center>.tag-group>.tag:first-child {
+  margin-left: unset;
+}
+
+
+.item>.bottom {
+  height: 70rpx;
+}
+
+.item>.bottom>.datetime {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.bottom>.profit>.label {
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.bottom>.profit>.value {
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+}
+
+.item>.bottom>.button-group>.btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item>.bottom>.button-group>.btn.write-off {
+  width: 208rpx;
+  height: 64rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.window.material .entity {
+  width: 80vw;
+}
+
+.window.material .entity>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.window.material .entity>.win-body>.goods {
+  width: 100%;
+}
+
+.window.material .entity>.win-body>.goods>.pic {
+  width: 402rpx;
+  height: 300rpx;
+}
+
+.window.material .entity>.win-body>.goods>.name {
+  width: 100%;
+  font-size: 24rpx;
+}
+
+.window.material .entity>.win-body>.tip-group {
+  width: 100%;
+  padding: 20rpx 0;
+}
+
+.window.material .entity>.win-body>.tip-group>.tip {
+  width: 100%;
+  height: 50rpx;
+  font-size: 28rpx;
+}
