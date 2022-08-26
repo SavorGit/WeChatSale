@@ -2,9 +2,16 @@
 <!-- 积分提现 -->
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-container" scroll-y="true" scroll-with-animation="true">
-  <view class="integral-panel flex_column_center_center theme7">
-    <view class="title theme-font1">可使用积分</view>
-    <view class="integral theme-font6">{{userIntegral}}</view>
+  <view class="integral-panel flex_row_center_spaceBetween theme7">
+    <view class="part flex_column_center_center">
+      <view class="title theme-font1">可使用积分</view>
+      <view class="integral theme-font6">{{userIntegral}}</view>
+    </view>
+    <view class="part flex_column_center_center">
+      <view class="title theme-font1">待核销积分</view>
+      <view class="integral theme-font2">88888</view>
+      <view class="btn lookup flex_row_center_center theme-font-6297F2">查看</view>
+    </view>
   </view>
   <view class="goods-panel theme7">
     <view class="title-bar flex_row_center">
@@ -36,27 +43,23 @@
 </scroll-view>
 
 <!-- 积分不足弹窗 -->
-<modal show="{{notEnoughIntegralWindowShow}}" width="600rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877"
-  cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
+<modal show="{{notEnoughIntegralWindowShow}}" width="600rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877" cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
   <view style="text-align:center;font-size:28rpx;padding:0 20rpx;">积分不足，请尝试提现其他金额~</view>
 </modal>
 
 <!-- 兑换确认弹窗 -->
-<modal show="{{confirmExchangeGoodsWindowShow}}" width="600rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='否' confirm-color="#666666"
-  confirm-background-color="unset" confirm-border-radius="0rpx" cancel-text='是' cancel-color='#eb6877' cancel-background-color="unset" cancel-border-radius="0rpx" bindcancel="confirmExchangeGoods" bindconfirm='closeConfirmExchangeGoodsWindow'>
+<modal show="{{confirmExchangeGoodsWindowShow}}" width="600rpx" height='300rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='否' confirm-color="#666666" confirm-background-color="unset" confirm-border-radius="0rpx" cancel-text='是' cancel-color='#eb6877' cancel-background-color="unset" cancel-border-radius="0rpx" bindcancel="confirmExchangeGoods" bindconfirm='closeConfirmExchangeGoodsWindow'>
   <view style="text-align:center;font-size:28rpx;padding:0 20rpx;">您是否要消耗{{openGoodsInWindow.integral}}积分，提现{{openGoodsInWindow.goods_name}}到微信零钱？</view>
 </modal>
 
 <!-- 提现成功弹窗[无审核] -->
-<modal show="{{exchangeGoodsWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877"
-  cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
+<modal show="{{exchangeGoodsWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877" cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
   <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.message}}</view>
   <view class="theme-font3" style="height:40rpx;line-height:40rpx;text-align:center;font-size:24rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.tips}}</view>
 </modal>
 
 <!-- 提现成功弹窗[需审核] -->
-<modal show="{{exchangeGoodsCheckWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877"
-  cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
+<modal show="{{exchangeGoodsCheckWindowShow}}" width="600rpx" height='330rpx' border-radius="20rpx" background-color='#ffffff' title-text='提示' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="我知道了" confirm-color="#eb6877" cancel-text='' bindconfirm='closeNotEnoughIntegralWindow'>
   <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.message}}</view>
   <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.tips}}</view>
 </modal>

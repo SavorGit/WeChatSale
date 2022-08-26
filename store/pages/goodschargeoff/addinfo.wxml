@@ -26,14 +26,14 @@
         <view class="label theme-font1">核销原因</view>
         <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
           <block wx:for="{{reasons}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
-            <radio class="text theme-font1" value="{{type.id}}" >{{type.name}}</radio>
+            <radio class="text theme-font1" value="{{type.id}}">{{type.name}}</radio>
           </block>
         </radio-group>
       </view>
 
-      <view class="panel makings flex_column_center_flexStart">
+      <view class="panel makings picture flex_column_center_flexStart">
         <view class="title-bar flex_row_center_flexStart">
-          <view class="title">核销资料</view>
+          <view class="title">核销资料（照片）</view>
         </view>
         <view class="body flex_row_center_spaceBetween">
           <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
@@ -48,7 +48,26 @@
               </view>
             </view>
           </block>
-          
+
+        </view>
+      </view>
+
+      <view class="panel makings entity flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">核销资料（实物）</view>
+        </view>
+        <view class="body flex_row_center_spaceBetween">
+
+          <view class="goods flex_column_center_spaceBetween">
+            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+            <view class="name flex_row_center_center theme-font3">示例</view>
+          </view>
+          <view class="tip-group flex_column_flexStart_spaceBetween">
+            <view class="tip theme-font-F44444">提示：</view>
+            <view class="tip theme-font-F44444">请保留示例中的物料并交与我公司人员。</view>
+            <view class="tip theme-font-F44444">物料回收后待核销积分奖励可正常使用。</view>
+          </view>
+
         </view>
       </view>
 
