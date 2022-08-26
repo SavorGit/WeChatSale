@@ -55,10 +55,12 @@ Page({
   boxShow:function(e){
     var that = this;
     var pubdetail = e.currentTarget.dataset.pubdetail;
+    var rtype     = e.currentTarget.dataset.rtype
+    var ads_id    = e.currentTarget.dataset.ads_id;
+    console.log(ads_id);
     var action =5;
     
-    console.log(pubdetail);
-    app.boxShow(box_mac,pubdetail,2,action,that);
+    app.boxShow(box_mac,pubdetail,2,action,that,rtype,ads_id,hotel_id);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

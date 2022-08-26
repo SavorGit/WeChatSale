@@ -115,6 +115,29 @@
                 </view>
               </view>
             </view>
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25}}">
+              <view class="task lottery flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
+                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv">去点播广告></view>
+                      
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
             <!-- 团购海报售卖 -->
             <view class="item poster flex_column_center_center" wx:elif="{{bean.task_type==24}}">
               <view class="task flex_row_center_spaceBetween">
@@ -246,7 +269,27 @@
                 </view>
               </view>
             </view>
-
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25}}">
+              <view class="task lottery flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="name">{{bean.task_name}}</view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                    </view>
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-welcome">领取</view>
+                    </view>
+                  </view>
+                  <view class="bottom">
+                    <progress class="progress" stroke-width="14rpx" border-radius="7rpx" backgroundColor="rgb(187, 187, 187)" activeColor="rgb(242, 159, 146)" percent="{{bean.percent}}" font-size="24rpx">剩余{{bean.remain_percent}}%</progress>
+                  </view>
+                </view>
+              </view>
+            </view>
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
                 <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -509,7 +552,7 @@
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
           <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
-          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24}}">奖品奖项</view>
+          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24 && lottery_detail_info.task_type !=25}}">奖品奖项</view>
         </view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
           <rich-text nodes="{{lottery_detail_info.desc}}"></rich-text>

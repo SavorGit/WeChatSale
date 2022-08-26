@@ -103,7 +103,7 @@ App({
       return true;
     }
   },
-  boxShow:function(box_mac='',pubdetail,res_type,action,that){
+  boxShow:function(box_mac='',pubdetail,res_type,action,that,rtype='',ads_id=0,hotel_id=0){
     var self = this;
     var user_info = wx.getStorageSync(this.globalData.cache_key + 'userinfo');
     var avatarUrl = user_info.avatarUrl;
@@ -126,22 +126,36 @@ App({
         }, (data, headers, cookies, errMsg, statusCode) => {
           
           self.showToast('点播成功，电视即将播放');
+
+          if(rtype=='wineads'){//如果是售酒广告点播 调用完成任务接口
+            utils.PostRequest(this.globalData.api_v_url + '/task/finishDemandadvTask', {
+              openid:openid,
+              box_mac:box_mac,
+              ads_id:ads_id,
+              hotel_id:hotel_id
+            }, (data, headers, cookies, errMsg, statusCode) => {
+
+            
+            })
+          }
+
+          utils.PostRequest(this.globalData.api_v_url + '/ForscreenLog/recordForScreenPics', {
+            forscreen_id: forscreen_id,
+            resource_id:resource_id,
+            openid: openid,
+            box_mac: box_mac,
+            action: action,
+            mobile_brand: mobile_brand,
+            mobile_model: mobile_model,
+            forscreen_char: '',
+            imgs: '["'+forscreen_url+'"]',
+            small_app_id: self.globalData.small_app_id,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+    
+          }, res => { }, { isShowLoading: false })
           
         });
-        utils.PostRequest(this.globalData.api_v_url + '/ForscreenLog/recordForScreenPics', {
-          forscreen_id: forscreen_id,
-          resource_id:resource_id,
-          openid: openid,
-          box_mac: box_mac,
-          action: action,
-          mobile_brand: mobile_brand,
-          mobile_model: mobile_model,
-          forscreen_char: '',
-          imgs: '["'+forscreen_url+'"]',
-          small_app_id: self.globalData.small_app_id,
-        }, (data, headers, cookies, errMsg, statusCode) => {
-  
-          }, res => { }, { isShowLoading: false })
+        
       }
     }
   },

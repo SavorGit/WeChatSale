@@ -288,6 +288,7 @@ Page({
     var canreceive = this.data.task_list.canreceive;
     var lottery_detail_info = canreceive[index];
     lottery_detail_info.tab = 'rule';
+    console.log(lottery_detail_info);
     this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
   },
   /**
@@ -301,6 +302,8 @@ Page({
     console.log(lottery_detail_info)
     if(lottery_detail_info.task_type==24){
       var content = '确定要领取此团购活动?'
+    }else if(lottery_detail_info.task_type==25){
+      var content = '确定要领取此点播广告活动?'
     }else {
       var content = '确定要领取此抽奖活动?'
     }
@@ -604,6 +607,31 @@ Page({
       current: urls[0], // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     })
+  },
+  /**
+   * 宣传片列表
+   */
+  goToHotelAdv:function(e){
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if (typeof (hotel_id) =='undefined'){
+      app.showToast('请您先选择酒楼');
+    }else {
+      var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
+      var box_mac = link_box_info.box_mac;
+      if (box_mac == '' || typeof(box_mac) == 'undefined'){
+        app.showToast('请在电视互动页选包间电视');
+      }else{
+        wx.navigateTo({
+          url: '/pages/adv/index?hotel_id='+hotel_id+'&box_mac='+box_mac+'&openid='+user_info.openid,
+        })
+      } 
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
