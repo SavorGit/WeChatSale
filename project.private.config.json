@@ -91,6 +91,13 @@
           "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "核销列表",
+          "pathName": "store/pages/goodschargeoff/index",
+          "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -155,3 +155,29 @@
     <view class="btn write-off flex_row_center_center theme-button-dark" bindtap="gotoPage" data-type="coupon">优惠券核销</view>
   </view>
 </view>
+
+<view wx:if="{{true}}" class="window material">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="">
+          <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">待提交核销资料（实物）</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="goods flex_column_center_spaceBetween">
+          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+          <view class="name flex_row_center_center theme-font3">示例</view>
+        </view>
+        <view class="tip-group flex_column_center_flexStart">
+          <view class="tip flex_row_center_center theme-font-F44444">提示：</view>
+          <view class="tip flex_row_center_center theme-font-F44444">请保留示例中的物料并交与我公司人员。</view>
+          <view class="tip flex_row_center_center theme-font-F44444">物料回收后待核销积分奖励可正常使用。</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
