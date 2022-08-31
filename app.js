@@ -17,7 +17,7 @@ App({
     var currentdate = year + seperator1 + month + seperator1 + strDate;
     return currentdate;
   },
-  checkMobile: function (mobile) {
+  checkMobile: function (mobile) { 
 
     var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(16[0-9]{1})|(18[0-9]{1})|(17[0-9]{1})|(19[0-9]{1}))+\d{8})$/;
     if (mobile.length == 0) {
