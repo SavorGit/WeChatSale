@@ -19,7 +19,8 @@ Page({
   data: {
     list: [],
     coupon_list:[],
-    tab:'goods'
+    tab:'goods',
+    popEntityInfoWind:false,
   },
 
   /**
@@ -129,6 +130,17 @@ Page({
     wx.navigateTo({
       url: url,
     })
+  },
+  viewEntityInfo:function(e){
+    var list = this.data.list;
+    var keys = e.currentTarget.dataset.keys;
+    var entity_info = list[keys].entity;
+    if(entity_info.length>0){
+        this.setData({popEntityInfoWind:true,entity_info:entity_info})
+    }
+  },
+  closePopWind:function(){
+    this.setData({popEntityInfoWind:false})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

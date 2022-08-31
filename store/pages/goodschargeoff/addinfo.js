@@ -94,8 +94,9 @@ Page({
       for(let i in reasons){
         reasons[i].checked = false;
       }
+      var entity = data.result.entity;
       //that.setData({reasons:reasons,datas:datas})
-      that.setData({reasons:reasons})
+      that.setData({reasons:reasons,entity:entity})
     })
   },
   deleteScanGoods:function(e){

@@ -5,49 +5,49 @@
 <!--
   -- 冻结明细页面
   -->
-<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
   <view class="page flex_column_center_flexStart">
     <view class="main flex_column_center_flexStart">
       <view class="list flex_column_center_flexStart">
 
-        <view class="item flex_column_center_flexStart">
+        <view class="item flex_column_center_flexStart" wx:for="{{freeze_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
           <view class="top flex_column_center_flexStart">
             <view class="flex_row_center_spaceBetween">
               <view class="user flex_row_center_spaceBetween">
                 <view class="head flex_column_center_flexStart">
-                  <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
+                  <image class="pic" mode="aspectFill" src="{{bean.avatar_url}}" />
                 </view>
-                <view class="name theme-font-6297F2">张三</view>
+                <view class="name theme-font-6297F2">{{bean.user_name}}</view>
               </view>
-              <view class="btn material flex_row_center_flexEnd theme-font-6297F2">待回收物料</view>
+              <view class="btn material flex_row_center_flexEnd theme-font-6297F2">{{bean.recycle_status_str}}</view>
             </view>
             <view class="flex_row_center_flexEnd">
               <view class="title flex_row_center_center theme-font1">核销(售卖)</view>
-              <view class="status flex_row_center_flexEnd theme-font3">已通过审核</view>
+              <view class="status flex_row_center_flexEnd theme-font3">{{bean.wo_status_str}}</view>
             </view>
           </view>
           <view class="middle">
             <view class="goods-title flex_row_center_flexStart theme-font1">商品信息</view>
-            <view class="goods-list flex_column_center_flexStart">
+            <view class="goods-list flex_column_center_flexStart" bindtap="viewEntityInfo" data-keys="{{index}}">
               <view class="goods flex_row_center_flexStart">
-                <view class="left flex_column_center_center theme-font1">123</view>
+                <view class="left flex_column_center_center theme-font1">{{bean.goods_id}}</view>
                 <view class="center flex_column_center_center">
-                  <view class="name theme-font1">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                  <view class="name theme-font1">{{bean.goods_name}}</view>
                   <view class="tag-group flex_row_center_flexStart">
-                    <view class="tag theme-font3">白酒</view>
-                    <view class="tag theme-font3">500ml</view>
-                    <view class="tag theme-font3">瓶</view>
+                    <view class="tag theme-font3">{{bean.cate_name}}</view>
+                    <view class="tag theme-font3">{{bean.spec_name}}</view>
+                    <view class="tag theme-font3">{{bean.unit_name}}</view>
                   </view>
-                  <view class="identifying-code theme-font3">唯一标识：xxxxxxxxxxxxxx</view>
+                  <view class="identifying-code theme-font3">唯一标识：{{bean.idcode}}</view>
                 </view>
               </view>
             </view>
           </view>
           <view class="bottom flex_row_center_spaceBetween">
-            <view class="datetime theme-font3">2022/04/10 11:00</view>
+            <view class="datetime theme-font3">{{bean.add_time}}</view>
             <view class="profit flex_row_center_spaceBetween">
               <view class="label theme-font3">积分收益</view>
-              <view class="value theme-font5">xxx</view>
+              <view class="value theme-font5">{{bean.integral}}</view>
             </view>
           </view>
         </view>
@@ -57,11 +57,11 @@
   </view>
 </scroll-view>
 
-<view wx:if="{{true}}" class="window material">
+<view wx:if="{{popEntityInfoWind}}" class="window material">
   <view class="mask flex_column_center_center">
     <view class="entity theme-window">
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn close flex_column_center_center" bindtap="">
+        <view class="btn close flex_column_center_center" bindtap="closePopWind">
           <image class="icon" mode="aspectFill" src="/images/icon/666666_close.png" />
         </view>
       </view>
@@ -70,8 +70,8 @@
       </view>
       <view class="win-body flex_column_center_flexStart">
         <view class="goods flex_column_center_spaceBetween">
-          <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-          <view class="name flex_row_center_center theme-font3">示例</view>
+          <image class="pic" mode="aspectFill" src="{{entity_info[0].img_url}}" />
+          <view class="name flex_row_center_center theme-font3">{{entity_info[0].name}}</view>
         </view>
         <view class="tip-group flex_column_center_flexStart">
           <view class="tip flex_row_center_center theme-font-F44444">提示：</view>

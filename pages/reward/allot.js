@@ -149,7 +149,17 @@ Page({
     })
     
   },
- 
+  gotoFreezeIntegral:function(){
+    wx.navigateTo({
+      url: '/pages/mine/integral/freeze?openid='+openid+'&hotel_id='+hotel_id,
+    })
+  },
+  //积分奖励详情
+  gotoIntegralDetail:function(e){
+    wx.navigateTo({
+      url: '/pages/reward/integral_detail',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

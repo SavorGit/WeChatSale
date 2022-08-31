@@ -16,6 +16,7 @@ Page({
   data: {
     pageNo: 1, // 当前页码
     userIntegral: 0, // 用户积分
+    freeze_integral:0, //用户冻结待核销积分
     goodsList: [], // 商品列表
     notEnoughIntegralWindowShow: false, // 是否弹出没有足够积分窗口
     confirmExchangeGoodsWindowShow: false, // 是否弹出确定兑换窗口
@@ -35,6 +36,12 @@ Page({
       icon: 'loading',
       mask: true
     });
+  },
+  gotoFreezeIntegral:function(){
+    var userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    wx.navigateTo({
+      url: '/pages/mine/integral/freeze?openid='+userInfo.openid+'&hotel_id=0',
+    })
   },
 
   /**
@@ -162,6 +169,7 @@ Page({
         return;
       }
       let userIntegral = data.result.integral;
+      let freeze_integral = data.result.freeze_integral;
       if (typeof(userIntegral) != 'number' && typeof(userIntegral) != 'string') {
         wx.showToast({
           title: "服务器返回积分数据错误！请用联系管理员。",
@@ -174,12 +182,14 @@ Page({
       if (that.data.openGoodsInWindow.is_audit == 1) { // 需审核
         that.setData({
           userIntegral: userIntegral,
+          freeze_integral:freeze_integral,
           exchangeGoodsCheckWindowShow: true,
           exchangeGoodsSuccess: data.result
         });
       } else { // 无审核
         that.setData({
           userIntegral: data.result.integral,
+          freeze_integral:freeze_integral,
           exchangeGoodsWindowShow: true,
           exchangeGoodsSuccess: data.result
         });

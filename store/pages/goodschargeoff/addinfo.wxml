@@ -31,7 +31,7 @@
         </radio-group>
       </view>
 
-      <view class="panel makings picture flex_column_center_flexStart">
+      <view class="panel makings picture flex_column_center_flexStart" wx:if="{{datas.length>0}}">
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">核销资料（照片）</view>
         </view>
@@ -59,8 +59,8 @@
         <view class="body flex_row_center_spaceBetween">
 
           <view class="goods flex_column_center_spaceBetween">
-            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" />
-            <view class="name flex_row_center_center theme-font3">示例</view>
+            <image class="pic" mode="aspectFill" src="{{entity[0].img_url}}" />
+            <view class="name flex_row_center_center theme-font3">{{entity[0].name}}</view>
           </view>
           <view class="tip-group flex_column_flexStart_spaceBetween">
             <view class="tip theme-font-F44444">提示：</view>

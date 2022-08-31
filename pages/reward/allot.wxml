@@ -7,14 +7,14 @@
   <scroll-view class="scroll" scroll-y="true" scroll-with-animation="true">
     <view class="scroll-doc flex_column_center_flexStart theme7">
       <view class="panel integral flex_row_center_spaceBetween">
-        <view class="part flex_column_center_flexStart theme-button-red">
+        <view class="part flex_column_center_flexStart theme-button-red" bindtap="gotoFreezeIntegral">
           <view class="top flex_row_center_spaceBetween">
             <view class="name">冻结积分</view>
             <view class="icon fa fa-angle-right" aria-hidden="true"></view>
           </view>
           <view class="number">88888</view>
         </view>
-        <view class="part flex_column_center_flexStart theme-button-red">
+        <view class="part flex_column_center_flexStart theme-button-red" bindtap="gotoIntegralDetail">
           <view class="top flex_row_center_spaceBetween">
             <view class="name">可用积分</view>
             <view class="icon fa fa-angle-right" aria-hidden="true"></view>
