@@ -169,7 +169,7 @@
       </view>
       <view class="win-body flex_column_center_flexStart">
         <view class="goods flex_column_center_spaceBetween">
-          <image class="pic" mode="aspectFill" src="{{entity_info[0].img_url}}" />
+          <image class="pic" mode="aspectFill" src="{{entity_info[0].img_url}}" bindtap="previewImage" data-src="{{entity_info[0].img_url}}" />
           <view class="name flex_row_center_center theme-font3">{{entity_info[0].name}}</view>
         </view>
         <view class="tip-group flex_column_center_flexStart">

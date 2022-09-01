@@ -59,7 +59,7 @@
         <view class="body flex_row_center_spaceBetween">
 
           <view class="goods flex_column_center_spaceBetween">
-            <image class="pic" mode="aspectFill" src="{{entity[0].img_url}}" />
+            <image class="pic" mode="aspectFill" src="{{entity[0].img_url}}" bindtap="previewImage" data-src="{{entity[0].img_url}}" />
             <view class="name flex_row_center_center theme-font3">{{entity[0].name}}</view>
           </view>
           <view class="tip-group flex_column_flexStart_spaceBetween">
