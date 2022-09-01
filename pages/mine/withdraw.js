@@ -38,10 +38,14 @@ Page({
     });
   },
   gotoFreezeIntegral:function(){
-    var userInfo = wx.getStorageSync(cache_key + 'userinfo');
-    wx.navigateTo({
-      url: '/pages/mine/integral/freeze?openid='+userInfo.openid+'&hotel_id=0',
-    })
+    var freeze_integral = this.data.freeze_integral;
+    if(freeze_integral>0){
+      var userInfo = wx.getStorageSync(cache_key + 'userinfo');
+      wx.navigateTo({
+        url: '/pages/mine/integral/freeze?openid='+userInfo.openid+'&hotel_id=0',
+      })
+    }
+    
   },
 
   /**
@@ -169,7 +173,7 @@ Page({
         return;
       }
       let userIntegral = data.result.integral;
-      let freeze_integral = data.result.freeze_integral;
+      
       if (typeof(userIntegral) != 'number' && typeof(userIntegral) != 'string') {
         wx.showToast({
           title: "服务器返回积分数据错误！请用联系管理员。",
@@ -182,7 +186,7 @@ Page({
       if (that.data.openGoodsInWindow.is_audit == 1) { // 需审核
         that.setData({
           userIntegral: userIntegral,
-          freeze_integral:freeze_integral,
+          
           exchangeGoodsCheckWindowShow: true,
           exchangeGoodsSuccess: data.result
         });
@@ -218,6 +222,7 @@ Page({
         return;
       }
       let userIntegral = data.result.integral;
+      let freeze_integral = data.result.freeze_integral;
       if (typeof(userIntegral) != 'number' && typeof(userIntegral) != 'string') {
         wx.showToast({
           title: "服务器返回积分数据错误！请用联系管理员。",
@@ -256,6 +261,7 @@ Page({
       }
       that.setData({
         userIntegral: userIntegral,
+        freeze_integral:freeze_integral,
         goodsList: goodsListForReturn
       });
     }, function(res) {
