@@ -52,7 +52,7 @@
         </view>
       </view>
 
-      <view class="panel makings entity flex_column_center_flexStart">
+      <view class="panel makings entity flex_column_center_flexStart" wx:if="{{entity.length>0}}">
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">核销资料（实物）</view>
         </view>
