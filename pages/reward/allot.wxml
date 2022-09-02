@@ -12,14 +12,14 @@
             <view class="name">冻结积分</view>
             <view class="icon fa fa-angle-right" aria-hidden="true"></view>
           </view>
-          <view class="number">88888</view>
+          <view class="number">{{freeze_integral}}</view>
         </view>
         <view class="part flex_column_center_flexStart theme-button-red" bindtap="gotoIntegralDetail">
           <view class="top flex_row_center_spaceBetween">
             <view class="name">可用积分</view>
             <view class="icon fa fa-angle-right" aria-hidden="true"></view>
           </view>
-          <view class="number">88888</view>
+          <view class="number">{{reward_integral}}</view>
         </view>
       </view>
       <view class="list flex_column_center_flexStart">

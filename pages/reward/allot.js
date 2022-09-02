@@ -49,7 +49,7 @@ Page({
     utils.PostRequest(api_v_url + '/staff/getAssigninfo', {
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      that.setData({reward_money:data.result.money,reward_integral:data.result.integral})
+      that.setData({reward_money:data.result.money,reward_integral:data.result.integral,freeze_integral:data.result.freeze_integral})
     })
   },
   /**
