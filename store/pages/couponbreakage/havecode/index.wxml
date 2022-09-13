@@ -6,7 +6,7 @@
   -- 新增核销申请-优惠券
   -->
 <!-- 扫码核销 -->
-<scroll-view wx:if="{{false}}" class="container theme-main" scroll-y="true" scroll-with-animation="true">
+<scroll-view wx:if="{{scanList.length==0}}" class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="page flex_column_center_flexStart">
     <view class="main">
       <view class="panel scan flex_column_center_flexStart">
@@ -14,7 +14,7 @@
           <!-- <view class="title">请扫描优惠券二维码进行核销</view> -->
           <view class="title">请扫描优惠券二维码</view>
         </view>
-        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+        <view class="body flex_column_center_center" bindtap="scanCouponCode">
           <view class="btn flex_column_center_center theme-button-blue">
             <view class="icon fa fa-qrcode" aria-hidden="true"></view>
             <view class="text">扫码</view>
@@ -22,7 +22,7 @@
         </view>
       </view>
 
-      <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
+      <template is="couponPanelCanDel" data='{{title:listTitle,list:scanList}}' />
 
     </view>
     <view class="foot flex_row_center_spaceAround">
@@ -36,18 +36,18 @@
 <scroll-view wx:else class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="page flex_column_center_flexStart">
     <view class="main">
-      <template is="goodsPanelCanDel" data='{{title:ticketTitle,list:ticketList}}' />
+      <template is="couponPanelCanDel" data='{{title:listTitle,list:scanList}}' />
 
       <view class="panel scan flex_column_center_flexStart">
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">请扫描商品二维码进行优惠券核销</view>
         </view>
-        <view class="body flex_row_center_spaceAround" bindtap="scanGoodsCode">
-          <view class="btn flex_column_center_center {{tab=='tab1'?'theme-button-blue':'theme-button-disable'}}">
+        <view class="body flex_row_center_spaceAround" >
+          <view class="btn flex_column_center_center {{tab=='tab1'?'theme-button-blue':'theme-button-disable'}}" bindtap="scanGoodsCode">
             <view class="icon fa fa-qrcode" aria-hidden="true"></view>
             <view class="text">扫码</view>
           </view>
-          <view class="btn flex_column_center_center {{tab=='tab2'?'theme-button-blue':'theme-button-disable'}}">
+          <view class="btn flex_column_center_center {{tab=='tab2'?'theme-button-blue':'theme-button-disable'}}" bindtap="selectGoods">
             <view class="icon fa fa-bars" aria-hidden="true"></view>
             <view class="text">选择已扫码商品</view>
           </view>
@@ -58,12 +58,12 @@
       <template wx:if="{{tab=='tab2'}}" is="goodsPanelCanCheck" data='{{title:checkGoogsTitle,list:checkGoogsList}}' />
     </view>
     <view class="foot flex_row_center_spaceAround">
-      <button bindtap="submitCoupon" class="btn ok flex_row_center_center theme-button-blue">核销</button>
+      <button bindtap="confirmSubmitCoupon" class="btn ok flex_row_center_center theme-button-blue">核销</button>
     </view>
   </view>
 </scroll-view>
 
-<modal show="{{popWindowShow}}" width="690rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='核销优惠券确认' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='确定' confirm-color="#ffffff" confirm-background-color="#6297F2" confirm-border-radius="0rpx" cancel-text='取消' cancel-color='#333333' cancel-background-color="#DDDDDD" cancel-border-radius="0rpx" bindclickMask='modalClickMask' bindcancel="modalCancel" bindconfirm='modalConfirm'>
+<modal show="{{popWindowShow}}" width="690rpx" height='400rpx' border-radius="10rpx" background-color='#ffffff' title-text='核销优惠券确认' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text='确定' confirm-color="#ffffff" confirm-background-color="#6297F2" confirm-border-radius="0rpx" cancel-text='取消' cancel-color='#333333' cancel-background-color="#DDDDDD" cancel-border-radius="0rpx" bindclickMask='modalClickMask' bindcancel="modalCancel" bindconfirm='submitCoupon'>
   <view class="flex_column_center_center" style="font-size:28rpx;">
     <view>您将对优惠券进行核销</view>
     <view>核销后系统将判定您绑定的商品已经成功销售</view>

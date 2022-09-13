@@ -20,20 +20,16 @@ Page({
   data: {
     listTitle: '已扫优惠券（0）',
     scanList:[],
-    tab:"tab2",
-    ticketTitle:'已扫优惠券（1）',
-    ticketList:[
-      {idcode:'50元优惠券（满xxxx可用）XXXXXXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40'}
-    ],
-    scanGoogsTitle:'已扫商品（1）',
-    scanGoogsList:[
-      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 11:00:40'}
-    ],
+    tab:"tab1",
+    popWindowShow:false,
+    
+    scanGoogsTitle:'已扫商品（0）',
+    scanGoogsList:[],
     checkGoogsTitle:'选择已扫码商品',
     checkGoogsList:[
-      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40'},
-      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 10:00:40'},
-      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 9:00:40'}
+      {idcode:'赖茅生肖酒1111XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40',checked:false},
+      {idcode:'赖茅生肖酒2222XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 10:00:40',checked:false},
+      {idcode:'赖茅生肖酒3333XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 9:00:40',checked:false}
     ]
   },
 
@@ -46,11 +42,11 @@ Page({
     hotel_id = options.hotel_id;
     code_msg = options.code_msg;
     if(typeof(options.code_msg)!='undefined'){
-      this.goodsDecode(options.code_msg)
+      this.couponDecode(options.code_msg)
     }
-    this.setData({popWindowShow:true});
+    //this.setData({popWindowShow:true});
   },
-  scanGoodsCode:function(){
+  scanCouponCode:function(){
     var that = this;
     var scanList = this.data.scanList;
     if(scanList.length>0){
@@ -63,14 +59,14 @@ Page({
         console.log(res)
         var code_msg = res.result;
         //解码
-        that.goodsDecode(code_msg);
+        that.couponDecode(code_msg);
 
       },fail:function(res){
         app.showToast('二维码识别失败,请重试');
       }
     })
   },
-  goodsDecode:function(code_msg){
+  couponDecode:function(code_msg){
     var that = this;
     var scanList = this.data.scanList;
     if(scanList.length>0){
@@ -102,7 +98,7 @@ Page({
     }
     
   },
-  deleteScanGoods:function(e){
+  deleteScanCoupon:function(e){
     var that = this;
     var keys = e.currentTarget.dataset.keys;
     var scanList = this.data.scanList;
@@ -121,11 +117,147 @@ Page({
     })
     
   },
+
+  scanGoodsCode:function(){
+    var that = this;
+    var tab = this.data.tab;
+    if(tab=='tab2'){
+      this.setData({tab:'tab1'})
+    }else {
+      wx.scanCode({
+        onlyFromCamera: true,
+        success: (res) => {
+          console.log(res)
+          var code_msg = res.result;
+          //解码
+          that.goodsDecode(code_msg);
+  
+        },fail:function(res){
+          app.showToast('二维码识别失败,请重试');
+        }
+      })
+    }
+    
+  },
+  goodsDecode:function(code_msg){
+    var that = this;
+    var scanGoogsList = this.data.scanGoogsList;
+    var goods_id = this.data.goods_id;
+    utils.PostRequest(api_v_url + '/stock/scanWriteoff', {
+      openid: openid,
+      idcode:code_msg,
+      goods_id:goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var flag  = 0;
+      var goods_info = data.result;
+      for(let i in scanGoogsList){
+        if(scanGoogsList[i].idcode==goods_info.idcode){
+          flag = 1;
+          break;
+        }
+      }
+      if(flag == 0){
+        scanGoogsList.push(goods_info);
+        var scanGoogsTitle = '已扫商品('+scanGoogsList.length+')';
+        that.setData({scanGoogsList:scanGoogsList,scanGoogsTitle:scanGoogsTitle});
+      }else {
+        app.showToast('请勿重复扫码');
+      }
+    })
+  },
+  deleteScanGoods:function(e){
+    var that = this;
+    var keys = e.currentTarget.dataset.keys;
+    var scanGoogsList = this.data.scanGoogsList;
+    wx.showModal({
+      title: '确定要删除吗？',
+      success: function (res) {
+        if (res.confirm) {
+          scanGoogsList.splice(keys,1);
+          var scanGoogsTitle = '已扫商品（'+scanGoogsList.length+'）';
+          
+          
+          that.setData({scanGoogsList:scanGoogsList,scanGoogsTitle:scanGoogsTitle});
+        }
+      }
+    })
+    
+  },
+  selectGoods:function(){
+    var tab = this.data.tab;
+    if(tab=='tab1'){
+      this.setData({tab:'tab2'});
+      utils.PostRequest(api_v_url + '/aa/bb', {
+        openid: openid,
+        
+      }, (data, headers, cookies, errMsg, statusCode) => {
+
+      })
+    }else {
+
+    }
+  },
+  checkboxChange:function(e){
+    console.log(e)
+    
+    var checkinfo = e.detail.value;
+    var checkGoogsList = this.data.checkGoogsList;
+
+    for(let i in checkGoogsList){
+      checkGoogsList[i].checked= false;
+        if(checkinfo== checkGoogsList[i].idcode){
+          checkGoogsList[i].checked= true;
+        }
+
+      
+
+    }
+    this.setData({checkGoogsList:checkGoogsList})
+  },
+  confirmSubmitCoupon:function(){
+
+    var tab = this.data.tab;
+    if(tab=='tab1'){
+      var scanGoogsList = this.data.scanGoogsList;
+      if(scanGoogsList.length==0){
+        app.showToast('请扫商品二维码');
+        return false;
+      }
+    }else if(tab=='tab2'){
+      var flag = 0; 
+      var checkGoogsList = this.data.checkGoogsList;
+      for(let i in checkGoogsList){
+        if(checkGoogsList[i].checked==true){
+          flag = 1;
+        }
+      }
+      if(flag==0){
+        app.showToast('请选择已扫商品');
+        return false;
+      }
+    }
+
+    this.setData({popWindowShow:true});
+  },
+
+
   submitCoupon:function(){
     var scanList = this.data.scanList;
+    var scanGoogsList = this.data.scanGoogsList;
+
+    var checkGoogsList = this.data.checkGoogsList;
+    var tab = this.data.tab;
     if(scanList.length==0){
       app.showToast('请扫描优惠券二维码进行核销');
       return false;
+    }
+    if(tab=='tab1' && scanGoogsList.length==0){
+      app.showToast('请扫商品二维码');
+      return false;
+    }
+    if(tab=='tab2' && checkGoogsList.length==0){
+      app.showToast('请选择已扫商品');
+        return false;
     }
     wx.showModal({
       title: '确定要提交吗？',
