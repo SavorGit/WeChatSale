@@ -182,6 +182,36 @@
   </view>
 </template>
 
+<!-- [面板] 可以选择商品 -->
+<template name="goodsPanelCanCheck">
+  <view class="panel can-check-googs">
+    <view wx:if='{{app.typeOf(title)=="string"}}' class="title-bar flex_row_center_flexStart">
+      <view class="title {{smallTitle?'small':'big'}} theme-font1">{{title}}</view>
+      <view class="title {{smallTitle?'small':'big'}} theme-font3" style="margin-left:50rpx;">{{title2}}</view>
+    </view>
+    <view class="body">
+      <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+        <view class="item flex_column_center_flexStart">
+          <view class="row flex_row_center_spaceBetween">
+            <view class="left flex_column_center_center theme-font3">{{list.length-index}}</view>
+            <view class="center flex_column_center_center">
+              <view class="name theme-font3">{{bean.idcode}}</view>
+              <view class="tag-group flex_row_center_flexStart">
+                <view class="tag theme-font3">{{bean.add_time}}</view>
+              </view>
+            </view>
+            <view class="right flex_column_center_center" bindtap="" data-keys="{{index}}">
+              <view class='btn check flex_column_center_center'>
+                <checkbox></checkbox>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
 <!-- [面板] 检查商品 -->
 <template name="goodsPanelForChecked">
   <view class="panel check-googs">

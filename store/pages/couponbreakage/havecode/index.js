@@ -20,6 +20,21 @@ Page({
   data: {
     listTitle: '已扫优惠券（0）',
     scanList:[],
+    tab:"tab2",
+    ticketTitle:'已扫优惠券（1）',
+    ticketList:[
+      {idcode:'50元优惠券（满xxxx可用）XXXXXXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40'}
+    ],
+    scanGoogsTitle:'已扫商品（1）',
+    scanGoogsList:[
+      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 11:00:40'}
+    ],
+    checkGoogsTitle:'选择已扫码商品',
+    checkGoogsList:[
+      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40'},
+      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 10:00:40'},
+      {idcode:'赖茅生肖酒XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 9:00:40'}
+    ]
   },
 
   /**
@@ -33,6 +48,7 @@ Page({
     if(typeof(options.code_msg)!='undefined'){
       this.goodsDecode(options.code_msg)
     }
+    this.setData({popWindowShow:true});
   },
   scanGoodsCode:function(){
     var that = this;

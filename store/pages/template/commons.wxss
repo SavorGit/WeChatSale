@@ -105,6 +105,7 @@
 
 .panel.bill>.title-bar>.title,
 .panel.can-del-googs>.title-bar>.title,
+.panel.can-check-googs>.title-bar>.title,
 .panel.check-googs>.title-bar>.title {
   font-size: 28rpx;
 }
