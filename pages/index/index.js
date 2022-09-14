@@ -474,7 +474,7 @@ Page({
         app.showToast('请选择包间电视');
       }else{
         wx.navigateTo({
-          url: '/pages/adv/index?hotel_id='+hotel_id+'&box_mac='+box_mac+'&openid='+user_info.openid,
+          url: '/pages/adv/index?hotel_id='+hotel_id+'&box_mac='+box_mac+'&openid='+user_info.openid+'&is_adv=1',
         })
       } 
     }

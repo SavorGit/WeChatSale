@@ -7,6 +7,7 @@ var box_mac = '';
 var openid  = '';
 var hotel_id= '';
 var pageNum = 1;
+var is_adv;
 Page({
 
   /**
@@ -26,6 +27,11 @@ Page({
     box_mac = options.box_mac;
     openid  = options.openid;
     hotel_id = options.hotel_id;
+    if(typeof(options.is_adv)!='undefined'){
+      is_adv = options.is_adv;
+    }else {
+      is_adv = 0;
+    }
     that.setData({
       box_mac:box_mac,
       openid:openid,
@@ -35,8 +41,23 @@ Page({
       page: pageNum,
       hotel_id:hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      var list = data.result.datalist
+      if(is_adv==0){
+        var adv_list = [];
+        for(let i in list){
+          if(list[i].rtype=='wineads'){
+            adv_list.push(list[i])
+          }
+        }
+      }else {
+        var adv_list = list;
+      }
+
+
+
       that.setData({
-        adv_list:data.result.datalist
+        adv_list:  adv_list
+
       })
     });
   },
