@@ -26,11 +26,7 @@ Page({
     scanGoogsTitle:'已扫商品（0）',
     scanGoogsList:[],
     checkGoogsTitle:'选择已扫码商品',
-    checkGoogsList:[
-      {idcode:'赖茅生肖酒1111XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 11:00:40',checked:false},
-      {idcode:'赖茅生肖酒2222XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXX',add_time:'2022/04/10 10:00:40',checked:false},
-      {idcode:'赖茅生肖酒3333XXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXXXXXX',add_time:'2022/04/10 9:00:40',checked:false}
-    ]
+    checkGoogsList:[]
   },
 
   /**
@@ -141,28 +137,18 @@ Page({
   },
   goodsDecode:function(code_msg){
     var that = this;
-    var scanGoogsList = this.data.scanGoogsList;
-    var goods_id = this.data.goods_id;
-    utils.PostRequest(api_v_url + '/stock/scanWriteoff', {
+    var scanGoogsList = [];
+    
+    utils.PostRequest(api_v_url + '/coupon/scanGoodscode', {
       openid: openid,
       idcode:code_msg,
-      goods_id:goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var flag  = 0;
+      
       var goods_info = data.result;
-      for(let i in scanGoogsList){
-        if(scanGoogsList[i].idcode==goods_info.idcode){
-          flag = 1;
-          break;
-        }
-      }
-      if(flag == 0){
-        scanGoogsList.push(goods_info);
-        var scanGoogsTitle = '已扫商品('+scanGoogsList.length+')';
-        that.setData({scanGoogsList:scanGoogsList,scanGoogsTitle:scanGoogsTitle});
-      }else {
-        app.showToast('请勿重复扫码');
-      }
+      scanGoogsList.push(goods_info);
+      var scanGoogsTitle = '已扫商品('+scanGoogsList.length+')';
+      that.setData({scanGoogsList:scanGoogsList,scanGoogsTitle:scanGoogsTitle});
+      
     })
   },
   deleteScanGoods:function(e){
@@ -184,15 +170,22 @@ Page({
     
   },
   selectGoods:function(){
+    var that = this;
     var tab = this.data.tab;
     if(tab=='tab1'){
       this.setData({tab:'tab2'});
-      utils.PostRequest(api_v_url + '/aa/bb', {
-        openid: openid,
-        
-      }, (data, headers, cookies, errMsg, statusCode) => {
-
-      })
+      var checkGoogsList = this.data.checkGoogsList;
+      if(checkGoogsList.length==0){
+        utils.PostRequest(api_v_url + '/coupon/getscanGoods', {
+          openid: openid,
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          var checkGoogsList = data.result;
+          for(let i in checkGoogsList){
+            checkGoogsList[i].checked = false;
+          }
+          that.setData({checkGoogsList:checkGoogsList})
+        })
+      }
     }else {
 
     }
@@ -259,24 +252,24 @@ Page({
       app.showToast('请选择已扫商品');
         return false;
     }
-    wx.showModal({
-      title: '确定要提交吗？',
-      success: function (res) {
-        if (res.confirm) {
-          utils.PostRequest(api_v_url + '/coupon/writeoff', {
-            openid: openid,
-            hotel_id:hotel_id,
-            qrcontent:scanList[0].qrcode
-          }, (data, headers, cookies, errMsg, statusCode) => {
-            
-            app.showToast(data.result.message,2000,'success');
-            setTimeout(function () {
-                wx.navigateBack({delta: 1})
-              }, 2000);
-            
-          })
-        }
-      }
+    if(tab=='tab1'){
+      var idcode = scanGoogsList[0].idcode; 
+    }else if(tab='tab2'){
+      var idcode = checkGoogsList[0].idcode;
+    }
+
+    utils.PostRequest(api_v_url + '/coupon/writeoff', {
+      openid: openid,
+      hotel_id:hotel_id,
+      idcode  : idcode,
+      qrcontent:scanList[0].qrcode
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      app.showToast(data.result.message,2000,'success');
+      setTimeout(function () {
+          wx.navigateBack({delta: 1})
+        }, 2000);
+      
     })
     
   },
