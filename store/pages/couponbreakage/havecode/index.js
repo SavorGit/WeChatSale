@@ -185,9 +185,14 @@ Page({
           }
           that.setData({checkGoogsList:checkGoogsList})
         })
+      }else{
+        for(let i in checkGoogsList){
+          checkGoogsList[i].checked = false;
+        }
+        that.setData({checkGoogsList:checkGoogsList})
       }
     }else {
-
+      
     }
   },
   checkboxChange:function(e){
