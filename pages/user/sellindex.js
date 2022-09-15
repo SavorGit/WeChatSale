@@ -1196,26 +1196,30 @@ Page({
       msg: msg,
     }, (data, headers, cookies, errMsg, statusCode) => {
       
-      app.showToast('点播成功,电视即将开始播放');
-      
-    });
-    var mobile_brand = app.globalData.mobile_brand;
-    var mobile_model = app.globalData.mobile_model;
-    utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
-      forscreen_id: forscreen_id,
-      openid: that.data.user_info.openid,
-      box_mac: box_mac,
-      action: 58,
-      mobile_brand: mobile_brand,
-      mobile_model: mobile_model,
-      forscreen_char: '',
-      imgs: '["media/resource/' + task_info.filename + '"]',
-      small_app_id: app.globalData.small_app_id,
-      duration:task_info.duration,
-      resource_size:task_info.resource_size,
-    }, (data, headers, cookies, errMsg, statusCode) => {
+      app.showToast('点播成功');
+
+
+      var forscreen_id = (new Date()).valueOf();
+      var mobile_brand = app.globalData.mobile_brand;
+      var mobile_model = app.globalData.mobile_model;
+      utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+        forscreen_id: forscreen_id,
+        openid: that.data.user_info.openid,
+        box_mac: box_mac,
+        action: 59,
+        mobile_brand: mobile_brand,
+        mobile_model: mobile_model,
+        forscreen_char: '',
+        imgs: '["media/resource/' + task_info.filename + '"]',
+        small_app_id: app.globalData.small_app_id,
+        duration:task_info.duration,
+        resource_size:task_info.resource_size,
+      }, (data, headers, cookies, errMsg, statusCode) => {
 
       }, res => { }, { isShowLoading: false })
+      
+    });
+    
   },
 
   zyttest:function(){
