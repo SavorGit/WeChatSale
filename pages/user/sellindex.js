@@ -18,6 +18,7 @@ Page({
     SystemInfo: app.SystemInfo,
     task_list:[],
     box_list:[],
+    demand_box_list:[],
     taskDetailWindowShow: false, // 是否吊起任务详情弹窗
     openTaskInWindow: {}, // 在任务详情弹窗中打开任务
     saleDetailWindowShow: false,
@@ -38,6 +39,7 @@ Page({
     lotteryStartTimeIndex:[0,0],
 
     select_time_arr:[['10','11','12','13','14','15','16','17','18','19','20','21','22','23'],['00','10','20','30','40','50']],
+    popDemandAdsWind:false,
     
   },
 
@@ -47,6 +49,23 @@ Page({
   onLoad: function (options) {
     wx.hideShareMenu();
   },
+  getRsRoomlist:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/room/getRoomList', {
+      openid: openid,
+      hotel_id:hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      that.setData({
+        objectBoxArray: data.result.box_name_list,
+        demand_box_list: data.result.box_list,
+        demand_box_index : data.result.box_index,
+      })
+    })
+  },
+
+
+
   getRoomList:function(openid,hotel_id){
     var that = this;
 
@@ -160,8 +179,12 @@ Page({
             that.getTaskList(openid,hotel_id);
           }
           var box_list = that.data.box_list;
+          var demand_box_list = that.data.demand_box_list;
+          if(demand_box_list.length==0){
+            that.getRsRoomlist(openid,hotel_id);
+          }
           if(box_list.length==0){
-            this.getRoomList(openid,hotel_id);
+            that.getRoomList(openid,hotel_id);
           }
           
           var loop_play_list = that.data.loop_play_list;
@@ -438,6 +461,8 @@ Page({
       lottery_activity_info:{activity_scope:1,start_time:'',lottery_time:'',lottery_edit:false},
       activityStartTimeIndex:[0,0],
       lotteryStartTimeIndex:[0,0],
+      popDemandAdsWind:false,
+      demand_task_info:[],
     })
   },
   
@@ -613,25 +638,10 @@ Page({
    */
   goToHotelAdv:function(e){
     var that = this;
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    if (user_info.hotel_id == -1) {
-      var hotel_id = user_info.select_hotel_id;
-    } else {
-      var hotel_id = user_info.hotel_id;
-    }
-    if (typeof (hotel_id) =='undefined'){
-      app.showToast('请您先选择酒楼');
-    }else {
-      var link_box_info = wx.getStorageSync(cache_key + "link_box_info");
-      var box_mac = link_box_info.box_mac;
-      if (box_mac == '' || typeof(box_mac) == 'undefined'){
-        app.showToast('请在电视互动页选包间电视');
-      }else{
-        wx.navigateTo({
-          url: '/pages/adv/index?hotel_id='+hotel_id+'&box_mac='+box_mac+'&openid='+user_info.openid,
-        })
-      } 
-    }
+    var keys = e.currentTarget.dataset.keys
+    var task_list = this.data.task_list.inprogress;
+    var demand_task_info = task_list[keys];
+    that.setData({popDemandAdsWind:true,demand_task_info:demand_task_info});
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -1154,6 +1164,60 @@ Page({
       }
     });
   },
+  /**
+   * 选择推送点播广告任务的包间
+   */
+  selectDemandMissionRoom(e){
+    var keys = e.currentTarget.dataset.keys;
+    this.setData({demand_box_index:keys})
+
+  },
+  /**
+   * 选择包间后推送点播任务对应的广告
+   */
+  demandTaskAds(){
+    var that = this;
+    var demand_task_info = this.data.demand_task_info;
+    return false;
+    var netty_info = {};
+    netty_info.action = 5;
+    netty_info.url = task_info.tx_url
+    netty_info.filename = task_info.filename;
+    netty_info.openid = that.data.user_info.openid;
+    netty_info.resource_type = 2;
+    netty_info.avatarUrl = that.data.user_info.avatarUrl
+    netty_info.nickName  = that.data.user_info.nickName;
+    netty_info.forscreen_id = forscreen_id;
+    netty_info.resource_size = task_info.resource_size
+    var msg = JSON.stringify(netty_info);
+
+    utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
+      box_mac: box_mac,
+      msg: msg,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      app.showToast('点播成功,电视即将开始播放');
+      
+    });
+    var mobile_brand = app.globalData.mobile_brand;
+    var mobile_model = app.globalData.mobile_model;
+    utils.PostRequest(api_v_url + '/ForscreenLog/recordForScreenPics', {
+      forscreen_id: forscreen_id,
+      openid: that.data.user_info.openid,
+      box_mac: box_mac,
+      action: 58,
+      mobile_brand: mobile_brand,
+      mobile_model: mobile_model,
+      forscreen_char: '',
+      imgs: '["media/resource/' + task_info.filename + '"]',
+      small_app_id: app.globalData.small_app_id,
+      duration:task_info.duration,
+      resource_size:task_info.resource_size,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      }, res => { }, { isShowLoading: false })
+  },
+
   zyttest:function(){
     wx.redirectTo({
       url: '/store/pages/index',

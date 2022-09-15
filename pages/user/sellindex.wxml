@@ -131,7 +131,7 @@
                       <view class="text">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
-                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv">去点播广告></view>
+                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv" data-keys="{{index}}">点播</view>
 
                     </view>
                   </view>
@@ -730,7 +730,7 @@
 </bottomModal>
 
 <!-- 选择包间弹窗 -->
-<view wx:if="{{true}}" class="window room-choice">
+<view wx:if="{{popDemandAdsWind}}" class="window room-choice">
   <view class="mask flex_column_center_center">
     <view class="entity theme-window">
       <view class="option-bar flex_row_center_flexEnd">
@@ -744,80 +744,17 @@
       <view class="win-body flex_column_center_flexStart">
         <scroll-view class="rooms" scroll-y="true" scroll-with-animation="true">
           <view class="list room flex_column_center_spaceBetween">
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间1</view>
-            </view>
-            <view class="item flex_row_center_flexStart selected">
-              <view class="name one-line-overflow">包间2</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间3</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4包间4</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间5</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间6</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间7</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间8</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间9</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间10</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间11</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间12</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间13</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间14</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间15</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间16</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间17</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间18</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间19</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间20</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间21</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间22</view>
-            </view>
-            <view class="item flex_row_center_flexStart one-line-overflow">
-              <view class="name one-line-overflow">包间23</view>
-            </view>
+            <block wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+              <view class="item flex_row_center_flexStart {{demand_box_index==index?'selected':'one-line-overflow'}} one-line-overflow" bindtap="selectDemandMissionRoom" data-keys="{{index}}">
+                <view class="name one-line-overflow">{{bean}}</view>
+              </view>
+            </block>
+            
           </view>
         </scroll-view>
         <view class="button-group flex_row_center_spaceAround">
-          <view class="btn cancel flex_row_center_center theme-button-disable">取消</view>
-          <view class="btn confir flex_row_center_center theme-button-blue">确定</view>
+          <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="closePopWind">取消</view>
+          <view class="btn confir flex_row_center_center theme-button-blue" bindtap="demandTaskAds">确定</view>
         </view>
       </view>
     </view>
