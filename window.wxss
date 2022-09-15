@@ -1,0 +1,56 @@
+@charset "utf-8";
+/**
+ * 窗口样式
+ */
+
+.window {
+  width: 0;
+  height: 0;
+}
+
+.window>.mask {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.window .entity {
+  width: 90vw;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  z-index: 999;
+}
+
+.window .entity>.title-bar,
+.window .entity>.option-bar,
+.window .entity>.win-body {
+  width: calc(100% - 50rpx);
+  padding: 10rpx 25rpx;
+}
+
+.window .entity>.title-bar,
+.window .entity>.option-bar {
+  height: 50rpx;
+}
+
+.window .entity>.title-bar>.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.window .entity>.option-bar>.btn,
+.window .entity>.option-bar>.btn .icon {
+  width: 50rpx;
+  height: 50rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.window .entity>.win-body {
+  font-size: 28rpx;
+}
