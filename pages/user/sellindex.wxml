@@ -384,7 +384,44 @@
                 <view class="bottom"></view>
               </view>
             </view>
+            <view wx:elif="{{bean.task_type==25}}" class="item sale flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="btn launch-tv flex_row_center_center theme-button3">
+                    <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
+                    <view class="text">电视广告</view>
+                  </view>
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <!-- <view class="price flex_row_center_flexStart">
+                    <view class="icon fa fa-cny"></view>
+                    <view class="text">{{bean.price}}</view>
+                  </view> -->
+                  <view class="btn flex_row_center_spaceBetween theme-button-red">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
+                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv" data-keys="{{index}}">点播</view>
 
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
+              </view>
+            </view>
             <view wx:else class="item sale flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
