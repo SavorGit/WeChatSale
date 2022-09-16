@@ -1185,7 +1185,7 @@ Page({
     var forscreen_id = (new Date()).valueOf();
     var netty_info = {};
     netty_info.action = 5;
-    netty_info.url = demand_task_info.tx_url
+    netty_info.url = demand_task_info.forscreen_url
     netty_info.filename = demand_task_info.filename;
     netty_info.openid = that.data.user_info.openid;
     netty_info.resource_type = 2;
