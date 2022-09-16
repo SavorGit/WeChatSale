@@ -395,11 +395,7 @@
                 </view>
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
-                  <!-- <view class="price flex_row_center_flexStart">
-                    <view class="icon fa fa-cny"></view>
-                    <view class="text">{{bean.price}}</view>
-                  </view> -->
-                  <view class="btn flex_row_center_spaceBetween theme-button-red">
+                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
                         <view class="fa fa-circle fa-stack-2x"></view>
