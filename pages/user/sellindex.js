@@ -1201,7 +1201,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       
       app.showToast('点播成功');
-
+      that.setData({popDemandAdsWind:false,demand_box_index:0})
       that.finishDemandadvTask(ads_id,that.data.user_info.openid,that.data.user_info.hotel_id,box_mac);
       
       var mobile_brand = app.globalData.mobile_brand;
