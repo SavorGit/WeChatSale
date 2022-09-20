@@ -155,7 +155,7 @@
     </view>
   </view>
   <!-- 库存管理面板 -->
-  <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.hotel_id==-1}}">
+  <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{user_info.role_type ==7}}">
     <view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoStore">
       <view>库存管理</view>
       <view class="fa fa-angle-right" aria-hidden="true"></view>
