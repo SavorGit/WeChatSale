@@ -32,7 +32,7 @@
         {
           "name": "售酒抽奖",
           "pathName": "store/pages/activity/winesale/index",
-          "query": "",
+          "query": "hotel_id=7&code_msg=86b5855c8df4c092",
           "launchMode": "default",
           "scene": null
         },
