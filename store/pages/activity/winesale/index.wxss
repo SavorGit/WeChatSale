@@ -67,6 +67,22 @@
   font-size: 28rpx;
 }
 
+.window.luck-draw>.mask>.entity>.win-body>.qr>.btn {
+  width: 160rpx;
+  height: 40rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+
+.window.luck-draw>.mask>.entity>.win-body>.qr>.btn .icon {
+  font-size: 28rpx;
+}
+
+.window.luck-draw>.mask>.entity>.win-body>.qr>.btn .label {
+  padding-left: 10rpx;
+  font-size: 28rpx;
+}
+
 .window.luck-draw>.mask>.entity>.win-body>.tip-group {
   width: 100%;
   padding-top: 50rpx;
