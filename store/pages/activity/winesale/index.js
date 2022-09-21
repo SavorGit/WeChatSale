@@ -83,7 +83,7 @@ Page({
 
     wx.showModal({
         title: '确定要发起抽奖吗？',
-        content:'每瓶酒只可发起一次抽奖（时效30分钟），请您在抽奖的包间内使用此功能',
+        content:'每瓶酒只可发起一次抽奖(时效30分钟),请您在抽奖的包间内使用此功能',
         confirmText:'发起抽奖',
         success: function (res) {
           if (res.confirm) {
