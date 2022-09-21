@@ -115,6 +115,11 @@ Page({
     pageConfig.popLotteryWind = true;
     this.setData({pageConfig:pageConfig});
   },
+  refreshQrCode:function(){
+    var lottery_info = this.data.lottery_info;
+    this.setData({lottery_info:lottery_info})
+    app.showToast('二维码刷新成功');
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
