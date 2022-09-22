@@ -44,7 +44,7 @@
     "lazyloadPlaceholderEnable": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.26.0",
+  "libVersion": "2.26.1",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "simulatorType": "wechat",
