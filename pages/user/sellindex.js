@@ -122,7 +122,7 @@ Page({
       })
       openid = app.globalData.openid;
       //注册用户
-      that.is_login(openid);
+      that.is_login(openid,0);
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -131,14 +131,14 @@ Page({
           })
           openid = openid;
           //注册用户
-          that.is_login(openid);
+          that.is_login(openid,1);
           
         }
       }
     }
     
   },
-  is_login:function(openid){
+  is_login:function(openid,is_onload=0){
     var that = this;
     utils.PostRequest(api_v_url + '/User/isRegister',{
       openid:openid,
@@ -151,7 +151,19 @@ Page({
         })
       }else {
         var user_info = wx.getStorageSync(cache_key+'userinfo');
-        console.log(user_info)
+        
+        if(hotel_id==-1 && is_onload==1){
+          wx.showModal({
+            title: '提示',
+            content:'您当前为通用版权限,除投屏外的的功能只可作为演示使用',
+            showCancel:false,
+            success:function(){
+
+            }
+          })
+        }
+
+
         if(user_info.select_hotel_id>0 ){
 
         }else {

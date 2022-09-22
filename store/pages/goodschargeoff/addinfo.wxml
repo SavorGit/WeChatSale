@@ -26,7 +26,7 @@
         <view class="label theme-font1">核销原因</view>
         <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
           <block wx:for="{{reasons}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
-            <radio class="text theme-font1" value="{{type.id}}">{{type.name}}</radio>
+            <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.name}}</radio>
           </block>
         </radio-group>
       </view>

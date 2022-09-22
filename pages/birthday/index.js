@@ -41,7 +41,7 @@ Page({
       var user_info = wx.getStorageSync(cache_key + 'userinfo');
       openid = user_info.openid;
       box_mac = link_user_info.box_mac;
-      utils.PostRequest(api_url + '/Smallapp21/index/happylist', {
+      utils.PostRequest(api_v_url + '/Happybirthday/happylist', {
 
       }, (data, headers, cookies, errMsg, statusCode) => {
         console.log(data.result);
