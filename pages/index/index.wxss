@@ -114,11 +114,11 @@ page {
 }
 
 .prominent-function-panel>.botton.btn-welcome_speech {
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech.png');
 }
 
 .prominent-function-panel>.botton.btn-birthday_song {
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song.png');
 }
 
 .prominent-function-panel>.botton:first-child {
@@ -162,16 +162,16 @@ page {
 .prominent-function-panel-2>.left>.botton.btn-welcome_speech {
   height: 300rpx;
   background-size: 330rpx 300rpx;
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech-2.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/welcome_speech-2.png');
 }
 
 .prominent-function-panel-2>.right>.botton.btn-birthday_song {
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song-2.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/birthday_song-2.png');
 }
 
 .prominent-function-panel-2>.right>.botton.btn-restaurant_trailer {
   margin-top: 20rpx;
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/restaurant_trailer.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/restaurant_trailer.png');
 }
 
 .collect-panel {
@@ -212,7 +212,7 @@ page {
   line-height: 2.8;
   font-size: 24rpx;
   text-align: center;
-  background-image: url('http://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/set_top_box_list-title-bg.png');
+  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/pages/index/set_top_box_list-title-bg.png');
   background-size: 100% 100rpx;
 }
 */
