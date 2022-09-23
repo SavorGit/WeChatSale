@@ -8,7 +8,7 @@
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="page flex_column_center_flexStart">
     <view class="main">
-      <view class="panel scan flex_column_center_flexStart">
+      <view class="panel scan flex_column_center_flexStart" wx:if="{{is_supplement==0}}">
         <view class="title-bar flex_row_center_flexStart">
           <view class="title">请扫描商品唯一标识进行核销</view>
         </view>

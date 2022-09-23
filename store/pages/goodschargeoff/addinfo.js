@@ -36,6 +36,12 @@ Page({
     if(typeof(options.code_msg)!='undefined'){
       this.goodsDecode(options.code_msg);
     }
+    if(typeof(options.is_supplement)!='undefined'){
+      var is_supplement = options.is_supplement;
+    }else {
+      var is_supplement = 0;
+    }
+    this.setData({is_supplement:is_supplement})
   },
   scanGoodsCode:function(){
     var that = this;

@@ -123,7 +123,7 @@ Page({
         url = '/store/pages/couponbreakage/havecode/index?hotel_id='+hotel_id;
         break;
       case 'addinfo':
-        url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg;
+        url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg+'&is_supplement=1';
         break;
     }
     console.log(url)
