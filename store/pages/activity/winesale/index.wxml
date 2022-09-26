@@ -64,10 +64,10 @@
         <view class="qr flex_column_center_flexStart">
           <image class="pic" mode="aspectFill" src="{{lottery_info.qrcode_url}}" />
           <view class="label theme-font1">抽奖码</view>
-          <!-- <view class="btn refresh flex_row_center_center theme-button-blue" bindtap="refreshQrCode">
+          <view class="btn refresh flex_row_center_center theme-button-blue" bindtap="refreshQrCode">
             <view class="icon fa fa-refresh" aria-hidden="true"></view>
             <view class="label">刷新</view>
-          </view> -->
+          </view>
         </view>
         <view class="tip-group flex_column_center_flexStart">
           <view class="tip flex_column_center_flexStart theme-font5">如使用请向食客提供此码进行抽奖</view>

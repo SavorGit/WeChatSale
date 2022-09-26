@@ -81,7 +81,7 @@ Page({
     var box_index = this.data.box_index;
     var room_id = room_list[box_index].id
 
-    /*wx.showModal({
+    wx.showModal({
         title: '确定要发起抽奖吗？',
         content:'每瓶酒只可发起一次抽奖(时效30分钟),请您在抽奖的包间内使用此功能',
         confirmText:'发起抽奖',
@@ -100,8 +100,8 @@ Page({
               })
           }
         }
-    })*/
-    utils.PostRequest(api_v_url + '/lottery/startSellwineLottery', {
+    })
+    /*utils.PostRequest(api_v_url + '/lottery/startSellwineLottery', {
       openid: openid,
       hotel_id:hotel_id,
       idcode:code_msg,
@@ -111,7 +111,7 @@ Page({
       pageConfig.isNotHaveStartLottery = false;
       pageConfig.popLotteryWind        = true;
       that.setData({pageConfig:pageConfig,lottery_info:lottery_info});
-    })
+    })*/
 
     
   },
