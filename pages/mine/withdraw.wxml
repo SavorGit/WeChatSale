@@ -63,3 +63,37 @@
   <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.message}}</view>
   <view style="height:40rpx;line-height:40rpx;text-align:center;font-size:28rpx;padding:0 20rpx;">{{exchangeGoodsSuccess.tips}}</view>
 </modal>
+
+<!-- 收集身份证弹窗 -->
+<modal show="{{collectIdcardWindowShow}}" width="690rpx" height='420rpx' border-radius="20rpx" background-color='#ffffff' title-text='完善信息' title-color="#333333" title-background-color="unset" title-border-radius="0rpx" confirm-text="" confirm-color="#eb6877" cancel-text='' bindconfirm=''>
+  <form action="">
+    <view class="window idcard flex_column_center_center">
+      <view class="row flex_column_center_center">
+        <view class="property flex_row_center_spaceBetween">
+          <view class="label">姓名</view>
+          <view class="value flex_row_center_flexStart">
+            <view class="frame flex_row_center_flexStart">
+              <input type="text" class="input" placeholde="请输入" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="row flex_column_center_center">
+        <view class="property flex_row_center_spaceBetween">
+          <view class="label">身份证</view>
+          <view class="value flex_row_center_flexStart">
+            <view class="frame flex_row_center_flexStart">
+              <input type="idcard" class="input" placeholde="请输入" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="row flex_column_center_center">
+        <view class="button-group flex_row_center_spaceAround">
+          <button class="btn scan flex_row_center_center theme-button-blue">扫描</button>
+          <button class="btn submit flex_row_center_center theme-button-blue">提交</button>
+        </view>
+      </view>
+    </view>
+  </form>
+</modal>

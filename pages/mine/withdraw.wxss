@@ -115,3 +115,54 @@
 .desc-panel>.content>view {
   text-indent: 48rpx;
 }
+
+.window.idcard {
+  width: calc(100% - 70rpx);
+  height: 100%;
+  padding: 0 35rpx;
+}
+
+.window.idcard>.row {
+  width: calc(100% - 10rpx);
+  padding: 10rpx 5rpx;
+}
+
+.window.idcard>.row>.property {
+  width: 100%;
+}
+
+.window.idcard>.row>.property>.label {
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.window.idcard>.row>.property>.value {
+  width: calc(100% - 120rpx);
+}
+
+.window.idcard>.row>.property>.value>.frame {
+  width: calc(100% - 6rpx);
+  border-width: 3rpx;
+  border-style: solid;
+  border-color: #BEBEBE;
+}
+
+.window.idcard>.row>.property>.value>.frame>.input {
+  width: calc(100% - 10rpx);
+  height: 50rpx;
+  padding: 5rpx;
+}
+
+.window.idcard>.row>.button-group {
+  width: 100%;
+}
+
+.window.idcard>.row>.button-group>.btn {
+  width: 200rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
