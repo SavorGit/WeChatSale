@@ -73,6 +73,7 @@
     "pages/user/register",
     "pages/user/signin",
     "pages/user/login",
+    "pages/user/authorization",
     "pages/waiter/index",
     "pages/welcome/index",
     "pages/welcome/hotel_add",
