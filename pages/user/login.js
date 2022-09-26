@@ -75,7 +75,7 @@ Page({
                   data: res.data.result.userinfo,
                 })
                 wx.reLaunch({
-                  url: '/pages/index/index',
+                  url: '/pages/user/sellindex',
                 })
               } else {
                 wx.setStorage({
@@ -128,7 +128,7 @@ Page({
                   data: res.data.result,
                 });
                 wx.reLaunch({
-                  url: '/pages/index/index',
+                  url: '/pages/user/sellindex',
                 })
               } else {
                 wx.setStorage({
@@ -146,7 +146,7 @@ Page({
                 duration: 2000
               });
               wx.reLaunch({
-                url: '/pages/index/index',
+                url: '/pages/user/sellindex',
               })
             }
 
@@ -337,7 +337,7 @@ Page({
           }else {//合作餐厅
             if (rt.data.result.hotel_has_room == 1) {
               wx.reLaunch({
-                url: '/pages/index/index',
+                url: '/pages/user/sellindex',
               })
             } else {
               wx.reLaunch({

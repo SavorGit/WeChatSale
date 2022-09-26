@@ -151,7 +151,6 @@ Page({
         })
       }else {
         var user_info = wx.getStorageSync(cache_key+'userinfo');
-        
         if(hotel_id==-1 && is_onload==1){
           wx.showModal({
             title: '提示',
@@ -203,6 +202,11 @@ Page({
           
           if(loop_play_list.length==0){
             that.getLoopPlay();
+          }
+          if(user_info.is_wx_auth!=3 || user_info.mobile==''){
+            wx.navigateTo({
+              url: '/pages/user/authorization',
+            })
           }
         }
 
