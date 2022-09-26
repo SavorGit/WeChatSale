@@ -98,6 +98,13 @@
           "query": "openid=o9GS-4tYHbGS2J3KNUvVWZRilDjc&hotel_id=7",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "强制授权页面",
+          "pathName": "pages/user/authorization",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

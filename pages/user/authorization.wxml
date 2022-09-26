@@ -1,2 +1,14 @@
 <!--pages/user/authorization.wxml-->
-<text>pages/user/authorization.wxml</text>
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 强制授权页面
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page flex_column_center_flexStart">
+    <view class="main flex_column_center_center">
+      <button wx:if="{{false}}" class="btn auth-wechart flex_column_center_center theme-button-blue">微信授权</button>
+      <button wx:else class="btn auth-mobile flex_column_center_center theme-button-blue">授权手机号</button>
+    </view>
+  </view>
+</scroll-view>
