@@ -20,7 +20,8 @@
     </view>
     <view class="weui-grids">
       <block wx:for='{{goodsList}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-        <view class="weui-grid flex_column_center_center" data-index="{{index}}" data-goodsId="{{bean.id}}" data-goods-name="{{bean.goods_name}}" bindtap='exchangeGoods'>
+        <view class="weui-grid flex_column_center_center" data-index="{{index}}" data-goodsId="{{bean.id}}" data-goods-name="{{bean.goods_name}}" wx:if="{{userInfo.mobile!='' && typeof(userInfo.mobile)!='undefined'}}" bindtap='exchangeGoods'>
+        
           <view class="flag-bar flex_row_center_flexEnd">
             <view wx:if='{{bean.is_audit == 1}}' class="flag theme-background-9 theme-font4">需审核</view>
           </view>
@@ -29,6 +30,18 @@
             <view class="consume theme-font3">{{bean.integral}}积分</view>
           </view>
         </view>
+
+
+        <button class="weui-grid flex_column_center_center" data-index="{{index}}" data-goodsId="{{bean.id}}" data-goods-name="{{bean.goods_name}}" wx:else bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">
+        
+          <view class="flag-bar flex_row_center_flexEnd">
+            <view wx:if='{{bean.is_audit == 1}}' class="flag theme-background-9 theme-font4">需审核</view>
+          </view>
+          <view class="goods flex_column_center_center">
+            <view class="face-value theme-font6">{{bean.goods_name}}</view>
+            <view class="consume theme-font3">{{bean.integral}}积分</view>
+          </view>
+        </button>
       </block>
     </view>
   </view>
@@ -73,7 +86,7 @@
           <view class="label">姓名</view>
           <view class="value flex_row_center_flexStart">
             <view class="frame flex_row_center_flexStart">
-              <input type="text" class="input" placeholde="请输入" />
+              <input bindinput="inputName" type="text" class="input" placeholde="请输入" maxlength="10" value="{{user_id_info.name}}" />
             </view>
           </view>
         </view>
@@ -83,15 +96,15 @@
           <view class="label">身份证</view>
           <view class="value flex_row_center_flexStart">
             <view class="frame flex_row_center_flexStart">
-              <input type="idcard" class="input" placeholde="请输入" />
+              <input bindinput="inputIdcard" type="idcard" class="input" maxlength="18" placeholde="请输入" value="{{user_id_info.idcard}}" />
             </view>
           </view>
         </view>
       </view>
       <view class="row flex_column_center_center">
         <view class="button-group flex_row_center_spaceAround">
-          <button class="btn scan flex_row_center_center theme-button-blue">扫描</button>
-          <button class="btn submit flex_row_center_center theme-button-blue">提交</button>
+          <button disabled="{{addDisabled}}" class="btn scan flex_row_center_center theme-button-blue" bindtap="chooseIdcardImage">扫描</button>
+          <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-blue" bindtap="perfectUserIdInfo">提交</button>
         </view>
       </view>
     </view>

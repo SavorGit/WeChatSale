@@ -151,6 +151,9 @@ Page({
         })
       }else {
         var user_info = wx.getStorageSync(cache_key+'userinfo');
+        if(user_info==''){
+          var user_info = data.result.userinfo
+        }
         if(hotel_id==-1 && is_onload==1){
           wx.showModal({
             title: '提示',
@@ -163,7 +166,7 @@ Page({
         }
 
 
-        if(user_info.select_hotel_id>0 ){
+        if(typeof(user_info.select_hotel_id)!='undefined'  && user_info.select_hotel_id>0 ){
 
         }else {
           wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)

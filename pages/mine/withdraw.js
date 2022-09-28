@@ -6,6 +6,8 @@ const util = require('../../utils/util.js');
 const app = getApp()
 const api_url = app.globalData.api_url;
 const api_v_url = app.globalData.api_v_url;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_access_key_id = app.globalData.oss_access_key_id;
 const cache_key = app.globalData.cache_key;
 var uma = app.globalData.uma
 Page({
@@ -21,7 +23,10 @@ Page({
     notEnoughIntegralWindowShow: false, // 是否弹出没有足够积分窗口
     confirmExchangeGoodsWindowShow: false, // 是否弹出确定兑换窗口
     openGoodsInWindow: {}, // 在确认弹窗中打开商品
-    exchangeGoodsSuccess: {} // 兑换成功后的提示
+    exchangeGoodsSuccess: {}, // 兑换成功后的提示
+    collectIdcardWindowShow:false,  //手机用户身份信息弹窗
+    addDisabled:false,                 //用户完善资料提交按钮是否可用
+    user_id_info :{name:'',idcard:''}, //用户完善资料信息
   },
 
   /**
@@ -31,11 +36,28 @@ Page({
     uma.trackEvent('withdraw_gotopage',{'open_id':app.globalData.openid})
     wx.hideShareMenu();
     let that = this;
+    var userInfo = wx.getStorageSync(cache_key + 'userinfo');
+    this.setData({userInfo:userInfo})
     wx.showLoading({
       title: '加载中',
       icon: 'loading',
       mask: true
     });
+    this.getOssInfo();
+  },
+  getOssInfo:function(){
+    var that = this;
+    wx.request({
+      url: api_url + '/Smallapp/Index/getOssParams',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: function (rest) {
+        var policy = rest.data.policy;
+        var signature = rest.data.signature;
+        that.setData({policy:policy,signature:signature})
+      }
+    })
   },
   gotoFreezeIntegral:function(){
     var freeze_integral = this.data.freeze_integral;
@@ -60,7 +82,168 @@ Page({
       openid: userInfo.openid
     }, true);
   },
+  chooseIdcardImage:function(e){
+    console.log(e)
+    var that = this;
+    
 
+    wx.showLoading({
+      title: '图片扫描中...',
+      mask: true
+    })
+    that.setData({
+      addDisabled: true
+    })
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        var filename = res.tempFilePaths[0];
+
+        var index1 = filename.lastIndexOf(".");
+        var index2 = filename.length;
+        var timestamp = (new Date()).valueOf();
+
+        var postf = filename.substring(index1, index2);//后缀名\
+        var postf_t = filename.substring(index1, index2);//后缀名
+        var postf_w = filename.substring(index1 + 1, index2);//后缀名
+
+        var img_url = timestamp + postf;
+
+        var policy = that.data.policy;
+        var signature = that.data.signature;
+
+        wx.uploadFile({
+          url: oss_upload_url,
+          filePath: filename,
+          name: 'file',
+          header: {
+            'Content-Type': 'image/' + postf_w
+          },
+          formData: {
+            Bucket: "redian-produce",
+            name: img_url,
+            key: "forscreen/resource/" + img_url,
+            policy: policy,
+            OSSAccessKeyId: app.globalData.oss_access_key_id,
+            sucess_action_status: "200",
+            signature: signature
+
+          },
+
+          success: function (res) {
+            var img_path = "forscreen/resource/" + img_url
+            
+            util.PostRequest(api_v_url + '/ocr/getIdcardInfo', {
+              openid: app.globalData.openid,
+              img_url: img_path,
+            }, (data, headers, cookies, errMsg, statusCode) => {
+              
+              if(data.result.errcode==0){
+                wx.hideLoading();
+                var user_id_info = that.data.user_id_info;
+                user_id_info.name = data.result.name;
+                user_id_info.idcard = data.result.id;
+                
+                that.setData({user_id_info:user_id_info})
+              }else{
+                var errmsg = '['+data.result.errcode+']身份证扫描失败';
+                app.showToast(errmsg);
+              }
+              
+              setTimeout(function () {
+                that.setData({
+                  addDisabled: false
+                })
+              }, 1000);
+
+            })
+
+
+
+            
+          },
+          fail: function ({ errMsg }) {
+            wx.hideLoading();
+            app.showToast('图片上传失败，请重试')
+            that.setData({
+              addDisabled: false
+            })
+          },
+        });
+      }, fail: function (e) {
+        wx.hideLoading();
+        that.setData({
+          addDisabled: false
+        })
+      }
+    })
+  },
+  inputName:function(e){
+    var user_id_info = this.data.user_id_info;
+    var name  = e.detail.value.replace(/\s+/g, '');
+    user_id_info.name = name;
+    this.setData({user_id_info:user_id_info});
+  },
+  inputIdcard:function(e){
+    var user_id_info = this.data.user_id_info;
+    var idcard = e.detail.value.replace(/\s+/g, '');
+    user_id_info.idcard = idcard;
+    this.setData({user_id_info:user_id_info})
+  },
+  perfectUserIdInfo:function(){
+    var that = this;
+    var user_id_info = this.data.user_id_info;
+    if(user_id_info.name==''){
+      app.showToast('请填写您的姓名');
+      return false;
+    }
+    if(user_id_info.idcard==''){
+      app.showToast('请填写您的身份证号');
+      return false;
+    }
+    if(user_id_info.idcard.length!=18){
+      app.showToast('请填写正确的身份证号');
+      return false;
+    }
+    util.PostRequest(api_v_url + '/user/edit', {
+      openid: app.globalData.openid,
+      name: user_id_info.name,
+      idnumber :user_id_info.idcard
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({collectIdcardWindowShow:false})
+      that.wxchange();
+
+    })
+  },
+
+  getPhoneNumber:function(e){
+    var that = this;
+    if ("getPhoneNumber:ok" != e.detail.errMsg) {
+      app.showToast('获取用户手机号失败')
+      return false;
+    }
+    var iv = e.detail.iv;
+    var encryptedData = e.detail.encryptedData;
+    util.PostRequest(api_v_url + '/user/bindAuthMobile', {
+      openid:app.globalData.openid,
+      iv: iv,
+      encryptedData: encryptedData,
+      session_key: app.globalData.session_key,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      //更新缓存
+      var userInfo = wx.getStorageSync(cache_key + 'userinfo');
+      userInfo.mobile = data.result.phoneNumber;
+      wx.setStorageSync(cache_key + 'userinfo', userInfo)
+      that.setData({
+        userInfo:userInfo
+      })
+      app.showToast('绑定手机成功')
+      
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -152,6 +335,23 @@ Page({
    */
   confirmExchangeGoods: function(e) {
     let that = this;
+    var goods_id = that.data.openGoodsInWindow.id;
+    util.PostRequest(api_v_url + '/withdraw/checkMoney', {
+      openid:app.globalData.openid,
+      goods_id:goods_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var is_alert = data.result.is_alert;
+      if(is_alert==1){
+        that.setData({collectIdcardWindowShow:true})
+      }else {
+        that.wxchange();
+      }
+
+    })
+    
+  },
+  wxchange:function(){
+    var that = this;
     // console.log('兑换', e);
     let userInfo = wx.getStorageSync(cache_key + 'userinfo');
     // let goodsId = e.currentTarget.dataset.goodsId;
@@ -193,7 +393,7 @@ Page({
       } else { // 无审核
         that.setData({
           userIntegral: data.result.integral,
-          freeze_integral:freeze_integral,
+          //freeze_integral:freeze_integral,
           exchangeGoodsWindowShow: true,
           exchangeGoodsSuccess: data.result
         });
@@ -202,6 +402,8 @@ Page({
       // wx.navigateBack();
     });
   },
+
+
 
   /* **************************** 自定义方法 **************************** */
   loadingData: function(requestData, navigateBackOnError) {
