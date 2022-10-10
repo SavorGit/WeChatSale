@@ -21,3 +21,4 @@
   padding: 0;
   margin: 0;
 }
+.btn.auth-mobile {width: 250rpx;}

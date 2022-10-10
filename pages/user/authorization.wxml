@@ -8,7 +8,7 @@
   <view class="page flex_column_center_flexStart">
     <view class="main flex_column_center_center">
       <button wx:if="{{user_info.is_wx_auth!=3}}" class="btn auth-wechart flex_column_center_center theme-button-blue" bindtap="onGetUserInfo">微信授权</button>
-      <button wx:if="{{user_info.is_wx_auth==3 && user_info.mobile==''}}" class="btn auth-mobile flex_column_center_center theme-button-blue" bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">授权手机号</button>
+      <button wx:if="{{user_info.is_wx_auth==3 && user_info.mobile==''}}" class="btn auth-mobile flex_column_center_center theme-button-blue" bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">获取授权手机号</button>
     </view>
   </view>
 </scroll-view>
