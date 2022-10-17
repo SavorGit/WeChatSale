@@ -36,6 +36,26 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <!-- 邀请会员 -->
+            <view class="item user-add flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="tips">
+                    <view class="tip theme-font-F44444">已邀请1人加入会员</view>
+                  </view>
+                  <view class="btn flex_row_center_center theme-button-red" bindtap="popStartLotterActivyt" data-index="{{index}}" data-pop_type="修改值">
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请会员</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
             <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -201,6 +221,26 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <!-- 邀请会员 -->
+            <view class="item user-add flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="top flex_row_center_spaceBetween">
+                    <view class="left flex_column_flexStart_spaceBetween">
+                      <view class="name">{{bean.task_name}}</view>
+                      <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                    </view>
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                      <view class="btn flex_column_center_center theme-button-welcome">领取</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
             <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
@@ -321,7 +361,35 @@
       </view>
       <view class="body">
         <view class="list flex_column_center_flexStart">
+
           <block wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+            <!-- 邀请会员 -->
+            <view class="item user-add flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="tips">
+                    <view class="tip theme-font-F44444">已邀请1人加入会员</view>
+                  </view>
+                  <view class="btn flex_row_center_center theme-button-red">
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请会员</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
+              </view>
+            </view>
+
             <view wx:if="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -782,12 +850,37 @@
                 <view class="name one-line-overflow">{{bean}}</view>
               </view>
             </block>
-            
           </view>
         </scroll-view>
         <view class="button-group flex_row_center_spaceAround">
           <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="closePopWind">取消</view>
           <view class="btn confir flex_row_center_center theme-button-blue" bindtap="demandTaskAds">确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 邀请会员弹窗 -->
+<view wx:if="{{true}}" class="window user-add">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window-red">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="修改值">
+          <image class="icon" mode="aspectFill" src="/images/icon/FFFFFF_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">邀请客人扫码加入会员</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="main flex_column_center_center">
+          <view class="qr-code flex_column_center_center">
+            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg" />
+          </view>
+        </view>
+        <view class="button-group flex_row_center_center">
+          <button class="btn cancel flex_row_center_center theme-button-orange2">邀请客人加入会员</button>
         </view>
       </view>
     </view>
