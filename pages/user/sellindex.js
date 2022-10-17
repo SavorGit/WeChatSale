@@ -207,7 +207,8 @@ Page({
             that.getLoopPlay();
           }
           if(user_info.is_wx_auth!=3 || user_info.mobile==''){
-            wx.navigateTo({
+            
+            wx.redirectTo({
               url: '/pages/user/authorization',
             })
           }
