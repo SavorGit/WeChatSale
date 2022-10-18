@@ -37,7 +37,7 @@
 
           <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
             <!-- 邀请会员 -->
-            <view class="item user-add flex_column_center_center">
+            <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -45,9 +45,9 @@
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
-                    <view class="tip theme-font-F44444">已邀请1人加入会员</view>
+                    <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
                   </view>
-                  <view class="btn flex_row_center_center theme-button-red" bindtap="popStartLotterActivyt" data-index="{{index}}" data-pop_type="修改值">
+                  <view class="btn flex_row_center_center theme-button-red" bindtap="" data-index="{{index}}" data-pop_type="修改值">
                     <view class="tips flex_column_center_center">
                       <view class="tip">邀请会员</view>
                     </view>
@@ -222,7 +222,7 @@
 
           <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
             <!-- 邀请会员 -->
-            <view class="item user-add flex_column_center_center">
+            <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -233,7 +233,7 @@
                       <view class="name">{{bean.task_name}}</view>
                       <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
                     </view>
-                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
+                    <view class="right flex_row_center_flexEnd" bindtap="" data-index="{{index}}">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
@@ -364,7 +364,7 @@
 
           <block wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <!-- 邀请会员 -->
-            <view class="item user-add flex_column_center_center">
+            <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -372,7 +372,7 @@
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
-                    <view class="tip theme-font-F44444">已邀请1人加入会员</view>
+                    <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
                   </view>
                   <view class="btn flex_row_center_center theme-button-red">
                     <view class="tips flex_column_center_center">
@@ -862,11 +862,11 @@
 </view>
 
 <!-- 邀请会员弹窗 -->
-<view wx:if="{{true}}" class="window user-add">
+<view wx:if="{{popInviteMmberWind}}" class="window user-add">
   <view class="mask flex_column_center_center">
     <view class="entity theme-window-red">
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn close flex_column_center_center" bindtap="修改值">
+        <view class="btn close flex_column_center_center" bindtap="closePopWind">
           <image class="icon" mode="aspectFill" src="/images/icon/FFFFFF_close.png" />
         </view>
       </view>
