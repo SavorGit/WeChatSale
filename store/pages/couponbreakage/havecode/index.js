@@ -263,7 +263,7 @@ Page({
       var idcode = checkGoogsList[0].idcode;
     }
 
-    utils.PostRequest(api_v_url + '/coupon/writeoff', {
+    utils.PostRequest(api_v_url + '/coupon/writeoffcoupon', {
       openid: openid,
       hotel_id:hotel_id,
       idcode  : idcode,
