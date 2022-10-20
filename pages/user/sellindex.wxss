@@ -95,6 +95,7 @@
 
 .panel>.body>.list>.item.sale>.task,
 .panel>.body>.list>.item.user-add>.task,
+.panel>.body>.list>.item.invitation>.task,
 .panel>.body>.list>.item.poster>.task,
 .panel>.body>.list>.item.lottery>.task {
   width: calc(100% - 70rpx);
@@ -180,8 +181,11 @@
 
 
 .panel.progress>.body>.list>.item.user-add>.task,
+.panel.progress>.body>.list>.item.invitation>.task,
 .panel.available>.body>.list>.item.user-add>.task,
+.panel.available>.body>.list>.item.invitation>.task,
 .panel.progress>.body>.list>.item.user-add>.task,
+.panel.progress>.body>.list>.item.invitation>.task,
 .panel.progress>.body>.list>.item>.task.lottery {
   height: 200rpx;
 }
@@ -342,7 +346,9 @@
 }
 
 .panel.available>.body>.list>.item.user-add>.task,
+.panel.available>.body>.list>.item.invitation>.task,
 .panel.invalid>.body>.list>.item.user-add>.task,
+.panel.invalid>.body>.list>.item.invitation>.task,
 .panel.available>.body>.list>.item.poster>.task,
 .panel.invalid>.body>.list>.item.poster>.task {
   height: 200rpx;
@@ -394,6 +400,7 @@
 }
 
 .panel.invalid>.body>.list>.item.user-add>.cover,
+.panel.invalid>.body>.list>.item.invitation>.cover,
 .panel.invalid>.body>.list>.item.poster>.cover {
   height: 230rpx;
   margin-top: -230rpx;
