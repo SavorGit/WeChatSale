@@ -270,10 +270,26 @@ Page({
       qrcontent:scanList[0].qrcode
     }, (data, headers, cookies, errMsg, statusCode) => {
       
-      app.showToast(data.result.message,2000,'success');
-      setTimeout(function () {
+      var incode = data.result.incode;
+      var message = data.result.message;
+      if(incode==100){//正常
+        app.showToast(message,2000,'success');
+        setTimeout(function () {
           wx.navigateBack({delta: 1})
         }, 2000);
+      }else if(incode==50) {//需要领取任务
+        wx.showModal({
+          title: message,
+          success: function (res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/user/sellindex',
+              })
+            }
+          }
+        })
+      }
+      
       
     })
     

@@ -295,7 +295,7 @@ App({
     mobile_brand: '',
     mobile_model: '',
     api_url: 'https://mobile.littlehotspot.com',
-    api_v_url: 'https://mobile.littlehotspot.com/smallsale21',
+    api_v_url: 'https://mobile.littlehotspot.com/smallsale22',
     oss_upload_url: 'https://image.littlehotspot.com',
     oss_url: 'https://oss.littlehotspot.com',
     Official_account_url:'https://mobile.littlehotspot.com/h5/official/getuserinfo/p/',

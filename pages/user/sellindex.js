@@ -189,10 +189,10 @@ Page({
           }
           
           that.setData({user_info:data.result.userinfo})
-          var task_list = that.data.task_list;
-          if(task_list.length==0){
+          //var task_list = that.data.task_list;
+          //if(task_list.length==0){
             that.getTaskList(openid,hotel_id);
-          }
+          //}
           var box_list = that.data.box_list;
           var demand_box_list = that.data.demand_box_list;
           if(demand_box_list.length==0){
@@ -1258,7 +1258,46 @@ Page({
 
       }, res => { }, { isShowLoading: false })
   },
+  /**
+   * 邀请会员任务弹窗
+   */
+  popInviteMemberWind:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var inprogress = this.data.task_list.inprogress;
+    var task_info = inprogress[index];
+    that.setData({popInviteMmberWind:true,task_info:task_info});
+  },
+  /**
+   * 领取邀请会员任务
+   */
+  receiveInviteMemberTask:function(e){
+    var that = this;
+    var index = e.currentTarget.dataset.index;
+    var canreceive = this.data.task_list.canreceive;
+    var task_info = canreceive[index];
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    var content = '确定要领取邀请会员任务?'
 
+
+    wx.showModal({
+      title:'提示',
+      content:content,
+      success:function(res){
+        if(res.confirm){
+          utils.PostRequest(api_v_url + '/task/receiveTask',{
+            openid     : user_info.openid,
+            hotel_id   : user_info.hotel_id,
+            task_id    : task_info.task_id
+          }, (data, headers, cookies, errMsg, statusCode) => {
+            that.setData({popInviteMmberWind:false})
+            that.getTaskList(user_info.openid,user_info.hotel_id)
+            app.showToast('任务领取成功',2000,'success')
+          })
+        }
+      }
+    })
+  },
   zyttest:function(){
     wx.redirectTo({
       url: '/store/pages/index',

@@ -47,7 +47,7 @@
                   <view class="tips">
                     <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
                   </view>
-                  <view class="btn flex_row_center_center theme-button-red" bindtap="" data-index="{{index}}" data-pop_type="修改值">
+                  <view class="btn flex_row_center_center theme-button-red" bindtap="popInviteMemberWind" data-index="{{index}}" >
                     <view class="tips flex_column_center_center">
                       <view class="tip">邀请会员</view>
                     </view>
@@ -56,7 +56,7 @@
               </view>
             </view>
 
-            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -188,7 +188,26 @@
                 </view>
               </view>
             </view>
+            <view class="item old flex_column_center_center" wx:elif="{{bean.task_type==6}}">
+              <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
+                <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
+                <view wx:else class="icon fa-stack fa-lg">
+                  <view class="fa fa-television fa-stack-2x"></view>
+                  <view class="fa fa-tasks fa-stack-1x"></view>
+                </view>
+                <view class="info flex_column_flexStart_flexEnd">
+                  <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
+                  <!-- <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view> -->
+                  <view class="detail one-line-overflow theme-font3"> <rich-text nodes="{{bean.desc}}"></rich-text></view>
+                </view>
+                <view class="profit-and-progress flex_column_center_center">
+                  <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
+                  <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+                </view>
+              </view>
+            </view>
 
+            
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
                 <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -233,7 +252,7 @@
                       <view class="name">{{bean.task_name}}</view>
                       <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
                     </view>
-                    <view class="right flex_row_center_flexEnd" bindtap="" data-index="{{index}}">
+                    <view class="right flex_row_center_flexEnd" bindtap="receiveInviteMemberTask" data-index="{{index}}">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
@@ -241,7 +260,7 @@
               </view>
             </view>
 
-            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -330,6 +349,26 @@
                 </view>
               </view>
             </view>
+            <view class="item old flex_column_center_center" wx:elif="{{bean.task_type==6}}">
+              <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
+                <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
+                <view wx:else class="icon fa-stack fa-lg">
+                  <view class="fa fa-television fa-stack-2x"></view>
+                  <view class="fa fa-tasks fa-stack-1x"></view>
+                </view>
+                <view class="info flex_column_flexStart_flexEnd">
+                  <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
+                  <!-- <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view> -->
+                  <view class="detail one-line-overflow theme-font3"> <rich-text nodes="{{bean.desc}}"></rich-text></view>
+                </view>
+                <view class="profit-and-progress flex_column_center_center">
+                  <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
+                  <view class="progress one-line-overflow theme-font3">{{bean.progress}}</view>
+                </view>
+              </view>
+            </view>
+
+
             <view class="item old flex_column_center_center" wx:else>
               <view class="task flex_row_center theme7 theme-font1" data-index='{{index}}' data-task-id='{{bean.task_id}}' bindtap='popTaskDetailWindow'>
                 <image wx:if='{{app.typeOf(bean.img_url) == "string" && bean.img_url != ""}}' class="icon" src="{{bean.img_url}}"></image>
@@ -339,7 +378,8 @@
                 </view>
                 <view class="info flex_column_flexStart_flexEnd">
                   <view class="name one-line-overflow theme-font1">{{bean.task_name}}</view>
-                  <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view>
+                  <!-- <view class="detail one-line-overflow theme-font3">{{bean.desc}}</view> -->
+                  <view class="detail one-line-overflow theme-font3"> <rich-text nodes="{{bean.desc}}"></rich-text></view>
                 </view>
                 <view class="profit-and-progress flex_column_center_center">
                   <view class="profit one-line-overflow theme-font6">{{bean.integral}}</view>
@@ -390,7 +430,7 @@
               </view>
             </view>
 
-            <view wx:if="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
+            <view wx:elif="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -876,7 +916,7 @@
       <view class="win-body flex_column_center_flexStart">
         <view class="main flex_column_center_center">
           <view class="qr-code flex_column_center_center">
-            <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/WeChat/resource/qr-code.jpg" />
+            <image class="pic" mode="aspectFill" src="{{task_info.code_url}}" />
           </view>
         </view>
         <view class="button-group flex_row_center_center">
