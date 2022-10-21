@@ -1269,17 +1269,24 @@ Page({
     that.setData({popInviteMmberWind:true,task_info:task_info});
   },
   /**
-   * 领取邀请会员任务
+   * 领取邀请会员任务、领取邀请函任务
    */
   receiveInviteMemberTask:function(e){
     var that = this;
     var index = e.currentTarget.dataset.index;
+    var type  = e.currentTarget.dataset.type;
+    console.log(type)
     var canreceive = this.data.task_list.canreceive;
     var task_info = canreceive[index];
     var user_info = wx.getStorageSync(cache_key+'userinfo');
-    var content = '确定要领取邀请会员任务?'
-
-
+    switch(type){
+      case 'post_book':
+        var content = '确定要领取邀请函任务?'
+        break;
+      case 'invite_member':
+        var content = '确定要领取邀请会员任务?'
+        break;
+    }
     wx.showModal({
       title:'提示',
       content:content,
