@@ -1305,6 +1305,21 @@ Page({
       }
     })
   },
+  sendPostBook:function(){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if (typeof (hotel_id) =='undefined'){
+      app.showToast('请您先选择酒楼');
+    }else {
+      wx.navigateTo({
+        url: '/pages/mine/post_book/index?openid='+user_info.openid+'&hotel_id='+hotel_id,
+      })
+    }
+  },
   zyttest:function(){
     wx.redirectTo({
       url: '/store/pages/index',
