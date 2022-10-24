@@ -81,7 +81,7 @@ Page({
     console.log(ads_id);
     var action =5;
     
-    app.boxShow(box_mac,pubdetail,2,action,that,rtype,ads_id,hotel_id);
+    app.boxShow(box_mac,pubdetail,2,action,that,'adv',ads_id,hotel_id);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
