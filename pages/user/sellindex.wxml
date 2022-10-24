@@ -56,7 +56,7 @@
               </view>
             </view>
             <!-- 邀请函 -->
-            <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==6}}">
+            <view class="item user-add flex_column_center_center" wx:elif="{{bean.task_type==6}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
