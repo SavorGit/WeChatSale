@@ -49,7 +49,7 @@
                   </view>
                   <view class="btn flex_row_center_center theme-button-red" bindtap="popInviteMemberWind" data-index="{{index}}">
                     <view class="tips flex_column_center_center">
-                      <view class="tip">邀请会员</view>
+                      <view class="tip">发优惠券</view>
                     </view>
                   </view>
                 </view>
@@ -423,7 +423,7 @@
                   </view>
                   <view class="btn flex_row_center_center theme-button-red">
                     <view class="tips flex_column_center_center">
-                      <view class="tip">邀请会员</view>
+                      <view class="tip">发优惠券</view>
                     </view>
                   </view>
                 </view>
@@ -947,7 +947,7 @@
         </view>
       </view>
       <view class="title-bar flex_row_center_center">
-        <view class="title">邀请客人扫码加入会员</view>
+        <view class="title">邀请客人扫码领优惠券</view>
       </view>
       <view class="win-body flex_column_center_flexStart">
         <view class="main flex_column_center_center">
@@ -955,9 +955,9 @@
             <image class="pic" mode="aspectFill" src="{{task_info.code_url}}" />
           </view>
         </view>
-        <view class="button-group flex_row_center_center">
+        <!-- <view class="button-group flex_row_center_center">
           <button class="btn cancel flex_row_center_center theme-button-orange2">邀请客人加入会员</button>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
