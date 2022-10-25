@@ -88,12 +88,12 @@
       </view>
     </view>
     <!-- 任务列表 套用【活动商品管理面板】样式-->
-    <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
+    <!-- <view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{task_manage==true}}">
       <view class="full_width full_height flex_row_center_spaceBetween" bindtap="showLoadingOnClick" data-id="2">
         <view>任务列表</view>
         <view class="fa fa-angle-right" aria-hidden="true"></view>
       </view>
-    </view>
+    </view> -->
 
     <!-- 活动商品管理面板 
 		<view class="promotion-goods-manage-panel theme7 theme-font2" wx:if="{{goods_manage==true}}">
