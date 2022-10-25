@@ -254,6 +254,9 @@
                     <view class="left flex_column_flexStart_spaceBetween">
                       <view class="name">{{bean.task_name}}</view>
                       <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                      <view class="tip theme-font3">
+                        <rich-text nodes="{{bean.desc}}"></rich-text>
+                      </view>
                     </view>
                     <view class="right flex_row_center_flexEnd" bindtap="receiveInviteMemberTask" data-index="{{index}}" data-type="invite_member">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>

@@ -45,6 +45,7 @@ Page({
       success:function(res){
         if(res.data.code==10000){
           console.log(res);
+          integral_date = res.data.result.date_list[res.data.result.date_key].id
           that.setData({
             integralTypeObjectArr:res.data.result.type_list,
             integralTypeNameArr:res.data.result.type_name_list,
