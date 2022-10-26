@@ -1222,7 +1222,7 @@ Page({
       msg: msg,
     }, (data, headers, cookies, errMsg, statusCode) => {
       
-      app.showToast('点播成功');
+      
       that.setData({popDemandAdsWind:false,demand_box_index:0})
       that.finishDemandadvTask(ads_id,that.data.user_info.openid,that.data.user_info.hotel_id,box_mac);
       
@@ -1255,7 +1255,22 @@ Page({
         box_mac: box_mac,
         
       }, (data, headers, cookies, errMsg, statusCode) => {
-
+        var is_pop_tips_wind = data.result.is_pop_tips_wind;
+        
+        if(is_pop_tips_wind==1){
+          var msg = data.result.msg;
+          wx.showModal({
+            title: '提示',
+            content: msg,
+            confirmText:'我知道了',
+            showCancel:false,
+            success: function (res) {
+              
+            }
+          })
+        }else {
+          app.showToast('点播成功');
+        }
       }, res => { }, { isShowLoading: false })
   },
   /**
