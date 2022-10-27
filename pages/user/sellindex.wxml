@@ -479,7 +479,45 @@
               </view>
             </view>
             -->
-            <view wx:if="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
+            <view wx:if="{{bean.task_type==22}}" class="item sale flex_column_center_center">
+              <view class="task flex_row_center_spaceBetween">
+                <view class="left flex_column_flexStart_spaceBetween">
+                  <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <view class="btn launch-tv flex_row_center_center theme-button3">
+                    <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
+                    <view class="text">电视广告</view>
+                  </view>
+                </view>
+                <view class="right flex_column_flexStart_spaceBetween">
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="price flex_row_center_flexStart">
+                    <view class="icon fa fa-cny"></view>
+                    <view class="text">{{bean.price}}</view>
+                  </view>
+                  <view class="btn flex_row_center_spaceBetween theme-button-red" bindtap="examTasteWineTask" data-index="{{index}}" data-pop_type="1">
+                    <view class="reward flex_column_center_center theme-font-F9DE59">
+                      <view class="icon fa-stack">
+                        <view class="fa fa-circle fa-stack-2x"></view>
+                        <view class="fa fa-usd fa-stack-1x"></view>
+                      </view>
+                      <view class="text">{{bean.integral}}积分/次</view>
+                    </view>
+                    <view class="tips flex_column_center_center">
+                      <view class="tip">邀请客人试饮</view>
+                      <view class="tip">剩余{{bean.people_num}}次</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="cover">
+                <view class="top flex_row_center_flexEnd" bindtap="delInvalid" data-index="{{index}}">
+                  <view class="btn fa fa-trash-o theme-font4" aria-hidden="true"></view>
+                </view>
+                <view class="middle flex_column_center_center theme-font4">{{bean.itype==1?'已失效':'已完成'}}</view>
+                <view class="bottom"></view>
+              </view>
+            </view>
+            <view wx:elif="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -542,20 +580,24 @@
               </view>
             </view>
             <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}" class="item sale flex_column_center_center">
-              <view class="task flex_row_center_spaceBetween">
+              <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
+                  <!--
                   <view class="btn launch-tv flex_row_center_center theme-button3">
                     <image class="icon" mode="aspectFit" src="/images/icon/999999_interact.png" />
                     <view class="text">电视广告</view>
                   </view>
+                  -->
                 </view>
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
+                    <!--
                     <view wx:if="{{bean.task_type==25}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
                     <view wx:elif="{{bean.task_type==26}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
                     <view wx:elif="{{bean.task_type==6}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    -->
                   </view>
                   <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
@@ -566,9 +608,9 @@
                       <view class="text">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
-                      <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
-                      <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="popInviteMemberWind" data-keys="{{index}}">发优惠券</view>
-                      <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="sendPostBook" data-keys="{{index}}">发邀请函</view>
+                      <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">点播</view>
+                      <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发优惠券</view>
+                      <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发邀请函</view>
                     </view>
                   </view>
                 </view>

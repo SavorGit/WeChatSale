@@ -186,7 +186,8 @@
 .panel.available>.body>.list>.item.invitation>.task,
 .panel.progress>.body>.list>.item.user-add>.task,
 .panel.progress>.body>.list>.item.invitation>.task,
-.panel.progress>.body>.list>.item>.task.lottery {
+.panel.progress>.body>.list>.item>.task.lottery,
+.panel.invalid>.body>.list>.item>.task.lottery {
   height: 200rpx;
 }
 
@@ -401,7 +402,8 @@
 
 .panel.invalid>.body>.list>.item.user-add>.cover,
 .panel.invalid>.body>.list>.item.invitation>.cover,
-.panel.invalid>.body>.list>.item.poster>.cover {
+.panel.invalid>.body>.list>.item.poster>.cover,
+.panel.invalid>.body>.list>.item>.task.lottery+.cover {
   height: 230rpx;
   margin-top: -230rpx;
 }
