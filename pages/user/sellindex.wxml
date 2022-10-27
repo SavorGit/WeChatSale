@@ -118,9 +118,9 @@
                 <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo" data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
-                    <view wx:if="{{bean.task_type==25}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
-                    <view wx:elif="{{bean.task_type==26}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
-                    <view wx:elif="{{bean.task_type==6}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    <view wx:if="{{bean.progress!='' && bean.task_type==25}}" class="tip theme-font-F44444"> {{bean.progress}}{{bean.today_integral}}</view>
+                    <view wx:elif="{{bean.progress!='' && bean.task_type==26}}" class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
+                    <view wx:elif="{{bean.progress!='' && bean.task_type==6}}" class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
                   </view>
                   <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
