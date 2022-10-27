@@ -1299,7 +1299,7 @@ Page({
         var content = '确定要领取邀请函任务?'
         break;
       case 'invite_member':
-        var content = '确定要领取邀请会员任务?'
+        var content = '确定要领取发优惠券任务?'
         break;
     }
     wx.showModal({
