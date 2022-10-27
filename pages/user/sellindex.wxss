@@ -227,7 +227,7 @@
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.reward {
-  width: 128rpx;
+  width: 158rpx;
   border-right: 2rpx solid rgb(251, 244, 242);
 }
 
@@ -251,7 +251,7 @@
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.tips,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.tips {
-  width: calc(100% - 130rpx);
+  width: calc(100% - 160rpx);
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.tips>.tip,

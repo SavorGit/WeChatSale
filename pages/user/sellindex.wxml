@@ -36,18 +36,18 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <!-- 邀请会员 -->
+            <!-- 邀请会员 
             <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
-                  
-                    <view  class="name theme-font1">{{bean.task_name}}</view>
-                    <view class="tips">
-                      <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
-                    </view>
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo" data-index="{{index}}">
+
+                  <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="tips">
+                    <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
+                  </view>
                   <view class="btn flex_row_center_center theme-button-red" catchtap="popInviteMemberWind" data-index="{{index}}">
                     <view class="tips flex_column_center_center">
                       <view class="tip">发优惠券</view>
@@ -56,13 +56,14 @@
                 </view>
               </view>
             </view>
-            <!-- 邀请函 -->
+            -->
+            <!-- 邀请函 
             <view class="item user-add flex_column_center_center" wx:elif="{{bean.task_type==6}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo" data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
                     <view class="tip theme-font-F44444">{{bean.progress}}{{bean.integral}}</view>
@@ -78,8 +79,8 @@
                 </view>
               </view>
             </view>
-
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+            -->
+            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image bindtap="previewImage" data-src="{{bean.img_url}}" class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -158,24 +159,30 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo" data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="tips">
+                    <view wx:if="{{bean.task_type==25}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    <view wx:elif="{{bean.task_type==26}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    <view wx:elif="{{bean.task_type==6}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                  </view>
                   <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
                         <view class="fa fa-circle fa-stack-2x"></view>
                         <view class="fa fa-usd fa-stack-1x"></view>
                       </view>
-                      <view class="text">{{bean.integral}}积分/次</view>
+                      <view class="text one-line-overflow">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
-                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
-
+                      <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
+                      <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="popInviteMemberWind" data-keys="{{index}}">发优惠券</view>
+                      <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="sendPostBook" data-keys="{{index}}">发邀请函</view>
                     </view>
                   </view>
                 </view>
@@ -244,7 +251,7 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <!-- 邀请会员 -->
+            <!-- 邀请会员 
             <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -266,7 +273,8 @@
                 </view>
               </view>
             </view>
-            <!-- 邀请函 -->
+            -->
+            <!-- 邀请函 
             <view class="item invitation flex_column_center_center" wx:elif="{{bean.task_type==6}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -288,8 +296,8 @@
                 </view>
               </view>
             </view>
-
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==22}}">
+            -->
+            <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -357,7 +365,7 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -366,7 +374,7 @@
                   <view class="top flex_row_center_spaceBetween">
                     <view class="left flex_column_flexStart_spaceBetween">
                       <view class="name">{{bean.task_name}}</view>
-                      <view class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                      <view class="tip theme-font5">每次完成可收益{{bean.integral}}积分</view>
                     </view>
                     <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
@@ -414,7 +422,7 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <!-- 邀请会员 -->
+            <!-- 邀请会员 
             <view class="item user-add flex_column_center_center" wx:if="{{bean.task_type==26}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -440,7 +448,8 @@
                 <view class="bottom"></view>
               </view>
             </view>
-            <!-- 邀请函 -->
+            -->
+            <!-- 邀请函 
             <view class="item user-add flex_column_center_center" wx:elif="{{bean.task_type==6}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -469,8 +478,8 @@
                 <view class="bottom"></view>
               </view>
             </view>
-
-            <view wx:elif="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
+            -->
+            <view wx:if="{{bean.task_type==23}}" class="item lottery flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -532,7 +541,7 @@
                 <view class="bottom"></view>
               </view>
             </view>
-            <view wx:elif="{{bean.task_type==25}}" class="item sale flex_column_center_center">
+            <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}" class="item sale flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -543,6 +552,11 @@
                 </view>
                 <view class="right flex_column_flexStart_spaceBetween">
                   <view class="name theme-font1">{{bean.task_name}}</view>
+                  <view class="tips">
+                    <view wx:if="{{bean.task_type==25}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    <view wx:elif="{{bean.task_type==26}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                    <view wx:elif="{{bean.task_type==6}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
+                  </view>
                   <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
@@ -552,8 +566,9 @@
                       <view class="text">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
-                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv" data-keys="{{index}}">点播</view>
-
+                      <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
+                      <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="popInviteMemberWind" data-keys="{{index}}">发优惠券</view>
+                      <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="sendPostBook" data-keys="{{index}}">发邀请函</view>
                     </view>
                   </view>
                 </view>
