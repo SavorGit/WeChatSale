@@ -332,6 +332,7 @@ Page({
     var canreceive = this.data.task_list.canreceive;
     var lottery_detail_info = canreceive[index];
     lottery_detail_info.tab = 'rule';
+    lottery_detail_info.isInprogress = 0;
     console.log(lottery_detail_info);
     this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
   },
@@ -348,6 +349,10 @@ Page({
       var content = '确定要领取此团购活动?'
     }else if(lottery_detail_info.task_type==25){
       var content = '确定要领取此点播广告活动?'
+    }else if(lottery_detail_info.task_type==6){
+      var content = '确定要领取邀请函任务?'
+    }else if(lottery_detail_info.task_type==26){
+      var content = '确定要领取发优惠券任务?'
     }else {
       var content = '确定要领取此抽奖活动?'
     }
@@ -1334,6 +1339,17 @@ Page({
         url: '/pages/mine/post_book/index?openid='+user_info.openid+'&hotel_id='+hotel_id,
       })
     }
+  },
+  viewInprogressTaskDetailInfo:function(e){
+    var index = e.currentTarget.dataset.index;
+    var inprogress = this.data.task_list.inprogress;
+    var lottery_detail_info = inprogress[index];
+    lottery_detail_info.tab = 'rule';
+    lottery_detail_info.isInprogress = 1;
+    this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
+
+
+
   },
   zyttest:function(){
     wx.redirectTo({

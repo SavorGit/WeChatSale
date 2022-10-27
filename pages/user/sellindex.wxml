@@ -42,12 +42,13 @@
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween">
-                  <view class="name theme-font1">{{bean.task_name}}</view>
-                  <view class="tips">
-                    <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
-                  </view>
-                  <view class="btn flex_row_center_center theme-button-red" bindtap="popInviteMemberWind" data-index="{{index}}">
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
+                  
+                    <view  class="name theme-font1">{{bean.task_name}}</view>
+                    <view class="tips">
+                      <view class="tip theme-font-F44444">已邀请{{bean.join_peoplenum}}人加入会员</view>
+                    </view>
+                  <view class="btn flex_row_center_center theme-button-red" catchtap="popInviteMemberWind" data-index="{{index}}">
                     <view class="tips flex_column_center_center">
                       <view class="tip">发优惠券</view>
                     </view>
@@ -61,7 +62,7 @@
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween">
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="tips">
                     <view class="tip theme-font-F44444">{{bean.progress}}{{bean.integral}}</view>
@@ -69,7 +70,7 @@
                       <rich-text nodes="{{bean.desc}}"></rich-text>
                     </view>
                   </view>
-                  <view class="btn flex_row_center_center theme-button-red" bindtap="sendPostBook" data-index="{{index}}">
+                  <view class="btn flex_row_center_center theme-button-red" catchtap="sendPostBook" data-index="{{index}}">
                     <view class="tips flex_column_center_center">
                       <view class="tip">发送邀请函</view>
                     </view>
@@ -162,7 +163,7 @@
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
-                <view class="right flex_column_flexStart_spaceBetween">
+                <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo"  data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
                   <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
@@ -173,7 +174,7 @@
                       <view class="text">{{bean.integral}}积分/次</view>
                     </view>
                     <view class="tips flex_row_flexStart_flexEnd" style="height:100%;">
-                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" bindtap="goToHotelAdv" data-keys="{{index}}">点播</view>
+                      <view class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
 
                     </view>
                   </view>
@@ -258,7 +259,7 @@
                         <rich-text nodes="{{bean.desc}}"></rich-text>
                       </view>
                     </view>
-                    <view class="right flex_row_center_flexEnd" bindtap="receiveInviteMemberTask" data-index="{{index}}" data-type="invite_member">
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
@@ -280,7 +281,7 @@
                         <rich-text nodes="{{bean.desc}}"></rich-text>
                       </view>
                     </view>
-                    <view class="right flex_row_center_flexEnd" bindtap="receiveInviteMemberTask" data-index="{{index}}" data-type="post_book">
+                    <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}" >
                       <view class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
@@ -732,7 +733,7 @@
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
           <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
-          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24 && lottery_detail_info.task_type !=25}}">奖品奖项</view>
+          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24 && lottery_detail_info.task_type !=25 && lottery_detail_info.task_type !=6 && lottery_detail_info.task_type !=26}}">奖品奖项</view>
         </view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
           <rich-text nodes="{{lottery_detail_info.desc}}"></rich-text>
@@ -747,7 +748,7 @@
           </view>
         </scroll-view>
       </view>
-      <view class="btn-group flex_column_center_center" bindtap="startLotteryActivity" data-index="{{index}}">
+      <view wx:if="{{lottery_detail_info.isInprogress==0}}" class="btn-group flex_column_center_center" bindtap="startLotteryActivity" data-index="{{index}}">
         <view class="btn receive flex_column_center_center theme-button-welcome-dark">立即领取</view>
       </view>
     </view>
