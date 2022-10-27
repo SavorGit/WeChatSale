@@ -1283,9 +1283,10 @@ Page({
    */
   popInviteMemberWind:function(e){
     var that = this;
-    var index = e.currentTarget.dataset.index;
+    var index = e.currentTarget.dataset.keys;
     var inprogress = this.data.task_list.inprogress;
     var task_info = inprogress[index];
+    console.log(task_info)
     that.setData({popInviteMmberWind:true,task_info:task_info});
   },
   
