@@ -280,6 +280,8 @@ Page({
       }else if(incode==50) {//需要领取任务
         wx.showModal({
           title: message,
+          confirmText:'我知道了',
+          showCancel:false,
           success: function (res) {
             if (res.confirm) {
               wx.switchTab({

@@ -182,11 +182,11 @@ Page({
             url: '/store/pages/index',
           })
         }else {
-          if(user_info==''){
+          /*if(user_info==''){
             that.isHaveStockHotel(data.result.userinfo);
           }else {
             that.isHaveStockHotel(user_info);
-          }
+          }*/
           
           that.setData({user_info:data.result.userinfo})
           //var task_list = that.data.task_list;
@@ -1205,6 +1205,7 @@ Page({
   demandTaskAds(){
     var that = this;
     var demand_task_info = this.data.demand_task_info;
+    console.log(demand_task_info);
     var demand_box_index = this.data.demand_box_index;
     var demand_box_list = this.data.demand_box_list;
     var box_mac = demand_box_list[demand_box_index].box_mac;
@@ -1229,7 +1230,7 @@ Page({
       
       
       that.setData({popDemandAdsWind:false,demand_box_index:0})
-      that.finishDemandadvTask(ads_id,that.data.user_info.openid,that.data.user_info.hotel_id,box_mac);
+      that.finishDemandadvTask(ads_id,that.data.user_info.openid,that.data.user_info.hotel_id,box_mac,demand_task_info.task_id);
       
       var mobile_brand = app.globalData.mobile_brand;
       var mobile_model = app.globalData.mobile_model;
@@ -1252,12 +1253,13 @@ Page({
     });
     
   },
-  finishDemandadvTask:function(ads_id,openid,hotel_id,box_mac){
+  finishDemandadvTask:function(ads_id,openid,hotel_id,box_mac,task_id){
     utils.PostRequest(api_v_url + '/task/finishDemandadvTask', {
         ads_id:ads_id,
         openid:openid,
         hotel_id:hotel_id,
         box_mac: box_mac,
+        task_id:task_id
         
       }, (data, headers, cookies, errMsg, statusCode) => {
         var is_pop_tips_wind = data.result.is_pop_tips_wind;
