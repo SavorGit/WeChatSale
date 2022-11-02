@@ -361,19 +361,12 @@ Page({
   onShow: function () {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    if (user_info.hotel_has_room == 0) {
+    /*if (user_info.hotel_has_room == 0) {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
         this.getTabBar().setData({
           selected: 0,
           list: [
-            /*
-            {
-              "pagePath": "/pages/tv_sale/system",
-              "text": "活动促销",
-              "iconPath": "/images/icon/999999_sale.png",
-              "selectedIconPath": "/images/icon/333333_sale.png"
-            },
-            */
+            
             {
               "pagePath": "/pages/mine/index",
               "text": "个人信息",
@@ -384,10 +377,11 @@ Page({
         })
       }
     } else {
-      this.getTabBar().setData({
-        selected: 2,
-      })
-    }
+     
+    }*/
+    this.getTabBar().setData({
+      selected: 2,
+    })
     wx.request({
       url: api_v_url + '/User/isRegister',
       header: {
