@@ -211,9 +211,9 @@ Page({
                 })
               })
             } else {
-              wx.reLaunch({
+              /*wx.reLaunch({
                 url: '/pages/tv_sale/system',
-              })
+              })*/
             }
           } else { //未授权登陆 跳转到登陆页面
             wx.setStorage({
@@ -768,12 +768,12 @@ Page({
     })
     wx.setStorageSync(cache_key + "userinfo", user_info);
     wx.removeStorageSync(cache_key +'link_box_info');
-    if(hotel_has_room==0){
+    //if(hotel_has_room==0){
       
-      wx.reLaunch({
+      /*wx.reLaunch({
         url: '/pages/tv_sale/system',
-      })
-    }else {
+      })*/
+    //}else {
       //获取酒楼包间列表
       wx.request({
         url: api_v_url + '/Stb/getBoxList',
@@ -822,7 +822,7 @@ Page({
           })
         }
       })
-    }
+    //}
   },
   goRelief:function(res){
     //数据埋点-首页用户点击免责声明

@@ -340,8 +340,11 @@ Page({
                 url: '/pages/user/sellindex',
               })
             } else {
-              wx.reLaunch({
+              /*wx.reLaunch({
                 url: '/pages/tv_sale/system',
+              })*/
+              wx.reLaunch({
+                url: '/pages/user/sellindex',
               })
             }
             var user_info = rt.data.result;

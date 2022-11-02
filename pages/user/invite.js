@@ -156,8 +156,11 @@ Page({
                   }
                   
                 } else {
-                  wx.reLaunch({
+                  /*wx.reLaunch({
                     url: '/pages/tv_sale/system',
+                  })*/
+                  wx.reLaunch({
+                    url: '/pages/user/sellindex',
                   })
                 }
               }
@@ -279,8 +282,11 @@ Page({
             }
             
           }else {
-            wx.reLaunch({
+            /*wx.reLaunch({
               url: '/pages/tv_sale/system',
+            })*/
+            wx.reLaunch({
+              url: '/pages/user/sellindex',
             })
           }
           wx.showToast({
