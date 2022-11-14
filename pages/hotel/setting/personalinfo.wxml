@@ -7,7 +7,8 @@
 <view class='container page theme-container' style='height:calc(100vh - {{SystemInfo.screenBottomSpace}}px);'>
   <form bindsubmit="editUserinfo">
     <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
-      <view class="scroll-view-warpper">
+      <view class="scroll-view-warpper flex_column_center_center">
+        <!-- 2022-11-14
         <view class="panel flex_column_center_flexStart theme-panel">
           <view class="p-body flex_column_center_flexStart">
             <view class="row flex_row_center_spaceBetween">
@@ -44,11 +45,60 @@
             </view>
           </view>
         </view>
+        -->
+
+        <view class="panel flex_column_center_flexStart theme-panel" style="margin-top:20rpx;">
+          <view class="p-body flex_column_center_flexStart">
+            <view class="row down-line flex_row_center_spaceBetween">
+              <view class="property flex_row_center_flexStart">
+                <view class="label">头像</view>
+                <button open-type="chooseAvatar" class="value flex_row_center_flexEnd" bind:chooseavatar="onChooseAvatar">
+                  <image class="pic" mode="aspectFill" src="{{userinfo.avatarUrl}}" style="width:90rpx;height:90rpx;border-radius:50%;" />
+                </button>
+              </view>
+            </view>
+            <view class="row down-line flex_row_center_spaceBetween">
+              <view class="property flex_row_center_flexStart">
+                <view class="label">名称</view>
+                <view class="value">
+                  <!-- 2022-11-14
+                  <view class="frame">
+                    <input name="name" value="{{userinfo.nickName}}" type="nickname" class="input" placeholder="请输入" />
+                  </view>
+                  -->
+                  <input name="name" value="{{userinfo.nickName}}" type="nickname" class="input" placeholder="请输入" style="height:90rpx;text-align:right;" />
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{false}}" class="row flex_row_center_spaceBetween">
+              <view class="property flex_row_center_flexStart">
+                <view class="label">手机号</view>
+                <view class="value flex_row_center_flexEnd">
+                  <!-- 2022-11-14
+                  <view class="frame">
+                    <input disabled="{{mobile_disabled}}" name="mobile" value="{{userinfo.mobile}}" class="input" type="number" placeholder="请输入" />
+                  </view>
+                  -->
+                  <input disabled="{{mobile_disabled}}" name="mobile" value="{{userinfo.mobile}}" class="input mobile" type="number" placeholder="请输入" style="height:90rpx;text-align:right;" />
+                </view>
+              </view>
+            </view>
+            <view wx:else class="row flex_row_center_spaceBetween">
+              <view class="property flex_row_center_flexStart">
+                <view class="label">手机号</view>
+                <view class="value flex_row_center_flexEnd" style="height:90rpx;">
+                  <button class="btn grant-mobile flex_column_center_center">微信授权获取</button>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
       </view>
     </scroll-view>
     <view class="foot flex_column_center_flexStart">
       <view class="button-group flex_row_center_center">
-        <button form-type="submit" disabled="{{addDisabled}}" class="btn save flex_row_center_center theme-button-welcome-dark">保存</button>
+        <button form-type="submit" disabled="{{addDisabled}}" class="btn save flex_row_center_center theme-button-welcome">确定</button>
       </view>
     </view>
   </form>
