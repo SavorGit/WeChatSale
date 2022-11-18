@@ -243,111 +243,8 @@ Page({
     //数据埋点-关闭员工添加员工弹窗
     utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickCloseAddStaffWindown', {'open_id':openid}));
   },
-  userLogin: function (res) {
-    var that = this;
-    that.setData({
-      showWXAuthLogin: true,
-    })
-    //数据埋点-个人信息页面点击登录
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickUserLogin', {'open_id':openid}));
-  },
-  onGetUserInfo: function (res) {
-    var that = this;
-    var user_info = wx.getStorageSync(cache_key + "userinfo");
-    openid = user_info.openid;
-    uma.trackEvent('clickonwxauth',{'open_id':openid})
-    wx.getUserProfile({
-      desc:'获取用户头像',
-      success(rets) {
-        var avatarUrl = rets.userInfo.avatarUrl;
-        var nickName = rets.userInfo.nickName;
-        wx.request({
-          url: api_v_url + '/User/registerCom',
-          data: {
-            'openid': openid,
-            'avatarUrl': rets.userInfo.avatarUrl,
-            'nickName': rets.userInfo.nickName,
-            'gender': rets.userInfo.gender,
-            'session_key': app.globalData.session_key,
-            'iv': rets.iv,
-            'encryptedData': rets.encryptedData
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            if (res.data.code == 10000) {
-              that.setData({
-                showWXAuthLogin: false,
-
-              })
-              that.setData({
-                nickName: nickName,
-                avatarUrl: avatarUrl,
-                is_wx_auth: res.data.result.is_wx_auth
-              })
-              var mobile = res.data.result.mobile;
-              if (mobile != '') {
-                //res.data.result.is_login = 1;
-
-                wx.setStorage({
-                  key: cache_key + 'userinfo',
-                  data: res.data.result,
-                });
-                /*wx.reLaunch({
-                  url: '/pages/index/index',
-                })*/
-              } else {
-                wx.setStorage({
-                  key: cache_key + 'userinfo',
-                  data: res.data.result,
-                });
-              }
-
-
-
-            } else {
-              wx.showToast({
-                title: '微信授权登陆失败，请重试',
-                icon: 'none',
-                duration: 2000
-              });
-              /*wx.reLaunch({
-                url: '/pages/index/index',
-              })*/
-            }
-
-          },
-          fail: function (res) {
-            wx.showToast({
-              title: '微信登陆失败，请重试',
-              icon: 'none',
-              duration: 2000
-            });
-          }
-        })
-        uma.trackEvent('wxauthsucess',{'open_id':openid})
-      },fail:function(){
-        wx.request({
-          url: api_v_url + '/User/refuseRegister',
-          header: {
-            'content-type': 'application/json'
-          },
-          data: {
-            openid: openid
-          },
-          success: function () {
-            user_info.is_wx_auth = 1;
-            wx.setStorage({
-              key: cache_key + 'userinfo',
-              data: user_info,
-            });
-          }
-        })
-        uma.trackEvent('refusewxauth',{'open_id':openid})
-      }
-    })
-  },
+  
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -434,15 +331,7 @@ Page({
     //数据埋点-进入个人信息页面
     utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
   },
-  closeAuth: function () {
-    var that = this;
-    that.setData({
-      showWXAuthLogin: false,
-    })
-    //数据埋点-个人信息页面关闭取消授权登陆
-    
-    uma.trackEvent('closewxauth',{'open_id':openid})
-  },
+  
   integralList: function (e) {
     //数据埋点-点击收益明细
     utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickIntegralList', {'open_id':openid}));
@@ -562,13 +451,6 @@ Page({
     });
   },
 
-  // 关闭修改昵称弹窗
-  closeChangeNikenameWindow: function (e) {
-    let self = this;
-    self.setData({
-      showChangeNikenameWindow: false
-    });
-  },
   saleDishes: function (e) {
     var that = this;
     var merchant_id = that.data.merchant_id;

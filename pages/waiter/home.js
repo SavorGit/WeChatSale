@@ -312,6 +312,7 @@ Page({
   },
   
   
+  
   goRelief: function (res) {
     //数据埋点-点击免责声明
     
@@ -323,6 +324,21 @@ Page({
     })
     //数据埋点-个人信息页面点击登录
     
+  },
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    var user_info = wx.getStorageSync(cache_key + "userinfo");
+    var url = '';
+    console.log(type)
+    switch(type){
+      case 'userinfo':
+        url = '/pages/hotel/setting/personalinfo?openid='+user_info.openid;
+        break;
+    }
+    console.log(url)
+    wx.navigateTo({
+      url: url,
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏

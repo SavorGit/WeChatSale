@@ -18,20 +18,29 @@ Page({
   data: {
     SystemInfo: app.SystemInfo,
     addDisabled:false,
-    mobile_disabled:false,
+    mobile_disabled:true,
+    is_my :true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
     wx.hideShareMenu();
+    if(typeof(options.is_auth)!='undefined'){
+      var is_auth = options.is_auth
+    }else {
+      var is_auth = 0;
+    }
+    if(is_auth==1){
+      wx.hideHomeButton()
+    }
+    this.setData({is_auth:is_auth});
     openid = options.openid;
     this.isRegister(openid);
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     if(user_info.openid != openid){
-        this.setData({mobile_disabled:true})
+        this.setData({mobile_disabled:true,is_my:false})
     }
     this.getOssParams();
   },
@@ -41,7 +50,9 @@ Page({
       openid: openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var userinfo = data.result.userinfo;
-      that.setData({userinfo:userinfo})
+      var mobile    = data.result.userinfo.mobile
+      var wxinfo   = data.result.wxinfo;
+      that.setData({userinfo:userinfo,wxinfo:wxinfo,mobile:mobile})
     })
   },
   getOssParams:function(){
@@ -125,10 +136,55 @@ Page({
     });
 
   },
+  changeNickname:function(e){
+    console.log(e)
+  },
+  getPhoneNumber:function(e){
+    var that = this;
+    if ("getPhoneNumber:ok" != e.detail.errMsg) {
+      app.showToast('获取用户手机号失败')
+      return false;
+    }
+    var iv = e.detail.iv;
+    var encryptedData = e.detail.encryptedData;
+    //var userinfo = that.data.userinfo;
+    utils.PostRequest(api_v_url + '/user/bindAuthMobile', {
+      openid:openid,
+      iv: iv,
+      encryptedData: encryptedData,
+      session_key: app.globalData.session_key,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
+      //更新缓存
+      //var userinfo = wx.getStorageSync(cache_key + 'userinfo');
+      
+      //userinfo.mobile = data.result.purePhoneNumber;
+      
+      //wx.setStorageSync(cache_key + 'userinfo', userinfo)
+      var mobile = data.result.purePhoneNumber;
+      that.setData({
+        mobile:mobile
+      })
+      
+    })
+  },
+
+
   editUserinfo:function(e){
     var userinfo = this.data.userinfo;
+    var wxinfo   = this.data.wxinfo;
+    
     var name = e.detail.value.name.replace(/\s+/g, '');
     var mobile = e.detail.value.mobile.replace(/\s+/g, '');
+    if(userinfo.avatarUrl==wxinfo.avatarUrl){
+      app.showToast('请设置您的头像');
+      return false;
+    }
+    if(name==wxinfo.nickName){
+      app.showToast('请设置您的名称');
+      return false;
+    }
+
     if(name==''){
         app.showToast('请输入您的名称');
         return false;
@@ -137,8 +193,8 @@ Page({
         app.showToast('请您输入正确的手机号');
         return false;
     }
-
-    utils.PostRequest(api_v_url + '/user/edit', {
+    var is_auth = this.data.is_auth;
+    utils.PostRequest(api_v_url + '/user/perfect', {
       openid: openid,
       avatar_url:userinfo.avatarUrl,
       name   : name,
@@ -150,8 +206,25 @@ Page({
             cache_userinfo.avatarUrl = userinfo.avatarUrl;
             cache_userinfo.nickName  = name;
             cache_userinfo.mobile    = mobile;
+            cache_userinfo.is_wx_auth = 3;
+            cache_userinfo.is_perfect = 1;
             wx.setStorageSync(cache_key+'userinfo', cache_userinfo)
-            
+            if(is_auth==1){
+              if(userinfo.role_type==3){
+                wx.redirectTo({
+                  url: '/pages/waiter/home',
+                })
+              }else {
+                wx.switchTab({
+                  url: '/pages/user/sellindex',
+                })
+              }
+              
+            }else {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
         }
     })
   },

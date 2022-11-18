@@ -65,14 +65,15 @@ Page({
             
             
             if(res.data.result.hotel_id !=0){
-              
-              
-              wx.setStorage({
+               /*wx.setStorage({
                 key: cache_key + 'userinfo',
                 data: user_info,
               })
               that.setData({
                 showWXAuthLogin: true
+              })*/
+              wx.redirectTo({
+                url : '/pages/hotel/setting/personalinfo?openid='+openid+'&is_auth=1'
               })
             }else {
               

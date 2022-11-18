@@ -2,7 +2,7 @@
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
 	<view class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
-		<view class="left-2">
+		<view class="left-2" bindtap="gotoPage" data-type="userinfo">
 			<image class='head-img' src='{{avatarUrl}}'></image>
 		</view>
 		<view class="center-2 flex_column_flexStart_flexStart">

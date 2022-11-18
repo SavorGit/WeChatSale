@@ -151,10 +151,10 @@ Page({
           url: '/pages/user/login',
         })
       }else {
-        var user_info = wx.getStorageSync(cache_key+'userinfo');
-        if(user_info==''){
-          var user_info = data.result.userinfo
-        }
+        //var user_info = wx.getStorageSync(cache_key+'userinfo');
+        //if(user_info==''){
+        var user_info = data.result.userinfo
+        //}
         if(hotel_id==-1 && is_onload==1){
           wx.showModal({
             title: '提示',
@@ -207,10 +207,12 @@ Page({
           if(loop_play_list.length==0){
             that.getLoopPlay();
           }
-          if(user_info.is_wx_auth!=3 || user_info.mobile==''){
+          if(user_info.is_perfect==0){
+          //if(user_info.is_wx_auth!=3 || user_info.mobile==''){
             
             wx.redirectTo({
-              url: '/pages/user/authorization',
+              //url: '/pages/user/authorization',
+              url : '/pages/hotel/setting/personalinfo?openid='+openid+'&is_auth=1'
             })
           }
         }
@@ -243,9 +245,7 @@ Page({
               success (res) {
                 if (res.confirm) {
                   app.globalData.is_pop_notice_wind = 1;
-                  console.log('dddd')
                 } else if (res.cancel) {
-                  console.log('ssss')
                 }
               },complete:function(){
                 app.globalData.is_pop_notice_wind = 1;
@@ -280,8 +280,9 @@ Page({
    */
   getLoopPlay:function(){
     var that = this;
+    var openid = that.data.user_info.openid;
     utils.PostRequest(api_v_url + '/record/rolldata',{
-      openid:that.data.user_info.openid,
+      openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var loop_play_list = data.result.datalist;
       that.setData({loop_play_list:loop_play_list});
@@ -327,13 +328,11 @@ Page({
    * 领取抽奖任务弹窗详情
    */
   getLotteryPopWind:function(e){
-    console.log(e)
     var index = e.currentTarget.dataset.index;
     var canreceive = this.data.task_list.canreceive;
     var lottery_detail_info = canreceive[index];
     lottery_detail_info.tab = 'rule';
     lottery_detail_info.isInprogress = 0;
-    console.log(lottery_detail_info);
     this.setData({lottery_detail_info:lottery_detail_info,lottery_detail_window:true});
   },
   /**
@@ -344,7 +343,6 @@ Page({
     var index = e.currentTarget.dataset.index;
     var user_info = that.data.user_info;
     var lottery_detail_info = that.data.lottery_detail_info;
-    console.log(lottery_detail_info)
     if(lottery_detail_info.task_type==24){
       var content = '确定要领取此团购活动?'
     }else if(lottery_detail_info.task_type==25){
@@ -379,9 +377,7 @@ Page({
     var that = this;
     
     var index = e.currentTarget.dataset.index;
-    console.log('aa')
     var task_list = this.data.task_list;
-    console.log('vbv')
     var l_info = task_list['inprogress'][index];
 
     that.setData({lottery_activity_window:true,l_info:l_info})
@@ -391,7 +387,6 @@ Page({
     var user_info = this.data.user_info;
 
     var lottery_activity_info = this.data.lottery_activity_info
-    console.log(lottery_activity_info)
     var l_info = this.data.l_info;
     var task_user_id = l_info.task_user_id;
     if(lottery_activity_info.start_time==''){
@@ -404,8 +399,7 @@ Page({
     }
     var activityStartTimeIndex = this.data.activityStartTimeIndex;
     var lotteryStartTimeIndex = this.data.lotteryStartTimeIndex;
-    console.log(activityStartTimeIndex)
-      console.log(lotteryStartTimeIndex)
+
     if(activityStartTimeIndex[0]>lotteryStartTimeIndex[0]){
       app.showToast('开始时间应小于开奖时间');
       return false;
@@ -888,12 +882,10 @@ Page({
   // 选项卡选择
   showLotteryDetailWindowTab: function (e) {
     let self = this;
-    console.log(e)
     let tabType = e.currentTarget.dataset.tab;
     var lottery_detail_info = this.data.lottery_detail_info;
-    console.log(lottery_detail_info)
+
     lottery_detail_info.tab = tabType;
-    console.log(lottery_detail_info)
     this.setData({lottery_detail_info:lottery_detail_info})
   },
   
@@ -1205,7 +1197,6 @@ Page({
   demandTaskAds(){
     var that = this;
     var demand_task_info = this.data.demand_task_info;
-    console.log(demand_task_info);
     var demand_box_index = this.data.demand_box_index;
     var demand_box_list = this.data.demand_box_list;
     var box_mac = demand_box_list[demand_box_index].box_mac;
@@ -1288,7 +1279,6 @@ Page({
     var index = e.currentTarget.dataset.keys;
     var inprogress = this.data.task_list.inprogress;
     var task_info = inprogress[index];
-    console.log(task_info)
     that.setData({popInviteMmberWind:true,task_info:task_info});
   },
   
@@ -1320,7 +1310,7 @@ Page({
   },
   zyttest:function(){
     wx.redirectTo({
-      url: '/store/pages/index',
+      url: '/pages/user/invite',
     })
   }
 })
