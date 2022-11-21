@@ -173,13 +173,15 @@ Page({
   editUserinfo:function(e){
     var userinfo = this.data.userinfo;
     var wxinfo   = this.data.wxinfo;
-    
+    console.log(e.detail.value)
     var name = e.detail.value.name.replace(/\s+/g, '');
-    var mobile = e.detail.value.mobile.replace(/\s+/g, '');
-    if(userinfo.avatarUrl==wxinfo.avatarUrl){
+    //var mobile = e.detail.value.mobile
+    var mobile = this.data.mobile
+    if(userinfo.avatarUrl==wxinfo.avatarUrl || userinfo.avatarUrl==''){
       app.showToast('请设置您的头像');
       return false;
     }
+    
     if(name==wxinfo.nickName){
       app.showToast('请设置您的名称');
       return false;
@@ -187,6 +189,11 @@ Page({
 
     if(name==''){
         app.showToast('请输入您的名称');
+        return false;
+    }
+    console.log(mobile)
+    if(mobile==''){
+        app.showToast('请微信授权获取您的手机号');
         return false;
     }
     if(!app.checkMobile(mobile)){
