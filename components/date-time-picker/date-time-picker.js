@@ -1,4 +1,4 @@
-const leftPad0 = function(v, n) {
+let leftPad0 = function (v, n) {
   if (!v) {
     v = "";
   }
@@ -8,36 +8,37 @@ const leftPad0 = function(v, n) {
   }
   return (prefix + v).substr(-n);
 };
-const stringToDate = function(str) {
+let stringToDate = function (str) {
   str = str.replace(/-/g, "/");
   return new Date(str);
 };
-const isLeapYear = function(year) {
+let isLeapYear = function (year) {
   if (((year % 4) == 0) && ((year % 100) != 0) || ((year % 400) == 0)) {
     return true;
   }
   return false;
 };
-const now = new Date();
-const years = [];
-const beginYear = 2022;
-for (var i = beginYear; i <= now.getFullYear(); i++) {
+let now = new Date();
+let years = [];
+let beginYear = now.getFullYear();
+let yearOffset = 2;
+for (let i = beginYear - yearOffset; i <= now.getFullYear() + yearOffset; i++) {
   years.push(i + "年");
 }
-const months = [];
-for (var i = 0; i < 12; i++) {
+let months = [];
+for (let i = 0; i < 12; i++) {
   months.push(leftPad0(i + 1, 2) + "月");
 }
-const days = [];
-for (var i = 0; i < 31; i++) {
+let days = [];
+for (let i = 0; i < 31; i++) {
   days.push(leftPad0(i + 1, 2) + "日");
 }
-const hours = [];
-for (var i = 0; i < 24; i++) {
+let hours = [];
+for (let i = 0; i < 24; i++) {
   hours.push(leftPad0(i, 2) + "时");
 }
-// const minutes = [];
-// for (var i = 0; i < 60; i++) {
+// let minutes = [];
+// for (let i = 0; i < 60; i++) {
 //   minutes.push(leftPad0(i, 2) + "分");
 // }
 
@@ -68,28 +69,28 @@ Component({
     pickerMonth: 1
   },
   observers: {
-    value: function(v) {
+    value: function (v) {
       this.setData({
         valueArray: this._dateToValueArray(stringToDate(v))
       })
     },
-    dateValue: function(date) {
+    dateValue: function (date) {
       this.setData({
         valueArray: this._dateToValueArray(date)
       })
     },
-    valueArray: function(v) {
+    valueArray: function (v) {
       this._settMonthDays(v[0] + beginYear, v[1] + 1);
     }
   },
-/**
-   * 组件的方法列表
-   */
+  /**
+     * 组件的方法列表
+     */
   methods: {
     _dateToValueArray(date) {
       date = new Date();
       //return [date.getFullYear() - beginYear, date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()];
-      return [date.getFullYear() - beginYear, date.getMonth(), date.getDate() - 1, date.getHours()];
+      return [date.getFullYear() - beginYear + yearOffset, date.getMonth(), date.getDate() - 1, date.getHours()];
     },
     _settMonthDays(year, month) {
       let monthDays = 31;
@@ -139,7 +140,7 @@ Component({
         let v = this.data.rangeValues[i][e.detail.value[i]];
         dateArr.push(v.toString().substr(0, v.length - 1))
       }
-      let dateString = dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2] + " " + dateArr[3] + ":00"  + ":00";
+      let dateString = dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2] + " " + dateArr[3] + ":00" + ":00";
       this.triggerEvent('change', {
         date: stringToDate(dateString),
         dateString
