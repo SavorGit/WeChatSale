@@ -37,14 +37,11 @@ Page({
     }
     this.setData({is_auth:is_auth});
     openid = options.openid;
-    this.isRegister(openid);
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
-    if(user_info.openid != openid){
-        this.setData({mobile_disabled:true,is_my:false})
-    }
+    this.isRegister(openid,is_auth);
+    
     this.getOssParams();
   },
-  isRegister:function(){
+  isRegister:function(openid){
     var that = this;
     utils.PostRequest(api_v_url + '/User/isRegister', {
       openid: openid,
@@ -52,6 +49,14 @@ Page({
       var userinfo = data.result.userinfo;
       var mobile    = data.result.userinfo.mobile
       var wxinfo   = data.result.wxinfo;
+
+      //var user_info = wx.getStorageSync(cache_key + 'userinfo');
+      
+      if(userinfo.openid != openid){
+        that.setData({mobile_disabled:true,is_my:false})
+      }else {
+        wx.setStorageSync(cache_key + 'userinfo', userinfo)
+      }
       that.setData({userinfo:userinfo,wxinfo:wxinfo,mobile:mobile})
     })
   },
