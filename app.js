@@ -307,7 +307,8 @@ App({
     oss_xz_limit:4096,     //oss旋转照片最大宽高
     small_app_id:5,
     config_info:{},
-    is_pop_notice_wind:0
+    is_pop_notice_wind:0,
+    small_app_version:'1.9.37',
   },
   touch: new touch()
 })

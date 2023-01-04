@@ -48,6 +48,7 @@ Page({
     utils.PostRequest(api_v_url + '/invitation/themes', {
       hotel_id:hotel_id,
       openid:openid,
+      version:app.globalData.small_app_version
     }, (data, headers, cookies, errMsg, statusCode) => {
       var themes_list = data.result.datalist;
       that.setData({themes_list:themes_list})
@@ -157,7 +158,7 @@ Page({
         wx.navigateToMiniProgram({
           appId: 'wxfdf0346934bb672f',
           path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
-          //envVersion:'trial'
+          envVersion:'trial'
         })
       }else if(post_type=='message'){
         app.showToast('发送成功',2000,'success');
