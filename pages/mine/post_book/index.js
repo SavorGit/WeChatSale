@@ -106,7 +106,9 @@ Page({
     book_info.template_id = template_id;
     this.setData({book_info:book_info});
   },
-  confirmBookInfo:function(){
+  confirmBookInfo:function(e){
+    console.log(e)
+    var post_type = e.currentTarget.dataset.post_type
     var book_info = this.data.book_info;
     if(book_info.book_time==''){
       app.showToast('请选择预定时间');
@@ -151,11 +153,21 @@ Page({
       theme_id:book_info.template_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
-      wx.navigateToMiniProgram({
-        appId: 'wxfdf0346934bb672f',
-        path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
-        //envVersion:'trial'
-      })
+      if(post_type=='smallapp'){
+        wx.navigateToMiniProgram({
+          appId: 'wxfdf0346934bb672f',
+          path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
+          //envVersion:'trial'
+        })
+      }else if(post_type=='message'){
+        app.showToast('发送成功',2000,'success');
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000);
+      }
+      
       uma.trackEvent('postbook_confirm',{'open_id':openid,'hotel_id':hotel_id})
     })
 

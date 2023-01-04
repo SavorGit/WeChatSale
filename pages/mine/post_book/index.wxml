@@ -91,8 +91,11 @@
           
         </radio-group>
       </view>
-      <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo">
-        <view class="btn submit flex_row_center_center theme-button-dark">确定预定信息</view>
+      <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo" data-post_type="smallapp">
+        <view class="btn submit flex_row_center_center theme-button-dark">微信与短信同时发送</view>
+      </view>
+      <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo" data-post_type="message">
+        <view class="btn submit flex_row_center_center theme-button-dark">短信发送</view>
       </view>
     </view>
   </form>
