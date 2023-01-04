@@ -41,7 +41,7 @@
           <view class="required theme-font5">*</view>
         </view>
         <view class="value">
-          <input always-embed = true bindinput="inputBookNums" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定就餐的人数" />
+          <input always-embed="true" bindinput="inputBookNums" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定就餐的人数" />
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
@@ -50,7 +50,7 @@
           <view class="required theme-font5">*</view>
         </view>
         <view class="value">
-          <input always-embed = true bindinput="inputBookName" maxlength="6" type="text" class="input border flex_row_center_flexStart" placeholder="请输入预定人的称呼" />
+          <input always-embed="true" bindinput="inputBookName" maxlength="6" type="text" class="input border flex_row_center_flexStart" placeholder="请输入预定人的称呼" />
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
@@ -59,19 +59,19 @@
           <view class="required theme-font5">*</view>
         </view>
         <view class="value">
-          <input always-embed = true bindinput="inputBookMobile" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定人的手机号码" />
+          <input always-embed="true" bindinput="inputBookMobile" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定人的手机号码" />
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">餐厅联系人</view>
         <view class="value">
-          <input always-embed = true bindinput="inputHotelContract" maxlength='5' class="input border flex_row_center_flexStart" placeholder="请输入餐厅联系人" />
+          <input always-embed="true" bindinput="inputHotelContract" maxlength='5' class="input border flex_row_center_flexStart" placeholder="请输入餐厅联系人" />
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">餐厅联系电话</view>
         <view class="value">
-          <input always-embed = true bindinput="inputHotelTel" class="input border flex_row_center_flexStart" placeholder="请输入餐厅的联系电话" />
+          <input always-embed="true" bindinput="inputHotelTel" class="input border flex_row_center_flexStart" placeholder="请输入餐厅的联系电话" />
         </view>
       </view>
 
@@ -80,22 +80,18 @@
           <view class="text">邀请函模板</view>
           <view class="required theme-font5">*</view>
         </view>
-        <radio-group class="value flex_row_center_spaceBetween" bindchange='selectTemplate'>
+        <radio-group class="value" style="display:block;" bindchange='selectTemplate'>
           <view class="mould flex_column_center_center" wx:for="{{themes_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <label for="mould_{{index+1}}">
               <image class="pic" mode="aspectFill" src="https://oss.littlehotspot.com/{{bean.bg_img}}" />
             </label>
             <radio class="radio" id="mould_{{index+1}}" value="{{bean.id}}"></radio>
           </view>
-
-          
         </radio-group>
       </view>
-      <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo" data-post_type="smallapp">
-        <view class="btn submit flex_row_center_center theme-button-dark">微信与短信同时发送</view>
-      </view>
-      <view class="row full-button flex_row_center_center" bindtap="confirmBookInfo" data-post_type="message">
-        <view class="btn submit flex_row_center_center theme-button-dark">短信发送</view>
+      <view class="row full-button flex_row_center_spaceAround">
+        <view class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</view>
+        <view class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</view>
       </view>
     </view>
   </form>

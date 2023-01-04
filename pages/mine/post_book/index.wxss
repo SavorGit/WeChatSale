@@ -110,11 +110,25 @@
   height: auto;
 }
 
+.row.mould>.value .mould {
+  display: inline-flex;
+  padding: 0 8rpx;
+}
+
+.row.mould>.value .mould:nth-child(4n) {
+  padding-right: 0;
+}
+
+.row.mould>.value .mould:nth-child(4n + 1) {
+  padding-left: 0;
+}
+
 .row.mould>.value .mould>label>.pic {
   width: 150rpx;
   height: 321rpx;
 }
 
+/*
 .row.full-button>.btn {
   width: 100%;
   height: 110rpx;
@@ -122,5 +136,13 @@
   border-radius: 10rpx;
   border: 0;
   padding: 0;
+  margin: 0;
+}
+*/
+.row.full-button>.btn {
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  border: 0;
+  padding: 20rpx 30rpx;
   margin: 0;
 }
