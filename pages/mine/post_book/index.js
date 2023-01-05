@@ -141,7 +141,7 @@ Page({
     var room_index = book_info.room_index;    
     var room_id = box_list[room_index].id;
     
-    utils.PostRequest(api_v_url + '/invitation/confirminfo', {
+    utils.PostRequest(api_v_url + '/invitation/confirmdata', {
       openid: openid,
       room_id:room_id,
       hotel_id:hotel_id,
