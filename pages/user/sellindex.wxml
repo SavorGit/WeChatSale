@@ -29,8 +29,8 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.inprogress}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-            
-            
+
+
             <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -202,8 +202,8 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for='{{task_list.canreceive}}' wx:for-item="bean" wx:key="key" wx:for-index="index">
-            
-            
+
+
             <view class="item sale flex_column_center_center" wx:if="{{bean.task_type==22}}">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
@@ -329,8 +329,8 @@
         <view class="list flex_column_center_flexStart">
 
           <block wx:for="{{task_list.invalid}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            
-            
+
+
             <view wx:if="{{bean.task_type==22}}" class="item sale flex_column_center_center">
               <view class="task flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
@@ -819,7 +819,7 @@
   </view>
 </bottomModal>
 
-<!-- 选择包间弹窗 -->
+<!-- 选择点播包间弹窗 -->
 <view wx:if="{{popDemandAdsWind}}" class="window room-choice">
   <view class="mask flex_column_center_center">
     <view class="entity theme-window">
@@ -829,16 +829,52 @@
         </view>
       </view>
       <view class="title-bar flex_row_center_center">
-        <view class="title">选择包间</view>
+        <view class="title">选择点播包间</view>
       </view>
       <view class="win-body flex_column_center_flexStart">
         <scroll-view class="rooms" scroll-y="true" scroll-with-animation="true">
-          <view class="list room flex_column_center_spaceBetween">
-            <block wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-              <view class="item flex_row_center_flexStart {{demand_box_index==index?'selected':'one-line-overflow'}} one-line-overflow" bindtap="selectDemandMissionRoom" data-keys="{{index}}">
-                <view class="name one-line-overflow">{{bean}}</view>
+          <view class="warpper flex_column_center_flexStart">
+            <view class="row flex_row_center_flexStart">
+              <view class="porperty flex_row_center_flexStart">
+                <view class="label font-bold flex_row_center_flexStart theme-font7">点播范围</view>
+                <view class="value radio-group flex_row_center_spaceBetween">
+                  <radio-group class="frame flex_row_center_spaceBetween" bindchange="">
+                    <radio class="input" value="" checked="true">单个包间</radio>
+                    <radio class="input" value="">全部包间</radio>
+                  </radio-group>
+                </view>
               </view>
-            </block>
+            </view>
+            <view class="list room border flex_column_center_spaceBetween">
+              <block wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                <view class="item flex_row_center_flexStart {{demand_box_index==index?'selected':'one-line-overflow'}} one-line-overflow" bindtap="selectDemandMissionRoom" data-keys="{{index}}">
+                  <view class="name one-line-overflow">{{bean}}</view>
+                </view>
+              </block>
+            </view>
+            <view class="row flex_row_center_flexStart">
+              <view class="porperty flex_row_center_flexStart">
+                <view class="label font-bold flex_row_center_flexStart theme-font7">点播时间</view>
+                <view class="value radio-group flex_row_center_spaceBetween">
+                  <radio-group class="frame flex_row_center_spaceBetween" bindchange="">
+                    <radio class="input" value="">立即点播</radio>
+                    <radio class="input" value="" checked="true">定时播放</radio>
+                  </radio-group>
+                </view>
+              </view>
+            </view>
+            <view class="row flex_row_center_flexStart">
+              <view class="porperty flex_row_center_flexStart">
+                <view class="label font-bold flex_row_center_flexStart theme-font7"></view>
+                <view class="value picker">
+                  <view class="frame border">
+                    <picker class="input" mode="time">
+                      <view class="show flex_row_center_flexStart theme-font-999999">18:00</view>
+                    </picker>
+                  </view>
+                </view>
+              </view>
+            </view>
           </view>
         </scroll-view>
         <view class="button-group flex_row_center_spaceAround">
