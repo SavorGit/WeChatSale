@@ -41,6 +41,9 @@ Page({
     select_time_arr:[['10','11','12','13','14','15','16','17','18','19','20','21','22','23'],['00','10','20','30','40','50']],
     popDemandAdsWind:false,
     popInviteMmberWind:false,
+
+    demand_config:{demand_range_type:1 ,demand_type:1,demandTime:''}, //demand_range_type1:单个包间 2：全部包间      demand_type    点播类型 1:立即点播  2:定时播放
+    
     
   },
 
@@ -662,7 +665,49 @@ Page({
     var keys = e.currentTarget.dataset.keys
     var task_list = this.data.task_list.inprogress;
     var demand_task_info = task_list[keys];
-    that.setData({popDemandAdsWind:true,demand_task_info:demand_task_info});
+    var date = new Date();
+    var hour = date.getHours();
+    var minutes = date.getMinutes()*1 +10*1;
+    console.log(hour)
+    console.log(minutes)
+    
+    if(minutes>=60){
+      minutes = minutes - 60;
+      hour = hour +1;
+    }
+    if(minutes<10){
+      minutes = '0'+ minutes
+    }
+    var demand_config = this.data.demand_config;
+    var demandTime = hour+':'+minutes;
+    demand_config.demandTime = demandTime
+    that.setData({popDemandAdsWind:true,demand_task_info:demand_task_info,demand_config:demand_config});
+  },
+  /**
+   * 选择点播包间范围
+   */
+  changeDemandRangeType:function(e){
+    var demand_range_type = e.detail.value;
+    var demand_config = this.data.demand_config;
+    demand_config.demand_range_type = demand_range_type;
+    this.setData({demand_config:demand_config})
+  },
+  /**
+   * 选择点播类型 1：立即点播 2：定时点播
+   */
+  changeDemandType:function(e){
+    var demand_type = e.detail.value;
+    var demand_config = this.data.demand_config;
+    demand_config.demand_type = demand_type;
+    this.setData({demand_config:demand_config})
+
+  },
+  changeDemandTime:function(e){
+    console.log(e)
+    var demandTime = e.detail.value;
+    var demand_config = this.data.demand_config;
+    demand_config.demandTime = demandTime
+    this.setData({demand_config:demand_config})
   },
   /**
    * 生命周期函数--监听页面隐藏
