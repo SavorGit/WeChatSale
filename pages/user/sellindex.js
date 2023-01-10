@@ -1315,7 +1315,7 @@ Page({
     if(dtype==1){
       play_time = '';
     }
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/task/demandadvTask', {
       ads_id   :ads_id,
       box_mac  : box_mac,
       dtype    :dtype,
