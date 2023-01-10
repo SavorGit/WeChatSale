@@ -9,6 +9,9 @@ var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
+const hours_arr = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'];
+const minutes_arr = ['00','10','20','30','40','50'];  
+
 Page({
 
   /**
@@ -42,6 +45,8 @@ Page({
     popDemandAdsWind:false,
     popInviteMmberWind:false,
 
+    multiArray: [hours_arr, minutes_arr],
+    multiIndex: [0, 0],
     demand_config:{demand_range_type:1 ,demand_type:1,demandTime:''}, //demand_range_type1:单个包间 2：全部包间      demand_type    点播类型 1:立即点播  2:定时播放
     
     
@@ -668,20 +673,56 @@ Page({
     var date = new Date();
     var hour = date.getHours();
     var minutes = date.getMinutes()*1 +10*1;
+    
     console.log(hour)
     console.log(minutes)
     
-    if(minutes>=60){
-      minutes = minutes - 60;
-      hour = hour +1;
+    
+
+    if(minutes%10==0){
+      
+
+    }else {
+      var mod_num = minutes%10;
+      var remain = 10 - mod_num;
+      minutes = minutes*1+remain;
+
     }
-    if(minutes<10){
-      minutes = '0'+ minutes
+    if(minutes >= 60){
+      hour = hour*1+1;
+      minutes = minutes * 1 -60;
+      if(minutes==0){
+        minutes = '00'
+      }
     }
+    if(hour>=24){
+      hour = '00';
+    }
+
+    var hour_key = 0;
+    for(let i in hours_arr){
+      if(hour==hours_arr[i]){
+        hour_key = i;
+        break;
+      }
+    }
+    var multiIndex = this.data.multiIndex;
+    multiIndex[0] = hour_key;
+
+    var minutes_key = 0 ;
+    for(let i in minutes_arr){
+      if(minutes == minutes_arr[i]){
+        minutes_key = i;
+        break;
+      }
+    }
+    multiIndex[1] = minutes_key;
+
+
     var demand_config = this.data.demand_config;
     var demandTime = hour+':'+minutes;
     demand_config.demandTime = demandTime
-    that.setData({popDemandAdsWind:true,demand_task_info:demand_task_info,demand_config:demand_config});
+    that.setData({popDemandAdsWind:true,demand_task_info:demand_task_info,demand_config:demand_config,multiIndex:multiIndex});
   },
   /**
    * 选择点播包间范围
@@ -704,10 +745,15 @@ Page({
   },
   changeDemandTime:function(e){
     console.log(e)
-    var demandTime = e.detail.value;
+    var d_key_arr = e.detail.value;
+    var multiIndex = this.data.multiIndex;
+    console.log(multiIndex)
+    var multiIndex=  [d_key_arr[0],d_key_arr[1]];
+    
+
     var demand_config = this.data.demand_config;
-    demand_config.demandTime = demandTime
-    this.setData({demand_config:demand_config})
+    demand_config.demandTime = hours_arr[d_key_arr[0]]+':'+minutes_arr[d_key_arr[1]]
+    this.setData({demand_config:demand_config,multiIndex:multiIndex})
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -1259,6 +1305,40 @@ Page({
     netty_info.resource_size = demand_task_info.resource_size
     var msg = JSON.stringify(netty_info);
 
+    var demand_config = this.data.demand_config;
+    var dtype = demand_config.demand_type;
+    var play_time = demand_config.demandTime;
+    var demand_range_type = demand_config.demand_range_type;
+    if(demand_range_type==2){
+      box_mac = '';
+    }
+    if(dtype==1){
+      play_time = '';
+    }
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      ads_id   :ads_id,
+      box_mac  : box_mac,
+      dtype    :dtype,
+      hotel_id :that.data.user_info.hotel_id,
+      mobile_brand:app.globalData.mobile_brand,
+      mobile_model:app.globalData.mobile_model,
+      openid:that.data.user_info.openid,
+      play_time:play_time,
+      task_id:demand_task_info.task_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      if(dtype==1){
+        app.showToast('点播成功',2000,'success');
+      }else {
+        app.showToast('设置成功',2000,'success');
+      }
+      that.setData({popDemandAdsWind:false});
+    })
+    
+
+
+
+    return false;
     utils.PostRequest(api_url + '/Netty/Index/pushnetty', {
       box_mac: box_mac,
       msg: msg,

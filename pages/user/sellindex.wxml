@@ -868,7 +868,7 @@
                 <view class="label font-bold flex_row_center_flexStart theme-font7"></view>
                 <view class="value picker">
                   <view class="frame border">
-                    <picker class="input" mode="time" value="{{demand_config.demandTime}}" bindchange='changeDemandTime'>
+                    <picker class="input" mode="multiSelector" value="{{multiIndex}}" bindchange='changeDemandTime' range="{{multiArray}}">
                       <view class="show flex_row_center_flexStart theme-font-999999">{{demand_config.demandTime}}</view>
                     </picker>
                   </view>
