@@ -866,8 +866,8 @@
               </view>
             </view>
           </view>
-          <!--wx:if="{{demand_config.demand_type==2}}"-->
-          <view class="row flex_row_center_flexStart">
+          <!---->
+          <view class="row flex_row_center_flexStart" wx:if="{{demand_config.demand_type==2}}">
             <view class="porperty flex_row_center_flexStart">
               <view class="label font-bold flex_row_center_flexStart theme-font7"></view>
               <view class="value picker">
