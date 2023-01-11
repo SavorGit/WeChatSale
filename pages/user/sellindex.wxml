@@ -832,51 +832,54 @@
         <view class="title">选择点播包间</view>
       </view>
       <view class="win-body flex_column_center_flexStart">
-        <scroll-view class="rooms" scroll-y="true" scroll-with-animation="true">
-          <view class="warpper flex_column_center_flexStart">
-            <view class="row flex_row_center_flexStart">
-              <view class="porperty flex_row_center_flexStart">
-                <view class="label font-bold flex_row_center_flexStart theme-font7">点播范围</view>
-                <view class="value radio-group flex_row_center_spaceBetween">
-                  <radio-group class="frame flex_row_center_spaceBetween" bindchange="changeDemandRangeType">
-                    <radio class="input" value="1" checked="{{demand_config.demand_range_type==1?true:false}}">单个包间</radio>
-                    <radio class="input" value="2" checked="{{demand_config.demand_range_type==2?true:false}}">全部包间</radio>
-                  </radio-group>
-                </view>
+        <view class="show-body">
+          <view class="row flex_row_center_flexStart">
+            <view class="porperty flex_row_center_flexStart">
+              <view class="label font-bold flex_row_center_flexStart theme-font7">点播范围</view>
+              <view class="value radio-group flex_row_center_spaceBetween">
+                <radio-group class="frame flex_row_center_spaceBetween" bindchange="changeDemandRangeType">
+                  <radio class="input" value="1" checked="{{demand_config.demand_range_type==1?true:false}}">单个包间</radio>
+                  <radio class="input" value="2" checked="{{demand_config.demand_range_type==2?true:false}}">全部包间</radio>
+                </radio-group>
               </view>
             </view>
-            <view class="list room border flex_column_center_spaceBetween">
-              <block wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-                <view class="item flex_row_center_flexStart {{demand_box_index==index?'selected':'one-line-overflow'}} one-line-overflow" bindtap="selectDemandMissionRoom" data-keys="{{index}}">
-                  <view class="name one-line-overflow">{{bean}}</view>
-                </view>
-              </block>
-            </view>
-            <view class="row flex_row_center_flexStart">
-              <view class="porperty flex_row_center_flexStart">
-                <view class="label font-bold flex_row_center_flexStart theme-font7">点播时间</view>
-                <view class="value radio-group flex_row_center_spaceBetween">
-                  <radio-group class="frame flex_row_center_spaceBetween" bindchange="changeDemandType">
-                    <radio class="input" value="1" checked="{{demand_config.demand_type==1?true:false}}" >立即点播</radio>
-                    <radio class="input" value="2" checked="{{demand_config.demand_type==2?true:false}}">定时播放</radio>
-                  </radio-group>
-                </view>
-              </view>
-            </view>
-            <view class="row flex_row_center_flexStart" wx:if="{{demand_config.demand_type==2}}">
-              <view class="porperty flex_row_center_flexStart">
-                <view class="label font-bold flex_row_center_flexStart theme-font7"></view>
-                <view class="value picker">
-                  <view class="frame border">
-                    <picker class="input" mode="multiSelector" value="{{multiIndex}}" bindchange='changeDemandTime' range="{{multiArray}}">
-                      <view class="show flex_row_center_flexStart theme-font-999999">{{demand_config.demandTime}}</view>
-                    </picker>
+          </view>
+          <scroll-view class="rooms border" scroll-y="true" scroll-with-animation="true">
+            <view class="warpper flex_column_center_flexStart">
+              <view class="list room flex_column_center_spaceBetween">
+                <block wx:for="{{objectBoxArray}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                  <view class="item flex_row_center_flexStart {{demand_box_index==index?'selected':'one-line-overflow'}} one-line-overflow" bindtap="selectDemandMissionRoom" data-keys="{{index}}">
+                    <view class="name one-line-overflow">{{bean}}</view>
                   </view>
+                </block>
+              </view>
+            </view>
+          </scroll-view>
+          <view class="row flex_row_center_flexStart">
+            <view class="porperty flex_row_center_flexStart">
+              <view class="label font-bold flex_row_center_flexStart theme-font7">点播时间</view>
+              <view class="value radio-group flex_row_center_spaceBetween">
+                <radio-group class="frame flex_row_center_spaceBetween" bindchange="changeDemandType">
+                  <radio class="input" value="1" checked="{{demand_config.demand_type==1?true:false}}">立即点播</radio>
+                  <radio class="input" value="2" checked="{{demand_config.demand_type==2?true:false}}">定时播放</radio>
+                </radio-group>
+              </view>
+            </view>
+          </view>
+          <!--wx:if="{{demand_config.demand_type==2}}"-->
+          <view class="row flex_row_center_flexStart">
+            <view class="porperty flex_row_center_flexStart">
+              <view class="label font-bold flex_row_center_flexStart theme-font7"></view>
+              <view class="value picker">
+                <view class="frame border">
+                  <picker class="input" mode="multiSelector" value="{{multiIndex}}" bindchange='changeDemandTime' range="{{multiArray}}">
+                    <view class="show flex_row_center_flexStart theme-font-999999">{{demand_config.demandTime}}</view>
+                  </picker>
                 </view>
               </view>
             </view>
           </view>
-        </scroll-view>
+        </view>
         <view class="button-group flex_row_center_spaceAround">
           <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="closePopWind">取消</view>
           <view class="btn confir flex_row_center_center theme-button-blue" bindtap="demandTaskAds">确定</view>
