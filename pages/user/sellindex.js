@@ -1315,6 +1315,7 @@ Page({
     if(dtype==1){
       play_time = '';
     }
+    
     utils.PostRequest(api_v_url + '/task/demandadvTask', {
       ads_id   :ads_id,
       box_mac  : box_mac,
@@ -1326,13 +1327,30 @@ Page({
       play_time:play_time,
       task_id:demand_task_info.task_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      
-      if(dtype==1){
-        app.showToast('点播成功',2000,'success');
-      }else {
-        app.showToast('设置成功',2000,'success');
+      var is_pop_tips_wind = data.result.is_pop_tips_wind;
+      if(is_pop_tips_wind==1){
+        var msg = data.result.msg;
+        wx.showModal({
+          title: '提示',
+          content: msg,
+          confirmText:'我知道了',
+          showCancel:false,
+          success: function (res) {
+            
+          }
+        })
+      }else{
+        if(dtype==1){
+          app.showToast('点播成功',2000,'success');
+        }else {
+          app.showToast('设置成功',2000,'success');
+        }
+        setTimeout(() => {
+          that.setData({popDemandAdsWind:false});
+        }, 2000);
+        
       }
-      that.setData({popDemandAdsWind:false});
+      
     })
     
 
