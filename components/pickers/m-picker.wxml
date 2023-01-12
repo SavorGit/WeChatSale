@@ -1,4 +1,4 @@
-<!--components/pickers/a-pcker.wxml-->
+<!--components/pickers/m-picker.wxml-->
 <slot bindtap="showPickerView"></slot>
 <view class='mask' wx:if="{{isShowPickerView}}" catchtap="cancel">
   <view class="content" animation="{{animation}}">
@@ -7,8 +7,8 @@
       <view class="top-text top-right-color" hover-class="top-right-color-hover" catchtap="ok">确定</view>
     </view>
     <picker-view style="width:100%;height:500rpx;" value="{{value}}" bindchange="onChangePickerView" catchtap="onClickPickerView">
-      <picker-view-column>
-        <view wx:for="{{range}}" wx:key="key" style="line-height:50px;text-align:center;" class="item">{{item}}</view>
+      <picker-view-column wx:for="{{range}}" wx:key="colKey" wx:for-item="column" wx:for-index="colIndex">
+        <view wx:for="{{column}}" wx:key="rowKey" style="line-height:50px;text-align:center;" class="item">{{item}}</view>
       </picker-view-column>
     </picker-view>
   </view>

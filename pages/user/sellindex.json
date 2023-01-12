@@ -5,6 +5,7 @@
   "usingComponents": {
     "modal": "/components/modal/modal",
     "bottomModal": "/components/modal/bottomModal",
-    "zy-slider": "/components/slider/zy-slider"
+    "zy-slider": "/components/slider/zy-slider",
+    "m-picker": "/components/pickers/m-picker"
   }
 }

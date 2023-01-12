@@ -1,4 +1,4 @@
-// components/pickers/a-pcker.js
+// components/pickers/m-picker.js
 Component({
   /**
    * 组件的属性列表
@@ -19,7 +19,7 @@ Component({
    */
   data: {
     isShowPickerView: false,
-    value: [0],//设置picker-view默认哪项选中
+    value: [],//设置picker-view默认哪项选中
     dialogh: 0
   },
   // observers: {
@@ -27,7 +27,15 @@ Component({
   //         console.log('observers.value', value)
   //     }
   // },
+  lifetimes: {
+    ready: function () {
+      // console.log('lifetimes.ready');
+      let self = this;
+      self.value = this.data.value;
+    },
+  },
   attached: function () {
+    // console.log('attached');
     let self = this;
     //动画
     self.animation = wx.createAnimation({ duration: 300 });
@@ -35,11 +43,11 @@ Component({
     let dialoghpx = 600 / 750 * wx.getSystemInfoSync().windowWidth;
     self.setData({ dialogh: dialoghpx });
   },
-
   pageLifetimes: {
     show: function () {
-      let self = this;
-      self.value = this.data.value;
+      // console.log('pageLifetimes.show');
+      // let self = this;
+      // self.value = this.data.value;
     }
   },
 
