@@ -32,10 +32,16 @@ Page({
     }else {
       var is_auth = 0;
     }
+    if(typeof(options.is_my)!='undefined'){
+      var is_my = options.is_my;
+    }else {
+      var is_my = true;
+    }
+
     if(is_auth==1){
       wx.hideHomeButton()
     }
-    this.setData({is_auth:is_auth});
+    this.setData({is_auth:is_auth,is_my:is_my});
     openid = options.openid;
     this.isRegister(openid,is_auth);
     
@@ -55,7 +61,11 @@ Page({
       if(userinfo.openid != openid){
         that.setData({mobile_disabled:true,is_my:false})
       }else {
-        wx.setStorageSync(cache_key + 'userinfo', userinfo)
+        var is_my = that.data.is_my;
+        if(is_my==true){
+          wx.setStorageSync(cache_key + 'userinfo', userinfo)
+        }
+        
       }
       that.setData({userinfo:userinfo,wxinfo:wxinfo,mobile:mobile})
     })
@@ -237,6 +247,10 @@ Page({
                 delta: 1
               })
             }
+        }else {
+          wx.switchTab({
+            url: '/pages/user/sellindex',
+          })
         }
     })
   },

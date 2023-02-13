@@ -160,7 +160,7 @@ Page({
   editUserInfo:function(e){
     var openid = e.currentTarget.dataset.openid;
     wx.navigateTo({
-      url: '/pages/hotel/setting/personalinfo?openid='+openid,
+      url: '/pages/hotel/setting/personalinfo?openid='+openid+'&is_my=false',
     })
   },
   /**
