@@ -110,19 +110,31 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==30 || bean.task_type==31}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
                 </view>
                 <view class="right flex_column_flexStart_spaceBetween" catchtap="viewInprogressTaskDetailInfo" data-index="{{index}}">
                   <view class="name theme-font1">{{bean.task_name}}</view>
-                  <view class="tips">
-                    <view wx:if="{{bean.progress!='' && bean.task_type==25}}" class="tip theme-font-F44444"> {{bean.progress}}{{bean.today_integral}}</view>
-                    <view wx:elif="{{bean.progress!='' && bean.task_type==26}}" class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
-                    <view wx:elif="{{bean.progress!='' && bean.task_type==6}}" class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
+                  <view class="tips" wx:if="{{bean.progress!='' && bean.task_type==25}}">
+                    <view class="tip theme-font-F44444"> {{bean.progress}}{{bean.today_integral}}</view>
                   </view>
-                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
+                  <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==26}}">
+                    <view class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
+                  </view>
+                  <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==6}}">
+                    <view class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
+                  </view>
+                  <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==30}}">
+                    <view class="tip theme-font7">{{bean.progress}}{{bean.today_integral}}</view>
+                  </view>
+                  <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==31}}">
+                    <view class="tip theme-font7">{{bean.progress}}</view>
+                    <view class="tip theme-font-F44444">可收益{{bean.integral}}积分</view>
+                    <view class="tip theme-font3">物料回收成功后，任务自动完成</view>
+                  </view>
+                  <view wx:if="{{bean.task_type!=31}}" class="btn flex_row_center_spaceBetween {{bean.task_type==30?'theme-button-red':'theme-button-welcome'}}" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
                         <view class="fa fa-circle fa-stack-2x"></view>
@@ -134,6 +146,7 @@
                       <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="goToHotelAdv" data-keys="{{index}}">点播</view>
                       <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="popInviteMemberWind" data-keys="{{index}}">发优惠券</view>
                       <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="sendPostBook" data-keys="{{index}}">发邀请函</view>
+                      <view wx:elif="{{bean.task_type==30}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="修改值" data-keys="{{index}}">扫码赠酒</view>
                     </view>
                   </view>
                 </view>
@@ -272,7 +285,7 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==30 || bean.task_type==31}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -281,10 +294,14 @@
                   <view class="top flex_row_center_spaceBetween">
                     <view class="left flex_column_flexStart_spaceBetween">
                       <view class="name">{{bean.task_name}}</view>
-                      <view class="tip theme-font5">每次完成可收益{{bean.integral}}积分</view>
+                      <view wx:if="{{bean.task_type==30}}" class="tip theme-font7">{{bean.tip}}</view>
+                      <view wx:if="{{bean.task_type==30}}" class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                      <view wx:elif="{{bean.task_type==31}}" class="tip theme-font5">可收益{{bean.integral}}积分</view>
+                      <view wx:else class="tip theme-font5">每次完成可收益{{bean.integral}}积分</view>
                     </view>
                     <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
-                      <view class="btn flex_column_center_center theme-button-welcome">领取</view>
+                      <view wx:if="{{bean.task_type==30}}" class="btn flex_column_center_center theme-button-red">领取</view>
+                      <view wx:else class="btn flex_column_center_center theme-button-welcome">领取</view>
                     </view>
                   </view>
                   <view class="bottom">
@@ -431,7 +448,7 @@
                 <view class="bottom"></view>
               </view>
             </view>
-            <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6}}" class="item sale flex_column_center_center">
+            <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==30 || bean.task_type==31}}" class="item sale flex_column_center_center">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -451,7 +468,15 @@
                     <view wx:elif="{{bean.task_type==6}}" class="tip theme-font-F44444">今日获得积分{{bean.join_peoplenum}}</view>
                     -->
                   </view>
-                  <view class="btn flex_row_center_spaceBetween theme-button-welcome" data-index="{{index}}" data-pop_type="1">
+                  <view class="tips" wx:if="{{bean.progress!='' && bean.task_type==30}}">
+                    <view class="tip theme-font7">{{bean.progress}}{{bean.today_integral}}</view>
+                  </view>
+                  <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==31}}">
+                    <view class="tip theme-font7">{{bean.progress}}</view>
+                    <view class="tip theme-font-F44444">可收益{{bean.integral}}积分</view>
+                    <view class="tip theme-font3">物料回收成功后，任务自动完成</view>
+                  </view>
+                  <view wx:if="{{bean.task_type!=31}}" class="btn flex_row_center_spaceBetween {{bean.task_type==30?'theme-button-red':'theme-button-welcome'}}" data-index="{{index}}" data-pop_type="1">
                     <view class="reward flex_column_center_center theme-font-F9DE59">
                       <view class="icon fa-stack">
                         <view class="fa fa-circle fa-stack-2x"></view>
@@ -463,6 +488,7 @@
                       <view wx:if="{{bean.task_type==25}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">点播</view>
                       <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发优惠券</view>
                       <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发邀请函</view>
+                      <view wx:elif="{{bean.task_type==30}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">扫码赠酒</view>
                     </view>
                   </view>
                 </view>
@@ -910,6 +936,192 @@
         <!-- <view class="button-group flex_row_center_center">
           <button class="btn cancel flex_row_center_center theme-button-orange2">邀请客人加入会员</button>
         </view> -->
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 品鉴酒提醒弹窗 -->
+<view wx:if="{{false}}" class="window style-one wine-tasting-reminder">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="修改值">
+          <image class="icon" mode="aspectFill" src="/images/icon/58525C_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">品鉴酒活动提醒（VIP888）</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="main flex_column_center_center">
+          <view class="panel tips flex_column_center_center">
+            <view class="body flex_column_center_center">
+              <view class="tip text big2 theme-font7">vip888包间手机尾号1234的客人</view>
+              <view class="tip text big2 theme-font7">领取了一份品鉴酒，请您为客人斟酒</view>
+            </view>
+          </view>
+          <view class="panel goods flex_column_center_center bgcolor">
+            <view class="body flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_spaceAround">
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">品鉴酒：</view>
+                  <view class="value text">剑南春水晶剑</view>
+                </view>
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">品鉴量：</view>
+                  <view class="value text">100ml</view>
+                </view>
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">任务奖励：</view>
+                  <view class="value text">xxxx积分</view>
+                </view>
+              </view>
+              <view class="right flex_column_flexEnd_center">
+                <view class="porperty pic">
+                  <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="panel button flex_row_center_center">
+            <view class="body flex_column_center_center">
+              <view class="row flex_row_center_center">
+                <view class="btn get-task flex_row_center_center theme-button-welcome">领取任务</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 品鉴酒扫码弹窗 -->
+<view wx:if="{{false}}" class="window style-one wine-tasting-scan">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="修改值">
+          <image class="icon" mode="aspectFill" src="/images/icon/58525C_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">扫品鉴酒二维码</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="main flex_column_center_center">
+          <view class="panel tips flex_column_center_center">
+            <view class="body flex_column_center_center">
+              <view class="tip text big2 theme-font7">请及时为xxx包间手机尾号xxxx的客人送酒</view>
+            </view>
+          </view>
+          <view class="panel goods flex_column_center_center bgcolor">
+            <view class="body flex_row_center_spaceBetween">
+              <view class="left flex_column_flexStart_spaceAround">
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">品鉴酒：</view>
+                  <view class="value text">剑南春水晶剑</view>
+                </view>
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">品鉴量：</view>
+                  <view class="value text">100ml</view>
+                </view>
+                <view class="porperty text flex_row_center_flexStart">
+                  <view class="label text">任务奖励：</view>
+                  <view class="value text">xxxx积分</view>
+                </view>
+              </view>
+              <view class="right flex_column_flexEnd_center">
+                <view class="porperty pic">
+                  <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="panel button flex_row_center_center">
+            <view class="body flex_column_center_center">
+              <view class="row flex_row_center_center">
+                <view class="btn get-task flex_row_center_center theme-button-welcome">扫码</view>
+              </view>
+              <view class="row flex_row_center_center">
+                <view class="text theme-font3">扫码成功后系统则认定为你已经为客人倒了品鉴酒</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 品鉴酒完成提示弹窗 -->
+<view wx:if="{{false}}" class="window style-one wine-tasting-complete">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="修改值">
+          <image class="icon" mode="aspectFill" src="/images/icon/58525C_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">提示</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="main flex_column_center_center">
+          <view class="panel tips flex_column_center_center">
+            <view class="body flex_column_center_center">
+              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">你已经完成为xxx包间的客人送完品鉴酒</view>
+              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">的任务，积分奖励将发送至你的积分帐户</view>
+            </view>
+          </view>
+          <view class="panel button flex_row_center_center">
+            <view class="body flex_column_center_center">
+              <view class="row flex_row_center_center">
+                <view class="btn get-task flex_row_center_center theme-button-welcome">我知道了</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 品鉴酒领取回收任务弹窗 -->
+<view wx:if="{{false}}" class="window style-one wine-tasting-recoup">
+  <view class="mask flex_column_center_center">
+    <view class="entity theme-window">
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn close flex_column_center_center" bindtap="修改值">
+          <image class="icon" mode="aspectFill" src="/images/icon/58525C_close.png" />
+        </view>
+      </view>
+      <view class="title-bar flex_row_center_center">
+        <view class="title">提示</view>
+      </view>
+      <view class="win-body flex_column_center_flexStart">
+        <view class="main flex_column_center_center">
+          <view class="panel tips flex_column_center_center">
+            <view class="body flex_column_center_center">
+              <view class="tip text big2 flex_row_center_center theme-font1" style="text-align:center;">你已经完成为xxx包间的客人xxx送完品鉴酒</view>
+              <view class="tip text big2 flex_row_center_center theme-font1" style="text-align:center;">的任务，积分奖励将发送至你的积分帐户</view>
+            </view>
+          </view>
+          <view class="panel tips flex_column_center_center">
+            <view class="body flex_column_center_center">
+              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">此瓶品鉴酒已消耗完，你可完成商品物料</view>
+              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">回收任务，获得额外xxxx积分奖励。</view>
+            </view>
+          </view>
+          <view class="panel button flex_row_center_center">
+            <view class="body flex_column_center_center">
+              <view class="row flex_row_center_center">
+                <view class="btn get-task flex_row_center_center theme-button-welcome">领取任务</view>
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
   </view>

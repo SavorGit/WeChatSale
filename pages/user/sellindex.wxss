@@ -9,6 +9,51 @@
   font-weight: bold;
 }
 
+.text {
+  font-size: 28rpx;
+}
+
+.text.big4 {
+  font-size: 36rpx;
+}
+
+.text.big3 {
+  font-size: 34rpx;
+}
+
+.text.big2 {
+  font-size: 32rpx;
+}
+
+.text.big1 {
+  font-size: 30rpx;
+}
+
+.text.small1 {
+  font-size: 26rpx;
+}
+
+.text.small2 {
+  font-size: 24rpx;
+}
+
+.text.small3 {
+  font-size: 22rpx;
+}
+
+.text.small4 {
+  font-size: 20rpx;
+}
+
+.text.bold {
+  font-weight: bold;
+}
+
+image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -745,4 +790,90 @@
   border: 0;
   padding: 0;
   margin: 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.tips {
+  width: 100%;
+  padding: 20rpx 0;
+}
+
+.window.style-one .entity>.win-body>.main {
+  width: 100%;
+}
+
+.window.style-one .entity>.win-body>.main>.panel {
+  width: 100%;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.tips>.body>.tip {
+  padding: 5rpx 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods {
+  margin: 20rpx 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods.bgcolor {
+  background-color: rgba(253, 128, 36, 0.24);
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body {
+  width: calc(100% - 50rpx);
+  padding: 25rpx;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.left,
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.right {
+  min-height: 220rpx;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.left {
+  width: calc(100% - 250rpx);
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty {
+  width: 100%;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty>.label {
+  width: 140rpx;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty>.value {
+  width: calc(100% - 140rpx);
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.right {
+  width: 240rpx;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.right>.porperty {
+  width: 224rpx;
+  height: 202rpx;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.goods>.body>.right>.porperty>.pic {
+  width: 100%;
+  height: 100%;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.button {
+  padding: 20rpx 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.button>.body>.row {
+  padding: 5rpx 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.button>.body>.row>.btn {
+  font-size: 28rpx;
+  border-radius: 8rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.window.style-one .entity>.win-body>.main>.panel.button>.body>.row>.btn.get-task {
+  width: 332rpx;
+  height: 90rpx;
 }
