@@ -48,6 +48,8 @@ Page({
     multiArray: [hours_arr, minutes_arr],
     multiIndex: [0, 0],
     demand_config:{demand_range_type:1 ,demand_type:1,demandTime:''}, //demand_range_type1:单个包间 2：全部包间      demand_type    点播类型 1:立即点播  2:定时播放
+    task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
+                            get_recycle_task_pop_wind:false,task_info:{}},  //品平价酒任务
     
     
   },
@@ -215,6 +217,7 @@ Page({
           if(loop_play_list.length==0){
             that.getLoopPlay();
           }
+          that.tastWineRemindGetTask(openid,hotel_id);
           if(user_info.is_perfect==0){
           //if(user_info.is_wx_auth!=3 || user_info.mobile==''){
             
@@ -359,8 +362,13 @@ Page({
       var content = '确定要领取邀请函任务?'
     }else if(lottery_detail_info.task_type==26){
       var content = '确定要领取发优惠券任务?'
+    }else if(lottery_detail_info.task_type==27){
+      var content = '确定要领取品鉴酒任务?';
     }else {
       var content = '确定要领取此抽奖活动?'
+    }
+    if(typeof(lottery_detail_info.activityapply_id)=='undefined'){
+      lottery_detail_info.activityapply_id = 0;
     }
     wx.showModal({
       title:'提示',
@@ -370,7 +378,8 @@ Page({
           utils.PostRequest(api_v_url + '/task/receiveTask',{
             openid:user_info.openid,
             hotel_id:user_info.hotel_id,
-            task_id:lottery_detail_info.task_id
+            task_id:lottery_detail_info.task_id,
+            activityapply_id:lottery_detail_info.activityapply_id
           }, (data, headers, cookies, errMsg, statusCode) => {
             that.setData({lottery_detail_window:false})
             that.getTaskList(user_info.openid,user_info.hotel_id)
@@ -492,6 +501,8 @@ Page({
       popDemandAdsWind:false,
       demand_task_info:[],
       popInviteMmberWind:false,
+      task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
+        get_recycle_task_pop_wind:false,task_info:{}},   //品平价酒活动
     })
   },
   
@@ -1451,6 +1462,105 @@ Page({
 
 
   },
+  /**
+   * @desc 品鉴酒-活动提醒领取任务
+   */
+  tastWineRemindGetTask:function(openid,hotel_id){
+    var task_taste_honest_wine = this.data.task_taste_honest_wine;
+    utils.PostRequest(api_v_url + '/task/getPopupTask', {
+      openid   : openid,
+      hotel_id : hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var is_popup = data.result.is_popup;
+      task_taste_honest_wine.get_task_pop_wind = is_popup==1 ? true: false;
+      task_taste_honest_wine.task_info = data.result;
+      this.setData({task_taste_honest_wine:task_taste_honest_wine})
+    
+    })
+  },
+  /**
+   * @desc 弹窗领取任务
+   */
+  popReceiveTaskNow:function(e){
+    var that = this;
+    var type = e.currentTarget.dataset.type;
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    var task_taste_honest_wine = this.data.task_taste_honest_wine;
+    var task_info = task_taste_honest_wine.task_info;
+
+
+    utils.PostRequest(api_v_url + '/task/receiveTask',{
+      activityapply_id : task_info.activityapply_id, 
+      openid:user_info.openid,
+      hotel_id:user_info.hotel_id,
+      task_id:task_info.task_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(type=='pop_taste_wine'){ //领取品鉴酒任务
+        task_taste_honest_wine.get_task_pop_wind = false;
+        task_taste_honest_wine.scancode_pop_wind = true;
+        task_taste_honest_wine.task_info = data.result;
+      }else if(type=='pop_taste_wine_recycle'){ //领取品鉴酒物料回收任务
+        task_taste_honest_wine.get_recycle_task_pop_wind = false;
+      }
+      that.setData({task_taste_honest_wine:task_taste_honest_wine})
+      that.getTaskList(user_info.openid,user_info.hotel_id)
+      app.showToast('任务领取成功',2000,'success');
+    },res=>{
+      if(type=='pop_taste_wine'){
+        task_taste_honest_wine.get_task_pop_wind = false;
+      }else if(type=='pop_taste_wine_recycle'){
+        task_taste_honest_wine.get_recycle_task_pop_wind = false;
+      }
+      that.setData({task_taste_honest_wine:task_taste_honest_wine})
+      that.getTaskList(user_info.openid,user_info.hotel_id)
+    })
+  },
+  /**
+   * @desc 品鉴酒-扫码赠酒
+   */
+  tastWineScanGoodCode:function(e){
+    //var task_id = e.currentTarget.dataset.task_id;
+    var is_pop_wind = e.currentTarget.dataset.is_pop_wind;
+    var task_taste_honest_wine = this.data.task_taste_honest_wine;
+    if(is_pop_wind==1){
+      var task_user_id = task_taste_honest_wine.task_info.user_task_id;
+      
+    }else{
+      var keys = e.currentTarget.dataset.keys;
+      var task_info = this.data.task_list.inprogress[keys];
+      var task_user_id = task_info.task_user_id;
+    }
+    
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
+    
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        var code_msg = res.result;
+        utils.PostRequest(api_v_url + '/task/scanTastewine', {
+          idcode           : code_msg,
+          openid           : openid,
+          task_user_id     : task_user_id,
+          hotel_id         : user_info.hotel_id
+        }, (data, headers, cookies, errMsg, statusCode) => {
+          task_taste_honest_wine.scancode_pop_wind = false;
+          var remark= data.result.remark;
+
+          if(remark ==''){
+            task_taste_honest_wine.scancode_success_pop_wind = true;
+          }else{
+            task_taste_honest_wine.get_recycle_task_pop_wind = true;
+          }
+          task_taste_honest_wine.integral_info = data.result;
+          
+          this.setData({task_taste_honest_wine:task_taste_honest_wine});
+          
+        })
+      }
+    })
+  },
+
   zyttest:function(){
     wx.redirectTo({
       url: '/pages/user/invite',
