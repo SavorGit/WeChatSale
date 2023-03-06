@@ -1072,8 +1072,7 @@
         <view class="main flex_column_center_center">
           <view class="panel tips flex_column_center_center">
             <view class="body flex_column_center_center">
-              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">{{task_taste_honest_wine.integral_info.message}}</view>
-              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">的任务，积分奖励将发送至你的积分帐户</view>
+              <view class="tip text big2 flex_row_center_center theme-font7" style="text-align:center;">{{task_taste_honest_wine.integral_info.message}}的任务，积分奖励将发送至你的积分帐户</view>
             </view>
           </view>
           <view class="panel button flex_row_center_center">
@@ -1105,8 +1104,7 @@
         <view class="main flex_column_center_center">
           <view class="panel tips flex_column_center_center">
             <view class="body flex_column_center_center">
-              <view class="tip text big2 flex_row_center_center theme-font1" style="text-align:center;">{{task_taste_honest_wine.integral_info.message}}</view>
-              <view class="tip text big2 flex_row_center_center theme-font1" style="text-align:center;">的任务，积分奖励将发送至你的积分帐户</view>
+              <view class="tip text big2 flex_row_center_center theme-font1" style="text-align:center;">{{task_taste_honest_wine.integral_info.message}}的任务，积分奖励将发送至你的积分帐户</view>
             </view>
           </view>
           <view class="panel tips flex_column_center_center">
