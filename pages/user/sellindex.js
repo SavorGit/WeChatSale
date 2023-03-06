@@ -1472,10 +1472,13 @@ Page({
       openid   : openid,
       hotel_id : hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var is_popup = data.result.is_popup;
-      task_taste_honest_wine.get_task_pop_wind = is_popup==1 ? true: false;
-      task_taste_honest_wine.task_info = data.result;
-      this.setData({task_taste_honest_wine:task_taste_honest_wine})
+      if(task_taste_honest_wine.scancode_success_pop_wind==false){
+        var is_popup = data.result.is_popup;
+        task_taste_honest_wine.get_task_pop_wind = is_popup==1 ? true: false;
+        task_taste_honest_wine.task_info = data.result;
+        this.setData({task_taste_honest_wine:task_taste_honest_wine})
+      }
+      
     
     },res=>{},{isShowLoading:showload})
   },
