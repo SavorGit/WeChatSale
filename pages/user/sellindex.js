@@ -1558,8 +1558,10 @@ Page({
           this.setData({task_taste_honest_wine:task_taste_honest_wine});
           
         },res=>{
-          task_taste_honest_wine.scancode_pop_wind = false;
-          this.setData({task_taste_honest_wine:task_taste_honest_wine});
+          //task_taste_honest_wine.scancode_pop_wind = false;
+          
+          this.setData({task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
+            get_recycle_task_pop_wind:false,task_info:{}}});
         })
       }
     })
