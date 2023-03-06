@@ -201,7 +201,7 @@ Page({
           that.setData({user_info:data.result.userinfo})
           //var task_list = that.data.task_list;
           //if(task_list.length==0){
-            that.getTaskList(openid,hotel_id);
+            that.getTaskList(openid,hotel_id,is_onload);
           //}
           var box_list = that.data.box_list;
           var demand_box_list = that.data.demand_box_list;
@@ -217,7 +217,7 @@ Page({
           if(loop_play_list.length==0){
             that.getLoopPlay();
           }
-          that.tastWineRemindGetTask(openid,hotel_id);
+          that.tastWineRemindGetTask(openid,hotel_id,is_onload);
           if(user_info.is_perfect==0){
           //if(user_info.is_wx_auth!=3 || user_info.mobile==''){
             
@@ -269,9 +269,9 @@ Page({
   /**
    * 获取任务列表
    */
-  getTaskList:function(openid,hotel_id){
+  getTaskList:function(openid,hotel_id,is_onload=0){
     var that = this;
-
+    var showload = is_onload ==1 ?true : false;
     var task_list = that.data.task_list;
     if(task_list.length>0){
       var is_f = false
@@ -284,7 +284,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       var task_list = data.result;
       that.setData({task_list:task_list});
-    })
+    },res=>{},{isShowLoading:showload})
   },
   /***
    * 获取循环播放任务列表
@@ -1465,8 +1465,9 @@ Page({
   /**
    * @desc 品鉴酒-活动提醒领取任务
    */
-  tastWineRemindGetTask:function(openid,hotel_id){
+  tastWineRemindGetTask:function(openid,hotel_id,is_onload= 0){
     var task_taste_honest_wine = this.data.task_taste_honest_wine;
+    var showload = is_onload==1?true:false;
     utils.PostRequest(api_v_url + '/task/getPopupTask', {
       openid   : openid,
       hotel_id : hotel_id
@@ -1476,7 +1477,7 @@ Page({
       task_taste_honest_wine.task_info = data.result;
       this.setData({task_taste_honest_wine:task_taste_honest_wine})
     
-    })
+    },res=>{},{isShowLoading:showload})
   },
   /**
    * @desc 弹窗领取任务
@@ -1556,6 +1557,9 @@ Page({
           
           this.setData({task_taste_honest_wine:task_taste_honest_wine});
           
+        },res=>{
+          task_taste_honest_wine.scancode_pop_wind = false;
+          this.setData({task_taste_honest_wine:task_taste_honest_wine});
         })
       }
     })
