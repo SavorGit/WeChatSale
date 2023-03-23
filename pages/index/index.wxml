@@ -98,7 +98,7 @@
         <block wx:for="{{sign_box_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
           <view class='weui-grid' wx:if="{{bean.status==2}}">
             <view class="box flex_column_center_center">
-              <view class='light green-light' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
+              <view class='light {{index/2==1?"green-light":"grey-light"}}' bindtap="repeatSign" data-nickname="{{bean.user.nickName}}">
                 <image src='{{bean.user.avatarUrl}}'></image>
               </view>
               <view class='name theme-font2'>{{bean.name}}</view>
@@ -106,7 +106,7 @@
           </view>
           <view class='weui-grid' wx:if="{{bean.status==1}}">
             <view class="box flex_column_center_center" bindtap="signIn" data-box_mac="{{bean.box_mac}}" data-keys="{{index}}">
-              <view class='light green-light theme-font3'>
+              <view class='light {{index/2==1?"green-light":"grey-light"}} theme-font3'>
                 <view class="theme7">签到</view>
               </view>
               <view class='name theme-font2'>{{bean.name}}</view>

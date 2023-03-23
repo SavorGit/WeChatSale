@@ -269,6 +269,7 @@ page {
   width: 82rpx;
   height: 82rpx;
   border-radius: 50%;
+  font-size: 28rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,8 +289,11 @@ page {
 }
 
 .set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light.green-light {
-  background-color: #aeaaad;
-  font-size: 28rpx;
+  background-color: #04e977;
+}
+
+.set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.light.grey-light {
+  background-color: #aaaeac;
 }
 
 .set_top_box-panel>.scroll-view .weui-grids>.weui-grid>.box>.name {
