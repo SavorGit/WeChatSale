@@ -97,6 +97,7 @@
       "pages/index",
       "pages/template/commons",
       "pages/hotel/hotelstore",
+      "pages/hotel/stockcodelist",
       "pages/storein/index",
       "pages/storein/selectgoods",
       "pages/storein/scancode",
