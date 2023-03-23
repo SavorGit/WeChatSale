@@ -1,1 +1,263 @@
 /* store/pages/hotel/stockcodelist.wxss */
+@import "/utils/panel.wxss";
+
+/**
+ * [酒楼库存] 库存码列表页面
+ */
+.page {
+  width: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.panel {
+  padding: 10rpx 0;
+}
+
+.panel>.body {
+  width: calc(100% - 40rpx);
+  padding: 10rpx 20rpx;
+}
+
+.panel>.body>.row {
+  width: 100%;
+}
+
+.panel.search {
+  border-radius: 10rpx;
+}
+
+.panel.search>.body form,
+.panel.search>.body .row {
+  width: 100%;
+}
+
+.panel.search>.body .row-group {
+  width: calc(100% - 70rpx);
+}
+
+.panel.search>.body .row-group>.row>.property-group {
+  width: 100%;
+  height: 60rpx;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property {
+  width: 50%;
+  height: 100%;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property.full {
+  width: 100%;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property>.label {
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property>.input {
+  width: calc(100% - 120rpx);
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property>.input.border {
+  border: 3rpx solid #BBBBBB;
+  border-radius: 10rpx;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property>.input.full {
+  width: calc(100% - 10rpx);
+  padding: 3rpx 5rpx;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property>.input.full.border {
+  width: calc(100% - 16rpx);
+  padding: 3rpx 5rpx;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property.picker>.input .wrapper {
+  width: 100%;
+}
+
+.panel.search>.body .row-group>.row>.property-group>.property.picker>.input .wrapper>.show {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.panel.search>.body .button-group {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.panel.search>.body .button-group>.btn {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.panel.search>.body .button-group>.btn.search {
+  width: 100%;
+  height: 100%;
+}
+
+.panel.search>.body .button-group>.btn>.icon {
+  font-size: 36rpx;
+}
+
+.panel.list>.body {
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.panel.list>.body>.item {
+  width: calc(100% - 30rpx);
+  padding: 10rpx 15rpx;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+}
+
+.panel.list>.body>.item>.top {
+  width: 100%;
+}
+
+.panel.list>.body>.item>.top>.user {
+  width: calc(100% - 200rpx);
+}
+
+.panel.list>.body>.item>.top>.user>.head {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.panel.list>.body>.item>.top>.user>.head>.pic {
+  width: 74rpx;
+  height: 74rpx;
+  border-radius: 50%;
+}
+
+.panel.list>.body>.item>.top>.user>.info {
+  width: calc(100% - 90rpx);
+}
+
+.panel.list>.body>.item>.top>.user>.info>.name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.panel.list>.body>.item>.top>.user>.info>.datetime {
+  font-size: 24rpx;
+}
+
+.panel.list>.body>.item>.top>.status {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.panel.list>.body>.item>.goods {
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.panel.list>.body>.item>.goods>.title {
+  width: 100%;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.panel.list>.body>.item>.goods>.list {
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.panel.list>.body>.item>.goods>.list>.item {
+  width: 100%;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.left {
+  width: 120rpx;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.left>.id {
+  font-size: 28rpx;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right {
+  width: calc(100% - 120rpx);
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.name {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.tag-group {
+  width: 100%;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.tag-group>.tag {
+  font-size: 24rpx;
+  padding: 5rpx 10rpx;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.tag-group>.tag:first-child {
+  padding-left: 0;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.tag-group>.tag:last-child {
+  padding-right: 0;
+}
+
+.panel.list>.body>.item>.goods>.list>.item>.right>.sequence {
+  width: 100%;
+  font-size: 24rpx;
+}
+
+.panel.list>.body>.item>.coupon {
+  width: 100%;
+  padding: 10rpx 0;
+  border-top-width: 3rpx;
+  border-top-style: solid;
+  border-top-color: #BBBBBB;
+}
+
+.panel.list>.body>.item>.coupon>.title {
+  width: 100%;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.panel.list>.body>.item>.coupon>.list {
+  width: 100%;
+  padding: 10rpx 0;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item {
+  width: 100%;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.left {
+  width: 120rpx;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.left>.id {
+  font-size: 28rpx;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.right {
+  width: calc(100% - 120rpx);
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.right>.name {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.right>.value {
+  width: 100%;
+  font-size: 28rpx;
+}
+
+.panel.list>.body>.item>.coupon>.list>.item>.right>.sequence {
+  width: 100%;
+  font-size: 24rpx;
+}

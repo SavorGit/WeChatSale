@@ -1,0 +1,165 @@
+/**panel.wxss**/
+/*************************** panel 开始 ***************************/
+.panel {
+  width: 100%;
+}
+
+.panel>.title-bar {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.panel>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.panel>.title-bar>.title.bold {
+  font-weight: 700;
+}
+
+.panel>.title-bar>.btn {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.panel>.title-bar>.btn>.icon {
+  font-size: 36rpx;
+}
+
+.panel>.pbody {
+  width: 100%;
+}
+
+.panel>.pbody>.row {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.panel>.pbody>.row>.property.full-width {
+  width: 100%;
+}
+
+.panel>.pbody>.row>.property.half-width {
+  width: 50%;
+}
+
+.panel>.pbody>.row>.property>.label {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.pbody>.row>.property>.label>.required {
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.pbody>.row>.property>.label>.text {
+  position: absolute;
+  left: 50rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.pbody>.row>.property>.value {
+  width: calc(100% - 120rpx);
+}
+
+.panel>.pbody>.row>.property>.value>.text {
+  width: 100%;
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.text,
+.panel>.pbody>.row>.property>.value>.frame.picker {
+  height: 46rpx;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.textarea {
+  height: 120rpx;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.pic {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.button {
+  height: 60rpx;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.border {
+  width: calc(100% - 16rpx);
+  padding: 5rpx;
+  border-width: 3rpx;
+  border-style: solid;
+  border-color: #DEDEDE;
+}
+
+.panel>.pbody>.row>.property>.value>.frame>.input {
+  width: 100%;
+  height: 100%;
+  font-size: 28rpx;
+}
+
+.panel>.pbody>.row>.property>.value>.frame>picker.input .wrapper {
+  width: 100%;
+  height: 46rpx;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.pic.border {
+  width: 160rpx;
+  height: 160rpx;
+  padding: 0;
+  border-width: 3rpx;
+  border-style: solid;
+  border-color: #DEDEDE;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.pic>.input {
+  width: 100%;
+  height: 100%;
+}
+
+.panel>.pbody>.row>.property>.value>.frame.button>.btn {
+  width: 160rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  border-radius: 8rpx;
+}
+
+/*************************** panel 结束 ***************************/
+
+
+
+/*************************** tab-panel 开始 ***************************/
+.tab-panel {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.tab-panel>.tab-bar {
+  width: calc(100% - 40rpx);
+  padding: 10rpx 20rpx;
+}
+
+.tab-panel>.tab-bar>.tab {
+  padding: 5rpx 10rpx;
+}
+
+/*
+.tab-panel>.tab-bar>.tab.selected {
+  background: unset;
+  color: #333333;
+  border-bottom-width: 5rpx;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(253, 128, 36);
+}
+*/
+.tab-panel>.tab-body {
+  width: 100%;
+}
+
+/*************************** tab-panel 结束 ***************************/

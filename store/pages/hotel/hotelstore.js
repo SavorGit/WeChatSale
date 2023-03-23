@@ -100,5 +100,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  gotoPage:function(e){
+    let key = e.currentTarget.dataset.keys;
+    console.log(key, e);
+    wx.navigateTo({
+      url: '/store/pages/hotel/stockcodelist',
+    });
   }
 })

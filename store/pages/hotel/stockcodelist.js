@@ -1,11 +1,25 @@
 // store/pages/hotel/stockcodelist.js
+const utils = require('../../../utils/util.js');
+
+/**
+ * [酒楼库存] 库存码列表页面
+ */
+const app = getApp()
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var oss_upload_url = app.globalData.oss_upload_url;
+var oss_url = app.globalData.oss_url;
+var openid;
+var hotel_id;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: ['aaaaa', 'bbbbbb', 'cccc']
   },
 
   /**

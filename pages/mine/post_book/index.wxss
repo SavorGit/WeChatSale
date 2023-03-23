@@ -101,6 +101,13 @@
   font-size: 28rpx;
 }
 
+.row.textarea>.value>.input {
+  width: calc(100% - 14rpx);
+  height: 96rpx;
+  padding: 5rpx;
+  font-size: 28rpx;
+}
+
 .row.mould>.label,
 .row.mould>.value {
   width: 100%;
