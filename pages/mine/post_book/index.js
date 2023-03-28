@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','template_id':0},
+    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0},
     themes_list:[]
   },
 
@@ -101,6 +101,12 @@ Page({
     book_info.hotel_tel = hotel_tel;
     this.setData({book_info:book_info});
   },
+  inputDesc:function(e){
+    var desc = e.detail.value.replace(/\s+/g, '');
+    var book_info = this.data.book_info;
+    book_info.desc = desc;
+    this.setData({book_info:book_info});
+  },
   selectTemplate:function(e){
     var template_id = e.detail.value;
     var book_info = this.data.book_info;
@@ -142,16 +148,17 @@ Page({
     var room_id = box_list[room_index].id;
     
     utils.PostRequest(api_v_url + '/invitation/confirmdata', {
-      openid: openid,
-      room_id:room_id,
-      hotel_id:hotel_id,
-      book_time:book_info.book_time,
-      name:book_info.book_name,
-      people_num:book_info.nums,
-      mobile:book_info.mobile,
-      contact_name: book_info.hotel_contract,
-      contact_mobile:book_info.hotel_tel,
-      theme_id:book_info.template_id
+      openid         : openid,
+      room_id        : room_id,
+      hotel_id       : hotel_id,
+      book_time      : book_info.book_time,
+      name           : book_info.book_name,
+      people_num     : book_info.nums,
+      mobile         : book_info.mobile,
+      contact_name   : book_info.hotel_contract,
+      contact_mobile : book_info.hotel_tel,
+      desc           : book_info.desc,
+      theme_id       : book_info.template_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       if(post_type=='smallapp'){

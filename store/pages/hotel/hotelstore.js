@@ -52,6 +52,7 @@ Page({
 
     })
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -102,10 +103,12 @@ Page({
 
   },
   gotoPage:function(e){
-    let key = e.currentTarget.dataset.keys;
-    console.log(key, e);
+    var keys = e.currentTarget.dataset.keys;
+    var list = this.data.list;
+    var goods_id = list[keys].goods_id;
+    
     wx.navigateTo({
-      url: '/store/pages/hotel/stockcodelist',
-    });
+      url: '/store/pages/hotel/stockcodelist?hotel_id='+hotel_id+'&goods_id='+goods_id,
+    })
   }
 })

@@ -46,7 +46,7 @@ Page({
   scanGoodsCode:function(){
     var that = this;
     wx.scanCode({
-      onlyFromCamera: true,
+      onlyFromCamera: false,
       success: (res) => {
         console.log(res)
         var code_msg = res.result;

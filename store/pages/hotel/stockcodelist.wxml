@@ -36,7 +36,7 @@
     <view class="panel list flex_column_center_flexStart">
       <view class="body flex_column_center_flexStart">
         <view class="item flex_column_center_flexStart theme-block-white" wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-          <view class="sequence theme-font1">{{bean}}</view>
+          <view class="sequence theme-font1">{{bean.idcode}}</view>
         </view>
       </view>
     </view>
