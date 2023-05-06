@@ -6,10 +6,10 @@ const appDirectory = fs.realpathSync(process.cwd());
 
 /**
  * 获取环境参数
- * type 操作类型 preview | publish
- * version:版本号 上传操作必填
- * desc:版本描述  上传操作必填
- * appid:应用id,测试人员有时需要切换应用Id
+ * type: 操作类型 preview | publish
+ * version: 版本号 上传操作必填
+ * desc: 版本描述  上传操作必填
+ * appid: 应用id,测试人员有时需要切换应用Id
  * buildId: 构建id
  */
 const { type, version = '', desc = '', appid = '', buildId = '' } = getEnvParams(process.argv);

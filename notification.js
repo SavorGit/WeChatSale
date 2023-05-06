@@ -9,8 +9,11 @@ const appDirectory = fs.realpathSync(process.cwd());
  * 获取环境参数
  * buildId: 构建id
  * notifyRobotWebHook: 企业群聊机器人的WebHook
+ * version: 版本号 上传操作必填
+ * desc: 版本描述  上传操作必填
+ * QRCode_Expires: 二维码过期时间
  */
-const { buildId = '', notifyRobotWebHook = '', version = '', desc = '' } = getEnvParams(process.argv);
+const { buildId = '', notifyRobotWebHook = '', version = '', desc = '', QRCode_Expires = '' } = getEnvParams(process.argv);
 console.log(process.argv);
 
 const previewPath = path.resolve(appDirectory, `./qrcode-${buildId}.jpg`);
@@ -24,7 +27,7 @@ if (typeof (notifyRobotWebHook) === 'string' && notifyRobotWebHook.trim().length
       const imageBase64 = imageData.toString("base64");
       const sendNoticeResult = await sendImage(notifyRobotWebHook, imageBase64, hash);
       console.log(sendNoticeResult);
-      const sendNoticeResult2 = await sendText(notifyRobotWebHook, `【小热点-销售端】代码已经提交到体验版。版本：${version}；修改内容：${desc}`);
+      const sendNoticeResult2 = await sendText(notifyRobotWebHook, `【小热点-销售端】代码已经提交到体验版。二维码将于${QRCode_Expires}后过期。版本号：${version}；修改内容：${desc}`);
       console.log(sendNoticeResult2);
     } catch (e) {
       console.error(e);
