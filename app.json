@@ -88,7 +88,8 @@
     "pages/reward/allot",
     "pages/reward/allot_detail",
     "pages/reward/pay_detail",
-    "pages/reward/integral_detail"
+    "pages/reward/integral_detail",
+    "pages/crm/index/index"
 
   ],
   "subpackages": [{
@@ -118,9 +119,18 @@
       "pages/activity/winesale/index",
       "pages/couponbreakage/havecode/index",
       "pages/phyprizechargeoff/index"
+      
+    ]
+  },
+  {
+    "root": "crm",
+    "pages": [
+      "pages/consumer/list"
+      
     ]
   }
 ],
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#58525C",
@@ -149,6 +159,12 @@
         "text": "电视互动",
         "iconPath": "/images/icon/999999_interact.png",
         "selectedIconPath": "/images/icon/333333_interact.png"
+      },
+      {
+        "pagePath": "pages/crm/index/index",
+        "text": "CRM",
+        "iconPath": "/images/icon/999999_mine.png",
+        "selectedIconPath": "/images/icon/333333_mine.png"
       },
       {
         "pagePath": "pages/mine/index",

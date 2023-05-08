@@ -39,6 +39,12 @@ Component({
         "selectedIconPath": "/images/icon/333333_interact.png"
       },
       {
+        "pagePath": "/pages/crm/index/index",
+        "text": "CRM",
+        "iconPath": "/images/icon/999999_mine.png",
+        "selectedIconPath": "/images/icon/333333_mine.png"
+      },
+      {
         "pagePath": "/pages/mine/index",
         "text": "个人信息",
         "iconPath": "/images/icon/999999_mine.png",
