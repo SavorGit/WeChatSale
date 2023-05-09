@@ -76,6 +76,16 @@ button::before {
   color: transparent;
 }
 
+.mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
 .one-line-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,10 +145,12 @@ button::before {
   display: none;
 }
 
+.full-width,
 .full_width {
   width: 100%;
 }
 
+.full-height,
 .full_height {
   height: 100%;
 }

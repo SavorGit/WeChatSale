@@ -297,7 +297,7 @@
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font7">{{bean.message}}</view>
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font7">{{bean.tip}}</view>
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font5">可收益{{bean.integral}}积分</view>
-                      
+
                       <view wx:else class="tip theme-font5">每次完成可收益{{bean.integral}}积分</view>
                     </view>
                     <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
@@ -1118,6 +1118,36 @@
               <view class="row flex_row_center_center" bindtap="closePopWind">
                 <view class="btn get-task flex_row_center_center theme-button-welcome">我知道了</view>
               </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 完善饭局记录提醒弹窗 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+  <view class="window perfect-dinner-party flex_column_center_flexStart theme-window">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">
+        <view class="text big1 bold">完善饭局记录提醒</view>
+      </view>
+    </view>
+    <view class="win-body flex_column_center_flexStart">
+      <view class="page flex_column_center_flexStart">
+        <view class="main full-width flex_column_center_flexStart">
+          <view class="context full-width flex_column_center_center">
+            <view class="text big1 full-width flex_column_center_center">xxxx包间的客人xxxxx已完成就餐，是否要完善消费记录？</view>
+          </view>
+        </view>
+        <view class="foot full-width flex_column_center_center">
+          <view class="button-group full-width full-height flex_row_center_spaceAround">
+            <view class="btn cancel flex_column_center_center theme-button-welcome-dark" bindtap="修改值">
+              <view class="text">取消</view>
+            </view>
+            <view class="btn cancel flex_column_center_center theme-button-red" bindtap="修改值">
+              <view class="text">立即完善</view>
             </view>
           </view>
         </view>

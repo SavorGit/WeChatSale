@@ -877,3 +877,44 @@ image {
   width: 332rpx;
   height: 90rpx;
 }
+
+.window.perfect-dinner-party {
+  width: 600rpx;
+  height: 360rpx;
+  border-radius: 20rpx;
+}
+
+.window.perfect-dinner-party>.win-body {
+  width: 100%;
+  height: calc(100% - 55rpx);
+  padding: 5rpx 5rpx 10rpx;
+}
+
+.window.perfect-dinner-party>.win-body>.page {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 15rpx);
+  padding: 5rpx 5rpx 10rpx;
+}
+
+.window.perfect-dinner-party>.win-body>.page>.main {
+  width: calc(100% - 40rpx);
+  height: calc(100% - 100rpx);
+  padding: 0 20rpx;
+}
+
+.window.perfect-dinner-party>.win-body>.page>.main>.context>.text {
+  text-align: center;
+}
+
+.window.perfect-dinner-party>.win-body>.page>.foot {
+  height: 100rpx;
+}
+
+.window.perfect-dinner-party>.win-body>.page>.foot>.button-group>.btn {
+  width: 240rpx;
+  height: 70rpx;
+  border-radius: 8rpx;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
