@@ -5,7 +5,78 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    customListPage: {
+      show: true,
+      enableBackup: true,
+      searchPlaceholder: '输入姓名/手机号',
+      topTips: {
+        show: true,
+        list: ['共123个客户', '又一个']
+      },
+      data: [
+        {
+          id: "1",
+          region: "A",
+          items: [
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000/13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' }
+          ]
+        },
+        {
+          id: "2",
+          region: "B",
+          items: [
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' }
+          ]
+        }
+      ]
+    }
   },
 
   /**
