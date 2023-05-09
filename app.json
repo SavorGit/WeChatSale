@@ -125,7 +125,14 @@
   {
     "root": "crm",
     "pages": [
-      "pages/consumer/list"
+      "pages/consumer/list",
+      "pages/consumer/add",
+      "pages/consumer/detail",
+      "pages/consumer/label",
+      "pages/expense/list",
+      "pages/expense/add",
+      "pages/expense/detail",
+      "pages/expense/perfect"
       
     ]
   }
