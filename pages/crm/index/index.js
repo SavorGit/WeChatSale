@@ -96,8 +96,59 @@ Page({
    */
   onLoad(options) {
     console.log('ddddd')
+    wx.hideShareMenu();
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    openid = user_info.openid;
+    hotel_id = user_info.hotel_id;
+    var search_keyword = '';
+    if(typeof(options.search_keyword)!='undefined'){
+      search_keyword = options.search_keyword;
+    }
+    var is_select = 0;
+    if(typeof(options.is_select)!='undefined'){ //是否是选择客户
+      is_select = options.is_select;
+    }
+    wx.removeStorageSync(cache_key+'select_consumer');
+    this.setData({is_select:is_select});
+    this.getOpsLogList(openid,hotel_id);
   },
+  getOpsLogList:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid           : openid,
+      hotel_id         : user_info.hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
 
+    })
+  },
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    var url = '';
+    switch(type){
+     
+      case 'add_consumer':
+        url = '/crm/pages/consumer/add';
+        break;
+      case 'perfect_expense_log':
+        url = '/crm/pages/expense/perfect';
+        break;
+      case 'consumer_list':
+        url = '/crm/pages/consumer/list';
+        break;
+      case 'consumer_info':
+        var id = e.currentTarget.dataset.id;
+        url = '/crm/pages/consumer/detail?id='+id;
+        break;
+      case 'expense_log_detail':
+        var id = e.currentTarget.dataset.id;
+        url ='/crm/pages/expense/detail?id='+id;
+        break;
+    }
+    wx.navigateTo({
+      url: url,
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -111,6 +162,18 @@ Page({
   onShow() {
     this.getTabBar().setData({
       selected: 2,
+    })
+    var id = wx.getStorageSync(cache_key+'select_consumer');
+    if(id!=''){
+      this.getConsumerInfo(id);
+    }
+  },
+  getConsumerInfo:function(id){
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid : openid,
+      id     : id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
     })
   },
 

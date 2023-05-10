@@ -50,8 +50,9 @@ Page({
     demand_config:{demand_range_type:1 ,demand_type:1,demandTime:''}, //demand_range_type1:单个包间 2：全部包间      demand_type    点播类型 1:立即点播  2:定时播放
     task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
                             get_recycle_task_pop_wind:false,task_info:{}},  //品平价酒任务
-    
-    
+
+    expense_log:{popPerfectExpenseWind:true,id:1,str:'xxxx包间的客人xxxxx已完成就餐，是否要完善消费记录？'},                  //完善消费记录
+
   },
 
   /**
@@ -503,6 +504,7 @@ Page({
       popInviteMmberWind:false,
       task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
         get_recycle_task_pop_wind:false,task_info:{}},   //品平价酒活动
+      expense_log:{popPerfectExpenseWind:false,id:0,str:''}
     })
   },
   
@@ -1569,7 +1571,25 @@ Page({
       }
     })
   },
-
+  gotoPage:function(e){
+    var that = this;
+    var url  = '';
+    var type = e.currentTarget.dataset.type;
+    switch(type){
+      case 'perfect_expense_log':
+        var id = e.currentTarget.dataset.id;
+        url = '/crm/pages/expense/perfect?id='+id;
+        break;
+    }
+    wx.navigateTo({
+      url: url,
+      success:function(){
+        if(type=='perfect_expense_log'){
+          that.setData({expense_log:{popPerfectExpenseWind:false,id:0,str:''}})
+        }
+      }
+    })
+  },
   zyttest:function(){
     wx.redirectTo({
       url: '/pages/user/invite',

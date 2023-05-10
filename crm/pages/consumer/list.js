@@ -1,4 +1,12 @@
 // crm/pages/consumer/list.js
+const app = getApp()
+const utils = require('../../../utils/util.js')
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var hotel_id;
 Page({
 
   /**
@@ -83,9 +91,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.hideShareMenu();
+    
   },
-
+  selectConsumer:function(e){
+    var id = e.currentTarget.dataset.id;
+    wx.setStorageSync(cache_key+'select_consumer', id);
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
