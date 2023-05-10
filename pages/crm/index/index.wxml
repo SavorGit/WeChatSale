@@ -1,2 +1,202 @@
 <!--pages/crm/index/index.wxml-->
-<text>pages/crm/index/index.wxml</text>
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- CRM 首页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+
+    <!-- 按钮面板 -->
+    <view class="panel buttons flex_column_center_flexStart">
+      <view class="pbody flex_column_center_center">
+        <view class="list full-width">
+          <view class="item flex_column_center_center">
+            <view class="btn add-custom flex_column_center_center">
+              <view class="icon">
+                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+              <view class="label">
+                <view class="text big1 theme-font1">添加客户</view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_center">
+            <view class="btn perfect-consume-record flex_column_center_center">
+              <view class="icon">
+                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+              <view class="label">
+                <view class="text big1 theme-font1">完善消费记录</view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_center">
+            <view class="btn custom-list flex_column_center_center">
+              <view class="icon">
+                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+              <view class="label">
+                <view class="text big1 theme-font1">客户列表</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 搜索客户面板 -->
+    <view class="panel search-custom flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big1 bold theme-font1">查找客人信息</view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="search-bar">
+          <view class="frame border flex_row_center_flexStart">
+            <view class="icon flex_row_center_center">
+              <view class="text big3 fa fa-search" />
+            </view>
+            <view class="input flex_row_center_center">
+              <input class="text full-width" type="text" placeholder="输入姓名或手机号查找客户" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作记录面板 -->
+    <view class="panel option-records flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big1 bold theme-font1">最近操作</view>
+        </view>
+      </view>
+      <view class="pbody flex_column_center_flexStart">
+        <view class="list full-width flex_column_center_flexStart">
+
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">王先生</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138000</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">3分钟前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">查看</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">潘石屹</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138001</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">10分钟前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">新增</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">马先生</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138002</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">23分钟前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">预定</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">王先生</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138000</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">1小时前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">修改</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">潘石屹</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138001</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">5小时前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">查看</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_spaceBetween">
+              <view class="name flex_row_center_flexStart">
+                <view class="text theme-font1">马先生</view>
+              </view>
+              <view class="phone flex_row_center_flexStart">
+                <view class="text theme-font1">13800138002</view>
+              </view>
+              <view class="datetime flex_row_center_flexEnd">
+                <view class="text theme-font3">30天前</view>
+              </view>
+              <view class="status flex_row_center_flexEnd">
+                <view class="text theme-font3">查看</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big5 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>
+
+<!-- 客户列表弹窗 -->
+<MailList-2 show="{{customListPage.show}}" mailList-data="{{customListPage.data}}" enable-backup="{{customListPage.enableBackup}}" search-placeholder="{{customListPage.searchPlaceholder}}" top-tips-show="{{customListPage.topTips.show}}" topTipsList="{{customListPage.topTips.list}}" click-item-close-page="{{true}}" bindonClickItem="修改值" />

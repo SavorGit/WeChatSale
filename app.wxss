@@ -86,6 +86,97 @@ button::before {
   z-index: 99;
 }
 
+.btn {
+  padding: unset;
+  margin: unset;
+  border: unset;
+  color: unset;
+  background: unset;
+}
+
+.line-wrap {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.line-nowrap {
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.text.bold {
+  font-weight: bold;
+}
+
+.text {
+  font-size: 28rpx;
+}
+
+.text.small1 {
+  font-size: 26rpx;
+}
+
+.text.small2 {
+  font-size: 24rpx;
+}
+
+.text.small3 {
+  font-size: 22rpx;
+}
+
+.text.small4 {
+  font-size: 20rpx;
+}
+
+.text.big1 {
+  font-size: 30rpx;
+}
+
+.text.big2 {
+  font-size: 32rpx;
+}
+
+.text.big3 {
+  font-size: 34rpx;
+}
+
+.text.big4 {
+  font-size: 36rpx;
+}
+
+.text.big5 {
+  font-size: 38rpx;
+}
+
+.text.big6 {
+  font-size: 40rpx;
+}
+
+.text.big7 {
+  font-size: 42rpx;
+}
+
+.text.big8 {
+  font-size: 44rpx;
+}
+
+.text.big9 {
+  font-size: 46rpx;
+}
+
+.text.big10 {
+  font-size: 48rpx;
+}
+
+.text.big11 {
+  font-size: 50rpx;
+}
+
+.page {
+  width: 100%;
+}
+
 .one-line-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -146,12 +237,16 @@ button::before {
 }
 
 .full-width,
-.full_width {
+.full_width,
+.full-page,
+.full-container {
   width: 100%;
 }
 
 .full-height,
-.full_height {
+.full_height,
+.full-page,
+.full-container {
   height: 100%;
 }
 

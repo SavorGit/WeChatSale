@@ -13,6 +13,14 @@ var trim = function (string) {
 }
 module.exports.trim = trim;
 
+var substring = function (string, start, end) {
+  if (typeof (string) != 'string') {
+    return string;
+  }
+  return string.substring(start, end);
+}
+module.exports.substring = substring;
+
 // 判断字符串是否数字
 var isNumber = function (number) {
   if (typeof (number) == 'number') {

@@ -1,8 +1,7 @@
-/* components/modal/MailList.wxss */
+/* components/modal/MailList-2.wxss */
 @import "/font-awesome.wxss";
 
 /* 通讯录 */
-
 .mask {
   width: 100vw;
   height: 100vh;
@@ -16,6 +15,10 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999;
+}
+
+.text {
+  font-size: 28rpx;
 }
 
 .search-bar {
@@ -63,6 +66,24 @@
   background-color: #fff;
 }
 
+.tip-bar {
+  width: calc(100% - 60rpx);
+  height: 50rpx;
+  padding: 10rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tip-bar>.tip {
+  height: 100%;
+}
+
+.tip-bar>.tip>.text {
+  color: #999999;
+}
+
 .content {
   width: 100%;
   height: calc(100% - 90rpx);
@@ -71,7 +92,7 @@
   position: fixed;
 }
 
-/* 
+/*
 .location {
   width: 100%;
 }
@@ -95,7 +116,8 @@
   padding: 0 20rpx;
   align-items: center;
   display: -webkit-flex;
-} */
+}
+*/
 
 .address_top {
   height: 56rpx;
@@ -107,8 +129,8 @@
 }
 
 .address_bottom {
-  height: 88rpx;
-  line-height: 88rpx;
+  height: 168rpx;
+  line-height: 168rpx;
   background: #fff;
   color: #000;
   font-size: 28rpx;
@@ -117,35 +139,48 @@
   margin-left: 15rpx;
 }
 
-/*
-.location_img {
-  width: 48rpx;
-  height: 48rpx;
-  position: absolute;
-  right: 20rpx;
-  top: 125rpx;
+.address_bottom>.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
-.add_city {
-  width: 228rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  border: 2rpx solid #ebebeb;
-  color: #000;
-  margin-right: 20rpx;
+.avatar>.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
-.add_citying {
-  width: 228rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  border: 2rpx solid #09bb07;
-  color: #09bb07;
-  margin-right: 20rpx;
+.avatar>.text {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-size: 72rpx;
+  background-color: rgb(253, 128, 36);
 }
-*/
+
+.address_bottom>.name {
+  width: 90rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.address_bottom>.phone {
+  margin-right: 20rpx;
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
 .orientation {
   white-space: normal;
   display: inline-block;

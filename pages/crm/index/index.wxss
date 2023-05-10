@@ -1,1 +1,110 @@
 /* pages/crm/index/index.wxss */
+@import "/utils/panel.wxss";
+
+/**
+ * CRM 首页
+ */
+.page {
+  padding-bottom: 48px;
+}
+
+/* ================================== 按钮面板 ==================================*/
+.panel.buttons>.pbody>.list>.item {
+  width: 33.33333333333%;
+  height: 240rpx;
+  padding: 20rpx 0;
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+.panel.buttons>.pbody>.list>.item>.btn {
+  width: calc(100% - 20rpx);
+  height: calc(100% - 20rpx);
+  padding: 10rpx;
+}
+
+.panel.buttons>.pbody>.list>.item>.btn>.icon {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.panel.buttons>.pbody>.list>.item>.btn>.icon>image {
+  width: 100%;
+  height: 100%;
+}
+
+/* ================================== 搜索客户面板 ==================================*/
+.panel.search-custom>.pbody {
+  padding-bottom: 20rpx;
+}
+
+.panel.search-custom>.pbody>.search-bar {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.panel.search-custom>.pbody>.search-bar>.frame {
+  width: 100%;
+  height: 60rpx;
+}
+
+.panel.search-custom>.pbody>.search-bar>.frame.border {
+  width: calc(100% - 6rpx);
+  border-radius: 10rpx;
+  border-width: 3rpx;
+  border-style: solid;
+  border-color: #EDEDED;
+}
+
+.panel.search-custom>.pbody>.search-bar>.frame>.icon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.panel.search-custom>.pbody>.search-bar>.frame>.input {
+  width: calc(100% - 70rpx);
+  height: 50rpx;
+  padding: 5rpx;
+}
+
+/* ================================== 操作记录面板 ==================================*/
+.panel.option-records>.pbody>.list {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.panel.option-records>.pbody>.list>.item {
+  width: calc(100% - 20rpx);
+  padding: 0 10rpx;
+  border-bottom-width: 3rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #EDEDED;
+}
+
+.panel.option-records>.pbody>.list>.item:last-child {
+  border-bottom-color: #FFFFFF;
+}
+
+.panel.option-records>.pbody>.list>.item>.row {
+  padding: 15rpx 0;
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.name {
+  width: 120rpx;
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.phone {
+  width: 200rpx;
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.datetime {
+  width: calc(100% - 120rpx - 200rpx - 80rpx - 30rpx);
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.status {
+  width: 80rpx;
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.icon {
+  width: 30rpx;
+}

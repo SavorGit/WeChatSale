@@ -1,1 +1,107 @@
 /* crm/pages/consumer/add.wxss */
+
+/**
+ * CRM 首页
+ */
+.row {
+  width: calc(100% - 60rpx);
+  padding: 10rpx 30rpx;
+}
+
+.property.text,
+.property.radio-group,
+.property.picker {
+  height: 70rpx;
+}
+
+.property.picture {
+  height: 160rpx;
+}
+
+.property>.label-group {
+  width: 80rpx;
+}
+
+.property>.label-group>.label {
+  width: 50rpx;
+}
+
+.property>.label-group>.required {
+  width: 30rpx;
+  text-align: center;
+}
+
+.property>.value {
+  width: calc(100% - 80rpx);
+}
+
+.property>.value.has-button {
+  width: calc(100% - 80rpx - 80rpx);
+}
+
+.property>.value>.frame {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.property>.value>.frame.border-bottom-gray {
+  height: calc(100% - 13rpx);
+  border-bottom: 3rpx solid #999999;
+}
+
+.property>.value>.frame.border-bottom-blue {
+  height: calc(100% - 13rpx);
+  border-bottom: 3rpx solid #6297F2;
+}
+
+.property.picker>.value>.frame>.input .warpper {
+  height: 60rpx;
+}
+
+.property.picker>.value>.frame.border-bottom-gray>.input .warpper,
+.property.picker>.value>.frame.border-bottom-blue>.input .warpper {
+  height: 57rpx;
+}
+
+.property.picture>.value>.frame {
+  width: 156rpx;
+  height: 122rpx;
+  padding: 0;
+}
+
+.property.picture>.value>.frame.border-gray {
+  width: calc(100% - 6rpx);
+  height: calc(100% - 6rpx);
+  border: 3rpx solid #999999;
+}
+
+.property.picture>.value>.frame>.input {
+  width: 100%;
+  height: 100%;
+}
+
+.property>.button-group {
+  width: 80rpx;
+  height: 60rpx;
+}
+
+.property>.button-group>.btn {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.foot {
+  padding: 20rpx 0;
+}
+
+.foot>.button-group {
+  width: calc(100% - 50rpx);
+  padding: 0 25rpx;
+}
+
+.foot>.button-group>.btn {
+  width: 678rpx;
+  height: 70rpx;
+  border-radius: 16rpx;
+}

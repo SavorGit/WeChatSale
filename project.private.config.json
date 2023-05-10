@@ -105,6 +105,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "[2023-05-09] 客户列表页面",
+          "pathName": "crm/pages/consumer/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-09] 添加客户",
+          "pathName": "crm/pages/consumer/add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

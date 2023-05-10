@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "小热点-销售端",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
+  "usingComponents": {
+    "MailList": "/components/modal/MailList",
+    "MailList-2": "/components/modal/MailList-2"
+  }
 }

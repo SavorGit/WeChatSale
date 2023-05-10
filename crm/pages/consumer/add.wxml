@@ -1,2 +1,159 @@
 <!--crm/pages/consumer/add.wxml-->
-<text>crm/pages/consumer/add.wxml</text>
+
+<!--
+  -- CRM 首页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+    <view class="main full-width theme-block-white">
+
+      <view class="row full-width flex_row_center_spaceBetween">
+        <view class="property text full-width full-height flex_row_center_flexStart">
+          <view class="label-group flex_row_center_spaceBetween">
+            <view class="label flex_row_center_spaceBetween">
+              <view class="icon flex_row_center_center">
+                <view class="text big11 fa fa-mobile-phone theme-font-6297F2" />
+              </view>
+            </view>
+            <view class="required flex_row_center_center">
+              <view class="text big1 theme-font5">*</view>
+            </view>
+          </view>
+          <view class="value full-height has-button flex_row_center_flexStart">
+            <view class="frame border-bottom-blue full-width flex_row_center_flexStart">
+              <input class="input full-width full-height" type="text" placeholder="请输入手机号" />
+            </view>
+          </view>
+          <view class="button-group flex_row_center_flexEnd">
+            <view class="btn add flex_column_center_center">
+              <view class="icon flex_row_center_center">
+                <view class="text big8 fa fa-plus-square-o theme-font-6297F2" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="row full-width flex_row_center_spaceBetween">
+        <view class="property text full-width full-height flex_row_center_flexStart">
+          <view class="label-group flex_row_center_spaceBetween">
+            <view class="label flex_row_center_spaceBetween">
+              <view class="icon flex_row_center_center">
+                <view class="text big11 fa fa-user theme-font-6297F2" />
+              </view>
+            </view>
+            <view class="required flex_row_center_center">
+              <view class="text big1 theme-font5">*</view>
+            </view>
+          </view>
+          <view class="value full-height has-button flex_row_center_flexStart">
+            <view class="frame border-bottom-blue full-width flex_row_center_flexStart">
+              <input class="input full-width full-height" type="text" placeholder="请输入姓名" />
+            </view>
+          </view>
+          <view class="button-group flex_row_center_flexEnd">
+          </view>
+        </view>
+      </view>
+      <view class="row full-width flex_row_center_center" style="padding:50rpx 30rpx 10rpx;">
+        <view class="text big1 theme-font3">————以下为选填内容（可不填）————</view>
+      </view>
+      <view class="row full-width flex_row_center_spaceBetween">
+        <view class="flex_column_center_flexStart" style="width:calc(100% - 170rpx);">
+          <view class="property radio-group full-width full-height flex_row_center_flexStart">
+            <view class="label-group flex_row_center_spaceBetween">
+              <view class="label flex_row_center_spaceBetween">
+                <view class="icon flex_row_center_center">
+                  <view class="text big11 fa fa-intersex theme-font-6297F2" />
+                </view>
+              </view>
+              <view class="required flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <radio-group class="frame full-width flex_row_center_flexStart" bindchange="">
+                <radio class="text" style="margin-left:5rpx;" value="1">男</radio>
+                <radio class="text" style="margin-left:50rpx;" value="2">女</radio>
+              </radio-group>
+            </view>
+          </view>
+          <view class="property text full-width full-height flex_row_center_flexStart">
+            <view class="label-group flex_row_center_spaceBetween">
+              <view class="label flex_row_center_spaceBetween">
+                <view class="icon flex_row_center_center">
+                  <view class="text big11 fa fa-money theme-font-6297F2" />
+                </view>
+              </view>
+              <view class="required flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border-bottom-gray full-width flex_row_center_flexStart">
+                <input class="input full-width full-height" type="text" placeholder="---客户消费能力（人均）---" />
+              </view>
+            </view>
+          </view>
+          <view class="property picker full-width full-height flex_row_center_flexStart">
+            <view class="label-group flex_row_center_spaceBetween">
+              <view class="label flex_row_center_spaceBetween">
+                <view class="icon flex_row_center_center">
+                  <view class="text big11 fa fa-birthday-cake theme-font-6297F2" />
+                </view>
+              </view>
+              <view class="required flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border-bottom-gray full-width flex_row_center_flexStart">
+                <picker class="input full-width full-height" mode="date">
+                  <view class="warpper full-width full-height flex_row_center_flexStart">
+                    <view class="text theme-font1">1970-02-08</view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flex_column_center_flexStart" style="width:156rpx;">
+          <view class="property picture full-width full-height flex_column_center_flexStart">
+            <view class="value full-width full-height flex_row_center_flexStart" style="width:100%;">
+              <view class="frame border-gray full-width flex_row_center_flexStart">
+                <image class="input" src="" mode="aspectFit" />
+              </view>
+            </view>
+            <view class="label-group flex_row_center_spaceBetween" style="width:100%;">
+              <view class="label flex_row_center_center" style="width:100%;">
+                <view class="text big1 theme-font-6297F2">上传头像</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="row full-width flex_row_center_spaceBetween">
+        <view class="property text full-width full-height flex_row_center_flexStart">
+          <view class="label-group flex_row_center_spaceBetween">
+            <view class="label flex_row_center_spaceBetween">
+              <view class="icon flex_row_center_center">
+                <view class="text big11 fa fa-street-view theme-font-6297F2" />
+              </view>
+            </view>
+            <view class="required flex_row_center_center"></view>
+          </view>
+          <view class="value full-height has-button flex_row_center_flexStart">
+            <view class="frame border-bottom-gray full-width flex_row_center_flexStart">
+              <input class="input full-width full-height" type="text" placeholder="籍贯" />
+            </view>
+          </view>
+          <view class="button-group flex_row_center_flexEnd">
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <view class="foot full-width theme-block-white">
+      <view class="button-group flex_row_center_center">
+        <view class="btn submit flex_column_center_center theme-button-orange2">
+          <view class="label flex_row_center_center">
+            <view class="text">保存</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
