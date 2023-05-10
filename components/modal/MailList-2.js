@@ -15,7 +15,8 @@
   clickItemClosePage: 点击条目关闭页面
 
 事件说明：
-  bindonClickItem:  点击条目触发的回调函数
+  bindonClickItem:   点击条目触发的回调函数
+  bindonSearchItems: 搜索框关键时回调函数
 
 
 使用模块：
@@ -92,30 +93,31 @@ Component({
         if (!(that.data.listMain instanceof Array) || that.data.listMain.length < 1) {
           return;
         }
-        for (let index = 0; index < that.data.listMain.length; index++) {
-          let items = that.data.listMain[index].items;
-          if (!(items instanceof Array) || items.length < 1) {
-            continue;
-          }
-          for (let bIndex = 0; bIndex < items.length; bIndex++) {
-            let item = items[bIndex];
-            if (typeof (item) != 'object' || typeof (item.name) != 'string' || typeof (item.phone) != 'string' ) {
-              continue;
-            }
-            if(item.name.indexOf(searchKey) < 0 && item.phone.indexOf(searchKey) < 0){
-              continue;
-            }
-            
-            listSearch.push(item);
-          }
-        }
-        var topTipsList = [];
-        topTipsList[0] = '共'+listSearch.length+'个客户';
-        that.setData({
-          isSearch: true,
-          listSearch: listSearch,
-          topTipsList : topTipsList
-        });
+        that.triggerEvent('onSearchItems', e);
+        // for (let index = 0; index < that.data.listMain.length; index++) {
+        //   let items = that.data.listMain[index].items;
+        //   if (!(items instanceof Array) || items.length < 1) {
+        //     continue;
+        //   }
+        //   for (let bIndex = 0; bIndex < items.length; bIndex++) {
+        //     let item = items[bIndex];
+        //     if (typeof (item) != 'object' || typeof (item.name) != 'string' || typeof (item.phone) != 'string' ) {
+        //       continue;
+        //     }
+        //     if(item.name.indexOf(searchKey) < 0 && item.phone.indexOf(searchKey) < 0){
+        //       continue;
+        //     }
+
+        //     listSearch.push(item);
+        //   }
+        // }
+        // var topTipsList = [];
+        // topTipsList[0] = '共'+listSearch.length+'个客户';
+        // that.setData({
+        //   isSearch: true,
+        //   listSearch: listSearch,
+        //   topTipsList : topTipsList
+        // });
       } else {
         that.setData({
           isSearch: false
@@ -132,7 +134,7 @@ Component({
         });
       }
       let hotel = e.currentTarget.dataset;
-      
+
       let bean = null;
       for (let index = 0; index < that.data.listMain.length; index++) {
         let items = that.data.listMain[index].items;

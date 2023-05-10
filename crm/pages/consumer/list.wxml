@@ -4,4 +4,4 @@
 <!-- 
  -- 客户列表页面
  -->
-<MailList-2 show="{{customListPage.show}}" mailList-data="{{customListPage.data}}" enable-backup="{{customListPage.enableBackup}}" search-placeholder="{{customListPage.searchPlaceholder}}" top-tips-show="{{customListPage.topTips.show}}" topTipsList="{{customListPage.topTips.list}}" click-item-close-page="{{false}}" bindonClickItem="gotoDetail" />
+<MailList-2 show="{{customListPage.show}}" mailList-data="{{customListPage.data}}" enable-backup="{{customListPage.enableBackup}}" search-placeholder="{{customListPage.searchPlaceholder}}" top-tips-show="{{customListPage.topTips.show}}" topTipsList="{{customListPage.topTips.list}}" click-item-close-page="{{false}}" bindonSearchItems="searchItems" bindonClickItem="gotoDetail" />
