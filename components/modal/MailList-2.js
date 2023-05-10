@@ -105,9 +105,12 @@ Component({
             listSearch.push(item);
           }
         }
+        var topTipsList = [];
+        topTipsList[0] = '共'+listSearch.length+'个客户';
         that.setData({
           isSearch: true,
-          listSearch: listSearch
+          listSearch: listSearch,
+          topTipsList : topTipsList
         });
       } else {
         that.setData({
@@ -124,7 +127,8 @@ Component({
           isSearch: false
         });
       }
-      let hotel = e.target.dataset;
+      let hotel = e.currentTarget.dataset;
+      
       let bean = null;
       for (let index = 0; index < that.data.listMain.length; index++) {
         let items = that.data.listMain[index].items;

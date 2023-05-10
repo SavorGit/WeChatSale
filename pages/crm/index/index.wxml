@@ -11,7 +11,7 @@
     <view class="panel buttons flex_column_center_flexStart">
       <view class="pbody flex_column_center_center">
         <view class="list full-width">
-          <view class="item flex_column_center_center">
+          <view class="item flex_column_center_center" bindtap="gotoPage" data-type="add_consumer">
             <view class="btn add-custom flex_column_center_center">
               <view class="icon">
                 <image src="/images/icon/666666_close.png" mode="aspectFill" />
@@ -21,7 +21,7 @@
               </view>
             </view>
           </view>
-          <view class="item flex_column_center_center">
+          <view class="item flex_column_center_center" bindtap="gotoPage" data-type="perfect_expense_log">
             <view class="btn perfect-consume-record flex_column_center_center">
               <view class="icon">
                 <image src="/images/icon/666666_close.png" mode="aspectFill" />
@@ -31,7 +31,7 @@
               </view>
             </view>
           </view>
-          <view class="item flex_column_center_center">
+          <view class="item flex_column_center_center" bindtap="gotoPage" data-type="consumer_list">
             <view class="btn custom-list flex_column_center_center">
               <view class="icon">
                 <image src="/images/icon/666666_close.png" mode="aspectFill" />
@@ -59,7 +59,7 @@
               <view class="text big3 fa fa-search" />
             </view>
             <view class="input flex_row_center_center">
-              <input class="text full-width" type="text" placeholder="输入姓名或手机号查找客户" />
+              <input confirm-type="search" class="text full-width" type="text" name="key_words" placeholder="输入姓名或手机号查找客户" bindinput="inputSearch" bindconfirm="searchConsumer" />
             </view>
           </view>
         </view>
@@ -198,5 +198,5 @@
   </view>
 </scroll-view>
 
-<!-- 客户列表弹窗 -->
-<MailList-2 show="{{customListPage.show}}" mailList-data="{{customListPage.data}}" enable-backup="{{customListPage.enableBackup}}" search-placeholder="{{customListPage.searchPlaceholder}}" top-tips-show="{{customListPage.topTips.show}}" topTipsList="{{customListPage.topTips.list}}" click-item-close-page="{{true}}" bindonClickItem="修改值" />
+<!-- 客户列表弹窗
+<MailList-2 show="{{customListPage.show}}" mailList-data="{{customListPage.data}}" enable-backup="{{customListPage.enableBackup}}" search-placeholder="{{customListPage.searchPlaceholder}}" top-tips-show="{{customListPage.topTips.show}}" topTipsList="{{customListPage.topTips.list}}" click-item-close-page="{{true}}" bindonClickItem="修改值" /> -->

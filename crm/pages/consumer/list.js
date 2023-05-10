@@ -15,21 +15,21 @@ Page({
   data: {
     customListPage: {
       show: true,
-      enableBackup: true,
+      enableBackup: false,
       searchPlaceholder: '输入姓名/手机号',
       topTips: {
         show: true,
-        list: ['共123个客户', '又一个']
+        list: ['共123个客户']
       },
       data: [
         {
           id: "1",
           region: "A",
           items: [
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000/13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "1", name: "阿明", phone: '13800138000', avatarUrl: '' },
+            { id: "2", name: "阿明", phone: '13800138000/13800138000', avatarUrl: '' },
+            { id: "3", name: "阿明", phone: '13800138000', avatarUrl: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg' },
+            { id: "4", name: "阿明", phone: '13800138000', avatarUrl: '' },
             { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
             { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
             { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
@@ -92,15 +92,19 @@ Page({
    */
   onLoad(options) {
     wx.hideShareMenu();
+    openid = app.globalData.openid;
+
     
   },
-  selectConsumer:function(e){
-    var id = e.currentTarget.dataset.id;
-    wx.setStorageSync(cache_key+'select_consumer', id);
-    wx.navigateBack({
-      delta: 1,
+  gotoDetail:function(e){
+    
+    var consumer_id = e.detail.id;
+    wx.navigateTo({
+      url: '/crm/pages/consumer/detail?id='+consumer_id,
     })
   },
+  
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
