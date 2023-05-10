@@ -1,1 +1,131 @@
 /* crm/pages/consumer/detail.wxss */
+@import "/utils/panel.wxss";
+@import "/window.wxss";
+
+/**
+ * 客户信息页
+ */
+.panel>.pbody {
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx 20rpx;
+}
+
+/* ================================= 客户基本信息面板 ================================= */
+.panel.custom-basic-info>.pbody {
+  width: calc(100% - 50rpx);
+  padding: 20rpx 25rpx;
+}
+
+.panel.custom-basic-info>.pbody>.left {
+  width: 160rpx;
+}
+
+.panel.custom-basic-info>.pbody>.left>.avatar {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.panel.custom-basic-info>.pbody>.left>.avatar>.pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.panel.custom-basic-info>.pbody>.right {
+  width: calc(100% - 180rpx);
+}
+
+.panel.custom-basic-info>.pbody>.right>.r-top>.rt-right>.option>.btn {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.panel.custom-basic-info>.pbody>.right>.r-bottom>.attribute>.value>.item {
+  height: 50rpx;
+  padding: 5rpx 15rpx;
+  display: inline-flex;
+  box-sizing: border-box;
+}
+
+/* ================================= 客户基本信息面板 ================================= */
+/* ================================= 客户标签信息面板 ================================= */
+.panel.flags>.pbody>.flag {
+  padding: 10rpx 20rpx;
+  margin: 10rpx 40rpx 15rpx 0;
+  border-radius: 8rpx;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/* ================================= 备注面板 ================================= */
+.panel.remark {
+  margin-top: 5rpx;
+}
+
+/* ================================= 消费记录面板 ================================= */
+.panel.consume-record {
+  margin-top: 5rpx;
+}
+
+.panel.consume-record>.pbody>.list>.item {
+  padding: 20rpx 0;
+  border-bottom-width: 3rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #EDEDED;
+}
+
+.panel.consume-record>.pbody>.list>.item:last-child {
+  border-bottom-color: #FFFFFF;
+}
+
+.panel.consume-record>.pbody>.list>.item>.row>.pic {
+  width: 120rpx;
+  height: 100rpx;
+}
+
+.panel.consume-record>.pbody>.list>.item>.row>.room {
+  width: calc(100% - 20rpx - 120rpx - 240rpx - 60rpx);
+  padding-left: 20rpx;
+}
+
+.panel.consume-record>.pbody>.list>.item>.row>.datetime {
+  width: 240rpx;
+}
+
+.panel.consume-record>.pbody>.list>.item>.row>.icon {
+  width: 60rpx;
+}
+
+/* ================================= 备注弹窗 ================================= */
+.window.remark {
+  width: 690rpx;
+  height: 500rpx;
+  border-radius: 10rpx;
+}
+
+.window.remark>.win-body .main {
+  height: calc(100% - 100rpx);
+}
+
+.window.remark>.win-body .main>.frame {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.window.remark>.win-body .main>.frame.border {
+  width: calc(100% - 16rpx);
+  height: calc(100% - 16rpx);
+  border: 3rpx solid #DEDEDE;
+  border-radius: 5rpx;
+}
+
+.window.remark>.win-body .button-group {
+  height: 100rpx;
+}
+
+.window.remark>.win-body .button-group>.btn {
+  width: 300rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+}

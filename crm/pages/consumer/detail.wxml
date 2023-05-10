@@ -1,2 +1,273 @@
 <!--crm/pages/consumer/detail.wxml-->
-<text>crm/pages/consumer/detail.wxml</text>
+
+<!--
+  -- 客户信息页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+
+    <!-- 客户基本信息面板 -->
+    <view class="panel custom-basic-info flex_column_center_flexStart theme-panel">
+      <view class="pbody flex_row_flexStart_spaceBetween">
+        <view class="left flex_column_center_flexStart">
+          <view class="attribute avatar">
+            <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+          <view class="attribute name">
+            <view class="text big1 theme-font1">老马</view>
+          </view>
+        </view>
+        <view class="right flex_column_center_flexStart">
+          <view class="r-top full-width flex_row_center_spaceBetween">
+            <view class="rt-left half-width flex_column_flexStart_spaceBetween">
+              <view class="attribute sex">
+                <view class="text theme-font3">性别：男</view>
+              </view>
+              <view class="attribute birthday">
+                <view class="text theme-font3">生日：10月1日</view>
+              </view>
+              <view class="attribute native">
+                <view class="text theme-font3">籍贯：上海</view>
+              </view>
+            </view>
+            <view class="rt-right half-width flex_column_flexEnd_spaceBetween">
+              <view class="option">
+                <view class="btn edit flex_column_center_center">
+                  <view class="icon">
+                    <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
+                  </view>
+                </view>
+              </view>
+              <view class="attribute birthday">
+                <view class="text theme-font3">人均：800</view>
+              </view>
+              <view class="attribute native">
+                <view class="text theme-font3">共消费10次</view>
+              </view>
+            </view>
+          </view>
+          <view class="r-bottom full-width flex_row_center_spaceBetween">
+            <view class="attribute phone flex_row_center_flexStart">
+              <view class="label">
+                <view class="text theme-font3">联系电话：</view>
+              </view>
+              <view class="value">
+                <view class="item flex_row_center_center" bindtap="修改值">
+                  <view class="text theme-font-6297F2">13966663213</view>
+                </view>
+                <view class="item flex_row_center_center" bindtap="修改值">
+                  <view class="text theme-font-6297F2">13966663212</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex_row_center_flexStart" style="width:calc(100% - 30rpx);height:70rpx;padding:10rpx 15rpx;background-color:rgb(246, 243, 238);">
+      <view class="text theme-font-FFAA2C">最近三个月没有消费</view>
+    </view>
+
+    <!-- 客户标签信息面板 -->
+    <view class="panel flags flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">标签</view>
+        </view>
+      </view>
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn edit flex_column_center_center">
+          <view class="icon">
+            <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
+          </view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="flag theme-block-orange2">
+          <view class="text ">喜欢辣</view>
+        </view>
+        <view class="flag theme-block-orange2">
+          <view class="text ">忌海鲜</view>
+        </view>
+        <view class="flag theme-block-orange2">
+          <view class="text ">急性子</view>
+        </view>
+        <view class="flag theme-block-orange2">
+          <view class="text ">爱热闹</view>
+        </view>
+        <view class="flag theme-block-orange2">
+          <view class="text ">不要香菜</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注面板 -->
+    <view class="panel remark flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">备注</view>
+        </view>
+      </view>
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn edit flex_column_center_center">
+          <view class="icon">
+            <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
+          </view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+      </view>
+    </view>
+
+    <!-- 消费记录面板 -->
+    <view class="panel consume-record flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">消费记录</view>
+        </view>
+      </view>
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn edit flex_column_center_center">
+          <view class="icon">
+            <view class="text big10 fa fa-plus-square theme-font-FFAA2C" />
+          </view>
+        </view>
+      </view>
+      <view class="pbody flex_column_center_flexStart">
+        <view class="list full-width flex_column_center_flexStart">
+
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+          <view class="item full-width flex_column_center_flexStart">
+            <view class="row full-width flex_row_center_flexStart">
+              <view class="pic flex_row_center_flexStart">
+                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              </view>
+              <view class="room flex_row_center_flexStart">
+                <view class="text big2 theme-font1">艳云厅</view>
+              </view>
+              <view class="datetime flex_row_center_flexStart">
+                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+              </view>
+              <view class="icon flex_row_center_flexEnd">
+                <view class="text big10 fa fa-angle-right theme-font1" />
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>
+
+<!-- 备注弹窗 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+  <view class="window remark flex_column_center_flexStart theme-window">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">
+        <view class="text big2 bold theme-font1">备注</view>
+      </view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd">
+      <view class="btn close flex_column_center_center">
+        <view class="icon full-container">
+          <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+    <view class="win-body flex_column_center_center">
+      <view class="main full-width flex_column_center_center">
+        <view class="frame border full-container flex_column_center_center">
+          <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+        </view>
+      </view>
+      <view class="button-group full-width flex_row_center_center">
+        <view class="btn submit flex_column_center_center theme-button-orange2">
+          <view class="text">保存</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

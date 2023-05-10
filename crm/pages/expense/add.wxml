@@ -1,2 +1,218 @@
 <!--crm/pages/expense/add.wxml-->
-<text>crm/pages/expense/add.wxml</text>
+
+<!--
+  -- 添加消费记录页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+
+    <!-- 基本信息面板 -->
+    <view class="panel basic-info flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold">基本信息</view>
+        </view>
+      </view>
+      <view class="pbody flex_column_center_flexStart">
+        <view class="row full-width flex_row_center_flexStart">
+          <view class="property picker full-width flex_row_center_flexStart">
+            <view class="label-group full-height flex_row_center_flexStart">
+              <view class="label full-height flex_row_center_flexStart">
+                <view class="context full-height flex_row_center_flexStart">
+                  <view class="text theme-font1">就餐包间</view>
+                </view>
+              </view>
+              <view class="required full-height flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border full-width flex_row_center_flexStart">
+                <picker class="input" mode="selector">
+                  <view class="show flex_row_center_spaceBetween">
+                    <view class="context">
+                      <view class="text theme-font3">vip111</view>
+                    </view>
+                    <view class="icon">
+                      <view class="text big10 fa fa-angle-right theme-font3" />
+                    </view>
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="row full-width flex_row_center_flexStart">
+          <view class="property picker full-width flex_row_center_flexStart">
+            <view class="label-group full-height flex_row_center_flexStart">
+              <view class="label full-height flex_row_center_flexStart">
+                <view class="context full-height flex_row_center_flexStart">
+                  <view class="text theme-font1">就餐时间</view>
+                </view>
+              </view>
+              <view class="required full-height flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border full-width flex_row_center_flexStart" style="width:calc(100% - 70rpx);">
+                <date-mtime-picker class="input">
+                  <view class="show flex_row_center_spaceBetween">
+                    <view class="context">
+                      <view class="text">请选择</view>
+                    </view>
+                  </view>
+                </date-mtime-picker>
+              </view>
+              <view class="icon full_height flex_row_center_flexEnd" style="width:60rpx;height:60rpx;">
+                <view class="text big10 fa fa-calendar theme-font1" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
+            <view class="label-group full-height flex_row_center_flexStart">
+              <view class="label full-height flex_row_center_flexStart">
+                <view class="context full-height flex_row_center_flexStart">
+                  <view class="text theme-font1">就餐人数</view>
+                </view>
+              </view>
+              <view class="required full-height flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border full-width flex_row_center_flexStart">
+                <input class="input" type="text" placeholder="请输入" />
+              </view>
+            </view>
+          </view>
+          <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
+            <view class="label-group full-height flex_row_center_flexStart">
+              <view class="label full-height flex_row_center_flexStart">
+                <view class="context full-height flex_row_center_flexStart">
+                  <view class="text theme-font1">消费金额</view>
+                </view>
+              </view>
+              <view class="required full-height flex_row_center_center"></view>
+            </view>
+            <view class="value full-height flex_row_center_flexStart">
+              <view class="frame border full-width flex_row_center_flexStart">
+                <input class="input" type="text" placeholder="请输入（元）" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 消费小票面板 -->
+    <view class="panel expense-receipt flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">消费小票</view>
+        </view>
+      </view>
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn edit flex_column_center_center">
+          <view class="icon">
+            <view class="text big10 fa fa-camera theme-font-FFAA2C" />
+          </view>
+        </view>
+      </view>
+      <view class="pbody">
+
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+          <view class="cover full-container">
+            <view class="btn close flex_column_center_center">
+              <view class="icon full-container">
+                <view class="text theme-font5">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+          <view class="cover full-container">
+            <view class="btn close flex_column_center_center">
+              <view class="icon full-container">
+                <view class="text theme-font5">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+          <view class="cover full-container">
+            <view class="btn close flex_column_center_center">
+              <view class="icon full-container">
+                <view class="text theme-font5">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- 备注面板 -->
+    <view class="panel remark flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">备注</view>
+        </view>
+      </view>
+      <view class="option-bar flex_row_center_flexEnd">
+        <view class="btn edit flex_column_center_center">
+          <view class="icon">
+            <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
+          </view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+      </view>
+    </view>
+
+    <view class="full-width flex_row_center_center theme-block-white" style="height:120rpx;">
+      <view class="btn save flex_column_center_center theme-button-orange2" style="width:740rpx;height:100rpx;border-radius:5rpx;">
+        <view class="label flex_row_center_center">
+          <view class="text big4">保存消费记录</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>
+
+<!-- 备注弹窗 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+  <view class="window remark flex_column_center_flexStart theme-window">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">
+        <view class="text big2 bold theme-font1">备注</view>
+      </view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd">
+      <view class="btn close flex_column_center_center">
+        <view class="icon full-container">
+          <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+    <view class="win-body flex_column_center_center">
+      <view class="main full-width flex_column_center_center">
+        <view class="frame border full-container flex_column_center_center">
+          <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+        </view>
+      </view>
+      <view class="button-group full-width flex_row_center_center">
+        <view class="btn submit flex_column_center_center theme-button-orange2">
+          <view class="text">保存</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

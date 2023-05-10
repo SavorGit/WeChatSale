@@ -1,1 +1,145 @@
 /* crm/pages/expense/add.wxss */
+@import "/utils/panel.wxss";
+@import "/window.wxss";
+
+/**
+ * 添加消费记录页
+ */
+.panel>.pbody {
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx 20rpx;
+}
+
+.panel>.pbody>.row {
+  width: calc(100% - 30rpx);
+  padding: 10rpx 15rpx;
+}
+
+/* ================================= 基本信息面板 ================================= */
+.panel.basic-info>.pbody {
+  width: calc(100% - 50rpx);
+  padding: 20rpx 25rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property.text,
+.panel.basic-info>.pbody>.row>.property.picker {
+  height: 70rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property>.label-group {
+  width: 160rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property>.label-group>.label {
+  width: 120rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property>.label-group>.required {
+  width: 40rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property>.value {
+  width: calc(100% - 160rpx);
+}
+
+.panel.basic-info>.pbody>.row>.property>.value>.frame {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property>.value>.frame.border {
+  width: calc(100% - 16rpx);
+  height: calc(100% - 16rpx);
+  border: 3rpx solid #DEDEDE;
+  border-radius: 5rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property.picker>.value>.frame>.input .show {
+  height: 60rpx;
+}
+
+.panel.basic-info>.pbody>.row>.property.picker>.value>.frame.border>.input .show {
+  height: 54rpx;
+}
+
+/* ================================= 消费小票面板 ================================= */
+.panel.expense-receipt {
+  margin-top: 5rpx;
+}
+
+.panel.expense-receipt>.pbody>.item {
+  width: 33.3333333%;
+  height: 230rpx;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.panel.expense-receipt>.pbody>.item>.pic {
+  width: calc(100% - 50rpx);
+  height: calc(100% - 50rpx);
+  padding: 25rpx;
+}
+
+.panel.expense-receipt>.pbody>.item>.cover {
+  width: 230rpx;
+  height: 230rpx;
+  margin-top: -230rpx;
+}
+
+.panel.expense-receipt>.pbody>.item>.cover>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 170rpx;
+}
+
+.panel.expense-receipt>.pbody>.item>.cover>.btn>.icon {
+  margin-left: 10rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.panel.expense-receipt>.pbody>.item>.cover>.btn>.icon>.text {
+  font-size: 84rpx;
+  transform-origin: center center;
+  transform: rotate(45deg);
+}
+
+/* ================================= 备注面板 ================================= */
+.panel.remark {
+  margin-top: 5rpx;
+}
+
+/* ================================= 备注弹窗 ================================= */
+.window.remark {
+  width: 690rpx;
+  height: 500rpx;
+  border-radius: 10rpx;
+}
+
+.window.remark>.win-body .main {
+  height: calc(100% - 100rpx);
+}
+
+.window.remark>.win-body .main>.frame {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.window.remark>.win-body .main>.frame.border {
+  width: calc(100% - 16rpx);
+  height: calc(100% - 16rpx);
+  border: 3rpx solid #DEDEDE;
+  border-radius: 5rpx;
+}
+
+.window.remark>.win-body .button-group {
+  height: 100rpx;
+}
+
+.window.remark>.win-body .button-group>.btn {
+  width: 300rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+}

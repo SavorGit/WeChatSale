@@ -1,2 +1,90 @@
 <!--crm/pages/expense/detail.wxml-->
-<text>crm/pages/expense/detail.wxml</text>
+
+<!--
+  -- 消费记录页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+
+    <!-- 基本信息面板 -->
+    <view class="panel basic-info flex_column_center_flexStart theme-panel">
+      <view class="pbody flex_column_center_flexStart">
+        <view class="row full-width flex_row_center_flexStart">
+          <view class="property picker full-width flex_row_center_flexStart">
+            <view class="value full-height flex_row_center_flexStart" style="width:100%;">
+              <view class="frame full-width flex_row_center_flexStart">
+                <view class="text big4 bold theme-font1">VIP 888包间</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="row full-width flex_row_center_flexStart">
+          <view class="property picker full-width flex_row_center_flexStart">
+            <view class="value full-height flex_row_center_flexStart" style="width:100%;">
+              <view class="frame full-width flex_row_center_flexStart">
+                <view class="text theme-font3">2023-03-04 12:00</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
+            <view class="value full-container flex_row_center_flexStart" style="width:100%;">
+              <view class="frame full-width flex_row_center_flexStart">
+                <view class="text theme-font1">就餐人数：8人</view>
+              </view>
+            </view>
+          </view>
+          <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
+            <view class="value full-container flex_row_center_flexStart" style="width:100%;">
+              <view class="frame full-width flex_row_center_flexStart">
+                <view class="text theme-font1">消费金额：8888元</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 消费小票面板 -->
+    <view class="panel expense-receipt flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">消费小票</view>
+        </view>
+      </view>
+      <view class="pbody">
+
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="pic">
+            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- 备注面板 -->
+    <view class="panel remark flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text big2 bold theme-font1">备注</view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

@@ -1,4 +1,8 @@
 // crm/pages/consumer/detail.js
+
+/**
+ * 客户信息页
+ */
 Page({
 
   /**

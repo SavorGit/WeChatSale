@@ -1,4 +1,8 @@
 // crm/pages/expense/detail.js
+
+/**
+ * 消费记录页
+ */
 Page({
 
   /**

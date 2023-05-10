@@ -1,4 +1,8 @@
 // crm/pages/expense/add.js
+
+/**
+ * 添加消费记录页
+ */
 Page({
 
   /**

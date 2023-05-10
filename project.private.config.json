@@ -119,6 +119,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "[2023-05-10] 客户信息页",
+          "pathName": "crm/pages/consumer/detail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-10] 添加消费记录",
+          "pathName": "crm/pages/expense/add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-10] 消费记录页",
+          "pathName": "crm/pages/expense/detail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

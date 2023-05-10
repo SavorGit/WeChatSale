@@ -54,3 +54,49 @@
 .window .entity>.win-body {
   font-size: 28rpx;
 }
+
+.window>.title-bar {
+  width: calc(100% - 60rpx);
+  height: 70rpx;
+  padding: 10rpx 30rpx;
+}
+
+.window>.title-bar>.title {
+  font-size: 28rpx;
+}
+
+.window>.title-bar>.title.bold {
+  font-weight: 700;
+}
+
+.window>.title-bar>.btn {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.window>.title-bar>.btn>.icon {
+  font-size: 36rpx;
+}
+
+.window>.option-bar {
+  width: calc(100% - 40rpx);
+  height: 70rpx;
+  padding: 10rpx 20rpx;
+  margin-top: -90rpx;
+}
+
+.window>.option-bar>.btn {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.window>.option-bar>.btn .icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.window>.win-body {
+  width: calc(100% - 60rpx);
+  height: calc(100% - 120rpx);
+  padding: 10rpx 30rpx 20rpx;
+}

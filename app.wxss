@@ -250,6 +250,14 @@ button::before {
   height: 100%;
 }
 
+.half-width {
+  width: 50%;
+}
+
+.half-height {
+  height: 50%;
+}
+
 .flex_row_stretch_flexStart,
 .flex_row_flexStart,
 .flex_row_flexStart_flexStart,
