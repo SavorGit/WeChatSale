@@ -18,7 +18,7 @@ Page({
     policy:'',
     signature:'',
     addDisabled:false,
-    consumer_info:{mobile_arr:[''],name:'',sex:0,avg_expence:0,avatarUrl:'',oss_head_pic:'',birthday:'',birthplace:''},
+    consumer_info:{mobile_arr:[''],name:'',sex:0,avg_expense:0,avatarUrl:'',oss_head_pic:'',birthday:'',birthplace:''},
   },
 
   /**
@@ -204,7 +204,7 @@ Page({
       mobile           : mobile,
       name             : consumer_info.name,
       sex              : consumer_info.sex,
-      avg_expence      : consumer_info.avg_expence,
+      avg_expense      : consumer_info.avg_expense,
       avatarUrl        : consumer_info.avatarUrl,
       birthday         : consumer_info.birthday,
       birthplace       : consumer_info.birthplace
@@ -213,6 +213,8 @@ Page({
       wx.navigateBack({
         delta: 1
       })
+    },res=>{
+      that.setData({addDisabled:false})
     })
   },
   /**
