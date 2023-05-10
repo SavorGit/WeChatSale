@@ -103,7 +103,9 @@ Page({
       url: '/crm/pages/consumer/detail?id='+consumer_id,
     })
   },
-  
+  inputSearch:function(e){
+    console.log(e)
+  },
   
   /**
    * 生命周期函数--监听页面初次渲染完成

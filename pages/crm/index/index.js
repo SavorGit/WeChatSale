@@ -24,7 +24,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('ddddd')
     wx.hideShareMenu();
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;

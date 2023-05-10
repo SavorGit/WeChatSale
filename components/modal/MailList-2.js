@@ -99,9 +99,13 @@ Component({
           }
           for (let bIndex = 0; bIndex < items.length; bIndex++) {
             let item = items[bIndex];
-            if (typeof (item) != 'object' || typeof (item.name) != 'string' || item.name.indexOf(searchKey) < 0) {
+            if (typeof (item) != 'object' || typeof (item.name) != 'string' || typeof (item.phone) != 'string' ) {
               continue;
             }
+            if(item.name.indexOf(searchKey) < 0 && item.phone.indexOf(searchKey) < 0){
+              continue;
+            }
+            
             listSearch.push(item);
           }
         }
