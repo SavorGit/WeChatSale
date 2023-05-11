@@ -124,7 +124,7 @@
           <view class="cover full-container">
             <view class="btn close flex_column_center_center">
               <view class="icon full-container">
-                <view class="text theme-font5">+</view>
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
               </view>
             </view>
           </view>
@@ -136,7 +136,7 @@
           <view class="cover full-container">
             <view class="btn close flex_column_center_center">
               <view class="icon full-container">
-                <view class="text theme-font5">+</view>
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
               </view>
             </view>
           </view>
@@ -148,7 +148,7 @@
           <view class="cover full-container">
             <view class="btn close flex_column_center_center">
               <view class="icon full-container">
-                <view class="text theme-font5">+</view>
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
               </view>
             </view>
           </view>

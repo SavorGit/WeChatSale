@@ -1,1 +1,56 @@
 /* crm/pages/consumer/label.wxss */
+@import "/utils/panel.wxss";
+@import "/window.wxss";
+
+/**
+ * 标签管理页
+ */
+.panel>.pbody {
+  width: calc(100% - 60rpx);
+  padding: 0 30rpx 20rpx;
+}
+
+.panel>.pbody>.row {
+  width: calc(100% - 30rpx);
+  padding: 10rpx 15rpx;
+}
+
+/* ================================= 添加标签面板 ================================= */
+.panel.add-flag>.pbody>.btn {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/* ================================= 标签管理面板 ================================= */
+.panel.flags>.pbody>.flag-warpper {
+  padding-right: 20rpx;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.panel.flags>.pbody>.flag-warpper>.flag {
+  height: 38rpx;
+  line-height: 38rpx;
+  padding: 10rpx 20rpx;
+  margin: 25rpx 30rpx 25rpx 0;
+  border-radius: 8rpx;
+  border: 3rpx solid #FFAA2C;
+}
+
+.panel.flags>.pbody>.flag-warpper>.cover {
+  height: 100rpx;
+  margin-top: -110rpx;
+}
+
+.panel.flags>.pbody>.flag-warpper>.cover>.btn {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: auto;
+  margin-right: -0rpx;
+}
+
+.panel.flags>.pbody>.flag-warpper>.cover>.btn>.icon {
+  width: 42rpx;
+  height: 42rpx;
+  padding: 9rpx;
+}

@@ -1,4 +1,8 @@
 // crm/pages/expense/list.js
+
+/**
+ * 待完善消费记录页
+ */
 Page({
 
   /**

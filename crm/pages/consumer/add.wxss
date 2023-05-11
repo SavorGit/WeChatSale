@@ -1,7 +1,7 @@
 /* crm/pages/consumer/add.wxss */
 
 /**
- * CRM 首页
+ * 添加客户页
  */
 .row {
   width: calc(100% - 60rpx);

@@ -1,2 +1,104 @@
 <!--crm/pages/consumer/label.wxml-->
-<text>crm/pages/consumer/label.wxml</text>
+
+<!--
+  -- 标签管理页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart">
+
+    <!-- 添加标签面板 -->
+    <view class="panel add-flag flex_column_flexStart_center theme-panel">
+      <view class="pbody">
+        <view class="btn add flex_column_center_center" bindtap="修改值">
+          <view class="icon">
+            <view class="text big10 fa fa-plus-square theme-font-FFAA2C" />
+          </view>
+          <view class="label">
+            <view class="text theme-font-FFAA2C">添加标签</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 标签管理面板 -->
+    <view class="panel flags flex_column_center_flexStart theme-panel">
+      <view class="title-bar flex_row_center_flexStart">
+        <view class="title">
+          <view class="text bold theme-font3">已添加标签</view>
+        </view>
+      </view>
+      <view class="pbody">
+        <view class="flag-warpper">
+          <view class="flag theme-font-FFAA2C">
+            <view class="text ">喜欢辣</view>
+          </view>
+          <view class="cover full-container">
+            <view class="btn del flex_column_center_center">
+              <view class="icon full-container">
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flag-warpper">
+          <view class="flag theme-font-FFAA2C">
+            <view class="text ">忌海鲜</view>
+          </view>
+          <view class="cover">
+            <view class="btn del flex_column_center_center">
+              <view class="icon full-container">
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flag-warpper">
+          <view class="flag theme-font-FFAA2C">
+            <view class="text ">急性子</view>
+          </view>
+          <view class="cover">
+            <view class="btn del flex_column_center_center">
+              <view class="icon full-container">
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flag-warpper">
+          <view class="flag theme-font-FFAA2C">
+            <view class="text ">爱热闹</view>
+          </view>
+          <view class="cover">
+            <view class="btn del flex_column_center_center">
+              <view class="icon full-container">
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="flag-warpper">
+          <view class="flag theme-font-FFAA2C">
+            <view class="text ">不要香菜</view>
+          </view>
+          <view class="cover">
+            <view class="btn del flex_column_center_center">
+              <view class="icon full-container">
+                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="full-width flex_row_center_center theme-block-white" style="height:120rpx;">
+      <view class="btn save flex_column_center_center theme-button-orange2" style="width:740rpx;height:100rpx;border-radius:5rpx;">
+        <view class="label flex_row_center_center">
+          <view class="text big4">保存</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

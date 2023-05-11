@@ -140,6 +140,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "[2023-05-10] 待完善消费记录页",
+          "pathName": "crm/pages/expense/list",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-10] 完善消费记录页",
+          "pathName": "crm/pages/expense/perfect",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-10] 标签管理页",
+          "pathName": "crm/pages/consumer/label",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

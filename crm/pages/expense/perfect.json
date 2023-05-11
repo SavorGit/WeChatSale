@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "完善消费记录",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }
