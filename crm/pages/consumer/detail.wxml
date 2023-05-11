@@ -243,7 +243,7 @@
 </scroll-view>
 
 <!-- 备注弹窗 -->
-<view wx:if="{{true}}" class="mask flex_column_center_center">
+<view wx:if="{{false}}" class="mask flex_column_center_center">
   <view class="window remark flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">

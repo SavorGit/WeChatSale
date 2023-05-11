@@ -30,6 +30,7 @@ Component({
     show: { type: Boolean, value: false },
     enableBackup: { type: Boolean, value: true },
     searchPlaceholder: { type: String, value: '请输入' },
+    searchKeywords: { type: String, value: '' },
     mailListData: { type: Array, value: [] },
     topTipsShow: { type: Boolean, value: true },
     topTipsList: { type: Array, value: [] },
@@ -50,7 +51,9 @@ Component({
     oHeight: [],
     scroolHeight: 0,
     isSearch: false,
-    inToViewSpaceHeight: 0
+    inToViewSpaceHeight: 0,
+    key_words : '',
+
   },
 
   /**

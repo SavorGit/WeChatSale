@@ -14,6 +14,7 @@ Page({
    */
   data: {
     customListPage: {
+      key_words:'',
       show: true,
       enableBackup: false,
       searchPlaceholder: '输入姓名/手机号',
@@ -93,8 +94,12 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    var key_words = '';
+    if(typeof(key_words)!='undefined'){
+      key_words = options.key_words;
+    }
 
-    
+    this.getConsumerList(openid,key_words);
   },
   gotoDetail:function(e){
     
@@ -106,7 +111,24 @@ Page({
   inputSearch:function(e){
     console.log(e)
   },
-  
+  searchItems:function(e){
+    var key_words = e.detail.detail.value.replace(/\s+/g, '');
+    
+    this.getConsumerList(openid,key_words);
+  },
+  getConsumerList:function(openid,key_words=''){
+    var that = this;
+    var customListPage = that.data.customListPage;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid           : openid,
+      key_words        : key_words,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      if(key_words!=''){
+        customListPage.key_words = key_words
+      }
+      that.setData({customListPage:customListPage})
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
