@@ -1,6 +1,10 @@
 // crm/pages/consumer/list.js
 const app = getApp()
 const utils = require('../../../utils/util.js')
+
+/**
+ * 客户列表页面
+ */
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;

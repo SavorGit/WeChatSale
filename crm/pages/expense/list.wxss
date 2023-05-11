@@ -1,1 +1,34 @@
 /* crm/pages/expense/list.wxss */
+@import "/utils/panel.wxss";
+@import "/window.wxss";
+
+/**
+ * 待完善消费记录页
+ */
+.item {
+  width: calc(100% - 50rpx);
+  padding: 0 25rpx;
+}
+
+.item>.row {
+  padding: 10rpx 0;
+}
+
+.item>.row>.left {
+  width: calc(100% - 200rpx);
+}
+
+.item>.row>.left>.room,
+.item>.row>.left>.datetime {
+  padding: 10rpx 0;
+}
+
+.item>.row>.right {
+  width: 200rpx;
+}
+
+.item>.row>.right>.btn {
+  width: 176rpx;
+  height: 68rpx;
+  border-radius: 16rpx;
+}

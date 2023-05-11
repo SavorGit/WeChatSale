@@ -90,19 +90,13 @@
 .panel.expense-receipt>.pbody>.item>.cover>.btn {
   width: 60rpx;
   height: 60rpx;
-  margin-left: 170rpx;
+  margin-left: 180rpx;
 }
 
 .panel.expense-receipt>.pbody>.item>.cover>.btn>.icon {
-  margin-left: 10rpx;
-  line-height: 50rpx;
-  text-align: center;
-}
-
-.panel.expense-receipt>.pbody>.item>.cover>.btn>.icon>.text {
-  font-size: 84rpx;
-  transform-origin: center center;
-  transform: rotate(45deg);
+  width: 42rpx;
+  height: 42rpx;
+  padding: 9rpx;
 }
 
 /* ================================= 备注面板 ================================= */

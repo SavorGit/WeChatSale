@@ -1,6 +1,10 @@
 // crm/pages/consumer/add.js
 const app = getApp()
 const utils = require('../../../utils/util.js')
+
+/**
+ * 添加客户页
+ */
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;

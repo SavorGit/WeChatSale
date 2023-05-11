@@ -1,4 +1,8 @@
 // crm/pages/consumer/label.js
+
+/**
+ * 标签管理页
+ */
 Page({
 
   /**

@@ -1,4 +1,8 @@
 // crm/pages/expense/perfect.js
+
+/**
+ * 完善消费记录页
+ */
 Page({
 
   /**

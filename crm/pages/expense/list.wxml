@@ -1,2 +1,69 @@
 <!--crm/pages/expense/list.wxml-->
-<text>crm/pages/expense/list.wxml</text>
+
+<!--
+  -- 待完善消费记录页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart theme-page">
+    <view class="list full-width flex_column_center_flexStart">
+      <view class="item full-width flex_column_center_spaceBetween">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="left flex_column_flexStart_center">
+            <view class="room full-width">
+              <view class="text small2 bold theme-font1">VIP 888</view>
+            </view>
+            <view class="datetime full-width">
+              <view class="text small2 bold theme-font3">2017-12-01 18:55</view>
+            </view>
+          </view>
+          <view class="right flex_column_flexEnd_center">
+            <view class="btn flex_column_center_center theme-button-orange2">
+              <view class="label">
+                <view class="text">完善信息</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_spaceBetween">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="left flex_column_flexStart_center">
+            <view class="room full-width">
+              <view class="text small2 bold theme-font1">VIP 888</view>
+            </view>
+            <view class="datetime full-width">
+              <view class="text small2 bold theme-font3">2017-12-01 18:55</view>
+            </view>
+          </view>
+          <view class="right flex_column_flexEnd_center">
+            <view class="btn flex_column_center_center theme-button-orange2">
+              <view class="label">
+                <view class="text">完善信息</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_spaceBetween">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="left flex_column_flexStart_center">
+            <view class="room full-width">
+              <view class="text small2 bold theme-font1">VIP 888</view>
+            </view>
+            <view class="datetime full-width">
+              <view class="text small2 bold theme-font3">2017-12-01 18:55</view>
+            </view>
+          </view>
+          <view class="right flex_column_flexEnd_center">
+            <view class="btn flex_column_center_center theme-button-orange2">
+              <view class="label">
+                <view class="text">完善信息</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>

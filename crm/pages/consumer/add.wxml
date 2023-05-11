@@ -1,7 +1,7 @@
 <!--crm/pages/consumer/add.wxml-->
 
 <!--
-  -- CRM 首页
+  -- 添加客户页
   -->
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
   <view class="page full-width flex_column_center_flexStart">
