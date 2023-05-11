@@ -13,6 +13,7 @@ const oss_url   = app.globalData.oss_url;
 const oss_upload_url = app.globalData.oss_upload_url;
 var openid;
 var hotel_id;
+var id ;
 Page({
 
   /**
@@ -28,14 +29,27 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
-    this.getConsumerInfo(openid);
+    id = options.id;
+    
   },
-  getConsumerInfo:function(openid){
+  getConsumerInfo:function(openid,id){
     utils.PostRequest(api_v_url + '/aa/bb', {
       openid           : openid,
-     
+      id               : id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      
+
+    })
+  },
+  gotoPage:function(e){
+    var type = e.currentTarget.dataset.type;
+    var url = '';
+    switch(type){
+      case 'edit':
+        url = '/crm/pages/consumer/add?id='+id;
+        break;
+    }
+    wx.navigateTo({
+      url: url,
     })
   },
 
@@ -50,7 +64,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getConsumerInfo(openid,id);
   },
 
   /**

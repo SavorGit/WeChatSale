@@ -31,7 +31,7 @@
               </view>
             </view>
             <view class="rt-right half-width flex_column_flexEnd_spaceBetween">
-              <view class="option">
+              <view class="option" bindtap="gotoPage" data-type="edit">
                 <view class="btn edit flex_column_center_center">
                   <view class="icon">
                     <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />

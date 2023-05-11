@@ -9,6 +9,7 @@ const oss_url   = app.globalData.oss_url;
 const oss_upload_url = app.globalData.oss_upload_url;
 var openid;
 var hotel_id;
+var id;
 Page({
 
   /**
@@ -27,6 +28,11 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    id = 0 ;
+    if(typeof(options.id)!='undefined'){
+      id = options.id;
+      this.getConsumerInfo(openid,id);
+    }
     
     this.getOssParams();
   },
@@ -42,6 +48,14 @@ Page({
         var signature = rest.data.signature;
         that.setData({policy:policy,signature:signature})
       }
+    })
+  },
+  getConsumerInfo:function(openid,id){
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid           : openid,
+      id               : id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+
     })
   },
   addMobile:function(e){
