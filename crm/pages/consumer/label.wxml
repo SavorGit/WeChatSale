@@ -21,14 +21,14 @@
     </view>
 
     <!-- 标签管理面板 -->
-    <view class="panel flags flex_column_center_flexStart theme-panel">
+    <view class="panel flags flex_column_center_flexStart theme-panel" wx:if="{{lable_list.length>0}}">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">
           <view class="text bold theme-font3">已添加标签</view>
         </view>
       </view>
       <view class="pbody">
-        <view class="flag-warpper">
+        <view class="flag-warpper" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
           <view class="flag theme-font-FFAA2C">
             <view class="text ">喜欢辣</view>
           </view>
@@ -40,54 +40,7 @@
             </view>
           </view>
         </view>
-        <view class="flag-warpper">
-          <view class="flag theme-font-FFAA2C">
-            <view class="text ">忌海鲜</view>
-          </view>
-          <view class="cover">
-            <view class="btn del flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="flag-warpper">
-          <view class="flag theme-font-FFAA2C">
-            <view class="text ">急性子</view>
-          </view>
-          <view class="cover">
-            <view class="btn del flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="flag-warpper">
-          <view class="flag theme-font-FFAA2C">
-            <view class="text ">爱热闹</view>
-          </view>
-          <view class="cover">
-            <view class="btn del flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="flag-warpper">
-          <view class="flag theme-font-FFAA2C">
-            <view class="text ">不要香菜</view>
-          </view>
-          <view class="cover">
-            <view class="btn del flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
+        
 
       </view>
     </view>

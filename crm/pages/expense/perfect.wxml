@@ -26,7 +26,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame full-width flex_row_center_flexStart">
-                <view class="text theme-font1">13812345678</view>
+                <view class="text theme-font1">{{consumer_info.mobile}}</view>
               </view>
             </view>
           </view>
@@ -43,7 +43,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <input class="input" type="text" value="张总" placeholder="输入姓名" />
+                <input class="input" type="text" bindinput="inputInfo" data-type="name" value="{{consumer_info.name}}" placeholder="输入姓名" maxlength="20" />
               </view>
             </view>
           </view>
@@ -60,10 +60,10 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <picker class="input" mode="selector">
+                <picker class="input" mode="selector" range="{{room_name_list}}" value="{{consumer_info.room_index}}" bindchange="chooseRoom"  >
                   <view class="show flex_row_center_spaceBetween">
                     <view class="context">
-                      <view class="text theme-font3">vip111</view>
+                      <view class="text theme-font3">{{room_name_list[consumer_info.room_index]}}</view>
                     </view>
                     <view class="icon">
                       <view class="text big10 fa fa-angle-right theme-font3" />
@@ -86,10 +86,10 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart" style="width:calc(100% - 70rpx);">
-                <date-mtime-picker class="input">
+                <date-mtime-picker class="input" bind:change="handleChange" value="{{consumer_info.meal_time}}" data-type="start">
                   <view class="show flex_row_center_spaceBetween">
                     <view class="context">
-                      <view class="text">请选择</view>
+                      <view class="text">{{consumer_info.meal_time}}</view>
                     </view>
                   </view>
                 </date-mtime-picker>
@@ -112,7 +112,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <input class="input" type="text" placeholder="请输入" />
+                <input class="input" type="number" placeholder="请输入" bindinput="inputInfo" data-type="people_num" maxlength="3" />
               </view>
             </view>
           </view>
@@ -127,7 +127,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <input class="input" type="text" placeholder="请输入（元）" />
+                <input class="input" type="digit" placeholder="请输入（元）" bindinput="inputInfo" data-type="money" maxlength="6" />
               </view>
             </view>
           </view>
@@ -143,28 +143,17 @@
         </view>
       </view>
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+        <view class="btn edit flex_column_center_center" bindtap="gotoPage" data-type="lable">
           <view class="icon">
             <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
           </view>
         </view>
       </view>
       <view class="pbody">
-        <view class="flag theme-font-FFAA2C">
-          <view class="text ">喜欢辣</view>
+        <view class="flag theme-font-FFAA2C" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index" >
+          <view class="text ">{{bean.name}}</view>
         </view>
-        <view class="flag theme-font-FFAA2C">
-          <view class="text ">忌海鲜</view>
-        </view>
-        <view class="flag theme-font-FFAA2C">
-          <view class="text ">急性子</view>
-        </view>
-        <view class="flag theme-font-FFAA2C">
-          <view class="text ">爱热闹</view>
-        </view>
-        <view class="flag theme-font-FFAA2C">
-          <view class="text ">不要香菜</view>
-        </view>
+        
       </view>
     </view>
 
@@ -254,7 +243,7 @@
 </scroll-view>
 
 <!-- 备注弹窗 -->
-<view wx:if="{{true}}" class="mask flex_column_center_center">
+<view wx:if="{{false}}" class="mask flex_column_center_center">
   <view class="window remark flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">

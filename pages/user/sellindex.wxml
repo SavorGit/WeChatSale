@@ -1127,7 +1127,7 @@
 </view>
 
 <!-- 完善饭局记录提醒弹窗 -->
-<view wx:if="{{expense_log.popPerfectExpenseWind}}" class="mask flex_column_center_center">
+<view wx:if="{{expense_log.is_popup==1}}" class="mask flex_column_center_center">
   <view class="window perfect-dinner-party flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">
@@ -1138,7 +1138,7 @@
       <view class="page flex_column_center_flexStart">
         <view class="main full-width flex_column_center_flexStart">
           <view class="context full-width flex_column_center_center">
-            <view class="text big1 full-width flex_column_center_center">{{expense_log.str}}</view>
+            <view class="text big1 full-width flex_column_center_center">{{expense_log.message}}</view>
           </view>
         </view>
         <view class="foot full-width flex_column_center_center">
@@ -1146,7 +1146,7 @@
             <view class="btn cancel flex_column_center_center theme-button-welcome-dark" bindtap="closePopWind">
               <view class="text">取消</view>
             </view>
-            <view class="btn cancel flex_column_center_center theme-button-red" bindtap="gotoPage" data-type="perfect_expense_log" data-id="{{expense_log.id}}">
+            <view class="btn cancel flex_column_center_center theme-button-red" bindtap="gotoPage" data-type="perfect_expense_log" >
               <view class="text">立即完善</view>
             </view>
           </view>

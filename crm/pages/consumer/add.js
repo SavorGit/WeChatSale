@@ -198,39 +198,57 @@ Page({
   submitConsumerInfo:function(){
     var that = this;
     var consumer_info = this.data.consumer_info;
-    var flag = 0;
+    
     var mobile_arr = consumer_info.mobile_arr;
-    var mobile = '';
+
+    /*var mobile = '';
     var space  = '';
     for(let i in mobile_arr){
       if(mobile_arr[i]!=''){
         flag = 1;
       }
       mobile +=space + mobile_arr[i];
-    }
-    if(flag ==0){
+    }*/
+    var mobile,mobile1,mobile2 = '';
+
+    if(mobile_arr[0] ==''){
       app.showToast('请输入手机号');
       return false;
+    }
+    mobile = mobile_arr[0];
+    if(mobile_arr.length==2){
+      mobile1 = mobile_arr[1];
+    }
+    if(mobile_arr.length==3){
+      mobile1 = mobile_arr[1];
+      mobile2 = mobile_arr[2];
     }
     if(consumer_info.name==''){
       app.showToast('请输入姓名');
       return false;
     }
     this.setData({addDisabled:true})
-    utils.PostRequest(api_v_url + '/aa/bb', {
-      openid           : openid,
-      mobile           : mobile,
-      name             : consumer_info.name,
-      sex              : consumer_info.sex,
+    utils.PostRequest(api_v_url + '/customer/addCustomer', {
+      avatar_url       : consumer_info.avatarUrl,
       avg_expense      : consumer_info.avg_expense,
-      avatarUrl        : consumer_info.avatarUrl,
       birthday         : consumer_info.birthday,
-      birthplace       : consumer_info.birthplace
+      customer_id      : id,
+      gender           : consumer_info.sex,
+      mobile           : mobile,
+      mobile1          : mobile1,
+      mobile2          : mobile2,
+      name             : consumer_info.name,
+      native_place     : consumer_info.birthplace,
+      openid           : openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({addDisabled:false})
-      wx.navigateBack({
-        delta: 1
-      })
+      app.showToast('添加成功',2000,'success',true)
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 2000);
+     
     },res=>{
       that.setData({addDisabled:false})
     })

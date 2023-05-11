@@ -21,7 +21,7 @@ let isLeapYear = function (year) {
 let now = new Date();
 let years = [];
 let beginYear = now.getFullYear();
-let yearOffset = 2;
+let yearOffset = 1;
 for (let i = beginYear - yearOffset; i <= now.getFullYear() + yearOffset; i++) {
   years.push(i + "年");
 }
@@ -89,7 +89,7 @@ Component({
   methods: {
     _dateToValueArray(date) {
       date = new Date();
-      return [date.getFullYear() - beginYear, date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()];
+      return [date.getFullYear()- beginYear + yearOffset , date.getMonth(), date.getDate() - 1, date.getHours(), date.getMinutes()];
       //return [date.getFullYear() - beginYear + yearOffset, date.getMonth(), date.getDate() - 1, date.getHours()];
     },
     _settMonthDays(year, month) {

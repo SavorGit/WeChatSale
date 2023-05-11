@@ -51,7 +51,7 @@ Page({
     task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
                             get_recycle_task_pop_wind:false,task_info:{}},  //品平价酒任务
 
-    expense_log:{popPerfectExpenseWind:true,id:1,str:'xxxx包间的客人xxxxx已完成就餐，是否要完善消费记录？'},                  //完善消费记录
+    expense_log:{is_popup:0,message:''},                  //完善消费记录
 
   },
 
@@ -219,6 +219,9 @@ Page({
             that.getLoopPlay();
           }
           that.tastWineRemindGetTask(openid,hotel_id,is_onload);
+          if(is_onload==1){
+            that.getPopup(openid,hotel_id,is_onload);
+          }
           if(user_info.is_perfect==0){
           //if(user_info.is_wx_auth!=3 || user_info.mobile==''){
             
@@ -504,7 +507,7 @@ Page({
       popInviteMmberWind:false,
       task_taste_honest_wine:{get_task_pop_wind:false,scancode_pop_wind:false,scancode_success_pop_wind:false,
         get_recycle_task_pop_wind:false,task_info:{}},   //品平价酒活动
-      expense_log:{popPerfectExpenseWind:false,id:0,str:''}
+      expense_log:{is_popup:0,message:''}
     })
   },
   
@@ -1485,6 +1488,21 @@ Page({
     },res=>{},{isShowLoading:showload})
   },
   /**
+   * @desc 完善饭局记录提醒弹窗 20230511
+   */
+  getPopup:function(openid,hotel_id){
+    var that = this;
+    var expense_log = this.data.expense_log;
+    utils.PostRequest(api_v_url + '/customer/getPopup', {
+      openid   : openid,
+      hotel_id : hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      expense_log = data.result;
+      that.setData({expense_log:expense_log})
+    })
+  },
+
+  /**
    * @desc 弹窗领取任务
    */
   popReceiveTaskNow:function(e){
@@ -1575,15 +1593,19 @@ Page({
     var that = this;
     var url  = '';
     var type = e.currentTarget.dataset.type;
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    wx.showLoading({
+      title: '加载中',
+    })
     switch(type){
       case 'perfect_expense_log':
-        var id = e.currentTarget.dataset.id;
-        url = '/crm/pages/expense/perfect?id='+id;
+        url = '/crm/pages/expense/list?hotel_id='+user_info.hotel_id;
         break;
     }
     wx.navigateTo({
       url: url,
       success:function(){
+        wx.hideLoading();
         if(type=='perfect_expense_log'){
           that.setData({expense_log:{popPerfectExpenseWind:false,id:0,str:''}})
         }

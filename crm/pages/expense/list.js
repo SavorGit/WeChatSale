@@ -3,22 +3,59 @@
 /**
  * 待完善消费记录页
  */
+const app = getApp()
+const utils = require('../../../utils/util.js')
+
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+const oss_url   = app.globalData.oss_url;
+const oss_upload_url = app.globalData.oss_upload_url;
+var openid;
+var hotel_id;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    perfect_list:[{
+      "room_name":"前台",
+      "book_time":"2023-05-10 15:00:00",
+      "room_id":"10498",
+      "name":"胡",
+      "mobile":"18612132811",
+      "customer_id":0
+  }],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.hideLoading();
+    openid   = app.globalData.openid;
+    hotel_id = options.hotel_id;
+    
   },
-
+  getPerfectList:function(openid,hotel_id){
+    var that = this;
+    utils.PostRequest(api_v_url + '/customer/perfectList', {
+      openid           : openid,
+      hotel_id         : hotel_id,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      that.setData({perfect_list:data.result.datalist});
+    })
+  },
+  gotoPage:function(e){
+    var keys = e.currentTarget.dataset.keys;
+    var perfect_list = this.data.perfect_list;
+    var info = perfect_list[keys];
+    wx.navigateTo({
+      url: '/crm/pages/expense/perfect?room_id='+info.room_id+'&name='+info.name+'&mobile='+info.mobile+'&customer_id='+info.customer_id+'&hotel_id='+hotel_id+'&book_time='+info.book_time,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -30,6 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    //this.getPerfectList(openid,hotel_id);
 
   },
 

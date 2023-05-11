@@ -60,7 +60,7 @@ Page({
         url = '/crm/pages/consumer/add';
         break;
       case 'perfect_expense_log':
-        url = '/crm/pages/expense/perfect';
+        url = '/crm/pages/expense/list?hotel_id='+hotel_id;
         break;
       case 'consumer_list':
         url = '/crm/pages/consumer/list';
