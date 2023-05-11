@@ -40,7 +40,7 @@
             </view>
           </view>
         </view>
-        
+
 
       </view>
     </view>
@@ -55,3 +55,36 @@
 
   </view>
 </scroll-view>
+
+
+<!-- 新增标签弹窗 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+  <view class="window remark flex_column_center_flexStart theme-window">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">
+        <view class="text big2 bold theme-font1">新增标签</view>
+      </view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd">
+      <view class="btn close flex_column_center_center">
+        <view class="icon full-container">
+          <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
+        </view>
+      </view>
+    </view>
+    <view class="win-body flex_column_center_center">
+      <form class="full-container" bindsubmit="">
+        <view class="main full-width flex_column_center_center">
+          <view class="frame border full-container flex_column_center_center">
+            <input type="text" class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+          </view>
+        </view>
+        <view class="button-group full-width flex_row_center_center">
+          <view class="btn submit flex_column_center_center theme-button-orange2">
+            <view class="text">保存</view>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+</view>

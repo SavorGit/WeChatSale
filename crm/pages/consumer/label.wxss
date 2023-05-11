@@ -54,3 +54,37 @@
   height: 42rpx;
   padding: 9rpx;
 }
+
+/* ================================= 新增标签弹窗 ================================= */
+.window.remark {
+  width: 690rpx;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+
+.window.remark>.win-body .main {
+  height: calc(100% - 100rpx);
+}
+
+.window.remark>.win-body .main>.frame {
+  width: calc(100% - 10rpx);
+  height: calc(100% - 10rpx);
+  padding: 5rpx;
+}
+
+.window.remark>.win-body .main>.frame.border {
+  width: calc(100% - 16rpx);
+  height: calc(100% - 16rpx);
+  border: 3rpx solid #DEDEDE;
+  border-radius: 5rpx;
+}
+
+.window.remark>.win-body .button-group {
+  height: 100rpx;
+}
+
+.window.remark>.win-body .button-group>.btn {
+  width: 300rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+}

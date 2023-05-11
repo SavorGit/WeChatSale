@@ -60,7 +60,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <picker class="input" mode="selector" range="{{room_name_list}}" value="{{consumer_info.room_index}}" bindchange="chooseRoom"  >
+                <picker class="input" mode="selector" range="{{room_name_list}}" value="{{consumer_info.room_index}}" bindchange="chooseRoom">
                   <view class="show flex_row_center_spaceBetween">
                     <view class="context">
                       <view class="text theme-font3">{{room_name_list[consumer_info.room_index]}}</view>
@@ -150,10 +150,10 @@
         </view>
       </view>
       <view class="pbody">
-        <view class="flag theme-font-FFAA2C" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index" >
+        <view class="flag theme-font-FFAA2C" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
           <view class="text ">{{bean.name}}</view>
         </view>
-        
+
       </view>
     </view>
 
@@ -258,16 +258,18 @@
       </view>
     </view>
     <view class="win-body flex_column_center_center">
-      <view class="main full-width flex_column_center_center">
-        <view class="frame border full-container flex_column_center_center">
-          <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+      <form class="full-container" bindsubmit="">
+        <view class="main full-width flex_column_center_center">
+          <view class="frame border full-container flex_column_center_center">
+            <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+          </view>
         </view>
-      </view>
-      <view class="button-group full-width flex_row_center_center">
-        <view class="btn submit flex_column_center_center theme-button-orange2">
-          <view class="text">保存</view>
+        <view class="button-group full-width flex_row_center_center">
+          <view class="btn submit flex_column_center_center theme-button-orange2">
+            <view class="text">保存</view>
+          </view>
         </view>
-      </view>
+      </form>
     </view>
   </view>
 </view>
