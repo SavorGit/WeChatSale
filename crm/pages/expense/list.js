@@ -20,14 +20,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    perfect_list:[{
-      "room_name":"前台",
-      "book_time":"2023-05-10 15:00:00",
-      "room_id":"10498",
-      "name":"胡",
-      "mobile":"18612132811",
-      "customer_id":0
-  }],
+    perfect_list:[],
   },
 
   /**
@@ -53,7 +46,7 @@ Page({
     var perfect_list = this.data.perfect_list;
     var info = perfect_list[keys];
     wx.navigateTo({
-      url: '/crm/pages/expense/perfect?room_id='+info.room_id+'&name='+info.name+'&mobile='+info.mobile+'&customer_id='+info.customer_id+'&hotel_id='+hotel_id+'&book_time='+info.book_time,
+      url: '/crm/pages/expense/perfect?room_id='+info.room_id+'&name='+info.name+'&mobile='+info.mobile+'&customer_id='+info.customer_id+'&hotel_id='+hotel_id+'&book_time='+info.book_time+'&type=perfect',
     })
   },
   /**
@@ -67,7 +60,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    //this.getPerfectList(openid,hotel_id);
+    this.getPerfectList(openid,hotel_id);
 
   },
 

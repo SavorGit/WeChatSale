@@ -10,10 +10,12 @@
     <view class="panel basic-info flex_column_center_flexStart theme-panel">
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">
-          <view class="text big2 bold theme-font1">客人信息</view>
+          <view class="text big2 bold theme-font1">{{consumer_info.type=='perfect'?'客人信息':'基本信息'}}</view>
         </view>
       </view>
+      
       <view class="pbody flex_column_center_flexStart">
+        <block wx:if="{{consumer_info.type=='perfect'}}">
         <view class="row full-width flex_row_center_flexStart">
           <view class="property text full-width flex_row_center_flexStart">
             <view class="label-group full-height flex_row_center_flexStart">
@@ -48,6 +50,7 @@
             </view>
           </view>
         </view>
+        </block>
         <view class="row full-width flex_row_center_flexStart">
           <view class="property picker full-width flex_row_center_flexStart">
             <view class="label-group full-height flex_row_center_flexStart">
@@ -127,7 +130,7 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border full-width flex_row_center_flexStart">
-                <input class="input" type="digit" placeholder="请输入（元）" bindinput="inputInfo" data-type="money" maxlength="6" />
+                <input class="input" type="digit" placeholder="请输入（元）" bindinput="inputInfo" data-type="money" maxlength="9" />
               </view>
             </view>
           </view>
@@ -136,7 +139,8 @@
     </view>
 
     <!-- 标签管理面板 -->
-    <view class="panel flags flex_column_center_flexStart theme-panel">
+    <block wx:if="{{consumer_info.type=='perfect'}}">
+    <view class="panel flags flex_column_center_flexStart theme-panel" >
       <view class="title-bar flex_row_center_flexStart">
         <view class="title">
           <view class="text big2 bold theme-font1">标签管理</view>
@@ -156,7 +160,7 @@
 
       </view>
     </view>
-
+    </block>
     <!-- 消费小票面板 -->
     <view class="panel expense-receipt flex_column_center_flexStart theme-panel">
       <view class="title-bar flex_row_center_flexStart">
@@ -164,8 +168,8 @@
           <view class="text big2 bold theme-font1">消费小票</view>
         </view>
       </view>
-      <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+      <view class="option-bar flex_row_center_flexEnd" wx:if="{{consumer_info.small_ticket.length<3}}">
+        <view class="btn edit flex_column_center_center" bindtap="addPic">
           <view class="icon">
             <view class="text big10 fa fa-camera theme-font-FFAA2C" />
           </view>
@@ -173,42 +177,19 @@
       </view>
       <view class="pbody">
 
-        <view class="item">
-          <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+        <view class="item" wx:for="{{consumer_info.small_ticket}}" wx:key="key" wx:for-item="bean" wx:for-index="index" >
+          <view class="pic" bindtap="previewImages" data-index="{{index}}">
+            <image class="full-container"  src="{{oss_url}}/{{bean}}" mode="aspectFill" />
           </view>
           <view class="cover full-container">
-            <view class="btn close flex_column_center_center">
+            <view class="btn close flex_column_center_center" bindtap="delSmallTicket" data-keys="{{index}}">
               <view class="icon full-container">
                 <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
               </view>
             </view>
           </view>
         </view>
-        <view class="item">
-          <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-          </view>
-          <view class="cover full-container">
-            <view class="btn close flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="item">
-          <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-          </view>
-          <view class="cover full-container">
-            <view class="btn close flex_column_center_center">
-              <view class="icon full-container">
-                <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-        </view>
+        
 
       </view>
     </view>
@@ -221,29 +202,29 @@
         </view>
       </view>
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+        <view class="btn edit flex_column_center_center" bindtap="popRemarkWind" data-type="1">
           <view class="icon">
             <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
           </view>
         </view>
       </view>
       <view class="pbody">
-        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+        <view class="text big1">{{consumer_info.remark}}</view>
       </view>
     </view>
 
     <view class="full-width flex_row_center_center theme-block-white" style="height:120rpx;">
-      <view class="btn save flex_column_center_center theme-button-orange2" style="width:740rpx;height:100rpx;border-radius:5rpx;">
+      <button class="btn save flex_column_center_center theme-button-orange2" style="width:740rpx;height:100rpx;border-radius:5rpx;" disabled="{{addDisabled}}" bindtap="submitConsumerInfo">
         <view class="label flex_row_center_center">
           <view class="text big4">保存消费记录</view>
         </view>
-      </view>
+      </button>
     </view>
   </view>
 </scroll-view>
 
 <!-- 备注弹窗 -->
-<view wx:if="{{false}}" class="mask flex_column_center_center">
+<view wx:if="{{popRemakWind}}" class="mask flex_column_center_center">
   <view class="window remark flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">
@@ -251,23 +232,23 @@
       </view>
     </view>
     <view class="option-bar flex_row_center_flexEnd">
-      <view class="btn close flex_column_center_center">
+      <view class="btn close flex_column_center_center" bindtap="popRemarkWind" data-type="0">
         <view class="icon full-container">
           <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
         </view>
       </view>
     </view>
     <view class="win-body flex_column_center_center">
-      <form class="full-container" bindsubmit="">
+      <form class="full-container" bindsubmit="addRemark">
         <view class="main full-width flex_column_center_center">
           <view class="frame border full-container flex_column_center_center">
-            <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+            <textarea name="remark" class="input text big1 full-container theme-font1" maxlength="500" value="{{consumer_info.remark}}" placeholder="请输入" />
           </view>
         </view>
         <view class="button-group full-width flex_row_center_center">
-          <view class="btn submit flex_column_center_center theme-button-orange2">
+          <button form-type="submit" class="btn submit flex_column_center_center theme-button-orange2">
             <view class="text">保存</view>
-          </view>
+          </button>
         </view>
       </form>
     </view>

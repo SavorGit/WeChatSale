@@ -46,7 +46,7 @@ Page({
   },
   searchConsumer:function(e){
     var key_words = this.data.key_words;
-    var url = '/crm/pages/consumer/list?key_words='+key_words;
+    var url = '/crm/pages/consumer/list?key_words='+key_words+'&hotel_id='+hotel_id;
     wx.navigateTo({
       url: url,
     })
@@ -63,7 +63,7 @@ Page({
         url = '/crm/pages/expense/list?hotel_id='+hotel_id;
         break;
       case 'consumer_list':
-        url = '/crm/pages/consumer/list';
+        url = '/crm/pages/consumer/list?hotel_id='+hotel_id;
         break;
       case 'consumer_info':
         var id = e.currentTarget.dataset.id;

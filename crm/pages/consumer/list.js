@@ -27,67 +27,6 @@ Page({
         list: ['共123个客户']
       },
       data: [
-        {
-          id: "1",
-          region: "A",
-          items: [
-            { id: "1", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "2", name: "阿明", phone: '13800138000/13800138000', avatarUrl: '' },
-            { id: "3", name: "阿明", phone: '13800138000', avatarUrl: 'https://oss.littlehotspot.com/WeChat/resource/default.jpg' },
-            { id: "4", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' }
-          ]
-        },
-        {
-          id: "2",
-          region: "B",
-          items: [
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' },
-            { id: "A-MING", name: "阿明", phone: '13800138000', avatarUrl: '' }
-          ]
-        }
       ]
     }
   },
@@ -98,35 +37,43 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    hotel_id = options.hotel_id;
     var key_words = '';
     if(typeof(key_words)!='undefined'){
       key_words = options.key_words;
     }
-
-    this.getConsumerList(openid,key_words);
+    console.log(key_words);
+    this.getConsumerList(openid,hotel_id,key_words);
   },
   gotoDetail:function(e){
     
     var consumer_id = e.detail.id;
     wx.navigateTo({
-      url: '/crm/pages/consumer/detail?id='+consumer_id,
+      url: '/crm/pages/consumer/detail?id='+consumer_id+'&hotel_id='+hotel_id,
     })
   },
   inputSearch:function(e){
     console.log(e)
   },
   searchItems:function(e){
+    console.log(e)
     var key_words = e.detail.detail.value.replace(/\s+/g, '');
     
-    this.getConsumerList(openid,key_words);
+    this.getConsumerList(openid,hotel_id,key_words);
   },
-  getConsumerList:function(openid,key_words=''){
+  getConsumerList:function(openid,hotel_id,key_words=''){
     var that = this;
     var customListPage = that.data.customListPage;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/customer/datalist', {
       openid           : openid,
-      key_words        : key_words,
+      hotel_id         : hotel_id,
+      keywords         : key_words,
     }, (data, headers, cookies, errMsg, statusCode) => {
+
+      var data_list  = data.result.datalist;
+      var total_num  = data.result.total_num;
+      customListPage.data = data_list;
+      customListPage.topTips.list[0] = '共'+total_num+'个客户';
       if(key_words!=''){
         customListPage.key_words = key_words
       }

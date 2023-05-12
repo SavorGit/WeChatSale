@@ -140,7 +140,7 @@ Component({
         let v = this.data.rangeValues[i][e.detail.value[i]];
         dateArr.push(v.toString().substr(0, v.length - 1))
       }
-      let dateString = dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2] + " " + dateArr[3] + " "+ dateArr[4] + ":00";
+      let dateString = dateArr[0] + "-" + dateArr[1] + "-" + dateArr[2] + " " + dateArr[3] + ":"+ dateArr[4] + ":00";
       this.triggerEvent('change', {
         date: stringToDate(dateString),
         dateString

@@ -11,23 +11,23 @@
       <view class="pbody flex_row_flexStart_spaceBetween">
         <view class="left flex_column_center_flexStart">
           <view class="attribute avatar">
-            <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            <image class="pic" src="{{consumer_info.oss_avatar_url}}" mode="aspectFill" />
           </view>
           <view class="attribute name">
-            <view class="text big1 theme-font1">老马</view>
+            <view class="text big1 theme-font1">{{consumer_info.name}}</view>
           </view>
         </view>
         <view class="right flex_column_center_flexStart">
           <view class="r-top full-width flex_row_center_spaceBetween">
             <view class="rt-left half-width flex_column_flexStart_spaceBetween">
               <view class="attribute sex">
-                <view class="text theme-font3">性别：男</view>
+                <view class="text theme-font3" >性别：{{consumer_info.gender_str}}</view>
               </view>
               <view class="attribute birthday">
-                <view class="text theme-font3">生日：10月1日</view>
+                <view class="text theme-font3">生日：{{consumer_info.birthday_str}}</view>
               </view>
               <view class="attribute native">
-                <view class="text theme-font3">籍贯：上海</view>
+                <view class="text theme-font3">籍贯：{{consumer_info.native_place}}</view>
               </view>
             </view>
             <view class="rt-right half-width flex_column_flexEnd_spaceBetween">
@@ -39,10 +39,10 @@
                 </view>
               </view>
               <view class="attribute birthday">
-                <view class="text theme-font3">人均：800</view>
+                <view class="text theme-font3">人均：{{consumer_info.avg_expense}}</view>
               </view>
               <view class="attribute native">
-                <view class="text theme-font3">共消费10次</view>
+                <view class="text theme-font3">共消费{{consumer_info.expense_num}}次</view>
               </view>
             </view>
           </view>
@@ -52,12 +52,17 @@
                 <view class="text theme-font3">联系电话：</view>
               </view>
               <view class="value">
-                <view class="item flex_row_center_center" bindtap="修改值">
-                  <view class="text theme-font-6297F2">13966663213</view>
+
+                <view class="item flex_row_center_center" wx:if="{{consumer_info.mobile!=''}}" class="item flex_row_center_center" bindtap="phonecallevent" data-del="{{consumer_info.mobile}}" data-de1="{{consumer_info.mobile}}">
+                  <view class="text theme-font-6297F2">{{consumer_info.mobile}}</view>
                 </view>
-                <view class="item flex_row_center_center" bindtap="修改值">
-                  <view class="text theme-font-6297F2">13966663212</view>
-                </view>
+                
+
+                <block wx:if="{{consumer_info.mobile1!='' || consumer_info.mobile2!=''}}" >
+                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile1!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile1}}" data-del1="{{consumer_info.mobile2}}">{{consumer_info.mobile1}}</view>
+                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile2!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile1}}" data-del1="{{consumer_info.mobile2}}">{{consumer_info.mobile2}}</view>
+                </block>
+
               </view>
             </view>
           </view>
@@ -66,7 +71,7 @@
     </view>
 
     <view class="flex_row_center_flexStart" style="width:calc(100% - 30rpx);height:70rpx;padding:10rpx 15rpx;background-color:rgb(246, 243, 238);">
-      <view class="text theme-font-FFAA2C">最近三个月没有消费</view>
+      <view class="text theme-font-FFAA2C">{{consumer_info.expense_msg}}</view>
     </view>
 
     <!-- 客户标签信息面板 -->
@@ -77,28 +82,17 @@
         </view>
       </view>
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+        <view class="btn edit flex_column_center_center" bindtap="gotoPage" data-type="lables">
           <view class="icon">
             <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
           </view>
         </view>
       </view>
       <view class="pbody">
-        <view class="flag theme-block-orange2">
-          <view class="text ">喜欢辣</view>
+        <view class="flag theme-block-orange2" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index" >
+          <view class="text ">{{bean.name}}</view>
         </view>
-        <view class="flag theme-block-orange2">
-          <view class="text ">忌海鲜</view>
-        </view>
-        <view class="flag theme-block-orange2">
-          <view class="text ">急性子</view>
-        </view>
-        <view class="flag theme-block-orange2">
-          <view class="text ">爱热闹</view>
-        </view>
-        <view class="flag theme-block-orange2">
-          <view class="text ">不要香菜</view>
-        </view>
+        
       </view>
     </view>
 
@@ -110,14 +104,14 @@
         </view>
       </view>
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+        <view class="btn edit flex_column_center_center" bindtap="opsRemarkWind" data-type="1">
           <view class="icon">
             <view class="text big10 fa fa-pencil-square-o theme-font-FFAA2C" />
           </view>
         </view>
       </view>
       <view class="pbody">
-        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+        <view class="text big1">{{consumer_info.remark}}</view>
       </view>
     </view>
 
@@ -129,7 +123,7 @@
         </view>
       </view>
       <view class="option-bar flex_row_center_flexEnd">
-        <view class="btn edit flex_column_center_center">
+        <view class="btn edit flex_column_center_center" bindtap="gotoPage" data-type="add_expense">
           <view class="icon">
             <view class="text big10 fa fa-plus-square theme-font-FFAA2C" />
           </view>
@@ -138,103 +132,23 @@
       <view class="pbody flex_column_center_flexStart">
         <view class="list full-width flex_column_center_flexStart">
 
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
+          <view class="item full-width flex_column_center_flexStart" wx:for="{{expense_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index"  >
+            <view class="row full-width flex_row_center_flexStart" bindtap="gotoPage" data-type="expense_detail" data-expense_record_id="{{bean.expense_record_id}}">
               <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                <image class="full-width full-height" src="{{bean.image}}" mode="aspectFill" />
               </view>
               <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
+                <view class="text big2 theme-font1">{{bean.room_name}}</view>
               </view>
               <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
+                <view class="text small1 theme-font3">{{bean.add_time}}</view>
               </view>
               <view class="icon flex_row_center_flexEnd">
                 <view class="text big10 fa fa-angle-right theme-font1" />
               </view>
             </view>
           </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
-              <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-              </view>
-              <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
-              </view>
-              <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big10 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
-              <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-              </view>
-              <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
-              </view>
-              <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big10 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
-              <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-              </view>
-              <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
-              </view>
-              <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big10 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
-              <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-              </view>
-              <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
-              </view>
-              <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big10 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_flexStart">
-              <view class="pic flex_row_center_flexStart">
-                <image class="full-width full-height" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-              </view>
-              <view class="room flex_row_center_flexStart">
-                <view class="text big2 theme-font1">艳云厅</view>
-              </view>
-              <view class="datetime flex_row_center_flexStart">
-                <view class="text small1 theme-font3">2017-12-01 18:55</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big10 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-
+          
         </view>
       </view>
     </view>
@@ -243,7 +157,7 @@
 </scroll-view>
 
 <!-- 备注弹窗 -->
-<view wx:if="{{false}}" class="mask flex_column_center_center">
+<view wx:if="{{popRemarkWind}}" class="mask flex_column_center_center">
   <view class="window remark flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">
@@ -251,23 +165,23 @@
       </view>
     </view>
     <view class="option-bar flex_row_center_flexEnd">
-      <view class="btn close flex_column_center_center">
+      <view class="btn close flex_column_center_center" bindtap="opsRemarkWind" data-type="0">
         <view class="icon full-container">
           <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
         </view>
       </view>
     </view>
     <view class="win-body flex_column_center_center">
-      <form class="full-container" bindsubmit="">
+      <form class="full-container" bindsubmit="editRemark">
         <view class="main full-width flex_column_center_center">
           <view class="frame border full-container flex_column_center_center">
-            <textarea class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+            <textarea class="input text big1 full-container theme-font1" name="remark" value="{{consumer_info.remark}}" placeholder="请输入" />
           </view>
         </view>
         <view class="button-group full-width flex_row_center_center">
-          <view class="btn submit flex_column_center_center theme-button-orange2">
+          <button form-type="submit" class="btn submit flex_column_center_center theme-button-orange2">
             <view class="text">保存</view>
-          </view>
+          </button>
         </view>
       </form>
     </view>

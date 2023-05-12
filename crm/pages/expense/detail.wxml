@@ -13,7 +13,7 @@
           <view class="property picker full-width flex_row_center_flexStart">
             <view class="value full-height flex_row_center_flexStart" style="width:100%;">
               <view class="frame full-width flex_row_center_flexStart">
-                <view class="text big4 bold theme-font1">VIP 888包间</view>
+                <view class="text big4 bold theme-font1">{{expense_info.room_name}}</view>
               </view>
             </view>
           </view>
@@ -22,7 +22,7 @@
           <view class="property picker full-width flex_row_center_flexStart">
             <view class="value full-height flex_row_center_flexStart" style="width:100%;">
               <view class="frame full-width flex_row_center_flexStart">
-                <view class="text theme-font3">2023-03-04 12:00</view>
+                <view class="text theme-font3">{{expense_info.meal_time}}</view>
               </view>
             </view>
           </view>
@@ -31,14 +31,14 @@
           <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
             <view class="value full-container flex_row_center_flexStart" style="width:100%;">
               <view class="frame full-width flex_row_center_flexStart">
-                <view class="text theme-font1">就餐人数：8人</view>
+                <view class="text theme-font1">就餐人数：{{expense_info.people_num}}人</view>
               </view>
             </view>
           </view>
           <view class="property text half-width flex_row_center_flexStart" style="width:calc(50% - 15rpx);">
             <view class="value full-container flex_row_center_flexStart" style="width:100%;">
               <view class="frame full-width flex_row_center_flexStart">
-                <view class="text theme-font1">消费金额：8888元</view>
+                <view class="text theme-font1">消费金额：{{expense_info.money}}元</view>
               </view>
             </view>
           </view>
@@ -55,21 +55,12 @@
       </view>
       <view class="pbody">
 
-        <view class="item">
+        <view class="item" wx:for="{{expense_info.images}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
           <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            <image bindtap="previewImages" data-index="{{index}}" class="full-container" src="{{bean}}" mode="aspectFill" />
           </view>
         </view>
-        <view class="item">
-          <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-          </view>
-        </view>
-        <view class="item">
-          <view class="pic">
-            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-          </view>
-        </view>
+        
 
       </view>
     </view>
@@ -82,7 +73,7 @@
         </view>
       </view>
       <view class="pbody">
-        <view class="text big1">x x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x x x x x x x x x x x x x x x xx x x x x x</view>
+        <view class="text big1">{{expense_info.remark}}</view>
       </view>
     </view>
 

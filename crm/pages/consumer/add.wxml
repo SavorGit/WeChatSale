@@ -7,24 +7,24 @@
   <view class="page full-width flex_column_center_flexStart">
     <view class="main full-width theme-block-white">
 
-      <view class="row full-width flex_row_center_spaceBetween">
+      <view class="row full-width flex_column_center_flexStart" wx:for="{{consumer_info.mobile_arr}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
         <view class="property text full-width full-height flex_row_center_flexStart">
-          <view class="label-group flex_row_center_spaceBetween" >
+          <view class="label-group flex_row_center_spaceBetween">
             <view class="label flex_row_center_spaceBetween">
-              <view class="icon flex_row_center_center">
+              <view wx:if="{{index==0}}" class="icon flex_row_center_center">
                 <view class="text big11 fa fa-mobile-phone theme-font-6297F2" />
               </view>
             </view>
-            <view class="required flex_row_center_center">
+            <view class="required flex_row_center_center" wx:if="{{index==0}}">
               <view class="text big1 theme-font5">*</view>
             </view>
           </view>
-          <view class="value full-height has-button flex_row_center_flexStart"  wx:for="{{consumer_info.mobile_arr}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+          <view class="value full-height has-button flex_row_center_flexStart">
             <view class="frame border-bottom-blue full-width flex_row_center_flexStart">
-              <input class="input full-width full-height" value="{{item}}" type="text" bindinput="inputInfo" data-type="mobile" data-keys="{{index}}" placeholder="请输入手机号" />
+              <input class="input full-width full-height" value="{{bean}}" type="text" bindinput="inputInfo" data-type="mobile" data-keys="{{index}}" placeholder="请输入手机号" />
             </view>
           </view>
-          <view class="button-group flex_row_center_flexEnd" bindtap="addMobile">
+          <view class="button-group flex_row_center_flexEnd" bindtap="addMobile" wx:if="{{index==0}}">
             <view class="btn add flex_column_center_center">
               <view class="icon flex_row_center_center">
                 <view class="text big8 fa fa-plus-square-o theme-font-6297F2" />
@@ -70,8 +70,8 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <radio-group class="frame full-width flex_row_center_flexStart" bindchange="chooseSex">
-                <radio class="text" style="margin-left:5rpx;" checked="{{consumer_info.sex==1?true:false}}" value="1">男</radio>
-                <radio class="text" style="margin-left:50rpx;" checked="{{consumer_info.sex==2?true:false}}" value="2">女</radio>
+                <radio class="text" style="margin-left:5rpx;" checked="{{consumer_info.gender==1?true:false}}" value="1">男</radio>
+                <radio class="text" style="margin-left:50rpx;" checked="{{consumer_info.gender==2?true:false}}" value="2">女</radio>
               </radio-group>
             </view>
           </view>
@@ -86,8 +86,8 @@
             </view>
             <view class="value full-height flex_row_center_flexStart">
               <view class="frame border-bottom-gray full-width flex_row_center_flexStart">
-                <input class="input full-width full-height" type="digit" bindinput="inputInfo" data-type="avg_expense" placeholder="请输入客户消费能力（人均）" maxlength="20" /> 
-                
+                <input class="input full-width full-height" type="digit" bindinput="inputInfo" data-type="avg_expense" placeholder="请输入客户消费能力（人均）" value="{{consumer_info.avg_expense}}" maxlength="20" />
+
               </view>
             </view>
           </view>
@@ -115,7 +115,7 @@
           <view class="property picture full-width full-height flex_column_center_flexStart">
             <view class="value full-width full-height flex_row_center_flexStart" style="width:100%;">
               <view class="frame border-gray full-width flex_row_center_flexStart">
-                <image class="input" src="{{consumer_info.head_pic}}" mode="aspectFit" />
+                <image class="input" src="{{consumer_info.oss_avatar_url}}" mode="aspectFit" />
               </view>
             </view>
             <view class="label-group flex_row_center_spaceBetween" style="width:100%;">
@@ -138,7 +138,7 @@
           </view>
           <view class="value full-height has-button flex_row_center_flexStart">
             <view class="frame border-bottom-gray full-width flex_row_center_flexStart">
-              <input class="input full-width full-height" type="text" bindinput="inputInfo" data-type="birthplace" placeholder="籍贯" maxlength="100" />
+              <input class="input full-width full-height" type="text" bindinput="inputInfo" data-type="native_place" placeholder="籍贯" value="{{consumer_info.native_place}}" maxlength="100" />
             </view>
           </view>
           <view class="button-group flex_row_center_flexEnd">

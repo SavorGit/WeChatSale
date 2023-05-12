@@ -23,7 +23,7 @@ Page({
     policy:'',
     signature:'',
     addDisabled:false,
-    consumer_info:{mobile_arr:[''],name:'',sex:0,avg_expense:0,avatarUrl:'',oss_head_pic:'',birthday:'',birthplace:''},
+    consumer_info:{mobile_arr:[''],name:'',gender:0,avg_expense:0,avatar_url:'',oss_avatar_url:'',birthday:'',native_place:''},
   },
 
   /**
@@ -32,6 +32,7 @@ Page({
   onLoad(options) {
     wx.hideShareMenu();
     openid = app.globalData.openid;
+    hotel_id = options.hotel_id;
     id = 0 ;
     if(typeof(options.id)!='undefined'){
       id = options.id;
@@ -55,11 +56,30 @@ Page({
     })
   },
   getConsumerInfo:function(openid,id){
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    var that = this;
+    var consumer_info = this.data.consumer_info;
+    utils.PostRequest(api_v_url + '/customer/detail', {
       openid           : openid,
-      id               : id,
+      customer_id      : id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      var info = data.result;
+      consumer_info = info;
+      var mobile = info.mobile;
+      var mobile1 = info.mobile1;
+      var mobile2 = info.mobile2;
+      var mobile_arr = [''];
+      if(mobile!=''){
+        mobile_arr[0] = mobile;
+      }
+      if(mobile1!=''){
+        mobile_arr[1] = mobile1;
+      }
+      if(mobile2!=''){
+        mobile_arr[1] = mobile1;
+        mobile_arr[2] = mobile2;
+      }
+      consumer_info.mobile_arr = mobile_arr;
+      that.setData({consumer_info:consumer_info});
     })
   },
   addMobile:function(e){
@@ -92,17 +112,17 @@ Page({
     }else if(type=='avg_expense'){
       consumer_info.avg_expense = input_value;
     }
-    else if(type=='birthplace'){
-      consumer_info.birthplace = input_value;
+    else if(type=='native_place'){
+      consumer_info.native_place = input_value;
     }
     console.log(consumer_info)
     this.setData({consumer_info:consumer_info});
   },
   chooseSex:function(e){
     console.log(e)
-    var sex = e.detail.value;
+    var gender = e.detail.value;
     var consumer_info = this.data.consumer_info;
-    consumer_info.sex = sex;
+    consumer_info.gender = gender;
     this.setData({consumer_info:consumer_info});
   },
   addPic:function(e){
@@ -169,8 +189,8 @@ Page({
         
         var head_pic = "forscreen/resource/" + img_url
         var consumer_info = that.data.consumer_info;
-        consumer_info.avatarUrl = head_pic;
-        consumer_info.head_pic = oss_url +'/'+head_pic;
+        consumer_info.avatar_url = head_pic;
+        consumer_info.oss_avatar_url = oss_url +'/'+head_pic;
         that.setData({consumer_info:consumer_info})
         wx.hideLoading();
           setTimeout(function () {
@@ -229,20 +249,26 @@ Page({
     }
     this.setData({addDisabled:true})
     utils.PostRequest(api_v_url + '/customer/addCustomer', {
-      avatar_url       : consumer_info.avatarUrl,
+      avatar_url       : consumer_info.avatar_url,
       avg_expense      : consumer_info.avg_expense,
       birthday         : consumer_info.birthday,
       customer_id      : id,
-      gender           : consumer_info.sex,
+      gender           : consumer_info.gender,
+      hotel_id         : hotel_id,
       mobile           : mobile,
       mobile1          : mobile1,
       mobile2          : mobile2,
       name             : consumer_info.name,
-      native_place     : consumer_info.birthplace,
+      native_place     : consumer_info.native_place,
       openid           : openid,
+      
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({addDisabled:false})
-      app.showToast('添加成功',2000,'success',true)
+      var msg = '添加成功';
+      if(id>0){
+        msg = '编辑成功';
+      }
+      app.showToast(msg,2000,'success',true)
       setTimeout(function () {
         wx.navigateBack({
           delta: 1

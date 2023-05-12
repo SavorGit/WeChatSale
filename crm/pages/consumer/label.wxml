@@ -9,7 +9,7 @@
     <!-- 添加标签面板 -->
     <view class="panel add-flag flex_column_flexStart_center theme-panel">
       <view class="pbody">
-        <view class="btn add flex_column_center_center" bindtap="修改值">
+        <view class="btn add flex_column_center_center" bindtap="opsPopLableWind" data-type="1">
           <view class="icon">
             <view class="text big10 fa fa-plus-square theme-font-FFAA2C" />
           </view>
@@ -30,10 +30,10 @@
       <view class="pbody">
         <view class="flag-warpper" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
           <view class="flag theme-font-FFAA2C">
-            <view class="text ">喜欢辣</view>
+            <view class="text ">{{bean.name}}</view>
           </view>
           <view class="cover full-container">
-            <view class="btn del flex_column_center_center">
+            <view class="btn del flex_column_center_center" bindtap="delLable" data-keys="{{index}}">
               <view class="icon full-container">
                 <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
               </view>
@@ -45,7 +45,7 @@
       </view>
     </view>
 
-    <view class="full-width flex_row_center_center theme-block-white" style="height:120rpx;">
+    <view class="full-width flex_row_center_center theme-block-white" style="height:120rpx;" bindtap="saveLale">
       <view class="btn save flex_column_center_center theme-button-orange2" style="width:740rpx;height:100rpx;border-radius:5rpx;">
         <view class="label flex_row_center_center">
           <view class="text big4">保存</view>
@@ -58,7 +58,7 @@
 
 
 <!-- 新增标签弹窗 -->
-<view wx:if="{{true}}" class="mask flex_column_center_center">
+<view wx:if="{{pop_add_lable}}" class="mask flex_column_center_center">
   <view class="window remark flex_column_center_flexStart theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">
@@ -66,23 +66,23 @@
       </view>
     </view>
     <view class="option-bar flex_row_center_flexEnd">
-      <view class="btn close flex_column_center_center">
+      <view class="btn close flex_column_center_center" bindtap="opsPopLableWind" data-type="0">
         <view class="icon full-container">
           <image class="full-container" src="/images/icon/666666_close.png" mode="aspectFill" />
         </view>
       </view>
     </view>
     <view class="win-body flex_column_center_center">
-      <form class="full-container" bindsubmit="">
+      <form class="full-container" bindsubmit="addLable">
         <view class="main full-width flex_column_center_center">
           <view class="frame border full-container flex_column_center_center">
-            <input type="text" class="input text big1 full-container theme-font1" value="" placeholder="请输入" />
+            <input type="text" name="lable" class="input text big1 full-container theme-font1" placeholder="请输入" />
           </view>
         </view>
         <view class="button-group full-width flex_row_center_center">
-          <view class="btn submit flex_column_center_center theme-button-orange2">
+          <button class="btn submit flex_column_center_center theme-button-orange2" form-type="submit">
             <view class="text">保存</view>
-          </view>
+          </button>
         </view>
       </form>
     </view>
