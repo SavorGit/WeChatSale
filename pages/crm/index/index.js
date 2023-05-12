@@ -17,7 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    ops_log_list:[],
   },
 
   /**
@@ -29,15 +29,16 @@ Page({
     openid = user_info.openid;
     hotel_id = user_info.hotel_id;
     
-    this.getOpsLogList(openid,hotel_id);
+    
   },
   getOpsLogList:function(openid,hotel_id){
     var that = this;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/customer/getOplogs', {
       openid           : openid,
       hotel_id         : hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+      var ops_log_list = data.result.datalist;
+      that.setData({ops_log_list:ops_log_list})
     })
   },
   inputSearch:function(e){
@@ -73,6 +74,10 @@ Page({
         var id = e.currentTarget.dataset.id;
         url ='/crm/pages/expense/detail?id='+id;
         break;
+      case 'consumer_detail':
+        var customer_id = e.currentTarget.dataset.customer_id;
+        url = '/crm/pages/consumer/detail?id='+customer_id+'&hotel_id='+hotel_id;
+        break;
     }
     wx.navigateTo({
       url: url,
@@ -93,7 +98,7 @@ Page({
     this.getTabBar().setData({
       selected: 2,
     })
-    
+    this.getOpsLogList(openid,hotel_id);
   },
   
 

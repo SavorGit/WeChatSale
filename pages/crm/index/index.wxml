@@ -76,120 +76,26 @@
       <view class="pbody flex_column_center_flexStart">
         <view class="list full-width flex_column_center_flexStart">
 
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
+          <view class="item full-width flex_column_center_flexStart" wx:for="{{ops_log_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
+            <view class="row full-width flex_row_center_spaceBetween" bindtap="gotoPage" data-type="consumer_detail" data-customer_id="{{bean.customer_id}}">
               <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">王先生</view>
+                <view class="text theme-font1">{{bean.name}}</view>
               </view>
               <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138000</view>
+                <view class="text theme-font1">{{bean.mobile}}</view>
               </view>
               <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">3分钟前</view>
+                <view class="text theme-font3">{{bean.time_str}}</view>
               </view>
               <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">查看</view>
+                <view class="text theme-font3">{{bean.action}}</view>
               </view>
               <view class="icon flex_row_center_flexEnd">
                 <view class="text big5 fa fa-angle-right theme-font1" />
               </view>
             </view>
           </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
-              <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">潘石屹</view>
-              </view>
-              <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138001</view>
-              </view>
-              <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">10分钟前</view>
-              </view>
-              <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">新增</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big5 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
-              <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">马先生</view>
-              </view>
-              <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138002</view>
-              </view>
-              <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">23分钟前</view>
-              </view>
-              <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">预定</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big5 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
-              <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">王先生</view>
-              </view>
-              <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138000</view>
-              </view>
-              <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">1小时前</view>
-              </view>
-              <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">修改</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big5 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
-              <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">潘石屹</view>
-              </view>
-              <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138001</view>
-              </view>
-              <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">5小时前</view>
-              </view>
-              <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">查看</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big5 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
-          <view class="item full-width flex_column_center_flexStart">
-            <view class="row full-width flex_row_center_spaceBetween">
-              <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">马先生</view>
-              </view>
-              <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">13800138002</view>
-              </view>
-              <view class="datetime flex_row_center_flexEnd">
-                <view class="text theme-font3">30天前</view>
-              </view>
-              <view class="status flex_row_center_flexEnd">
-                <view class="text theme-font3">查看</view>
-              </view>
-              <view class="icon flex_row_center_flexEnd">
-                <view class="text big5 fa fa-angle-right theme-font1" />
-              </view>
-            </view>
-          </view>
+          
 
         </view>
       </view>
