@@ -58,6 +58,14 @@ Page({
   opsPopLableWind:function(e){
     console.log(e)
     var type= e.currentTarget.dataset.type;
+    if(type==1){
+      var lable_list = this.data.lable_list;
+      if(lable_list.length>=50){
+        app.showToast('最多可添加50个标签')
+        return false;
+      }
+      
+    }
     var is_pop = type==1?true:false;
     this.setData({pop_add_lable:is_pop})
   },

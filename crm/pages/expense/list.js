@@ -38,6 +38,9 @@ Page({
       openid           : openid,
       hotel_id         : hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      if(data.result.datalist.length==0){
+        app.showToast('暂无数据');
+      }
       that.setData({perfect_list:data.result.datalist});
     })
   },

@@ -106,6 +106,30 @@ Page({
     })
     
   },
+  /**
+   * 预览图片
+   * @param {*} e 
+   */
+  previewImages: function (e) {
+    var consumer_info = this.data.consumer_info;
+    if(consumer_info.oss_avatar_url!=''){
+      let pictureIndex = 0
+
+    let urls= [consumer_info.oss_avatar_url] ;
+    
+    wx.previewImage({
+      current: urls[pictureIndex], // 当前显示图片的http链接
+      urls: urls, // 需要预览的图片http链接列表
+      success: function (res) {
+       
+      },
+      fail: function (e) {
+        
+      }
+    });
+    }
+    
+  },
   gotoPage:function(e){
     var type = e.currentTarget.dataset.type;
     var consumer_info = this.data.consumer_info;

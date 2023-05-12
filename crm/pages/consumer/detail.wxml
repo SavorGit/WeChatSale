@@ -11,7 +11,7 @@
       <view class="pbody flex_row_flexStart_spaceBetween">
         <view class="left flex_column_center_flexStart">
           <view class="attribute avatar">
-            <image class="pic" src="{{consumer_info.oss_avatar_url}}" mode="aspectFill" />
+            <image bindtap="previewImages" class="pic" src="{{consumer_info.oss_avatar_url}}" mode="aspectFill" />
           </view>
           <view class="attribute name">
             <view class="text big1 theme-font1">{{consumer_info.name}}</view>
@@ -70,7 +70,7 @@
       </view>
     </view>
 
-    <view class="flex_row_center_flexStart" style="width:calc(100% - 30rpx);height:70rpx;padding:10rpx 15rpx;background-color:rgb(246, 243, 238);">
+    <view class="flex_row_center_flexStart" style="width:calc(100% - 30rpx);height:70rpx;padding:10rpx 15rpx;background-color:rgb(246, 243, 238);" wx:if="{{consumer_info.expense_msg!=''}}">
       <view class="text theme-font-FFAA2C">{{consumer_info.expense_msg}}</view>
     </view>
 

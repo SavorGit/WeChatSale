@@ -76,7 +76,7 @@
       <form class="full-container" bindsubmit="addLable">
         <view class="main full-width flex_column_center_center">
           <view class="frame border full-container flex_column_center_center">
-            <input type="text" name="lable" class="input text big1 full-container theme-font1" placeholder="请输入" />
+            <input type="text" maxlength="10" name="lable" class="input text big1 full-container theme-font1" placeholder="请输入" />
           </view>
         </view>
         <view class="button-group full-width flex_row_center_center">

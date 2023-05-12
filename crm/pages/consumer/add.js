@@ -31,11 +31,15 @@ Page({
    */
   onLoad(options) {
     wx.hideShareMenu();
+
     openid = app.globalData.openid;
     hotel_id = options.hotel_id;
     id = 0 ;
     if(typeof(options.id)!='undefined'){
       id = options.id;
+      if(id>0){
+        wx.setNavigationBarTitle({title:'编辑客户'})
+      }
       this.getConsumerInfo(openid,id);
     }
     
