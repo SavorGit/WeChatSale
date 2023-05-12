@@ -52,7 +52,7 @@ Component({
     scroolHeight: 0,
     isSearch: false,
     inToViewSpaceHeight: 0,
-    key_words : '',
+    key_words: '',
 
   },
 
@@ -169,10 +169,16 @@ Component({
      * @para mailListData 通讯录格式的数据
      */
     loadingMailListData: function (pageContext, mailListData) {
+      if (!mailListData instanceof Array) {
+        console.error("参数 'mailListData' 必须是数组[Array]类型");
+      }
       //赋值给列表值
       pageContext.setData({
         listMain: mailListData
       });
+      if (pageContext.data.listMain.length < 1) {
+        return;
+      }
       //赋值给当前高亮的isActive
       pageContext.setData({
         isActive: pageContext.data.listMain[0].id,

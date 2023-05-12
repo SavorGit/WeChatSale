@@ -151,13 +151,13 @@
   box-sizing: border-box;
 }
 
-.avatar>.img {
+.address_bottom>.avatar>.img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
 }
 
-.avatar>.text {
+.address_bottom>.avatar>.text {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -167,7 +167,8 @@
 }
 
 .address_bottom>.name {
-  width: 90rpx;
+  width: 100rpx;
+  line-height: 30rpx;
   margin-right: 20rpx;
   vertical-align: middle;
   display: inline-block;
@@ -175,6 +176,8 @@
 }
 
 .address_bottom>.phone {
+  width: calc(100% - 280rpx);
+  line-height: 30rpx;
   margin-right: 20rpx;
   vertical-align: middle;
   display: inline-block;
