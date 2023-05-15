@@ -61,8 +61,8 @@
                 
                 <block wx:if="{{consumer_info.mobile1!='' || consumer_info.mobile2!=''}}" >
                   
-                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile1!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile1}}" data-del="{{consumer_info.mobile1}}">{{consumer_info.mobile1}}</view>
-                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile2!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile1}}" data-del="{{consumer_info.mobile2}}">{{consumer_info.mobile2}}</view>
+                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile1!=''}}" bindtap="phonecallevent"  data-del="{{consumer_info.mobile1}}">{{consumer_info.mobile1}}</view>
+                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile2!=''}}" bindtap="phonecallevent"  data-del="{{consumer_info.mobile2}}">{{consumer_info.mobile2}}</view>
                 </block>
                 
 
