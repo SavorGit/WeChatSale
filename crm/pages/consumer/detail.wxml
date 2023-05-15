@@ -11,7 +11,9 @@
       <view class="pbody flex_row_flexStart_spaceBetween">
         <view class="left flex_column_center_flexStart">
           <view class="attribute avatar">
-            <image bindtap="previewImages" class="pic" src="{{consumer_info.oss_avatar_url}}" mode="aspectFill" />
+            <image wx:if="{{consumer_info.oss_avatar_url==''}}"   bindtap="previewImages" class="pic" src="https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/test.png" mode="aspectFill" />
+            
+            <image wx:else  bindtap="previewImages" class="pic" src="{{consumer_info.oss_avatar_url}}" mode="aspectFill" />
           </view>
           <view class="attribute name">
             <view class="text big1 theme-font1">{{consumer_info.name}}</view>

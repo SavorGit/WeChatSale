@@ -115,7 +115,8 @@
           <view class="property picture full-width full-height flex_column_center_flexStart">
             <view class="value full-width full-height flex_row_center_flexStart" style="width:100%;">
               <view class="frame border-gray full-width flex_row_center_flexStart">
-                <image class="input" src="{{consumer_info.oss_avatar_url}}" mode="aspectFit" />
+                <image wx:if="{{consumer_info.oss_avatar_url==''}}"  class="input" src="https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/test.png" mode="aspectFit" />
+                <image wx:else  class="input" src="{{consumer_info.oss_avatar_url}}" mode="aspectFit" />
               </view>
             </view>
             <view class="label-group flex_row_center_spaceBetween" style="width:100%;">
