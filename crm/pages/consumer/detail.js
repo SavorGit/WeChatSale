@@ -75,11 +75,7 @@ Page({
     console.log(e)
     
     var tel = e.currentTarget.dataset.del;
-    var tel2 = e.currentTarget.dataset.del1;
-    
-    if(tel==''){
-      tel = tel2;
-    }
+   
     wx.makePhoneCall({
       phoneNumber: tel
     })
