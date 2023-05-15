@@ -93,8 +93,20 @@
   width: 120rpx;
 }
 
+.panel.option-records>.pbody>.list>.item>.row>.name>.text {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 .panel.option-records>.pbody>.list>.item>.row>.phone {
   width: 200rpx;
+}
+
+.panel.option-records>.pbody>.list>.item>.row>.phone>.text {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .panel.option-records>.pbody>.list>.item>.row>.datetime {

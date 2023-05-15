@@ -40,9 +40,17 @@
   height: 60rpx;
 }
 
+.panel.custom-basic-info>.pbody>.right>.r-bottom>.attribute>.label {
+  width: 140rpx;
+}
+
+.panel.custom-basic-info>.pbody>.right>.r-bottom>.attribute>.value {
+  width: calc(100% - 140rpx);
+}
+
 .panel.custom-basic-info>.pbody>.right>.r-bottom>.attribute>.value>.item {
   height: 50rpx;
-  padding: 5rpx 15rpx;
+  padding: 5rpx 5rpx;
   display: inline-flex;
   box-sizing: border-box;
 }

@@ -21,7 +21,7 @@
           <view class="r-top full-width flex_row_center_spaceBetween">
             <view class="rt-left half-width flex_column_flexStart_spaceBetween">
               <view class="attribute sex">
-                <view class="text theme-font3" >性别：{{consumer_info.gender_str}}</view>
+                <view class="text theme-font3">性别：{{consumer_info.gender_str}}</view>
               </view>
               <view class="attribute birthday">
                 <view class="text theme-font3">生日：{{consumer_info.birthday_str}}</view>
@@ -47,24 +47,21 @@
             </view>
           </view>
           <view class="r-bottom full-width flex_row_center_spaceBetween">
-            <view class="attribute phone flex_row_center_flexStart">
+            <view class="attribute phone full-width flex_row_center_flexStart">
               <view class="label">
                 <view class="text theme-font3">联系电话：</view>
               </view>
               <view class="value">
 
-                <view class="item flex_row_center_center" wx:if="{{consumer_info.mobile!=''}}" class="item flex_row_center_center" >
-                  <view class="text theme-font-6297F2" bindtap="phonecallevent" data-del="{{consumer_info.mobile}}" >{{consumer_info.mobile}}</view>
-
-                  
+                <view class="item flex_row_center_center" class="item flex_row_center_center" wx:if="{{consumer_info.mobile!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile}}">
+                  <view class="text theme-font-6297F2">{{consumer_info.mobile}}</view>
                 </view>
-                
-                <block wx:if="{{consumer_info.mobile1!='' || consumer_info.mobile2!=''}}" >
-                  
-                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile1!=''}}" bindtap="phonecallevent"  data-del="{{consumer_info.mobile1}}">{{consumer_info.mobile1}}</view>
-                  <view class="text theme-font-6297F2" wx:if="{{consumer_info.mobile2!=''}}" bindtap="phonecallevent"  data-del="{{consumer_info.mobile2}}">{{consumer_info.mobile2}}</view>
-                </block>
-                
+                <view class="item flex_row_center_center" class="item flex_row_center_center" wx:if="{{consumer_info.mobile1!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile1}}">
+                  <view class="text theme-font-6297F2">{{consumer_info.mobile1}}</view>
+                </view>
+                <view class="item flex_row_center_center" class="item flex_row_center_center" wx:if="{{consumer_info.mobile2!=''}}" bindtap="phonecallevent" data-del="{{consumer_info.mobile2}}">
+                  <view class="text theme-font-6297F2">{{consumer_info.mobile2}}</view>
+                </view>
 
               </view>
             </view>
@@ -92,10 +89,10 @@
         </view>
       </view>
       <view class="pbody">
-        <view class="flag theme-block-orange2" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index" >
+        <view class="flag theme-block-orange2" wx:for="{{lable_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
           <view class="text ">{{bean.name}}</view>
         </view>
-        
+
       </view>
     </view>
 
@@ -135,7 +132,7 @@
       <view class="pbody flex_column_center_flexStart">
         <view class="list full-width flex_column_center_flexStart">
 
-          <view class="item full-width flex_column_center_flexStart" wx:for="{{expense_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index"  >
+          <view class="item full-width flex_column_center_flexStart" wx:for="{{expense_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
             <view class="row full-width flex_row_center_flexStart" bindtap="gotoPage" data-type="expense_detail" data-expense_record_id="{{bean.expense_record_id}}">
               <view class="pic flex_row_center_flexStart">
                 <image class="full-width full-height" src="{{bean.image}}" mode="aspectFill" />
@@ -151,7 +148,7 @@
               </view>
             </view>
           </view>
-          
+
         </view>
       </view>
     </view>

@@ -9,7 +9,7 @@
       <view wx:if="{{enableBackup==true}}" class="fa fa-chevron-left" aria-hidden="true" bindtap="closeModal"></view>
       <view class="search-group" style="width:calc(100% - {{enableBackup==true?160:0}}rpx);">
         <label class="fa fa-search" aria-hidden="true" for="search_input"></label>
-        <input  id="search_input" value="{{searchKeywords}}" class="search-input"  bindconfirm="searchItems" placeholder="{{searchPlaceholder}}" confirm-type='search' />
+        <input id="search_input" value="{{searchKeywords}}" class="search-input" bindconfirm="searchItems" placeholder="{{searchPlaceholder}}" confirm-type='search' />
       </view>
     </view>
 
@@ -31,16 +31,16 @@
         <view wx:for="{{listMain}}" wx:for-item="group" wx:key="group_id" id="{{'inToView' + group.id}}" data-id='{{group.id}}'>
           <view class="address_top">{{group.region}}</view>
           <block wx:for="{{group.items}}" wx:for-item="item" wx:key="group_item_id">
-            <view  class="address_bottom" data-id="{{item.id}}" bindtap="clickItem">
+            <view class="address_bottom" data-id="{{item.id}}" bindtap="clickItem">
               <view class="avatar">
                 <image wx:if="{{app.typeOf(item.avatarUrl)=='string'&&app.trim(item.avatarUrl)!=''}}" class="img" src="{{item.avatarUrl}}" mode="aspectFill" />
                 <view wx:else class="text">{{app.substring(item.name,0,1)}}</view>
               </view>
               <view class="name">
-                <view class="text">{{item.name}}</view>
+                <view class="text full-width">{{item.name}}</view>
               </view>
               <view class="phone">
-                <view class="text">{{item.phone}}</view>
+                <view class="text full-width">{{item.phone}}</view>
               </view>
             </view>
           </block>

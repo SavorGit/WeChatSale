@@ -79,10 +79,10 @@
           <view class="item full-width flex_column_center_flexStart" wx:for="{{ops_log_list}}" wx:key="key" wx:for-item="bean" wx:for-index="index">
             <view class="row full-width flex_row_center_spaceBetween" bindtap="gotoPage" data-type="consumer_detail" data-customer_id="{{bean.customer_id}}">
               <view class="name flex_row_center_flexStart">
-                <view class="text theme-font1">{{bean.name}}</view>
+                <view class="text theme-font1 full-width">{{bean.name}}</view>
               </view>
               <view class="phone flex_row_center_flexStart">
-                <view class="text theme-font1">{{bean.mobile}}</view>
+                <view class="text theme-font1 full-width">{{bean.mobile}}</view>
               </view>
               <view class="datetime flex_row_center_flexEnd">
                 <view class="text theme-font3">{{bean.time_str}}</view>
