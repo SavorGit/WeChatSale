@@ -67,7 +67,11 @@ Page({
       customer_id      : id,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var info = data.result;
+      if(info.avg_expense==0){
+        info.avg_expense = '';
+      }
       consumer_info = info;
+      
       var mobile = info.mobile;
       var mobile1 = info.mobile1;
       var mobile2 = info.mobile2;
