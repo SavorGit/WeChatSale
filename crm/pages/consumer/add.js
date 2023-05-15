@@ -255,6 +255,12 @@ Page({
     if(mobile_arr.length==3){
       mobile1 = mobile_arr[1];
       mobile2 = mobile_arr[2];
+
+      if(mobile1.length!=11){
+        app.showToast('请输入正确的手机号');
+        return false;
+      }
+
       if(mobile2.length!=11){
         app.showToast('请输入正确的手机号');
         return false;
