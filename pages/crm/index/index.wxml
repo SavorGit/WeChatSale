@@ -14,7 +14,7 @@
           <view class="item flex_column_center_center" bindtap="gotoPage" data-type="add_consumer">
             <view class="btn add-custom flex_column_center_center">
               <view class="icon">
-                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+                <image src="/images/imgs/user-add.png" mode="aspectFill" />
               </view>
               <view class="label">
                 <view class="text big1 theme-font1">添加客户</view>
@@ -24,7 +24,7 @@
           <view class="item flex_column_center_center" bindtap="gotoPage" data-type="perfect_expense_log">
             <view class="btn perfect-consume-record flex_column_center_center">
               <view class="icon">
-                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+                <image src="/images/imgs/cords.png" mode="aspectFill" />
               </view>
               <view class="label">
                 <view class="text big1 theme-font1">完善消费记录</view>
@@ -34,7 +34,7 @@
           <view class="item flex_column_center_center" bindtap="gotoPage" data-type="consumer_list">
             <view class="btn custom-list flex_column_center_center">
               <view class="icon">
-                <image src="/images/icon/666666_close.png" mode="aspectFill" />
+                <image src="/images/imgs/users.png" mode="aspectFill" />
               </view>
               <view class="label">
                 <view class="text big1 theme-font1">客户列表</view>
@@ -95,7 +95,7 @@
               </view>
             </view>
           </view>
-          
+
 
         </view>
       </view>
