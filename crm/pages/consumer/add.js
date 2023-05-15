@@ -240,12 +240,25 @@ Page({
       return false;
     }
     mobile = mobile_arr[0];
+    
+    if(mobile.length!=11){
+      app.showToast('请输入正确的手机号');
+      return false;
+    }
     if(mobile_arr.length==2){
       mobile1 = mobile_arr[1];
+      if(mobile1.length!=11){
+        app.showToast('请输入正确的手机号');
+        return false;
+      }
     }
     if(mobile_arr.length==3){
       mobile1 = mobile_arr[1];
       mobile2 = mobile_arr[2];
+      if(mobile2.length!=11){
+        app.showToast('请输入正确的手机号');
+        return false;
+      }
     }
     if(consumer_info.name==''){
       app.showToast('请输入姓名');
