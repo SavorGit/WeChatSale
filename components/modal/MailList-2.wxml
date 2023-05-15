@@ -9,7 +9,7 @@
       <view wx:if="{{enableBackup==true}}" class="fa fa-chevron-left" aria-hidden="true" bindtap="closeModal"></view>
       <view class="search-group" style="width:calc(100% - {{enableBackup==true?160:0}}rpx);">
         <label class="fa fa-search" aria-hidden="true" for="search_input"></label>
-        <input  id="search_input" value="{{searchKeywords}}" class="search-input"  bindconfirm="searchItems" placeholder="{{searchPlaceholder}}" />
+        <input  id="search_input" value="{{searchKeywords}}" class="search-input"  bindconfirm="searchItems" placeholder="{{searchPlaceholder}}" confirm-type='search' />
       </view>
     </view>
 

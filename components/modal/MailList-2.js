@@ -179,6 +179,10 @@ Component({
         listMain: mailListData
       });
       if (pageContext.data.listMain.length < 1) {
+        pageContext.setData({
+          isActive: '',
+          fixedTitle: ''
+        });
         return;
       }
       //赋值给当前高亮的isActive
