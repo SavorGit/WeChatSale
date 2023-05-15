@@ -46,7 +46,7 @@ Page({
     this.setData({key_words:key_words});
   },
   searchConsumer:function(e){
-    var key_words = this.data.key_words;
+    var key_words = e.detail.value.replace(/\s+/g, '');
     var url = '/crm/pages/consumer/list?key_words='+key_words+'&hotel_id='+hotel_id;
     wx.navigateTo({
       url: url,
@@ -58,7 +58,7 @@ Page({
     switch(type){
      
       case 'add_consumer':
-        url = '/crm/pages/consumer/add';
+        url = '/crm/pages/consumer/add?hotel_id='+hotel_id;
         break;
       case 'perfect_expense_log':
         url = '/crm/pages/expense/list?hotel_id='+hotel_id;

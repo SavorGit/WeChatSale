@@ -76,6 +76,8 @@ Page({
       customListPage.topTips.list[0] = '共'+total_num+'个客户';
       if(key_words!=''){
         customListPage.key_words = key_words
+      }else{
+        customListPage.key_words = '';
       }
       that.setData({customListPage:customListPage})
     })

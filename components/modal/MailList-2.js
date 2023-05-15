@@ -92,11 +92,13 @@ Component({
       let that = this;
       let listSearch = [];
       let searchKey = e.detail.value;
-      if (typeof (searchKey) == 'string' && searchKey != '') {
-        if (!(that.data.listMain instanceof Array) || that.data.listMain.length < 1) {
+
+      that.triggerEvent('onSearchItems', e);
+      //if (typeof (searchKey) == 'string' && searchKey != '') {
+        /*if (!(that.data.listMain instanceof Array) || that.data.listMain.length < 1) {
           return;
-        }
-        that.triggerEvent('onSearchItems', e);
+        }*/
+        
         // for (let index = 0; index < that.data.listMain.length; index++) {
         //   let items = that.data.listMain[index].items;
         //   if (!(items instanceof Array) || items.length < 1) {
@@ -121,11 +123,11 @@ Component({
         //   listSearch: listSearch,
         //   topTipsList : topTipsList
         // });
-      } else {
+      /*} else {
         that.setData({
           isSearch: false
         });
-      }
+      }*/
     },
     // 点击条目时触发
     clickItem: function (e) {
