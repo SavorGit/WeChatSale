@@ -41,8 +41,8 @@ Component({
       {
         "pagePath": "/pages/crm/index/index",
         "text": "CRM",
-        "iconPath": "/images/icon/999999_mine.png",
-        "selectedIconPath": "/images/icon/333333_mine.png"
+        "iconPath": "/images/icon/999999_crm.png",
+        "selectedIconPath": "/images/icon/333333_crm.png"
       },
       {
         "pagePath": "/pages/mine/index",
