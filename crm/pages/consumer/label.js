@@ -71,9 +71,14 @@ Page({
   },
   addLable:function(e){
     console.log(e)
+    var name = e.detail.value.lable;
+    if(name==''){
+      app.showToast('标签不可为空');
+      return false;
+    }
     var lable_list = this.data.lable_list;
     var info = {id:'',name:''};
-    info.name = e.detail.value.lable;
+    info.name = name;
     lable_list.push(info);
     this.setData({lable_list:lable_list,pop_add_lable:false});
   },

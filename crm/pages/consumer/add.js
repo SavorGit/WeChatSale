@@ -23,7 +23,7 @@ Page({
     policy:'',
     signature:'',
     addDisabled:false,
-    consumer_info:{mobile_arr:[''],name:'',gender:0,avg_expense:0,avatar_url:'',oss_avatar_url:'',birthday:'',native_place:''},
+    consumer_info:{mobile_arr:[''],name:'',gender:0,avg_expense:'',avatar_url:'',oss_avatar_url:'',birthday:'',native_place:''},
   },
 
   /**

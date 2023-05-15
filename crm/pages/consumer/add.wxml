@@ -47,7 +47,7 @@
           </view>
           <view class="value full-height has-button flex_row_center_flexStart">
             <view class="frame border-bottom-blue full-width flex_row_center_flexStart">
-              <input class="input full-width full-height" value="{{consumer_info.name}}" type="number" bindinput="inputInfo" data-type="name" placeholder="请输入姓名" maxlength="20" />
+              <input class="input full-width full-height" value="{{consumer_info.name}}" type="text" bindinput="inputInfo" data-type="name" placeholder="请输入姓名" maxlength="10" />
             </view>
           </view>
           <view class="button-group flex_row_center_flexEnd">
