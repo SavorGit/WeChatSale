@@ -5,7 +5,7 @@
   -- CRM 首页
   -->
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
-  <view class="page full-width flex_column_center_flexStart">
+  <view class="page full-width flex_column_center_flexStart" style="padding-bottom:{{48 + SystemInfo.statusBarHeight}}px;">
 
     <!-- 按钮面板 -->
     <view class="panel buttons flex_column_center_flexStart">

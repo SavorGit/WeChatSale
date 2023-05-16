@@ -17,6 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    SystemInfo: getApp().SystemInfo,
     ops_log_list:[],
   },
 
