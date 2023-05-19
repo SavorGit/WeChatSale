@@ -78,10 +78,11 @@
     "useCompilerPlugins": false,
     "ignoreUploadUnusedFiles": true,
     "useStaticServer": true,
-    "lazyloadPlaceholderEnable": false
+    "lazyloadPlaceholderEnable": false,
+    "condition": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.31.1",
+  "libVersion": "2.32.0",
   "appid": "wxfc48bdfa3fcaf358",
   "projectname": "savor_sale",
   "simulatorType": "wechat",
