@@ -32,7 +32,7 @@
   height: 38rpx;
   line-height: 38rpx;
   padding: 10rpx 20rpx;
-  margin: 25rpx 30rpx 25rpx 0;
+  margin: 25rpx 20rpx 25rpx 0;
   border-radius: 8rpx;
   border: 3rpx solid #FFAA2C;
 }
@@ -43,15 +43,17 @@
 }
 
 .panel.flags>.pbody>.flag-warpper>.cover>.btn {
-  width: 60rpx;
-  height: 60rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin-left: auto;
   margin-right: -0rpx;
 }
 
 .panel.flags>.pbody>.flag-warpper>.cover>.btn>.icon {
-  width: 42rpx;
-  height: 42rpx;
+  width: 22rpx;
+  height: 22rpx;
+  line-height: 22rpx;
+  text-align: center;
   padding: 9rpx;
 }
 
