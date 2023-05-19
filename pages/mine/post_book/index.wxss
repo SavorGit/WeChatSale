@@ -35,6 +35,7 @@
   border: 2rpx solid #BBBBBB;
 }
 
+.row>.value>picker.input .wrapper,
 .row.picker>.value>.input .wrapper {
   width: calc(100% - 14rpx);
   height: 46rpx;
@@ -42,6 +43,7 @@
   font-size: 28rpx;
 }
 
+.row>.value>picker.input .wrapper>.show,
 .row.picker>.value>.input .wrapper>.show {
   width: calc(100% - 100rpx);
   height: 100%;
@@ -57,6 +59,7 @@
   resize: none;
 }
 
+.row>.value>picker.input .wrapper>.icon,
 .row.picker>.value>.input .wrapper>.icon {
   width: 60rpx;
   height: 60rpx;

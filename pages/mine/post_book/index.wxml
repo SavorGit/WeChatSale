@@ -7,18 +7,23 @@
 <scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
   <form action="" class="form">
     <view class="page">
-      <view class="row picker flex_row_center_flexStart">
+      <view class="row  flex_row_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">
-          <view class="text">预定包间</view>
+          <view class="text">预定位置</view>
           <view class="required theme-font5">*</view>
         </view>
-        <view class="value">
+        <view class="value" style="height:auto;">
+          <radio-group class="full-width" style="padding:10rpx 0;" bindchange="修改值">
+            <radio checked="true" value="" style="margin-right:50rpx;">包间</radio>
+            <radio value="">大厅</radio>
+          </radio-group>
           <picker class="input" range="{{objectBoxArray}}" bindchange="selectRoom">
             <view class="wrapper border flex_row_center_spaceBetween">
               <view class="show flex_row_center_flexStart">{{book_info.select_room_name}}</view>
               <view class="icon fa fa-angle-down flex_row_center_flexEnd" aria-hidden="true"></view>
             </view>
           </picker>
+          <input class="input border flex_row_center_flexStart" class="full-width" type="text" style="width:calc(100% - 14rpx);height:46rpx;padding:5rpx;font-size:28rpx;border:2rpx solid #BBBBBB;" placeholder="请输入" />
         </view>
       </view>
       <view class="row picker2 flex_row_center_flexStart">
@@ -94,7 +99,7 @@
               </view>
             </view>
           </view>
-          
+
           <view class="item" wx:if="{{book_info.dish_pics.length<5}}">
             <view class="btn add full-container flex_column_center_center" bindtap="addPic">+</view>
           </view>

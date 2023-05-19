@@ -7,9 +7,8 @@
     </view>
     <view class="center-2 flex_column_flexStart_flexStart">
       <view class='nickname'>{{nickName}}</view>
-      <block wx:if="{{user_info.role_type!=0}}">
+      <block wx:if="{{false&&user_info.role_type!=0}}">
         <view class="flex_row_center" bindtap="{{user_info.role_type==1?'hotelComment':'gotoWaiterDetail'}}">
-
           <view class="flex_row_center_spaceBetween star-color">
             <view class="fa {{userScore >= 0.5 && userScore < 1 ? 'fa-star-half-o' : userScore >= 1 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
             <view class="fa {{userScore >= 1.5 && userScore < 2 ? 'fa-star-half-o' : userScore >= 2 ? 'fa-star' : 'fa-star-o'}} fa-lg" aria-hidden="true"></view>
