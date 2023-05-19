@@ -1,2 +1,60 @@
 <!--pages/mine/post_book/log_detail.wxml-->
-<text>pages/mine/post_book/log_detail.wxml</text>
+
+
+<!--
+  - 预定信息页
+  -->
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+  <view class="page theme-page">
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">预定包间</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font1">VIP111</view>
+        </view>
+      </view>
+    </view>
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">预定时间</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font3">5.13 12:30</view>
+        </view>
+      </view>
+    </view>
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">预定人数</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font3">8人</view>
+        </view>
+      </view>
+    </view>
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">预定人</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font7">张先生</view>
+        </view>
+      </view>
+    </view>
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">预定人手机号</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font3">13800138000</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

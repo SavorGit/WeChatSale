@@ -1,7 +1,7 @@
 <!--pages/mine/index.wxml-->
 <import src="/pages/template/commons" />
 <scroll-view class="container theme-container" style="height:calc(100vh - {{28 + SystemInfo.statusBarHeight}}px);" scroll-y="true" scroll-with-animation="true">
-  <view  class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
+  <view class='user-info-panel full_width flex_row_center_center theme-panel-welcome-dark'>
     <view class="left-2" bindtap="gotoPersonalInfo">
       <image class='head-img' src='{{avatarUrl}}'></image>
     </view>
@@ -147,6 +147,13 @@
       <view class="fa fa-angle-right" aria-hidden="true"></view>
     </view>
   </view>
+  <!-- 发送预定记录面板 -->
+  <view class="promotion-goods-manage-panel theme7 theme-font2">
+    <view class="full_width full_height flex_row_center_spaceBetween" bindtap="gotoUrl" data-url="/pages/mine/post_book/log_list">
+      <view>预定记录</view>
+      <view class="fa fa-angle-right" aria-hidden="true"></view>
+    </view>
+  </view>
   <!-- 商品核销面板 -->
   <view class="promotion-goods-manage-panel theme7 theme-font2" bindtap="gotoChargeoff">
     <view class="full_width full_height flex_row_center_spaceBetween">
@@ -225,4 +232,3 @@
     </view>
   </view>
 </modal>
-

@@ -161,6 +161,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "[2023-05-19] 预定邀请函",
+          "pathName": "pages/mine/post_book/index",
+          "query": "hotel_id=7&openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-19] 预定记录",
+          "pathName": "pages/mine/post_book/log_list",
+          "query": "hotel_id=7&openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "[2023-05-19] 预定信息页",
+          "pathName": "pages/mine/post_book/log_detail",
+          "query": "hotel_id=7&openid=o9GS-4icfJEZSX8_qDs6pB_nD30o",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

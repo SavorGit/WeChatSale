@@ -1,4 +1,9 @@
 // pages/mine/post_book/log_list.js
+
+
+/**
+ * 预定记录页
+ */
 Page({
 
   /**

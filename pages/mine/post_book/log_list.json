@@ -1,3 +1,5 @@
 {
+  "navigationBarTitleText": "预定记录",
+  "disableScroll": true,
   "usingComponents": {}
 }

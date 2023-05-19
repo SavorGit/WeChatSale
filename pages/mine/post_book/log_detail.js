@@ -1,4 +1,9 @@
 // pages/mine/post_book/log_detail.js
+
+
+/**
+ * 预定信息页
+ */
 Page({
 
   /**

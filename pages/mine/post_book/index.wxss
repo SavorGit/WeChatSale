@@ -108,6 +108,55 @@
   font-size: 28rpx;
 }
 
+.row.picture-group>.value {
+  width: 100%;
+  height: auto;
+}
+
+.row.picture-group>.value>.item {
+  width: 33.3333333%;
+  height: 170rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.row.picture-group>.value>.item>.pic {
+  width: 185rpx;
+  height: 140rpx;
+  padding: 20rpx 20rpx 10rpx 10rpx;
+}
+
+.row.picture-group>.value>.item>.cover {
+  width: 216rpx;
+  height: 170rpx;
+  margin-top: -170rpx;
+}
+
+.row.picture-group>.value>.item>.cover>.btn {
+  width: 30rpx;
+  height: 30rpx;
+  padding: 10rpx;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.row.picture-group>.value>.item>.btn {
+  width: 179rpx;
+  height: 134rpx;
+  margin: 20rpx 20rpx 10rpx 10rpx;
+  border: 3rpx dashed #BBBBBB;
+  color: #BBBBBB;
+  font-size: 64rpx;
+}
+
+.row.switch>.value>.input {
+  width: calc(100% - 14rpx);
+  height: 46rpx;
+  padding: 5rpx;
+  font-size: 28rpx;
+}
+
 .row.mould>.label,
 .row.mould>.value {
   width: 100%;

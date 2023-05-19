@@ -80,7 +80,62 @@
           <textarea bindinput="inputDesc" class="input border" placeholder="请输入描述信息" maxlength="150" />
         </view>
       </view>
+      <view class="row picture-group flex_column_flexStart_center">
+        <view class="label theme-font1 flex_row_center_flexStart">菜品图</view>
+        <view class="value full-width">
 
+          <view class="item">
+            <view class="pic full-container">
+              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            </view>
+            <view class="cover full-container">
+              <view class="btn del" bindtap="修改值">
+                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="pic full-container">
+              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            </view>
+            <view class="cover full-container">
+              <view class="btn del" bindtap="修改值">
+                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="pic full-container">
+              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            </view>
+            <view class="cover full-container">
+              <view class="btn del" bindtap="修改值">
+                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="pic full-container">
+              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            </view>
+            <view class="cover full-container">
+              <view class="btn del" bindtap="修改值">
+                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
+              </view>
+            </view>
+          </view>
+          <view class="item">
+            <view class="btn add full-container flex_column_center_center" bindtap="修改值">+</view>
+          </view>
+
+        </view>
+      </view>
+      <view class="row switch flex_row_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">显示酒水信息</view>
+        <view class="value">
+          <switch checked="true" bindchange="修改值" />
+        </view>
+      </view>
       <view class="row mould flex_column_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">
           <view class="text">邀请函模板</view>

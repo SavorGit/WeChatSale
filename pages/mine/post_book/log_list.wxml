@@ -1,2 +1,142 @@
 <!--pages/mine/post_book/log_list.wxml-->
-<text>pages/mine/post_book/log_list.wxml</text>
+
+
+<!--
+  - 预定记录页
+  -->
+<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+  <view class="page">
+    <view class="list full-width flex_column_center_flexStart theme-block-white">
+
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+      <view class="item full-width flex_column_center_center">
+        <view class="row full-width flex_row_center_spaceBetween">
+          <view class="room">
+            <view class="text big5 theme-font1">VIP111</view>
+          </view>
+          <view class="user">
+            <view class="text theme-font7">张先生</view>
+          </view>
+          <view class="datetime">
+            <view class="text theme-font3">5.13 12:00</view>
+          </view>
+          <view class="icon">
+            <view class="text big2 fa fa-angle-right theme-font1" />
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</scroll-view>
