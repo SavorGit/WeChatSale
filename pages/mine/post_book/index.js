@@ -5,6 +5,8 @@ const utils = require('../../../utils/util.js')
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
+const oss_url   = app.globalData.oss_url;
+const oss_upload_url = app.globalData.oss_upload_url;
 var openid;
 var hotel_id;
 Page({
@@ -13,8 +15,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0},
-    themes_list:[]
+    policy:'',
+    signature:'',
+    oss_url:oss_url,
+    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1},
+    themes_list:[],
+    addDisabled:false
   },
 
   /**
@@ -24,14 +30,31 @@ Page({
     wx.hideShareMenu();
     openid = options.openid;
     hotel_id = options.hotel_id;
+
     this.getRoomlist(openid,hotel_id);
+    this.getInitdata(openid,hotel_id);
     this.getThemes(openid,hotel_id);
+    this.getOssParams();
+  },
+  getOssParams:function(){
+    var that = this;
+    wx.request({
+      url: api_url + '/Smallapp/Index/getOssParams',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      success: function (rest) {
+        var policy = rest.data.policy;
+        var signature = rest.data.signature;
+        that.setData({policy:policy,signature:signature})
+      }
+    })
   },
   getRoomlist:function(openid,hotel_id){
     var that = this;
     utils.PostRequest(api_v_url + '/room/getRooms', {
       hotel_id:hotel_id,
-      
+      openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       var book_info = that.data.book_info;
       book_info.select_room_name = data.result.room_name_list[0];
@@ -41,6 +64,20 @@ Page({
         box_list: data.result.room_list,
         book_info:book_info
       })
+    })
+  },
+  getInitdata:function(openid,hotel_id){
+    var that = this;
+    var book_info = this.data.book_info;
+    utils.PostRequest(api_v_url + '/invitation/initdata', {
+      hotel_id:hotel_id,
+      openid:openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var images = data.result.images;
+      var is_open_sellplatform = data.result.is_open_sellplatform;
+      book_info.dish_pics = images;
+      book_info.is_open_sellplatform = is_open_sellplatform;
+      that.setData({book_info:book_info});
     })
   },
   getThemes:function(openid,hotel_id){
@@ -146,6 +183,20 @@ Page({
     var box_list = this.data.box_list;
     var room_index = book_info.room_index;    
     var room_id = box_list[room_index].id;
+
+    var images = '';
+    var space  = '';
+    for(let i in book_info.dish_pics){
+      images += space + book_info.dish_pics[i].img_path;
+      space = ',';
+    }
+    var is_open_sellplatform = book_info.is_open_sellplatform;
+    var is_view_wine         = book_info.is_view_wine;
+    if(is_open_sellplatform==0){
+      is_view_wine = 2;
+    }
+
+
     
     utils.PostRequest(api_v_url + '/invitation/confirmdata', {
       openid         : openid,
@@ -158,7 +209,9 @@ Page({
       contact_name   : book_info.hotel_contract,
       contact_mobile : book_info.hotel_tel,
       desc           : book_info.desc,
-      theme_id       : book_info.template_id
+      theme_id       : book_info.template_id,
+      images         : images,
+      is_sellwine    : is_view_wine
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       if(post_type=='smallapp'){
@@ -180,6 +233,110 @@ Page({
     })
 
     
+  },
+
+  addPic:function(e){
+    var that = this;
+    var policy  = this.data.policy ;
+    var signature = this.data.signature;
+    wx.showLoading({
+      title: '图片上传中...',
+      mask: true
+    })
+    that.setData({
+      addDisabled: true
+    })
+    var dish_pics = this.data.book_info.dish_pics;
+    var count = 5 - dish_pics.length;
+    
+
+    wx.chooseImage({
+      count: count, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        //return false;
+        
+        for(let i in res.tempFilePaths)
+        {
+          that.uploadImg(res.tempFilePaths[i],policy,signature);
+        }
+        
+      }, fail: function (e) {
+        wx.hideLoading();
+        that.setData({
+          addDisabled: false
+        })
+      }
+    })
+  },
+  uploadImg:function(filename,policy,signature){
+    var that = this;
+
+    var index1 = filename.lastIndexOf(".");
+    var index2 = filename.length;
+    var timestamp = (new Date()).valueOf();
+    var postf = filename.substring(index1, index2);//后缀名
+    var postf_t = filename.substring(index1, index2);//后缀名
+    var postf_w = filename.substring(index1 + 1, index2);//后缀名
+
+    var img_url = timestamp + postf;
+    wx.uploadFile({
+      url: oss_upload_url,
+      filePath: filename,
+      name: 'file',
+      header: {
+        'Content-Type': 'image/' + postf_w
+      },
+      formData: {
+        Bucket: "redian-produce",
+        name: img_url,
+        key: "forscreen/resource/" + img_url,
+        policy: policy,
+        OSSAccessKeyId: app.globalData.oss_access_key_id,
+        sucess_action_status: "200",
+        signature: signature
+
+      },
+
+      success: function (res) {
+        
+        var tmp_pic = {id:0,img_path:'',img_url:''};
+
+        tmp_pic.img_path = "forscreen/resource/" + img_url
+        var book_info = that.data.book_info;
+        book_info.dish_pics.push(tmp_pic);
+        that.setData({book_info:book_info})
+        wx.hideLoading();
+          setTimeout(function () {
+            that.setData({
+              addDisabled: false
+            })
+          }, 500);
+      },
+      fail: function ({ errMsg }) {
+        wx.hideLoading();
+        app.showToast('图片上传失败，请重试')
+        that.setData({
+          addDisabled: false
+        })
+      },
+    });
+  },
+  delPic:function(e){
+    var keys = e.currentTarget.dataset.keys;
+    var book_info = this.data.book_info;
+    book_info.dish_pics.splice(keys,1);
+    this.setData({book_info:book_info});
+  },
+  changeViewWine:function(e){
+    console.log(e)
+    var book_info = this.data.book_info;
+    
+    var is_view_wine = e.detail.value;
+    is_view_wine = is_view_wine==true? 1: 2;
+    book_info.is_view_wine = is_view_wine;
+    this.setData({book_info:book_info});
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

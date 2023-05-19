@@ -84,56 +84,27 @@
         <view class="label theme-font1 flex_row_center_flexStart">菜品图</view>
         <view class="value full-width">
 
-          <view class="item">
+          <view class="item" wx:for="{{book_info.dish_pics}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
             <view class="pic full-container">
-              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+              <image class="full-container" src="{{oss_url}}/{{bean.img_path}}" mode="aspectFill" />
             </view>
             <view class="cover full-container">
-              <view class="btn del" bindtap="修改值">
+              <view class="btn del" bindtap="delPic" data-keys="{{index}}">
                 <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
               </view>
             </view>
           </view>
-          <view class="item">
-            <view class="pic full-container">
-              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-            </view>
-            <view class="cover full-container">
-              <view class="btn del" bindtap="修改值">
-                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-          <view class="item">
-            <view class="pic full-container">
-              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-            </view>
-            <view class="cover full-container">
-              <view class="btn del" bindtap="修改值">
-                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-          <view class="item">
-            <view class="pic full-container">
-              <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-            </view>
-            <view class="cover full-container">
-              <view class="btn del" bindtap="修改值">
-                <image class="full-container" src="/images/icon/58525C_close.png" mode="aspectFill" />
-              </view>
-            </view>
-          </view>
-          <view class="item">
-            <view class="btn add full-container flex_column_center_center" bindtap="修改值">+</view>
+          
+          <view class="item" wx:if="{{book_info.dish_pics.length<5}}">
+            <view class="btn add full-container flex_column_center_center" bindtap="addPic">+</view>
           </view>
 
         </view>
       </view>
-      <view class="row switch flex_row_center_flexStart">
+      <view class="row switch flex_row_center_flexStart" wx:if="{{book_info.is_open_sellplatform==1}}">
         <view class="label theme-font1 flex_row_center_flexStart">显示酒水信息</view>
         <view class="value">
-          <switch checked="true" bindchange="修改值" />
+          <switch checked="{{book_info.is_view_wine==1?true:false}}" bindchange="changeViewWine" />
         </view>
       </view>
       <view class="row mould flex_column_center_flexStart">
@@ -151,8 +122,8 @@
         </radio-group>
       </view>
       <view class="row full-button flex_row_center_spaceAround">
-        <view class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</view>
-        <view class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</view>
+        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</button>
+        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</button>
       </view>
     </view>
   </form>
