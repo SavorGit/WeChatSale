@@ -18,7 +18,7 @@ Page({
     policy:'',
     signature:'',
     oss_url:oss_url,
-    book_info:{'select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1},
+    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1},
     themes_list:[],
     addDisabled:false
   },
@@ -92,12 +92,26 @@ Page({
     })
     
   },
+  changeRoomRype:function(e){
+    console.log(e)
+    var room_type = e.detail.value;
+    var book_info = this.data.book_info;
+    book_info.room_type = room_type;
+    this.setData({book_info:book_info});
+  },
   selectRoom:function(e){
     var keys = e.detail.value;
     var objectBoxArray = this.data.objectBoxArray;
     var book_info = this.data.book_info;
     book_info.room_index = keys;
     book_info.select_room_name = objectBoxArray[keys];
+    this.setData({book_info:book_info})
+  },
+  inputTableName:function(e){
+    console.log(e)
+    var table_name = e.detail.value.replace(/\s+/g, '');
+    var book_info  = this.data.book_info;
+    book_info.table_name = table_name;
     this.setData({book_info:book_info})
   },
   handleChange:function(e){
@@ -154,6 +168,21 @@ Page({
     console.log(e)
     var post_type = e.currentTarget.dataset.post_type
     var book_info = this.data.book_info;
+
+    var room_type = book_info.room_type;
+    var room_id = 0;
+    if(room_type==1){
+      var box_list = this.data.box_list;
+      var room_index = book_info.room_index;    
+      var room_id = box_list[room_index].id;
+    }else if(room_type==2){
+      var table_name = book_info.table_name;
+      if(table_name==''){
+        app.showToast('请输入大厅的桌号');
+        return false;
+      }
+    }
+
     if(book_info.book_time==''){
       app.showToast('请选择预定时间');
       return false;
@@ -180,9 +209,9 @@ Page({
       return false;
     }
     console.log(book_info)
-    var box_list = this.data.box_list;
-    var room_index = book_info.room_index;    
-    var room_id = box_list[room_index].id;
+
+    
+    
 
     var images = '';
     var space  = '';
@@ -210,6 +239,8 @@ Page({
       contact_mobile : book_info.hotel_tel,
       desc           : book_info.desc,
       theme_id       : book_info.template_id,
+      room_type      : room_type,
+      table_name     : table_name,
       images         : images,
       is_sellwine    : is_view_wine
     }, (data, headers, cookies, errMsg, statusCode) => {

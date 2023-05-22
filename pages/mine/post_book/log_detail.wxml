@@ -12,7 +12,7 @@
           <view class="text theme-font1">预定包间</view>
         </view>
         <view class="value">
-          <view class="text theme-font1">VIP111</view>
+          <view class="text theme-font1">{{invitation_info.room_name}}</view>
         </view>
       </view>
     </view>
@@ -22,7 +22,7 @@
           <view class="text theme-font1">预定时间</view>
         </view>
         <view class="value">
-          <view class="text theme-font3">5.13 12:30</view>
+          <view class="text theme-font3">{{invitation_info.book_time}}</view>
         </view>
       </view>
     </view>
@@ -32,7 +32,7 @@
           <view class="text theme-font1">预定人数</view>
         </view>
         <view class="value">
-          <view class="text theme-font3">8人</view>
+          <view class="text theme-font3">{{invitation_info.people_num}}人</view>
         </view>
       </view>
     </view>
@@ -42,7 +42,7 @@
           <view class="text theme-font1">预定人</view>
         </view>
         <view class="value">
-          <view class="text theme-font7">张先生</view>
+          <view class="text theme-font7">{{invitation_info.name}}</view>
         </view>
       </view>
     </view>
@@ -52,7 +52,7 @@
           <view class="text theme-font1">预定人手机号</view>
         </view>
         <view class="value">
-          <view class="text theme-font3">13800138000</view>
+          <view class="text theme-font3">{{invitation_info.mobile}}</view>
         </view>
       </view>
     </view>

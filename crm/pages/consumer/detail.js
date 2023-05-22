@@ -66,8 +66,22 @@ Page({
       customer_id      : id,
       page             : page,
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var expense_list = data.result.datalist;
-      that.setData({expense_list:expense_list})
+
+      var expense_list = this.data.expense_list;
+        var ret_record = data.result.datalist;
+        if(ret_record.length>0){
+            for(let i in ret_record){
+              expense_list.push(ret_record[i]);
+            }
+            this.setData({expense_list:expense_list})
+        }else {
+            if(page!=1){
+                app.showToast('没有更多了...')
+            }
+        }
+
+
+
     })
     
   },
@@ -125,6 +139,10 @@ Page({
     });
     }
     
+  },
+  loadMore:function(){
+    page +=1;
+    this.getRecordList(openid,id,page);
   },
   gotoPage:function(e){
     var type = e.currentTarget.dataset.type;
