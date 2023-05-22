@@ -166,7 +166,14 @@ Page({
   },
   confirmBookInfo:function(e){
     console.log(e)
+    var that = this;
     var post_type = e.currentTarget.dataset.post_type
+    if(post_type=='message'){
+      var send_type = 1;
+    }else if(post_type=='smallapp'){
+      var send_type = 2;
+    }
+
     var book_info = this.data.book_info;
 
     var room_type = book_info.room_type;
@@ -242,7 +249,8 @@ Page({
       room_type      : room_type,
       table_name     : table_name,
       images         : images,
-      is_sellwine    : is_view_wine
+      is_sellwine    : is_view_wine,
+      send_type      : send_type
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       if(post_type=='smallapp'){
@@ -265,7 +273,7 @@ Page({
 
     
   },
-
+  
   addPic:function(e){
     var that = this;
     var policy  = this.data.policy ;
