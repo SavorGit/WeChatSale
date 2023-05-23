@@ -31,7 +31,7 @@ Page({
     wx.hideShareMenu();
     openid = options.openid;
     hotel_id = options.hotel_id;
-    page = 2;
+    page = 1;
     this.getPostLogList(openid,hotel_id,page);
   },
   getPostLogList:function(openid,hotel_id,page = 1){
