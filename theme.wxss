@@ -260,6 +260,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-window,
 .theme-panel,
 .theme-page,
+.theme-container-white,
 .theme-block-white,
 .theme-button-white,
 .theme-navigation {
