@@ -24,5 +24,6 @@
 }
 
 .row>.property>.value {
-  width: calc(100% - 170rpx);
+  width: calc(100% - 210rpx);
+  padding-left: 40rpx;
 }
