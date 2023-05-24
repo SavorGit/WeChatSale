@@ -4,7 +4,7 @@
   -->
 
 
-<scroll-view class='container flex_column_center_flexStart theme-container' scroll-y="true" scroll-with-animation="true">
+<scroll-view class='container flex_column_center_flexStart theme-container-white' scroll-y="true" scroll-with-animation="true">
   <form action="" class="form">
     <view class="page">
       <view class="row  flex_row_center_flexStart">
