@@ -38,12 +38,7 @@ Component({
         "iconPath": "/images/icon/999999_interact.png",
         "selectedIconPath": "/images/icon/333333_interact.png"
       },
-      {
-        "pagePath": "/pages/crm/index/index",
-        "text": "CRM",
-        "iconPath": "/images/icon/999999_crm.png",
-        "selectedIconPath": "/images/icon/333333_crm.png"
-      },
+      
       {
         "pagePath": "/pages/mine/index",
         "text": "个人信息",

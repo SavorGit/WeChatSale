@@ -277,7 +277,7 @@ Page({
      
     }*/
     this.getTabBar().setData({
-      selected: 3,
+      selected: 2,
     })
     wx.request({
       url: api_v_url + '/User/isRegister',
