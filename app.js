@@ -210,30 +210,82 @@ App({
 
 
     var that = this
-
-    wx.login({
-      success: res => {
-        var code = res.code; //返回code
-        wx.request({
-          url: that.globalData.api_v_url + '/user/getOpenid',
-          data: {
-            "code": code
-          },
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-
-            that.globalData.openid = res.data.result.openid;
-            that.globalData.session_key = res.data.result.session_key;
-            that.globalData.Official_article_url = res.data.result.official_account_article_url
-            if (that.openidCallback) {
-              that.openidCallback(res.data.result.openid);
+    var user_info  = wx.getStorageSync('savor:sale:userinfo');
+    if(user_info!='' && typeof(user_info.openid)!='undefined' && user_info.openid!='' && user_info.openid!='undefined'){
+      wx.request({
+        url: that.globalData.api_v_url+'/user/getSessionkey',
+        data:{openid:user_info.openid},
+        success: function (res) {
+          console.log(res)
+          if(res.data.code==10000){
+            var session_key = res.data.result.session_key;
+            var Official_article_url = res.data.result.Official_article_url;
+            if(session_key==''){
+              wx.login({
+                success: res => {
+                  var code = res.code; //返回code
+                  wx.request({
+                    url: that.globalData.api_v_url + '/user/getOpenid',
+                    data: {
+                      "code": code
+                    },
+                    header: {
+                      'content-type': 'application/json'
+                    },
+                    success: function (res) {
+          
+                      that.globalData.openid = res.data.result.openid;
+                      that.globalData.session_key = res.data.result.session_key;
+                      that.globalData.Official_article_url = res.data.result.official_account_article_url
+                      if (that.openidCallback) {
+                        that.openidCallback(res.data.result.openid);
+                      }
+                    }
+                  })
+                }
+              })
+            }else{
+              that.globalData.openid = user_info.openid;
+              that.globalData.session_key = session_key;
+              that.globalData.Official_article_url = Official_article_url;
+              if (that.openidCallback) {
+                that.openidCallback(user_info.openid);
+              }
             }
+          }else {
+            wx.reLaunch({
+              url: '/pages/user/sellindex',
+            })
           }
-        })
-      }
-    })
+          
+        }
+      })
+    }else {
+      wx.login({
+        success: res => {
+          var code = res.code; //返回code
+          wx.request({
+            url: that.globalData.api_v_url + '/user/getOpenid',
+            data: {
+              "code": code
+            },
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function (res) {
+  
+              that.globalData.openid = res.data.result.openid;
+              that.globalData.session_key = res.data.result.session_key;
+              that.globalData.Official_article_url = res.data.result.official_account_article_url
+              if (that.openidCallback) {
+                that.openidCallback(res.data.result.openid);
+              }
+            }
+          })
+        }
+      })
+    }
+    
     wx.getSystemInfo({
       success: function (res) {
         that.globalData.mobile_brand = res.brand;

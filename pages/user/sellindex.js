@@ -162,10 +162,10 @@ Page({
           url: '/pages/user/login',
         })
       }else {
-        //var user_info = wx.getStorageSync(cache_key+'userinfo');
-        //if(user_info==''){
-        var user_info = data.result.userinfo
-        //}
+        var user_info = wx.getStorageSync(cache_key+'userinfo');
+        if(user_info==''){
+          var user_info = data.result.userinfo
+        }
         if(hotel_id==-1 && is_onload==1){
           wx.showModal({
             title: '提示',

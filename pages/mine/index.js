@@ -32,7 +32,7 @@ Page({
     
     wx.hideShareMenu();
     var that = this;
-    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    /*var user_info = wx.getStorageSync(cache_key + 'userinfo');
     openid = user_info.openid;
     if (user_info.select_hotel_id > 0) {
       var hotel_id = user_info.select_hotel_id;
@@ -60,7 +60,7 @@ Page({
       openid: openid,
       role_id: user_info.role_id,
       config_info:app.globalData.config_info
-    })
+    })*/
     
 
     
@@ -279,49 +279,94 @@ Page({
     this.getTabBar().setData({
       selected: 2,
     })
+
+    if (app.globalData.openid && app.globalData.openid != '') {
+      that.setData({
+        openid: app.globalData.openid
+      })
+      openid = app.globalData.openid;
+      //注册用户
+      that.is_login(openid,0);
+      that.getUserCenter(openid)
+      that.getMyStaffList(openid);
+      //数据埋点-进入个人信息页面
+    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
+    } else {
+      app.openidCallback = openid => {
+        if (openid != '') {
+          that.setData({
+            openid: openid
+          })
+          openid = openid;
+          //注册用户
+          that.is_login(openid,1);
+          that.getUserCenter(openid)
+          that.getMyStaffList(openid);
+          //数据埋点-进入个人信息页面
+          utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+    
+
+    
+    
+  },
+  is_login:function(openid,is_onload=0){
+    var that = this;
+    var user_info = wx.getStorageSync(cache_key+'userinfo');
     utils.PostRequest(api_v_url + '/User/isRegister',{
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      
+      if(is_onload==0){
+        
+        var user_info = data.result.userinfo;
+      }else{
+        if(user_info!='' && typeof(user_info.select_hotel_id)!='undefined'  && user_info.select_hotel_id>0 ){
 
-      if (user_info.select_hotel_id > 0) {
-        var hotel_id = user_info.select_hotel_id;
-        var rts = data.result.userinfo;
-        rts.select_hotel_id = user_info.select_hotel_id;
-        /*wx.setStorage({
-          key: cache_key + 'userinfo',
-          data: rts,
-        })*/
-      } else {
-        wx.setStorage({
-          key: cache_key + 'userinfo',
-          data: data.result.userinfo,
-        })
-        var goods_manage = app.in_array('goods_manage', user_info.service);
-        var staff_manage = app.in_array('staff_manage', user_info.service);
-        var integral_manage = app.in_array('integral_manage', user_info.service);
-        var integral_shop = app.in_array('integral_shop', user_info.service);
-        var task_manage = app.in_array('task_manage', user_info.service);
-        that.setData({
-          goods_manage: goods_manage,
-          staff_manage: staff_manage,
-          integral_manage: integral_manage,
-          task_manage: task_manage,
-          integral_shop: integral_shop
-        })
+        }else {
+          wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
+        }
+        
+        var user_info = data.result.userinfo;
       }
+      var goods_manage = app.in_array('goods_manage', user_info.service);
+      var staff_manage = app.in_array('staff_manage', user_info.service);
+      var integral_manage = app.in_array('integral_manage', user_info.service);
+      var integral_shop = app.in_array('integral_shop', user_info.service);
+      var task_manage = app.in_array('task_manage', user_info.service);
+      that.setData({
+        role_type   : user_info.role_type,
+        is_wx_auth  : user_info.is_wx_auth,
+       
+        openid      : openid,
+        role_id     : user_info.role_id,
+        config_info:app.globalData.config_info,
+
+        goods_manage: goods_manage,
+        staff_manage: staff_manage,
+        integral_manage: integral_manage,
+        task_manage: task_manage,
+        integral_shop: integral_shop,
+        user_info:data.result.userinfo
+      })
+      
       that.setData({user_info:data.result.userinfo})
     },res=>{
       wx.reLaunch({
         url: '/pages/user/login',
       })
     })
-
-    that.getUserCenter(openid)
-    that.getMyStaffList(openid);
-    //数据埋点-进入个人信息页面
-    utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_lifeCycle', {'open_id':openid,'lc_type':'onShow'}));
   },
-  
   integralList: function (e) {
     //数据埋点-点击收益明细
     utils.tryCatch(getApp().globalData.uma.trackEvent('mineIndex_clickIntegralList', {'open_id':openid}));
