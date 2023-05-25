@@ -233,12 +233,25 @@ App({
                       'content-type': 'application/json'
                     },
                     success: function (res) {
-          
-                      that.globalData.openid = res.data.result.openid;
-                      that.globalData.session_key = res.data.result.session_key;
-                      that.globalData.Official_article_url = res.data.result.official_account_article_url
-                      if (that.openidCallback) {
-                        that.openidCallback(res.data.result.openid);
+                      console.log(res)
+                      if(res.data.code==10000){
+                        //var errcode = res.data.result.errcode;
+                        if(typeof(res.data.result.errcode)=='undefined'){
+                          that.globalData.openid = res.data.result.openid;
+                          that.globalData.session_key = res.data.result.session_key;
+                          that.globalData.Official_article_url = res.data.result.official_account_article_url
+                          if (that.openidCallback) {
+                            that.openidCallback(res.data.result.openid);
+                          }
+                        }else{
+                          wx.reLaunch({
+                            url: '/pages/user/sellindex',
+                          })
+                        }
+                      }else{
+                        wx.reLaunch({
+                          url: '/pages/user/sellindex',
+                        })
                       }
                     }
                   })
