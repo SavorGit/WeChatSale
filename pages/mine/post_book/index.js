@@ -18,7 +18,7 @@ Page({
     policy:'',
     signature:'',
     oss_url:oss_url,
-    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1},
+    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1,is_view_wine_switch:0},
     themes_list:[],
     addDisabled:false
   },
@@ -75,8 +75,10 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       var images = data.result.images;
       var is_open_sellplatform = data.result.is_open_sellplatform;
+      var is_view_wine_switch  = data.result.is_view_wine_switch;
       book_info.dish_pics = images;
       book_info.is_open_sellplatform = is_open_sellplatform;
+      book_info.is_view_wine_switch  = is_view_wine_switch;
       that.setData({book_info:book_info});
     })
   },
@@ -227,12 +229,18 @@ Page({
       space = ',';
     }
     var is_open_sellplatform = book_info.is_open_sellplatform;
+    var is_view_wine_switch  = book_info.is_view_wine_switch;
     var is_view_wine         = book_info.is_view_wine;
+
+   
+
+
     if(is_open_sellplatform==0){
       is_view_wine = 2;
     }
 
-
+    console.log(is_view_wine);
+    return false;
     
     utils.PostRequest(api_v_url + '/invitation/confirmdata', {
       openid         : openid,

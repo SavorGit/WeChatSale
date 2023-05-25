@@ -106,7 +106,7 @@
 
         </view>
       </view>
-      <view class="row switch flex_row_center_flexStart" wx:if="{{book_info.is_open_sellplatform==1}}">
+      <view class="row switch flex_row_center_flexStart" wx:if="{{book_info.is_open_sellplatform==1 && book_info.is_view_wine_switch==1}}">
         <view class="label theme-font1 flex_row_center_flexStart">显示酒水信息</view>
         <view class="value">
           <switch checked="{{book_info.is_view_wine==1?true:false}}" bindchange="changeViewWine" />
