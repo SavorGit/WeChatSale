@@ -89,7 +89,7 @@ Page({
         box_name_list: data.result.box_name_list,
         box_list: data.result.box_list
       })
-    },res=>{},{isShowLoading:false})
+    })
   },
   bindBoxPickerChange:function(e){
     var box_index = e.detail.value;
@@ -234,7 +234,7 @@ Page({
 
         
       }
-    },res=>{},{isShowLoading:false})
+    })
   },
   isHaveStockHotel:function(user_info){
     var openid = user_info.openid;
@@ -288,7 +288,7 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       var task_list = data.result;
       that.setData({task_list:task_list});
-    },res=>{},{isShowLoading:showload})
+    })
   },
   /***
    * 获取循环播放任务列表
@@ -1485,7 +1485,7 @@ Page({
       }
       
     
-    },res=>{},{isShowLoading:showload})
+    })
   },
   /**
    * @desc 完善饭局记录提醒弹窗 20230511
