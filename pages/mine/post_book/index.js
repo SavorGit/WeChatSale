@@ -239,8 +239,6 @@ Page({
       is_view_wine = 2;
     }
 
-    console.log(is_view_wine);
-    return false;
     
     utils.PostRequest(api_v_url + '/invitation/confirmdata', {
       openid         : openid,
@@ -265,7 +263,7 @@ Page({
         wx.navigateToMiniProgram({
           appId: 'wxfdf0346934bb672f',
           path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
-          //envVersion:'trial'
+          envVersion:'trial'
         })
       }else if(post_type=='message'){
         app.showToast('发送成功',2000,'success');
