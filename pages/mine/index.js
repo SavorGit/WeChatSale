@@ -258,24 +258,6 @@ Page({
   onShow: function () {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    /*if (user_info.hotel_has_room == 0) {
-      if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0,
-          list: [
-            
-            {
-              "pagePath": "/pages/mine/index",
-              "text": "个人信息",
-              "iconPath": "/images/icon/999999_mine.png",
-              "selectedIconPath": "/images/icon/333333_mine.png"
-            }
-          ]
-        })
-      }
-    } else {
-     
-    }*/
     this.getTabBar().setData({
       selected: 2,
     })
@@ -286,7 +268,7 @@ Page({
       })
       openid = app.globalData.openid;
       //注册用户
-      that.is_login(openid,0);
+      that.is_login(openid);
       that.getUserCenter(openid)
       that.getMyStaffList(openid);
       //数据埋点-进入个人信息页面
@@ -299,7 +281,7 @@ Page({
           })
           openid = openid;
           //注册用户
-          that.is_login(openid,1);
+          that.is_login(openid);
           that.getUserCenter(openid)
           that.getMyStaffList(openid);
           //数据埋点-进入个人信息页面
@@ -308,26 +290,15 @@ Page({
       }
     }
 
-
-
-
-
-
-
-
-    
-
-    
     
   },
-  is_login:function(openid,is_onload=0){
+  is_login:function(openid){
     var that = this;
-    var user_info = wx.getStorageSync(cache_key+'userinfo');
     utils.PostRequest(api_v_url + '/User/isRegister',{
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
       
-      if(is_onload==0){
+      /*if(is_onload==0){
         
         var user_info = data.result.userinfo;
       }else{
@@ -338,6 +309,13 @@ Page({
         }
         
         var user_info = data.result.userinfo;
+      }*/
+      var user_info = data.result.userinfo;
+
+      var cache_user_info = wx.getStorageSync(cache_key+'userinfo');
+      if(cache_user_info!='' && typeof(cache_user_info.select_hotel_id)!='undefined' && cache_user_info.select_hotel_id>0){
+        user_info.select_hotel_id = cache_user_info.select_hotel_id;
+        user_info.select_hotel_name = cache_user_info.select_hotel_name;
       }
       var goods_manage = app.in_array('goods_manage', user_info.service);
       var staff_manage = app.in_array('staff_manage', user_info.service);
@@ -357,10 +335,8 @@ Page({
         integral_manage: integral_manage,
         task_manage: task_manage,
         integral_shop: integral_shop,
-        user_info:data.result.userinfo
+        user_info:user_info
       })
-      
-      that.setData({user_info:data.result.userinfo})
     },res=>{
       wx.reLaunch({
         url: '/pages/user/login',
