@@ -162,10 +162,18 @@ Page({
           url: '/pages/user/login',
         })
       }else {
-        var user_info = wx.getStorageSync(cache_key+'userinfo');
+        /*var user_info = wx.getStorageSync(cache_key+'userinfo');
         if(user_info==''){
           var user_info = data.result.userinfo
+        }*/
+        var cache_user_info = wx.getStorageSync(cache_key+'userinfo');
+        var user_info = data.result.userinfo
+        if(cache_user_info!='' && typeof(cache_user_info.select_hotel_id)!='undefined'  && cache_user_info.select_hotel_id>0){
+          user_info.select_hotel_id = cache_user_info.select_hotel_id;
+          user_info.select_hotel_name = cache_user_info.select_hotel_name;
+
         }
+        wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
         if(hotel_id==-1 && is_onload==1){
           wx.showModal({
             title: '提示',
@@ -178,11 +186,11 @@ Page({
         }
 
 
-        if(typeof(user_info.select_hotel_id)!='undefined'  && user_info.select_hotel_id>0 ){
+        /*if(typeof(user_info.select_hotel_id)!='undefined'  && user_info.select_hotel_id>0 ){
 
         }else {
           wx.setStorageSync(cache_key+'userinfo', data.result.userinfo)
-        }
+        }*/
         
         if(data.result.userinfo.role_type==3){
           wx.redirectTo({

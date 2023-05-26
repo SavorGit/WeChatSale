@@ -210,7 +210,9 @@ App({
 
 
     var that = this
-    var user_info  = wx.getStorageSync('savor:sale:userinfo');
+
+    var cache_key = that.globalData.cache_key;
+    var user_info  = wx.getStorageSync(cache_key+'userinfo');
     if(user_info!='' && typeof(user_info.openid)!='undefined' && user_info.openid!='' && user_info.openid!='undefined'){//缓存中取到用户数据并且用户数据正常
       wx.request({
         url: that.globalData.api_v_url+'/user/getSessionkey',
