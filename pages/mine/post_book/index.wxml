@@ -145,7 +145,7 @@
       <view class="row full-button flex_row_center_center">
         <!-- <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</button>
         <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</button> -->
-        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">发送</button>
+        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" style="width:450rpx;" bindtap="confirmBookInfo" data-post_type="smallapp">发送</button>
       </view>
     </view>
   </form>
