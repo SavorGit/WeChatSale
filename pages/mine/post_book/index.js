@@ -266,7 +266,7 @@ Page({
       images         : images,
       is_sellwine    : is_view_wine,
       send_type      : send_type,
-      version        : app.globalData.version  
+      version        : app.globalData.small_app_version  
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
       if(send_type==2 || send_type==3){
