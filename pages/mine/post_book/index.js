@@ -18,7 +18,7 @@ Page({
     policy:'',
     signature:'',
     oss_url:oss_url,
-    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1,is_view_wine_switch:0},
+    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','send_type':1,'hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1,is_view_wine_switch:0},
     themes_list:[],
     addDisabled:false
   },
@@ -142,6 +142,13 @@ Page({
     book_info.mobile = mobile;
     this.setData({book_info:book_info});
   },
+  changeSendType:function(e){
+    console.log(e)
+    var send_type = e.detail.value;
+    var book_info = this.data.book_info;
+    book_info.send_type = send_type;
+    this.setData({book_info:book_info})
+  },
   inputHotelContract:function(e){
     var hotel_contract = e.detail.value.replace(/\s+/g, '');
     var book_info = this.data.book_info;
@@ -169,15 +176,17 @@ Page({
   confirmBookInfo:function(e){
     console.log(e)
     var that = this;
-    var post_type = e.currentTarget.dataset.post_type
+    /*var post_type = e.currentTarget.dataset.post_type
     if(post_type=='message'){
       var send_type = 1;
     }else if(post_type=='smallapp'){
       var send_type = 2;
-    }
+    }*/
+    
+
 
     var book_info = this.data.book_info;
-
+    var send_type = book_info.send_type;
     var room_type = book_info.room_type;
     var room_id = 0;
     if(room_type==1){
@@ -205,11 +214,11 @@ Page({
         app.showToast('请输入预定人称呼');
         return false;
       }
-    if(book_info.mobile=='' ){
+    if(book_info.mobile=='' && book_info.send_type!=1){
       app.showToast('请输入预定人的手机号码');
       return false;
     }
-    if(!app.checkMobile(book_info.mobile)){
+    if(!app.checkMobile(book_info.mobile) && book_info.send_type!=1){
       app.showToast('请输入正确的手机号');
       return false; 
     }
@@ -256,16 +265,17 @@ Page({
       table_name     : table_name,
       images         : images,
       is_sellwine    : is_view_wine,
-      send_type      : send_type
+      send_type      : send_type,
+      version        : app.globalData.version  
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
-      if(post_type=='smallapp'){
+      if(send_type==1 || send_type==3){
         wx.navigateToMiniProgram({
           appId: 'wxfdf0346934bb672f',
           path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
           //envVersion:'trial'
         })
-      }else if(post_type=='message'){
+      }else if(send_type==2 ){
         app.showToast('发送成功',2000,'success');
         setTimeout(function () {
           wx.navigateBack({

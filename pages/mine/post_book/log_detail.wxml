@@ -62,7 +62,7 @@
           <view class="text theme-font1">发送形式</view>
         </view>
         <view class="value">
-          <view class="text theme-font3">微信</view>
+          <view class="text theme-font3">{{invitation_info.send_type_str}}</view>
         </view>
       </view>
     </view>
