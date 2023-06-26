@@ -74,11 +74,11 @@
         </view>
         <view class="value" style="height:auto;">
           <radio-group class="full-width" style="padding:10rpx 0;" bindchange="changeSendType">
-            <radio style="margin-right:50rpx;" checked="{{book_info.send_type==1?true:false}}" value="1">微信</radio>
-            <radio checked="{{book_info.send_type==2?true:false}}" style="margin-right:50rpx;" value="2">短信</radio>
-            <radio checked="{{book_info.send_type==3?true:false}}" value="3">同时发送</radio>
+            <radio style="margin-right:50rpx;" checked="{{book_info.send_type==3?true:false}}" value="3">微信</radio>
+            <radio checked="{{book_info.send_type==1?true:false}}" style="margin-right:50rpx;" value="1">短信</radio>
+            <radio checked="{{book_info.send_type==2?true:false}}" value="2">同时发送</radio>
           </radio-group>
-          <view class="full-width" wx:if="{{book_info.send_type==2 || book_info.send_type==3}}">
+          <view class="full-width" wx:if="{{book_info.send_type==2 || book_info.send_type==1}}">
             <view class="text small2 theme-font-F44444">约有1%的用户会有短信拦截问题，可能无法送达</view>
           </view>
         </view>

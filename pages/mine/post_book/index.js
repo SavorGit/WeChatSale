@@ -18,7 +18,7 @@ Page({
     policy:'',
     signature:'',
     oss_url:oss_url,
-    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','send_type':1,'hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1,is_view_wine_switch:0},
+    book_info:{room_type:1,table_name:'','select_room_name':'--请选择包间--','room_index':0,'book_time':'','book_name':'','nums':'','mobile':'','send_type':3,'hotel_contract':'','hotel_tel':'','desc':'','template_id':0,dish_pics:[],is_view_wine:1,is_open_sellplatform:1,is_view_wine_switch:0},
     themes_list:[],
     addDisabled:false
   },
@@ -214,11 +214,11 @@ Page({
         app.showToast('请输入预定人称呼');
         return false;
       }
-    if(book_info.mobile=='' && book_info.send_type!=1){
+    if(book_info.mobile=='' && book_info.send_type!=3){
       app.showToast('请输入预定人的手机号码');
       return false;
     }
-    if(!app.checkMobile(book_info.mobile) && book_info.send_type!=1){
+    if(!app.checkMobile(book_info.mobile) && book_info.send_type!=3){
       app.showToast('请输入正确的手机号');
       return false; 
     }
@@ -269,13 +269,13 @@ Page({
       version        : app.globalData.version  
     }, (data, headers, cookies, errMsg, statusCode) => {
       var  invitation_id = data.result.invitation_id
-      if(send_type==1 || send_type==3){
+      if(send_type==2 || send_type==3){
         wx.navigateToMiniProgram({
           appId: 'wxfdf0346934bb672f',
           path:'/mall/pages/wine/post_book/index?id='+invitation_id+'&status=0',
           //envVersion:'trial'
         })
-      }else if(send_type==2 ){
+      }else if(send_type==1 ){
         app.showToast('发送成功',2000,'success');
         setTimeout(function () {
           wx.navigateBack({
