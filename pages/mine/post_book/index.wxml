@@ -7,7 +7,7 @@
 <scroll-view class='container flex_column_center_flexStart theme-container-white' scroll-y="true" scroll-with-animation="true">
   <form action="" class="form">
     <view class="page">
-      <view class="row  flex_row_center_flexStart">
+      <view class="row flex_row_center_flexStart">
         <view class="label theme-font1 flex_row_center_flexStart">
           <view class="text">预定位置</view>
           <view class="required theme-font5">*</view>
@@ -65,6 +65,22 @@
         </view>
         <view class="value">
           <input always-embed="true" bindinput="inputBookMobile" type="number" class="input border flex_row_center_flexStart" placeholder="请输入预定人的手机号码" />
+        </view>
+      </view>
+      <view class="row flex_row_center_flexStart">
+        <view class="label theme-font1 flex_row_center_flexStart">
+          <view class="text">发送形式</view>
+          <view class="required theme-font5">*</view>
+        </view>
+        <view class="value" style="height:auto;">
+          <radio-group class="full-width" style="padding:10rpx 0;" bindchange="changeRoomRype">
+            <radio style="margin-right:50rpx;">微信</radio>
+            <radio checked="true" style="margin-right:50rpx;">短信</radio>
+            <radio>同时发送</radio>
+          </radio-group>
+          <view class="full-width">
+            <view class="text small2 theme-font-F44444">约有1%的用户会有短信拦截问题，可能无法送达</view>
+          </view>
         </view>
       </view>
       <view class="row text flex_row_center_flexStart">
@@ -126,9 +142,10 @@
           </view>
         </radio-group>
       </view>
-      <view class="row full-button flex_row_center_spaceAround">
-        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</button>
-        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</button>
+      <view class="row full-button flex_row_center_center">
+        <!-- <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="message">短信发送</button>
+        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">微信与短信同时发送</button> -->
+        <button disabled="{{addDisabled}}" class="btn submit flex_row_center_center theme-button-dark" bindtap="confirmBookInfo" data-post_type="smallapp">发送</button>
       </view>
     </view>
   </form>

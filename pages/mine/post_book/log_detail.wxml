@@ -56,5 +56,15 @@
         </view>
       </view>
     </view>
+    <view class="row full-width flex_row_center_spaceBetween">
+      <view class="property full-width flex_row_center_flexStart">
+        <view class="label">
+          <view class="text theme-font1">发送形式</view>
+        </view>
+        <view class="value">
+          <view class="text theme-font3">微信</view>
+        </view>
+      </view>
+    </view>
   </view>
 </scroll-view>
