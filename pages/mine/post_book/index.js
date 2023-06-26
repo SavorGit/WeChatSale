@@ -218,7 +218,7 @@ Page({
       app.showToast('请输入预定人的手机号码');
       return false;
     }
-    if(!app.checkMobile(book_info.mobile) && book_info.send_type!=3){
+    if(!app.checkMobile(book_info.mobile) && book_info.mobile!=''){
       app.showToast('请输入正确的手机号');
       return false; 
     }
