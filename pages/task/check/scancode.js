@@ -1,4 +1,17 @@
 // pages/task/check/scancode.js
+const utils = require('../../../utils/util.js');
+
+/**
+ * 盘点任务
+ */
+const app = getApp()
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var hotel_id;
+var code_msg;
 Page({
 
   /**

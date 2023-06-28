@@ -1,1 +1,123 @@
 /* pages/task/check/scancode.wxss */
+@import '/utils/panel.wxss';
+@import '/window.wxss';
+
+/**
+ * 盘点任务
+ */
+.page {
+  padding: 0 0 50rpx;
+}
+
+.panel>.body {
+  width: calc(100% - 40rpx);
+  padding: 0 20rpx 10rpx;
+}
+
+.panel>.body>.item {
+  width: 100%;
+  padding: 20rpx 0;
+  border-top: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.panel>.body>.item:first-child {
+  border-top: unset
+}
+
+.panel>.body>.item>.row {
+  width: 100%;
+}
+
+.panel>.body>.item>.row>.left {
+  width: 120rpx;
+}
+
+.panel>.body>.item>.row>.center {
+  width: calc(100% - 300rpx);
+}
+
+.panel>.body>.item>.row>.center>.name {
+  width: 100%;
+}
+
+.panel>.body>.item>.row>.center>.bottom,
+.panel>.body>.item>.row>.center>.tag-group {
+  width: 100%;
+}
+
+.panel>.body>.item>.row>.center>.bottom>.operator,
+.panel>.body>.item>.row>.center>.tag-group>.tag {
+  margin-left: 30rpx;
+}
+
+.panel>.body>.item>.row>.center>.tag-group>.tag:first-child {
+  margin-left: unset;
+}
+
+.panel>.body>.item>.row>.right {
+  width: 180rpx;
+}
+
+.panel>.body>.item>.row>.right>.btn {
+  width: 120rpx;
+  border-radius: 8rpx;
+  border: 0;
+  margin: 0;
+  padding: 15rpx 10rpx;
+}
+
+.panel.scan>.body {
+  height: 320rpx;
+}
+
+.panel.scan>.body>.btn {
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 50%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.panel.scan>.body>.btn>.icon {
+  font-size: 112rpx;
+}
+
+.page>.foot>.btn {
+  width: 472rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+}
+
+.window.incomplete-reminder {
+  width: 720rpx;
+  height: 600rpx;
+  border-radius: 10rpx;
+}
+
+.window.incomplete-reminder>.win-body>.main {
+  height: calc(100% - 90rpx);
+}
+
+.window.incomplete-reminder>.win-body>.main>.list {
+  height: calc(100% - 100rpx);
+}
+
+.window.incomplete-reminder>.win-body>.main>.list .warpper>.item {
+  width: calc(100% - 20rpx);
+  padding: 15rpx 10rpx;
+}
+
+.window.incomplete-reminder>.win-body>.main>.button-group {
+  height: 100rpx;
+}
+
+.window.incomplete-reminder>.win-body>.main>.button-group>.btn {
+  width: 270rpx;
+  height: 84rpx;
+  border-radius: 42rpx;
+}
+
+.window.incomplete-reminder>.win-body>.foot {
+  height: 90rpx;
+}

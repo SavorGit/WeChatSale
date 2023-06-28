@@ -1,2 +1,195 @@
 <!--pages/task/check/scancode.wxml-->
-<text>pages/task/check/scancode.wxml</text>
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 盘点任务
+  -->
+<!-- 扫码核销 -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+  <view class="page full-width flex_column_center_flexStart theme-page">
+    <view class="main full-width">
+      <view class="panel scan flex_column_center_flexStart">
+        <view class="title-bar flex_row_center_center">
+          <view class="title">
+            <view class="text big4 bold theme-font1">请扫描商品唯一标识进行盘点</view>
+          </view>
+        </view>
+        <view class="body flex_column_center_center" bindtap="修改值">
+          <view class="btn flex_column_center_center theme-button-blue">
+            <view class="icon fa fa-qrcode" aria-hidden="true" />
+            <view class="text">扫码</view>
+          </view>
+        </view>
+      </view>
+      <view class="panel can-del-googs">
+        <view class="title-bar flex_row_center_flexStart">
+          <view class="title">
+            <view class="text bold theme-font1">已扫商品码（11）</view>
+          </view>
+        </view>
+        <view class="body">
+
+          <view class="item flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="left flex_column_center_center theme-font3">5</view>
+              <view class="center flex_column_center_center">
+                <view class="name">
+                  <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                </view>
+                <view class="tag-group flex_row_center_flexStart">
+                  <view class="tag">
+                    <view class="text small2 theme-font3">唯一吗：XXXXXXXXXXXX</view>
+                  </view>
+                </view>
+              </view>
+              <view class="right flex_column_center_center" bindtap="修改值">
+                <view class='btn check flex_column_center_center'>
+                  <view class="icon text big3 fa fa-check-circle theme-font-53BD1D" aria-hidden="true" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="left flex_column_center_center theme-font3">4</view>
+              <view class="center flex_column_center_center">
+                <view class="name">
+                  <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                </view>
+                <view class="tag-group flex_row_center_flexStart">
+                  <view class="tag">
+                    <view class="text small2 theme-font3">唯一吗：XXXXXXXXXXXX</view>
+                  </view>
+                </view>
+              </view>
+              <view class="right flex_column_center_center" bindtap="修改值">
+                <view class='btn check flex_column_center_center'>
+                  <view class="icon text big3 fa fa-check-circle theme-font-53BD1D" aria-hidden="true" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="left flex_column_center_center theme-font3">3</view>
+              <view class="center flex_column_center_center">
+                <view class="name">
+                  <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                </view>
+                <view class="tag-group flex_row_center_flexStart">
+                  <view class="tag">
+                    <view class="text small2 theme-font3">唯一吗：XXXXXXXXXXXX</view>
+                  </view>
+                </view>
+              </view>
+              <view class="right flex_column_center_center" bindtap="修改值">
+                <view class='btn check flex_column_center_center'>
+                  <view class="icon text big3 fa fa-check-circle theme-font-53BD1D" aria-hidden="true" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="left flex_column_center_center theme-font3">2</view>
+              <view class="center flex_column_center_center">
+                <view class="name">
+                  <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                </view>
+                <view class="tag-group flex_row_center_flexStart">
+                  <view class="tag">
+                    <view class="text small2 theme-font3">唯一吗：XXXXXXXXXXXX</view>
+                  </view>
+                </view>
+              </view>
+              <view class="right flex_column_center_center" bindtap="修改值">
+                <view class='btn check flex_column_center_center'>
+                  <view class="icon text big3 fa fa-check-circle theme-font-53BD1D" aria-hidden="true" />
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="item flex_column_center_flexStart">
+            <view class="row flex_row_center_spaceBetween">
+              <view class="left flex_column_center_center theme-font3">1</view>
+              <view class="center flex_column_center_center">
+                <view class="name">
+                  <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                </view>
+                <view class="tag-group flex_row_center_flexStart">
+                  <view class="tag">
+                    <view class="text small2 theme-font3">唯一吗：XXXXXXXXXXXX</view>
+                  </view>
+                </view>
+              </view>
+              <view class="right flex_column_center_center" bindtap="修改值">
+                <view class='btn check flex_column_center_center'>
+                  <view class="icon text big3 fa fa-check-circle theme-font-53BD1D" aria-hidden="true" />
+                </view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+    </view>
+    <view class="foot flex_row_center_spaceAround">
+      <view class="btn next-step flex_row_center_center theme-button-welcome" bindtap="修改值">
+        <view class="text">完成盘点</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<!-- 未完成提醒 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+  <view class="window incomplete-reminder theme-window">
+    <view class="title-bar flex_row_center_center">
+      <view class="title">
+        <view class="text theme-font1">您有6瓶酒尚未盘点</view>
+      </view>
+    </view>
+    <view class="option-bar flex_row_center_flexEnd">
+      <view class="btn close" bindtap="修改值">
+        <image class="icon" src="/images/icon/58525C_close.png" mode="aspectFill" />
+      </view>
+    </view>
+    <view class="win-body flex_column_center_flexStart">
+      <view class="main full-width">
+        <scroll-view class="list full-width" scroll-y="true" scroll-with-animation="true">
+          <view class="warpper full-width flex_column_center_flexStart">
+            <view class="item full-width">
+              <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
+            </view>
+            <view class="item full-width">
+              <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
+            </view>
+            <view class="item full-width">
+              <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX * 2</view>
+            </view>
+          </view>
+        </scroll-view>
+        <view class="button-group full-width flex_row_center_spaceAround">
+          <view class="btn confirm flex_column_center_center theme-button-disable">
+            <view class="text">确认提交</view>
+          </view>
+          <view class="btn scan-code flex_column_center_center theme-button-welcome">
+            <view class="text">继续扫码盘点</view>
+          </view>
+        </view>
+      </view>
+      <view class="foot full-width flex_column_center_center">
+        <view class="tip-group full-width flex_column_center_center">
+          <view class="tip">
+            <view class="text theme-font-F44444">请问您是否已扫完所有酒水？</view>
+          </view>
+          <view class="tip">
+            <view class="text theme-font-F44444">现在提交后可能无法获得积分奖励</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

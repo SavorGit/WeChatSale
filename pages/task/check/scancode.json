@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "盘点任务",
+  "enablePullDownRefresh": false,
+  "disableScroll": true,
   "usingComponents": {}
 }
