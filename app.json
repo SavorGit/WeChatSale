@@ -71,6 +71,7 @@
     "pages/task/index",
     "pages/task/prize_list",
     "pages/task/prize_detail",
+    "pages/task/check/scancode",
     "pages/user/invite",
     "pages/user/register",
     "pages/user/signin",
