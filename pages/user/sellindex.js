@@ -376,6 +376,8 @@ Page({
       var content = '确定要领取发优惠券任务?'
     }else if(lottery_detail_info.task_type==27){
       var content = '确定要领取品鉴酒任务?';
+    }else if(lottery_detail_info.task_type==29){
+      var content = '确定要领取酒水盘点任务?';
     }else {
       var content = '确定要领取此抽奖活动?'
     }
@@ -1464,6 +1466,29 @@ Page({
       })
     }
   },
+  /**
+   * 任务- 扫码-盘点
+   */
+  checkTaskScanCode:function(e){
+    var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    var keys = e.currentTarget.dataset.keys;
+    var task_info = this.data.task_list.inprogress[keys];
+    var task_id   = task_info.task_id;
+    console.log(task_id,'task_id')
+    if (user_info.hotel_id == -1) {
+      var hotel_id = user_info.select_hotel_id;
+    } else {
+      var hotel_id = user_info.hotel_id;
+    }
+    if (typeof (hotel_id) =='undefined'){
+      app.showToast('请您先选择酒楼');
+    }else {
+      wx.navigateTo({
+        url: '/pages/task/check/scancode?openid='+user_info.openid+'&hotel_id='+hotel_id+'&task_id='+task_id,
+      })
+    }
+  },
+
   viewInprogressTaskDetailInfo:function(e){
     var index = e.currentTarget.dataset.index;
     var inprogress = this.data.task_list.inprogress;

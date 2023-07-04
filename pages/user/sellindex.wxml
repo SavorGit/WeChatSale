@@ -110,7 +110,7 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27 || bean.task_type==28}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27 || bean.task_type==28 || bean.task_type==29}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -126,6 +126,8 @@
                   <view class="tips" wx:elif="{{bean.progress!='' && bean.task_type==6}}">
                     <view class="tip theme-font-F44444">{{bean.progress}}{{bean.today_integral}}</view>
                   </view>
+                  
+
                   <view class="tips" wx:elif="{{bean.task_type==27}}">
                     <view class="tip theme-font7">{{bean.message}}</view>
                   </view>
@@ -147,6 +149,7 @@
                       <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="popInviteMemberWind" data-keys="{{index}}">发优惠券</view>
                       <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="sendPostBook" data-keys="{{index}}">发邀请函</view>
                       <view wx:elif="{{bean.task_type==27}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="tastWineScanGoodCode" data-keys="{{index}}">扫码赠酒</view>
+                      <view wx:elif="{{bean.task_type==29}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;" catchtap="checkTaskScanCode" data-keys="{{index}}">扫码盘点</view>
                     </view>
                   </view>
                 </view>
@@ -285,7 +288,7 @@
                 </view>
               </view>
             </view>
-            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27}}">
+            <view class="item sale flex_column_center_center" wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27 || bean.task_type==29}}">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween" bindtap="previewImage" data-src="{{bean.img_url}}">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -297,7 +300,7 @@
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font7">{{bean.message}}</view>
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font7">{{bean.tip}}</view>
                       <view wx:if="{{bean.task_type==27}}" class="tip theme-font5">可收益{{bean.integral}}积分</view>
-
+                      <view wx:elif="{{bean.task_type==29}}" class="tip theme-font5">可收益{{bean.integral}}积分</view>
                       <view wx:else class="tip theme-font5">每次完成可收益{{bean.integral}}积分</view>
                     </view>
                     <view class="right flex_row_center_flexEnd" bindtap="getLotteryPopWind" data-index="{{index}}">
@@ -449,7 +452,7 @@
                 <view class="bottom"></view>
               </view>
             </view>
-            <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27 || bean.task_type==28}}" class="item sale flex_column_center_center">
+            <view wx:elif="{{bean.task_type==25 || bean.task_type==26 || bean.task_type==6 || bean.task_type==27 || bean.task_type==28 || bean.task_type==29}}" class="item sale flex_column_center_center">
               <view class="task lottery flex_row_center_spaceBetween">
                 <view class="left flex_column_flexStart_spaceBetween">
                   <image class="pic" mode="aspectFill" src="{{bean.img_url}}" />
@@ -490,6 +493,7 @@
                       <view wx:elif="{{bean.task_type==26}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发优惠券</view>
                       <view wx:elif="{{bean.task_type==6}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">发邀请函</view>
                       <view wx:elif="{{bean.task_type==27}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">扫码赠酒</view>
+                      <view wx:elif="{{bean.task_type==29}}" class="tip flex_row_center_center" style="width:calc(100% - 50rpx);height:100%;font-size:28rpx;">扫码盘点</view>
                     </view>
                   </view>
                 </view>
@@ -669,7 +673,7 @@
       <view class="tab-group">
         <view class="tab-bar flex_row_center_center">
           <view class="tab rule flex_row_center_center{{lottery_detail_info.tab == 'rule' ? ' selected' : ''}}" data-tab="rule" bindtap="showLotteryDetailWindowTab">活动规则</view>
-          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24 && lottery_detail_info.task_type !=25 && lottery_detail_info.task_type !=6 && lottery_detail_info.task_type !=26 && lottery_detail_info.task_type !=27 && lottery_detail_info.task_type !=28}}">奖品奖项</view>
+          <view class="tab prize flex_row_center_center{{lottery_detail_info.tab == 'prize' ? ' selected' : ''}}" data-tab="prize" bindtap="showLotteryDetailWindowTab" wx:if="{{lottery_detail_info.task_type !=24 && lottery_detail_info.task_type !=25 && lottery_detail_info.task_type !=6 && lottery_detail_info.task_type !=26 && lottery_detail_info.task_type !=27 && lottery_detail_info.task_type !=28 && lottery_detail_info.task_type!=29}}">奖品奖项</view>
         </view>
         <scroll-view wx:if="{{lottery_detail_info.tab == 'rule'}}" class="tab-body" scroll-y="true" scroll-with-animation="true">
           <rich-text nodes="{{lottery_detail_info.desc}}"></rich-text>
