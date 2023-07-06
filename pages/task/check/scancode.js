@@ -58,24 +58,43 @@ Page({
     utils.PostRequest(api_v_url + '/stockcheck/scancode', {
       idcode   : code_msg,
       openid   : openid,
-      hotel_id : hotel_id
+      hotel_id : hotel_id,
+      task_id  : task_id
     },(data,headers,cookies,errMsg,statusCode) => {
-      var flag = 0;
-      for(let i in check_list){
-        if(code_msg==check_list[i].idcode){
-          flag = 1;
-          break;
-        }
-      }
-      if(flag==1){
-        app.showToast('该二维码已扫码');
+
+      var is_pop_tips_wind = data.result.is_pop_tips_wind
+
+      if(is_pop_tips_wind==1){
+        var msg = data.result.msg;
+        wx.showModal({
+          title: '提示',
+          content: msg,
+          confirmText:'我知道了',
+          showCancel:false,
+          success: function (res) {
+            wx.navigateBack({
+              delta:1
+            })
+          }
+        })
       }else {
-        var ret  = {'idcode':'','goods_name':'','goods_id':0};
-        ret.idcode     = data.result.idcode;
-        ret.goods_name = data.result.goods_name;
-        ret.goods_id   = data.result.goods_id;
-        check_list.push(ret);
-        that.setData({check_list:check_list});
+        var flag = 0;
+        for(let i in check_list){
+          if(code_msg==check_list[i].idcode){
+            flag = 1;
+            break;
+          }
+        }
+        if(flag==1){
+          app.showToast('该二维码已扫码');
+        }else {
+          var ret  = {'idcode':'','goods_name':'','goods_id':0};
+          ret.idcode     = data.result.idcode;
+          ret.goods_name = data.result.goods_name;
+          ret.goods_id   = data.result.goods_id;
+          check_list.push(ret);
+          that.setData({check_list:check_list});
+        }
       }
     })
   },
