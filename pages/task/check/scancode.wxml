@@ -38,7 +38,7 @@
                 </view>
                 <view class="tag-group flex_row_center_flexStart">
                   <view class="tag">
-                    <view class="text small2 theme-font3">唯一吗：{{bean.idcode}}</view>
+                    <view class="text small2 theme-font3">唯一码：{{bean.idcode}}</view>
                   </view>
                 </view>
               </view>
