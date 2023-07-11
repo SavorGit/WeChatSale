@@ -17,7 +17,7 @@
         <view class="body flex_column_center_center" bindtap="scanGoodsCode">
           <view class="btn flex_column_center_center theme-button-blue">
             <view class="icon fa fa-qrcode" aria-hidden="true" />
-            <view class="text">扫码</view>
+            <view class="text">{{check_list.length==0?'扫码':'继续扫码'}}</view>
           </view>
         </view>
       </view>
@@ -90,7 +90,8 @@
         </scroll-view>
         <view class="button-group full-width flex_row_center_spaceAround">
           <button class="btn confirm flex_column_center_center theme-button-disable" disabled="{{addDisabled}}" bindtap="submitCheck">
-            <view class="text">确认提交</view>
+            <view class="text" wx:if="{{sms_time_djs>0}}">确认提交({{sms_time_djs}}S)</view>
+            <view class="text" wx:else>确认提交</view>
           </button>
           <view class="btn scan-code flex_column_center_center theme-button-welcome" bindtap="closePopWind">
             <view class="text">继续扫码盘点</view>

@@ -12,6 +12,7 @@ var cache_key = app.globalData.cache_key;
 var openid;
 var hotel_id;
 var task_id;
+var timer8_0;
 Page({
 
   /**
@@ -148,12 +149,28 @@ Page({
           that.submitCheck();
         }else {
           var no_check_list = data.result.datalist;
-          that.setData({pop_confirm_wind:true,no_check_num:no_check_num,no_check_list:no_check_list});
+
+          that.setData({pop_confirm_wind:true,no_check_num:no_check_num,no_check_list:no_check_list,sms_time_djs:5,addDisabled:true});
+          var sms_time_djs = 5;
+          timer8_0 = setInterval(function () {
+            sms_time_djs -= 1;
+            that.setData({
+              sms_time_djs: sms_time_djs
+            });
+            if (sms_time_djs == 0) {
+              that.setData({
+                addDisabled: false,
+              })
+              clearInterval(timer8_0);
+            }
+
+          }, 1000);
         }
       }
     })
   },
   closePopWind:function(){
+    clearInterval(timer8_0);
     this.setData({pop_confirm_wind:false,completeDisabled:false})
   },
   submitCheck:function(){
