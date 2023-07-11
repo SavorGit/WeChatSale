@@ -49,7 +49,7 @@
               </view>
             </view>
           </view>
-          
+
 
         </view>
       </view>
@@ -57,7 +57,8 @@
     </view>
     <view class="foot flex_row_center_spaceAround">
       <button class="btn next-step flex_row_center_center theme-button-welcome" bindtap="completeCheck" disabled="{{completeDisabled}}">
-        <view class="text">完成盘点</view>
+        <!-- 2023-07-11 10：16微信“小热点知识星球” <view class="text">完成盘点</view> -->
+        <view class="text">结束盘点</view>
       </button>
     </view>
   </view>
@@ -69,7 +70,8 @@
   <view class="window incomplete-reminder theme-window">
     <view class="title-bar flex_row_center_center">
       <view class="title">
-        <view class="text theme-font1">您有{{no_check_num}}瓶酒尚未盘点</view>
+        <!-- 2023-07-11 10：16微信“小热点知识星球” <view class="text theme-font1">您有{{no_check_num}}瓶酒尚未盘点</view> -->
+        <view class="text big5 theme-font-F44444">您有{{no_check_num}}瓶酒尚未盘点</view>
       </view>
     </view>
     <view class="option-bar flex_row_center_flexEnd">
@@ -81,15 +83,9 @@
       <view class="main full-width">
         <scroll-view class="list full-width" scroll-y="true" scroll-with-animation="true">
           <view class="warpper full-width flex_column_center_flexStart">
-            <view class="item full-width" wx:for="{{no_check_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index" >
+            <view class="item full-width" wx:for="{{no_check_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
               <view class="text theme-font3">{{bean.goods_name}} * {{bean.num}}</view>
             </view>
-            <!-- <view class="item full-width">
-              <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX * 1</view>
-            </view>
-            <view class="item full-width">
-              <view class="text theme-font3">XXXXXXXXXXXXXXXXXXXXXXXXXX * 2</view>
-            </view> -->
           </view>
         </scroll-view>
         <view class="button-group full-width flex_row_center_spaceAround">
@@ -103,11 +99,16 @@
       </view>
       <view class="foot full-width flex_column_center_center">
         <view class="tip-group full-width flex_column_center_center">
+          <!-- 2023-07-11 10：16微信“小热点知识星球”
           <view class="tip">
             <view class="text theme-font-F44444">请问您是否已扫完所有酒水？</view>
           </view>
           <view class="tip">
             <view class="text theme-font-F44444">现在提交后可能无法获得积分奖励</view>
+          </view>
+          -->
+          <view class="tip">
+            <view class="text theme-font-F44444">盘点不准确可能无法获得积分奖励</view>
           </view>
         </view>
       </view>
