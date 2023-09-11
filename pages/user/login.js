@@ -17,7 +17,8 @@ Page({
     mobile:'',                //手机号
     invite_code:'',           //邀请码
     is_get_sms_code:0,        //是否显示获取手机验证码倒计时
-    showModal:false
+    showModal:false,
+    is_welcome : true,
   },
 
   /**
@@ -89,6 +90,10 @@ Page({
       }
       
     }
+  },
+  changeLogin:function(e){
+    this.setData({is_welcome:false})
+    
   },
   //微信用户授权登陆
   onGetUserInfo:function(res){

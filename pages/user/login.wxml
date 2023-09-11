@@ -1,7 +1,12 @@
 <!--pages/user/login.wxml-->
 <import src="/pages/template/commons" />
+<view wx:if="{{is_welcome}}" class="container">
+    <view class="full-container" bindtap="changeLogin">
+        <image class="full-container" src="http://oss.littlehotspot.com/media/resource/mBfGW878X2.jpg" mode="aspectFit" />
+    </view>
+</view>
 
-<view class="container theme-container">
+<view wx:else class="container theme-container">
 	<view class='full_width page_top'></view>
 	<view class='full_width page_main'>
 		<view class='brand'>
