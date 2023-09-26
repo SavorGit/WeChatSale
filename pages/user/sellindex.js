@@ -229,6 +229,26 @@ Page({
           that.tastWineRemindGetTask(openid,hotel_id,is_onload);
           if(is_onload==1){
             that.getPopup(openid,hotel_id,is_onload);
+            if(user_info.role_type==1 && user_info.is_view_wine_price==0){
+              wx.showModal({
+                title: user_info.pop_wine_price.title,
+                content: user_info.pop_wine_price.content,
+                showCancel:false,
+                confirmText:'查看',
+                complete: (res) => {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '/pages/activity/wine_price',
+                    })
+                    
+                  }
+              
+                  if (res.confirm) {
+                    
+                  }
+                }
+              })
+            }
           }
           if(user_info.is_perfect==0){
           //if(user_info.is_wx_auth!=3 || user_info.mobile==''){

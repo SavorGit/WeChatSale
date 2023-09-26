@@ -1,0 +1,9 @@
+<!--pages/activity/wine_price.wxml-->
+
+
+<view  class="container">
+    <view class="full-container" style="background-color:#FFFFFF;" bindtap="previewImage">
+        <image class="full-container" style="background-color:#FFFFFF;" src="https://oss.littlehotspot.com/a.jpg" mode="widthFix" />
+    </view>
+</view>
+

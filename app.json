@@ -86,6 +86,7 @@
     "pages/activity/profit_list",
     "pages/activity/profit_add",
     "pages/activity/profit_detail",
+    "pages/activity/wine_price",
     "pages/waiter/home",
     "pages/waiter/signin",
     "pages/reward/allot",
