@@ -45,6 +45,11 @@ Page({
   },
   scanGoodsCode:function(){
     var that = this;
+    var scanList = this.data.scanList;
+    if(scanList.length>=6){
+      app.showToast('单次核销不能超过6瓶',2000,'none',true);
+      return false;
+    }
     wx.scanCode({
       onlyFromCamera: false,
       success: (res) => {
@@ -61,10 +66,7 @@ Page({
   goodsDecode:function(code_msg){
     var that = this;
     var scanList = this.data.scanList;
-    if(scanList.length>=6){
-      app.showToast('单次核销不能超过6瓶',2000,'none',true);
-      return false;
-    }
+    
     var goods_id = this.data.goods_id;
     utils.PostRequest(api_v_url + '/stock/scanWriteoff', {
       openid: openid,
