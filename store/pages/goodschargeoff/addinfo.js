@@ -62,7 +62,7 @@ Page({
     var that = this;
     var scanList = this.data.scanList;
     if(scanList.length>=6){
-      app.showToast('单次核销不能超过6瓶');
+      app.showToast('单次核销不能超过6瓶',2000,'none',true);
       return false;
     }
     var goods_id = this.data.goods_id;
