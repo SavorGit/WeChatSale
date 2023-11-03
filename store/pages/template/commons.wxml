@@ -60,6 +60,35 @@
   </view>
 </template>
 
+<!-- [页面] 商品扫码 [箱] -->
+<template name="scanGoodsBoxPage">
+  <view class="page scan-goods container theme-main">
+    <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+      <view class="warper flex_column_center_flexStart">
+        <template is="goodsPanel" data='{{list:goodsList}}' />
+
+        <view class="panel scan flex_column_center_flexStart">
+          <view class="title-bar flex_row_center_flexStart">
+            <view class="title {{smallTitle?'small':'big'}}">{{scanTitle}}</view>
+          </view>
+          <view class="body flex_column_center_center" data-buttontype="{{button.type}}" data-buttontext="{{button.text}}" bindtap="scanCode">
+            <view class="btn flex_column_center_center {{button.class}}">
+              <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+              <view class="text">{{button.text}}</view>
+            </view>
+          </view>
+        </view>
+
+        <template is="goodsPanelCanDel" data='{{title:listTitle,title2:listTitle2,list:scanList}}' />
+      </view>
+    </scroll-view>
+    <view class="foot flex_row_center_spaceAround">
+      <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="cansleStore">{{btnCancel}}</view>
+      <view class="btn ok flex_row_center_center theme-button-blue" bindtap="completeStore">{{btnOk}}</view>
+    </view>
+  </view>
+</template>
+
 <!-- [页面] 选择商品 <template is="selectGoodsPage" data='{{listTitle:"请选择入库商品",goodsList:list,btnOk:"完成入库",btnTitle:"",labelShow:224}}' />-->
 <template name="selectGoodsPage">
   <view class="page select-goods container theme-main">
@@ -198,6 +227,7 @@
             <view class="center flex_column_center_center">
               <view class="name theme-font3" wx:if="{{bean.goods_name!=''}}">{{bean.goods_name}}</view>
               <view class="name theme-font3">{{bean.idcode}}</view>
+              <view wx:if="{{typeOf(bean.idcode)=='string'&&trim(bean.idcode)!=''}}" class="name theme-font3">{{bean.idcode}}</view>
               <view class="tag-group flex_row_center_flexStart">
                 <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>

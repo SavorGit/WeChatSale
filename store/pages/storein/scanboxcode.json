@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+    "navigationBarTitleText": "扫码入库",
+    "enablePullDownRefresh": false,
+    "disableScroll": true,
+    "usingComponents": {}
 }
