@@ -130,6 +130,20 @@ Page({
       }
       if(flag==1){
         app.showToast('商品已扫码')
+        /*wx.showModal({
+          title: '扫码重复',
+          content: '此商品已有扫码记录，请勿重复扫码',
+          showCancel :false,
+          complete: (res) => {
+            if (res.cancel) {
+              
+            }
+        
+            if (res.confirm) {
+              
+            }
+          }
+        })*/
       }else {
         var scancode_nums = this.data.scancode_nums;
         scancode_nums ++;

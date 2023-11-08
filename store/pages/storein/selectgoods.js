@@ -57,9 +57,16 @@ Page({
     var keys = e.currentTarget.dataset.keys;
     var list = this.data.list;
     var goods_info = list[keys];
-    
+
+    var unit_id = goods_info.unit_id;
+
     var params = JSON.stringify(goods_info);
-    var pageUrl = '/store/pages/storein/scancode?stock_id='+stock_id+'&goods_info='+params;
+    if(unit_id>1){
+      var pageUrl = '/store/pages/storein/scanboxcode?stock_id='+stock_id+'&goods_info='+params;
+    }else {
+      var pageUrl = '/store/pages/storein/scancode?stock_id='+stock_id+'&goods_info='+params;
+    }
+
     wx.navigateTo({
       url: pageUrl,
     })

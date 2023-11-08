@@ -71,7 +71,7 @@
           <view class="title-bar flex_row_center_flexStart">
             <view class="title {{smallTitle?'small':'big'}}">{{scanTitle}}</view>
           </view>
-          <view class="body flex_column_center_center" data-buttontype="{{button.type}}" data-buttontext="{{button.text}}" bindtap="scanCode">
+          <view class="body flex_column_center_center" data-buttontype="{{button.type}}" data-buttontext="{{button.text}}" bindtap="scanGoodsCode">
             <view class="btn flex_column_center_center {{button.class}}">
               <view class="icon fa fa-qrcode" aria-hidden="true"></view>
               <view class="text">{{button.text}}</view>
@@ -226,8 +226,8 @@
             <view class="left flex_column_center_center theme-font3">{{list.length-index}}</view>
             <view class="center flex_column_center_center">
               <view class="name theme-font3" wx:if="{{bean.goods_name!=''}}">{{bean.goods_name}}</view>
-              <view class="name theme-font3">{{bean.idcode}}</view>
-              <view wx:if="{{typeOf(bean.idcode)=='string'&&trim(bean.idcode)!=''}}" class="name theme-font3">{{bean.idcode}}</view>
+              <view class="name theme-font3">唯一码:{{bean.idcode}}</view>
+              <view wx:if="{{bean.vintner_code!=''}}" class="name theme-font3">酒商码:{{bean.vintner_code}}</view>
               <view class="tag-group flex_row_center_flexStart">
                 <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>
