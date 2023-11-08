@@ -227,7 +227,7 @@
             <view class="center flex_column_center_center">
               <view class="name theme-font3" wx:if="{{bean.goods_name!=''}}">{{bean.goods_name}}</view>
               <view class="name theme-font3">唯一码:{{bean.idcode}}</view>
-              <view wx:if="{{bean.vintner_code!=''}}" class="name theme-font3">酒商码:{{bean.vintner_code}}</view>
+              <view wx:if="{{bean.vintner_code!='' && app.typeOf(bean.vintner_code)=='string'}}" class="name theme-font3">酒商码:{{bean.vintner_code}}</view>
               <view class="tag-group flex_row_center_flexStart">
                 <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>
