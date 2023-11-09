@@ -232,9 +232,14 @@
                 <view class="tag theme-font3">{{bean.add_time}}</view>
               </view>
             </view>
-            <view class="right flex_column_center_center" bindtap="deleteScanGoods" data-keys="{{index}}">
+            <view class="right flex_column_center_center" bindtap="deleteScanGoods" data-keys="{{index}}" wx:if="{{bean.status!=2}}">
               <view class='btn del flex_column_center_center'>
                 <view class="icon fa fa-trash-o theme-font5" aria-hidden="true"></view>
+              </view>
+            </view>
+            <view class="right flex_column_center_center"  wx:else>
+              <view class='btn del flex_column_center_center'>
+                
               </view>
             </view>
           </view>
