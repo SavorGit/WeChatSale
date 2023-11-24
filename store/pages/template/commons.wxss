@@ -59,6 +59,9 @@
   font-size: 28rpx;
   font-weight: 400;
 }
+.panel>.body>.item>.row>.center>.name.break-all {
+    word-break: break-all;
+}
 
 .panel>.body>.item>.row>.center>.bottom,
 .panel>.body>.item>.row>.center>.tag-group {
