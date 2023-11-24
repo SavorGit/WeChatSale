@@ -148,7 +148,7 @@ Page({
         var scancode_nums = this.data.scancode_nums;
         scancode_nums ++;
         var listTitle = '已扫商品码('+scancode_nums+')';
-        scanList.push(goods_info);
+        scanList.unshift(goods_info);
         that.setData({scanList:scanList,scancode_nums:scancode_nums,listTitle:listTitle});
       }
     })
