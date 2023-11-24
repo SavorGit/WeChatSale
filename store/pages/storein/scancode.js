@@ -57,7 +57,13 @@ Page({
       }else {
         var listTitle = '已扫商品码（0）';
         var listTitle2 = '已入库（'+scanList.length+'）';
-        that.setData({scanList:scanList,listTitle:listTitle,listTitle2:listTitle2,scancode_nums:scanList.length});
+        var scancode_nums = that.data.scancode_nums;
+        for(let i in scanList){
+          if(scanList[i].status==1){
+            scancode_nums ++;
+          }
+        }
+        that.setData({scanList:scanList,listTitle:listTitle,listTitle2:listTitle2,scancode_nums:scancode_nums});
       }
       
     })
@@ -74,7 +80,11 @@ Page({
         if (res.confirm) {
           if(goods_info.status==1){
             scanList.splice(keys,1);
-            that.setData({scanList:scanList})
+            var scancode_nums = that.data.scancode_nums
+            scancode_nums --;
+
+            var listTitle = '已扫商品码('+scancode_nums+')';
+            that.setData({scanList:scanList,scancode_nums:scancode_nums,listTitle:listTitle})
           }else {
             utils.PostRequest(api_v_url + '/stock/delGoodscode', {
               openid:openid,
@@ -84,7 +94,9 @@ Page({
               var scancode_nums = that.data.scancode_nums
               scancode_nums --;
               scanList.splice(keys,1);
-              that.setData({scanList:scanList,scancode_nums:scancode_nums})
+
+              var listTitle = '已扫商品码('+scancode_nums+')';
+              that.setData({scanList:scanList,scancode_nums:scancode_nums,listTitle:listTitle})
             })
           }
         }
