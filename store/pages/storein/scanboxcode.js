@@ -129,7 +129,8 @@ Page({
                   var scancode_nums = this.data.scancode_nums;
                   scancode_nums ++;
                   var listTitle = '已扫商品码('+scancode_nums+')';
-                  scanList.push(goods_info);
+                  //scanList.push(goods_info);
+                  scanList.unshift(goods_info);
                   button.type = 2;
                   button.class  = 'theme-button-welcome';
                   button.text   = '扫酒商码';
@@ -180,14 +181,15 @@ Page({
       var goods_info = scanList[keys];
       var button = that.data.button;
 
-      var key_nums = keys +1;
+      //var key_nums = keys +1;
+      var del_key = e.currentTarget.dataset.del_key;
       wx.showModal({
         title: '确定要删除吗？',
         success: function (res) {
           if (res.confirm) {
             if(goods_info.status==1){
 
-              if (key_nums==scanList.length){
+              if (del_key==scanList.length){
                 button.type = 1;
                 button.class = 'theme-button-blue';
                 button.text  = '扫码';
@@ -209,7 +211,7 @@ Page({
 
                 
                 
-                if (key_nums==scanList.length){
+                if (del_key==scanList.length){
                   button.type = 1;
                   button.class = 'theme-button-blue';
                   button.text  = '扫码';
