@@ -93,7 +93,8 @@
     "pages/reward/allot_detail",
     "pages/reward/pay_detail",
     "pages/reward/integral_detail",
-    "pages/crm/index/index"
+    "pages/crm/index/index",
+    "pages/menu/index"
 
   ],
   "subpackages": [{
@@ -140,6 +141,12 @@
       "pages/expense/perfect"
       
     ]
+  },
+  {
+    "root": "menu",
+    "pages": [
+      "pages/addmenu/index"
+    ]
   }
 ],
 
@@ -172,7 +179,12 @@
         "iconPath": "/images/icon/999999_interact.png",
         "selectedIconPath": "/images/icon/333333_interact.png"
       },
-      
+      {
+        "pagePath": "pages/menu/index",
+        "text": "配菜",
+        "iconPath": "/images/icon/999999_interact.png",
+        "selectedIconPath": "/images/icon/333333_interact.png"
+      },
       {
         "pagePath": "pages/mine/index",
         "text": "个人信息",
