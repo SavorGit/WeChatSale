@@ -1,4 +1,16 @@
 // pages/menu/index.js
+const utils = require('../../utils/util.js')
+
+/**
+ * 配菜 首页
+ */
+const app = getApp()
+var uma = app.globalData.uma;
+var api_url = app.globalData.api_url;
+var api_v_url = app.globalData.api_v_url;
+var cache_key = app.globalData.cache_key;
+var openid;
+var hotel_id;
 Page({
 
   /**

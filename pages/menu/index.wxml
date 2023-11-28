@@ -1,2 +1,144 @@
 <!--pages/menu/index.wxml-->
-<text>pages/menu/index.wxml</text>
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 配菜 首页
+  -->
+<scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
+    <view class="page full-width flex_column_center_flexStart theme-panel">
+        <view class="panel jardiniere flex_column_center_flexStart">
+            <view class="pbody flex_column_center_center">
+                <view class="btn start flex_column_center_center theme-button-welcome" bindtap="修改值">
+                    <view class="text">开始配菜</view>
+                </view>
+            </view>
+        </view>
+        <view class="panel dish flex_column_center_flexStart theme-panel">
+            <view class="title-bar flex_row_center_spaceBetween">
+                <view class="title">
+                    <view class="text theme-font3">最近配的菜</view>
+                </view>
+                <view class="link favorites" bindtap="修改值">
+                    <view class="text theme-font7">最近配的菜</view>
+                </view>
+            </view>
+            <view class="pbody flex_column_center_flexStart">
+                <view class="list full-width flex_column_center_flexStart">
+                    <view class="item full-width flex_column_center_center">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart">
+                                <view class="value">
+                                    <view class="text theme-font7">张先生（0944）</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐人数</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">8</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐预算</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">1000</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">已点总额</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">1000</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart" style="width:40%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐包间</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">VIP 8</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:60%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐时间</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">2023.07.29 12:00</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item full-width flex_column_center_center">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart">
+                                <view class="value">
+                                    <view class="text theme-font7">张先生（0944）</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐人数</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">8</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐预算</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">1000</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:33.333333%;">
+                                <view class="label">
+                                    <view class="text theme-font3">已点总额</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">1000</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property full-width flex_row_center_flexStart" style="width:40%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐包间</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">VIP 8</view>
+                                </view>
+                            </view>
+                            <view class="property full-width flex_row_center_flexStart" style="width:60%;">
+                                <view class="label">
+                                    <view class="text theme-font3">就餐时间</view>
+                                </view>
+                                <view class="value">
+                                    <view class="text theme-font1">2023.07.29 12:00</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item full-width flex_column_center_center">
+                        <view class="row full-width flex_row_center_center">
+                            <view class="link" bindtap="修改值">
+                                <view class="text theme-font7">查看更多...</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
