@@ -46,7 +46,7 @@ Page({
         var list = that.data.list;
       }
       
-      var ret_list = data.result;
+      var ret_list = data.result.datalist;
       if(ret_list.length>0){
         for(let i in ret_list){
           list.push(ret_list[i]);
