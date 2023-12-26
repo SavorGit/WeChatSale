@@ -180,12 +180,7 @@
         "iconPath": "/images/icon/999999_interact.png",
         "selectedIconPath": "/images/icon/333333_interact.png"
       },
-      {
-        "pagePath": "pages/menu/index",
-        "text": "配菜",
-        "iconPath": "/images/icon/999999_interact.png",
-        "selectedIconPath": "/images/icon/333333_interact.png"
-      },
+      
       {
         "pagePath": "pages/mine/index",
         "text": "个人信息",
