@@ -5,265 +5,294 @@
  * 核销 首页
  */
 .list {
-  width: calc(100% - 20rpx);
-  padding: 10rpx;
+    width: calc(100% - 20rpx);
+    padding: 10rpx;
 }
 
 .item {
-  width: calc(100% - 40rpx);
-  padding: 20rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  border-radius: 40rpx;
-  background-color: rgba(98, 151, 242, 0.06);
+    width: calc(100% - 40rpx);
+    padding: 20rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    border-radius: 40rpx;
+    background-color: rgba(98, 151, 242, 0.06);
 }
 
 .item:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .item:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .item>.top,
 .item>.middle,
 .item>.bottom {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.top>.status,
 .item>.top>.title {
-  font-size: 36rpx;
-  font-weight: bold;
+    font-size: 36rpx;
+    font-weight: bold;
 }
 
 .item>.middle>.goods-title {
-  font-size: 28rpx;
-  font-weight: bold;
+    font-size: 28rpx;
+    font-weight: bold;
 }
 
 .item>.middle>.goods-list,
 .item>.middle>.goods-list>.goods {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.middle>.goods-list>.goods {
-  padding: 10rpx 0;
-  border-bottom: 3rpx solid rgba(187, 187, 187, 1);
+    padding: 10rpx 0;
+    border-bottom: 3rpx solid rgba(187, 187, 187, 1);
 }
 
 .item>.middle>.goods-list>.goods>.left {
-  width: 120rpx;
-  font-size: 28rpx;
-  font-weight: 400;
+    width: 120rpx;
+    font-size: 28rpx;
+    font-weight: 400;
 }
 
 .item>.middle>.goods-list>.goods>.center {
-  width: calc(100% - 120rpx);
+    width: calc(100% - 120rpx);
 }
 
 .item>.middle>.goods-list>.goods>.center>.name {
-  width: 100%;
-  font-size: 28rpx;
-  font-weight: 400;
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: 400;
 }
 
 .item>.middle>.goods-list>.goods>.center>.tag-group,
 .item>.middle>.goods-list>.goods>.center>.identifying-code {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.middle>.goods-list>.goods>.center>.tag-group>.tag,
 .item>.middle>.goods-list>.goods>.center>.identifying-code {
-  font-size: 24rpx;
-  font-weight: 400;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
 .item>.middle>.goods-list>.goods>.row {
-  width: calc(100% - 40rpx);
-  padding: 10rpx 20rpx;
+    width: calc(100% - 40rpx);
+    padding: 10rpx 20rpx;
 }
 
 .item>.middle>.goods-list>.goods>.row>.property {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.middle>.goods-list>.goods>.row>.property>.label {
-  width: 120rpx;
-  font-size: 24rpx;
-  font-weight: 400;
+    width: 120rpx;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
 .item>.middle>.goods-list>.goods>.row>.property>.value {
-  width: calc(100% - 120rpx);
-  font-size: 28rpx;
-  font-weight: 400;
+    width: calc(100% - 120rpx);
+    font-size: 28rpx;
+    font-weight: 400;
 }
 
 .item>.middle>.goods-list>.goods>.row.pic>.property>.value {
-  width: 276rpx;
-  height: 180rpx;
+    width: 276rpx;
+    height: 180rpx;
 }
 
 .item>.middle>.coupon {
-  width: 670rpx;
-  height: 172.2857142857143rpx;
-  margin: 20rpx 0;
-  background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/index/coupon.png');
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  background-size: 100% auto;
+    width: 670rpx;
+    height: 172.2857142857143rpx;
+    margin: 20rpx 0;
+    background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/index/coupon.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% auto;
 }
 
 .item>.middle>.coupon>.left {
-  width: 160rpx;
-  height: calc(100% - 20rpx);
-  padding: 10rpx 20rpx 10rpx 10rpx;
+    width: 160rpx;
+    height: calc(100% - 20rpx);
+    padding: 10rpx 20rpx 10rpx 10rpx;
 }
 
 .item>.middle>.coupon>.left>.top {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.middle>.coupon>.left>.top>.value {
-  /* width: calc(100% - 40rpx); */
-  text-align: right;
-  font-size: 56rpx;
+    /* width: calc(100% - 40rpx); */
+    text-align: right;
+    font-size: 56rpx;
 }
 
 .item>.middle>.coupon>.left>.top>.unit {
-  width: 40rpx;
-  text-align: right;
-  font-size: 32rpx;
+    width: 40rpx;
+    text-align: right;
+    font-size: 32rpx;
 }
 
 .item>.middle>.coupon>.left>.bottom {
-  width: 100%;
+    width: 100%;
 }
 
 .item>.middle>.coupon>.left>.bottom>.text {
-  width: 100%;
-  font-size: 32rpx;
+    width: 100%;
+    font-size: 32rpx;
 }
 
 .item>.middle>.coupon>.right {
-  width: calc(100% - 180rpx);
-  height: calc(100% - 20rpx);
-  padding: 10rpx 10rpx 10rpx 20rpx;
+    width: calc(100% - 180rpx);
+    height: calc(100% - 20rpx);
+    padding: 10rpx 10rpx 10rpx 20rpx;
 }
 
 .item>.middle>.coupon>.right>view {
-  width: 100%;
-  padding: 5rpx 0;
-  font-size: 32rpx;
+    width: 100%;
+    padding: 5rpx 0;
+    font-size: 32rpx;
 }
 
 .item>.middle>.goods-list>.goods>.center>.tag-group>.tag {
-  margin-left: 30rpx;
+    margin-left: 30rpx;
 }
 
 .item>.middle>.goods-list>.goods>.center>.tag-group>.tag:first-child {
-  margin-left: unset;
+    margin-left: unset;
 }
 
-
 .item>.bottom {
-  height: 70rpx;
+    height: 70rpx;
 }
 
 .item>.bottom>.datetime {
-  font-size: 24rpx;
-  font-weight: 400;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
 .item>.bottom>.profit>.label {
-  font-size: 24rpx;
-  font-weight: 400;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
 .item>.bottom>.profit>.value {
-  font-size: 36rpx;
-  font-weight: bold;
+    font-size: 36rpx;
+    font-weight: bold;
 }
 
 .item>.bottom>.button-group>.btn {
-  margin: 0;
-  padding: 0;
-  border: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 .item>.bottom>.button-group>.btn.write-off {
-  width: 208rpx;
-  height: 64rpx;
-  border-radius: 8rpx;
-  font-size: 24rpx;
+    width: 208rpx;
+    height: 64rpx;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+}
+
+.item>.bottom>.block-item {
+    padding: 5rpx 0;
+}
+
+.item>.bottom>.block-item>.row {
+    padding: 5rpx 0;
+}
+
+.item>.bottom>.block-item.top-line {
+    border-top: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.item>.bottom.crack-reward {
+    height: auto;
+    padding: 0 0 10rpx;
+}
+
+.item>.bottom>.block-item.button-group>.row>.btn {
+    height: 64rpx;
+    border-radius: 8rpx;
+}
+
+.item>.bottom>.block-item.button-group>.row>.btn.apply-crack-reward {
+    width: 494rpx;
+}
+
+.item>.bottom>.block-item.button-group>.row>.btn.give_up-crack-reward {
+    width: 168rpx;
 }
 
 .panel.tabs {
-  height: 100%;
+    height: 100%;
 }
 
 .panel.tabs>.tab-bar {
-  width: 100%;
-  height: 100rpx;
+    width: 100%;
+    height: 100rpx;
 }
 
 .panel.tabs>.tab-bar>.tab {
-  padding: 10rpx 15rpx;
-  font-size: 32rpx;
-  font-weight: 400;
+    padding: 10rpx 15rpx;
+    font-size: 32rpx;
+    font-weight: 400;
 }
 
 .panel.tabs>.tab-bar>.tab.selected {
-  font-weight: bold;
-  background-color: unset;
+    font-weight: bold;
+    background-color: unset;
 }
 
 .panel.tabs>.tab-body {
-  width: 100%;
-  height: calc(100% - 100rpx);
+    width: 100%;
+    height: calc(100% - 100rpx);
 }
 
 .page.check-accept-goods>.foot>.btn.ok {
-  width: 516rpx;
-  height: 80rpx;
+    width: 516rpx;
+    height: 80rpx;
 }
 
 .page.check-accept-goods>.foot>.btn.write-off {
-  width: 208rpx;
-  height: 80rpx;
+    width: 208rpx;
+    height: 80rpx;
 }
 
 .window.material .entity {
-  width: 80vw;
+    width: 80vw;
 }
 
 .window.material .entity>.title-bar>.title {
-  font-size: 28rpx;
+    font-size: 28rpx;
 }
 
 .window.material .entity>.win-body>.goods {
-  width: 100%;
+    width: 100%;
 }
 
 .window.material .entity>.win-body>.goods>.pic {
-  width: 402rpx;
-  height: 300rpx;
+    width: 402rpx;
+    height: 300rpx;
 }
 
 .window.material .entity>.win-body>.goods>.name {
-  width: 100%;
-  font-size: 24rpx;
+    width: 100%;
+    font-size: 24rpx;
 }
 
 .window.material .entity>.win-body>.tip-group {
-  width: 100%;
-  padding: 20rpx 0;
+    width: 100%;
+    padding: 20rpx 0;
 }
 
 .window.material .entity>.win-body>.tip-group>.tip {
-  width: 100%;
-  height: 50rpx;
-  font-size: 28rpx;
+    width: 100%;
+    height: 50rpx;
+    font-size: 28rpx;
 }
