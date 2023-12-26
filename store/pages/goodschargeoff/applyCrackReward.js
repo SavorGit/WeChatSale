@@ -1,4 +1,4 @@
-// store/pages/goodschargeoff/applyCrackReward .js
+// store/pages/goodschargeoff/applyCrackReward.js
 Page({
 
   /**
