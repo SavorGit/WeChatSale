@@ -391,7 +391,7 @@ App({
     small_app_id:5,
     config_info:{},
     is_pop_notice_wind:0,
-    small_app_version:'1.9.45',
+    small_app_version:'1.9.48',
   },
   touch: new touch()
 })

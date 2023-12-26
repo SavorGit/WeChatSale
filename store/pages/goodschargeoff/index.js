@@ -37,7 +37,8 @@ Page({
     var that = this;
     utils.PostRequest(api_v_url + '/stock/getWriteoffList', {
       openid:openid,
-      page:page
+      page:page,
+      version : app.globalData.small_app_version
     }, (data, headers, cookies, errMsg, statusCode) => {
       if(page ==1){
         var list = [];
@@ -165,7 +166,7 @@ Page({
    */
   onShow: function () {
     this.getChargeOffList(1);
-    this.getCouponList(1);
+    //this.getCouponList(1);
   },
 
   /**
