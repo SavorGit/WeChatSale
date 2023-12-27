@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "[2023-12-26] 开瓶奖励",
+          "pathName": "store/pages/goodschargeoff/applyCrackReward",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "[2023-11-27] 配菜首页",
           "pathName": "pages/menu/index",
           "query": "",
