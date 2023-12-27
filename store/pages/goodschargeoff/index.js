@@ -47,11 +47,15 @@ Page({
       }
       
       var ret_list = data.result.datalist;
+      var reward_tips  = data.result.reward_tips;
       if(ret_list.length>0){
         for(let i in ret_list){
           list.push(ret_list[i]);
         }
         that.setData({list:list})
+        if(typeof(reward_tips)!='undefined' && reward_tips!=''){
+          app.showToast(reward_tips);
+        }
       }else {
         if(page>1){
           app.showToast('没有更多了...')
@@ -95,6 +99,31 @@ Page({
     }
     
   },
+  //没有开瓶
+  noCrack:function(e){
+    var that = this;
+    var list = this.data.list;
+    var keys = e.currentTarget.dataset.keys;
+    wx.showModal({
+      title: '提示',
+      content: '确定没有开瓶?',
+      complete: (res) => {
+        if (res.cancel) {
+          
+        }
+    
+        if (res.confirm) {
+          utils.PostRequest(api_v_url + '/aa/bb', {
+            openid:openid,
+          }, (data, headers, cookies, errMsg, statusCode) => {
+      
+          })
+        }
+      }
+    })
+    
+  },
+
   gotoPage:function(e){
     var type = e.currentTarget.dataset.type;
     var url = '';
@@ -114,6 +143,11 @@ Page({
       var list = this.data.list;
       var code_msg = list[keys].goods[0].idcode;
 
+    }else if(type=='applyCrackReward'){
+      var keys = e.currentTarget.dataset.keys;
+      var list = this.data.list;
+      var goods_name = list[keys].goods[0].goods_name;
+      var goods_num  = list[keys].goods.length;
     }
 
     switch(type){
@@ -125,6 +159,9 @@ Page({
         break;
       case 'addinfo':
         url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg+'&is_supplement=1';
+        break;
+      case 'applyCrackReward':
+        url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num;
         break;
     }
     console.log(url)

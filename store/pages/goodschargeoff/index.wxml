@@ -44,10 +44,10 @@
                             </view>
                             <view class="bottom flex_row_center_spaceBetween">
                                 <view class="datetime theme-font3">{{bean.add_time}}</view>
-                                <view class="profit flex_row_center_spaceBetween">
+                                <!-- <view class="profit flex_row_center_spaceBetween">
                                     <view class="label theme-font3" style="padding-right:10rpx;">售酒收益</view>
                                     <view class="value theme-font5">0积分</view>
-                                </view>
+                                </view> -->
                                 <view wx:if="{{bean.status==4}}" class="button-group flex_row_center_flexEnd" bindtap="gotoPage" data-type="addinfo" data-keys="{{index}}">
                                     <view class="btn write-off flex_row_center_center theme-button-dark">前往核销</view>
                                 </view>
@@ -55,15 +55,15 @@
                             <view class="bottom crack-reward flex_column_center_center">
                                 <view class="block-item button-group full-width flex_column_center_center">
                                     <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="btn apply-crack-reward flex_row_center_center theme-button-welcome">
+                                        <view class="btn apply-crack-reward flex_row_center_center theme-button-welcome" bindtap="gotoPage" data-type="applyCrackReward" data-keys="{{index}}">
                                             <view class="text small2">申请开瓶奖励</view>
                                         </view>
-                                        <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable">
+                                        <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable" bind:tap="noCrack">
                                             <view class="text small2">没有开瓶</view>
                                         </view>
                                     </view>
                                 </view>
-                                <view class="block-item integral full-width top-line flex_column_center_center">
+                                <!-- <view class="block-item integral full-width top-line flex_column_center_center">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
@@ -77,7 +77,7 @@
                                             </view>
                                         </view>
                                     </view>
-                                </view>
+                                </view> -->
                                 <view class="block-item status full-width top-line flex_column_center_center">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
