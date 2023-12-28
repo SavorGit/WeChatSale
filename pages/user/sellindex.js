@@ -63,15 +63,19 @@ Page({
     this.getLocation();
   },
   getLocation:function(){
-    console.log('fdasfs')
+    
+    
     wx.getLocation({
       type: 'wgs84',
       isHighAccuracy:true,
       success(res) {
+        console.log('fdasfa')
         console.log(res)
         var latitude = res.latitude;
         var longitude = res.longitude;
 
+      },fail(rt){
+        console.log(rt)
       }
     })
   },
