@@ -76,6 +76,22 @@ Page({
 
       },fail(rt){
         console.log(rt)
+        wx.showModal({
+          title: "授权提示",
+          content: "无法获取定位权限，是否重新授权",
+          success: (res) => {
+            if (res.confirm) {
+              //点了确定
+              // 跳转到Setting页面
+              wx.openSetting({
+                // 返回用户设置的操作结果
+                success: (settingRes) => {
+                  
+                }
+              })
+            }
+          }
+        })
       }
     })
   },
