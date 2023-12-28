@@ -25,6 +25,7 @@ Page({
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false, 
     goods_id:0,
+    location_info:{latitude:'',longitude:''}
   },
 
   /**
@@ -42,6 +43,31 @@ Page({
       var is_supplement = 0;
     }
     this.setData({is_supplement:is_supplement})
+    this.getLocation();
+  },
+  getLocation:function(){
+    var that = this;
+    var location_info = this.data.location_info;
+    wx.getSetting({
+      success (res) {
+        var setting  = res.authSetting;
+        
+        if(typeof(setting['scope.userLocation'])!='undefined' && setting['scope.userLocation']==true){
+          console.log('ddddd')
+          wx.getLocation({
+            type: 'wgs84',
+            isHighAccuracy:true,
+            success(rts) {
+              var latitude = rts.latitude;
+              var longitude = rts.longitude;
+              location_info.latitude = latitude;
+              location_info.longitude = longitude;
+              that.setData({location_info});
+            }
+          })
+        }
+      }
+    })
   },
   scanGoodsCode:function(){
     var that = this;
@@ -300,20 +326,22 @@ Page({
       app.showToast('请上传核销资料');
       return false;
     }
-    
-    
+    var location_info = this.data.location_info;
 
     utils.PostRequest(api_v_url + '/stock/finishWriteoff', {
       openid: openid,
       data_imgs:data_imgs,
       goods_codes:goods_codes,
-      reason_type:reason_type
+      reason_type:reason_type,
+      longitude  : location_info.longitude,
+      latitude   : location_info.latitude
     }, (data, headers, cookies, errMsg, statusCode) => {
       var message = data.result.message; 
       app.showToast(message,2000,'success');
       wx.navigateBack({delta:1})
       
     })
+    
   },
   previewImage: function (e) {
     var current = e.currentTarget.dataset.src;

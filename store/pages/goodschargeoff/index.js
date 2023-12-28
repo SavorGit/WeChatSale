@@ -104,19 +104,19 @@ Page({
     var that = this;
     var list = this.data.list;
     var keys = e.currentTarget.dataset.keys;
+    var batch_no = list[keys].batch_no;
     wx.showModal({
       title: '提示',
       content: '确定没有开瓶?',
       complete: (res) => {
-        if (res.cancel) {
-          
-        }
-    
+        
         if (res.confirm) {
-          utils.PostRequest(api_v_url + '/aa/bb', {
+          utils.PostRequest(api_v_url + '/recycle/noOpenReward', {
             openid:openid,
+            batch_no:batch_no
           }, (data, headers, cookies, errMsg, statusCode) => {
-      
+            page = 1;
+            this.getChargeOffList(page);
           })
         }
       }
@@ -148,6 +148,8 @@ Page({
       var list = this.data.list;
       var goods_name = list[keys].goods[0].goods_name;
       var goods_num  = list[keys].goods.length;
+      var batch_no   = list[keys].batch_no;
+      var demo_img   = list[keys].demo_img;
     }
 
     switch(type){
@@ -161,7 +163,7 @@ Page({
         url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg+'&is_supplement=1';
         break;
       case 'applyCrackReward':
-        url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num;
+        url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num+'&batch_no='+batch_no+'&demo_img='+demo_img;
         break;
     }
     console.log(url)

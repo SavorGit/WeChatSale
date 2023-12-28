@@ -53,16 +53,18 @@
                                 </view>
                             </view>
                             <view class="bottom crack-reward flex_column_center_center">
-                                <view class="block-item button-group full-width flex_column_center_center">
+                                <block wx:if="{{bean.recycle_status==1}}">
+                                <view class="block-item button-group full-width flex_column_center_center" >
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="btn apply-crack-reward flex_row_center_center theme-button-welcome" bindtap="gotoPage" data-type="applyCrackReward" data-keys="{{index}}">
                                             <view class="text small2">申请开瓶奖励</view>
                                         </view>
-                                        <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable" bind:tap="noCrack">
+                                        <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable" bindtap="noCrack" data-keys="{{index}}">
                                             <view class="text small2">没有开瓶</view>
                                         </view>
                                     </view>
                                 </view>
+                                </block>
                                 <!-- <view class="block-item integral full-width top-line flex_column_center_center">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
@@ -78,68 +80,74 @@
                                         </view>
                                     </view>
                                 </view> -->
-                                <view class="block-item status full-width top-line flex_column_center_center">
+                                <block wx:else >
+                                 <block wx:for="{{bean.recycle_list}}" wx:for-item="item" wx:key="kk" wx:for-index="idx">
+                                  <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==5}}">
+                                      <view class="row full-width flex_row_center_spaceBetween">
+                                          <view class="datetime">
+                                              <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
+                                          </view>
+                                          <view class="status">
+                                              <view class="text big4 bold theme-font7">{{item.status_str}}</view>
+                                          </view>
+                                      </view>
+                                  </view>
+                                
+                                <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==2}}">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
-                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                            <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
                                         </view>
                                         <view class="status">
-                                            <view class="text big4 bold theme-font7">开瓶奖励审核中</view>
+                                            <view class="text big4 bold theme-font-FFAA2C">{{item.status_str}}</view>
                                         </view>
                                     </view>
                                 </view>
-                                <view class="block-item status full-width top-line flex_column_center_center">
+                                <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==3}}">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
-                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
-                                        </view>
-                                        <view class="status">
-                                            <view class="text big4 bold theme-font-FFAA2C">开瓶奖励审核已通过</view>
-                                        </view>
-                                    </view>
-                                </view>
-                                <view class="block-item status full-width top-line flex_column_center_center">
-                                    <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="datetime">
-                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                            <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
                                         </view>
                                     </view>
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="status">
-                                            <view class="text big4 bold theme-font3">开瓶奖励审核未通过</view>
+                                            <view class="text big4 bold theme-font3">{{item.status_str}}</view>
                                         </view>
                                     </view>
-                                    <view class="row full-width flex_row_center_flexStart">
+                                    <view class="row full-width flex_row_center_flexStart" wx:for="{{item.rlist}}" wx:for-item="rlist" wx:key="kv" wx:for-index="iv">
                                         <view class="remark full-width" style="word-break:break-all;">
-                                            <view class="text small2 theme-font3">未通过原因xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</view>
+                                            <view class="text small2 theme-font3">{{iv+1}}.{{rlist.reason}}</view>
                                         </view>
                                     </view>
                                 </view>
-                                <view class="block-item status full-width top-line flex_column_center_center">
+                                <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==6}}">
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="datetime">
-                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                            <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
                                         </view>
-                                        <view class="status">
-                                            <view class="text big4 bold theme-font-FFAA2C">1个开瓶奖励审核已通过</view>
-                                        </view>
+                                        <!-- <view class="status">
+                                            <view class="text big4 bold theme-font-FFAA2C">{{item.status_str}}</view>
+                                        </view> -->
                                     </view>
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="status">
-                                            <view class="text big4 bold theme-font3">2个开瓶奖励审核未通过</view>
+                                            <view class="text big4 bold theme-font3">{{item.status_str}}</view>
                                         </view>
                                     </view>
-                                    <view class="row full-width flex_row_center_flexStart">
+                                    <view class="row full-width flex_row_center_flexStart" wx:for="{{item.rlist}}" wx:for-item="items" wx:key="kks" wx:for-index="idxs">
                                         <view class="remark full-width" style="word-break:break-all;">
-                                            <view class="text small2 theme-font3">1.未通过原因xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</view>
+                                            <view class="text small2 theme-font3">{{idxs+1}}.{{items.reason}}1111</view>
                                         </view>
+                                        
                                     </view>
-                                    <view class="row full-width flex_row_center_flexStart">
+                                    <!-- <view class="row full-width flex_row_center_flexStart">
                                         <view class="remark full-width" style="word-break:break-all;">
                                             <view class="text small2 theme-font3">2.未通过原因xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</view>
                                         </view>
-                                    </view>
+                                    </view> -->
                                 </view>
+                                </block>
+                                </block>
                             </view>
                         </view>
                     </block>

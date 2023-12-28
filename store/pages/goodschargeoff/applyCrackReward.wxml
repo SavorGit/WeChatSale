@@ -21,7 +21,7 @@
                 <view class="pbody">
                     <view class="tip-group full-width flex_column_center_flexStart">
                         <view class="tip full-width flex_row_center_flexStart">
-                            <view class="text theme-font1">本次共核销3瓶xxxxxxxxxxxxxxxxxxxxx</view>
+                            <view class="text theme-font1">本次共核销{{goods_info.goods_num}}瓶{{goods_info.goods_name}}</view>
                         </view>
                         <view class="tip full-width flex_row_center_flexStart">
                             <view class="text">您销售的每瓶酒水都需要上传对应的照片，通过审核后</view>
@@ -32,15 +32,15 @@
                     </view>
                     <view class="pic-group full-width flex_column_center_flexStart">
                         <view class="list full-width">
-                            <view class="item flex_column_center_center">
-                                <view wx:if="{{true}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                            <view class="item flex_column_center_center" wx:for="{{wine_code_img}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                                <view wx:if="{{bean!=''}}" class="btn show full-container" bindtap="addPic" data-keys="{{index}}">
+                                    <image class="pic full-container" src="{{oss_url}}/{{bean}}" mode="aspectFill" />
                                 </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
+                                <view wx:else class="btn fill full-container" bindtap="addPic" data-keys="{{index}}">
                                     <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
                                 </view>
                             </view>
-                            <view class="item flex_column_center_center">
+                            <!-- <view class="item flex_column_center_center">
                                 <view wx:if="{{false}}" class="btn show full-container" bindtap="修改值">
                                     <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
                                 </view>
@@ -79,7 +79,7 @@
                                 <view wx:else class="btn fill full-container" bindtap="修改值">
                                     <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
                                 </view>
-                            </view>
+                            </view> -->
                         </view>
                     </view>
                 </view>
@@ -92,9 +92,9 @@
                 </view>
             </view>
             <view class="button-group full-width flex_column_center_flexStart">
-                <view class="btn submit flex_column_center_center theme-button-blue" bindtap="修改值">
+                <button class="btn submit flex_column_center_center theme-button-blue" disabled="{{addDisabled}}" bindtap="submitApply">
                     <view class="text small2">提交申请</view>
-                </view>
+                </button>
             </view>
         </view>
     </view>
@@ -114,7 +114,7 @@
             </view>
         </view>
         <view class="win-body flex_column_center_center">
-            <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+            <image class="pic full-container" src="{{goods_info.demo_img}}" mode="aspectFill" />
         </view>
     </view>
 </view>

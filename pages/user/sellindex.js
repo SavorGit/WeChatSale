@@ -60,6 +60,27 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
+    this.getLocation();
+  },
+  getLocation:function(){
+    wx.getSetting({
+      success (res) {
+        console.log(res.authSetting)
+        // res.authSetting = {
+        //   "scope.userInfo": true,
+        //   "scope.userLocation": true
+        // }
+      }
+    })
+    wx.getLocation({
+      type: 'wgs84',
+      isHighAccuracy:true,
+      success(res) {
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+
+      }
+    })
   },
   getRsRoomlist:function(openid,hotel_id){
     var that = this;
