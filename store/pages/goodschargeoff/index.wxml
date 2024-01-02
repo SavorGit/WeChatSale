@@ -87,6 +87,8 @@
                                           <view class="datetime">
                                               <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
                                           </view>
+                                      </view>
+                                      <view class="row full-width flex_row_center_spaceBetween">
                                           <view class="status">
                                               <view class="text big4 bold theme-font7">{{item.status_str}}</view>
                                           </view>
@@ -98,6 +100,8 @@
                                         <view class="datetime">
                                             <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
                                         </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="status">
                                             <view class="text big4 bold theme-font-FFAA2C">{{item.status_str}}</view>
                                         </view>
@@ -145,6 +149,33 @@
                                             <view class="text small2 theme-font3">2.未通过原因xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</view>
                                         </view>
                                     </view> -->
+                                </view>
+                                <view class="block-item status full-width top-line flex_column_center_center" >
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="datetime">
+                                            <view class="text small2 theme-font3">2022/04/10 12:00</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text big4 bold theme-font7">1个开瓶奖励审核中</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text big4 bold theme-font-FFAA2C">1个开瓶奖励审核已通过</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text big4 bold theme-font3">1个开瓶奖励审核未通过</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_flexStart" >
+                                        <view class="remark full-width" style="word-break:break-all;">
+                                            <view class="text small2 theme-font3">1.未通过原因xxxxxxxxxxxxxxxxxxxxx</view>
+                                        </view>
+                                    </view>
                                 </view>
                                 </block>
                                 </block>
