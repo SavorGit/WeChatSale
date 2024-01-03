@@ -50,7 +50,7 @@
 
 .item>.middle>.goods-list>.goods {
     padding: 10rpx 0;
-    border-bottom: 3rpx solid rgba(187, 187, 187, 1);
+    border-bottom: 3rpx dashed rgba(187, 187, 187, 1);
 }
 
 .item>.middle>.goods-list>.goods>.left {
