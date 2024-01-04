@@ -84,7 +84,9 @@
             </view>
         </view>
         <view class="win-body flex_column_center_center">
-            <image class="pic full-container" src="{{goods_info.demo_img}}" mode="aspectFill" />
+            <view class="warpper full-width">
+                <image class="pic full-width" src="{{goods_info.demo_img}}" mode="widthFix" />
+            </view>
         </view>
     </view>
 </view>

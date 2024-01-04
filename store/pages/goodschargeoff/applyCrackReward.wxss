@@ -116,3 +116,7 @@
     height: 900rpx;
     border-radius: 10rpx;
 }
+
+.window.example>.win-body {
+    overflow-y: auto;
+}
