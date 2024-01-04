@@ -20,7 +20,7 @@ Page({
     data: {
         oss_url: oss_url,
         examplePopWindowOpen: false,
-        goods_info:{goods_name:'',goods_num:0,batch_no:'',demo_img:''},
+        goods_info:{goods_id:0,goods_name:'',goods_num:0,batch_no:'',demo_img:''},
         policy:'',
         signature:'',
         wine_code_img:[],
@@ -33,22 +33,46 @@ Page({
     onLoad(options) {
         wx.hideShareMenu();
         openid = app.globalData.openid;
+        var goods_id   = options.goods_id;
         var goods_name = options.goods_name;
         var goods_num  = options.goods_num;
         var batch_no   = options.batch_no;
         var demo_img   = options.demo_img;
 
         var goods_info = this.data.goods_info;
+        goods_info.goods_id   = goods_id;
         goods_info.goods_name = goods_name;
         goods_info.goods_num  = goods_num;
         goods_info.batch_no   = batch_no;
         goods_info.demo_img   = demo_img;
-        var wine_code_img = this.data.wine_code_img;
+
+        this.setData({goods_info:goods_info});
+        this.getWriteoffReasonByGoods(goods_id,goods_num)
+
+        /*var wine_code_img = this.data.wine_code_img;
         for(let i=0;i<goods_num; i++){
             wine_code_img[i] = '';
         }
-        this.setData({goods_info:goods_info,wine_code_img:wine_code_img});
+        this.setData({goods_info:goods_info,wine_code_img:wine_code_img});*/
         this.getOssParams();
+    },
+    getWriteoffReasonByGoods:function(goods_id,goods_num){
+      var that = this;
+      utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
+        goods_id: goods_id,
+        type    : 21
+      }, (data, headers, cookies, errMsg, statusCode) => {
+        
+        var wine_code_img = this.data.wine_code_img;
+        var img_datas   = data.result.datas;
+        for(let i=0;i<goods_num; i++){
+            wine_code_img[i] = img_datas;
+        }
+
+        
+        console.log(wine_code_img)
+        that.setData({wine_code_img:wine_code_img})
+      })
     },
     getOssParams:function(){
         var that = this;
@@ -70,6 +94,8 @@ Page({
         var policy  = this.data.policy ;
         var signature = this.data.signature;
         var keys = e.currentTarget.dataset.keys;
+        var idx  = e.currentTarget.dataset.idx;
+        //console.log(this.data.wine_code_img)
         wx.showLoading({
           title: '图片上传中...',
           mask: true
@@ -87,7 +113,7 @@ Page({
             
             for(let i in res.tempFilePaths)
             {
-              that.uploadImg(res.tempFilePaths[i],policy,signature,keys);
+              that.uploadImg(res.tempFilePaths[i],policy,signature,keys,idx);
             }
             
           }, fail: function (e) {
@@ -98,9 +124,10 @@ Page({
           }
         })
       },
-      uploadImg:function(filename,policy,signature,keys){
+      uploadImg:function(filename,policy,signature,keys,idx){
         var that = this;
         var wine_code_img = that.data.wine_code_img;
+        console.log(wine_code_img)
         var index1 = filename.lastIndexOf(".");
         var index2 = filename.length;
         var timestamp = (new Date()).valueOf();
@@ -130,8 +157,10 @@ Page({
           success: function (res) {
             
             //var tmp_pic = {id:0,img_path:'',img_url:''};
-            wine_code_img[keys] = "forscreen/resource/" + img_url;
             
+            //wine_code_img[keys][idx].img_url = "forscreen/resource/" + img_url;
+            
+            wine_code_img[keys][idx].img_url = "forscreen/resource/" + img_url;
             that.setData({wine_code_img:wine_code_img})
             wx.hideLoading();
               setTimeout(function () {

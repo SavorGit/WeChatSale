@@ -150,6 +150,7 @@ Page({
       var goods_num  = list[keys].goods.length;
       var batch_no   = list[keys].batch_no;
       var demo_img   = list[keys].demo_img;
+      var goods_id   = list[keys].goods[0].goods_id;
     }
 
     switch(type){
@@ -163,7 +164,7 @@ Page({
         url = '/store/pages/goodschargeoff/addinfo?code_msg='+code_msg+'&is_supplement=1';
         break;
       case 'applyCrackReward':
-        url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num+'&batch_no='+batch_no+'&demo_img='+demo_img;
+        url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num+'&batch_no='+batch_no+'&demo_img='+demo_img+'&goods_id='+goods_id;
         break;
     }
     console.log(url)
