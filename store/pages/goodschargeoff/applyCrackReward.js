@@ -47,7 +47,7 @@ Page({
         goods_info.demo_img   = demo_img;
 
         this.setData({goods_info:goods_info});
-        this.getWriteoffReasonByGoods(goods_id,goods_num)
+        this.getWriteoffReasonByGoods(goods_id,openid,goods_num)
 
         /*var wine_code_img = this.data.wine_code_img;
         for(let i=0;i<goods_num; i++){
@@ -56,19 +56,17 @@ Page({
         this.setData({goods_info:goods_info,wine_code_img:wine_code_img});*/
         this.getOssParams();
     },
-    getWriteoffReasonByGoods:function(goods_id,goods_num){
+    getWriteoffReasonByGoods:function(goods_id,openid,goods_num){
       var that = this;
-      utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
+      utils.PostRequest(api_v_url + '/recycle/getReasons', {
         goods_id: goods_id,
-        type    : 21
+        openid  : openid,
+        num     : goods_num
       }, (data, headers, cookies, errMsg, statusCode) => {
         
         var wine_code_img = this.data.wine_code_img;
-        var img_datas   = data.result.datas;
-        for(let i=0;i<goods_num; i++){
-            wine_code_img[i] = img_datas;
-        }
-
+        var img_datas   = data.result.datalist;
+        wine_code_img = img_datas
         
         console.log(wine_code_img)
         that.setData({wine_code_img:wine_code_img})
@@ -182,31 +180,32 @@ Page({
         var that = this;
 
         var wine_code_img = that.data.wine_code_img;
-        var err_flag = 1;
-        var space = '';
-        var wine_code_img_str = '';
+        var wine_code_img_str = JSON.stringify(wine_code_img);
+        
+        var content  = '';
+        var no_img_nums = 0;
+        var err_arr = [];
         for(let i in wine_code_img){
-            if(wine_code_img[i]!=''){
-                err_flag = 0;
-            }
-            wine_code_img_str += space + wine_code_img[i];
-            space = ',';
-        }
-        if(err_flag==1){
-            app.showToast('请上传瓶盖内二维码照片');
-            return false;
-        }
-        var goods_info = this.data.goods_info;
+          var err_flag = 0;
+          for(let j in wine_code_img[i]){
 
-        wx.showModal({
-          title: '提示',
-          content: '确定要提交申请?',
-          complete: (res) => {
-            if (res.cancel) {
+            if(wine_code_img[i][j].img_url=='' && wine_code_img[i][j].is_required==1){
+              err_flag = 1;
               
             }
-            
-            if (res.confirm) {
+          }
+          if(err_flag==1){
+            err_arr.push('1');
+          }
+        }
+        var goods_info = this.data.goods_info;
+        if(err_flag==1){
+          wx.showModal({
+            title: '提示',
+            content: '您有'+err_arr.length+'瓶酒水的申请资料未上传，未上传部分无法获得开瓶费奖励，是否确定提交申请',
+            complete: (res) => {
+              
+              if (res.confirm) {
                 that.setData({addDisabled:true})
 
 
@@ -224,9 +223,47 @@ Page({
                         })  
                     }, 2000);
                 })
+              }
             }
-          }
-        })
+          })
+        }else {
+          wx.showModal({
+            title: '提示',
+            content: '确定要提交申请?',
+            complete: (res) => {
+              if (res.cancel) {
+                
+              }
+              
+              if (res.confirm) {
+                  that.setData({addDisabled:true})
+  
+  
+                  
+                  utils.PostRequest(api_v_url + '/recycle/applyOpenReward', {
+                      openid:openid,
+                      imgs  : wine_code_img_str,
+                      batch_no : goods_info.batch_no,
+                  }, (data, headers, cookies, errMsg, statusCode) => {
+                      app.showToast('提交成功',2000,'success');
+                      setTimeout(function () {
+                          wx.navigateBack({delta: 1})
+                          that.setData({
+                            addDisabled: false
+                          })  
+                      }, 2000);
+                  })
+              }
+            }
+          })
+        }
+
+
+
+       
+        
+
+        
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
