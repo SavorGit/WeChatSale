@@ -37,14 +37,14 @@
                                     <view class="text small2 theme-font-6297F2">第{{index+1}}瓶</view>
                                 </view>
                                 <view class="pic-list full-width">
-                                    <view class="pic-item flex_column_center_center" wx:for="{{bean}}" wx:for-item="item" wx:key="keys" wx:for-index="idx">
+                                    <view class="pic-item" wx:for="{{bean}}" wx:for-item="item" wx:key="keys" wx:for-index="idx">
                                         <view wx:if="{{item.img_url!=''}}" class="btn show full-container" bindtap="addPic" data-keys="{{index}}">
                                             <image class="pic full-container" src="{{oss_url}}/{{item.img_url}}" mode="aspectFill" />
                                         </view>
                                         <view wx:else class="btn fill full-container" bindtap="addPic" data-keys="{{index}}" data-idx="{{idx}}">
                                             <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.202401041057.png" mode="aspectFill" />
                                         </view>
-                                        <view class="title full-width flex_row_center_center">
+                                        <view class="title full-width flex_row_center_center one-line-overflow">
                                             <view class="text small2 theme-font3">{{item.name}}</view>
                                         </view>
                                     </view>
