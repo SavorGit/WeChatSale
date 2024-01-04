@@ -202,7 +202,7 @@ Page({
         if(err_flag==1){
           wx.showModal({
             title: '提示',
-            content: '您有'+err_arr.length+'瓶酒水的申请资料未上传，未上传部分无法获得开瓶费奖励，是否确定提交申请',
+            content: '您有'+err_arr.length+'瓶酒水的申请资料未上传完整，未上传部分可能无法获得开瓶费奖励，是否确定提交申请',
             complete: (res) => {
               
               if (res.confirm) {
