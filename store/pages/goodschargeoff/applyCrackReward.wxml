@@ -31,55 +31,25 @@
                         </view>
                     </view>
                     <view class="pic-group full-width flex_column_center_flexStart">
-                        <view class="list full-width">
-                            <view class="item flex_column_center_center" wx:for="{{wine_code_img}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-                                <view wx:if="{{bean!=''}}" class="btn show full-container" bindtap="addPic" data-keys="{{index}}">
-                                    <image class="pic full-container" src="{{oss_url}}/{{bean}}" mode="aspectFill" />
+                        <view class="bottle-list full-width flex_column_center_center">
+                            <view class="bottle-item full-width flex_column_center_center" wx:for="{{wine_code_img}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                                <view class="title full-width flex_row_center_flexStart">
+                                    <view class="text small2 theme-font-6297F2">第1瓶</view>
                                 </view>
-                                <view wx:else class="btn fill full-container" bindtap="addPic" data-keys="{{index}}">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
-                                </view>
-                            </view>
-                            <!-- <view class="item flex_column_center_center">
-                                <view wx:if="{{false}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-                                </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
-                                </view>
-                            </view>
-                            <view class="item flex_column_center_center">
-                                <view wx:if="{{false}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-                                </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
+                                <view class="pic-list full-width">
+                                    <view class="pic-item flex_column_center_center" wx:for="{{wine_code_img}}">
+                                        <view wx:if="{{bean!=''}}" class="btn show full-container" bindtap="addPic" data-keys="{{index}}">
+                                            <image class="pic full-container" src="{{oss_url}}/{{bean}}" mode="aspectFill" />
+                                        </view>
+                                        <view wx:else class="btn fill full-container" bindtap="addPic" data-keys="{{index}}">
+                                            <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.202401041057.png" mode="aspectFill" />
+                                        </view>
+                                        <view class="title full-width flex_row_center_center">
+                                            <view class="text small2 theme-font3">瓶外盖二维码照片</view>
+                                        </view>
+                                    </view>
                                 </view>
                             </view>
-                            <view class="item flex_column_center_center">
-                                <view wx:if="{{false}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-                                </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
-                                </view>
-                            </view>
-                            <view class="item flex_column_center_center">
-                                <view wx:if="{{true}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-                                </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
-                                </view>
-                            </view>
-                            <view class="item flex_column_center_center">
-                                <view wx:if="{{false}}" class="btn show full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
-                                </view>
-                                <view wx:else class="btn fill full-container" bindtap="修改值">
-                                    <image class="pic full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/applyCrackReward/plus.png" mode="aspectFill" />
-                                </view>
-                            </view> -->
                         </view>
                     </view>
                 </view>
