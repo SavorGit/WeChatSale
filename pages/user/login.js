@@ -19,6 +19,7 @@ Page({
     is_get_sms_code:0,        //是否显示获取手机验证码倒计时
     showModal:false,
     is_welcome : true,
+    userlocation : 0,
   },
 
   /**
@@ -26,17 +27,26 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var userlocation = 0;
+    if(typeof(options.userlocation)!='undefined' && options.userlocation==1){
+      userlocation = 1;
+    }
+
     wx.hideShareMenu();
     that.setData({
       common_appid: common_appid,
+      userlocation: userlocation
     })
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
         openid: app.globalData.openid
       })
       openid = app.globalData.openid;
-      //判断用户是否注册
-      userRegister(openid);
+      if(userlocation==0){
+        //判断用户是否注册
+        userRegister(openid);
+      }
+      
     } else {
       app.openidCallback = openid => {
         if (openid != '') {
@@ -44,8 +54,11 @@ Page({
             openid: openid
           })
           openid = openid;
-          //判断用户是否注册
-          userRegister(openid);
+          if(userlocation==0){
+            //判断用户是否注册
+            userRegister(openid);
+          }
+          
 
         }
       }
@@ -376,6 +389,41 @@ Page({
   register:function(e){
     wx.navigateTo({
       url: '/pages/user/signin',
+    })
+  },
+  getUserLocation:function(){
+    wx.getLocation({
+      type: 'wgs84',
+      isHighAccuracy:true,
+      success(res) {
+        console.log('fdasfa')
+        console.log(res)
+        var latitude = res.latitude;
+        var longitude = res.longitude;
+        wx.reLaunch({
+          url: '/pages/user/sellindex',
+        })
+      },fail(rt){
+        
+        wx.showModal({
+          title: "授权提示",
+          content: "无法获取定位权限，请重新授权",
+          showCancel:false,
+          success: (res) => {
+            if (res.confirm) {
+              //点了确定
+              // 跳转到Setting页面
+              wx.openSetting({
+                // 返回用户设置的操作结果
+                success: (settingRes) => {
+                  
+                }
+              })
+            }
+          }
+        })
+      }
+      
     })
   },
   /**

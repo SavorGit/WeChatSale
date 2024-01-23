@@ -1,7 +1,7 @@
 <!--pages/user/login.wxml-->
 <import src="/pages/template/commons" />
 <view wx:if="{{is_welcome}}" class="container">
-    <view class="full-container" style="background-color:#FFFFFF;" bindtap="changeLogin">
+    <view class="full-container" style="background-color:#FFFFFF;" bindtap="{{userlocation==0?'changeLogin':'getUserLocation'}}">
         <image class="full-container" style="background-color:#FFFFFF;" src="http://oss.littlehotspot.com/media/resource/mBfGW878X2.jpg" mode="widthFix" />
     </view>
 </view>

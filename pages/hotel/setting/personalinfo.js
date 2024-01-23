@@ -186,6 +186,7 @@ Page({
 
 
   editUserinfo:function(e){
+    var that = this;
     var userinfo = this.data.userinfo;
     var wxinfo   = this.data.wxinfo;
     console.log(e.detail.value)
@@ -216,6 +217,55 @@ Page({
         return false;
     }
     var is_auth = this.data.is_auth;
+
+    wx.getSetting({
+      success (res) {
+        console.log(res.authSetting,'authSetting')
+        var authSetting = res.authSetting;
+
+        if(typeof(authSetting['scope.userLocation'])!='undefined' && authSetting['scope.userLocation']==true){
+          console.log('dddd');
+          that.perfectUserInfo(openid,userinfo,name,mobile,is_auth)
+        }else {
+          console.log('sssss')
+          wx.getLocation({
+            type: 'wgs84',
+            isHighAccuracy:true,
+            success(res) {
+              console.log('fdasfa')
+              console.log(res)
+              var latitude = res.latitude;
+              var longitude = res.longitude;
+              that.perfectUserInfo(openid,userinfo,name,mobile,is_auth)
+            },fail(rt){
+              
+              wx.showModal({
+                title: "授权提示",
+                content: "无法获取定位权限，请重新授权",
+                showCancel:false,
+                success: (res) => {
+                  if (res.confirm) {
+                    //点了确定
+                    // 跳转到Setting页面
+                    wx.openSetting({
+                      // 返回用户设置的操作结果
+                      success: (settingRes) => {
+                        
+                      }
+                    })
+                  }
+                }
+              })
+            }
+            
+          })
+          return false;
+        }
+      }
+    })
+    
+  },
+  perfectUserInfo:function(openid,userinfo,name,mobile,is_auth){
     utils.PostRequest(api_v_url + '/user/perfect', {
       openid: openid,
       avatar_url:userinfo.avatarUrl,
@@ -254,6 +304,7 @@ Page({
         }
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

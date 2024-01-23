@@ -60,7 +60,7 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu();
-    this.getLocation();
+    //this.getLocation();
   },
   getLocation:function(){
     
@@ -291,6 +291,28 @@ Page({
               //url: '/pages/user/authorization',
               url : '/pages/hotel/setting/personalinfo?openid='+openid+'&is_auth=1'
             })
+          }else {
+
+            wx.getSetting({
+              success (res) {
+                console.log(res.authSetting,'authSetting')
+                var authSetting = res.authSetting;
+
+                if(typeof(authSetting['scope.userLocation'])!='undefined' && authSetting['scope.userLocation']==true){
+
+                }else{
+                  /*wx.redirectTo({
+                    url : '/pages/hotel/setting/personalinfo?openid='+openid+'&is_auth=1'
+                  })*/
+                  wx.redirectTo({
+                    url: '/pages/user/login?userlocation=1',
+                  })
+                }
+
+                
+              }
+            })
+
           }
         }
 
