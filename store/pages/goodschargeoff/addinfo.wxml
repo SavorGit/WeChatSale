@@ -6,74 +6,103 @@
   -- 核销 新增核销申请
   -->
 <scroll-view class="container theme-main" scroll-y="true" scroll-with-animation="true">
-  <view class="page flex_column_center_flexStart">
-    <view class="main">
-      <view class="panel scan flex_column_center_flexStart" wx:if="{{is_supplement==0}}">
-        <view class="title-bar flex_row_center_flexStart">
-          <view class="title">请扫描商品唯一标识进行核销</view>
-        </view>
-        <view class="body flex_column_center_center" bindtap="scanGoodsCode">
-          <view class="btn flex_column_center_center theme-button-blue">
-            <view class="icon fa fa-qrcode" aria-hidden="true"></view>
-            <view class="text">扫码</view>
-          </view>
-        </view>
-      </view>
-
-      <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
-
-      <view class="type flex_row_center_spaceBetween">
-        <view class="label theme-font1">核销原因</view>
-        <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
-          <block wx:for="{{reasons}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
-            <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.name}}</radio>
-          </block>
-        </radio-group>
-      </view>
-
-      <view class="panel makings picture flex_column_center_flexStart" wx:if="{{datas.length>0}}">
-        <view class="title-bar flex_row_center_flexStart">
-          <view class="title">核销资料（照片）</view>
-        </view>
-        <view class="body flex_row_center_spaceBetween">
-          <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-            <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="wine_receipt_img" data-keys="{{index}}">
-              <image wx:if="{{bean.img_url!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{bean.img_url}}" />
-              <view wx:else class="btn add flex_column_center_center">+</view>
-              <view class="tips flex_column_center_center">
-                <view class="tip flex_row_center_center">
-                  <view class="theme-font5" wx:if="{{bean.is_required=='1'}}">*</view>
-                  <view class="content">{{bean.name}}</view>
+    <view class="page flex_column_center_flexStart">
+        <view class="main">
+            <view class="panel scan flex_column_center_flexStart" wx:if="{{is_supplement==0}}">
+                <view class="title-bar flex_row_center_flexStart">
+                    <view class="title">请扫描商品唯一标识进行核销</view>
                 </view>
-              </view>
+                <view class="body flex_column_center_center" bindtap="scanGoodsCode">
+                    <view class="btn flex_column_center_center theme-button-blue">
+                        <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+                        <view class="text">扫码</view>
+                    </view>
+                </view>
             </view>
-          </block>
+
+            <template is="goodsPanelCanDel" data='{{title:listTitle,list:scanList}}' />
+
+            <view class="type flex_row_center_spaceBetween">
+                <view class="label theme-font1">核销原因</view>
+                <radio-group class="value flex_row_center_spaceBetween" bindchange="changeReason">
+                    <block wx:for="{{reasons}}" wx:for-item="type" wx:key="typeKey" wx:for-index="typeIndex">
+                        <radio class="text theme-font1" value="{{type.id}}" checked="{{type.checked}}">{{type.name}}</radio>
+                    </block>
+                </radio-group>
+            </view>
+
+            <view class="panel makings picture flex_column_center_flexStart" wx:if="{{datas.length>0}}">
+                <view class="title-bar flex_row_center_flexStart">
+                    <view class="title">核销资料（照片）</view>
+                </view>
+                <view class="body flex_row_center_spaceBetween">
+                    <block wx:for="{{datas}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                        <view class="evidence flex_column_center_flexStart" bindtap="uploadChargeoffPic" data-type="wine_receipt_img" data-keys="{{index}}">
+                            <image wx:if="{{bean.img_url!=''}}" class="btn pic" mode="aspectFill" src="{{oss_url}}{{bean.img_url}}" />
+                            <view wx:else class="btn add flex_column_center_center">+</view>
+                            <view class="tips flex_column_center_center">
+                                <view class="tip flex_row_center_center">
+                                    <view class="theme-font5" wx:if="{{bean.is_required=='1'}}">*</view>
+                                    <view class="content">{{bean.name}}</view>
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+
+                </view>
+            </view>
+
+            <view class="panel makings entity flex_column_center_flexStart" wx:if="{{entity.length>0}}">
+                <view class="title-bar flex_row_center_flexStart">
+                    <view class="title">核销资料（实物）</view>
+                </view>
+                <view class="body flex_row_center_spaceBetween">
+
+                    <view class="goods flex_column_center_spaceBetween">
+                        <image class="pic" mode="aspectFill" src="{{entity[0].img_url}}" bindtap="previewImage" data-src="{{entity[0].img_url}}" />
+                        <view class="name flex_row_center_center theme-font3">{{entity[0].name}}</view>
+                    </view>
+                    <view class="tip-group flex_column_flexStart_spaceBetween">
+                        <view class="tip theme-font-F44444">提示：</view>
+                        <view class="tip theme-font-F44444">请保留示例中的物料并交与我公司人员。</view>
+                        <view class="tip theme-font-F44444">物料回收后待核销积分奖励可正常使用。</view>
+                    </view>
+
+                </view>
+            </view>
 
         </view>
-      </view>
-
-      <view class="panel makings entity flex_column_center_flexStart" wx:if="{{entity.length>0}}">
-        <view class="title-bar flex_row_center_flexStart">
-          <view class="title">核销资料（实物）</view>
+        <view class="foot flex_row_center_spaceAround">
+            <button class="btn ok flex_row_center_center theme-button-blue" bindtap="subGoodsChargeoff" disabled="{{addDisabled}}">提交</button>
         </view>
-        <view class="body flex_row_center_spaceBetween">
-
-          <view class="goods flex_column_center_spaceBetween">
-            <image class="pic" mode="aspectFill" src="{{entity[0].img_url}}" bindtap="previewImage" data-src="{{entity[0].img_url}}" />
-            <view class="name flex_row_center_center theme-font3">{{entity[0].name}}</view>
-          </view>
-          <view class="tip-group flex_column_flexStart_spaceBetween">
-            <view class="tip theme-font-F44444">提示：</view>
-            <view class="tip theme-font-F44444">请保留示例中的物料并交与我公司人员。</view>
-            <view class="tip theme-font-F44444">物料回收后待核销积分奖励可正常使用。</view>
-          </view>
-
-        </view>
-      </view>
-
     </view>
-    <view class="foot flex_row_center_spaceAround">
-      <button class="btn ok flex_row_center_center theme-button-blue" bindtap="subGoodsChargeoff" disabled="{{addDisabled}}">提交</button>
-    </view>
-  </view>
 </scroll-view>
+
+<!-- 核销弹窗 -->
+<view wx:if="{{true}}" class="mask flex_column_center_center">
+    <view class="window write-off theme-window">
+        <view class="title-bar flex_row_center_center">
+            <view class="text big2 theme-font1">您的核销申请已提交</view>
+        </view>
+        <view class="option-bar flex_row_center_flexEnd">
+            <view class="btn close flex_column_center_center" bindtap="修改值">
+                <image class="icon" src="/images/icon/666666_close.png" mode="aspectFill" />
+            </view>
+        </view>
+        <view class="win-body full-width flex_column_center_flexStart">
+            <view class="body-warper full-container flex_column_center_flexStart">
+                <view class="illustration full-width flex_column_center_center">
+                    <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                </view>
+                <view class="tip-group full-width flex_column_center_flexStart">
+                    <view class="tip flex_row_center_center">
+                        <view class="text big2 theme-font1">您可保留瓶盖（如上图所示）</view>
+                    </view>
+                    <view class="tip flex_row_center_center">
+                        <view class="text big2 theme-font1">交给热点工作人员获得额外奖励</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
