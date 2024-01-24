@@ -65,7 +65,7 @@
                     <view class="tip-group flex_column_flexStart_spaceBetween">
                         <view class="tip theme-font-F44444">提示：</view>
                         <view class="tip theme-font-F44444">请保留示例中的物料并交与我公司人员。</view>
-                        <view class="tip theme-font-F44444">物料回收后待核销积分奖励可正常使用。</view>
+                        <view class="tip theme-font-F44444">物料回收后可获得额外奖励。</view>
                     </view>
 
                 </view>
@@ -79,20 +79,20 @@
 </scroll-view>
 
 <!-- 核销弹窗 -->
-<view wx:if="{{true}}" class="mask flex_column_center_center">
+<view wx:if="{{popTipWind}}" class="mask flex_column_center_center">
     <view class="window write-off theme-window">
         <view class="title-bar flex_row_center_center">
             <view class="text big2 theme-font1">您的核销申请已提交</view>
         </view>
         <view class="option-bar flex_row_center_flexEnd">
-            <view class="btn close flex_column_center_center" bindtap="修改值">
+            <view class="btn close flex_column_center_center" bindtap="closeTipWind">
                 <image class="icon" src="/images/icon/666666_close.png" mode="aspectFill" />
             </view>
         </view>
         <view class="win-body full-width flex_column_center_flexStart">
             <view class="body-warper full-container flex_column_center_flexStart">
                 <view class="illustration full-width flex_column_center_center">
-                    <image class="pic" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                    <image class="pic" src="{{entity[0].img_url}}" mode="aspectFill" bindtap="previewImage" data-src="{{entity[0].img_url}}" />
                 </view>
                 <view class="tip-group full-width flex_column_center_flexStart">
                     <view class="tip flex_row_center_center">

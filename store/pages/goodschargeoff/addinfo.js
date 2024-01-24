@@ -25,7 +25,9 @@ Page({
     oss_url: app.globalData.oss_url + '/',
     addDisabled: false, 
     goods_id:0,
-    location_info:{latitude:'',longitude:''}
+    location_info:{latitude:'',longitude:''},
+    popTipWind:false,
+    entity:[]
   },
 
   /**
@@ -283,6 +285,7 @@ Page({
   },
   subGoodsChargeoff:function(){
     var that = this;
+    var entity = that.data.entity;
     var scanList = this.data.scanList;
     if(scanList.length==0){
       app.showToast('请扫核销的商品码');
@@ -336,9 +339,15 @@ Page({
       longitude  : location_info.longitude,
       latitude   : location_info.latitude
     }, (data, headers, cookies, errMsg, statusCode) => {
-      var message = data.result.message; 
-      app.showToast(message,2000,'success');
-      wx.navigateBack({delta:1})
+
+      if(entity.length>0){
+        that.setData({popTipWind:true})
+      }else {
+        var message = data.result.message; 
+        app.showToast(message,2000,'success');
+        wx.navigateBack({delta:1})
+      }
+      
       
     })
     
@@ -352,6 +361,15 @@ Page({
     wx.previewImage({
       current: urls[0], // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
+    })
+  },
+  closeTipWind:function(){
+    var that = this;
+    wx.navigateBack({
+      delta:1,
+      success:function(){
+        that.setData({popTipWind:false});
+      }
     })
   },
   /**
