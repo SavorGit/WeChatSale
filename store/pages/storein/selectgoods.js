@@ -59,14 +59,15 @@ Page({
     var keys = e.currentTarget.dataset.keys;
     var list = this.data.list;
     var goods_info = list[keys];
-
+    console.log(goods_info);
     var unit_id = goods_info.unit_id;
     var convert_type = goods_info.convert_type;
 
     var io_type = this.data.io_type;
 
     var params = JSON.stringify(goods_info);
-    if(convert_type>1 && io_type==1){
+    
+    if(convert_type>1 && io_type==11){
       var pageUrl = '/store/pages/storein/scanboxcode?stock_id='+stock_id+'&goods_info='+params;
     }else {
       var pageUrl = '/store/pages/storein/scancode?stock_id='+stock_id+'&goods_info='+params;
