@@ -16,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    io_type:0,
     list: [],
   },
 
@@ -47,10 +48,11 @@ Page({
       stock_id:stock_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var list = data.result.goods_list;
+      var io_type = data.result.io_type;
       for(let i in list){
         list[i].viewBt = true;
       }
-      that.setData({list:list})
+      that.setData({list:list,io_type:io_type})
     })
   },
   gotoPage:function(e){
@@ -61,10 +63,10 @@ Page({
     var unit_id = goods_info.unit_id;
     var convert_type = goods_info.convert_type;
 
-
+    var io_type = this.data.io_type;
 
     var params = JSON.stringify(goods_info);
-    if(convert_type>1){
+    if(convert_type>1 && io_type==1){
       var pageUrl = '/store/pages/storein/scanboxcode?stock_id='+stock_id+'&goods_info='+params;
     }else {
       var pageUrl = '/store/pages/storein/scancode?stock_id='+stock_id+'&goods_info='+params;
