@@ -80,7 +80,8 @@ Component({
       })
     },
     valueArray: function (v) {
-      this._settMonthDays(v[0] + beginYear, v[1] + 1);
+      //this._settMonthDays(v[0] + beginYear, v[1] + 1);
+      this._settMonthDays(beginYear, v[1] + 1);
     }
   },
   /**
