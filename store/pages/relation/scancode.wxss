@@ -1,1 +1,6 @@
 /* store/pages/relation/scancode.wxss */
+@import "/store/pages/template/commons.wxss";
+
+/**
+ * 关联酒商码
+ */

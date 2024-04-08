@@ -1,2 +1,130 @@
 <!--store/pages/relation/scancode.wxml-->
-<text>store/pages/relation/scancode.wxml</text>
+<import src="/store/pages/template/commons" />
+<wxs src="/app.wxs" module="app" />
+
+<!--
+  -- 关联酒商码
+  -->
+
+<!-- Step 1-1 2-1 扫热点唯一码 -->
+<view wx:if="{{false}}" class="page scan-goods container theme-main">
+    <view class="main full-container">
+        <view class="warper full-container flex_column_center_center">
+            <view class="panel scan flex_column_center_flexStart">
+                <view class="body flex_column_center_center" bindtap="修改值">
+                    <view class="btn flex_column_center_center theme-button-blue">
+                        <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+                        <view class="text">扫码</view>
+                    </view>
+                </view>
+                <view class="title-bar flex_row_center_center">
+                    <view class="title big">请扫描商品唯一标识（热点码）</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- Step 1-2 扫酒商码 -->
+<view wx:if="{{false}}" class="page scan-goods container theme-main">
+    <view class="main full-container">
+        <view class="warper full-container flex_column_center_flexStart">
+            <template is="goodsPanel" data='{{title:"当前扫码商品信息", list:goodsList}}' />
+
+            <view class="panel scan flex_column_center_flexStart">
+                <view class="body flex_column_center_center" bindtap="修改值">
+                    <view class="btn flex_column_center_center theme-button-blue">
+                        <view class="icon fa fa-qrcode" aria-hidden="true"></view>
+                        <view class="text">扫码</view>
+                    </view>
+                </view>
+                <view class="title-bar flex_row_center_center">
+                    <view class="title big">请扫描酒商防伪码进行关联</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- Step 1-3 扫酒商码 关联 -->
+<view wx:if="{{false}}" class="page scan-goods container theme-main">
+    <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+        <view class="warper flex_column_center_flexStart">
+            <template is="goodsPanel" data='{{title:"当前扫码商品信息", list:goodsList}}' />
+
+            <view class="panel googs">
+                <view class="title-bar flex_row_center_flexStart">
+                    <view class="title big theme-font1">当前酒商防伪码</view>
+                </view>
+                <view class="body">
+
+                    <view class="item flex_column_center_flexStart">
+                        <view class="row flex_row_center_spaceBetween">
+                            <view class="center flex_column_center_center" style='width:100%;'>
+                                <view class="name theme-font1" style="text-align:center;">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="foot flex_row_center_spaceAround">
+        <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="修改值">取消关联</view>
+        <view class="btn ok flex_row_center_center theme-button-blue" bindtap="修改值">保存并继续</view>
+    </view>
+</view>
+
+<!-- Step 2-2 拍酒商码 -->
+<view wx:if="{{false}}" class="page scan-goods container theme-main">
+    <view class="main full-container">
+        <view class="warper full-container flex_column_center_flexStart">
+            <template is="goodsPanel" data='{{title:"当前扫码商品信息", list:goodsList}}' />
+
+            <view class="panel scan flex_column_center_flexStart">
+                <view class="body flex_column_center_center" bindtap="修改值">
+                    <view class="btn flex_column_center_center theme-button-blue">
+                        <view class="icon fa fa-camera" aria-hidden="true"></view>
+                        <view class="text">拍照</view>
+                    </view>
+                </view>
+                <view class="title-bar flex_row_center_center">
+                    <view class="title big">请拍摄防酒商伪码照片进行上传</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- Step 2-3 拍酒商码 关联 -->
+<view wx:if="{{true}}" class="page scan-goods container theme-main">
+    <scroll-view class="main" scroll-y="true" scroll-with-animation="true">
+        <view class="warper flex_column_center_flexStart">
+            <template is="goodsPanel" data='{{title:"当前扫码商品信息", list:goodsList}}' />
+
+            <view class="panel googs">
+                <view class="title-bar flex_row_center_flexStart">
+                    <view class="title big theme-font1">当前商品酒商防伪照片</view>
+                </view>
+                <view class="body">
+
+                    <view class="item flex_column_center_flexStart">
+                        <image class="full-width" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="widthFix" />
+                    </view>
+
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="foot flex_row_center_spaceAround">
+        <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="修改值">取消关联</view>
+        <view class="btn ok flex_row_center_center theme-button-blue" bindtap="修改值">保存并继续</view>
+    </view>
+</view>
+
+
+
+
+
+<template is="scanGoodsPage" data='{{scanTitle:"请扫描商品唯一标识（热点码）",goodsList:goodsList,listTitle:listTitle,scanList:scanList,btnOk:"下一步",btnCancel:""}}' />

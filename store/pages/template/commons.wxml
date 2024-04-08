@@ -152,6 +152,7 @@
                         <view class="left flex_column_center_center theme-font1">{{bean.goods_id}}</view>
                         <view class="center flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||app.typeOf(labelShow)=="number"&&labelShow!=0?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
                             <view class="name theme-font1">{{bean.name}}</view>
+                            <view wx:if="{{app.typeOf(bean.idcode) == 'string' && app.trim(bean.idcode) != '' }}" class="name theme-font3" style="font-size:24rpx;">唯一吗：{{bean.idcode}}</view>
                             <view class="tag-group flex_row_center_flexStart">
                                 <view class="tag theme-font3">{{bean.cate_name}}</view>
                                 <view class="tag theme-font3">{{bean.sepc_name}}</view>
