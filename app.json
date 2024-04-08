@@ -125,7 +125,8 @@
       "pages/goodsbreakage/replace/index",
       "pages/activity/winesale/index",
       "pages/couponbreakage/havecode/index",
-      "pages/phyprizechargeoff/index"
+      "pages/phyprizechargeoff/index",
+      "pages/relation/scancode"
       
     ]
   },
