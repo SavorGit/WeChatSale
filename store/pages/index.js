@@ -96,9 +96,12 @@ Page({
       case 'check':
         page_url = '/store/pages/goodscheck/index';
         break;
-      case 'breakage':
-        page_url = '/store/pages/goodsbreakage/havecode/scancode';
-        break;
+        case 'breakage':
+          page_url = '/store/pages/goodsbreakage/havecode/scancode';
+          break;
+        case 'linkWineCode': // 关联酒商码
+            page_url = '/store/pages/relation/scancode';
+            break;
     }
     page_url +='?openid='+openid
     wx.navigateTo({
