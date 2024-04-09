@@ -23,9 +23,11 @@
 }
 
 .step-2-3>.main .warper>.panel.wine-code>.body>.item>.row>.center {
-    width: calc(100% - 100rpx);
+    width: 100%;
+    /* width: calc(100% - 100rpx); */
 }
 
+/*
 .step-2-3>.main .warper>.panel.wine-code>.body>.item>.row>.right {
     width: 100rpx;
 }
@@ -34,6 +36,7 @@
     width: 60rpx;
     height: 60rpx;
 }
+*/
 
 .step-2-3>.main .warper>.panel.wine-code>.body>.item>.row>.right>.btn>.text {
     font-size: 48rpx;
