@@ -1,105 +1,105 @@
 /** theme.wxss **/
 
 radio .wx-radio-input {
-  border: 4rpx solid #58525c;
+    border: 4rpx solid #58525c;
 }
 
 radio .wx-radio-input.wx-radio-input-checked {
-  border: 4rpx solid #58525c !important;
+    border: 4rpx solid #58525c !important;
 }
 
 radio .wx-radio-input.wx-radio-input-checked::before {
-  background-color: #58525c;
+    background-color: #58525c;
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked {
-  background: #58525c;
-  border-color: #58525c;
+    background: #58525c;
+    border-color: #58525c;
 }
 
 checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
-  color: #fff;
+    color: #fff;
 }
 
 .wx-switch-input {
-  background: #50D2C2 !important;
-  border: #50d2c2 !important;
+    background: #50D2C2 !important;
+    border: #50d2c2 !important;
 }
 
 .wx-switch-input::before {
-  background: #EDEDED !important;
-  border: #EDEDED !important;
+    background: #EDEDED !important;
+    border: #EDEDED !important;
 }
 
 .link_relief {
-  color: #a18668;
-  /* color: #1cbeb6; */
+    color: #a18668;
+    /* color: #1cbeb6; */
 }
 
 .savor-btn {
-  color: #fff;
-  background-color: #1cbeb6;
+    color: #fff;
+    background-color: #1cbeb6;
 }
 
 .theme {
-  background-color: #05101a;
+    background-color: #05101a;
 }
 
 .theme2 {
-  background-color: #000;
+    background-color: #000;
 }
 
 .theme3 {
-  background-color: #0e1c29;
+    background-color: #0e1c29;
 }
 
 .theme4 {
-  background-color: #25635f;
+    background-color: #25635f;
 }
 
 .theme5 {
-  background-color: #106763;
+    background-color: #106763;
 }
 
 .theme6 {
-  background-color: #1cbeb6;
+    background-color: #1cbeb6;
 }
 
 .theme7 {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 .theme8 {
-  background-color: #999;
+    background-color: #999;
 }
 
 .theme-container,
 .theme-main {
-  color: #333;
-  background-color: #ededed;
+    color: #333;
+    background-color: #ededed;
 }
 
 .theme-background-9 {
-  background-color: #eb6877;
+    background-color: #eb6877;
 }
 
 .theme-navigation {
-  color: #fff;
-  background-color: #05101a;
+    color: #fff;
+    background-color: #05101a;
 }
 
 .theme-menu {
-  background-color: #05101a;
+    background-color: #05101a;
 }
 
 .theme-button {
-  color: #fff;
-  background-color: #1cbeb6;
+    color: #fff;
+    background-color: #1cbeb6;
 }
 
 .theme-button-blue {
-  color: #fff;
-  background-color: #6297F2;
+    color: #fff;
+    background-color: #6297F2;
 }
 
 .theme-window-red,
@@ -109,36 +109,36 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-button-red,
 .theme-block-red,
 .theme-rad-panel {
-  color: #fff;
-  background-color: #F44444;
+    color: #fff;
+    background-color: #F44444;
 }
 
 .theme-button-dark {
-  color: #fff;
-  background-color: #333;
+    color: #fff;
+    background-color: #333;
 }
 
 .theme-button-disable {
-  color: #fff;
-  background-color: #999;
+    color: #fff;
+    background-color: #999;
 }
 
 .theme-button-orange,
 .theme-orange-panel {
-  color: #FFFFFF;
-  background-color: #F68855;
+    color: #FFFFFF;
+    background-color: #F68855;
 }
 
 .theme-block-orange2,
 .theme-panel-orange2,
 .theme-button-orange2 {
-  color: #FFFFFF;
-  background-color: #FFAA2C;
+    color: #FFFFFF;
+    background-color: #FFAA2C;
 }
 
 .theme-button-gold {
-  background-color: rgb(249, 222, 89);
-  color: rgb(144, 128, 52);
+    background-color: rgb(249, 222, 89);
+    color: rgb(144, 128, 52);
 }
 
 .theme-button-welcome,
@@ -146,115 +146,115 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-broadcast-panel,
 .broadcast-panel,
 .selected {
-  color: #fff;
-  background-color: #a18668;
+    color: #fff;
+    background-color: #a18668;
 }
 
 .theme-button-welcome-dark,
 .theme-panel-welcome-dark {
-  color: #fff;
-  background-color: #58525c;
+    color: #fff;
+    background-color: #58525c;
 }
 
 .theme-button2 {
-  color: #fff;
-  background-color: #25635f;
+    color: #fff;
+    background-color: #25635f;
 }
 
 .theme-button3 {
-  color: #fff;
-  background-color: #0e1c29;
+    color: #fff;
+    background-color: #0e1c29;
 }
 
 .theme-button4 {
-  color: #fff;
-  background-color: #05101a;
+    color: #fff;
+    background-color: #05101a;
 }
 
 .theme-button5 {
-  color: #fff;
-  background-color: #666;
+    color: #fff;
+    background-color: #666;
 }
 
 .theme-button6 {
-  color: #fff;
-  background-color: #333;
+    color: #fff;
+    background-color: #333;
 }
 
 .theme-font {
-  color: #1cbeb6;
+    color: #1cbeb6;
 }
 
 .theme-font1 {
-  color: #333;
+    color: #333;
 }
 
 .theme-font2 {
-  color: #666;
+    color: #666;
 }
 
 .theme-font3 {
-  color: #999;
+    color: #999;
 }
 
 .theme-font4 {
-  color: #fff;
+    color: #fff;
 }
 
 .theme-font5 {
-  color: #eb6877;
+    color: #eb6877;
 }
 
 .theme-font6 {
-  color: #ed6035;
+    color: #ed6035;
 }
 
 .theme-font7 {
-  color: #a18668;
+    color: #a18668;
 }
 
 .theme-font8 {
-  color: #58525c;
+    color: #58525c;
 }
 
 .theme-font-FFFFFF {
-  color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .theme-font-000000 {
-  color: #000000;
+    color: #000000;
 }
 
 .theme-font-666666 {
-  color: #666666;
+    color: #666666;
 }
 
 .theme-font-999999 {
-  color: #999999;
+    color: #999999;
 }
 
 .theme-font-FFAA2C {
-  color: #FFAA2C;
+    color: #FFAA2C;
 }
 
 .theme-font-F9DE59 {
-  color: #F9DE59;
+    color: #F9DE59;
 }
 
 .theme-font-F8C809 {
-  color: #F8C809;
+    color: #F8C809;
 }
 
 .theme-font-F44444 {
-  color: #F44444;
+    color: #F44444;
 }
 
 .theme-font-6297F2 {
-  color: #6297F2;
+    color: #6297F2;
 }
 
 .theme-font-53BD1D {
-  color: #53BD1D;
+    color: #53BD1D;
 }
 
 .theme-window,
@@ -264,31 +264,36 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
 .theme-block-white,
 .theme-button-white,
 .theme-navigation {
-  color: #333333;
-  background-color: #FFFFFF;
+    color: #333333;
+    background-color: #FFFFFF;
 }
 
 
 .theme-panel-dark,
 .theme-button-dark {
-  color: #FFFFFF;
-  background-color: #333333;
+    color: #FFFFFF;
+    background-color: #333333;
 }
 
 .theme-panel-2 {
-  color: #fff;
-  background-color: #edf0f2;
+    color: #fff;
+    background-color: #edf0f2;
 }
 
 .theme-textarea {
-  color: #333;
-  background-color: #edf0f2;
+    color: #333;
+    background-color: #edf0f2;
 }
 
 .link-type-panel {
-  background: #58525c;
+    background: #58525c;
 }
 
 .star-color {
-  color: rgb(248, 200, 9);
+    color: rgb(248, 200, 9);
+}
+
+/* ================== 属性显示处理 ================== */
+.property>.value>.frame.border {
+    border-color: #DEDEDE;
 }
