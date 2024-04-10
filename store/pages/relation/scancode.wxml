@@ -117,13 +117,17 @@
                     <view class="item flex_column_center_flexStart">
                         <view class="row flex_row_center_spaceBetween">
                             <view class="center flex_column_center_center">
-                                <view class="name theme-font1" style="text-align:center;">XXXXXXXXXXXXXXXXXXXXXXXXXX</view>
+                                <view class="name theme-font1" style="text-align:center;" style="width:calc(100% - 40rpx);padding:5rpx 20rpx;">
+                                    <input type="text" class="text full-width" style="width:calc(100% - 16rpx);border:3rpx solid #DEDEDE;padding:3rpx 5rpx;" value="XXXXXXXXXXXXXXXXXXXXXXXXXX" />
+                                </view>
                             </view>
+                            <!--
                             <view class="right flex_column_center_center">
                                 <view class="btn edit flex_column_center_center" bindtap="修改值">
                                     <view class="icon fa fa-pencil-square-o text big9 theme-font-FFAA2C"></view>
                                 </view>
                             </view>
+                            -->
                         </view>
                     </view>
 
@@ -136,9 +140,3 @@
         <button class="btn ok flex_row_center_center theme-button-blue" bindtap="submitInfo">保存并继续</button>
     </view>
 </view>
-
-
-
-
-
-<template is="scanGoodsPage" data='{{scanTitle:"请扫描商品唯一标识（热点码）",goodsList:goodsList,listTitle:listTitle,scanList:scanList,btnOk:"下一步",btnCancel:""}}' />
