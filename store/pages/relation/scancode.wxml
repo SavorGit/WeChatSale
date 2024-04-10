@@ -71,8 +71,8 @@
         </view>
     </scroll-view>
     <view class="foot flex_row_center_spaceAround">
-        <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="cancelRelation">取消关联</view>
-        <button class="btn ok flex_row_center_center theme-button-blue" bindtap="submitInfo">保存并继续</button>
+        <button disabled="{{addDisable}}" class="btn cancel flex_row_center_center theme-button-disable" bindtap="cancelRelation">取消关联</button>
+        <button disabled="{{addDisable}}" class="btn ok flex_row_center_center theme-button-blue" bindtap="submitInfo">保存并继续</button>
     </view>
 </view>
 
@@ -118,7 +118,7 @@
                         <view class="row flex_row_center_spaceBetween">
                             <view class="center flex_column_center_center">
                                 <view class="name theme-font1" style="text-align:center;" style="width:calc(100% - 40rpx);padding:5rpx 20rpx;">
-                                    <input type="text" class="text full-width" style="width:calc(100% - 16rpx);border:3rpx solid #DEDEDE;padding:3rpx 5rpx;" value="XXXXXXXXXXXXXXXXXXXXXXXXXX" />
+                                    <input bindinput="inputWinecode" type="text" class="text full-width" style="width:calc(100% - 16rpx);border:3rpx solid #DEDEDE;padding:3rpx 5rpx;" value="{{scan_code_info.winecode}}" />
                                 </view>
                             </view>
                             <!--
@@ -136,7 +136,7 @@
         </view>
     </scroll-view>
     <view class="foot flex_row_center_spaceAround">
-        <view class="btn cancel flex_row_center_center theme-button-disable" bindtap="cancelRelation">取消关联</view>
-        <button class="btn ok flex_row_center_center theme-button-blue" bindtap="submitInfo">保存并继续</button>
+        <button disabled="{{addDisable}}" class="btn cancel flex_row_center_center theme-button-disable" bindtap="cancelRelation">取消关联</button>
+        <button disabled="{{addDisable}}" class="btn ok flex_row_center_center theme-button-blue" bindtap="submitInfo">保存并继续</button>
     </view>
 </view>

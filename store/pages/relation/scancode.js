@@ -17,7 +17,8 @@ Page({
      */
     data: {
         scan_code_step:0,  //0:扫热点码  11已扫热点码1-1   12已扫热点码2  21已扫热点码2-1 22已扫热点码2-2 
-        scan_code_info:{goods_info:[],winecode:'',img:'',}
+        scan_code_info:{goods_info:[],winecode:'',image:''},
+        addDisable : false
     },
 
     /**
@@ -164,10 +165,17 @@ Page({
           },
         });
     },
+    inputWinecode:function(e){
+        var winecode = e.detail.value.replace(/\s+/g, '');
+        var scan_code_info = this.data.scan_code_info;
+        scan_code_info.winecode = winecode;
+        console.log(scan_code_info)
+        this.setData({scan_code_info:scan_code_info});
+    },
     //取消关联
     cancelRelation:function(){
         this.setData({scan_code_step:0, 
-                      scan_code_info:{goods_info:[],winecode:'',img:''}
+                      scan_code_info:{goods_info:[],winecode:'',image:''}
                     })
     },
     //保存并继续
@@ -175,19 +183,26 @@ Page({
         var that = this;
         var scan_code_step = this.data.scan_code_step;
         var scan_code_info = this.data.scan_code_info;
-        var goods_info = scan_code_info.goods_info[0].goods_id;
+        var goods_info = scan_code_info.goods_info[0];
         var image = '';
         var winecode = '';
         if(scan_code_step==12){
             winecode = scan_code_info.winecode;
+            
         }else if(scan_code_step==22){
             image = scan_code_info.image;
+            winecode = scan_code_info.winecode;
+            if(winecode==''){
+                app.showToast('酒商防伪码不可为空');
+                return false;
+            }
         }
         wx.showModal({
           title: '提示',
           content: '确定要保存吗?',
           complete: (res) => {
             if (res.confirm) {
+                that.setData({addDisable:true})
                 utils.PostRequest(api_v_url + '/winecode/association', {
                     goods_id : goods_info.goods_id,
                     idcode   : goods_info.idcode,
@@ -196,11 +211,17 @@ Page({
                     winecode : winecode
                 }, (data, headers, cookies, errMsg, statusCode) => {
 
+                    app.showToast('保存成功',2000,'success');
 
-
-                    that.setData({scan_code_step:0, 
-                                  scan_code_info:{goods_info:[],winecode:'',img:''}
-                    })
+                    setTimeout(() => {
+                        that.setData({scan_code_step:0, 
+                            scan_code_info:{goods_info:[],winecode:'',image:''},
+                            addDisable:false
+                        })
+                    }, 2000);
+                    
+                },rec=>{
+                    that.setData({addDisable:false})
                 })
             }
           }
