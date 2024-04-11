@@ -61,7 +61,7 @@
                     <view class="item flex_column_center_flexStart">
                         <view class="row flex_row_center_spaceBetween">
                             <view class="center flex_column_center_center">
-                                <view class="name theme-font1" style="text-align:center;">{{scan_code_info.winecode}}</view>
+                                <view class="name theme-font1">{{scan_code_info.winecode}}</view>
                             </view>
                         </view>
                     </view>
@@ -117,8 +117,12 @@
                     <view class="item flex_column_center_flexStart">
                         <view class="row flex_row_center_spaceBetween">
                             <view class="center flex_column_center_center">
-                                <view class="name theme-font1" style="text-align:center;" style="width:calc(100% - 40rpx);padding:5rpx 20rpx;">
-                                    <input bindinput="inputWinecode" type="text" class="text full-width" style="width:calc(100% - 16rpx);border:3rpx solid #DEDEDE;padding:3rpx 5rpx;" value="{{scan_code_info.winecode}}" />
+                                <view class="property name text theme-font1">
+                                    <view class="value full-container">
+                                        <view class="frame border flex_row_center_center">
+                                            <input type="text" class="form text full-container" value="{{scan_code_info.winecode}}" bindinput="inputWinecode" />
+                                        </view>
+                                    </view>
                                 </view>
                             </view>
                             <!--

@@ -858,10 +858,22 @@ button::before {
     width: calc(100% - 160rpx);
 }
 
+.property>.label.full-width,
+.property>.label.full_width,
+.property>.label.full-container,
+.property>.label-group.full-width,
+.property>.label-group.full_width,
+.property>.label-group.full-container,
 .property>.value.full-width,
 .property>.value.full_width,
 .property>.value.full-container {
     width: 100%;
+}
+
+.property>.label.full-container,
+.property>.label-group.full-container,
+.property>.value.full-container {
+    height: 100%;
 }
 
 .property>.value>.frame {

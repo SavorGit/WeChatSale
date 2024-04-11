@@ -150,14 +150,24 @@
                 <view class="item flex_column_center_flexStart">
                     <view class="row flex_row_center_spaceBetween">
                         <view class="left flex_column_center_center theme-font1">{{bean.goods_id}}</view>
-                        <view class="center flex_column_center_center" style='{{app.typeOf(btnTitle)=="string"||app.typeOf(labelShow)=="number"&&labelShow!=0?"width:calc(100% - 300rpx);":"width: calc(100% - 120rpx);"}}'>
-                            <view class="name theme-font1" wx:if="{{app.typeOf(bean.name)=='string'}}">{{bean.name}}</view>
-                            <view class="name theme-font1" wx:else>{{bean.goods_name}}</view>
-                            <view wx:if="{{app.typeOf(bean.idcode) == 'string' && app.trim(bean.idcode) != '' }}" class="name theme-font3" style="font-size:24rpx;">唯一码：{{bean.idcode}}</view>
+                        <view class="center flex_column_center_center" style="{{app.typeOf(btnTitle)=='string'||app.typeOf(labelShow)=='number'&&labelShow!=0?'width:calc(100% - 300rpx);':'width:calc(100% - 120rpx);'}}">
+                            <view class="name">
+                                <view wx:if="{{app.typeOf(bean.name)=='string'&&app.trim(bean.name)!=''}}" class="text theme-font1">{{bean.name}}</view>
+                                <view wx:elif="{{app.typeOf(bean.goods_name)=='string'&&app.trim(bean.goods_name)!=''}}" class="text theme-font1">{{bean.goods_name}}</view>
+                            </view>
+                            <view wx:if="{{app.typeOf(bean.idcode)=='string'&&app.trim(bean.idcode)!=''}}" class="name">
+                                <view class="text small2 theme-font3">唯一码：{{bean.idcode}}</view>
+                            </view>
                             <view class="tag-group flex_row_center_flexStart">
-                                <view class="tag theme-font3">{{bean.cate_name}}</view>
-                                <view class="tag theme-font3">{{bean.sepc_name}}</view>
-                                <view class="tag theme-font3">{{bean.unit_name}}</view>
+                                <view class="tag">
+                                    <view class="text small2 theme-font3">{{bean.cate_name}}</view>
+                                </view>
+                                <view class="tag">
+                                    <view class="text small2 theme-font3">{{bean.sepc_name}}</view>
+                                </view>
+                                <view class="tag">
+                                    <view class="text small2 theme-font3">{{bean.unit_name}}</view>
+                                </view>
                             </view>
                         </view>
                         <block wx:if="{{app.typeOf(is_gray)!='undefined' && is_gray==true}}">
