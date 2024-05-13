@@ -1,9 +1,31 @@
 /* store/pages/goodschargeoff/index.wxss */
+@import "/utils/panel.wxss";
 @import "/store/pages/template/commons.wxss";
 
 /**
  * 核销 首页
  */
+.top-line {
+    border-top: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.panel>.body>.tabel {
+    display: table;
+    width: calc(100% - 40rpx);
+    padding: 10rpx 20rpx;
+}
+
+.panel>.body>.tabel .row {
+    display: table-row;
+    height: 45rpx;
+    line-height: 45rpx;
+}
+
+.panel>.body>.tabel .row>.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .list {
     width: calc(100% - 20rpx);
     padding: 10rpx;
@@ -207,9 +229,9 @@
     padding: 5rpx 0;
 }
 
-.item>.bottom>.block-item.top-line {
+/* .item>.bottom>.block-item.top-line {
     border-top: 3rpx solid rgba(187, 187, 187, 1);
-}
+} */
 
 .item>.bottom.crack-reward {
     height: auto;
@@ -229,8 +251,86 @@
     width: 168rpx;
 }
 
+.panel.search {
+    height: 150rpx;
+}
+
+.panel.search>.pbody>.query-group {
+    width: calc(100% - 120rpx);
+    padding-left: 20rpx;
+}
+
+.panel.search>.pbody>.query-group>.row {
+    padding: 10rpx 0;
+}
+
+.panel.search>.pbody>.query-group>.row>.property,
+.panel.search>.pbody>.query-group>.row>.property.full-width {
+    width: calc(100% - 10rpx);
+    padding: 0 5rpx;
+}
+
+.panel.search>.pbody>.query-group>.row>.property>.label {
+    width: 120rpx;
+    /* height: 50rpx; */
+}
+
+.panel.search>.pbody>.query-group>.row>.property>.value {
+    width: calc(100% - 120rpx);
+}
+
+.panel.search>.pbody>.query-group>.row>.property>.value>.frame {
+    width: calc(100% - 16rpx);
+    height: calc(100% - 12rpx);
+    padding: 3rpx 5rpx;
+    border-radius: 5rpx;
+    border-width: 3rpx;
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+}
+
+.panel.search>.pbody>.query-group>.row>.property>.value>.frame.border {
+    border-color: rgba(187, 187, 187, 1);
+}
+
+.panel.search>.pbody>.query-group>.row>.property.no-label>.value {
+    width: 100%;
+}
+
+.panel.search>.pbody>.query-group>.row>.property.half-width {
+    width: calc(50% - 10rpx);
+}
+
+.panel.search>.pbody>.button-group {
+    width: 80rpx;
+    padding-right: 20rpx;
+}
+
+.panel.search>.pbody>.button-group>.btn {
+    width: 64rpx;
+    height: 64rpx;
+}
+
+.panel.search>.pbody>.button-group>.btn>.icon {
+    width: 52rpx;
+    height: 52rpx;
+}
+
+.panel.statistics {
+    height: 130rpx;
+}
+
+.panel.statistics>.body {
+    width: 100%;
+    padding: 0 0 10rpx;
+}
+
+.panel.statistics>.body>.tabel>.trbody>.row>.cell {
+    width: 33.333%;
+}
+
 .panel.tabs {
-    height: 100%;
+    height: calc(100% - 300rpx);
 }
 
 .panel.tabs>.tab-bar {

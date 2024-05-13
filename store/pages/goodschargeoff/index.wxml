@@ -7,6 +7,126 @@
   -->
 <view class="page check-accept-goods container theme-main">
     <view class="main flex_column_center_flexStart">
+
+        <!-- 查询条件面板 -->
+        <view class="panel search full-width flex_column_center_flexStart theme-panel">
+            <view class="pbody flex_row_center_spaceBetween">
+                <view class="query-group flex_column_center_flexStart">
+                    <view class="row full-width flex_row_center_spaceBetween">
+                        <view class="property half-width flex_row_center_flexStart">
+                            <view class="label flex_row_center_flexStart">
+                                <view class="content">
+                                    <view class="text theme-font3">开始日期</view>
+                                </view>
+                            </view>
+                            <view class="value flex_row_center_flexStart">
+                                <view class="frame full-container">
+                                    <picker class="input full-container" mode="date">
+                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                            <view class="content full-container flex_row_center_flexStart">
+                                                <view class="text theme-font1">2022.07.01</view>
+                                            </view>
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="property half-width flex_row_center_flexStart">
+                            <view class="label flex_row_center_flexStart">
+                                <view class="content">
+                                    <view class="text theme-font3">截止日期</view>
+                                </view>
+                            </view>
+                            <view class="value flex_row_center_flexStart">
+                                <view class="frame full-container">
+                                    <picker class="input full-container" mode="date">
+                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                            <view class="content full-container flex_row_center_flexStart">
+                                                <view class="text theme-font1">2022.07.31</view>
+                                            </view>
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="row full-width flex_row_center_spaceBetween">
+                        <view class="property no-label flex_row_center_flexStart">
+                            <view class="value flex_row_center_flexStart">
+                                <view class="frame border full-container">
+                                    <picker class="input full-container" mode="date">
+                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                            <view class="content full-container flex_row_center_flexStart">
+                                                <view class="text theme-font1">售酒核销状态</view>
+                                            </view>
+                                            <view class="icon">
+                                                <view class="text big5 fa fa-angle-down theme-font2" />
+                                            </view>
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="property no-label flex_row_center_flexStart">
+                            <view class="value flex_row_center_flexStart">
+                                <view class="frame border full-container">
+                                    <picker class="input full-container" mode="date">
+                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                            <view class="content full-container flex_row_center_flexStart">
+                                                <view class="text theme-font1">开瓶奖励状态</view>
+                                            </view>
+                                            <view class="icon">
+                                                <view class="text big5 fa fa-angle-down theme-font2" />
+                                            </view>
+                                        </view>
+                                    </picker>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="button-group flex_column_center_center">
+                    <view class="btn flex_column_center_center" bindtap="修改值">
+                        <view class="icon flex_column_center_center">
+                            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/6297F2_fadajing.png" mode="aspectFill" />
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 统计面板 -->
+        <view class="panel statistics full-width flex_column_center_flexStart theme-panel">
+            <view class="body flex_column_center_flexStart">
+                <view class="tabel flex_column_center_flexStart">
+                    <view class="trbody full-width">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1">售酒核销数量：888</view>
+                            </view>
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1">通过审核数量：888</view>
+                            </view>
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1">售酒获得积分：8808</view>
+                            </view>
+                        </view>
+                        <view class="row full-width">
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1">瓶盖回收数量：88</view>
+                            </view>
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1">瓶盖回收获得积分：8000</view>
+                            </view>
+                            <view class="cell one-line-overflow">
+                                <view class="text small2 theme-font1"> </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
         <view class="panel tabs flex_column_center_flexStart">
             <view class="tab-bar flex_row_center_spaceAround">
                 <view class="tab goods{{tab=='goods'?' selected':''}} theme-font1" bindtap="showTab" data-tab="goods">商品核销</view>
@@ -54,16 +174,16 @@
                             </view>
                             <view class="bottom crack-reward flex_column_center_center">
                                 <block wx:if="{{bean.recycle_status==1}}">
-                                <view class="block-item button-group full-width flex_column_center_center" >
-                                    <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="btn apply-crack-reward flex_row_center_center theme-button-welcome" bindtap="gotoPage" data-type="applyCrackReward" data-keys="{{index}}">
-                                            <view class="text small2">申请开瓶奖励</view>
-                                        </view>
-                                        <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable" bindtap="noCrack" data-keys="{{index}}">
-                                            <view class="text small2">没有开瓶</view>
+                                    <view class="block-item button-group full-width flex_column_center_center">
+                                        <view class="row full-width flex_row_center_spaceBetween">
+                                            <view class="btn apply-crack-reward flex_row_center_center theme-button-welcome" bindtap="gotoPage" data-type="applyCrackReward" data-keys="{{index}}">
+                                                <view class="text small2">申请开瓶奖励</view>
+                                            </view>
+                                            <view class="btn give_up-crack-reward flex_row_center_center theme-button-disable" bindtap="noCrack" data-keys="{{index}}">
+                                                <view class="text small2">没有开瓶</view>
+                                            </view>
                                         </view>
                                     </view>
-                                </view>
                                 </block>
                                 <!-- <view class="block-item integral full-width top-line flex_column_center_center">
                                     <view class="row full-width flex_row_center_spaceBetween">
@@ -80,9 +200,9 @@
                                         </view>
                                     </view>
                                 </view> -->
-                                <block wx:else >
-                                 
-                                  <!-- <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==5}}">
+                                <block wx:else>
+
+                                    <!-- <view class="block-item status full-width top-line flex_column_center_center" wx:if="{{item.status==5}}">
                                       <view class="row full-width flex_row_center_spaceBetween">
                                           <view class="datetime">
                                               <view class="text small2 theme-font3">{{item.rlist[0].recycle_time}}</view>
@@ -144,37 +264,137 @@
                                     </view>
                                     
                                 </view> -->
-                                <view class="block-item status full-width top-line flex_column_center_center" >
-                                    <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="datetime">
-                                            <view class="text small2 theme-font3">{{bean.recycle_list[0].rlist[0].recycle_time}}</view>
+                                    <view class="block-item status full-width top-line flex_column_center_center">
+                                        <view class="row full-width flex_row_center_spaceBetween">
+                                            <view class="datetime">
+                                                <view class="text small2 theme-font3">{{bean.recycle_list[0].rlist[0].recycle_time}}</view>
+                                            </view>
                                         </view>
-                                    </view>
-                                    <block wx:for="{{bean.recycle_list}}" wx:for-item="item" wx:key="kk" wx:for-index="idx">
-                                    <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==5}}">
-                                        <view class="status">
-                                            <view class="text big4 bold theme-font7">{{item.status_str}}</view>
-                                        </view>
-                                    </view>
-                                    <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==2}}">
-                                        <view class="status">
-                                            <view class="text big4 bold theme-font-FFAA2C">{{item.status_str}}</view>
-                                        </view>
-                                    </view>
-                                    <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==6}}">
-                                        <view class="status">
-                                            <view class="text big4 bold theme-font3">{{item.status_str}}</view>
-                                        </view>
-                                    </view>
-                                    <view class="row full-width flex_row_center_flexStart" wx:for="{{item.rlist}}" wx:for-item="items" wx:key="kks" wx:for-index="idxs">
-                                        <view class="remark full-width" style="word-break:break-all;" wx:if="{{items.reason!=''}}">
-                                            <view class="text small2 theme-font3">{{idxs+1}}.{{items.reason}}</view>
-                                        </view>
-                                    </view>
+                                        <block wx:for="{{bean.recycle_list}}" wx:for-item="item" wx:key="kk" wx:for-index="idx">
+                                            <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==5}}">
+                                                <view class="status">
+                                                    <view class="text big4 bold theme-font7">{{item.status_str}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==2}}">
+                                                <view class="status">
+                                                    <view class="text big4 bold theme-font-FFAA2C">{{item.status_str}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="row full-width flex_row_center_spaceBetween" wx:if="{{item.status==6}}">
+                                                <view class="status">
+                                                    <view class="text big4 bold theme-font3">{{item.status_str}}</view>
+                                                </view>
+                                            </view>
+                                            <view class="row full-width flex_row_center_flexStart" wx:for="{{item.rlist}}" wx:for-item="items" wx:key="kks" wx:for-index="idxs">
+                                                <view class="remark full-width" style="word-break:break-all;" wx:if="{{items.reason!=''}}">
+                                                    <view class="text small2 theme-font3">{{idxs+1}}.{{items.reason}}</view>
+                                                </view>
+                                            </view>
 
-                                    </block>
-                                </view>
+                                        </block>
+                                    </view>
                                 </block>
+                            </view>
+                            <view wx:if="{{true}}" class="bottom approval flex_column_center_center" style="height:auto;">
+                                <view wx:if="{{true}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                        <view class="datetime">
+                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text bold theme-font-6297F2">售卖奖励待审核</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">预计收益</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">xxx积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text bold theme-font-6297F2">待申请开瓶奖励</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">瓶盖回收后预计收益</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">xxx积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view wx:elif="{{false}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                        <view class="datetime">
+                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">预计收益</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">xxx积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text bold theme-font-F44444">售卖奖励待审核</view>
+                                        </view>
+                                        <view class="button-group flex_row_center_flexEnd">
+                                            <view class="btn reapply flex_row_center_center theme-button-blue" style="width:264rpx;height:60rpx;border-radius:8rpx;" bindtap="修改值">
+                                                <view class="label">
+                                                    <view class="text">重新提交</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="reason full-width">
+                                            <view class="text theme-font1">原因：BTL电路见图2，利用两片TDA7294桥接组成BTL功放电路，输出功率可达150W 以上，适合歌舞厅等需要大功率的地方，立体声时需要4块TDA7294。当电源电压为土25V时，在8欧姆负载上可获得150W的连续输出功率。当电源电为±35V时，在16欧姆负载上可获得180W的连续输出功率。用TDA7294作BTL功放，负载不得低于8欧姆。</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view wx:elif="{{false}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                        <view class="datetime">
+                                            <view class="text small2 theme-font3">2022/04/10 11:00</view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text bold theme-font-53BD1D">售卖奖励通过审核</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">收益</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">xxx积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                        <view class="status">
+                                            <view class="text bold theme-font-53BD1D">开瓶奖励通过审核</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">收益</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">xxx积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
                             </view>
                         </view>
                     </block>
