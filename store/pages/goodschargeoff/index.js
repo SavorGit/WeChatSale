@@ -21,6 +21,9 @@ Page({
     coupon_list:[],
     tab:'goods',
     popEntityInfoWind:false,
+    search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
+                   recycle_status_name_arr:[]},
+    search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0}
   },
 
   /**
@@ -33,19 +36,77 @@ Page({
     c_page = 1;
     
   },
+  getFilter:function(){
+    var that = this;
+    var search_config = this.data.search_config;
+    var search_data   = this.data.search_data;
+    utils.PostRequest(api_v_url + '/writeoff/filter', {
+      openid:openid,
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      search_config.start_date = data.result.date_range[0];
+      search_config.end_date   = data.result.date_range[1];
+      search_data.start_date   = data.result.date_range[0];
+      search_data.end_date   = data.result.date_range[1];
+
+      var recycle_status = data.result.recycle_status;
+      search_config.recycle_status_list = recycle_status;
+      var recycle_status_name_arr = [];
+      for(let i in recycle_status){
+        recycle_status_name_arr.push(recycle_status[i].name);
+      }
+      var stock_status = data.result.stock_status;
+      search_config.chargeoff_list = stock_status;
+      var chargeoff_name_arr = [];
+      for(let i in stock_status){
+        chargeoff_name_arr.push(stock_status[i].name);
+      }
+
+      search_config.recycle_status_name_arr = recycle_status_name_arr;
+      search_config.chargeoff_name_arr      = chargeoff_name_arr;
+      that.setData({search_config:search_config,search_data:search_data});
+      that.getStatdata();
+      that.getChargeOffList(1);
+    })
+  },
+  getStatdata:function(){
+    var that = this;
+    var search_data = this.data.search_data;
+    var search_config = this.data.search_config;
+    var recycle_status = search_config.recycle_status_list[search_data.recycle_status_index].recycle_status;
+    var wo_status      = search_config.chargeoff_list[search_data.chargeoff_index].status
+
+    utils.PostRequest(api_v_url + '/writeoff/statdata', {
+      sdate          : search_data.start_date,
+      edate          : search_data.end_date,
+      openid         : openid,
+      recycle_status : recycle_status,
+      wo_status      : wo_status
+    }, (data, headers, cookies, errMsg, statusCode) => {
+      var statdata = data.result;
+      that.setData({statdata:statdata})
+    })
+  },
   getChargeOffList:function(page){
     var that = this;
-    utils.PostRequest(api_v_url + '/stock/getWriteoffList', {
-      openid:openid,
-      page:page,
-      version : app.globalData.small_app_version
+    var search_data = this.data.search_data;
+    //console.log(search_data)
+    var search_config = this.data.search_config;
+    var recycle_status = search_config.recycle_status_list[search_data.recycle_status_index].recycle_status;
+    var wo_status      = search_config.chargeoff_list[search_data.chargeoff_index].status
+    //utils.PostRequest(api_v_url + '/stock/getWriteoffList', {
+    utils.PostRequest(api_v_url + '/writeoff/datalist', {
+      sdate          : search_data.start_date,
+      edate          : search_data.end_date,
+      openid         : openid,
+      page           : page,
+      recycle_status : recycle_status,
+      wo_status      : wo_status
     }, (data, headers, cookies, errMsg, statusCode) => {
       if(page ==1){
         var list = [];
       }else {
         var list = that.data.list;
       }
-      
       var ret_list = data.result.datalist;
       var reward_tips  = data.result.reward_tips;
       if(ret_list.length>0){
@@ -57,8 +118,11 @@ Page({
           app.showToast(reward_tips);
         }
       }else {
+        
         if(page>1){
           app.showToast('没有更多了...')
+        }else{
+          that.setData({list:list})
         }
       }
       
@@ -167,7 +231,7 @@ Page({
         url = '/store/pages/goodschargeoff/applyCrackReward?goods_name='+goods_name+'&goods_num='+goods_num+'&batch_no='+batch_no+'&demo_img='+demo_img+'&goods_id='+goods_id;
         break;
     }
-    console.log(url)
+    //console.log(url)
     wx.navigateTo({
       url: url,
     })
@@ -194,6 +258,32 @@ Page({
       urls: urls // 需要预览的图片http链接列表
     })
   },
+  selectParams:function(e){
+    var type = e.currentTarget.dataset.type;
+    var value = e.detail.value;
+    var search_data = this.data.search_data;
+    switch(type){
+      case 'start_date':
+        search_data.start_date = value;
+        break;
+      case 'end_data':
+        search_data.end_date = value;
+        break;
+      case 'chargeoff':
+        search_data.chargeoff_index = value;
+        break;
+      case 'recycle':
+        search_data.recycle_status_index = value;
+        break;
+    }
+    this.setData({search_data:search_data});
+  },
+  clickSearchButton:function(){
+    page = 1;
+    this.getStatdata();
+    this.getChargeOffList(page);
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -205,7 +295,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getChargeOffList(1);
+    this.getFilter();
+    
+    //this.getChargeOffList(1);
     //this.getCouponList(1);
   },
 

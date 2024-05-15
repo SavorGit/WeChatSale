@@ -37,7 +37,7 @@ Page({
     wx.hideShareMenu();
     openid = app.globalData.openid;
     if(typeof(options.code_msg)!='undefined'){
-      this.goodsDecode(options.code_msg);
+      this.goodsDecode(options.code_msg,1);
     }
     if(typeof(options.is_supplement)!='undefined'){
       var is_supplement = options.is_supplement;
@@ -91,7 +91,7 @@ Page({
       }
     })
   },
-  goodsDecode:function(code_msg){
+  goodsDecode:function(code_msg,is_have=0){
     var that = this;
     var scanList = this.data.scanList;
     
@@ -114,7 +114,7 @@ Page({
         var listTitle = '已扫商品码('+scanList.length+')';
         that.setData({scanList:scanList,goods_id:goods_info.goods_id,listTitle:listTitle});
         if(goods_id==0){
-          that.getWriteoffReasonByGoods(goods_info.goods_id);
+          that.getWriteoffReasonByGoods(goods_info,is_have);
         }
       }else {
         app.showToast('请勿重复扫码');
@@ -124,18 +124,31 @@ Page({
       
     })
   },
-  getWriteoffReasonByGoods:function(goods_id){
+  getWriteoffReasonByGoods:function(goods_info,is_have=0){
     var that = this;
     utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
-      goods_id:goods_id
+      goods_id:goods_info.goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var reasons = data.result.reasons;
       var datas   = data.result.datas;
       for(let i in reasons){
-        reasons[i].checked = false;
+        if(is_have==0){
+          reasons[i].checked = false;
+        }else if(is_have==1 && goods_info.wo_reason_type == reasons[i].id){
+          reasons[i].checked = true;
+        }
+        
       }
       var entity = data.result.entity;
       //that.setData({reasons:reasons,datas:datas})
+      if(is_have==1){
+        var datas = []
+        for(let i in goods_info.wo_imgs){
+          datas[i] = {img_url:goods_info.wo_imgs[i].img_path};
+        }
+        that.setData({datas:datas});
+        
+      }
       that.setData({reasons:reasons,entity:entity})
     })
   },
