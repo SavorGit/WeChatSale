@@ -172,16 +172,16 @@
                                     <view class="btn write-off flex_row_center_center theme-button-dark">前往核销</view>
                                 </view> -->
                             </view>
-                            
-                            <view  class="bottom approval flex_column_center_center" style="height:auto;">
+
+                            <view class="bottom approval flex_column_center_center" style="height:auto;">
                                 <view wx:if="{{bean.status==1}}" class="block-item button-group full-width flex_column_center_center">
-                                    
+
                                     <!-- <view class="row full-width top-line flex_row_center_spaceBetween">
                                         <view class="datetime">
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
                                         </view>
                                     </view> -->
-                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}"  wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
+                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}" wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
                                         <view class="status">
                                             <view class="text bold theme-font-6297F2">{{item.status_str}}</view>
                                         </view>
@@ -194,7 +194,7 @@
                                             </view>
                                         </view>
                                     </view>
-                                   
+
                                 </view>
                                 <view wx:elif="{{bean.status==3}}" class="block-item button-group full-width flex_column_center_center">
                                     <view class="row full-width top-line flex_row_center_spaceBetween">
@@ -212,8 +212,8 @@
                                     </view>
 
                                     <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="status" wx:if="{{bean.wo_reason_type==1}}" style="min-height:1rpx;">
-                                            <view class="text bold theme-font-F44444">{{bean.status_str}}</view>
+                                        <view class="status" style="min-height:1rpx;">
+                                            <view wx:if="{{bean.wo_reason_type==1}}" class="text bold theme-font-F44444">{{bean.status_str}}</view>
                                         </view>
                                         <view class="button-group flex_row_center_flexEnd" wx:if="{{bean.integreal_list[0].is_wobutton==1}}">
                                             <view class="btn reapply flex_row_center_center theme-button-blue" style="width:264rpx;height:60rpx;border-radius:8rpx;" bindtap="gotoPage" data-type="addinfo" data-keys="{{index}}">
@@ -235,7 +235,7 @@
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
                                         </view>
                                     </view> -->
-                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}"  wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
+                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}" wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
                                         <view class="status">
                                             <view class="text bold theme-font-53BD1D">{{item.status_str}}</view>
                                         </view>
@@ -248,7 +248,7 @@
                                             </view>
                                         </view>
                                     </view>
-                                    
+
                                 </view>
                             </view>
                         </view>
