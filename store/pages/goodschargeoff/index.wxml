@@ -212,7 +212,7 @@
                                     </view>
 
                                     <view class="row full-width flex_row_center_spaceBetween">
-                                        <view class="status" wx:if="{{bean.wo_reason_type==1}}">
+                                        <view class="status" wx:if="{{bean.wo_reason_type==1}}" style="min-height:1rpx;">
                                             <view class="text bold theme-font-F44444">{{bean.status_str}}</view>
                                         </view>
                                         <view class="button-group flex_row_center_flexEnd" wx:if="{{bean.integreal_list[0].is_wobutton==1}}">
