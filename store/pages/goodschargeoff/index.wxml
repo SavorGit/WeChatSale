@@ -225,7 +225,7 @@
                                     </view>
                                     <view class="row full-width flex_row_center_spaceBetween">
                                         <view class="reason full-width">
-                                            <view class="text theme-font1">{{bean.reason}}</view>
+                                            <view class="text theme-font1">{{bean.integreal_list[0].reason}}</view>
                                         </view>
                                     </view>
                                 </view>
