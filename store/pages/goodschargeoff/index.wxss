@@ -54,8 +54,24 @@
     width: 100%;
 }
 
-.item>.top>.status,
-.item>.top>.title {
+.item>.top>.row {
+    padding: 10rpx;
+}
+
+.item>.top>.row>.user>.head {
+    width: 58rpx;
+    height: 58rpx;
+    border-width: 3rpx;
+    border-style: solid;
+    border-color: rgb(187, 187, 187);
+}
+
+.item>.top>.row>.user>.nickname {
+    width: calc(100% - 80rpx);
+}
+
+.item>.top>.row>.status,
+.item>.top>.row>.title {
     font-size: 36rpx;
     font-weight: bold;
 }

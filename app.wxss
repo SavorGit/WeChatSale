@@ -889,6 +889,14 @@ button::before {
     border-style: solid;
 }
 
+.circular {
+    border-radius: 50%
+}
+
+.link_text {
+    text-decoration: underline
+}
+
 /* ================== 表格布局结束 ================== */
 
 /* 导入模板样式 */

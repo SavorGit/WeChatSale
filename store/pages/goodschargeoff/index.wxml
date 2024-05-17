@@ -138,12 +138,24 @@
                     <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
                         <view class="item flex_column_center_flexStart">
                             <view class="top">
-                                <!-- <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
+                                <view wx:if="{{userinfo.role_type==1}}" class="row full-width flex_row_center_flexStart">
+                                    <view class="user full-width flex_row_center_spaceBetween">
+                                        <view class="head circular flex_column_center_center">
+                                            <image class="full-container circular" src="{{app.typeOf(bean.avatarUrl)=='string'&&app.trim(bean.avatarUrl)!=''?bean.avatarUrl:'https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/user_head_default.png'}}" mode="aspectFill" />
+                                        </view>
+                                        <view class="nickname flex_column_flexStart_center">
+                                            <view class="text bold theme-font1">{{app.typeOf(bean.nickName)=='string'&&app.trim(bean.nickName)!=''?bean.nickName:' '}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="row full-width flex_row_center_center">
+                                    <!-- <view class="status flex_row_center_flexEnd theme-font-53BD1D" wx:if="{{bean.status==2}}">{{bean.status_str}}</view>
                                 <view class="status flex_row_center_flexEnd theme-font-6297F2" wx:if="{{bean.status==1 ||bean.status==4}}">{{bean.status_str}}</view>
                                 <view class="status flex_row_center_flexEnd theme-font5" wx:if="{{bean.status==3}}">{{bean.status_str}}</view> -->
 
-                                <view class="title flex_row_center_center theme-font1" wx:if="{{bean.reason!=''}}">核销({{bean.reason}})</view>
-                                <view class="title flex_row_center_center theme-font1" wx:else>核销</view>
+                                    <view class="title flex_row_center_center theme-font1" wx:if="{{bean.reason!=''}}">核销({{bean.reason}})</view>
+                                    <view class="title flex_row_center_center theme-font1" wx:else>核销</view>
+                                </view>
                             </view>
                             <view class="middle">
                                 <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
