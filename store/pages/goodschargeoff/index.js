@@ -34,7 +34,7 @@ Page({
     openid = app.globalData.openid;
     page   = 1;
     c_page = 1;
-    
+    this.setData({userinfo:app.globalData.userinfo})
   },
   getFilter:function(){
     var that = this;

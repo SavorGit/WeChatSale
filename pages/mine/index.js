@@ -311,6 +311,7 @@ Page({
         var user_info = data.result.userinfo;
       }*/
       var user_info = data.result.userinfo;
+      app.globalData.userinfo = user_info;
 
       var cache_user_info = wx.getStorageSync(cache_key+'userinfo');
       if(cache_user_info!='' && typeof(cache_user_info.select_hotel_id)!='undefined' && cache_user_info.select_hotel_id>0){

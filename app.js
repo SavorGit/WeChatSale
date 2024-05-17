@@ -372,6 +372,7 @@ App({
   },
   globalData: {
     uma,
+    userinfo:null,
     openid: '',
     session_key: '',
     box_mac: '',
