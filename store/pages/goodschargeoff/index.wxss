@@ -55,7 +55,7 @@
 }
 
 .item>.top>.row {
-    padding: 10rpx;
+    padding: 10rpx 0;
 }
 
 .item>.top>.row>.user>.head {
