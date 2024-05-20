@@ -118,6 +118,7 @@
       "pages/goodschargeoff/index",
       "pages/goodschargeoff/addinfo",
       "pages/goodschargeoff/applyCrackReward",
+      "pages/goodschargeoff/confirm",
       "pages/goodsbreakage/havecode/scancode",
       "pages/goodsbreakage/nocode/index",
       "pages/goodsbreakage/nocode/goodslist",
