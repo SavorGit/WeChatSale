@@ -344,8 +344,8 @@ Page({
     }
     var location_info = this.data.location_info;
 
-    //utils.PostRequest(api_v_url + '/stock/finishWriteoff', {
-    utils.PostRequest(api_v_url + '/stock/finishWriteoff17', {
+    utils.PostRequest(api_v_url + '/stock/finishWriteoff', {
+    //utils.PostRequest(api_v_url + '/stock/finishWriteoff17', {
       openid: openid,
       data_imgs:data_imgs,
       goods_codes:goods_codes,
