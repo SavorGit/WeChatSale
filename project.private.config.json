@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "[2024-05-21] 确认核销记录",
+          "pathName": "store/pages/goodschargeoff/confirm",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "[2023-12-26] 开瓶奖励",
           "pathName": "store/pages/goodschargeoff/applyCrackReward",
           "query": "",
