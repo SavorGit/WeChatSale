@@ -1,6 +1,6 @@
 /* pages/mine/integral/freeze.wxss */
 /* @import "/store/pages/template/commons.wxss"; */
-@import "/window.wxss";
+@import "/utils/window.wxss";
 
 /**
  * 冻结明细页面

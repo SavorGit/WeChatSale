@@ -1,6 +1,6 @@
 /* crm/pages/expense/perfect.wxss */
 @import "/utils/panel.wxss";
-@import "/window.wxss";
+@import "/utils/window.wxss";
 
 /**
  * 完善消费记录页

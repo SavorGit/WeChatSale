@@ -1,0 +1,28 @@
+.tabel {
+    display: table;
+}
+
+.tabel-caption {
+    display: table-caption;
+}
+
+.thead {
+    display: table-header-group;
+}
+
+.trbody {
+    display: table-row-group;
+}
+
+.tr {
+    display: table-row;
+}
+
+.th,
+.td {
+    display: table-cell;
+}
+
+.th {
+    font-weight: bold;
+}

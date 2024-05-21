@@ -1,62 +1,24 @@
 /* pages/user/sellindex.wxss */
 @import '/pages/task/index.wxss';
-@import "/window.wxss";
+@import "/utils/window.wxss";
+@import "/utils/tabel.wxss";
+@import "/utils/panel.wxss";
 
 /**
  * 注册用户首页 [品鉴酒]
  */
 .font-bold {
-  font-weight: bold;
-}
-
-.text {
-  font-size: 28rpx;
-}
-
-.text.big4 {
-  font-size: 36rpx;
-}
-
-.text.big3 {
-  font-size: 34rpx;
-}
-
-.text.big2 {
-  font-size: 32rpx;
-}
-
-.text.big1 {
-  font-size: 30rpx;
-}
-
-.text.small1 {
-  font-size: 26rpx;
-}
-
-.text.small2 {
-  font-size: 24rpx;
-}
-
-.text.small3 {
-  font-size: 22rpx;
-}
-
-.text.small4 {
-  font-size: 20rpx;
-}
-
-.text.bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 image {
-  width: 60rpx;
-  height: 60rpx;
+    width: 60rpx;
+    height: 60rpx;
 }
 
 .wrapper {
-  width: 100%;
-  min-height: 100%;
+    width: 100%;
+    min-height: 100%;
 }
 
 /* .btn {
@@ -67,78 +29,78 @@ image {
   border-radius: 8rpx;
 } */
 .panel {
-  width: 100%;
+    width: 100%;
 }
 
 .panel>.title-bar {
-  width: calc(100% - 40rpx);
-  height: 40rpx;
-  padding: 15rpx 20rpx;
+    width: calc(100% - 40rpx);
+    height: 40rpx;
+    padding: 15rpx 20rpx;
 }
 
 .panel>.title-bar>.title {
-  font-size: 28rpx;
-  font-weight: 500;
+    font-size: 28rpx;
+    font-weight: 500;
 }
 
 .panel>.body {
-  width: 100%;
+    width: 100%;
 }
 
 .panel>.body>.list {
-  width: 100%;
-  padding-bottom: 10rpx;
+    width: 100%;
+    padding-bottom: 10rpx;
 }
 
 .panel>.body>.list>.item {
-  width: 100%;
-  padding: 10rpx 0;
+    width: 100%;
+    padding: 10rpx 0;
 }
 
 .panel>.body>.list>.item:first-child {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .panel>.body>.list>.item>.task {
-  background-color: rgb(251, 244, 242);
+    background-color: rgb(251, 244, 242);
 }
 
 .panel>.body>.list>.item>.task>.left {
-  width: 200rpx;
-  height: 100%;
+    width: 200rpx;
+    height: 100%;
 }
 
 .panel>.body>.list>.item>.task>.left>.pic {
-  width: 197rpx;
-  height: 197rpx;
-  border: 3rpx dotted rgb(187, 187, 187);
-  border-radius: 20rpx;
+    width: 197rpx;
+    height: 197rpx;
+    border: 3rpx dotted rgb(187, 187, 187);
+    border-radius: 20rpx;
 }
 
 .panel>.body>.list>.item>.task>.left>.btn {
-  width: 200rpx;
-  height: 60rpx;
-  border-radius: 8rpx;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    width: 200rpx;
+    height: 60rpx;
+    border-radius: 8rpx;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .panel>.body>.list>.item>.task>.left>.btn .icon {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 0;
-  margin: 0;
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 0;
+    margin: 0;
 }
 
 .panel>.body>.list>.item>.task>.left>.btn .text {
-  padding-left: 10rpx;
-  font-size: 28rpx;
+    padding-left: 10rpx;
+    font-size: 28rpx;
 }
 
 .panel>.body>.list>.item>.task>.right {
-  width: calc(100% - 220rpx);
-  height: 100%;
+    width: calc(100% - 220rpx);
+    height: 100%;
 }
 
 .panel>.body>.list>.item.sale>.task,
@@ -146,85 +108,85 @@ image {
 .panel>.body>.list>.item.invitation>.task,
 .panel>.body>.list>.item.poster>.task,
 .panel>.body>.list>.item.lottery>.task {
-  width: calc(100% - 70rpx);
-  height: 300rpx;
-  padding: 15rpx;
-  border-radius: 20rpx;
+    width: calc(100% - 70rpx);
+    height: 300rpx;
+    padding: 15rpx;
+    border-radius: 20rpx;
 }
 
 .window {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .window>.title-bar {
-  width: calc(100% - 50rpx);
-  height: 50rpx;
-  padding: 10rpx 25rpx;
+    width: calc(100% - 50rpx);
+    height: 50rpx;
+    padding: 10rpx 25rpx;
 }
 
 .window>.title-bar>.title {
-  font-size: 32rpx;
+    font-size: 32rpx;
 }
 
 .window>.option-bar {
-  width: calc(100% - 40rpx);
-  height: 30rpx;
-  padding: 20rpx;
-  margin-top: -70rpx;
+    width: calc(100% - 40rpx);
+    height: 30rpx;
+    padding: 20rpx;
+    margin-top: -70rpx;
 }
 
 .window>.option-bar>.btn {
-  width: 30rpx;
-  height: 30rpx;
+    width: 30rpx;
+    height: 30rpx;
 }
 
 .window>.option-bar>.btn>.icon {
-  width: unset;
-  height: unset;
-  font-size: 32rpx;
-  margin: 0;
+    width: unset;
+    height: unset;
+    font-size: 32rpx;
+    margin: 0;
 }
 
 .window>.body {
-  width: 100%;
-  height: calc(100% - 70rpx);
+    width: 100%;
+    height: calc(100% - 70rpx);
 }
 
 .window>.body .wrapper {
-  width: calc(100% - 40rpx);
-  padding: 20rpx;
+    width: calc(100% - 40rpx);
+    padding: 20rpx;
 }
 
 .panel.broadcast {
-  height: 60rpx;
+    height: 60rpx;
 }
 
 .panel.broadcast>.icon {
-  width: 40rpx;
-  height: 30rpx;
-  margin: 0 35rpx;
+    width: 40rpx;
+    height: 30rpx;
+    margin: 0 35rpx;
 }
 
 .panel.broadcast>.broadcast-list {
-  width: calc(100% - 30rpx);
-  padding: 0 15rpx;
-  height: 36rpx;
+    width: calc(100% - 30rpx);
+    padding: 0 15rpx;
+    height: 36rpx;
 }
 
 .panel.broadcast>.broadcast-list swiper-item {
-  width: 100%;
-  font-size: 24rpx;
+    width: 100%;
+    font-size: 24rpx;
 }
 
 .panel.broadcast>.broadcast-list swiper-item>.user-head {
-  width: 36rpx;
-  height: 36rpx;
-  border-radius: 50%;
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 50%;
 }
 
 .panel.broadcast>.broadcast-list swiper-item>.tip {
-  width: calc(100% - 46rpx);
+    width: calc(100% - 46rpx);
 }
 
 
@@ -236,7 +198,7 @@ image {
 .panel.progress>.body>.list>.item.invitation>.task,
 .panel.progress>.body>.list>.item>.task.lottery,
 .panel.invalid>.body>.list>.item>.task.lottery {
-  height: 200rpx;
+    height: 200rpx;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.name,
@@ -247,114 +209,286 @@ image {
 .panel.invalid>.body>.list>.item>.task>.right>.tips>.tip,
 .panel.invalid>.body>.list>.item>.task>.right>.price,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.left>.price {
-  width: 100%;
-  font-size: 28rpx;
-  font-weight: 400;
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: 400;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.price>.icon,
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.price>.icon,
 .panel.invalid>.body>.list>.item>.task>.right>.price>.icon,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.left>.price>.icon {
-  width: unset;
-  height: unset;
-  margin: 0;
+    width: unset;
+    height: unset;
+    margin: 0;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.price>.text,
 .panel.invalid>.body>.list>.item>.task>.right>.price>.text {
-  padding-left: 6rpx;
+    padding-left: 6rpx;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn,
 .panel.invalid>.body>.list>.item>.task>.right>.btn {
-  width: calc(100% - 20rpx);
-  padding: 10rpx;
-  border-radius: 8rpx;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
+    width: calc(100% - 20rpx);
+    padding: 10rpx;
+    border-radius: 8rpx;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 6px 0px;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.reward {
-  width: 158rpx;
-  border-right: 2rpx solid rgb(251, 244, 242);
+    width: 158rpx;
+    border-right: 2rpx solid rgb(251, 244, 242);
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward>.icon,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.reward>.icon {
-  width: 2em;
-  height: 2em;
-  font-size: 24rpx;
-  z-index: 0;
+    width: 2em;
+    height: 2em;
+    font-size: 24rpx;
+    z-index: 0;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward>.icon>.fa-usd,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.reward>.icon>.fa-usd {
-  color: #F44444;
+    color: #F44444;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.reward>.text,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.reward>.text {
-  font-size: 24rpx;
+    font-size: 24rpx;
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.tips,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.tips {
-  width: calc(100% - 160rpx);
+    width: calc(100% - 160rpx);
 }
 
 .panel.progress>.body>.list>.item>.task>.right>.btn>.tips>.tip,
 .panel.invalid>.body>.list>.item>.task>.right>.btn>.tips>.tip {
-  font-size: 28rpx;
-  font-weight: 400;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.panel.sale-wine.current-month>.pbody,
+.panel.sale-wine.activity-incentives>.pbody {
+    padding-bottom: 20rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table,
+.panel.sale-wine.activity-incentives>.pbody>.table,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table {
+    width: 710rpx;
+    margin: 0 20rpx;
+    padding: 20rpx 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption,
+.panel.sale-wine.activity-incentives>.pbody>.table>.tabel-caption,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption {
+    width: 710rpx;
+    padding: 10rpx 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .title,
+.panel.sale-wine.activity-incentives>.pbody>.table>.tabel-caption .title,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .title {
+    width: calc(100% - 170rpx);
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr,
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr {
+    padding: 5rpx 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group {
+    width: calc(100% - 40rpx);
+    padding: 0 20rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group>.tip.tip-color,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group>.tip.tip-color {
+    width: calc(100% - 26rpx);
+    padding: 5rpx 10rpx;
+    border-width: 3rpx;
+    border-style: solid;
+    border-color: rgb(253, 128, 36);
+    color: rgb(253, 128, 36);
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group>.tip.frame,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group>.tip.frame {
+    border-radius: 10rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group {
+    width: 170rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group>.btn,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group>.btn.check,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group>.btn.confirm {
+    width: 160rpx;
+    height: 60rpx;
+    border-radius: 8rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 180rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 180rpx);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 200rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 200rpx);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody {
+    padding: 20rpx 0;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table {
+    width: 670rpx;
+    padding: 15rpx 20rpx;
+    border-radius: 20rpx;
+    background-color: rgba(253, 128, 36, 0.29);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption {
+    width: 670rpx;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr {
+    border-top-width: 3rpx;
+    border-top-style: solid;
+    border-top-color: rgba(187, 187, 187, 1);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr:first-child {
+    border-top-color: rgba(187, 187, 187, 0);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 200rpx;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 200rpx);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress {
+    width: calc(100% - 40rpx);
+    margin: 0rpx 20rpx;
+    border-top: 3rpx solid rgba(187, 187, 187, 1);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree {
+    height: 80rpx;
+    padding-top: 10rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar {
+    height: 70rpx;
+    padding-top: 10rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background {
+    height: 20rpx;
+    background-color: rgba(153, 153, 153, 0.18);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background>.activity {
+    width: calc(100% - 10rpx);
+    padding: 0 5rpx;
+    background-color: #FFAA2C;
+    color: #FFFFFF;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar {
+    height: 80rpx;
+    padding-top: 0rpx;
+    margin-top: -80rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion {
+    width: 40rpx;
+    height: 40rpx;
+    border-radius: 50%;
+    background-color: #FFAA2C;
+    color: #FFFFFF;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder {
+    width: 180rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.reward {
+    padding: 5rpx 0;
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.left>.patch {
-  width: 178rpx;
-  height: 52rpx;
-  border-radius: 0 10rpx 10rpx 0;
-  font-size: 28rpx;
-  margin-top: -215rpx;
-  margin-left: -15rpx;
+    width: 178rpx;
+    height: 52rpx;
+    border-radius: 0 10rpx 10rpx 0;
+    font-size: 28rpx;
+    margin-top: -215rpx;
+    margin-left: -15rpx;
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.right>.price>.btn {
-  padding-left: 10rpx;
-  font-size: 32rpx;
+    padding-left: 10rpx;
+    font-size: 32rpx;
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.right>.btn>.tips>.icon {
-  width: unset;
-  height: unset;
-  font-size: 40rpx;
-  border-radius: 0;
-  margin: 0;
+    width: unset;
+    height: unset;
+    font-size: 40rpx;
+    border-radius: 0;
+    margin: 0;
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.right>.btn>.tips>.tip {
-  padding-left: 20rpx;
+    padding-left: 20rpx;
 }
 
 .panel.available,
-.panel.invalid {
-  margin-top: 20rpx;
+.panel.invalid,
+.panel.sale-wine.activity-incentives {
+    margin-top: 20rpx;
 }
 
 .panel.progress>.body>.list>.item.poster>.task,
 .panel.available>.body>.list>.item.sale>.task,
 .panel.invalid>.body>.list>.item.lottery>.task {
-  height: 220rpx;
+    height: 220rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top,
 .panel.invalid>.body>.list>.item>.task>.right>.top {
-  width: 100%;
+    width: 100%;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top>.left,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.left {
-  width: calc(100% - 130rpx);
-  min-height: 100rpx;
+    width: calc(100% - 130rpx);
+    min-height: 100rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.name,
@@ -362,36 +496,36 @@ image {
 .panel.available>.body>.list>.item>.task>.right>.top>.left>.tip,
 .panel.invalid>.body>.list>.item>.task>.right>.name,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.left>.tip {
-  width: 100%;
-  font-size: 28rpx;
-  font-weight: 400;
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: 400;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top>.right,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.right {
-  width: 130rpx;
+    width: 130rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.top>.right>.btn,
 .panel.invalid>.body>.list>.item>.task>.right>.top>.right>.btn {
-  width: 126rpx;
-  height: 126rpx;
-  font-size: 28rpx;
-  border-radius: 50%;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    width: 126rpx;
+    height: 126rpx;
+    font-size: 28rpx;
+    border-radius: 50%;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.bottom {
-  width: 100%;
-  height: 50rpx;
+    width: 100%;
+    height: 50rpx;
 }
 
 .panel.available>.body>.list>.item>.task>.right>.bottom>.progress {
-  width: 100%;
-  font-size: 24rpx;
-  color: rgba(242, 159, 146, 1);
+    width: 100%;
+    font-size: 24rpx;
+    color: rgba(242, 159, 146, 1);
 }
 
 .panel.available>.body>.list>.item.user-add>.task,
@@ -400,157 +534,157 @@ image {
 .panel.invalid>.body>.list>.item.invitation>.task,
 .panel.available>.body>.list>.item.poster>.task,
 .panel.invalid>.body>.list>.item.poster>.task {
-  height: 200rpx;
+    height: 200rpx;
 }
 
 .panel.available>.body>.list>.item.poster>.task>.left>.patch,
 .panel.invalid>.body>.list>.item.poster>.task>.left>.patch {
-  width: 178rpx;
-  height: 52rpx;
-  border-radius: 0 10rpx 10rpx 0;
-  font-size: 28rpx;
-  margin-top: -215rpx;
-  margin-left: -15rpx;
+    width: 178rpx;
+    height: 52rpx;
+    border-radius: 0 10rpx 10rpx 0;
+    font-size: 28rpx;
+    margin-top: -215rpx;
+    margin-left: -15rpx;
 }
 
 .panel.invalid>.body>.list>.item>.cover {
-  width: 100%;
-  height: 330rpx;
-  margin-top: -330rpx;
-  background-color: rgba(0, 0, 0, 0.26);
-  z-index: 1;
+    width: 100%;
+    height: 330rpx;
+    margin-top: -330rpx;
+    background-color: rgba(0, 0, 0, 0.26);
+    z-index: 1;
 }
 
 .panel.invalid>.body>.list>.item>.cover>.top,
 .panel.invalid>.body>.list>.item>.cover>.bottom {
-  width: calc(100% - 40rpx);
-  height: 50rpx;
-  padding: 20rpx;
+    width: calc(100% - 40rpx);
+    height: 50rpx;
+    padding: 20rpx;
 }
 
 .panel.invalid>.body>.list>.item>.cover>.top>.btn {
-  font-size: 48rpx;
-  padding: 0;
-  border: 0;
-  margin: 0;
+    font-size: 48rpx;
+    padding: 0;
+    border: 0;
+    margin: 0;
 }
 
 .panel.invalid>.body>.list>.item>.cover>.middle {
-  width: calc(100% - 40rpx);
-  height: calc(100% - 180rpx);
-  padding: 20rpx;
-  font-size: 36rpx;
-  font-weight: 500;
+    width: calc(100% - 40rpx);
+    height: calc(100% - 180rpx);
+    padding: 20rpx;
+    font-size: 36rpx;
+    font-weight: 500;
 }
 
 .panel.invalid>.body>.list>.item.lottery>.cover {
-  height: 245rpx;
-  margin-top: -245rpx;
+    height: 245rpx;
+    margin-top: -245rpx;
 }
 
 .panel.invalid>.body>.list>.item.user-add>.cover,
 .panel.invalid>.body>.list>.item.invitation>.cover,
 .panel.invalid>.body>.list>.item.poster>.cover,
 .panel.invalid>.body>.list>.item>.task.lottery+.cover {
-  height: 230rpx;
-  margin-top: -230rpx;
+    height: 230rpx;
+    margin-top: -230rpx;
 }
 
 .window.sale-detail,
 .window.lottery-detail,
 .window.judge {
-  border-radius: 10rpx;
+    border-radius: 10rpx;
 }
 
 .window.sale-detail>.body .wrapper>.goods,
 .window.lottery-detail>.body>.goods {
-  width: 100%;
-  height: 310rpx;
-  padding: 5rpx 0;
+    width: 100%;
+    height: 310rpx;
+    padding: 5rpx 0;
 }
 
 .window.sale-detail>.body .wrapper>.goods>.pic,
 .window.lottery-detail>.body>.goods>.pic {
-  width: 180rpx;
-  height: 180rpx;
-  border-radius: 50%;
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 50%;
 }
 
 .window.sale-detail>.body .wrapper>.goods>.name,
 .window.lottery-detail>.body>.goods>.name {
-  width: 100%;
-  text-align: center;
-  font-size: 36rpx;
-  font-weight: 400;
+    width: 100%;
+    text-align: center;
+    font-size: 36rpx;
+    font-weight: 400;
 }
 
 .window.sale-detail>.body .wrapper>.goods>.progress {
-  width: 80%;
+    width: 80%;
 }
 
 .window.sale-detail>.body .wrapper>.goods>.tip {
-  width: 100%;
-  text-align: center;
-  font-size: 24rpx;
-  font-weight: 400;
+    width: 100%;
+    text-align: center;
+    font-size: 24rpx;
+    font-weight: 400;
 }
 
 .window.sale-detail>.body .wrapper>.desc {
-  padding: 10rpx 0;
+    padding: 10rpx 0;
 }
 
 .window.sale-detail>.body .wrapper>.btn-group,
 .window.lottery-detail>.body>.btn-group {
-  width: 100%;
-  padding: 10rpx 0;
+    width: 100%;
+    padding: 10rpx 0;
 }
 
 .window.sale-detail>.body .wrapper>.btn-group>.btn,
 .window.lottery-detail>.body>.btn-group>.btn {
-  width: 604rpx;
-  height: 106rpx;
-  font-size: 28rpx;
-  border-radius: 20rpx;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    width: 604rpx;
+    height: 106rpx;
+    font-size: 28rpx;
+    border-radius: 20rpx;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .window.lottery-detail>.body>.goods {
-  height: 230rpx;
+    height: 230rpx;
 }
 
 .window.lottery-detail>.body>.tab-group {
-  width: 100%;
-  height: calc(100% - 366rpx);
+    width: 100%;
+    height: calc(100% - 366rpx);
 }
 
 .window.lottery-detail>.body>.tab-group>.tab-bar {
-  width: 100%;
-  height: 70rpx;
+    width: 100%;
+    height: 70rpx;
 }
 
 .window.lottery-detail>.body>.tab-group>.tab-bar>.tab {
-  width: 326rpx;
-  height: 64rpx;
-  font-size: 28rpx;
-  border-width: 2rpx;
-  border-style: solid;
-  border-color: rgb(187, 187, 187);
+    width: 326rpx;
+    height: 64rpx;
+    font-size: 28rpx;
+    border-width: 2rpx;
+    border-style: solid;
+    border-color: rgb(187, 187, 187);
 }
 
 .window.lottery-detail>.body>.tab-group>.tab-bar>.tab.rule {
-  border-right-width: 0;
+    border-right-width: 0;
 }
 
 .window.lottery-detail>.body>.tab-group>.tab-bar>.tab.prize {
-  border-left-width: 0;
+    border-left-width: 0;
 }
 
 .window.lottery-detail>.body>.tab-group>.tab-body {
-  width: calc(100% - 40rpx);
-  height: calc(100% - 90rpx);
-  padding: 10rpx 20rpx;
+    width: calc(100% - 40rpx);
+    height: calc(100% - 90rpx);
+    padding: 10rpx 20rpx;
 }
 
 
@@ -558,363 +692,363 @@ image {
 .window.judge>.option-bar>.btn,
 .window.lottery>.option-bar,
 .window.lottery>.option-bar>.btn {
-  z-index: 2;
+    z-index: 2;
 }
 
 .window.judge>.body,
 .window.lottery>.body {
-  margin-top: -66rpx;
+    margin-top: -66rpx;
 }
 
 .window.judge>.body .wrapper,
 .window.lottery>.body .wrapper {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  border: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .window.judge>.body .wrapper>.top,
 .window.lottery>.body .wrapper>.top {
-  width: 100%;
-  height: 396rpx;
+    width: 100%;
+    height: 396rpx;
 }
 
 .window.judge>.body .wrapper>.top>.pic,
 .window.lottery>.body .wrapper>.top>.pic {
-  width: 100%;
-  height: 100%;
-  border-radius: 10rpx 10rpx 0 0;
-  z-index: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx 10rpx 0 0;
+    z-index: 0;
 }
 
 .window.judge>.body .wrapper>.bottom,
 .window.lottery>.body .wrapper>.bottom {
-  width: 100%;
-  padding-top: 40rpx;
+    width: 100%;
+    padding-top: 40rpx;
 }
 
 .window.judge>.body .wrapper>.bottom>.row,
 .window.lottery>.body .wrapper>.bottom>.row {
-  width: calc(100% - 40rpx);
-  padding: 10rpx 20rpx;
+    width: calc(100% - 40rpx);
+    padding: 10rpx 20rpx;
 }
 
 .window.judge>.body .wrapper>.bottom>.row>.label {
-  width: 150rpx;
-  font-size: 28rpx;
+    width: 150rpx;
+    font-size: 28rpx;
 }
 
 .window.judge>.body .wrapper>.bottom>.row>.value,
 .window.lottery>.body .wrapper>.bottom>.row>.value {
-  width: calc(100% - 166rpx);
-  height: 44rpx;
-  padding: 5rpx;
-  font-size: 28rpx;
-  border: 3rpx solid rgb(187, 187, 187);
+    width: calc(100% - 166rpx);
+    height: 44rpx;
+    padding: 5rpx;
+    font-size: 28rpx;
+    border: 3rpx solid rgb(187, 187, 187);
 }
 
 .window.judge>.body .wrapper>.bottom>.row>.value>.input,
 .window.lottery>.body .wrapper>.bottom>.row>.value>.input {
-  width: 100%;
-  height: 100%;
-  font-size: 28rpx;
+    width: 100%;
+    height: 100%;
+    font-size: 28rpx;
 }
 
 .window.judge>.body .wrapper>.bottom>.row>.value>picker.input .text,
 .window.lottery>.body .wrapper>.bottom>.row>.value>picker.input .text {
-  width: calc(100% - 30rpx);
+    width: calc(100% - 30rpx);
 }
 
 .window.judge>.body .wrapper>.bottom>.row>.value>picker.input .icon,
 .window.lottery>.body .wrapper>.bottom>.row>.value>picker.input .icon {
-  width: 30rpx;
-  height: 30rpx;
-  line-height: 30rpx;
-  text-align: center;
-  margin: 0;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+    margin: 0;
 }
 
 .window.judge>.body .wrapper>.bottom>.row.btn-group,
 .window.lottery>.body .wrapper>.bottom>.row.btn-group {
-  padding-top: 50rpx;
+    padding-top: 50rpx;
 }
 
 .window.judge>.body .wrapper>.bottom>.row.btn-group>.btn,
 .window.lottery>.body .wrapper>.bottom>.row.btn-group>.btn {
-  width: 308rpx;
-  height: 90rpx;
-  font-size: 32rpx;
-  border-radius: 20rpx;
-  border: 0;
-  margin: 0;
-  padding: 0;
+    width: 308rpx;
+    height: 90rpx;
+    font-size: 32rpx;
+    border-radius: 20rpx;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .window.room-choice .entity>.win-body>.show-body {
-  width: 100%;
+    width: 100%;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row {
-  width: 100%;
-  padding: 10rpx 0;
+    width: 100%;
+    padding: 10rpx 0;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty {
-  width: 100%;
+    width: 100%;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.label {
-  width: 160rpx;
-  font-size: 32rpx;
+    width: 160rpx;
+    font-size: 32rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value {
-  width: calc(100% - 160rpx);
-  font-size: 28rpx;
+    width: calc(100% - 160rpx);
+    font-size: 28rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.text>.frame,
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.picker>.frame {
-  width: calc(100% - 10rpx);
-  padding: 5rpx;
+    width: calc(100% - 10rpx);
+    padding: 5rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.text>.frame.border,
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.picker>.frame.border {
-  width: calc(100% - 16rpx);
-  border: 3rpx solid #BEBEBE;
+    width: calc(100% - 16rpx);
+    border: 3rpx solid #BEBEBE;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.text>.frame.border>.input {
-  height: 50rpx;
-  font-size: 28rpx;
+    height: 50rpx;
+    font-size: 28rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.picker>.frame.border>.input {
-  height: 40rpx;
-  font-size: 28rpx;
+    height: 40rpx;
+    font-size: 28rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.picker>.frame.border>.input .show {
-  width: 100%;
-  height: 40rpx;
+    width: 100%;
+    height: 40rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.radio-group>.frame {
-  width: 100%;
+    width: 100%;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.row>.porperty>.value.radio-group>.frame .input {
-  font-size: 28rpx;
+    font-size: 28rpx;
 }
 
 .window.lottery>.body .wrapper>.bottom>.row>.label {
-  width: 180rpx;
-  font-size: 28rpx;
+    width: 180rpx;
+    font-size: 28rpx;
 }
 
 .window.lottery>.body .wrapper>.bottom>.row>.value {
-  width: calc(100% - 196rpx);
+    width: calc(100% - 196rpx);
 }
 
 
 .window.room-choice .entity>.win-body>.show-body>.rooms {
-  width: 100%;
-  height: 420rpx;
+    width: 100%;
+    height: 420rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms.border {
-  width: calc(100% - 6rpx);
-  border: 3rpx solid #BEBEBE;
+    width: calc(100% - 6rpx);
+    border: 3rpx solid #BEBEBE;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms .warpper {
-  width: 100%;
+    width: 100%;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms .warpper>.list {
-  width: 100%;
+    width: 100%;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms .warpper>.list.border {
-  width: calc(100% - 6rpx);
-  border: 3rpx solid #BEBEBE;
+    width: calc(100% - 6rpx);
+    border: 3rpx solid #BEBEBE;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms .warpper>.list>.item {
-  width: calc(100% - 20rpx);
-  padding: 10rpx;
+    width: calc(100% - 20rpx);
+    padding: 10rpx;
 }
 
 .window.room-choice .entity>.win-body>.show-body>.rooms .warpper>.list>.item>.name {
-  width: 100%;
-  height: 50rpx;
-  line-height: 50rpx;
+    width: 100%;
+    height: 50rpx;
+    line-height: 50rpx;
 }
 
 .window.room-choice .entity>.win-body>.button-group {
-  width: 100%;
-  padding: 20rpx 0 0;
+    width: 100%;
+    padding: 20rpx 0 0;
 }
 
 .window.room-choice .entity>.win-body>.button-group>.btn {
-  width: 260rpx;
-  height: 80rpx;
-  border-radius: 10rpx;
-  font-size: 28rpx;
+    width: 260rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
 }
 
 .window.user-add .entity>.win-body>.main {
-  width: 100%;
-  height: 540rpx;
+    width: 100%;
+    height: 540rpx;
 }
 
 .window.user-add .entity>.win-body>.main>.qr-code {
-  width: 420rpx;
-  height: 420rpx;
-  padding: 20rpx;
-  background-color: #FFFFFF;
+    width: 420rpx;
+    height: 420rpx;
+    padding: 20rpx;
+    background-color: #FFFFFF;
 }
 
 .window.user-add .entity>.win-body>.main>.qr-code>.pic {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .window.user-add .entity>.win-body>.button-group>.btn {
-  width: 420rpx;
-  height: 80rpx;
-  border-radius: 10rpx;
-  font-size: 28rpx;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    width: 420rpx;
+    height: 80rpx;
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.tips {
-  width: 100%;
-  padding: 20rpx 0;
+    width: 100%;
+    padding: 20rpx 0;
 }
 
 .window.style-one .entity>.win-body>.main {
-  width: 100%;
+    width: 100%;
 }
 
 .window.style-one .entity>.win-body>.main>.panel {
-  width: 100%;
+    width: 100%;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.tips>.body>.tip {
-  padding: 5rpx 0;
+    padding: 5rpx 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods {
-  margin: 20rpx 0;
+    margin: 20rpx 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods.bgcolor {
-  background-color: rgba(253, 128, 36, 0.24);
+    background-color: rgba(253, 128, 36, 0.24);
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body {
-  width: calc(100% - 50rpx);
-  padding: 25rpx;
+    width: calc(100% - 50rpx);
+    padding: 25rpx;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.left,
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.right {
-  min-height: 220rpx;
+    min-height: 220rpx;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.left {
-  width: calc(100% - 250rpx);
+    width: calc(100% - 250rpx);
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty {
-  width: 100%;
+    width: 100%;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty>.label {
-  width: 140rpx;
+    width: 140rpx;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.left>.porperty>.value {
-  width: calc(100% - 140rpx);
+    width: calc(100% - 140rpx);
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.right {
-  width: 240rpx;
+    width: 240rpx;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.right>.porperty {
-  width: 224rpx;
-  height: 202rpx;
+    width: 224rpx;
+    height: 202rpx;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.goods>.body>.right>.porperty>.pic {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.button {
-  padding: 20rpx 0;
+    padding: 20rpx 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.button>.body>.row {
-  padding: 5rpx 0;
+    padding: 5rpx 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.button>.body>.row>.btn {
-  font-size: 28rpx;
-  border-radius: 8rpx;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    font-size: 28rpx;
+    border-radius: 8rpx;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 .window.style-one .entity>.win-body>.main>.panel.button>.body>.row>.btn.get-task {
-  width: 332rpx;
-  height: 90rpx;
+    width: 332rpx;
+    height: 90rpx;
 }
 
 .window.perfect-dinner-party {
-  width: 600rpx;
-  height: 360rpx;
-  border-radius: 20rpx;
+    width: 600rpx;
+    height: 360rpx;
+    border-radius: 20rpx;
 }
 
 .window.perfect-dinner-party>.win-body {
-  width: 100%;
-  height: calc(100% - 55rpx);
-  padding: 5rpx 5rpx 10rpx;
+    width: 100%;
+    height: calc(100% - 55rpx);
+    padding: 5rpx 5rpx 10rpx;
 }
 
 .window.perfect-dinner-party>.win-body>.page {
-  width: calc(100% - 10rpx);
-  height: calc(100% - 15rpx);
-  padding: 5rpx 5rpx 10rpx;
+    width: calc(100% - 10rpx);
+    height: calc(100% - 15rpx);
+    padding: 5rpx 5rpx 10rpx;
 }
 
 .window.perfect-dinner-party>.win-body>.page>.main {
-  width: calc(100% - 40rpx);
-  height: calc(100% - 100rpx);
-  padding: 0 20rpx;
+    width: calc(100% - 40rpx);
+    height: calc(100% - 100rpx);
+    padding: 0 20rpx;
 }
 
 .window.perfect-dinner-party>.win-body>.page>.main>.context>.text {
-  text-align: center;
+    text-align: center;
 }
 
 .window.perfect-dinner-party>.win-body>.page>.foot {
-  height: 100rpx;
+    height: 100rpx;
 }
 
 .window.perfect-dinner-party>.win-body>.page>.foot>.button-group>.btn {
-  width: 240rpx;
-  height: 70rpx;
-  border-radius: 8rpx;
-  border: 0;
-  padding: 0;
-  margin: 0;
+    width: 240rpx;
+    height: 70rpx;
+    border-radius: 8rpx;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }

@@ -1,6 +1,6 @@
 /* store/pages/goodschargeoff/applyCrackReward.wxss */
 @import '/utils/panel.wxss';
-@import '/window.wxss';
+@import '/utils/window.wxss';
 
 /**
  * 核销 新增核销申请 - 开瓶奖励

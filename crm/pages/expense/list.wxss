@@ -1,6 +1,6 @@
 /* crm/pages/expense/list.wxss */
 @import "/utils/panel.wxss";
-@import "/window.wxss";
+@import "/utils/window.wxss";
 
 /**
  * 待完善消费记录页

@@ -1,6 +1,6 @@
 /* store/pages/goodschargeoff/addinfo.wxss */
 @import "/store/pages/template/commons.wxss";
-@import "/window.wxss";
+@import "/utils/window.wxss";
 
 /**
  * 核销 新增核销申请
