@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+    "navigationBarTitleText": "确认核销记录",
+    "enablePullDownRefresh": false,
+    "disableScroll": true,
+    "usingComponents": {}
 }

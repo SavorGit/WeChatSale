@@ -1,1 +1,15 @@
 /* store/pages/goodschargeoff/confirm.wxss */
+@import "/store/pages/goodschargeoff/index.wxss";
+
+/**
+ * 确认核销记录页面
+ */
+.panel.tabs>.tab-body {
+    height: 100%;
+}
+
+.page.check-accept-goods>.foot>.btn.ok,
+.page.check-accept-goods>.foot>.btn.cel {
+    width: 330rpx;
+    height: 80rpx;
+}
