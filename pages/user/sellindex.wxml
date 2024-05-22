@@ -122,13 +122,13 @@
                     <view class="complete-degree full-width flex_column_flexStart_flexStart">
                         <view class="progress-bar full-width flex_row_flexStart_flexStart">
                             <view class="background full-container flex_row_center_flexStart">
-                                <view class="activity full-height flex_row_center_flexEnd" style="width:{{10/33*100}}%;">
+                                <view class="activity full-height flex_row_center_flexEnd" style="width:{{(10/33*100)+'%'}};">
                                     <view class="text small4">10</view>
                                 </view>
                             </view>
                         </view>
                         <view class="aim-bar full-width flex_row_flexStart_flexStart">
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{8/33*100}}% - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/33*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">8</view>
                                 </view>
@@ -136,7 +136,7 @@
                                     <view class="text small4 theme-font-FFAA2C">40000积分</view>
                                 </view>
                             </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(20 - 8)/33*100}}% - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/33*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">20</view>
                                 </view>
@@ -144,7 +144,7 @@
                                     <view class="text small4 theme-font-FFAA2C">60000积分</view>
                                 </view>
                             </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(30 - 20)/33*100}}% - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/33*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">30</view>
                                 </view>

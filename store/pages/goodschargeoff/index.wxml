@@ -127,14 +127,7 @@
             </view>
         </view>
 
-        <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);padding:0rpx 20rpx 30rpx;">
-            <view class="row full-width" style="padding:10rpx 0;">
-                <view class="tip full-width flex_row_center_flexStart theme-block-orange2" style="width:calc(100% - 20rpx);padding:5rpx 10rpx;border-radius:10rpx;">
-                    <view class="text">本月有xxx瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
-                </view>
-            </view>
-        </view>
-
+        <!-- 数据面板 -->
         <view class="panel tabs flex_column_center_flexStart">
             <view class="tab-bar flex_row_center_spaceAround">
                 <view class="tab goods{{tab=='goods'?' selected':''}} theme-font1" bindtap="showTab" data-tab="goods">商品核销</view>

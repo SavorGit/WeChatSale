@@ -127,6 +127,16 @@
             </view>
         </view>
 
+        <!-- 提示块 -->
+        <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);height:60rpx;padding:10rpx 20rpx 15rpx;">
+            <view class="row full-width" style="padding:5rpx 0;">
+                <view class="tip full-width flex_row_center_flexStart one-line-overflow theme-block-orange2" style="width:calc(100% - 20rpx);padding:5rpx 10rpx;border-radius:10rpx;">
+                    <view class="text">本月有xxx瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 数据面板 -->
         <view class="panel tabs flex_column_center_flexStart">
             <scroll-view class="tab-body goods flex_column_center_flexStart" scroll-y="true" scroll-with-animation="true" bindscrolltolower="修改值">
                 <view class="list flex_column_center_flexStart">
@@ -150,7 +160,7 @@
                             </view>
                             <view class="middle">
                                 <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
-                                <view class="goods-list flex_column_center_flexStart" >
+                                <view class="goods-list flex_column_center_flexStart">
                                     <view class="goods flex_row_center_flexStart" wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex">
                                         <view class="left flex_column_center_center theme-font1">{{goods.goods_id}}</view>
                                         <view class="center flex_column_center_center">
@@ -163,11 +173,11 @@
                                             <view class="identifying-code theme-font3">唯一标识：{{goods.idcode}}</view>
                                         </view>
                                     </view>
-                                    
+
                                 </view>
                             </view>
-                            
-                            <view  class="bottom flex_row_center_spaceBetween">
+
+                            <view class="bottom flex_row_center_spaceBetween">
                                 <view class="datetime theme-font3">{{bean.add_time}}</view>
                                 <!-- <view class="profit flex_row_center_spaceBetween">
                                     <view class="label theme-font3" style="padding-right:10rpx;">预计收益</view>
@@ -175,7 +185,7 @@
                                 </view> -->
                             </view>
                             <view class="bottom approval flex_column_center_center" style="height:auto;">
-                                <view  class="block-item button-group full-width flex_column_center_center" wx:if="{{bean.status==1}}">
+                                <view class="block-item button-group full-width flex_column_center_center" wx:if="{{bean.status==1}}">
                                     <!-- <view class="row full-width top-line flex_row_center_spaceBetween">
                                         <view class="datetime">
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
@@ -208,7 +218,7 @@
                                         </view>
                                     </view> -->
                                 </view>
-                                <view  class="block-item button-group full-width flex_column_center_center" wx:elif="{{bean.status==3}}">
+                                <view class="block-item button-group full-width flex_column_center_center" wx:elif="{{bean.status==3}}">
                                     <view class="row full-width top-line flex_row_center_spaceBetween">
                                         <!-- <view class="datetime">
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
@@ -240,7 +250,7 @@
                                         </view>
                                     </view>
                                 </view>
-                                <view  class="block-item button-group full-width flex_column_center_center" wx:elif="{{bean.status==2}}">
+                                <view class="block-item button-group full-width flex_column_center_center" wx:elif="{{bean.status==2}}">
                                     <!-- <view class="row full-width top-line flex_row_center_spaceBetween">
                                         <view class="datetime">
                                             <view class="text small2 theme-font3">2022/04/10 11:00</view>
@@ -259,7 +269,7 @@
                                             </view>
                                         </view>
                                     </view>
-                                    
+
                                 </view>
                             </view>
                         </view>

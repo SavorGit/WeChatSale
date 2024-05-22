@@ -4,8 +4,25 @@
 /**
  * 确认核销记录页面
  */
+.page>.main {
+    height: 100%;
+}
+
+.page>.foot {
+    position: fixed;
+    bottom: 0;
+}
+
+.panel.tabs {
+    height: calc(100% - 340rpx);
+}
+
 .panel.tabs>.tab-body {
     height: 100%;
+}
+
+.panel.tabs>.tab-body .list {
+    padding-bottom: 140rpx;
 }
 
 .page.check-accept-goods>.foot>.btn.ok,

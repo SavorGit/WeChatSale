@@ -346,7 +346,7 @@
 }
 
 .panel.tabs {
-    height: calc(100% - 300rpx);
+    height: calc(100% - 280rpx);
 }
 
 .panel.tabs>.tab-bar {
