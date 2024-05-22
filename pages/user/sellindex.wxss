@@ -451,6 +451,7 @@ image {
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.reward {
     padding: 5rpx 0;
+    transform: rotate(0deg);
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.left>.patch {
