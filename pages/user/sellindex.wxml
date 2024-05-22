@@ -31,7 +31,7 @@
                                 <view class="text bold theme-font1">本月售酒汇总</view>
                             </view>
                             <view class="button-group flex_row_center_flexEnd">
-                                <view class="btn check flex_column_center_center theme-button-welcome" bindtap="修改值">
+                                <view class="btn check flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="sale_log">
                                     <view class="label">
                                         <view class="text">核对</view>
                                     </view>
@@ -173,7 +173,7 @@
                                 <view class="text bold theme-font-FFAA2C">xx月活动激励待领取</view>
                             </view>
                             <view class="button-group flex_row_center_flexEnd">
-                                <view class="btn confirm flex_column_center_center theme-button-welcome" bindtap="修改值">
+                                <view class="btn confirm flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="sale_log_confirm">
                                     <view class="label">
                                         <view class="text">待确认</view>
                                     </view>

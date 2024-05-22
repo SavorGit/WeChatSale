@@ -261,6 +261,13 @@ Page({
             that.getLoopPlay();
           }
           that.tastWineRemindGetTask(openid,hotel_id,is_onload);
+
+          //本月售酒汇总
+          that.getSellWineSta(openid,hotel_id,is_onload);
+          //如果是餐厅指认活动政策受益人
+          that.getStimulate(openid,hotel_id,is_onload);
+            
+
           if(is_onload==1){
             that.getPopup(openid,hotel_id,is_onload);
             if(user_info.role_type==1 && user_info.is_view_wine_price==0){
@@ -1698,17 +1705,53 @@ Page({
       }
     })
   },
+  /**
+   * @desc 售酒汇总 
+   * @date 20240521 
+   */
+  getSellWineSta:function(openid,hotel_id,is_onload= 0){
+    var that = this;
+    var showLoading = is_onload ==1 ?true : false;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid           : openid,
+      hotel_id         : hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+    
+    },res=>{},{isShowLoading:showLoading})
+  },
+  /**
+   * @desc 活动激励数据
+   * @date 20240521
+   */
+  getStimulate:function(openid,hotel_id,is_onload= 0){
+    var that = this;
+    var showLoading = is_onload ==1 ?true : false;
+    utils.PostRequest(api_v_url + '/aa/bb', {
+      openid           : openid,
+      hotel_id         : hotel_id
+    }, (data, headers, cookies, errMsg, statusCode) => {
+    
+    },res=>{},{isShowLoading:showLoading})
+
+  },
   gotoPage:function(e){
     var that = this;
     var url  = '';
     var type = e.currentTarget.dataset.type;
     var user_info = wx.getStorageSync(cache_key + 'userinfo');
+    
     wx.showLoading({
       title: '加载中',
     })
     switch(type){
       case 'perfect_expense_log':
         url = '/crm/pages/expense/list?hotel_id='+user_info.hotel_id;
+        break;
+      case 'sale_log':
+        url ='/store/pages/goodschargeoff/confirm';
+        break;
+      case 'sale_log_confirm':
+        url ='/store/pages/goodschargeoff/confirm?is_confirm=1';
         break;
     }
     wx.navigateTo({
