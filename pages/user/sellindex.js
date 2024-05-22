@@ -1712,11 +1712,11 @@ Page({
   getSellWineSta:function(openid,hotel_id,is_onload= 0){
     var that = this;
     var showLoading = is_onload ==1 ?true : false;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/Writeoff/sumsellwine', {
       openid           : openid,
-      hotel_id         : hotel_id
+     
     }, (data, headers, cookies, errMsg, statusCode) => {
-    
+      that.setData({sumsellwine:data.result})
     },res=>{},{isShowLoading:showLoading})
   },
   /**

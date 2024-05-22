@@ -23,7 +23,7 @@ Page({
         popEntityInfoWind:false,
         search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
                     recycle_status_name_arr:[]},
-        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0}
+        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:1}
     },
 
     /**
@@ -49,9 +49,16 @@ Page({
         utils.PostRequest(api_v_url + '/writeoff/filter', {
           openid:openid,
         }, (data, headers, cookies, errMsg, statusCode) => {
-          search_config.start_date = data.result.date_range[0];
+          //search_config.start_date = data.result.date_range[0];
+          var currentDate = new Date();
+          var year = currentDate.getFullYear();
+          var month = String(currentDate.getMonth() + 1).padStart(2, "0");; // 返回的月份从0开始，需要加1
+          var firstDayOfMonth = year + "-" + month + "-01";
+          
+          search_config.start_date = firstDayOfMonth
+         
           search_config.end_date   = data.result.date_range[1];
-          search_data.start_date   = data.result.date_range[0];
+          search_data.start_date   = firstDayOfMonth;
           search_data.end_date   = data.result.date_range[1];
     
           var recycle_status = data.result.recycle_status;

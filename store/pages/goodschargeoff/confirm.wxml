@@ -129,7 +129,7 @@
 
         <!-- 提示块 -->
         <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);height:60rpx;padding:10rpx 20rpx 15rpx;">
-            <view class="row full-width" style="padding:5rpx 0;">
+            <view class="row full-width" style="padding:5rpx 0;"  wx:if="{{is_confirm==0}}">
                 <view class="tip full-width flex_row_center_flexStart one-line-overflow theme-block-orange2" style="width:calc(100% - 20rpx);padding:5rpx 10rpx;border-radius:10rpx;">
                     <view class="text">本月有xxx瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
                 </view>

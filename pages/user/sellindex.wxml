@@ -47,7 +47,7 @@
                                         <view class="text small2 theme-font1">售酒核销数量：</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font1">88</view>
+                                        <view class="text small2 theme-font1">{{sumsellwine.sale_num}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -57,7 +57,7 @@
                                         <view class="text small2 theme-font1">瓶盖回收数量：</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font-FFAA2C">8</view>
+                                        <view class="text small2 theme-font-FFAA2C">{{sumsellwine.recycle_num}}</view>
                                     </view>
                                 </view>
                             </view>
