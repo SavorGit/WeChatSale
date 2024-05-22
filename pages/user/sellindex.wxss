@@ -421,14 +421,16 @@ image {
     height: 20rpx;
     border-radius: 5rpx;
     background-color: rgba(153, 153, 153, 0.18);
+    overflow: hidden;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background>.activity {
     width: calc(100% - 10rpx);
-    padding: 0 5rpx;
-    border-radius: 5rpx;
+    padding: 0;
+    border-radius: 0;
     background-color: rgba(255, 170, 44, 0.5);
     color: #FFAA2C;
+    overflow: hidden;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar {
