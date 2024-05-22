@@ -297,10 +297,14 @@ image {
     width: calc(100% - 170rpx);
 }
 
-.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr,
-.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr,
-.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr {
-    padding: 5rpx 0;
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td,
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td {
+    height: 40rpx;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
 .panel.sale-wine.current-month>.pbody>.tip-group,
@@ -351,6 +355,10 @@ image {
     width: calc(100% - 180rpx);
 }
 
+.panel.sale-wine.activity-incentives>.pbody>.table {
+    padding: 20rpx 0 10rpx;
+}
+
 .panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td>.property>.label {
     width: 200rpx;
 }
@@ -374,13 +382,13 @@ image {
     width: 670rpx;
 }
 
-.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr {
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td {
     border-top-width: 3rpx;
     border-top-style: solid;
-    border-top-color: rgba(187, 187, 187, 1);
+    border-top-color: rgba(187, 187, 187, 0.32);
 }
 
-.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr:first-child {
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr:nth-child(1)>.td {
     border-top-color: rgba(187, 187, 187, 0);
 }
 
@@ -394,13 +402,14 @@ image {
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress {
     width: calc(100% - 40rpx);
+    padding: 10rpx 0;
     margin: 0rpx 20rpx;
-    border-top: 3rpx solid rgba(187, 187, 187, 1);
+    border-top: 3rpx solid rgba(187, 187, 187, 0.32);
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree {
     height: 80rpx;
-    padding-top: 10rpx;
+    padding: 10rpx 0;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar {
@@ -410,14 +419,18 @@ image {
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background {
     height: 20rpx;
+    border-radius: 5rpx;
     background-color: rgba(153, 153, 153, 0.18);
+    overflow: hidden;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background>.activity {
     width: calc(100% - 10rpx);
-    padding: 0 5rpx;
-    background-color: #FFAA2C;
-    color: #FFFFFF;
+    padding: 0;
+    border-radius: 0;
+    background-color: rgba(255, 170, 44, 0.5);
+    color: #FFAA2C;
+    overflow: hidden;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar {
@@ -427,9 +440,9 @@ image {
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion {
-    width: 40rpx;
+    min-width: 40rpx;
     height: 40rpx;
-    border-radius: 50%;
+    border-radius: 20rpx;
     background-color: #FFAA2C;
     color: #FFFFFF;
 }
@@ -440,6 +453,7 @@ image {
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.reward {
     padding: 5rpx 0;
+    transform: rotate(0deg);
 }
 
 .panel.progress>.body>.list>.item.poster>.task>.left>.patch {
