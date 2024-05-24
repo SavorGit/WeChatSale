@@ -5,7 +5,7 @@
 <!--
   -- 确认核销记录页面
   -->
-<view class="page check-accept-goods container theme-main">
+<scroll-view class="page check-accept-goods container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="修改值">
     <view class="main flex_column_center_flexStart">
 
         <!-- 查询条件面板 -->
@@ -100,7 +100,7 @@
             <view class="body flex_column_center_flexStart">
                 <view class="tabel flex_column_center_flexStart">
                     <view class="trbody full-width">
-                        <view class="row full-width flex_row_center_spaceBetween">
+                        <view class="row full-width">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
                             </view>
@@ -127,9 +127,56 @@
             </view>
         </view>
 
+        <!-- 统计面板2 -->
+        <view class="panel statistics-show full-width flex_column_center_flexStart theme-panel">
+            <view class="body flex_column_center_flexStart">
+                <view class="row full-width flex_row_center_spaceBetween" style="padding:10rpx 0;">
+                    <view class="left" style="width:calc(100% - 200rpx);">
+                        <view class="property full-width flex_row_center_flexStart">
+                            <view class="label flex_row_center_flexStart" style="width:120rpx;">
+                                <view class="content">
+                                    <view class="text theme-font3">回收时间</view>
+                                </view>
+                            </view>
+                            <view class="value flex_row_center_flexStart" style="width:calc(100% - 120rpx);">
+                                <view class="frame full-container">
+                                    <view class="text bold theme-font1">2022.07.01 - 2022.07.31</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="right" style="width:200rpx;">
+                        <view class="btn view flex_column_center_center theme-button-blue" style="width:200rpx;height:60rpx;border-radius:8rpx;" bindtap="修改值">
+                            <view class="text small2">查看核销数据</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="tabel full-width" style="width:100%;padding:10rpx 0;">
+                    <view class="trbody full-width" style="display:table-row-group;">
+                        <view class="row full-width">
+                            <view class="cell half-width one-line-overflow">
+                                <view class="text small2 theme-font1">单品激励奖励瓶数 10</view>
+                            </view>
+                            <view class="cell half-width one-line-overflow">
+                                <view class="text small2 theme-font1">预计获得收益 10000积分</view>
+                            </view>
+                        </view>
+                        <view class="row full-width">
+                            <view class="cell half-width one-line-overflow">
+                                <view class="text small2 theme-font1">开瓶阶梯激励瓶数：88 </view>
+                            </view>
+                            <view class="cell half-width one-line-overflow">
+                                <view class="text small2 theme-font1">预计获得收益 10000积分</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
         <!-- 提示块 -->
         <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);height:60rpx;padding:10rpx 20rpx 15rpx;">
-            <view class="row full-width" style="padding:5rpx 0;"  wx:if="{{is_confirm==0}}">
+            <view class="row full-width" style="padding:5rpx 0;" wx:if="{{is_confirm==0}}">
                 <view class="tip full-width flex_row_center_flexStart one-line-overflow theme-block-orange2" style="width:calc(100% - 20rpx);padding:5rpx 10rpx;border-radius:10rpx;">
                     <view class="text">本月有xxx瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
                 </view>
@@ -138,7 +185,7 @@
 
         <!-- 数据面板 -->
         <view class="panel tabs flex_column_center_flexStart">
-            <scroll-view class="tab-body goods flex_column_center_flexStart" scroll-y="true" scroll-with-animation="true" bindscrolltolower="修改值">
+            <scroll-view class="tab-body goods flex_column_center_flexStart" scroll-y="true" scroll-with-animation="true">
                 <view class="list flex_column_center_flexStart">
                     <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
                         <view class="item flex_column_center_flexStart">
@@ -282,4 +329,4 @@
         <view class="btn cel flex_row_center_center theme-button-dark" bindtap="isConfirm" data-type="0">暂不确认</view>
         <view class="btn ok flex_row_center_center theme-button-orange2" bindtap="isConfirm" data-type="1">确认</view>
     </view>
-</view>
+</scroll-view>

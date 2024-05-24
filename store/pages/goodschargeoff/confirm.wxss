@@ -14,7 +14,8 @@
 }
 
 .panel.tabs {
-    height: calc(100% - 340rpx);
+    /* height: calc(100% - 340rpx); */
+    height: auto;
 }
 
 .panel.tabs>.tab-body {
