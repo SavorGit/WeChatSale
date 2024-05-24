@@ -178,7 +178,8 @@ Page({
     clickSearchButton:function(){
         page = 1;
         this.getStatdata();
-        this.getChargeOffList(page);
+        var is_confirm = this.data.is_confirm;
+        this.getChargeOffList(page,is_confirm);
         
     },
     selectParams:function(e){
