@@ -23,7 +23,7 @@ Page({
         popEntityInfoWind:false,
         search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
                     recycle_status_name_arr:[]},
-        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:1}
+        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0}
     },
 
     /**

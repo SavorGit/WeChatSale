@@ -64,16 +64,16 @@
                         </view>
                     </view>
                 </view>
-                <view class="tip-group flex_column_center_flexStart">
+                <view class="tip-group flex_column_center_flexStart" wx:if="{{sumsellwine.tips!=''}}">
                     <view class="tip tip-color frame flex_row_center_center">
-                        <view class="text small2 bold">本月有80瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
+                        <view class="text small2 bold">{{sumsellwine.tips}}</view>
                     </view>
                 </view>
             </view>
         </view>
 
         <!-- 本月活动激励 -->
-        <view class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel">
+        <view class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel" wx:if="{{sell_wine_statdat.is_show==1}}">
             <view class="pbody">
                 <view class="table">
                     <view class="tabel-caption">
@@ -98,7 +98,7 @@
                                         <view class="text small2 theme-font1">单品激励奖励瓶数</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font1">10</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.num}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -108,7 +108,7 @@
                                         <view class="text small2 theme-font1">预计获得收益</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font1">10</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.integral}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -122,21 +122,24 @@
                     <view class="complete-degree full-width flex_column_flexStart_flexStart">
                         <view class="progress-bar full-width flex_row_flexStart_flexStart">
                             <view class="background full-container flex_row_center_flexStart">
-                                <view class="activity full-height flex_row_center_flexEnd" style="width:{{(10/33*100)+'%'}};">
-                                    <view class="text small4">10</view>
+                                <view class="activity full-height flex_row_center_flexEnd" style="{{sell_wine_statdat.step_award_process.now_step_percent}}">
+                                    <view class="text small4">{{sell_wine_statdat.step_award_process.now_step}}</view>
                                 </view>
                             </view>
                         </view>
                         <view class="aim-bar full-width flex_row_flexStart_flexStart">
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/33*100)+'%'}} - 90rpx);">
-                                <view class="criterion flex_row_center_center">
-                                    <view class="text small4">8</view>
+                            <block wx:for="{{sell_wine_statdat.step_award_process.process}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                                <view  class="ladder flex_column_center_flexStart" style="{{bean.step_percent}}">
+                                    <view class="criterion flex_row_center_center">
+                                        <view class="text small4">{{bean.n}}</view>
+                                    </view>
+                                    <view class="reward">
+                                        <view class="text small4 theme-font-FFAA2C">{{bean.i}}积分</view>
+                                    </view>
                                 </view>
-                                <view class="reward">
-                                    <view class="text small4 theme-font-FFAA2C">40000积分</view>
-                                </view>
-                            </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/33*100)+'%'}} - 90rpx);">
+                                
+                            </block>
+                            <!-- <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/40*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">20</view>
                                 </view>
@@ -144,14 +147,14 @@
                                     <view class="text small4 theme-font-FFAA2C">60000积分</view>
                                 </view>
                             </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/33*100)+'%'}} - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/40*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">30</view>
                                 </view>
                                 <view class="reward">
                                     <view class="text small4 theme-font-FFAA2C">100000积分</view>
                                 </view>
-                            </view>
+                            </view> -->
                         </view>
                     </view>
                 </view>
@@ -164,13 +167,13 @@
         </view>
 
         <!-- xx月活动激励待领取 -->
-        <view class="panel sale-wine unclaimed-incentives flex_column_center_flexStart">
+        <view class="panel sale-wine unclaimed-incentives flex_column_center_flexStart" wx:if="{{sell_wine_statdat.is_show==1}}">
             <view class="pbody">
                 <view class="table">
                     <view class="tabel-caption">
                         <view class="full-width flex_row_center_spaceBetween">
                             <view class="title">
-                                <view class="text bold theme-font-FFAA2C">xx月活动激励待领取</view>
+                                <view class="text bold theme-font-FFAA2C">{{sell_wine_statdat.confirm_data.month}}月活动激励待领取</view>
                             </view>
                             <view class="button-group flex_row_center_flexEnd">
                                 <view class="btn confirm flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="sale_log_confirm">
@@ -189,7 +192,7 @@
                                         <view class="text small2 theme-font1">单品激励奖励瓶数</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font1">10</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.num}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -199,7 +202,7 @@
                                         <view class="text small2 theme-font1">预计获得收益</view>
                                     </view>
                                     <view class="value" style="width:calc(100% - 180);">
-                                        <view class="text small2 theme-font1">10000积分</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.integral}}积分</view>
                                     </view>
                                 </view>
                             </view>
@@ -211,7 +214,7 @@
                                         <view class="text small2 theme-font1">开瓶阶梯激励瓶数</view>
                                     </view>
                                     <view class="value">
-                                        <view class="text small2 theme-font1">88</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.step_num}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -221,7 +224,7 @@
                                         <view class="text small2 theme-font1">预计获得收益</view>
                                     </view>
                                     <view class="value" style="width:calc(100% - 180);">
-                                        <view class="text small2 theme-font1">10000积分</view>
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.step_integral}}积分</view>
                                     </view>
                                 </view>
                             </view>

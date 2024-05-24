@@ -264,7 +264,7 @@ Page({
 
           //本月售酒汇总
           that.getSellWineSta(openid,hotel_id,is_onload);
-          //如果是餐厅指认活动政策受益人
+          // 本月售酒汇总  如果是餐厅指认活动政策受益人
           that.getStimulate(openid,hotel_id,is_onload);
             
 
@@ -1712,7 +1712,7 @@ Page({
   getSellWineSta:function(openid,hotel_id,is_onload= 0){
     var that = this;
     var showLoading = is_onload ==1 ?true : false;
-    utils.PostRequest(api_v_url + '/Writeoff/sumsellwine', {
+    utils.PostRequest(api_v_url + '/writeoff/statdata', {
       openid           : openid,
      
     }, (data, headers, cookies, errMsg, statusCode) => {
@@ -1726,11 +1726,31 @@ Page({
   getStimulate:function(openid,hotel_id,is_onload= 0){
     var that = this;
     var showLoading = is_onload ==1 ?true : false;
-    utils.PostRequest(api_v_url + '/aa/bb', {
+    utils.PostRequest(api_v_url + '/ActivityPolicy/statdata', {
       openid           : openid,
-      hotel_id         : hotel_id
     }, (data, headers, cookies, errMsg, statusCode) => {
-    
+      var sell_wine_statdata =  data.result;
+      var process = sell_wine_statdata.step_award_process.process;
+      var now_step = 0;
+      var last_step_num = process[0].n;
+      for(let i in process){
+        if(process[i].is_select==1){
+          now_step = process[i].n ;
+        }
+        if(i ==0){
+          process[i].step_percent = 'margin-left:calc(' + (process[i].n/sell_wine_statdata.step_award_process.end_step_num*100) +'% - 90rpx);';
+        }else {
+
+          process[i].step_percent = 'margin-left:calc('  + ((process[i].n-last_step_num)/sell_wine_statdata.step_award_process.end_step_num*100) + '% - 90rpx)';
+
+        }
+        last_step_num = process[i].n;
+      }
+      sell_wine_statdata.step_award_process.process = process;
+      sell_wine_statdata.step_award_process.now_step =now_step;
+      sell_wine_statdata.step_award_process.now_step_percent = 'width:' + (now_step/sell_wine_statdata.step_award_process.end_step_num*100) +'%;';
+      
+      that.setData({sell_wine_statdat:sell_wine_statdata})
     },res=>{},{isShowLoading:showLoading})
 
   },
