@@ -176,7 +176,7 @@
         </view>
 
         <!-- xx月活动激励待领取 -->
-        <view class="panel sale-wine unclaimed-incentives flex_column_center_flexStart" wx:if="{{sell_wine_statdat.is_show==1}}">
+        <view class="panel sale-wine unclaimed-incentives flex_column_center_flexStart" wx:if="{{sell_wine_statdat.is_show==1 && sell_wine_statdat.confirm_data.month>0}}">
             <view class="pbody">
                 <view class="table">
                     <view class="tabel-caption">

@@ -52,6 +52,7 @@ Page({
                             get_recycle_task_pop_wind:false,task_info:{}},  //品平价酒任务
 
     expense_log:{is_popup:0,message:''},                  //完善消费记录
+    sumsellwine:{tips:''}
 
   },
 
