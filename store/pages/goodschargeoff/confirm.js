@@ -138,7 +138,9 @@ Page({
           var params = {openid         : openid,
                         page           : page,
                         sdate          : confirm_data.sdate,
-                        edate          : confirm_data.edate
+                        edate          : confirm_data.edate,
+                        recycle_status : recycle_status,
+                        wo_status      : wo_status,
                       }
         }
 
