@@ -1731,28 +1731,31 @@ Page({
     }, (data, headers, cookies, errMsg, statusCode) => {
       
       var sell_wine_statdata =  data.result;
-      var process = sell_wine_statdata.step_award_process.process;
-      var now_step = 0;
-      if(process.length>0){
-        var last_step_num = process[0].n;
+      if(sell_wine_statdata.step_award_process.end_step_num>0){
+        var process = sell_wine_statdata.step_award_process.process;
+        var now_step = 0;
+        if(process.length>0){
+          var last_step_num = process[0].n;
+        }
+        
+        for(let i in process){
+          if(process[i].is_select==1){
+            now_step = process[i].n ;
+          }
+          if(i ==0){
+            process[i].step_percent = 'margin-left:calc(' + (process[i].n/sell_wine_statdata.step_award_process.end_step_num*100) +'% - 90rpx);';
+          }else {
+
+            process[i].step_percent = 'margin-left:calc('  + ((process[i].n-last_step_num)/sell_wine_statdata.step_award_process.end_step_num*100) + '% - 180rpx)';
+
+          }
+          last_step_num = process[i].n;
+        }
+        sell_wine_statdata.step_award_process.process = process;
+        sell_wine_statdata.step_award_process.now_step =now_step;
+        sell_wine_statdata.step_award_process.now_step_percent = 'width:' + (now_step/sell_wine_statdata.step_award_process.end_step_num*100) +'%;';
       }
       
-      for(let i in process){
-        if(process[i].is_select==1){
-          now_step = process[i].n ;
-        }
-        if(i ==0){
-          process[i].step_percent = 'margin-left:calc(' + (process[i].n/sell_wine_statdata.step_award_process.end_step_num*100) +'% - 90rpx);';
-        }else {
-
-          process[i].step_percent = 'margin-left:calc('  + ((process[i].n-last_step_num)/sell_wine_statdata.step_award_process.end_step_num*100) + '% - 180rpx)';
-
-        }
-        last_step_num = process[i].n;
-      }
-      sell_wine_statdata.step_award_process.process = process;
-      sell_wine_statdata.step_award_process.now_step =now_step;
-      sell_wine_statdata.step_award_process.now_step_percent = 'width:' + (now_step/sell_wine_statdata.step_award_process.end_step_num*100) +'%;';
       
       that.setData({sell_wine_statdat:sell_wine_statdata})
     },res=>{},{isShowLoading:showLoading})
