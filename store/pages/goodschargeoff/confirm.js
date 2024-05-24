@@ -24,7 +24,7 @@ Page({
         search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
                     recycle_status_name_arr:[]},
         search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0},
-        confirm_data:{sdate:'',sdate:'',num:0,integral:0,step_num:0,step_integral:0,confirm_month:''}
+        confirm_data:{sdate:'',sdate:'',num:0,integral:0,step_num:0,step_integral:0,confirm_month:'',month:''}
     },
 
     /**
@@ -42,7 +42,12 @@ Page({
             var step_num = options.step_num
             var step_integral = options.step_integral
             var confirm_month = options.confirm_month;
-            var confirm_data = {sdate:sdate,edate:edate,num:num,integral:integral,step_num:step_num,step_integral:step_integral,confirm_month:confirm_month}
+            var month = options.month;
+            var confirm_data = {sdate:sdate,edate:edate,num:num,integral:integral,step_num:step_num,step_integral:step_integral,confirm_month:confirm_month,month:month}
+            var title = month+'月待确认活动激励';
+            wx.setNavigationBarTitle({
+              title: title,
+            })
             this.setData({confirm_data:confirm_data})
         }
         this.setData({is_confirm:is_confirm});

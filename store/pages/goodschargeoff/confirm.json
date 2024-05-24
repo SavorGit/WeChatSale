@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "确认本月核销记录",
+    "navigationBarTitleText": "核对本月核销记录",
     "enablePullDownRefresh": false,
     "disableScroll": true,
     "usingComponents": {}
