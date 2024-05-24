@@ -1730,10 +1730,14 @@ Page({
     utils.PostRequest(api_v_url + '/ActivityPolicy/statdata', {
       openid           : openid,
     }, (data, headers, cookies, errMsg, statusCode) => {
+      
       var sell_wine_statdata =  data.result;
       var process = sell_wine_statdata.step_award_process.process;
       var now_step = 0;
-      var last_step_num = process[0].n;
+      if(process.length>0){
+        var last_step_num = process[0].n;
+      }
+      
       for(let i in process){
         if(process[i].is_select==1){
           now_step = process[i].n ;
