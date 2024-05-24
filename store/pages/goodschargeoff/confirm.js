@@ -59,6 +59,7 @@ Page({
         utils.PostRequest(api_v_url + '/writeoff/filter', {
           openid:openid,
         }, (data, headers, cookies, errMsg, statusCode) => {
+          var is_confirm = that.data.is_confirm;
           search_config.start_date = data.result.now_month_date[0];
           search_config.end_date   = data.result.now_month_date[1];
           search_data.start_date   = data.result.now_month_date[0];;
@@ -72,6 +73,10 @@ Page({
           for(let i in recycle_status){
             recycle_status_name_arr.push(recycle_status[i].name);
           }
+          if(is_confirm==1){
+            search_data.recycle_status_index= 1;
+          }
+
           var stock_status = data.result.stock_status;
           search_config.chargeoff_list = stock_status;
           var chargeoff_name_arr = [];
@@ -82,10 +87,10 @@ Page({
           search_config.recycle_status_name_arr = recycle_status_name_arr;
           search_config.chargeoff_name_arr      = chargeoff_name_arr;
           that.setData({search_config:search_config,search_data:search_data});
-          var is_confirm = that.data.is_confirm;
-          if(is_confirm==0){
-            that.getStatdata();
-          }
+          
+          
+          that.getStatdata();
+          
           
           that.getChargeOffList(1,is_confirm);
         })
