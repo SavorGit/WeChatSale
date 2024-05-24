@@ -5,180 +5,184 @@
 <!--
   -- 确认核销记录页面
   -->
-<scroll-view class="page check-accept-goods container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="修改值">
+<scroll-view class="page check-accept-goods container theme-main" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadMore">
     <view class="main flex_column_center_flexStart">
 
         <!-- 查询条件面板 -->
-        <view class="panel search full-width flex_column_center_flexStart theme-panel">
-            <view class="pbody flex_row_center_spaceBetween">
-                <view class="query-group flex_column_center_flexStart">
-                    <view class="row full-width flex_row_center_spaceBetween">
-                        <view class="property half-width flex_row_center_flexStart">
-                            <view class="label flex_row_center_flexStart">
-                                <view class="content">
-                                    <view class="text theme-font3">开始日期</view>
+        <block wx:if="{{is_confirm==0}}">
+            <view class="panel search full-width flex_column_center_flexStart theme-panel">
+                <view class="pbody flex_row_center_spaceBetween">
+                    <view class="query-group flex_column_center_flexStart">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property half-width flex_row_center_flexStart">
+                                <view class="label flex_row_center_flexStart">
+                                    <view class="content">
+                                        <view class="text theme-font3">开始日期</view>
+                                    </view>
+                                </view>
+                                <view class="value flex_row_center_flexStart">
+                                    <view class="frame full-container">
+                                        <picker class="input full-container" mode="date" mode="date" bindchange="selectParams" data-type="start_date">
+                                            <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                                <view class="content full-container flex_row_center_flexStart">
+                                                    <view class="text theme-font1">{{search_data.start_date}}</view>
+                                                </view>
+                                            </view>
+                                        </picker>
+                                    </view>
                                 </view>
                             </view>
-                            <view class="value flex_row_center_flexStart">
-                                <view class="frame full-container">
-                                    <picker class="input full-container" mode="date" mode="date" bindchange="selectParams" data-type="start_date">
-                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
-                                            <view class="content full-container flex_row_center_flexStart">
-                                                <view class="text theme-font1">{{search_data.start_date}}</view>
+                            <view class="property half-width flex_row_center_flexStart">
+                                <view class="label flex_row_center_flexStart">
+                                    <view class="content">
+                                        <view class="text theme-font3">截止日期</view>
+                                    </view>
+                                </view>
+                                <view class="value flex_row_center_flexStart">
+                                    <view class="frame full-container">
+                                        <picker class="input full-container" mode="date" bindchange="selectParams" data-type="end_data">
+                                            <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                                <view class="content full-container flex_row_center_flexStart">
+                                                    <view class="text theme-font1">{{search_data.end_date}}</view>
+                                                </view>
                                             </view>
-                                        </view>
-                                    </picker>
+                                        </picker>
+                                    </view>
                                 </view>
                             </view>
                         </view>
-                        <view class="property half-width flex_row_center_flexStart">
-                            <view class="label flex_row_center_flexStart">
-                                <view class="content">
-                                    <view class="text theme-font3">截止日期</view>
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property no-label flex_row_center_flexStart">
+                                <view class="value flex_row_center_flexStart">
+                                    <view class="frame border full-container">
+                                        <picker class="input full-container" mode="selector" range="{{search_config.chargeoff_name_arr}}" bindchange="selectParams" data-type="chargeoff">
+                                            <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                                <view class="content full-container flex_row_center_flexStart">
+                                                    <view class="text theme-font1">{{search_config.chargeoff_name_arr[search_data.chargeoff_index]}}</view>
+                                                </view>
+                                                <view class="icon">
+                                                    <view class="text big5 fa fa-angle-down theme-font2" />
+                                                </view>
+                                            </view>
+                                        </picker>
+                                    </view>
                                 </view>
                             </view>
-                            <view class="value flex_row_center_flexStart">
-                                <view class="frame full-container">
-                                    <picker class="input full-container" mode="date" bindchange="selectParams" data-type="end_data">
-                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
-                                            <view class="content full-container flex_row_center_flexStart">
-                                                <view class="text theme-font1">{{search_data.end_date}}</view>
+                            <view class="property no-label flex_row_center_flexStart">
+                                <view class="value flex_row_center_flexStart">
+                                    <view class="frame border full-container">
+                                        <picker class="input full-container" mode="selector" range="{{search_config.recycle_status_name_arr}}" bindchange="selectParams" data-type="recycle">
+                                            <view class="picker-inner full-container flex_row_center_spaceBetween">
+                                                <view class="content full-container flex_row_center_flexStart">
+                                                    <view class="text theme-font1">{{search_config.recycle_status_name_arr[search_data.recycle_status_index]}}</view>
+                                                </view>
+                                                <view class="icon">
+                                                    <view class="text big5 fa fa-angle-down theme-font2" />
+                                                </view>
                                             </view>
-                                        </view>
-                                    </picker>
+                                        </picker>
+                                    </view>
                                 </view>
                             </view>
                         </view>
                     </view>
-                    <view class="row full-width flex_row_center_spaceBetween">
-                        <view class="property no-label flex_row_center_flexStart">
-                            <view class="value flex_row_center_flexStart">
-                                <view class="frame border full-container">
-                                    <picker class="input full-container" mode="selector" range="{{search_config.chargeoff_name_arr}}" bindchange="selectParams" data-type="chargeoff">
-                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
-                                            <view class="content full-container flex_row_center_flexStart">
-                                                <view class="text theme-font1">{{search_config.chargeoff_name_arr[search_data.chargeoff_index]}}</view>
-                                            </view>
-                                            <view class="icon">
-                                                <view class="text big5 fa fa-angle-down theme-font2" />
-                                            </view>
-                                        </view>
-                                    </picker>
-                                </view>
+                    <view class="button-group flex_column_center_center">
+                        <view class="btn flex_column_center_center" bindtap="clickSearchButton">
+                            <view class="icon flex_column_center_center">
+                                <image class="full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/6297F2_fadajing.png" mode="aspectFill" />
                             </view>
-                        </view>
-                        <view class="property no-label flex_row_center_flexStart">
-                            <view class="value flex_row_center_flexStart">
-                                <view class="frame border full-container">
-                                    <picker class="input full-container" mode="selector" range="{{search_config.recycle_status_name_arr}}" bindchange="selectParams" data-type="recycle">
-                                        <view class="picker-inner full-container flex_row_center_spaceBetween">
-                                            <view class="content full-container flex_row_center_flexStart">
-                                                <view class="text theme-font1">{{search_config.recycle_status_name_arr[search_data.recycle_status_index]}}</view>
-                                            </view>
-                                            <view class="icon">
-                                                <view class="text big5 fa fa-angle-down theme-font2" />
-                                            </view>
-                                        </view>
-                                    </picker>
-                                </view>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-                <view class="button-group flex_column_center_center">
-                    <view class="btn flex_column_center_center" bindtap="clickSearchButton">
-                        <view class="icon flex_column_center_center">
-                            <image class="full-container" src="https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/6297F2_fadajing.png" mode="aspectFill" />
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
 
-        <!-- 统计面板 -->
-        <view class="panel statistics full-width flex_column_center_flexStart theme-panel">
-            <view class="body flex_column_center_flexStart">
-                <view class="tabel flex_column_center_flexStart">
-                    <view class="trbody full-width">
-                        <view class="row full-width">
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
+            <!-- 统计面板 -->
+            <view class="panel statistics full-width flex_column_center_flexStart theme-panel">
+                <view class="body flex_column_center_flexStart">
+                    <view class="tabel flex_column_center_flexStart">
+                        <view class="trbody full-width">
+                            <view class="row full-width">
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
+                                </view>
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1">通过审核数量：{{statdata.approval_num}}</view>
+                                </view>
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1">售酒获得积分：{{statdata.sale_integral}}</view>
+                                </view>
                             </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1">通过审核数量：{{statdata.approval_num}}</view>
-                            </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1">售酒获得积分：{{statdata.sale_integral}}</view>
-                            </view>
-                        </view>
-                        <view class="row full-width">
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
-                            </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1">瓶盖回收获得积分：{{statdata.recycle_integral}}</view>
-                            </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1"> </view>
+                            <view class="row full-width">
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
+                                </view>
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1">瓶盖回收获得积分：{{statdata.recycle_integral}}</view>
+                                </view>
+                                <view class="cell one-line-overflow">
+                                    <view class="text small2 theme-font1"> </view>
+                                </view>
                             </view>
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
+        </block>
 
         <!-- 统计面板2 -->
-        <view class="panel statistics-show full-width flex_column_center_flexStart theme-panel">
-            <view class="body flex_column_center_flexStart">
-                <view class="row full-width flex_row_center_spaceBetween" style="padding:10rpx 0;">
-                    <view class="left" style="width:calc(100% - 200rpx);">
-                        <view class="property full-width flex_row_center_flexStart">
-                            <view class="label flex_row_center_flexStart" style="width:120rpx;">
-                                <view class="content">
-                                    <view class="text theme-font3">回收时间</view>
+        <block wx:else>
+            <view class="panel statistics-show full-width flex_column_center_flexStart theme-panel">
+                <view class="body flex_column_center_flexStart">
+                    <view class="row full-width flex_row_center_spaceBetween" style="padding:10rpx 0;">
+                        <view class="left" style="width:calc(100% - 200rpx);">
+                            <view class="property full-width flex_row_center_flexStart">
+                                <view class="label flex_row_center_flexStart" style="width:120rpx;">
+                                    <view class="content">
+                                        <view class="text theme-font3">回收时间</view>
+                                    </view>
+                                </view>
+                                <view class="value flex_row_center_flexStart" style="width:calc(100% - 120rpx);">
+                                    <view class="frame full-container">
+                                        <view class="text bold theme-font1">{{confirm_data.recycle_sdate}} - {{confirm_data.recycle_edate}}</view>
+                                    </view>
                                 </view>
                             </view>
-                            <view class="value flex_row_center_flexStart" style="width:calc(100% - 120rpx);">
-                                <view class="frame full-container">
-                                    <view class="text bold theme-font1">2022.07.01 - 2022.07.31</view>
-                                </view>
+                        </view>
+                        <view class="right" style="width:200rpx;">
+                            <view class="btn view flex_column_center_center theme-button-blue" style="width:200rpx;height:60rpx;border-radius:8rpx;" bindtap="viewChargeOff">
+                                <view class="text small2">查看核销数据</view>
                             </view>
                         </view>
                     </view>
-                    <view class="right" style="width:200rpx;">
-                        <view class="btn view flex_column_center_center theme-button-blue" style="width:200rpx;height:60rpx;border-radius:8rpx;" bindtap="修改值">
-                            <view class="text small2">查看核销数据</view>
-                        </view>
-                    </view>
-                </view>
-                <view class="tabel full-width" style="width:100%;padding:10rpx 0;">
-                    <view class="trbody full-width" style="display:table-row-group;">
-                        <view class="row full-width">
-                            <view class="cell half-width one-line-overflow">
-                                <view class="text small2 theme-font1">单品激励奖励瓶数 10</view>
+                    <view class="tabel full-width" style="width:100%;padding:10rpx 0;">
+                        <view class="trbody full-width" style="display:table-row-group;">
+                            <view class="row full-width">
+                                <view class="cell half-width one-line-overflow">
+                                    <view class="text small2 theme-font1">单品激励奖励瓶数 {{confirm_data.num}}</view>
+                                </view>
+                                <view class="cell half-width one-line-overflow">
+                                    <view class="text small2 theme-font1">预计获得收益 {{confirm_data.integral}}积分</view>
+                                </view>
                             </view>
-                            <view class="cell half-width one-line-overflow">
-                                <view class="text small2 theme-font1">预计获得收益 10000积分</view>
-                            </view>
-                        </view>
-                        <view class="row full-width">
-                            <view class="cell half-width one-line-overflow">
-                                <view class="text small2 theme-font1">开瓶阶梯激励瓶数：88 </view>
-                            </view>
-                            <view class="cell half-width one-line-overflow">
-                                <view class="text small2 theme-font1">预计获得收益 10000积分</view>
+                            <view class="row full-width">
+                                <view class="cell half-width one-line-overflow">
+                                    <view class="text small2 theme-font1">开瓶阶梯激励瓶数：{{confirm_data.step_num}} </view>
+                                </view>
+                                <view class="cell half-width one-line-overflow">
+                                    <view class="text small2 theme-font1">预计获得收益 {{confirm_data.step_integral}}积分</view>
+                                </view>
                             </view>
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
+        </block>
 
         <!-- 提示块 -->
         <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);height:60rpx;padding:10rpx 20rpx 15rpx;">
-            <view class="row full-width" style="padding:5rpx 0;" wx:if="{{is_confirm==0}}">
+            <view class="row full-width" style="padding:5rpx 0;" wx:if="{{is_confirm==0 && statdata.tips!=''}}">
                 <view class="tip full-width flex_row_center_flexStart one-line-overflow theme-block-orange2" style="width:calc(100% - 20rpx);padding:5rpx 10rpx;border-radius:10rpx;">
-                    <view class="text">本月有xxx瓶酒没有收回瓶盖，回收后才能获得开瓶奖励哦～</view>
+                    <view class="text">{{statdata.tips}}</view>
                 </view>
             </view>
         </view>

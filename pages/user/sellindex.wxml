@@ -139,7 +139,16 @@
                                 </view>
                                 
                             </block>
-                            <!-- <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/40*100)+'%'}} - 90rpx);">
+                            <!-- 
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/33*100)+'%'}} - 90rpx);">
+                                <view class="criterion flex_row_center_center">
+                                    <view class="text small4">8</view>
+                                </view>
+                                <view class="reward">
+                                    <view class="text small4 theme-font-FFAA2C">40000积分</view>
+                                </view>
+                            </view>    
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/33*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">20</view>
                                 </view>
@@ -147,7 +156,7 @@
                                     <view class="text small4 theme-font-FFAA2C">60000积分</view>
                                 </view>
                             </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/40*100)+'%'}} - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/33*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">30</view>
                                 </view>
@@ -160,7 +169,7 @@
                 </view>
                 <view class="tip-group flex_column_center_flexStart">
                     <view class="tip tip-color frame flex_row_center_center">
-                        <view class="text small2 bold">当前已开瓶10瓶，可收益40000积分，再开瓶10瓶可获得下一个奖励</view>
+                        <view class="text small2 bold">{{sell_wine_statdat.step_award_process.tips}}</view>
                     </view>
                 </view>
             </view>

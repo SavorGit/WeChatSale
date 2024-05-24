@@ -1771,7 +1771,8 @@ Page({
         url ='/store/pages/goodschargeoff/confirm';
         break;
       case 'sale_log_confirm':
-        url ='/store/pages/goodschargeoff/confirm?is_confirm=1';
+        var confirm_data = this.data.sell_wine_statdat.confirm_data;
+        url ='/store/pages/goodschargeoff/confirm?is_confirm=1&recycle_sdate='+confirm_data.recycle_sdate+'&recycle_edate='+confirm_data.recycle_edate+'&num='+confirm_data.num+'&integral='+confirm_data.integral+'&step_num='+confirm_data.step_num+'&step_integral='+confirm_data.step_integral;
         break;
     }
     wx.navigateTo({

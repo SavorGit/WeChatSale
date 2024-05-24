@@ -23,7 +23,8 @@ Page({
         popEntityInfoWind:false,
         search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
                     recycle_status_name_arr:[]},
-        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0}
+        search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0},
+        confirm_data:{recycle_sdate:'',recycle_edate:'',num:0,integral:0,step_num:0,step_integral:0}
     },
 
     /**
@@ -34,6 +35,14 @@ Page({
         var is_confirm = 0;
         if(typeof(options.is_confirm)!='undefined'){
             is_confirm = options.is_confirm;
+            var recycle_sdate = options.recycle_sdate
+            var recycle_edate = options.recycle_edate
+            var num = options.num
+            var integral = options.integral
+            var step_num = options.step_num
+            var step_integral = options.step_integral
+            var confirm_data = {recycle_sdate:recycle_sdate,recycle_edate:recycle_edate,num:num,integral:integral,step_num:step_num,step_integral:step_integral}
+            this.setData({confirm_data:confirm_data})
         }
         this.setData({is_confirm:is_confirm});
         openid = app.globalData.openid;
@@ -49,17 +58,12 @@ Page({
         utils.PostRequest(api_v_url + '/writeoff/filter', {
           openid:openid,
         }, (data, headers, cookies, errMsg, statusCode) => {
-          //search_config.start_date = data.result.date_range[0];
-          var currentDate = new Date();
-          var year = currentDate.getFullYear();
-          var month = String(currentDate.getMonth() + 1).padStart(2, "0");; // 返回的月份从0开始，需要加1
-          var firstDayOfMonth = year + "-" + month + "-01";
-          
-          search_config.start_date = firstDayOfMonth
-         
-          search_config.end_date   = data.result.date_range[1];
-          search_data.start_date   = firstDayOfMonth;
-          search_data.end_date   = data.result.date_range[1];
+          search_config.start_date = data.result.now_month_date[0];
+          search_config.end_date   = data.result.now_month_date[1];
+          search_data.start_date   = data.result.now_month_date[0];;
+          search_data.end_date   = data.result.now_month_date[1];
+
+
     
           var recycle_status = data.result.recycle_status;
           search_config.recycle_status_list = recycle_status;
@@ -77,8 +81,12 @@ Page({
           search_config.recycle_status_name_arr = recycle_status_name_arr;
           search_config.chargeoff_name_arr      = chargeoff_name_arr;
           that.setData({search_config:search_config,search_data:search_data});
-          that.getStatdata();
-          that.getChargeOffList(1);
+          var is_confirm = that.data.is_confirm;
+          if(is_confirm==0){
+            that.getStatdata();
+          }
+          
+          that.getChargeOffList(1,is_confirm);
         })
     },
     getStatdata:function(){
@@ -99,7 +107,7 @@ Page({
             that.setData({statdata:statdata})
         })
     },
-    getChargeOffList:function(page){
+    getChargeOffList:function(page,is_confirm=0){
         var that = this;
         var search_data = this.data.search_data;
         //console.log(search_data)
@@ -107,14 +115,26 @@ Page({
         var recycle_status = search_config.recycle_status_list[search_data.recycle_status_index].recycle_status;
         var wo_status      = search_config.chargeoff_list[search_data.chargeoff_index].status
         //utils.PostRequest(api_v_url + '/stock/getWriteoffList', {
-        utils.PostRequest(api_v_url + '/writeoff/datalist', {
-          sdate          : search_data.start_date,
-          edate          : search_data.end_date,
-          openid         : openid,
-          page           : page,
-          recycle_status : recycle_status,
-          wo_status      : wo_status
-        }, (data, headers, cookies, errMsg, statusCode) => {
+
+        if(is_confirm==0){
+          var params = {openid         : openid,
+                        sdate          : search_data.start_date,
+                        edate          : search_data.end_date,
+                        recycle_status : recycle_status,
+                        wo_status      : wo_status,
+                        page           : page
+                      }
+        }else if(is_confirm==1){
+          var confirm_data = this.data.confirm_data;
+          var params = {openid         : openid,
+                        page           : page,
+                        recycle_edate  : confirm_data.recycle_edate,
+                        recycle_sdate  : confirm_data.recycle_sdate
+                      }
+        }
+
+        utils.PostRequest(api_v_url + '/writeoff/datalist', params, 
+        (data, headers, cookies, errMsg, statusCode) => {
           if(page ==1){
             var list = [];
           }else {
@@ -143,7 +163,8 @@ Page({
     },
     loadMore:function(){
         page ++;
-        this.getChargeOffList(page);
+        var is_confirm = this.data.is_confirm;
+        this.getChargeOffList(page,is_confirm);
     },
     clickSearchButton:function(){
         page = 1;
@@ -199,6 +220,12 @@ Page({
         }, (data, headers, cookies, errMsg, statusCode) => {
             
         })
+    },
+    viewChargeOff:function(){
+      this.setData({is_confirm:0});
+      page = 1;
+      this.getStatdata();
+      this.getChargeOffList(page,0)
     },
     gotoPage:function(e){
         var type = e.currentTarget.dataset.type;
