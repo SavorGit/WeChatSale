@@ -21,7 +21,7 @@
                             </view>
                             <view class="value flex_row_center_flexStart">
                                 <view class="frame full-container">
-                                    <picker class="input full-container" mode="date" mode="date" bindchange="selectParams" data-type="start_date">
+                                    <picker class="input full-container" mode="date" mode="date" bindchange="selectParams" data-type="start_date" disabled="{{is_confirm==1?true:false}}">
                                         <view class="picker-inner full-container flex_row_center_spaceBetween">
                                             <view class="content full-container flex_row_center_flexStart">
                                                 <view class="text theme-font1">{{search_data.start_date}}</view>
@@ -39,7 +39,7 @@
                             </view>
                             <view class="value flex_row_center_flexStart">
                                 <view class="frame full-container">
-                                    <picker class="input full-container" mode="date" bindchange="selectParams" data-type="end_data">
+                                    <picker class="input full-container" mode="date" bindchange="selectParams" data-type="end_data" disabled="{{is_confirm==1?true:false}}">
                                         <view class="picker-inner full-container flex_row_center_spaceBetween">
                                             <view class="content full-container flex_row_center_flexStart">
                                                 <view class="text theme-font1">{{search_data.end_date}}</view>
