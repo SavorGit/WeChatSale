@@ -4,13 +4,19 @@
 /**
  * 确认核销记录页面
  */
-.page>.main {
+.page .main {
     height: 100%;
 }
 
-.page>.foot {
+.page .foot {
     position: fixed;
     bottom: 0;
+}
+
+.page .foot>.btn.ok,
+.page .foot>.btn.cel {
+    width: 330rpx;
+    height: 80rpx;
 }
 
 .panel.tabs {
@@ -24,10 +30,4 @@
 
 .panel.tabs>.tab-body .list {
     padding-bottom: 140rpx;
-}
-
-.page.check-accept-goods>.foot>.btn.ok,
-.page.check-accept-goods>.foot>.btn.cel {
-    width: 330rpx;
-    height: 80rpx;
 }
