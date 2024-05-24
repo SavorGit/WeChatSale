@@ -73,7 +73,7 @@
         </view>
 
         <!-- 本月活动激励 -->
-        <view class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel" wx:if="{{sell_wine_statdat.is_show==1}}">
+        <view wx:if="{{sell_wine_statdat.is_show==1}}" class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel">
             <view class="pbody">
                 <view class="table">
                     <view class="tabel-caption">
@@ -129,7 +129,7 @@
                         </view>
                         <view class="aim-bar full-width flex_row_flexStart_flexStart">
                             <block wx:for="{{sell_wine_statdat.step_award_process.process}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
-                                <view  class="ladder flex_column_center_flexStart" style="{{bean.step_percent}}">
+                                <view class="ladder flex_column_center_flexStart" style="{{bean.step_percent}}">
                                     <view class="criterion flex_row_center_center">
                                         <view class="text small4">{{bean.n}}</view>
                                     </view>
@@ -137,18 +137,17 @@
                                         <view class="text small4 theme-font-FFAA2C">{{bean.i}}积分</view>
                                     </view>
                                 </view>
-                                
                             </block>
                             <!-- 
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/33*100)+'%'}} - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/40*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">8</view>
                                 </view>
                                 <view class="reward">
                                     <view class="text small4 theme-font-FFAA2C">40000积分</view>
                                 </view>
-                            </view>    
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/33*100)+'%'}} - 90rpx);">
+                            </view>
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/40*100)+'%'}} - 180rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">20</view>
                                 </view>
@@ -156,14 +155,15 @@
                                     <view class="text small4 theme-font-FFAA2C">60000积分</view>
                                 </view>
                             </view>
-                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/33*100)+'%'}} - 90rpx);">
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/40*100)+'%'}} - 180rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">30</view>
                                 </view>
                                 <view class="reward">
                                     <view class="text small4 theme-font-FFAA2C">100000积分</view>
                                 </view>
-                            </view> -->
+                            </view>
+                            -->
                         </view>
                     </view>
                 </view>

@@ -241,7 +241,6 @@ Page({
           }else {
             that.isHaveStockHotel(user_info);
           }*/
-          
           that.setData({user_info:data.result.userinfo})
           //var task_list = that.data.task_list;
           //if(task_list.length==0){
@@ -1746,7 +1745,7 @@ Page({
           process[i].step_percent = 'margin-left:calc(' + (process[i].n/sell_wine_statdata.step_award_process.end_step_num*100) +'% - 90rpx);';
         }else {
 
-          process[i].step_percent = 'margin-left:calc('  + ((process[i].n-last_step_num)/sell_wine_statdata.step_award_process.end_step_num*100) + '% - 90rpx)';
+          process[i].step_percent = 'margin-left:calc('  + ((process[i].n-last_step_num)/sell_wine_statdata.step_award_process.end_step_num*100) + '% - 180rpx)';
 
         }
         last_step_num = process[i].n;
