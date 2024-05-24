@@ -24,7 +24,7 @@ Page({
         search_config:{start_date:'',end_date:'',chargeoff_list:[],chargeoff_name_arr:[],recycle_status_list:[],
                     recycle_status_name_arr:[]},
         search_data:{start_date:'',end_date:'',chargeoff_index:0,recycle_status_index:0},
-        confirm_data:{recycle_sdate:'',recycle_edate:'',num:0,integral:0,step_num:0,step_integral:0}
+        confirm_data:{recycle_sdate:'',recycle_edate:'',num:0,integral:0,step_num:0,step_integral:0,confirm_month:''}
     },
 
     /**
@@ -41,7 +41,8 @@ Page({
             var integral = options.integral
             var step_num = options.step_num
             var step_integral = options.step_integral
-            var confirm_data = {recycle_sdate:recycle_sdate,recycle_edate:recycle_edate,num:num,integral:integral,step_num:step_num,step_integral:step_integral}
+            var confirm_month = options.confirm_month;
+            var confirm_data = {recycle_sdate:recycle_sdate,recycle_edate:recycle_edate,num:num,integral:integral,step_num:step_num,step_integral:step_integral,confirm_month:confirm_month}
             this.setData({confirm_data:confirm_data})
         }
         this.setData({is_confirm:is_confirm});
@@ -212,13 +213,18 @@ Page({
         }
     },
     confirmSell:function(){
-        var that = this;
-        var userinfo = wx.getStorageSync(cache_key+'userinfo');
-        utils.PostRequest(api_v_url + '/aa/bb', {
+        var confirm_data = this.data.confirm_data;
+
+        utils.PostRequest(api_v_url + '/ActivityPolicy/confirm', {
             openid         : openid,
-            hotel_id       : userinfo.hotel_id
+            confirm_month  : confirm_data.confirm_month
         }, (data, headers, cookies, errMsg, statusCode) => {
-            
+            app.showToast('确认成功',2000,'success');
+            setTimeout(() => {
+              wx.navigateBack({
+                delta:1
+              })
+            }, 2000);
         })
     },
     viewChargeOff:function(){

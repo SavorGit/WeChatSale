@@ -1772,7 +1772,7 @@ Page({
         break;
       case 'sale_log_confirm':
         var confirm_data = this.data.sell_wine_statdat.confirm_data;
-        url ='/store/pages/goodschargeoff/confirm?is_confirm=1&recycle_sdate='+confirm_data.recycle_sdate+'&recycle_edate='+confirm_data.recycle_edate+'&num='+confirm_data.num+'&integral='+confirm_data.integral+'&step_num='+confirm_data.step_num+'&step_integral='+confirm_data.step_integral;
+        url ='/store/pages/goodschargeoff/confirm?is_confirm=1&recycle_sdate='+confirm_data.recycle_sdate+'&recycle_edate='+confirm_data.recycle_edate+'&num='+confirm_data.num+'&integral='+confirm_data.integral+'&step_num='+confirm_data.step_num+'&step_integral='+confirm_data.step_integral+'&confirm_month='+confirm_data.confirm_month;
         break;
     }
     wx.navigateTo({
