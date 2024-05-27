@@ -99,8 +99,8 @@
         <view class="panel statistics full-width flex_column_center_flexStart theme-panel">
             <view class="body flex_column_center_flexStart">
                 <view class="tabel flex_column_center_flexStart">
-                    <view class="trbody full-width" wx:if="{{is_confirm==0}}">
-                        <view class="row full-width">
+                    <view class="trbody full-width flex_column_center_center" wx:if="{{is_confirm==0}}">
+                        <view class="row full-width flex_row_center_spaceBetween">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
                             </view>
@@ -111,21 +111,18 @@
                                 <view class="text small2 theme-font1">售酒获得积分：{{statdata.sale_integral}}</view>
                             </view>
                         </view>
-                        <view class="row full-width">
+                        <view class="row full-width flex_row_center_spaceBetween">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
                             </view>
-                            <view class="cell one-line-overflow">
+                            <view class="cell one-line-overflow" style="width:66.667%;">
                                 <view class="text small2 theme-font1">瓶盖回收获得积分：{{statdata.recycle_integral}}</view>
-                            </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1"> </view>
                             </view>
                         </view>
                     </view>
 
-                    <view class="trbody full-width" wx:else>
-                        <view class="row full-width">
+                    <view class="trbody full-width flex_column_center_center" wx:else>
+                        <view class="row full-width flex_row_center_spaceBetween">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
                             </view>
@@ -136,14 +133,14 @@
                                 <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
                             </view>
                         </view>
-                        
+
                     </view>
                 </view>
             </view>
         </view>
 
         <!-- 统计面板2 -->
-        
+
         <!-- <view class="panel statistics-show full-width flex_column_center_flexStart theme-panel">
             <view class="body flex_column_center_flexStart">
                 <view class="row full-width flex_row_center_spaceBetween" style="padding:10rpx 0;">
@@ -189,7 +186,7 @@
                 </view>
             </view>
         </view> -->
-        
+
 
         <!-- 提示块 -->
         <view class="tip-group flex_column_center_flexStart" style="width:(100% - 40rpx);height:60rpx;padding:10rpx 20rpx 15rpx;">
