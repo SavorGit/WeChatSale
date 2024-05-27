@@ -123,7 +123,7 @@
                         <view class="progress-bar full-width flex_row_flexStart_flexStart">
                             <view class="background full-container flex_row_center_flexStart">
                                 <view class="activity full-height flex_row_center_flexEnd" style="{{sell_wine_statdat.step_award_process.now_step_percent}}">
-                                    <view class="text small4">{{sell_wine_statdat.step_award_process.now_step}}</view>
+                                    <view class="text small4">{{sell_wine_statdat.step_award_process.now_step_num}}</view>
                                 </view>
                             </view>
                         </view>

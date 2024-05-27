@@ -1739,9 +1739,9 @@ Page({
         }
         
         for(let i in process){
-          if(process[i].is_select==1){
+          /*if(process[i].is_select==1){
             now_step = process[i].n ;
-          }
+          }*/
           if(i ==0){
             process[i].step_percent = 'margin-left:calc(' + (process[i].n/sell_wine_statdata.step_award_process.end_step_num*100) +'% - 90rpx);';
           }else {
@@ -1751,8 +1751,8 @@ Page({
           }
           last_step_num = process[i].n;
         }
+        now_step = sell_wine_statdata.step_award_process.now_step_num
         sell_wine_statdata.step_award_process.process = process;
-        sell_wine_statdata.step_award_process.now_step =now_step;
         sell_wine_statdata.step_award_process.now_step_percent = 'width:' + (now_step/sell_wine_statdata.step_award_process.end_step_num*100) +'%;';
       }
       
