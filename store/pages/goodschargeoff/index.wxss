@@ -10,19 +10,19 @@
 }
 
 .panel>.body>.tabel {
-    display: table;
+    /* display: table; */
     width: calc(100% - 40rpx);
     padding: 10rpx 20rpx;
 }
 
 .panel>.body>.tabel .row {
-    display: table-row;
+    /* display: table-row; */
     height: 45rpx;
     line-height: 45rpx;
 }
 
 .panel>.body>.tabel .row>.cell {
-    display: table-cell;
+    /* display: table-cell; */
     vertical-align: middle;
 }
 

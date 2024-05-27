@@ -99,7 +99,7 @@
         <view class="panel statistics full-width flex_column_center_flexStart theme-panel" wx:if="{{statdata.is_stat==1}}">
             <view class="body flex_column_center_flexStart">
                 <view class="tabel flex_column_center_flexStart">
-                    <view class="trbody full-width">
+                    <view class="trbody full-width flex_column_center_center">
                         <view class="row full-width flex_row_center_spaceBetween">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">售酒核销数量：{{statdata.sale_num}}</view>
@@ -111,7 +111,7 @@
                                 <view class="text small2 theme-font1">售酒获得积分：{{statdata.sale_integral}}</view>
                             </view>
                         </view>
-                        <view class="row full-width">
+                        <view class="row full-width flex_row_center_spaceBetween">
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
                             </view>
