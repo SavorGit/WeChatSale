@@ -167,7 +167,7 @@
                         </view>
                     </view>
                 </view>
-                <view class="tip-group flex_column_center_flexStart">
+                <view class="tip-group flex_column_center_flexStart" wx:if="{{sell_wine_statdat.step_award_process.tips!=''}}">
                     <view class="tip tip-color frame flex_row_center_center">
                         <view class="text small2 bold">{{sell_wine_statdat.step_award_process.tips}}</view>
                     </view>
