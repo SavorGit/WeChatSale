@@ -117,7 +117,7 @@
                 </view>
                 <view class="aim-progress flex_column_center_flexStart">
                     <view class="title-sub full-width flex_row_center_flexStart">
-                        <view class="text small2 theme-font3">开瓶阶梯奖励进度</view>
+                        <view class="text small2 theme-font3">开瓶阶梯奖励进度(已完成{{sell_wine_statdat.step_award_process.now_step_num}}瓶)</view>
                     </view>
                     <view class="complete-degree full-width flex_column_flexStart_flexStart">
                         <view class="progress-bar full-width flex_row_flexStart_flexStart">
@@ -130,7 +130,7 @@
                         <view class="aim-bar full-width flex_row_flexStart_flexStart">
                             <block wx:for="{{sell_wine_statdat.step_award_process.process}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
                                 <view class="ladder flex_column_center_flexStart" style="{{bean.step_percent}}">
-                                    <view class="criterion flex_row_center_center">
+                                    <view class="criterion flex_row_center_center {{app.parseInt(sell_wine_statdat.step_award_process.now_step_num)<app.parseInt(bean.n)?'extinct':'lighting'}}">
                                         <view class="text small4">{{bean.n}}</view>
                                     </view>
                                     <view class="reward">

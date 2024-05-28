@@ -444,8 +444,16 @@ image {
     min-width: 40rpx;
     height: 40rpx;
     border-radius: 20rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion.lighting {
     background-color: #FFAA2C;
     color: #FFFFFF;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion.extinct {
+    background-color: #EBEBEB;
+    color: #FFAA2C;
 }
 
 .panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder {
