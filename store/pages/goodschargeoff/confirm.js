@@ -230,7 +230,7 @@ Page({
             openid         : openid,
             confirm_month  : confirm_data.confirm_month
         }, (data, headers, cookies, errMsg, statusCode) => {
-            app.showToast('确认成功',2000,'success');
+            app.showToast('确认成功，激励积分已发放',2000,'success');
             setTimeout(() => {
               wx.navigateBack({
                 delta:1
