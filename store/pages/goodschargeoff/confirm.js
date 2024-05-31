@@ -206,6 +206,7 @@ Page({
     },
     isConfirm:function(e){
         var that = this;
+        var confirm_data = this.data.confirm_data;
         var type = e.currentTarget.dataset.type;
         if(type ==0){
             wx.navigateBack({
@@ -214,7 +215,7 @@ Page({
         }else if(type == 1){
             wx.showModal({
               title: '提示',
-              content: '是否确认活动激励无误',
+              content: '确认后，'+confirm_data.confirm_month+'月核销的数据将封存，后续不再回收'+confirm_data.confirm_month+'月售卖酒水的瓶盖。',
               complete: (res) => {
                 if (res.confirm) {
                   that.confirmSell();
