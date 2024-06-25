@@ -239,6 +239,11 @@
                             </view>
                         </view>
                     </view>
+                    <view class="tips full-width flex_column_center_flexStart">
+                        <view class="tip full-width flex_row_center_center" style="padding:10rpx 0;">
+                            <view class="text small2 theme-font-F44444">请及时确认，如未确认系统将于本月15日23.59.59自动确认</view>
+                        </view>
+                    </view>
                 </view>
             </view>
         </view>
