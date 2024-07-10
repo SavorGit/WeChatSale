@@ -127,6 +127,7 @@ Page({
   getWriteoffReasonByGoods:function(goods_info,is_have=0){
     var that = this;
     utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
+      openid  : openid,
       goods_id:goods_info.goods_id
     }, (data, headers, cookies, errMsg, statusCode) => {
       var reasons = data.result.reasons;
@@ -196,7 +197,8 @@ Page({
     
     utils.PostRequest(api_v_url + '/stock/getWriteoffReasonByGoods', {
       type:id,
-      goods_id:goods_id
+      goods_id:goods_id,
+      openid  : openid
     }, (data, headers, cookies, errMsg, statusCode) => {
       that.setData({datas:data.result.datas})
     })
