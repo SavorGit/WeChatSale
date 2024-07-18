@@ -115,11 +115,8 @@
                             <view class="cell one-line-overflow">
                                 <view class="text small2 theme-font1">瓶盖回收数量：{{statdata.recycle_num}}</view>
                             </view>
-                            <view class="cell one-line-overflow">
+                            <view class="cell one-line-overflow" style="width:66.667%;">
                                 <view class="text small2 theme-font1">瓶盖回收获得积分：{{statdata.recycle_integral}}</view>
-                            </view>
-                            <view class="cell one-line-overflow">
-                                <view class="text small2 theme-font1"> </view>
                             </view>
                         </view>
                     </view>
