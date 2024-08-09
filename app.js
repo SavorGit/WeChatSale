@@ -379,7 +379,7 @@ App({
     mobile_brand: '',
     mobile_model: '',
     api_url: 'https://dev-mobile.littlehotspot.com',
-    api_v_url: 'https://dedv-mobile.littlehotspot.com/smallsale23',
+    api_v_url: 'https://dev-mobile.littlehotspot.com/smallsale23',
     oss_upload_url: 'https://dev-image.littlehotspot.com',
     oss_url: 'https://dev-oss.littlehotspot.com',
     Official_account_url:'https://dev-mobile.littlehotspot.com/h5/official/getuserinfo/p/',
