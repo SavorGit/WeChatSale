@@ -152,7 +152,7 @@ Page({
                     })
                   }else{
                     wx.reLaunch({
-                      url: '/pages/user/sellindex',
+                      url: '/pages/sell/index',
                     })
                   }
                   
@@ -161,7 +161,7 @@ Page({
                     url: '/pages/tv_sale/system',
                   })*/
                   wx.reLaunch({
-                    url: '/pages/user/sellindex',
+                    url: '/pages/sell/index',
                   })
                 }
               }
@@ -278,7 +278,7 @@ Page({
               })
             }else {
               wx.reLaunch({
-                url: '/pages/user/sellindex',
+                url: '/pages/sell/index',
               })
             }
             
@@ -287,7 +287,7 @@ Page({
               url: '/pages/tv_sale/system',
             })*/
             wx.reLaunch({
-              url: '/pages/user/sellindex',
+              url: '/pages/sell/index',
             })
           }
           wx.showToast({

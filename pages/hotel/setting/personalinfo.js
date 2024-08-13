@@ -288,7 +288,7 @@ Page({
                 })
               }else {
                 wx.switchTab({
-                  url: '/pages/user/sellindex',
+                  url: '/pages/sell/index',
                 })
               }
               
@@ -299,7 +299,7 @@ Page({
             }
         }else {
           wx.switchTab({
-            url: '/pages/user/sellindex',
+            url: '/pages/sell/index',
           })
         }
     })

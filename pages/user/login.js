@@ -89,7 +89,7 @@ Page({
                   data: res.data.result.userinfo,
                 })
                 wx.reLaunch({
-                  url: '/pages/user/sellindex',
+                  url: '/pages/sell/index',
                 })
               } else {
                 wx.setStorage({
@@ -146,7 +146,7 @@ Page({
                   data: res.data.result,
                 });
                 wx.reLaunch({
-                  url: '/pages/user/sellindex',
+                  url: '/pages/sell/index',
                 })
               } else {
                 wx.setStorage({
@@ -164,7 +164,7 @@ Page({
                 duration: 2000
               });
               wx.reLaunch({
-                url: '/pages/user/sellindex',
+                url: '/pages/sell/index',
               })
             }
 
@@ -355,14 +355,14 @@ Page({
           }else {//合作餐厅
             if (rt.data.result.hotel_has_room == 1) {
               wx.reLaunch({
-                url: '/pages/user/sellindex',
+                url: '/pages/sell/index',
               })
             } else {
               /*wx.reLaunch({
                 url: '/pages/tv_sale/system',
               })*/
               wx.reLaunch({
-                url: '/pages/user/sellindex',
+                url: '/pages/sell/index',
               })
             }
             var user_info = rt.data.result;
@@ -401,7 +401,7 @@ Page({
         var latitude = res.latitude;
         var longitude = res.longitude;
         wx.reLaunch({
-          url: '/pages/user/sellindex',
+          url: '/pages/sell/index',
         })
       },fail(rt){
         

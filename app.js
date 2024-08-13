@@ -246,12 +246,12 @@ App({
                           }
                         }else{
                           wx.reLaunch({
-                            url: '/pages/user/sellindex',
+                            url: '/pages/sell/index',
                           })
                         }
                       }else{
                         wx.reLaunch({
-                          url: '/pages/user/sellindex',
+                          url: '/pages/sell/index',
                         })
                       }
                     }
@@ -268,7 +268,7 @@ App({
             }
           }else {
             wx.reLaunch({
-              url: '/pages/user/sellindex',
+              url: '/pages/sell/index',
             })
           }
           
@@ -300,12 +300,12 @@ App({
                   }
                 }else{
                   wx.reLaunch({
-                    url: '/pages/user/sellindex',
+                    url: '/pages/sell/index',
                   })
                 }
               }else{
                 wx.reLaunch({
-                  url: '/pages/user/sellindex',
+                  url: '/pages/sell/index',
                 })
               }
 

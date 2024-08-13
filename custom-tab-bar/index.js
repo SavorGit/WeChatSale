@@ -26,7 +26,14 @@ Component({
     selectedColor: "#333333",
     backgroundColor: "#FFFFFF",
     borderStyle: "white",
-    list: [{
+    list: [
+     {
+      "pagePath": "/pages/sell/index",
+      "text": "销售中心",
+      "iconPath": "/images/icon/999999_sale.png",
+      "selectedIconPath": "/images/icon/333333_sale.png"
+     },
+     {
       "pagePath": "/pages/user/sellindex",
       "text": "我的任务",
       "iconPath": "/images/icon/999999_sale.png",

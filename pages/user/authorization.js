@@ -66,7 +66,7 @@ Page({
               data: data.result,
             });
             wx.switchTab({
-              url: '/pages/user/sellindex',
+              url: '/pages/sell/index',
             })
           }else {
             var user_info = data.result;
@@ -118,7 +118,7 @@ Page({
         user_info:user_info
       })
       wx.switchTab({
-        url: '/pages/user/sellindex',
+        url: '/pages/sell/index',
       })
     })
   },

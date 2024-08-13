@@ -160,7 +160,7 @@ Page({
     var that = this;
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 0,
+        selected: 1,
       })
     }
     if (app.globalData.openid && app.globalData.openid != '') {
@@ -187,6 +187,7 @@ Page({
   },
   is_login:function(openid,is_onload=0){
     var that = this;
+    console.log(is_onload)
     utils.PostRequest(api_v_url + '/User/isRegister',{
       openid:openid,
     }, (data, headers, cookies, errMsg, statusCode) => {

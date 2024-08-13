@@ -210,7 +210,7 @@ Page({
             data: data.result,
           });
           wx.switchTab({
-            url: '/pages/user/sellindex',
+            url: '/pages/sell/index',
           })
           
         })

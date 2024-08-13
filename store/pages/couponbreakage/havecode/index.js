@@ -285,7 +285,7 @@ Page({
           success: function (res) {
             if (res.confirm) {
               wx.switchTab({
-                url: '/pages/user/sellindex',
+                url: '/pages/sell/index',
               })
             }
           }

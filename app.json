@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/sell/index",
+    "pages/sell/stock/list",
+    "pages/sell/stock/restock_wine",
     "pages/user/sellindex",
     "pages/index/index",
     "pages/adv/index",
@@ -173,7 +176,14 @@
     "selectedColor": "#58525C",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
-    "list": [{
+    "list": [
+       {
+        "pagePath": "pages/sell/index",
+        "text": "销售中心",
+        "iconPath": "/images/icon/999999_sale.png",
+        "selectedIconPath": "/images/icon/333333_sale.png"
+        },
+     {
       "pagePath": "pages/user/sellindex",
       "text": "我的任务",
       "iconPath": "/images/icon/999999_sale.png",

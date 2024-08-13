@@ -259,7 +259,7 @@ Page({
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
     this.getTabBar().setData({
-      selected: 2,
+      selected: 3,
     })
 
     if (app.globalData.openid && app.globalData.openid != '') {
