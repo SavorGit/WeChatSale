@@ -1588,6 +1588,7 @@ Page({
    * @desc 品鉴酒-活动提醒领取任务
    */
   tastWineRemindGetTask:function(openid,hotel_id,is_onload= 0){
+    console.log(is_onload)
     var task_taste_honest_wine = this.data.task_taste_honest_wine;
     var showload = is_onload==1?true:false;
     utils.PostRequest(api_v_url + '/task/getPopupTask', {
