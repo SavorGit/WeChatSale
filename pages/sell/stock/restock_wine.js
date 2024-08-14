@@ -148,7 +148,7 @@ Page({
                   break;
           }
       } else {// 普通窗口
-          console.log('pages/hotel/wine/addstock.js', 'onOpenWindow', windowType, windowId);
+          console.log('/pages/sell/stock/restock_wine.js', 'onOpenWindow', windowType, windowId);
       }
   },
   onCloseWindow(e) {// 关闭窗口
@@ -162,7 +162,7 @@ Page({
                   break;
           }
       } else {// 普通窗口
-          console.log('pages/hotel/wine/addstock.js', 'onCloseWindow', windowType, windowId);
+          console.log('/pages/sell/stock/restock_wine.js', 'onCloseWindow', windowType, windowId);
       }
   }
 })

@@ -50,6 +50,48 @@
     font-size: 48rpx;
 }
 
+.page>.pmain .wrapper>.list>.item.property>.row>.property {
+    padding: 10rpx 0;
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property.text,
+.page>.pmain .wrapper>.list>.item.property>.row>.property.picker {
+    height: 50rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.label {
+    width: 160rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value {
+    width: calc(100% - 160rxp);
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame {
+    width: calc(100% - 20rpx);
+    height: calc(100% - 10rpx);
+    padding: 10rpx 5rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame.border {
+    width: calc(100% - 26rpx);
+    height: calc(100% - 16rpx);
+    border: 3rpx solid #999999;
+}
+
+/* .page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame>.input-group>picker.input .show {
+    margin-top: -10rpx;
+} */
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame>.input-group>picker.input .show>.content {
+    width: calc(100% - 50rpx);
+}
+
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame>.icon,
+.page>.pmain .wrapper>.list>.item.property>.row>.property>.value>.frame>.input-group>picker.input .show>.icon {
+    width: 30rpx;
+}
+
 .page>.pfoot {
     height: 120rpx;
 }

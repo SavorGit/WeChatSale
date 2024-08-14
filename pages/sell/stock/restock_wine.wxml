@@ -36,6 +36,39 @@
                             </view>
                         </view>
                     </view>
+                    <view class="item property flex_column_center_center">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="property picker full-container arrive-time flex_row_center_spaceBetween">
+                                <view class="label full-container flex_row_center_flexStart">
+                                    <view class="text">送达时间</view>
+                                </view>
+                                <view class="value full-container flex_row_center_spaceBetween">
+                                    <view class="frame border full-container flex_row_center_spaceBetween">
+                                        <view class="input-group full-container flex_row_center_spaceBetween">
+                                            <picker class="input full-container" mode="date" style="width:calc(50% - 30rpx);">
+                                                <view class="show full-container flex_row_center_spaceBetween">
+                                                    <view class="content flex_row_center_center" style="width:100%;">
+                                                        <view class="text theme-font3">2024-08-14</view>
+                                                    </view>
+                                                </view>
+                                            </picker>
+                                            <picker class="input full-container" mode="time" style="width:calc(50% - 30rpx);">
+                                                <view class="show full-container flex_row_center_spaceBetween">
+                                                    <view class="content flex_row_center_center" style="width:100%;">
+                                                        <view class="text theme-font3">11:14:56</view>
+                                                    </view>
+                                                </view>
+                                            </picker>
+                                        </view>
+                                        <view class="icon full-height flex_row_center_center">
+                                            <view class="text fa fa-angle-down" />
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
 
                 </view>
             </view>
@@ -79,7 +112,7 @@
                                         <view class="content full-height">
                                             <view class="text theme-font3">习酒窖藏1988 53度 500ML</view>
                                         </view>
-                                        <view class="icon full-height">
+                                        <view class="icon full-height flex_row_center_center">
                                             <view class="text fa fa-angle-down" />
                                         </view>
                                     </view>
@@ -98,7 +131,7 @@
                                         <view class="content full-height">
                                             <view class="text theme-font3">1</view>
                                         </view>
-                                        <view class="icon full-height">
+                                        <view class="icon full-height flex_row_center_center">
                                             <view class="text fa fa-angle-down" />
                                         </view>
                                     </view>
