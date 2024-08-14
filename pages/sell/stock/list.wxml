@@ -1,2 +1,59 @@
 <!--pages/sell/stock/list.wxml-->
-<text>pages/sell/stock/list.wxml</text>
+<wxs src="../../../app.wxs" module="app" />
+<!--
+ | 库存/补酒页面
+ |-->
+
+
+
+<view class='container theme-container'>
+    <view class="page full-container flex_column_center_flexStart">
+        <scroll-view class="pmain full-width" scroll-y="true" scroll-with-animation="true">
+            <view class="wrapper full-width flex_column_center_flexStart">
+                <view class="list full-width flex_column_center_flexStart">
+
+                    <view class="item flex_column_center_center theme-block-white">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="pic flex_column_center_center">
+                                <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                            </view>
+                            <view class="info flex_column_center_center">
+                                <view class="name full-width flex_row_center_flexStart">
+                                    <view class="text big2 theme-font1">习酒xxxxxxxxxxx</view>
+                                </view>
+                                <view class="stock full-width flex_row_center_flexStart">
+                                    <view class="text theme-font7">剩余库存：2</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item flex_column_center_center theme-block-white">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="pic flex_column_center_center">
+                                <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                            </view>
+                            <view class="info flex_column_center_center">
+                                <view class="name full-width flex_row_center_flexStart">
+                                    <view class="text big2 theme-font1">汾酒xxxxxxxxxxx</view>
+                                </view>
+                                <view class="stock full-width flex_row_center_flexStart">
+                                    <view class="text theme-font7">剩余库存：2</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
+            </view>
+        </scroll-view>
+        <view class="pfoot full-width flex_column_center_flexStart">
+            <view class="button-group flex_row_center_center">
+                <view class="btn add-wine flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="add_wine_stock">
+                    <view class="label">
+                        <view class="text">申请补酒</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

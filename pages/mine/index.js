@@ -1,7 +1,8 @@
 // pages/mine/index.js
+const tbUtil = require('../../utils/tab_bar.js');
+const utils = require('../../utils/util.js');
 const app = getApp()
 var uma = app.globalData.uma;
-const utils = require('../../utils/util.js')
 var api_v_url = app.globalData.api_v_url;
 var cache_key = app.globalData.cache_key;
 var openid;
@@ -258,9 +259,7 @@ Page({
   onShow: function () {
     var that = this;
     var user_info = wx.getStorageSync(cache_key + "userinfo");
-    this.getTabBar().setData({
-      selected: 3,
-    })
+    tbUtil.selectTab(this);
 
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({

@@ -1,2 +1,122 @@
 <!--pages/sell/stock/restock_wine.wxml-->
-<text>pages/sell/stock/restock_wine.wxml</text>
+<wxs src="../../../app.wxs" module="app" />
+<!--
+ | 申请补酒页面
+ |-->
+
+
+
+<view class='container theme-container'>
+    <view class="page full-container flex_column_center_flexStart theme-page">
+        <scroll-view class="pmain full-width" scroll-y="true" scroll-with-animation="true">
+            <view class="wrapper full-width flex_column_center_flexStart">
+                <view class="list-title full-width flex_column_center_center">
+                    <view class="row full-width flex_row_center_flexStart">
+                        <view class="text bold theme-font1">请选择你要补的酒水</view>
+                    </view>
+                </view>
+                <view class="list full-width flex_column_center_flexStart">
+
+                    <view class="item data flex_column_center_center">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="title flex_row_center_flexStart">
+                                <view class="text theme-font1">习酒窖藏1988 53度 500ML</view>
+                            </view>
+                            <view class="quantity flex_row_center_flexEnd">
+                                <view class="text theme-font2">*2瓶</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item add flex_column_center_center">
+                        <view class="row full-width flex_row_center_spaceBetween">
+                            <view class="btn add flex_column_center_center" bindtap="onOpenWindow" data-window_type="pop" data-window_id="WindowSelectWine">
+                                <view class="icon flex_row_center_center">
+                                    <view class="fa fa-plus-circle theme-font7" />
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
+                </view>
+            </view>
+        </scroll-view>
+        <view class="pfoot full-width flex_column_center_flexStart">
+            <view class="button-group flex_row_center_center">
+                <view class="btn submit flex_column_center_center theme-button-welcome" bindtap="修改值">
+                    <view class="label">
+                        <view class="text">提交申请</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 选择酒水弹窗 -->
+<view wx:if="{{pop_wind.is_pop}}" class="mask flex_column_center_center">
+    <view class="window select-wine flex_column_center_flexStart theme-window">
+        <view class="title-bar flex_row_center_center">
+            <view class="title">
+                <view class="text big3 bold"></view>
+            </view>
+        </view>
+        <view class="option-bar flex_row_center_flexEnd">
+            <view class="btn close flex_column_center_center" bindtap="onCloseWindow" data-window_type="pop" data-window_id="WindowSelectWine">
+                <image class="icon" src="/images/icon/666666_close.png" mode="aspectFill" />
+            </view>
+        </view>
+        <view class="win-body flex_column_center_flexStart">
+            <view class="page full-container flex_column_center_flexStart">
+                <view class="pmain full-width flex_column_center_flexStart">
+                    <view class="property wine-type full-width flex_column_center_flexStart">
+                        <view class="label full-width flex_row_center_flexStart">
+                            <view class="text bold theme-font1">补酒种类</view>
+                        </view>
+                        <view class="value full-width flex_row_center_flexStart">
+                            <view class="frame border full-container flex_row_center_flexStart">
+                                <picker class="input full-container" mode="selector">
+                                    <view class="show full-container flex_row_center_spaceBetween">
+                                        <view class="content full-height">
+                                            <view class="text theme-font3">习酒窖藏1988 53度 500ML</view>
+                                        </view>
+                                        <view class="icon full-height">
+                                            <view class="text fa fa-angle-down" />
+                                        </view>
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="property wine-quantity full-width flex_column_center_flexStart">
+                        <view class="label full-width flex_row_center_flexStart">
+                            <view class="text bold theme-font1">补酒数量</view>
+                        </view>
+                        <view class="value full-width flex_row_center_flexStart">
+                            <view class="frame border full-container flex_row_center_flexStart">
+                                <picker class="input full-container" mode="selector">
+                                    <view class="show full-container flex_row_center_spaceBetween">
+                                        <view class="content full-height">
+                                            <view class="text theme-font3">1</view>
+                                        </view>
+                                        <view class="icon full-height">
+                                            <view class="text fa fa-angle-down" />
+                                        </view>
+                                    </view>
+                                </picker>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="pfoot full-width flex_column_center_flexStart">
+                    <view class="button-group full-width flex_row_center_center">
+                        <view class="btn ok flex_column_center_center theme-button-welcome" bindtap="修改值">
+                            <view class="label">
+                                <view class="text">确定</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

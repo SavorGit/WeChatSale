@@ -103,8 +103,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    min: 0, // 最小范围
-    max: 100, // 最大范围
+    //min: 0, // 最小范围
+    //max: 100, // 最大范围
     leftTrip: 0, // 左滑块行程
     rightTrip: 0, // 右滑块行程
     totalTrip: 0, // 总行程

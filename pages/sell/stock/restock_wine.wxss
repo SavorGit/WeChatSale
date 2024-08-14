@@ -1,1 +1,145 @@
 /* pages/sell/stock/restock_wine.wxss */
+@import "/utils/window.wxss";
+@import "/utils/tabel.wxss";
+@import "/utils/panel.wxss";
+
+/**
+ * 申请补酒页面
+ */
+.page>.pmain {
+    height: calc(100% - 120rpx);
+}
+
+.page>.pmain .wrapper>.list-title {
+    width: calc(100% - 40rpx);
+    padding: 30rpx 20rpx 5rpx;
+}
+
+.page>.pmain .wrapper>.list-title>.row {
+    width: calc(100% - 20rpx);
+    padding: 5rpx 10rpx;
+}
+
+.page>.pmain .wrapper>.list>.item {
+    width: calc(100% - 60rpx);
+    padding: 10rpx;
+    margin: 10rpx 20rpx;
+    border-radius: 10rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.data>.row>.title {
+    width: calc(100% - 180rpx);
+}
+
+.page>.pmain .wrapper>.list>.item.data>.row>.quantity {
+    width: 180rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.add>.row>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.page>.pmain .wrapper>.list>.item.add>.row>.btn.add {
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.page>.pmain .wrapper>.list>.item.add>.row>.add>.icon>.fa {
+    font-size: 48rpx;
+}
+
+.page>.pfoot {
+    height: 120rpx;
+}
+
+.page>.pfoot>.button-group {
+    width: calc(100% - 60rpx);
+    height: calc(100% - 20rpx);
+    padding: 10rpx 30rpx;
+}
+
+.page>.pfoot>.button-group>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 8rpx;
+}
+
+.page>.pfoot>.button-group>.btn.submit {
+    width: 320rpx;
+    height: 60rpx;
+}
+
+.window.select-wine {
+    width: 90%;
+    height: 540rpx;
+    border-radius: 10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain {
+    height: calc(100% -100rpx);
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property {
+    width: calc(100% - 20rpx);
+    padding: 10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.label {
+    height: 50rpx;
+    padding: 5rpx 10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value {
+    height: 50rpx;
+    padding: 5rpx 10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value>.frame {
+    width: calc(100% - 20rpx);
+    height: calc(100% - 10rpx);
+    padding: 10rpx 5rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value>.frame.border {
+    width: calc(100% - 26rpx);
+    height: calc(100% - 16rpx);
+    border: 3rpx solid #999999;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value>.frame>picker.input .show {
+    margin-top: -10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value>.frame>picker.input .show>.content {
+    width: calc(100% - 50rpx);
+}
+
+.window.select-wine>.win-body>.page>.pmain>.property>.value>.frame>picker.input .show>.icon {
+    width: 30rpx;
+}
+
+.window.select-wine>.win-body>.page>.pfoot {
+    height: 80rpx;
+    padding: 10rpx;
+}
+
+.window.select-wine>.win-body>.page>.pfoot>.button-group {
+    width: calc(100% - 50rpx);
+    height: calc(100% - 20rpx);
+    padding: 10rpx 25rpx;
+}
+
+.window.select-wine>.win-body>.page>.pfoot>.button-group>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 8rpx;
+}
+
+.window.select-wine>.win-body>.page>.pfoot>.button-group>.btn.ok {
+    width: 320rpx;
+    height: 60rpx;
+}

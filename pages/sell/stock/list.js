@@ -1,6 +1,10 @@
 // pages/sell/stock/list.js
+const utils = require('../../../utils/util.js');
+/**
+ * 库存/补酒页面
+ */
+
 const app = getApp()
-const utils = require('../../../utils/util.js')
 var uma = app.globalData.uma;
 var api_v_url = app.globalData.api_v_url;
 var openid;

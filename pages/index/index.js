@@ -1,7 +1,8 @@
 //index.js
+const tbUtil = require('../../utils/tab_bar.js');
+const utils = require('../../utils/util.js');
 //获取应用实例
 const app = getApp()
-const utils = require('../../utils/util.js')
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -573,11 +574,7 @@ Page({
   onShow: function() {
     //this.onLoad()
     var that =this;
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2,
-      })
-    }
+    tbUtil.selectTab(this);
     //数据埋点-进入电视互动页
     var user_info = wx.getStorageSync(cache_key+'userinfo');
     that.setData({

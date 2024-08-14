@@ -1,6 +1,10 @@
 // pages/sell/stock/restock_wine.js
+const utils = require('../../../utils/util.js');
+/**
+ * 申请补酒页面
+ */
+
 const app = getApp()
-const utils = require('../../../utils/util.js')
 var uma = app.globalData.uma;
 var api_v_url = app.globalData.api_v_url;
 var openid;
@@ -132,5 +136,33 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  onOpenWindow(e) {// 打开窗口
+      let self = this;
+      let windowType = e.currentTarget.dataset.window_type;
+      let windowId = e.currentTarget.dataset.window_id;
+      if ('pop' === windowType) {// 弹窗
+          switch (windowId) {
+              case 'WindowSelectWine':// 选择酒水弹窗
+                  self.setData({ pop_wind: { is_pop: true } });
+                  break;
+          }
+      } else {// 普通窗口
+          console.log('pages/hotel/wine/addstock.js', 'onOpenWindow', windowType, windowId);
+      }
+  },
+  onCloseWindow(e) {// 关闭窗口
+      let self = this;
+      let windowType = e.currentTarget.dataset.window_type;
+      let windowId = e.currentTarget.dataset.window_id;
+      if ('pop' === windowType) {// 弹窗
+          switch (windowId) {
+              case 'WindowSelectWine':// 选择酒水弹窗
+                  self.setData({ pop_wind: { is_pop: false } });
+                  break;
+          }
+      } else {// 普通窗口
+          console.log('pages/hotel/wine/addstock.js', 'onCloseWindow', windowType, windowId);
+      }
   }
 })

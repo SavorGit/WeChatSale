@@ -1,9 +1,10 @@
 // pages/user/sellindex.js
+const tbUtil = require('../../utils/tab_bar.js');
+const utils = require('../../utils/util.js');
 /**
  * 注册用户首页 [品鉴酒]
  */
 const app = getApp()
-const utils = require('../../utils/util.js')
 var uma = app.globalData.uma;
 var api_url = app.globalData.api_url;
 var api_v_url = app.globalData.api_v_url;
@@ -158,11 +159,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1,
-      })
-    }
+    tbUtil.selectTab(this);
     if (app.globalData.openid && app.globalData.openid != '') {
       that.setData({
         openid: app.globalData.openid

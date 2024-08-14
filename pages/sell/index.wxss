@@ -1,1 +1,488 @@
 /* pages/sell/index.wxss */
+@import "/utils/window.wxss";
+@import "/utils/tabel.wxss";
+@import "/utils/panel.wxss";
+
+/**
+ * 销售中心页面
+ */
+.panel.buttons.top.theme-panel {
+    background-color: #58525C;
+    color: #FFFFFF;
+}
+
+.panel.buttons.top>.pbody>.button-group {
+    width: calc(100% - 180rpx);
+    padding: 10rpx 90rpx;
+}
+
+.panel.buttons.top>.pbody>.button-group>.btn {
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.panel.buttons.top>.pbody>.button-group>.btn>.icon {
+    width: auto;
+    height: auto;
+    margin: unset;
+    padding: unset;
+    border: unset;
+    border-radius: unset;
+}
+
+.panel.buttons.top>.pbody>.button-group>.btn>.icon>.fa {
+    font-size: 64rpx;
+}
+
+.panel.sale-wine.current-month>.pbody,
+.panel.sale-wine.activity-incentives>.pbody {
+    padding-bottom: 20rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table,
+.panel.sale-wine.activity-incentives>.pbody>.table,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table {
+    width: 710rpx;
+    margin: 0 20rpx;
+    padding: 20rpx 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption,
+.panel.sale-wine.activity-incentives>.pbody>.table>.tabel-caption,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption {
+    width: 710rpx;
+    padding: 10rpx 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .title,
+.panel.sale-wine.activity-incentives>.pbody>.table>.tabel-caption .title,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .title {
+    width: calc(100% - 170rpx);
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td,
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td {
+    height: 40rpx;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group {
+    width: calc(100% - 40rpx);
+    padding: 0 20rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group>.tip.tip-color,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group>.tip.tip-color {
+    width: calc(100% - 26rpx);
+    padding: 5rpx 10rpx;
+    border-width: 3rpx;
+    border-style: solid;
+    border-color: rgb(253, 128, 36);
+    color: rgb(253, 128, 36);
+}
+
+.panel.sale-wine.current-month>.pbody>.tip-group>.tip.frame,
+.panel.sale-wine.activity-incentives>.pbody>.tip-group>.tip.frame {
+    border-radius: 10rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group {
+    width: 170rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group>.btn,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.tabel-caption .button-group>.btn.check,
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption .button-group>.btn.confirm {
+    width: 160rpx;
+    height: 60rpx;
+    border-radius: 8rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 180rpx;
+}
+
+.panel.sale-wine.current-month>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 180rpx);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.table {
+    padding: 20rpx 0 10rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 200rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 200rpx);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody {
+    padding: 20rpx 0;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table {
+    width: 670rpx;
+    padding: 15rpx 20rpx;
+    border-radius: 20rpx;
+    background-color: rgba(253, 128, 36, 0.29);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.tabel-caption {
+    width: 670rpx;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td {
+    border-top-width: 3rpx;
+    border-top-style: solid;
+    border-top-color: rgba(187, 187, 187, 0.32);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr:nth-child(1)>.td {
+    border-top-color: rgba(187, 187, 187, 0);
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td>.property>.label {
+    width: 200rpx;
+}
+
+.panel.sale-wine.unclaimed-incentives>.pbody>.table>.trbody>.tr>.td>.property>.value {
+    width: calc(100% - 200rpx);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress {
+    width: calc(100% - 40rpx);
+    padding: 10rpx 0;
+    margin: 0rpx 20rpx;
+    border-top: 3rpx solid rgba(187, 187, 187, 0.32);
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree {
+    height: 80rpx;
+    padding: 10rpx 0;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar {
+    height: 70rpx;
+    padding-top: 10rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background {
+    height: 20rpx;
+    border-radius: 5rpx;
+    background-color: rgba(153, 153, 153, 0.18);
+    overflow: hidden;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.progress-bar>.background>.activity {
+    width: calc(100% - 10rpx);
+    padding: 0;
+    border-radius: 0;
+    background-color: rgba(253, 128, 36, 0.5);
+    color: rgb(253, 128, 36);
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar {
+    height: 80rpx;
+    padding-top: 0rpx;
+    margin-top: -80rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion {
+    min-width: 40rpx;
+    height: 40rpx;
+    border-radius: 20rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion.lighting {
+    background-color: #FFAA2C;
+    color: #FFFFFF;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.criterion.extinct {
+    background-color: #EBEBEB;
+    color: #FFAA2C;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder {
+    width: 180rpx;
+}
+
+.panel.sale-wine.activity-incentives>.pbody>.aim-progress>.complete-degree>.aim-bar>.ladder>.reward {
+    padding: 5rpx 0;
+    transform: rotate(0deg);
+}
+
+.panel.sale-wine.activity-incentives,
+.panel.alcohol-verification {
+    margin-top: 20rpx;
+}
+
+.panel.alcohol-verification>.option-bar>.btn {
+    width: 120rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: right;
+    padding: 10rpx 0 10rpx 10rpx;
+    color: rgb(98, 151, 242);
+}
+
+.panel.alcohol-verification>.option-bar>.btn>.text {
+    text-decoration: underline;
+}
+
+.panel.alcohol-verification>.pbody {
+    padding-bottom: 30rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list {
+    width: calc(100% - 20rpx);
+    padding: 10rpx;
+}
+
+
+.panel.alcohol-verification>.pbody>.list>.item {
+    width: calc(100% - 40rpx);
+    padding: 20rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    border-radius: 40rpx;
+    background-color: rgba(98, 151, 242, 0.06);
+}
+
+.panel.alcohol-verification>.pbody>.list>.item:first-child {
+    margin-top: 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item:last-child {
+    margin-bottom: 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.top,
+.panel.alcohol-verification>.pbody>.list>.item>.middle,
+.panel.alcohol-verification>.pbody>.list>.item>.bottom {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.top>.row {
+    padding: 10rpx 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.top>.row>.user>.head {
+    width: 58rpx;
+    height: 58rpx;
+    border-width: 3rpx;
+    border-style: solid;
+    border-color: rgb(187, 187, 187);
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.top>.row>.user>.nickname {
+    width: calc(100% - 80rpx);
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.top>.row>.status,
+.panel.alcohol-verification>.pbody>.list>.item>.top>.row>.title {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-title {
+    font-size: 28rpx;
+    font-weight: bold;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list,
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods {
+    padding: 10rpx 0;
+    border-bottom: 3rpx dashed rgba(187, 187, 187, 1);
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.left {
+    width: 120rpx;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center {
+    width: calc(100% - 120rpx);
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.name {
+    width: 100%;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.tag-group,
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.identifying-code {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.tag-group>.tag,
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.identifying-code {
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.row {
+    width: calc(100% - 40rpx);
+    padding: 10rpx 20rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.row>.property {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.row>.property>.label {
+    width: 120rpx;
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.row>.property>.value {
+    width: calc(100% - 120rpx);
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.row.pic>.property>.value {
+    width: 276rpx;
+    height: 180rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon {
+    width: 670rpx;
+    height: 172.2857142857143rpx;
+    margin: 20rpx 0;
+    background-image: url('https://oss.littlehotspot.com/WeChat/WeChatSale/store/pages/goodschargeoff/index/coupon.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% auto;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left {
+    width: 160rpx;
+    height: calc(100% - 20rpx);
+    padding: 10rpx 20rpx 10rpx 10rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left>.top {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left>.top>.value {
+    text-align: right;
+    font-size: 56rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left>.top>.unit {
+    width: 40rpx;
+    text-align: right;
+    font-size: 32rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left>.bottom {
+    width: 100%;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.left>.bottom>.text {
+    width: 100%;
+    font-size: 32rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.right {
+    width: calc(100% - 180rpx);
+    height: calc(100% - 20rpx);
+    padding: 10rpx 10rpx 10rpx 20rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.coupon>.right>view {
+    width: 100%;
+    padding: 5rpx 0;
+    font-size: 32rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.tag-group>.tag {
+    margin-left: 30rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.middle>.goods-list>.goods>.center>.tag-group>.tag:first-child {
+    margin-left: unset;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom {
+    height: 70rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.datetime {
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.profit>.label {
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.profit>.value {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.button-group>.btn {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.button-group>.btn.write-off {
+    width: 208rpx;
+    height: 64rpx;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.block-item {
+    padding: 5rpx 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.block-item>.row {
+    padding: 5rpx 0;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom.crack-reward {
+    height: auto;
+    padding: 0 0 10rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.block-item.button-group>.row>.btn {
+    height: 64rpx;
+    border-radius: 8rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.block-item.button-group>.row>.btn.apply-crack-reward {
+    width: 494rpx;
+}
+
+.panel.alcohol-verification>.pbody>.list>.item>.bottom>.block-item.button-group>.row>.btn.give_up-crack-reward {
+    width: 168rpx;
+}

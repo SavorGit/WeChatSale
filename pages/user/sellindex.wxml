@@ -21,7 +21,7 @@
             </swiper>
         </view>
 
-        <!-- 本月售酒汇总 -->
+        <!-- 本月售酒汇总 
         <view class="panel sale-wine current-month flex_column_center_flexStart theme-panel">
             <view class="pbody">
                 <view class="table">
@@ -71,8 +71,9 @@
                 </view>
             </view>
         </view>
+        -->
 
-        <!-- 本月活动激励 -->
+        <!-- 本月活动激励 
         <view wx:if="{{sell_wine_statdat.is_show==1}}" class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel">
             <view class="pbody">
                 <view class="table">
@@ -138,7 +139,7 @@
                                     </view>
                                 </view>
                             </block>
-                            <!-- 
+                            !-- 
                             <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/40*100)+'%'}} - 90rpx);">
                                 <view class="criterion flex_row_center_center">
                                     <view class="text small4">8</view>
@@ -163,7 +164,7 @@
                                     <view class="text small4 theme-font-FFAA2C">100000积分</view>
                                 </view>
                             </view>
-                            -->
+                            --
                         </view>
                     </view>
                 </view>
@@ -174,8 +175,9 @@
                 </view>
             </view>
         </view>
+        -->
 
-        <!-- xx月活动激励待领取 -->
+        <!-- xx月活动激励待领取 
         <view class="panel sale-wine unclaimed-incentives flex_column_center_flexStart" wx:if="{{sell_wine_statdat.is_show==1 && sell_wine_statdat.confirm_data.month>0}}">
             <view class="pbody">
                 <view class="table">
@@ -247,6 +249,7 @@
                 </view>
             </view>
         </view>
+        -->
 
         <!-- 进行中任务面板 -->
         <view class="panel progress theme-panel" wx:if="{{task_list.inprogress.length>0}}">

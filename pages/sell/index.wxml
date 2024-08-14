@@ -1,2 +1,379 @@
 <!--pages/sell/index.wxml-->
-<text>pages/sell/index.wxml</text>
+<wxs src="../../app.wxs" module="app" />
+<!--
+ | 销售中心页面
+ |-->
+
+
+
+<scroll-view class='container theme-container' scroll-y="true" scroll-with-animation="true" style="height:calc(100vh - 46px);">
+    <view class="wrapper flex_column_center_flexStart">
+
+        <!-- 顶部按钮面板 -->
+        <view class="panel buttons top flex_column_center_flexStart theme-panel">
+            <view class="pbody flex_column_center_flexStart">
+                <view class="button-group flex_row_center_spaceAround">
+                    <view class="btn wine-stock flex_column_center_center" bindtap="gotoPage" data-type="stock">
+                        <view class="icon">
+                            <view class="text fa fa-building-o" />
+                        </view>
+                        <view class="label">
+                            <view class="text small2 theme-font-FFFFFF">库存/补酒</view>
+                        </view>
+                    </view>
+                    <view class="btn scan-code flex_column_center_center" bindtap="修改值">
+                        <view class="icon">
+                            <view class="text fa fa-qrcode" />
+                        </view>
+                        <view class="label">
+                            <view class="text small2 theme-font-FFFFFF">扫码核销</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 本月售酒汇总 -->
+        <view class="panel sale-wine current-month flex_column_center_flexStart theme-panel">
+            <view class="pbody">
+                <view class="table">
+                    <view class="tabel-caption">
+                        <view class="full-width flex_row_center_spaceBetween">
+                            <view class="title">
+                                <view class="text bold theme-font1">本月售酒汇总</view>
+                            </view>
+                            <view class="button-group flex_row_center_flexEnd">
+                                <view class="btn check flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="sale_log">
+                                    <view class="label">
+                                        <view class="text">核对</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="trbody">
+                        <view class="tr">
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">售酒核销数量：</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font1">{{sumsellwine.sale_num}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">瓶盖回收数量：</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font-FFAA2C">{{sumsellwine.recycle_num}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="tip-group flex_column_center_flexStart" wx:if="{{sumsellwine.tips!=''}}">
+                    <view class="tip tip-color frame flex_row_center_center">
+                        <view class="text small2 bold">{{sumsellwine.tips}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 本月活动激励 -->
+        <view wx:if="{{sell_wine_statdat.is_show==1}}" class="panel sale-wine activity-incentives flex_column_center_flexStart theme-panel">
+            <view class="pbody">
+                <view class="table">
+                    <view class="tabel-caption">
+                        <view class="full-width flex_row_center_spaceBetween">
+                            <view class="title">
+                                <view class="text bold theme-font1">本月活动激励</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="trbody">
+                        <view class="tr">
+                            <view class="td">
+                                <view class="title-sub">
+                                    <view class="text small2 bold theme-font3">单品激励奖励</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="tr">
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">单品激励奖励瓶数</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.num}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">预计获得收益</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.integral}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="aim-progress flex_column_center_flexStart">
+                    <view class="title-sub full-width flex_row_center_flexStart">
+                        <view class="text small2 theme-font3">开瓶阶梯奖励进度(已完成{{sell_wine_statdat.step_award_process.now_step_num}}瓶)</view>
+                    </view>
+                    <view class="complete-degree full-width flex_column_flexStart_flexStart">
+                        <view class="progress-bar full-width flex_row_flexStart_flexStart">
+                            <view class="background full-container flex_row_center_flexStart">
+                                <view class="activity full-height flex_row_center_flexEnd" style="{{sell_wine_statdat.step_award_process.now_step_percent}}">
+                                    <view class="text small4">{{sell_wine_statdat.step_award_process.now_step_num}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="aim-bar full-width flex_row_flexStart_flexStart">
+                            <block wx:for="{{sell_wine_statdat.step_award_process.process}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                                <view class="ladder flex_column_center_flexStart" style="{{bean.step_percent}}">
+                                    <view class="criterion flex_row_center_center {{app.parseInt(sell_wine_statdat.step_award_process.now_step_num)<app.parseInt(bean.n)?'extinct':'lighting'}}">
+                                        <view class="text small4">{{bean.n}}</view>
+                                    </view>
+                                    <view class="reward">
+                                        <view class="text small4 theme-font-FFAA2C">{{bean.i}}积分</view>
+                                    </view>
+                                </view>
+                            </block>
+                            <!-- 
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{(8/40*100)+'%'}} - 90rpx);">
+                                <view class="criterion flex_row_center_center">
+                                    <view class="text small4">8</view>
+                                </view>
+                                <view class="reward">
+                                    <view class="text small4 theme-font-FFAA2C">40000积分</view>
+                                </view>
+                            </view>
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((20-8)/40*100)+'%'}} - 180rpx);">
+                                <view class="criterion flex_row_center_center">
+                                    <view class="text small4">20</view>
+                                </view>
+                                <view class="reward">
+                                    <view class="text small4 theme-font-FFAA2C">60000积分</view>
+                                </view>
+                            </view>
+                            <view class="ladder flex_column_center_flexStart" style="margin-left:calc({{((30-20)/40*100)+'%'}} - 180rpx);">
+                                <view class="criterion flex_row_center_center">
+                                    <view class="text small4">30</view>
+                                </view>
+                                <view class="reward">
+                                    <view class="text small4 theme-font-FFAA2C">100000积分</view>
+                                </view>
+                            </view>
+                            -->
+                        </view>
+                    </view>
+                </view>
+                <view class="tip-group flex_column_center_flexStart" wx:if="{{sell_wine_statdat.step_award_process.tips!=''}}">
+                    <view class="tip tip-color frame flex_row_center_center">
+                        <view class="text small2 bold">{{sell_wine_statdat.step_award_process.tips}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- xx月活动激励待领取 -->
+        <view wx:if="{{sell_wine_statdat.is_show==1 && sell_wine_statdat.confirm_data.month>0}}" class="panel sale-wine unclaimed-incentives flex_column_center_flexStart">
+            <view class="pbody">
+                <view class="table">
+                    <view class="tabel-caption">
+                        <view class="full-width flex_row_center_spaceBetween">
+                            <view class="title">
+                                <view class="text bold theme-font-FFAA2C">{{sell_wine_statdat.confirm_data.month}}月活动激励待领取</view>
+                            </view>
+                            <view class="button-group flex_row_center_flexEnd">
+                                <view class="btn confirm flex_column_center_center theme-button-welcome" bindtap="gotoPage" data-type="sale_log_confirm">
+                                    <view class="label">
+                                        <view class="text">待确认</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="trbody">
+                        <view class="tr">
+                            <view class="td half-width">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">单品激励奖励瓶数</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.num}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="td half-width">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label" style="width:180rpx;">
+                                        <view class="text small2 theme-font1">预计获得收益</view>
+                                    </view>
+                                    <view class="value" style="width:calc(100% - 180);">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.integral}}积分</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="tr">
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label">
+                                        <view class="text small2 theme-font1">开瓶阶梯激励瓶数</view>
+                                    </view>
+                                    <view class="value">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.step_num}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="td">
+                                <view class="property full-width flex_row_center_flexStart">
+                                    <view class="label" style="width:180rpx;">
+                                        <view class="text small2 theme-font1">预计获得收益</view>
+                                    </view>
+                                    <view class="value" style="width:calc(100% - 180);">
+                                        <view class="text small2 theme-font1">{{sell_wine_statdat.confirm_data.step_integral}}积分</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="tips full-width flex_column_center_flexStart" wx:if="{{sell_wine_statdat.confirm_data.tips!=''}}">
+                        <view class="tip full-width flex_row_center_center" style="padding:10rpx 0;">
+                            <view class="text small2 theme-font-F44444">{{sell_wine_statdat.confirm_data.tips}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 酒水核销面板 -->
+        <view class="panel alcohol-verification theme-panel">
+            <view class="title-bar flex_row_center_flexStart">
+                <view class="title">
+                    <view class="text bold">近期销售</view>
+                </view>
+            </view>
+            <view class="option-bar flex_row_center_flexEnd">
+                <view class="btn link-all" bindtap="修改值">
+                    <view class="text bold">全部 ></view>
+                </view>
+            </view>
+            <view class="pbody">
+                <view class="list flex_column_center_flexStart">
+                    <block wx:for="{{list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
+                        <view class="item flex_column_center_flexStart">
+                            <view class="top">
+                                <view wx:if="{{userinfo.role_type==1}}" class="row full-width flex_row_center_flexStart">
+                                    <view class="user full-width flex_row_center_spaceBetween">
+                                        <view class="head circular flex_column_center_center">
+                                            <image class="full-container circular" src="{{app.typeOf(bean.avatarUrl)=='string'&&app.trim(bean.avatarUrl)!=''?bean.avatarUrl:'https://oss.littlehotspot.com/WeChat/WeChatSale/images/imgs/user_head_default.png'}}" mode="aspectFill" />
+                                        </view>
+                                        <view class="nickname flex_column_flexStart_center">
+                                            <view class="text bold theme-font1">{{app.typeOf(bean.nickName)=='string'&&app.trim(bean.nickName)!=''?bean.nickName:' '}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="row full-width flex_row_center_center">
+                                    <view class="title flex_row_center_center theme-font1" wx:if="{{bean.reason!=''}}">核销({{bean.reason}})</view>
+                                    <view class="title flex_row_center_center theme-font1" wx:else>核销</view>
+                                </view>
+                            </view>
+                            <view class="middle">
+                                <view class="goods-title flex_row_center_flexStart theme-font1">商品信息（{{bean.goods.length}}）</view>
+                                <view class="goods-list flex_column_center_flexStart" bindtap="viewEntityInfo" data-keys="{{index}}">
+                                    <view wx:for="{{bean.goods}}" wx:for-item="goods" wx:key="goodsKey" wx:for-index="goodsIndex" class="goods flex_row_center_flexStart">
+                                        <view class="left flex_column_center_center theme-font1">{{goods.goods_id}}</view>
+                                        <view class="center flex_column_center_center">
+                                            <view class="name theme-font1">{{goods.goods_name}}</view>
+                                            <view class="tag-group flex_row_center_flexStart">
+                                                <view class="tag theme-font3">{{goods.cate_name}}</view>
+                                                <view class="tag theme-font3">{{goods.spec_name}}</view>
+                                                <view class="tag theme-font3">{{goods.unit_name}}</view>
+                                            </view>
+                                            <view class="identifying-code theme-font3">唯一标识：{{goods.idcode}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="bottom flex_row_center_spaceBetween">
+                                <view class="datetime theme-font3">{{bean.add_time}}</view>
+                            </view>
+
+                            <view class="bottom approval flex_column_center_center" style="height:auto;">
+                                <view wx:if="{{bean.status==1}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}" wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
+                                        <view class="status">
+                                            <view class="text bold theme-font-6297F2">{{item.status_str}}</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">{{item.income_str}}</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">{{item.integreal}}积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+
+                                </view>
+                                <view wx:elif="{{bean.status==3}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width top-line flex_row_center_spaceBetween">
+                                    </view>
+
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="status" style="min-height:1rpx;">
+                                            <view wx:if="{{bean.wo_reason_type==1}}" class="text bold theme-font-F44444">{{bean.status_str}}</view>
+                                        </view>
+                                        <view class="button-group flex_row_center_flexEnd" wx:if="{{bean.integreal_list[0].is_wobutton==1}}">
+                                            <view class="btn reapply flex_row_center_center theme-button-blue" style="width:264rpx;height:60rpx;border-radius:8rpx;" bindtap="gotoPage" data-type="addinfo" data-keys="{{index}}">
+                                                <view class="label">
+                                                    <view class="text">重新提交</view>
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="row full-width flex_row_center_spaceBetween">
+                                        <view class="reason full-width">
+                                            <view class="text theme-font1">原因:{{bean.integreal_list[0].reason}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                                <view wx:elif="{{bean.status==2}}" class="block-item button-group full-width flex_column_center_center">
+                                    <view class="row full-width flex_row_center_spaceBetween" wx:for="{{bean.integreal_list}}" wx:for-item="item" wx:key="integrealKey" wx:for-index="integrealIndex">
+                                        <view class="status">
+                                            <view class="text bold theme-font-53BD1D">{{item.status_str}}</view>
+                                        </view>
+                                        <view class="integral flex_row_center_flexEnd">
+                                            <view class="label">
+                                                <view class="text small2 theme-font3">{{item.income_str}}</view>
+                                            </view>
+                                            <view class="value" style="padding-left:20rpx;">
+                                                <view class="text big4 bold theme-font-F44444">{{item.integreal}}积分</view>
+                                            </view>
+                                        </view>
+                                    </view>
+
+                                </view>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+
+    </view>
+</scroll-view>
