@@ -9,25 +9,25 @@
 <view class='container theme-container'>
     <view class="page full-container flex_column_center_flexStart">
         <scroll-view class="pmain full-width" scroll-y="true" scroll-with-animation="true">
-            <view class="wrapper full-width flex_column_center_flexStart">
+            <view class="wrapper full-width flex_column_center_flexStart" wx:if="{{stock_list.length>0}}">
                 <view class="list full-width flex_column_center_flexStart">
 
-                    <view class="item flex_column_center_center theme-block-white">
+                    <view class="item flex_column_center_center theme-block-white" wx:for="{{stock_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
                         <view class="row full-width flex_row_center_spaceBetween">
                             <view class="pic flex_column_center_center">
-                                <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
+                                <image class="full-container" src="{{bean.img_url}}" mode="aspectFill" />
                             </view>
                             <view class="info flex_column_center_center">
                                 <view class="name full-width flex_row_center_flexStart">
-                                    <view class="text big2 theme-font1">习酒xxxxxxxxxxx</view>
+                                    <view class="text big2 theme-font1">{{bean.name}}</view>
                                 </view>
                                 <view class="stock full-width flex_row_center_flexStart">
-                                    <view class="text theme-font7">剩余库存：2</view>
+                                    <view class="text theme-font7">剩余库存：{{bean.stock_num}}</view>
                                 </view>
                             </view>
                         </view>
                     </view>
-                    <view class="item flex_column_center_center theme-block-white">
+                    <!-- <view class="item flex_column_center_center theme-block-white">
                         <view class="row full-width flex_row_center_spaceBetween">
                             <view class="pic flex_column_center_center">
                                 <image class="full-container" src="https://oss.littlehotspot.com/WeChat/resource/default.jpg" mode="aspectFill" />
@@ -41,7 +41,7 @@
                                 </view>
                             </view>
                         </view>
-                    </view>
+                    </view> -->
 
                 </view>
             </view>

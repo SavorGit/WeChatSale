@@ -16,7 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    stock_list:[]
   },
 
   /**
@@ -31,12 +31,13 @@ Page({
   },
   getList:function(page = 1){
     var that = this;
-    utils.PostRequest(api_v_url +'/aa/bb',{
+    utils.PostRequest(api_v_url +'/hotel/stockgoodslist',{
         openid   : openid, 
         hotel_id : hotel_id,
         page     : page
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+        var stock_list = data.result;
+        that.setData({stock_list:stock_list})
     })
   },
   gotoPage:function(){

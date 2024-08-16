@@ -21,7 +21,7 @@
                             <view class="text small2 theme-font-FFFFFF">库存/补酒</view>
                         </view>
                     </view>
-                    <view class="btn scan-code flex_column_center_center" bindtap="修改值">
+                    <view class="btn scan-code flex_column_center_center" bindtap="scanCode" data-type="1">
                         <view class="icon">
                             <view class="text fa fa-qrcode" />
                         </view>
@@ -268,7 +268,7 @@
                 </view>
             </view>
             <view class="option-bar flex_row_center_flexEnd">
-                <view class="btn link-all" bindtap="修改值">
+                <view class="btn link-all" bindtap="gotoPage" data-type='chargeoff'>
                     <view class="text bold">全部 ></view>
                 </view>
             </view>

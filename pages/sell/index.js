@@ -17,7 +17,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        sumsellwine:{tips:''}
     },
 
     /**
@@ -105,6 +105,8 @@ Page({
                     that.getSellWineSta(openid, hotel_id, is_onload);
                     // 本月售酒汇总  如果是餐厅指认活动政策受益人
                     that.getStimulate(openid, hotel_id, is_onload);
+                    //近期销售
+                    that.getSaleList(openid);
                     if (user_info.is_perfect == 0) {
                         wx.redirectTo({
                             //url: '/pages/user/authorization',
@@ -186,6 +188,18 @@ Page({
         }, res => { }, { isShowLoading: showLoading })
 
     },
+    getSaleList:function(openid){
+        var that = this;
+        utils.PostRequest(api_v_url + '/writeoff/datalist', {
+            openid         : openid,
+            page           : 1,
+            recycle_status : 0,
+            wo_status      : 0
+        }, (data, headers, cookies, errMsg, statusCode) => {
+            var list = data.result.datalist;
+            that.setData({list:list})
+        })
+    },
     gotoPage: function (e) {
         var that = this;
         var url = '';
@@ -197,7 +211,7 @@ Page({
         })
         switch (type) {
             case 'stock':
-                url = '/pages/sell/stock/list';
+                url = '/pages/sell/stock/list?hotel_id='+user_info.hotel_id;
                 break;
             case 'chargeoff':
                 url = '/store/pages/goodschargeoff/index';

@@ -12,18 +12,18 @@
             <view class="wrapper full-width flex_column_center_flexStart">
                 <view class="list-title full-width flex_column_center_center">
                     <view class="row full-width flex_row_center_flexStart">
-                        <view class="text bold theme-font1">请选择你要补的酒水</view>
+                        <view class="text bold theme-font1">请选择您要补的酒水</view>
                     </view>
                 </view>
                 <view class="list full-width flex_column_center_flexStart">
 
-                    <view class="item data flex_column_center_center">
+                    <view class="item data flex_column_center_center" wx:for="{{select_wine_list}}" wx:for-item="bean" wx:key="key" wx:for-index="index">
                         <view class="row full-width flex_row_center_spaceBetween">
                             <view class="title flex_row_center_flexStart">
-                                <view class="text theme-font1">习酒窖藏1988 53度 500ML</view>
+                                <view class="text theme-font1">{{bean.name}}</view>
                             </view>
                             <view class="quantity flex_row_center_flexEnd">
-                                <view class="text theme-font2">*2瓶</view>
+                                <view class="text theme-font2">*{{bean.num}}瓶</view>
                             </view>
                         </view>
                     </view>
@@ -45,17 +45,17 @@
                                 <view class="value full-container flex_row_center_spaceBetween">
                                     <view class="frame border full-container flex_row_center_spaceBetween">
                                         <view class="input-group full-container flex_row_center_spaceBetween">
-                                            <picker class="input full-container" mode="date" style="width:calc(50% - 30rpx);">
+                                            <picker class="input full-container" mode="date" style="width:calc(50% - 30rpx);" value="{{config_info.delivery_date}}" bindchange="selectInfo" data-type="date">
                                                 <view class="show full-container flex_row_center_spaceBetween">
                                                     <view class="content flex_row_center_center" style="width:100%;">
-                                                        <view class="text theme-font3">2024-08-14</view>
+                                                        <view class="text theme-font3">{{config_info.delivery_date}}</view>
                                                     </view>
                                                 </view>
                                             </picker>
-                                            <picker class="input full-container" mode="time" style="width:calc(50% - 30rpx);">
+                                            <picker class="input full-container" mode="time" style="width:calc(50% - 30rpx);" value="{{config_info.delivery_hour}}" bindchange="selectInfo" data-type="hour">
                                                 <view class="show full-container flex_row_center_spaceBetween">
                                                     <view class="content flex_row_center_center" style="width:100%;">
-                                                        <view class="text theme-font3">11:14:56</view>
+                                                        <view class="text theme-font3">{{config_info.delivery_hour}}</view>
                                                     </view>
                                                 </view>
                                             </picker>
@@ -75,11 +75,11 @@
         </scroll-view>
         <view class="pfoot full-width flex_column_center_flexStart">
             <view class="button-group flex_row_center_center">
-                <view class="btn submit flex_column_center_center theme-button-welcome" bindtap="修改值">
+                <button class="btn submit flex_column_center_center theme-button-welcome" bindtap="submitApply" disabled="{{addDisabled}}">
                     <view class="label">
                         <view class="text">提交申请</view>
                     </view>
-                </view>
+                </button>
             </view>
         </view>
     </view>
@@ -107,10 +107,10 @@
                         </view>
                         <view class="value full-width flex_row_center_flexStart">
                             <view class="frame border full-container flex_row_center_flexStart">
-                                <picker class="input full-container" mode="selector">
+                                <picker class="input full-container" mode="selector"  range="{{config_info.name_wine_list}}" value="{{config_info.wine_key}}" bindchange="selectInfo" data-type="wine">
                                     <view class="show full-container flex_row_center_spaceBetween">
                                         <view class="content full-height">
-                                            <view class="text theme-font3">习酒窖藏1988 53度 500ML</view>
+                                            <view class="text theme-font3">{{config_info.name_wine_list[config_info.wine_key]}}</view>
                                         </view>
                                         <view class="icon full-height flex_row_center_center">
                                             <view class="text fa fa-angle-down" />
@@ -126,10 +126,10 @@
                         </view>
                         <view class="value full-width flex_row_center_flexStart">
                             <view class="frame border full-container flex_row_center_flexStart">
-                                <picker class="input full-container" mode="selector">
+                                <picker class="input full-container" mode="selector" range="{{config_info.name_num_list}}" value="{{config_info.num_key}}" bindchange="selectInfo" data-type="num">
                                     <view class="show full-container flex_row_center_spaceBetween">
                                         <view class="content full-height">
-                                            <view class="text theme-font3">1</view>
+                                            <view class="text theme-font3">{{config_info.name_num_list[config_info.num_key]}}</view>
                                         </view>
                                         <view class="icon full-height flex_row_center_center">
                                             <view class="text fa fa-angle-down" />
@@ -142,7 +142,7 @@
                 </view>
                 <view class="pfoot full-width flex_column_center_flexStart">
                     <view class="button-group full-width flex_row_center_center">
-                        <view class="btn ok flex_column_center_center theme-button-welcome" bindtap="修改值">
+                        <view class="btn ok flex_column_center_center theme-button-welcome" bindtap="confirmSelectWine">
                             <view class="label">
                                 <view class="text">确定</view>
                             </view>

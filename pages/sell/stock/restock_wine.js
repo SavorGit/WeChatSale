@@ -15,10 +15,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wine_list:[],
-    wine_info:{name:'',id:0,num:''},
+    config_info:{wine_list:[],name_wine_list:[],wine_key:0,num_list:[],name_num_list:[],num_key:1,delivery_date:'',delivery_hour:''},
+    wine_info:{name:'',id:0,num:'',},
     select_wine_list:[],
-    pop_wind:{is_pop:false}
+    pop_wind:{is_pop:false},
+    addDisabled:false,
   },
 
   /**
@@ -28,15 +29,28 @@ Page({
     wx.hideShareMenu();
     openid   = app.globalData.openid;
     hotel_id = options.hotel_id;
-    this.getWineList();
+    this.getWineConfig();
   },
-  getWineList:function(){
+  getWineConfig:function(){
     var that = this;
-    utils.PostRequest(api_v_url +'/aa/bb',{
+    var config_info = this.data.config_info;
+    utils.PostRequest(api_v_url +'/restockWine/config',{
         openid   : openid, 
         hotel_id : hotel_id,
     }, (data, headers, cookies, errMsg, statusCode) => {
-
+        var goods_list = data.result.goods_list;
+        var goods_num  = data.result.goods_num;
+        config_info.wine_list = goods_list
+        config_info.num_list  = goods_num;
+        config_info.delivery_date = data.result.delivery_date;
+        config_info.delivery_hour = data.result.delivery_hour;
+        for(let i in goods_list){
+            config_info.name_wine_list.push(goods_list[i].name);
+        }
+        for(let i in goods_num){
+            config_info.name_num_list.push(goods_num[i].name);
+        }
+        that.setData({config_info});
     })
   },
   popSelectWineWind:function(){
@@ -45,48 +59,84 @@ Page({
     this.setData({pop_wind:pop_wind});
   },
   selectInfo:function(e){
-    var keys = e.detail.value();
-    var wine_list = this.data.wine_list;
-    var wine_info = this.data.wine_info;
- 
-    wine_info.name = wine_list[keys].name;
-    wine_info.id   = wine_list[keys].id;
-    this.setData({wine_info:wine_info});
-  },
-  inputWineNum:function(e){
-    var that = this;
-    var num = e.detail.value;
-    var wine_info = this.data.wine_info;
-    wine_info.num = num;
-    this.setData({wine_info:wine_info});
-  },
-  closePopWind:function(){
-    var pop_wind = this.data.pop_wind;
-    pop_wind.is_pop = false;
-
-    this.setData({pop_wind:pop_wind,wine_info:{name:'',id:0,num:''}});
+      console.log(e)
+    var keys = e.detail.value;
+    var type = e.currentTarget.dataset.type;
+    var config_info = this.data.config_info;
+    if(type=='wine'){
+        config_info.wine_key = keys;
+    }else if(type=='num'){
+        config_info.num_key = keys;
+    }else if(type=='date'){
+        config_info.delivery_date = keys;
+    }else if(type=='hour'){
+        config_info.delivery_hour = keys;
+    }
+    console.log(config_info)
+    this.setData({config_info:config_info});
   },
   confirmSelectWine:function(){
       var wine_info = this.data.wine_info;
-      if(wine_info.num=='' || wine_info.num==0){
-          app.showToast('请输入补酒数量');
+      var config_info = this.data.config_info;
+      if(config_info.wine_key==0){
+        common.showToast('请选择您要补的酒水');
+        return false;
+      }
+      if(config_info.num_key==0){
+          common.showToast('请选择您要补酒水的瓶数');
           return false;
       }
-      var wine_list = this.data.wine_list;
-      wine_list.push(wine_info);
-      this.setData({wine_list:wine_list,wine_info:{name:'',id:0,num:''}})
+
+      wine_info.name = config_info.wine_list[config_info.wine_key].name;
+      wine_info.id   = config_info.wine_list[config_info.wine_key].value;
+      wine_info.num  = config_info.num_list[config_info.num_key].value;
+
+      var select_wine_list = this.data.select_wine_list;
+      select_wine_list.push(wine_info);
+      config_info.wine_key = 0;
+      config_info.num_key  = 1;
+      this.setData({select_wine_list:select_wine_list,
+                    pop_wind:{is_pop:false},
+                    wine_info:{name:'',id:0,num:''},
+                    config_info:config_info
+                })
   },
   submitApply:function(){
-    var wine_list = this.data.wine_list;
-    if(wine_list.length==0){
+    var that = this;
+    var select_wine_list = this.data.select_wine_list;
+    if(select_wine_list.length==0){
         app.showToast('请选择您要补的酒水');
         return false;
     }
-    utils.PostRequest(api_v_url +'/aa/bb',{
-        openid   : openid, 
-        hotel_id : hotel_id,
-    }, (data, headers, cookies, errMsg, statusCode) => {
-
+    
+    var config_info = this.data.config_info;
+    var delivery_time = config_info.delivery_date + ' ' + config_info.delivery_hour;
+    console.log(select_wine_list)
+    var goods_data = JSON.stringify(select_wine_list);
+    wx.showModal({
+      title: '提示',
+      content: '确认要提交申请？',
+      complete: (res) => {
+        if (res.confirm) {
+            that.setData({
+                addDisabled: true
+            })
+            utils.PostRequest(api_v_url +'/restockWine/addwine',{
+                delivery_time : delivery_time,
+                goods_data    : goods_data,
+                openid        : openid, 
+            }, (data, headers, cookies, errMsg, statusCode) => {
+                common.showToast('申请成功',2000,'success');
+                setTimeout(() => {
+                    wx.navigateBack({
+                        delta:1
+                    })
+                }, 2000);
+            },res=>{
+                that.setData({addDisabled: false})
+            })
+        }
+      }
     })
   },
   /**
@@ -155,10 +205,18 @@ Page({
       let self = this;
       let windowType = e.currentTarget.dataset.window_type;
       let windowId = e.currentTarget.dataset.window_id;
+      var config_info = this.data.config_info;
+
       if ('pop' === windowType) {// 弹窗
           switch (windowId) {
               case 'WindowSelectWine':// 选择酒水弹窗
-                  self.setData({ pop_wind: { is_pop: false } });
+                    config_info.wine_key = 0;
+                    config_info.num_key  = 1;
+                    self.setData({ 
+                      pop_wind: { is_pop: false }, 
+                      wine_info:{name:'',id:0,num:''},
+                      config_info:config_info
+                    });
                   break;
           }
       } else {// 普通窗口
