@@ -126,7 +126,7 @@ Page({
                 goods_data    : goods_data,
                 openid        : openid, 
             }, (data, headers, cookies, errMsg, statusCode) => {
-                common.showToast('申请成功',2000,'success');
+                app.showToast('申请成功',2000,'success');
                 setTimeout(() => {
                     wx.navigateBack({
                         delta:1
